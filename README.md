@@ -1,4 +1,4 @@
-# Legend of the Five Rings 5 Edition
+# Legend of the Five Rings 5 Edition by Edge Studio
 
 ## Nous rejoindre
 1. Vous pouvez retrouver toutes les mises à jour en français pour FoundryVTT sur le discord officiel francophone
