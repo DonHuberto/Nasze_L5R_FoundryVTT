@@ -1,10 +1,6 @@
 ![alt text](/l5r02_anc_slider.jpg)
 # Legend of the Five Rings 5th Edition by [Edge Studio](https://edge-studio.net/)
 
-## Nous rejoindre
-1. Vous pouvez retrouver toutes les mises à jour en français pour FoundryVTT sur le discord officiel francophone
-2. Lien vers [Discord Francophone](https://discord.gg/pPSDNJk)
-
 ## Installation
 
 1. Copy this link and use it in Foundrys system manager to install the system. Copier ce lien et chargez-le dans le menu système de Foundry
@@ -14,6 +10,10 @@
 1. 
 2. 
 3. 
+
+## Nous rejoindre
+1. Vous pouvez retrouver toutes les mises à jour en français pour FoundryVTT sur le discord officiel francophone
+2. Lien vers [Discord Francophone](https://discord.gg/pPSDNJk)
 
 ## Modifier le système
 Avant de pousser une nouvelle Release, il faut :
