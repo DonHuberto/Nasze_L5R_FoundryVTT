@@ -1,4 +1,4 @@
-![image alt ><](/l5r02_anc_slider.jpg)
+![https://www.fantasyflightgames.com/en/legend-of-the-five-rings-roleplaying-game/](/l5r02_anc_slider.jpg)
 
 # Legend of the Five Rings 5 Edition by Edge Studio
 
