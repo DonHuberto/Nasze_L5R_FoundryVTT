@@ -1,0 +1,29 @@
+{
+  "name": "l5r5e",
+  "title": "Legend of the Five Rings 5e",
+  "description": "Theme for Pathfinder 1e/2e. <p> *** Rejoignez la communauté Discord FR :<a href='https://discord.gg/pPSDNJk'> https://discord.gg/pPSDNJk </a></p>",
+  "version": "0.0.1",
+  "minimumCoreVersion": "0.7.7",
+  "compatibleCoreVersion": "1.0.0",
+  "author": "Team L5R",
+  "esmodules": [],
+  "styles": [],
+  "scripts": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "fr",
+      "name": "French (French)",
+      "path": "lang/fr.json"
+    }
+  ],
+
+  "packs": [],
+  "url": "https://gitlab.com/teaml5r/l5r5e",
+  "manifest": "https://gitlab.com/teaml5r/l5r5e/-/raw/master/system/system.json",
+  "download": "https://gitlab.com/teaml5r/l5r5e/-/jobs/artifacts/v0.0.1/raw/l5r5e.zip?job=build"
+}
