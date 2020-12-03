@@ -1,5 +1,5 @@
 ![alt text](/l5r02_anc_slider.jpg)
-# Legend of the Five Rings 5 Edition by Edge Studio
+# Legend of the Five Rings 5 Edition by [Edge Studio](https://edge-studio.net/)
 
 ## Nous rejoindre
 1. Vous pouvez retrouver toutes les mises à jour en français pour FoundryVTT sur le discord officiel francophone
