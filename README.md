@@ -1,4 +1,4 @@
-![/l5r02_anc_slider.jpg]
+![alt text](/l5r02_anc_slider.jpg)
 # Legend of the Five Rings 5 Edition by Edge Studio
 
 ## Nous rejoindre
