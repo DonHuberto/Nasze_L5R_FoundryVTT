@@ -21,7 +21,7 @@
       "path": "lang/fr.json"
     }
   ],
-
+  "background":"L5R-header.jpg",
   "packs": [],
   "url": "https://gitlab.com/teaml5r/l5r5e",
   "manifest": "https://gitlab.com/teaml5r/l5r5e/-/raw/master/system/system.json",
