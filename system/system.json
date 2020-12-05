@@ -40,7 +40,7 @@
     }
   ],
   
-  "background" : "L5R-Header.jpg",
+  "background" : "L5R-Header.webp",
   "packs": [],
   "url": "https://gitlab.com/teaml5r/l5r5e",
   "manifest": "https://gitlab.com/teaml5r/l5r5e/-/raw/master/system/system.json",
