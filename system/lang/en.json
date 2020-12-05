@@ -1,4 +1,19 @@
 {
+    "I18N.MAINTAINERS": ["Team L5R"],
+    
+    "HEXA.COLOR" : "Enter a hexadecimal color (such as #FFFFFF).",
+    "IC.BG.COLOR": "IC Background Color",
+    "IC.TEXT.COLOR": "IC Text Color",
+    "EMOTE.BG.COLOR": "Emote Background Color",
+    "EMOTE.TEXT.COLOR": "Emote Text Color",
+    "ROLL.BG.COLOR": "Roll Background Color",
+    "ROLL.TEXT.COLOR": "Roll Text Color",
+    "OTHER.BG.COLOR": "Other Background Color",
+    "OTHER.TEXT.COLOR": "Other Text Color",
+    "DEF.CHAT.PREF": "Default Chat Prefix",
+    "SPE.CHAT.PREF": "If specified, this string will be prefixed to all chat messages that are not already commands (such as /emote.)",
+ 
+    
     "SETTINGS.SimpleMacroShorthandN": "Shortened Macro Syntax",
     "SETTINGS.SimpleMacroShorthandL": "Enable a shortened macro syntax which allows referencing attributes directly, for example @str instead of @attributes.str.value. Disable this setting if you need the ability to reference the full attribute model, for example @attributes.str.label.",
     "SETTINGS.SimpleInitFormulaN": "Initiative Formula",

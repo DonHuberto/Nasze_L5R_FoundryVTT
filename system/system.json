@@ -6,9 +6,22 @@
   "minimumCoreVersion": "0.7.7",
   "compatibleCoreVersion": "1.0.0",
   "author": "Team L5R",
-  "scripts": [],
-  "esmodules" : ["./scripts/dice-l5r5e.js", "./scripts/main-l5r5e.js"],
-  "styles": ["./styles/l5r5e.css"],
+  "scripts": [ 
+    "./l5r-ui/scripts/l5rui-chat-color.js"
+  ],
+
+  "esmodules" : [
+    "./l5r-ui/scripts/help/l5rui-help.js",
+    "./scripts/dice-l5r5e.js",
+    "./scripts/main-l5r5e.js"
+  ],
+
+  "styles": [
+    "./l5r-ui/css/l5rui.css",
+    "./l5r-ui/css/cursor.css",
+    "./styles/l5r5e.css"
+  ],
+  
   "languages": [
     {
       "lang": "en",
@@ -19,9 +32,15 @@
       "lang": "fr",
       "name": "French (French)",
       "path": "lang/fr.json"
+    },
+    {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "lang/pt-BR.json"
     }
   ],
-  "background":"L5R-header.jpg",
+  
+  "background" : "L5R-Header.jpg",
   "packs": [],
   "url": "https://gitlab.com/teaml5r/l5r5e",
   "manifest": "https://gitlab.com/teaml5r/l5r5e/-/raw/master/system/system.json",
