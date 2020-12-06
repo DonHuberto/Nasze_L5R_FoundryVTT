@@ -2,7 +2,8 @@
 /*=================== Image Background ======================*/
 /*************************************************************/
 body {
-    background-image:url(../ui/frames/background.webp)
+    background: url(../ui/frames/background.webp) no-repeat center;
+    background-size: cover;
    }
  
 /*************************************************************/
