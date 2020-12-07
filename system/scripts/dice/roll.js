@@ -47,20 +47,16 @@ export class RollL5r5e extends Roll {
             throw new Error("This Roll object has already been rolled.");
         }
 
-        // console.log('RollL5r5e.evaluate.in', this); return; // TODO tmp
+        console.log("RollL5r5e.evaluate.in", this); // TODO tmp
 
-        // Split L5R dices / regulars
+        // Split L5R dices / regulars for non inners
         let l5rDices = this.terms.filter((term) => term instanceof L5rBaseDie);
         this.terms = this.terms.filter((t) => !(t instanceof L5rBaseDie));
         this.terms = this._identifyTerms(this.constructor.cleanFormula(this.terms));
 
-        // Roll regular dices
+        // Roll regular dices / inner dices
         this._total = 0;
         if (this.terms.length > 0) {
-            this.l5r5e.dicesTypes.std = true;
-
-            console.log("this.terms", this.terms);
-
             // clean terms (trim symbols)
             this.terms = this._identifyTerms(this.constructor.cleanFormula(this.terms));
 
@@ -68,10 +64,19 @@ export class RollL5r5e extends Roll {
             super.evaluate({ minimize, maximize });
         }
 
-        // Roll L5R dices
-        if (l5rDices.length > 0) {
-            this.l5r5e.dicesTypes.l5r = true;
+        // Check inner L5R rolls
+        this._dice.forEach((term) => {
+            if (term instanceof L5rBaseDie) {
+                // Add results to total
+                ["success", "explosive", "opportunity", "strife"].forEach((props) => {
+                    this.l5r5e.summary[props] += parseInt(term.l5r5e[props]);
+                });
+                this.l5r5e.summary.success_total += parseInt(term.l5r5e.success);
+            }
+        });
 
+        // Roll non inner L5R dices
+        if (l5rDices.length > 0) {
             l5rDices.forEach((term) => {
                 // Roll
                 term.evaluate({ minimize, maximize });
@@ -80,8 +85,9 @@ export class RollL5r5e extends Roll {
                 ["success", "explosive", "opportunity", "strife"].forEach((props) => {
                     this.l5r5e.summary[props] += parseInt(term.l5r5e[props]);
                 });
-                this.l5r5e.summary.success_total += parseInt(term.l5r5e.success) + parseInt(term.l5r5e.explosive);
+                this.l5r5e.summary.success_total += parseInt(term.l5r5e.success);
 
+                // re-inject L5R dices
                 this.terms.push("+");
                 this.terms.push(term);
             });
@@ -92,14 +98,12 @@ export class RollL5r5e extends Roll {
             }
 
             // TODO Others advantage/disadvantage
-
-            // re-inject L5R dices
-            // this.terms = this.terms.concat(l5rTerms);
         }
 
         // Store final outputs
-        //this._total = total;
         this._rolled = true;
+        this.l5r5e.dicesTypes.std = this.dice.some((term) => term instanceof DiceTerm && !(term instanceof L5rBaseDie));
+        this.l5r5e.dicesTypes.l5r = this.dice.some((term) => term instanceof L5rBaseDie);
 
         console.log("RollL5r5e.evaluate.out", this); // TODO tmp
 
@@ -111,8 +115,6 @@ export class RollL5r5e extends Roll {
      * @override
      */
     getTooltip() {
-        console.log("RollL5r5e.getTooltip", this); // TODO tmp
-
         const parts = this.dice
             .filter((t) => !(t instanceof L5rBaseDie))
             .map((d) => {
@@ -150,8 +152,6 @@ export class RollL5r5e extends Roll {
      * @override
      */
     async render(chatOptions = {}) {
-        console.log("RollL5r5e.render", chatOptions, this); // TODO tmp
-
         chatOptions = mergeObject(
             {
                 user: game.user._id,
@@ -194,8 +194,6 @@ export class RollL5r5e extends Roll {
                       }),
                   },
         };
-
-        console.log("RollL5r5e.render", chatOptions, chatData, this); // TODO tmp
 
         // Render the roll display template
         return renderTemplate(chatOptions.template, chatData);
@@ -248,8 +246,6 @@ export class RollL5r5e extends Roll {
 
         roll.data = data.data;
         roll.l5r5e = data.l5r5e;
-
-        console.log("RollL5r5e.fromData", roll); // TODO tmp
 
         return roll;
     }

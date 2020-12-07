@@ -12,7 +12,6 @@ export class L5rBaseDie extends DiceTerm {
     constructor(termData) {
         super(termData);
         this.l5r5e = { success: 0, explosive: 0, opportunity: 0, strife: 0 };
-        console.log("L5rBaseDie.constructor", termData, this); // TODO tmp
     }
 
     /**
@@ -29,6 +28,15 @@ export class L5rBaseDie extends DiceTerm {
      */
     static getResultLabel(result) {
         return `<img src="${CONFIG.L5r5e.paths.assets}dices/default/${this.FACES[result].image}.png" alt="${result}" />`;
+    }
+
+    /**
+     * Return the total result of the DiceTerm if it has been evaluated
+     * Always zero for L5R dices to not count in total for regular dices
+     * @override
+     */
+    get total() {
+        return 0;
     }
 
     /**
@@ -61,8 +69,6 @@ export class L5rBaseDie extends DiceTerm {
         this._evaluated = true;
         this.result = 0;
 
-        console.log("L5rBaseDie.evaluate.out", this); // TODO tmp
-
         return this;
     }
 
@@ -75,8 +81,6 @@ export class L5rBaseDie extends DiceTerm {
 
         //roll.l5r5e = this.l5r5e;
 
-        console.log("L5rBaseDie.roll", roll); // TODO tmp
-
         return roll;
     }
 
@@ -86,7 +90,6 @@ export class L5rBaseDie extends DiceTerm {
 
         roll.l5r5e = data.l5r5e;
 
-        console.log("L5rBaseDie.fromData", roll); // TODO tmp
         return roll;
     }
 
@@ -99,7 +102,6 @@ export class L5rBaseDie extends DiceTerm {
 
         json.l5r5e = this.l5r5e;
 
-        console.log("L5rBaseDie.toJSON", json); // TODO tmp
         return json;
     }
 }
