@@ -3,8 +3,9 @@
  * @extends {DiceTerm}
  */
 
-export { AbilityDie } from "./dice/dietype/AbilityDie.js";
-export { RingsDie } from "./dice/dietype/RingsDie.js";
+export { L5rBaseDie } from "./dice/dietype/l5r-base-die.js";
+export { AbilityDie } from "./dice/dietype/ability-die.js";
+export { RingDie } from "./dice/dietype/ring-die.js";
 
 /**
  * New extension of the core DicePool class for evaluating rolls with the L5r5e DiceTerms

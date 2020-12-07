@@ -1,0 +1,62 @@
+<div class="l5r5e dice-roll">
+    {{#if isPublicRoll }}
+
+    <div class="l5r5e dice-formula">{{formula}}</div>
+
+    {{#if l5r5e.stance}}
+    <div class="l5r5e dice-stance">
+        {{l5r5e.skillId}} ({{l5r5e.stance}})
+    </div>
+    {{/if}}
+
+    <div class="l5r5e dice-result">
+
+        {{#if l5r5e.dicesTypes.l5r}}
+        <div class="l5r5e item-display dices-l5r">
+            {{#each l5r5e.dices}}
+            {{#if this.diceTypeL5r}}
+            {{#each this.rolls}}
+            <span class="l5r5e chat-dice">{{{this.result}}}</span>
+            {{/each}}
+            {{/if}}
+            {{/each}}
+
+            {{#l5r5e.summary}}
+            <ul>
+                <li>Successes: {{this.success_total}}</li>
+
+                {{#if opportunity}}
+                <li>Opportunities: {{this.opportunity}}</li>
+                {{/if}}
+
+                {{#if strife}}
+                <li>Strife: {{this.strife}}</li>
+                {{/if}}
+
+                {{#if difficulty}}
+                <li>Difficulty: {{this.difficulty}}</li>
+                {{/if}}
+            </ul>
+            {{/l5r5e.summary}}
+        </div>
+        {{/if}}
+
+        {{#if l5r5e.dicesTypes.std}}
+
+        <div class="l5r5e dices-std">
+            {{#each results}}
+            {{#each this.rolls}}
+            <span class="l5r5e chat-dice">{{{this.result}}}</span>
+            {{/each}}
+            {{/each}}
+        </div>
+
+        {{{tooltip}}}
+        <h4 class="l5r5e dice-total dice-total-std">{{total}}</h4>
+        {{/if}}
+
+    </div>
+
+    {{/if}}
+</div>
+
