@@ -25,7 +25,6 @@ export class RollL5r5e extends Roll {
             },
             summary: {
                 difficulty: 0,
-                success_total: 0,
                 success: 0,
                 explosive: 0,
                 opportunity: 0,
@@ -71,7 +70,6 @@ export class RollL5r5e extends Roll {
                 ["success", "explosive", "opportunity", "strife"].forEach((props) => {
                     this.l5r5e.summary[props] += parseInt(term.l5r5e[props]);
                 });
-                this.l5r5e.summary.success_total += parseInt(term.l5r5e.success);
             }
         });
 
@@ -85,7 +83,6 @@ export class RollL5r5e extends Roll {
                 ["success", "explosive", "opportunity", "strife"].forEach((props) => {
                     this.l5r5e.summary[props] += parseInt(term.l5r5e[props]);
                 });
-                this.l5r5e.summary.success_total += parseInt(term.l5r5e.success);
 
                 // re-inject L5R dices
                 this.terms.push("+");
@@ -111,40 +108,79 @@ export class RollL5r5e extends Roll {
     }
 
     /**
-     * Render the tooltip HTML for a Roll instance
+     * Return the total result of the Roll expression if it has been evaluated, otherwise null
+     * @override
+     */
+    get total() {
+        if (!this._rolled) {
+            return null;
+        }
+
+        let total = "";
+
+        // Regular dices total (eg 6)
+        if (this.l5r5e.dicesTypes.std) {
+            total = this._total;
+        }
+
+        // Add L5R summary
+        if (this.l5r5e.dicesTypes.l5r) {
+            const summary = this.l5r5e.summary;
+
+            // TODO i18n lang trad or symbols
+            total +=
+                (this.l5r5e.dicesTypes.std ? " | " : "") +
+                ["success", "explosive", "opportunity", "strife"]
+                    .map((props) => (summary[props] > 0 ? props + ": " + summary[props] : null))
+                    .filter((c) => !!c)
+                    .join(", ");
+        }
+
+        return total;
+    }
+
+    /**
+     * Render the tooltip HTML for a Roll instance and inner rolls (eg [[2ds]])
      * @override
      */
     getTooltip() {
-        const parts = this.dice
-            .filter((t) => !(t instanceof L5rBaseDie))
-            .map((d) => {
-                const cls = d.constructor;
-                return {
-                    formula: d.formula,
-                    total: d.total,
-                    faces: d.faces,
-                    flavor: d.options.flavor,
-                    isL5rDices: d.constructor instanceof L5rBaseDie,
-                    rolls: d.results.map((r) => {
-                        return {
-                            result: cls.getResultLabel(r.result),
-                            classes: [
-                                cls.name.toLowerCase(),
-                                "d" + d.faces,
-                                r.rerolled ? "rerolled" : null,
-                                r.exploded ? "exploded" : null,
-                                r.discarded ? "discarded" : null,
-                                r.result === 1 ? "min" : null,
-                                r.result === d.faces ? "max" : null,
-                            ]
-                                .filter((c) => !!c)
-                                .join(" "),
-                        };
-                    }),
-                };
-            });
+        const parts = this.dice.map((term) => {
+            const cls = term.constructor;
+            const isL5rDie = term instanceof L5rBaseDie;
+
+            return {
+                formula: term.formula,
+                total: term.total,
+                faces: term.faces,
+                flavor: term.options.flavor,
+                isDieL5r: isL5rDie,
+                isDieStd: !isL5rDie,
+                rolls: term.results.map((r) => {
+                    return {
+                        result: cls.getResultLabel(r.result),
+                        classes: [
+                            cls.name.toLowerCase(),
+                            "d" + term.faces,
+                            !isL5rDie && r.rerolled ? "rerolled" : null,
+                            !isL5rDie && r.exploded ? "exploded" : null,
+                            !isL5rDie && r.discarded ? "discarded" : null,
+                            !isL5rDie && r.result === 1 ? "min" : null,
+                            !isL5rDie && r.result === term.faces ? "max" : null,
+                        ]
+                            .filter((c) => !!c)
+                            .join(" "),
+                    };
+                }),
+            };
+        });
         parts.addedResults = this.addedResults;
-        return renderTemplate(this.constructor.TOOLTIP_TEMPLATE, { parts });
+
+        const chatData = {
+            parts: parts,
+            l5r5e: this.l5r5e,
+        };
+
+        return renderTemplate(this.constructor.TOOLTIP_TEMPLATE, { chatData });
     }
 
     /**
