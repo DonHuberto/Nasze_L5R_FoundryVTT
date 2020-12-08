@@ -1,9 +1,62 @@
-//SCSS
-// l5re5.scss
-.testing {
-  width: percentage(1/7);
-}
-// test
-.testing {
-  width: percentage(2/7);
-}
+/** Colors **/
+
+// -- Global
+$white: rgba(255, 255, 255, 0.75);
+$black: rgba(0, 0, 0, 0.75);
+$red: rgba(255, 0, 0, 0.75);
+$orange: rgba(255, 100, 0, 0.75);
+$blue: rgba(0, 0, 255, 0.75);
+$green: rgba(0, 255, 0, 0.75);
+
+// color title
+$l5r5e-title: rgb(186, 187, 177);
+// color bold
+$l5r5e-bold: rgb(118, 79, 64);
+// color red
+$l5r5e-red: rgb(150, 60, 65);
+// color white 0.5
+$l5r5e-white: rgba(255, 255, 255, 0.5);
+// color black 0.5
+$l5r5e-black: rgba(0, 0, 0, 0.5);
+
+// Earth
+$l5r5e-earth: rgb(110, 141, 107);
+// Air
+$l5r5e-air: rgb(142, 118, 140);
+// Water
+$l5r5e-water: rgb(110, 139, 145);
+// Fire
+$l5r5e-fire: rgb(146, 111, 71);
+// Void
+$l5r5e-void: rgb(77, 72, 68);
+
+// -- Clans
+
+// Crab
+$l5r5e-dragon: rgb(130, 130, 140);
+// Crane
+$l5r5e-dragon: rgb(120, 145, 145);
+// Dragon
+$l5r5e-dragon: rgb(85, 130, 110);
+// Lion
+$l5r5e-dragon: rgb(160, 140, 80);
+// Mantis
+$l5r5e-dragon: rgb(45, 85, 30);
+// Phoenix
+$l5r5e-dragon: rgb(145, 190, 175);
+// Scorpion
+$l5r5e-dragon: rgb(155, 70, 60);
+// Unicorn
+$l5r5e-dragon: rgb(120, 90, 135);
+// Spider
+$l5r5e-dragon: rgb(0, 0, 0);
+
+.Crab {}
+.Crane {}
+.Dragon {}
+.Lion {}
+.Mantis {}
+.Phoenix {}
+.Scorpion {}
+.Unicorn {}
+.Spider {}

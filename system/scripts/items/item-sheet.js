@@ -2,13 +2,13 @@
 * Extend the basic ItemSheet with some very simple modifications
 * @extends {ItemSheet}
 */
-export class L5RItemSheet extends ItemSheet {
+export class ItemSheetL5r5e extends ItemSheet {
     
     /** @override */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             classes: ["l5r", "sheet", "item"],
-            template: "systems/l5r/templates/item/item-sheet.html",
+            template: "systems/l5r5e/templates/item/item-sheet.html",
             width: 520,
             height: 480,
             tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}]

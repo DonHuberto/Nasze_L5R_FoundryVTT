@@ -1,9 +1,22 @@
 //SCSS
-// l5re5.scss
-.testing {
-  width: percentage(1/7);
-}
-// test
-.testing {
-  width: percentage(2/7);
+// sdebar
+#sidebar {
+    #sidebar-tabs {
+        flex: 0 0 1rem;
+        box-sizing: border-box;
+        margin: 0 0 0.25rem;
+        border-bottom: 1px solid $l5r5e-white;
+        box-shadow: none;
+        > .item {
+            line-height: 27px;
+            border-radius: 100%;
+            margin: 0;
+            flex: 0 0 27px;
+            height: 27px;
+            .active {
+                border: 1px solid $orange;
+                box-shadow: 0 0 6px $orange;
+            }
+        }
+    }
 }

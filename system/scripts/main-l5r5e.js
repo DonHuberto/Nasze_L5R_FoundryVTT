@@ -3,6 +3,10 @@ import { RegisterSettings } from './settings.js';
 import { PreloadTemplates } from './preloadTemplates.js';
 import { ActorL5r5e } from "./actor-l5r5e.js";
 import { ActorSheetL5r5e } from './sheets/actor-sheet.js';
+import { ItemL5r5e } from './items/item.js';
+import { ItemSheetL5r5e } from './items/item-sheet.js';
+import { WeaponSheetL5r5e } from './items/weapon-sheet.js';
+import { FeatSheetL5r5e } from './items/feat-sheet.js';
 
 // Import Dice Types
 
@@ -15,6 +19,7 @@ Hooks.once('init', async function() {
     // Assign custom classes and constants here
     CONFIG.Actor.entityClass = ActorL5r5e;
     CONFIG.Actor.sheetClasses = ActorSheetL5r5e;
+    CONFIG.Item.entityClass = ItemL5r5e;
     
     // Register custom system settings
     RegisterSettings();
@@ -26,6 +31,12 @@ Hooks.once('init', async function() {
     // Actors sheet
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("l5r5e", ActorSheetL5r5e, { types: ["character"], makeDefault: true });
+    
+    // Items sheet
+    Items.unregisterSheet("core", ItemSheet);
+    Items.registerSheet("l5r5e", ItemSheetL5r5e, { types: ["item"], makeDefault: true });
+    Items.registerSheet("l5r5e", WeaponSheetL5r5e, { types: ["weapon"], makeDefault: true });
+    Items.registerSheet("l5r5e", FeatSheetL5r5e, { types: ["feat"], makeDefault: true });
     
     Handlebars.registerHelper('localizeSkillCategory', function(skillName) {
         const key = 'L5r5e.Skills.' + skillName + '.Title';

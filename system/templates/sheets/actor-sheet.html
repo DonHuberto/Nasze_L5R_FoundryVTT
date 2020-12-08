@@ -1,10 +1,15 @@
 <form class="{{cssClass}}" autocomplete="off">
     {{!-- Sheet Header --}}
     <header class="sheet-header">
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
-        <div class="header-fields">
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="150" width="150"/>
+        <div class="header-fields identity-wrapper">
             <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
+            {{> 'systems/l5r5e/templates/sheets/actor/identity.html' }}
+        </div>
+        <div class="header-fields">
+            {{> 'systems/l5r5e/templates/sheets/actor/social.html' }}
             {{> 'systems/l5r5e/templates/sheets/actor/rings.html' }}
+            {{> 'systems/l5r5e/templates/sheets/actor/attributes.html' }}
         </div>
     </header>
 
@@ -21,10 +26,7 @@
     <section class="sheet-body">
         {{!-- Narrative Tab --}}
         <article class="tab narrative" data-group="primary" data-tab="narrative">
-            {{> 'systems/l5r5e/templates/sheets/actor/identity.html' }}
-            {{> 'systems/l5r5e/templates/sheets/actor/social.html' }}
-            <h4 class="text-block-header">{{ localize 'L5r5e.Notes' }}</h4>
-            {{ editor content=data.notes.value target="data.notes.value" button=true editable=editable }}
+            {{> 'systems/l5r5e/templates/sheets/actor/narrative.html' }}
         </article>
 
         {{!-- Skills Tab --}}
@@ -42,7 +44,7 @@
             {{> 'systems/l5r5e/templates/sheets/actor/conflict.html' }}
         </article>
 
-        <article class="tab narrative" data-group="primary" data-tab="inventory">
+        <article class="tab inventory" data-group="primary" data-tab="inventory">
             {{> 'systems/l5r5e/templates/item/items.html' }}
         </article>
 

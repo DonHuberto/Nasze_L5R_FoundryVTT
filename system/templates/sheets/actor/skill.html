@@ -1,5 +1,6 @@
-<li class="skill skill-wrapper skill-content" data-skill="{{skillId}}">
-    <label class="skill-name attribute-label rollable">{{ localizeSkill categoryId skillId }}
+<li class="skill skill-wrapper" data-skill="{{skillId}}">
+    <label class="skill-content">
+        <strong class="skill-name attribute-label rollable">{{ localizeSkill categoryId skillId }}</strong>
         <input type="text" name="data.skills.{{categoryId}}.{{skillId}}.value" value="{{skill.value}}" data-dtype="Number" placeholder="0"/>
     </label>
     <!-- Roll button -->

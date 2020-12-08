@@ -1,4 +1,4 @@
 
-export class L5RItem extends Item {
+export class ItemL5r5e extends Item {
 
 }

@@ -1,15 +1,15 @@
-<li class="category-wrapper category-content">
+<li class="skill-category-wrapper skill-category-content">
     <h4 class="section-header">{{ localizeSkillCategory categoryId }}</h4>
     <ul class="skill-category-skills-list">
         {{#each category as |skill id| }}
             {{> 'systems/l5r/templates/sheets/actor/skill.html' categoryId=../categoryId skill=skill skillId=id }}
         {{/each}}
     </ul>
-    <div class="skill-category-ring-actions">
-        <label name="air" class="air"><i class="i_air"></i> {{ localizeSkill categoryId 'Air' }} </label>
-        <label name="earth" class="earth"><i class="i_earth"></i> {{ localizeSkill categoryId 'Earth' }} </label>
-        <label name="fire" class="fire"><i class="i_fire"></i> {{ localizeSkill categoryId 'Fire' }} </label>
-        <label name="water" class="water"><i class="i_water"></i> {{ localizeSkill categoryId 'Water' }} </label>
-        <label name="void" class="void"><i class="i_void"></i> {{ localizeSkill categoryId 'Void' }} </label>
-    </div>
+    <ul class="skill-category-ring-actions">
+        <li name="air" class="air"><i class="i_air"></i> {{ localizeSkill categoryId 'Air' }} </li>
+        <li name="earth" class="earth"><i class="i_earth"></i> {{ localizeSkill categoryId 'Earth' }} </li>
+        <li name="fire" class="fire"><i class="i_fire"></i> {{ localizeSkill categoryId 'Fire' }} </li>
+        <li name="water" class="water"><i class="i_water"></i> {{ localizeSkill categoryId 'Water' }} </li>
+        <li name="void" class="void"><i class="i_void"></i> {{ localizeSkill categoryId 'Void' }} </li>
+    </ul>
 </li>

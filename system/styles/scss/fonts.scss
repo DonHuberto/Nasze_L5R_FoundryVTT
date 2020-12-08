@@ -1,9 +1,42 @@
-//SCSS
-// l5re5.scss
-.testing {
-  width: percentage(1/7);
+/** Fonts **/
+
+// Font Logotype L5R
+@font-face {
+    font-family: "LogotypeL5r";
+    src: url('../fonts/LogotypeL5r.ttf') format("truetype");
 }
-// test
-.testing {
-  width: percentage(2/7);
+
+// Font BrushtipTexe
+@font-face {
+    font-family: "BrushtipTexe";
+    src: url('../fonts/BrushtipTexe.otf') format("opentype");
 }
+
+$font-primary: "Roboto", sans-serif;
+$font-secondary: "BrushtipTexe", sans-serif;
+$font-dice: "LogotypeL5r", sans-serif;
+
+h1 {
+    font: 1.5rem "BrushtipTexe";
+}
+
+i.strife, i.success, i.explosive, i.opportunity, i.d6, i.d12, 
+i.i_earth, i.i_water, i.i_fire, i.i_air, i.i_void {
+    font-family: LogotypeL5r;
+    line-height: 1rem;
+    font-style: normal;
+    font-weight: normal;
+    vertical-align:middle;
+}
+
+i.strife:before      { content: "f"; }
+i.success:before     { content: "s"; }
+i.explosive:before   { content: "e"; }
+i.opportunity:before { content: "o"; }
+i.d6:before          { content: "r"; }
+i.d12:before         { content: "k"; }
+i.i_earth:before       { content: "g"; }
+i.i_water:before       { content: "w"; }
+i.i_fire:before        { content: "i"; }
+i.i_air:before         { content: "a"; }
+i.i_void:before        { content: "v"; }
