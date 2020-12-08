@@ -1,5 +1,6 @@
 <div class="dice-tooltip">
     {{#each chatData.parts}}
+    {{#if this.display}}
     <section class="tooltip-part">
         <div class="dice">
             <header class="part-header flexrow">
@@ -17,6 +18,7 @@
             </ol>
         </div>
     </section>
+    {{/if}}
     {{/each}}
 
     {{#if chatData.l5r5e.dicesTypes.l5r}}

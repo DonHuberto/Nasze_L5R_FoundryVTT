@@ -141,9 +141,10 @@ export class RollL5r5e extends Roll {
 
     /**
      * Render the tooltip HTML for a Roll instance and inner rolls (eg [[2ds]])
+     * @param contexte Used to differentiate render (no l5r dices) or inline tooltip (with l5r dices)
      * @override
      */
-    getTooltip() {
+    getTooltip(contexte = null) {
         const parts = this.dice.map((term) => {
             const cls = term.constructor;
             const isL5rDie = term instanceof L5rBaseDie;
@@ -155,6 +156,7 @@ export class RollL5r5e extends Roll {
                 flavor: term.options.flavor,
                 isDieL5r: isL5rDie,
                 isDieStd: !isL5rDie,
+                display: !isL5rDie || contexte?.from !== "render",
                 rolls: term.results.map((r) => {
                     return {
                         result: cls.getResultLabel(r.result),
@@ -210,8 +212,8 @@ export class RollL5r5e extends Roll {
             flavor: isPrivate ? null : chatOptions.flavor,
             user: chatOptions.user,
             isPublicRoll: !chatOptions.isPrivate,
-            tooltip: isPrivate ? "" : await this.getTooltip(),
-            total: isPrivate ? "?" : Math.round(this.total * 100) / 100,
+            tooltip: isPrivate ? "" : await this.getTooltip({ from: "render" }),
+            total: isPrivate ? "?" : Math.round(this._total * 100) / 100,
             data: this.data,
             l5r5e: isPrivate
                 ? {}
@@ -262,7 +264,7 @@ export class RollL5r5e extends Roll {
             {
                 user: game.user._id,
                 type: template,
-                content: this.total,
+                content: this._total,
                 sound: CONFIG.sounds.dice,
             },
             messageData
