@@ -22,6 +22,7 @@
     {{/each}}
 
     {{#if chatData.l5r5e.dicesTypes.l5r}}
+    {{#if chatData.displaySummary}}
     {{#chatData.l5r5e.summary}}
     <ul>
         <li>Successes: {{this.success}}</li>
@@ -39,5 +40,6 @@
         {{/if}}
     </ul>
     {{/chatData.l5r5e.summary}}
+    {{/if}}
     {{/if}}
 </div>

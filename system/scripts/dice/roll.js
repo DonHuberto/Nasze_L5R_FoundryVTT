@@ -45,66 +45,50 @@ export class RollL5r5e extends Roll {
         if (this._rolled) {
             throw new Error("This Roll object has already been rolled.");
         }
+        if (this.terms.length < 1) {
+            throw new Error("This Roll object need dice to be rolled.");
+        }
 
         console.log("RollL5r5e.evaluate.in", this); // TODO tmp
 
-        // Split L5R dices / regulars for non inners
-        let l5rDices = this.terms.filter((term) => term instanceof L5rBaseDie);
-        this.terms = this.terms.filter((t) => !(t instanceof L5rBaseDie));
+        // Clean terms (trim symbols)
         this.terms = this._identifyTerms(this.constructor.cleanFormula(this.terms));
 
-        // Roll regular dices / inner dices
+        // Roll dices and inner dices
         this._total = 0;
-        if (this.terms.length > 0) {
-            // clean terms (trim symbols)
-            this.terms = this._identifyTerms(this.constructor.cleanFormula(this.terms));
 
-            // Roll
-            super.evaluate({ minimize, maximize });
-        }
+        // Roll
+        super.evaluate({ minimize, maximize });
 
-        // Check inner L5R rolls
-        this._dice.forEach((term) => {
-            if (term instanceof L5rBaseDie) {
-                // Add results to total
-                ["success", "explosive", "opportunity", "strife"].forEach((props) => {
-                    this.l5r5e.summary[props] += parseInt(term.l5r5e[props]);
-                });
-            }
-        });
+        // Current terms - L5R Summary
+        this.terms.forEach((term) => this._l5rSummary(term));
 
-        // Roll non inner L5R dices
-        if (l5rDices.length > 0) {
-            l5rDices.forEach((term) => {
-                // Roll
-                term.evaluate({ minimize, maximize });
-
-                // Total
-                ["success", "explosive", "opportunity", "strife"].forEach((props) => {
-                    this.l5r5e.summary[props] += parseInt(term.l5r5e[props]);
-                });
-
-                // re-inject L5R dices
-                this.terms.push("+");
-                this.terms.push(term);
-            });
-
-            // Clean
-            if (this.terms[0] === "+") {
-                this.terms.shift();
-            }
-
-            // TODO Others advantage/disadvantage
-        }
+        // Check inner L5R rolls - L5R Summary
+        this._dice.forEach((term) => this._l5rSummary(term));
 
         // Store final outputs
         this._rolled = true;
-        this.l5r5e.dicesTypes.std = this.dice.some((term) => term instanceof DiceTerm && !(term instanceof L5rBaseDie));
+        this.l5r5e.dicesTypes.std = this.dice.some((term) => term instanceof DiceTerm && !(term instanceof L5rBaseDie)); // ignore math symbols
         this.l5r5e.dicesTypes.l5r = this.dice.some((term) => term instanceof L5rBaseDie);
 
         console.log("RollL5r5e.evaluate.out", this); // TODO tmp
 
         return this;
+    }
+
+    /**
+     * Summarise the total of success, strife... for L5R dices for the current roll
+     *
+     * @param term
+     * @private
+     */
+    _l5rSummary(term) {
+        if (term instanceof L5rBaseDie) {
+            ["success", "explosive", "opportunity", "strife"].forEach((props) => {
+                this.l5r5e.summary[props] += parseInt(term.l5r5e[props]);
+            });
+            // TODO Others advantage/disadvantage
+        }
     }
 
     /**
@@ -133,7 +117,7 @@ export class RollL5r5e extends Roll {
                 ["success", "explosive", "opportunity", "strife"]
                     .map((props) => (summary[props] > 0 ? props + ": " + summary[props] : null))
                     .filter((c) => !!c)
-                    .join(", ");
+                    .join(" | ");
         }
 
         return total;
@@ -180,6 +164,7 @@ export class RollL5r5e extends Roll {
         const chatData = {
             parts: parts,
             l5r5e: this.l5r5e,
+            displaySummary: contexte?.from !== "render",
         };
 
         return renderTemplate(this.constructor.TOOLTIP_TEMPLATE, { chatData });
