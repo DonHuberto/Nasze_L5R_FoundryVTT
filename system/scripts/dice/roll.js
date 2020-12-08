@@ -110,12 +110,10 @@ export class RollL5r5e extends Roll {
         // Add L5R summary
         if (this.l5r5e.dicesTypes.l5r) {
             const summary = this.l5r5e.summary;
-
-            // TODO i18n lang trad or symbols
             total +=
                 (this.l5r5e.dicesTypes.std ? " | " : "") +
                 ["success", "explosive", "opportunity", "strife"]
-                    .map((props) => (summary[props] > 0 ? props + ": " + summary[props] : null))
+                    .map((props) => (summary[props] > 0 ? `<i class="${props}"></i> ${summary[props]}` : null))
                     .filter((c) => !!c)
                     .join(" | ");
         }

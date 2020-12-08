@@ -57,6 +57,11 @@ Hooks.once("init", async function () {
     Items.registerSheet("l5r5e", WeaponSheetL5r5e, { types: ["weapon"], makeDefault: true });
     Items.registerSheet("l5r5e", FeatSheetL5r5e, { types: ["feat"], makeDefault: true });
 
+    // for debug
+    Handlebars.registerHelper("json", function (object) {
+        return new Handlebars.SafeString(JSON.stringify(object));
+    });
+
     Handlebars.registerHelper("localizeSkillCategory", function (skillName) {
         const key = "L5r5e.Skills." + skillName + ".Title";
         return game.i18n.localize(key);
