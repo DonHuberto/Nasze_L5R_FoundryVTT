@@ -1,0 +1,52 @@
+<ul class="attributes-wrapper">
+    <li class="endurance-content">
+        <label class="attribute-label">
+            {{ localize 'L5r5e.Conflict.Endurance' }}
+            <input class="centered-input" type="text" name="data.endurance" value="{{data.endurance}}" data-dtype="Number" disabled/>
+        </label>
+        <label class="attribute-label">
+            {{ localize 'L5r5e.Conflict.Fatigue' }}
+            <input class="centered-input" type="text" name="data.fatigue" value="{{data.fatigue}}" data-dtype="Number"/>
+        </label>
+        <p class="quick-rules"> {{ localize 'L5r5e.Conflict.EnduranceTip' }}</p>
+    </li>
+    <li class="composure-content">
+        <label class="attribute-label">
+            {{ localize 'L5r5e.Conflict.Composure' }}
+            <input class="centered-input" type="text" name="data.composure" value="{{data.composure}}" data-dtype="Number" disabled/>
+        </label>
+        <label class="attribute-label">
+            {{ localize 'L5r5e.Conflict.Strife' }}
+            <input class="centered-input" type="text" name="data.strife" value="{{data.strife}}" data-dtype="Number"/>
+        </label>
+        <p class="quick-rules"> {{ localize 'L5r5e.Conflict.ComposureTip' }}</p>
+    </li>
+    <li class="focus-content">
+        <label class="attribute-label">
+            {{ localize 'L5r5e.Conflict.Focus' }}
+            <input class="centered-input" type="text" name="data.focus" value="{{data.focus}}" data-dtype="Number" disabled/>
+        </label>
+        <p class="quick-rules"> {{ localize 'L5r5e.Conflict.FocusTip' }}</p>
+    </li>
+    <li class="vigilante-content">
+        <label class="attribute-label">
+            {{ localize 'L5r5e.Conflict.Vigilante' }}
+            <input class="centered-input" type="text" name="data.vigilante" value="{{data.vigilante}}" data-dtype="Number" disabled/>
+        </label>
+        <p class="quick-rules"> {{ localize 'L5r5e.Conflict.VigilanteTip' }}</p>
+    </li>
+    <li class="void-points-content">
+        <div>
+            <label class="attribute-label">
+                {{ localize 'L5r5e.Conflict.VoidPoints' }}
+                <input class="centered-input" type="text" name="data.void_points.current" value="{{data.void_points.current}}" data-dtype="Number"/>
+            </label>
+        </div>
+        <div>
+            <label class="attribute-label">
+                {{ localize 'L5r5e.Max' }}
+                <input class="centered-input" type="text" name="data.void_points.max" value="{{data.void_points.max}}" data-dtype="Number" disabled/>
+            </label>
+        </div>
+    </li>
+</ul>

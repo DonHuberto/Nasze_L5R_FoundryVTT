@@ -1,0 +1,16 @@
+<ul class="narrative-content">
+    <li>
+        <label class="attribute-label">{{ localize 'L5r5e.SocialStanding.Ninjo' }}</label>
+        <input type="text" name="data.social_standing.ninjo" value="{{data.social_standing.ninjo}}"/>
+    </li>
+    <li>
+        <label class="attribute-label">{{ localize 'L5r5e.SocialStanding.Giri' }}</label>
+        <input type="text" name="data.social_standing.giri" value="{{data.social_standing.giri}}"/>
+    </li>
+    <li>
+        <label class="attribute-label">{{ localize 'L5r5e.SocialStanding.SocialTitles' }}</label>
+        <input type="text" name="data.social_standing.titles" value="{{data.social_standing.titles}}"/>
+    </li>
+</ul>
+<h4 class="text-block-header">{{ localize 'L5r5e.Notes' }}</h4>
+{{ editor content=data.notes.value target="data.notes.value" button=true editable=editable }}

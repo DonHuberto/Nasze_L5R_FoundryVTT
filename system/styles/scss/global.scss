@@ -1,0 +1,34 @@
+/** Global **/
+
+/* Windows */
+.window-app {
+    .window-content {
+        background: url("../assets/imgs/bgL5R.jpg") no-repeat;
+        background-size: cover;
+    }
+}
+
+/* Focus, Active */
+* {
+    transition-property: background, color, border-color, text-shadow, box-shadow;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+}
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus {
+    box-shadow: 0 0 6px $red;
+}
+.tabs .item.active {
+    text-shadow: 0 0 10px $red;
+}
+
+/* lists */
+ul,
+li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
