@@ -122,11 +122,7 @@ Hooks.once("ready", function () {
 Hooks.on("renderSidebarTab", (app, html, data) => {
     // Add button on dice icon
     html.find(".chat-control-icon").click(async (event) => {
-        // let user = {
-        //     data: game.user.data,
-        // };
-
-        await DicePickerDialog.show();
+        new game.l5r5e.DicePickerDialog().render();
     });
 });
 
