@@ -8,6 +8,7 @@
         </div>
         <div class="header-fields">
             {{> 'systems/l5r5e/templates/sheets/actor/social.html' }}
+            <h2>{{ localize 'L5r5e.Attributes.Title' }}</h2>
             {{> 'systems/l5r5e/templates/sheets/actor/rings.html' }}
             {{> 'systems/l5r5e/templates/sheets/actor/attributes.html' }}
         </div>
@@ -33,7 +34,7 @@
         <article class="tab skills" data-group="primary" data-tab="skills">
             <ul class="skills-wrapper">
                 {{#each data.skills as |category id|}}
-                    {{> 'systems/l5r/templates/sheets/actor/category.html' category=category categoryId=id}}
+                    {{> 'systems/l5r5e/templates/sheets/actor/category.html' category=category categoryId=id}}
                 {{/each}}
             </ul>
             {{> 'systems/l5r5e/templates/sheets/actor/feats.html' }}

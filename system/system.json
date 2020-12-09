@@ -1,48 +1,43 @@
 {
-  "name": "l5r5e",
-  "title": "Legend of the Five Rings (5th Edition)",
-  "description": "This is a game system, in English and French, for Legend of the Five Rings (5th Edition) by <a href='https://edge-studio.net/'>Edge Studio</a> <p> - Join the official Discord server: <a href='https://discord.gg/foundryvtt'> Official Discord</a></p><p> - Rejoignez la communauté Francophone: <a href='https://discord.gg/pPSDNJk'>Francophone Discord</a></p>",
-  "version": "0.0.2",
-  "minimumCoreVersion": "0.7.8",
-  "compatibleCoreVersion": "1.0.0",
-  "author": "Team L5R",
-  "scripts": [ 
-    "./l5r-ui/scripts/l5rui-chat-color.js"
-  ],
+    "name": "l5r5e",
+    "title": "Legend of the Five Rings (5th Edition)",
+    "description": "This is a game system, multilanguage in En/FR/ES, for Legend of the Five Rings (5th Edition) by <a href='https://edge-studio.net/'>Edge Studio</a> <p> - Join the official Discord server: <a href='https://discord.gg/foundryvtt'> Official Discord</a></p><p> - Rejoignez la communauté Francophone: <a href='https://discord.gg/pPSDNJk'>Francophone Discord</a></p>",
+    "version": "0.0.2",
+    "minimumCoreVersion": "0.7.8",
+    "compatibleCoreVersion": "1.0.0",
+    "author": "Team L5R",
+    "scripts": ["./l5r-ui/scripts/l5rui-chat-color.js"],
 
-  "esmodules" : [
-    "./l5r-ui/scripts/help/l5rui-help.js",
-    "./scripts/dice-l5r5e.js",
-    "./scripts/main-l5r5e.js"
-  ],
+    "esmodules": ["./l5r-ui/scripts/help/l5rui-help.js", "./scripts/dice-l5r5e.js", "./scripts/main-l5r5e.js"],
 
-  "styles": [
-    "./l5r-ui/css/l5rui.css",
-    "./l5r-ui/css/cursor.css",
-    "./styles/l5r5e.css"
-  ],
-  
-  "languages": [
-    {
-      "lang": "en",
-      "name": "English",
-      "path": "lang/en.json"
-    },
-    {
-      "lang": "fr",
-      "name": "French (French)",
-      "path": "lang/fr.json"
-    },
-    {
-      "lang": "pt-BR",
-      "name": "Português (Brasil)",
-      "path": "lang/pt-BR.json"
-    }
-  ],
-  
-  "background" : "L5R-Header.webp",
-  "packs": [],
-  "url": "https://gitlab.com/teaml5r/l5r5e",
-  "manifest": "https://gitlab.com/teaml5r/l5r5e/-/raw/master/system/system.json",
-  "download": "https://gitlab.com/teaml5r/l5r5e/-/jobs/artifacts/v0.0.2/raw/l5r5e.zip?job=build"
+    "styles": ["./l5r-ui/css/l5rui.css", "./l5r-ui/css/cursor.css", "./styles/l5r5e.css"],
+
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "lang/en-en.json"
+        },
+        {
+            "lang": "fr",
+            "name": "French (France)",
+            "path": "lang/fr-fr.json"
+        },
+        {
+            "lang": "es",
+            "name": "Spanish (Spain)",
+            "path": "lang/es-es.json"
+        },
+        {
+            "lang": "pt-br",
+            "name": "Português (Brasil)",
+            "path": "lang/pt-br.json"
+        }
+    ],
+
+    "background": "L5R-Header.webp",
+    "packs": [],
+    "url": "https://gitlab.com/teaml5r/l5r5e",
+    "manifest": "https://gitlab.com/teaml5r/l5r5e/-/raw/master/system/system.json",
+    "download": "https://gitlab.com/teaml5r/l5r5e/-/jobs/artifacts/v0.0.2/raw/l5r5e.zip?job=build"
 }

@@ -1,8 +1,8 @@
 // Requires
-const gulp = require('gulp');
-const prefix = require('gulp-autoprefixer');
-const sass = require('gulp-sass');
-const browserSync = require('browser-sync');
+const gulp = require("gulp");
+const prefix = require("gulp-autoprefixer");
+const sass = require("gulp-sass");
+const browserSync = require("browser-sync");
 
 /* ----------------------------------------- */
 /*  Compile Sass
@@ -10,28 +10,30 @@ const browserSync = require('browser-sync');
 
 // Small error handler helper function.
 function handleError(err) {
-  console.log(err.toString());
-  this.emit('end');
+    console.log(err.toString());
+    this.emit("end");
 }
 
 const SYSTEM_SCSS = ["system/styles/conf/**/*.scss"];
 function compileScss() {
-  // Configure options for sass output. For example, 'expanded' or 'nested'
-  let options = {
-    outputStyle: 'compressed'
-  };
-  return gulp.src(SYSTEM_SCSS)
-    .pipe(
-      sass(options)
-        .on('error', handleError)
-    )
-    .pipe(prefix({
-      cascade: false
-    }))
-    .pipe(gulp.dest("system/styles"))
-    .pipe(browserSync.reload({
-      stream: true
-    }))
+    // Configure options for sass output. For example, 'expanded' or 'nested'
+    let options = {
+        outputStyle: "compressed",
+    };
+    return gulp
+        .src(SYSTEM_SCSS)
+        .pipe(sass(options).on("error", handleError))
+        .pipe(
+            prefix({
+                cascade: false,
+            })
+        )
+        .pipe(gulp.dest("system/styles"))
+        .pipe(
+            browserSync.reload({
+                stream: true,
+            })
+        );
 }
 const css = gulp.series(compileScss);
 
@@ -40,7 +42,7 @@ const css = gulp.series(compileScss);
 /* ----------------------------------------- */
 
 function watchUpdates() {
-  gulp.watch(SYSTEM_SCSS, css);
+    gulp.watch("system/styles/scss/**/*.scss", css);
 }
 
 /* ----------------------------------------- */
@@ -48,20 +50,16 @@ function watchUpdates() {
 /* ----------------------------------------- */
 
 function bSync() {
-  browserSync({
-    server: {
-      baseDir: 'system/styles'
-    },
-  })
+    browserSync({
+        server: {
+            baseDir: "system/styles",
+        },
+    });
 }
 
 /* ----------------------------------------- */
 /*  Export Tasks
 /* ----------------------------------------- */
 
-exports.default = gulp.series(
-  compileScss,
-  watchUpdates,
-  bSync
-);
+exports.default = gulp.series(compileScss, watchUpdates, bSync);
 exports.css = css;

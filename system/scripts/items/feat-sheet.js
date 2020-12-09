@@ -7,7 +7,7 @@ export class FeatSheetL5r5e extends ItemSheetL5r5e {
     /** @override */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            classes: ["l5r", "sheet", "feat"],
+            classes: ["l5r5e", "sheet", "feat"],
             template: "systems/l5r5e/templates/item/feat-sheet.html",
             width: 520,
             height: 480,

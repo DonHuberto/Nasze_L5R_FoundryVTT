@@ -3,8 +3,14 @@
 /* Windows */
 .window-app {
     .window-content {
-        background: url("../assets/imgs/bgL5R.jpg") no-repeat;
+        z-index: 1;
+        position: relative;
+        background: url("../assets/imgs/bgL5R.webp") no-repeat;
         background-size: cover;
+    }
+    .window-resizable-handle {
+        z-index: 2;
+        background: $black;
     }
 }
 
@@ -24,6 +30,12 @@ input[type="time"]:focus {
 .tabs .item.active {
     text-shadow: 0 0 10px $red;
 }
+#controls .scene-control.active,
+#controls .control-tool.active,
+#controls .scene-control:hover,
+#controls .control-tool:hover {
+    box-shadow: 0 0 10px $red;
+}
 
 /* lists */
 ul,
@@ -31,4 +43,16 @@ li {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+// inputs
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="date"],
+input[type="time"] {
+    background: $l5r5e-white;
+    border: 1px solid $l5r5e-title;
+    padding: 0.25rem;
+    color: $l5r5e-bold;
 }

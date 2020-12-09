@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "compile": "gulp css",
-        "watch": "gulp watch",
+        "watch": "gulp",
         "prettier": "prettier --quote-props=preserve --print-width=5000 --write"
     },
     "repository": {
