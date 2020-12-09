@@ -63,12 +63,12 @@ Hooks.once("init", async function () {
     });
 
     Handlebars.registerHelper("localizeSkillCategory", function (skillName) {
-        const key = "L5r5e.Skills." + skillName + ".Title";
+        const key = "L5r5e.Skills." + skillName.charAt(0).toUpperCase() + skillName.slice(1) + ".Title";
         return game.i18n.localize(key);
     });
 
     Handlebars.registerHelper("localizeSkill", function (skillCategory, skillName) {
-        const key = "L5r5e.Skills." + skillCategory + "." + skillName;
+        const key = "L5r5e.Skills." + skillCategory.charAt(0).toUpperCase() + skillCategory.slice(1) + "." + skillName.charAt(0).toUpperCase() + skillName.slice(1);
         return game.i18n.localize(key);
     });
 

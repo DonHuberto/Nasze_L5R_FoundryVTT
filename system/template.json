@@ -18,8 +18,8 @@
                     "void": 1
                 }
             },
-            "social_standing": {
-                "social_standing": {
+            "social": {
+                "social": {
                     "honor": 0,
                     "glory": 0,
                     "status": 0,
@@ -102,14 +102,13 @@
             }
         },
         "character": {
-            "templates": ["identity", "rings", "social", "category", "conflict", "experience"],
+            "templates": ["identity", "rings", "social", "skills", "conflict", "xp"],
             "notes": "",
             "feats": []
         }
     },
-
     "Item": {
-        "types": ["item", "weapon", "feat"],
+        "types": ["item", "weapon", "feat", "xp-advancement"],
         "item": {
             "description": "",
             "quantity": 1,
@@ -120,7 +119,6 @@
             "weight": 0,
             "description": "",
             "damage": 0,
-            "deadliness": 0,
             "range": 0,
             "properties": ""
         },

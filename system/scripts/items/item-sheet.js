@@ -6,7 +6,7 @@ export class ItemSheetL5r5e extends ItemSheet {
     /** @override */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            classes: ["l5r", "sheet", "item"],
+            classes: ["l5r5e", "sheet", "item"],
             template: "systems/l5r5e/templates/item/item-sheet.html",
             width: 520,
             height: 480,

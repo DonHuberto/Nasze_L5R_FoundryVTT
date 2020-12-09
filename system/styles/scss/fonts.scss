@@ -12,13 +12,26 @@
     src: url("../fonts/BrushtipTexe.otf") format("opentype");
 }
 
-$font-primary: "Roboto", sans-serif;
+// Font ArchitectsDaughter
+@font-face {
+    font-family: "PatrickHand";
+    src: url('../fonts/PatrickHand.ttf') format("truetype");
+}
+
+$font-primary: "PatrickHand", sans-serif;
 $font-secondary: "BrushtipTexe", sans-serif;
 $font-dice: "LogotypeL5r", sans-serif;
 
-h1 {
-    font: 1.5rem "BrushtipTexe";
+body {
+    font: 16px $font-primary;
+    letter-spacing: 0.05rem;
 }
+
+h1, h4 {
+    font-family: $font-secondary;
+}
+h1 {font-size: 2rem;}
+h4 {font-size: 1.25rem;}
 
 i.strife,
 i.success,

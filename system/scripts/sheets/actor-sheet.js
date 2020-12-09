@@ -6,7 +6,7 @@ export class ActorSheetL5r5e extends ActorSheet {
             classes: ["l5r5e", "sheet", "actor"],
             template: "systems/l5r5e/templates/sheets/actor-sheet.html",
             width: 600,
-            height: 600,
+            height: 800,
             tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
             dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
         });

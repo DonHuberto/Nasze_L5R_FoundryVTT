@@ -1,7 +1,7 @@
 {
   "name": "l5r5e",
   "title": "Legend of the Five Rings (5th Edition)",
-  "description": "This is a game system, in English and French, for Legend of the Five Rings (5th Edition) by <a href='https://edge-studio.net/'>Edge Studio</a> <p> - Join the official Discord server: <a href='https://discord.gg/foundryvtt'> Official Discord</a></p><p> - Rejoignez la communauté Francophone: <a href='https://discord.gg/pPSDNJk'>Francophone Discord</a></p>",
+  "description": "This is a game system, multilanguage in En/FR/ES, for Legend of the Five Rings (5th Edition) by <a href='https://edge-studio.net/'>Edge Studio</a> <p> - Join the official Discord server: <a href='https://discord.gg/foundryvtt'> Official Discord</a></p><p> - Rejoignez la communauté Francophone: <a href='https://discord.gg/pPSDNJk'>Francophone Discord</a></p>",
   "version": "0.0.2",
   "minimumCoreVersion": "0.7.8",
   "compatibleCoreVersion": "1.0.0",
@@ -26,17 +26,22 @@
     {
       "lang": "en",
       "name": "English",
-      "path": "lang/en.json"
+      "path": "lang/en-en.json"
     },
     {
       "lang": "fr",
-      "name": "French (French)",
-      "path": "lang/fr.json"
+      "name": "French (France)",
+      "path": "lang/fr-fr.json"
     },
     {
-      "lang": "pt-BR",
+      "lang": "es",
+      "name": "Spanish (Spain)",
+      "path": "lang/es-es.json"
+    },
+    {
+      "lang": "pt-br",
       "name": "Português (Brasil)",
-      "path": "lang/pt-BR.json"
+      "path": "lang/pt-br.json"
     }
   ],
   

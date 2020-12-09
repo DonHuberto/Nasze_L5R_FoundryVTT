@@ -1,11 +1,19 @@
-//SCSS
-// sdebar
+/* SCSS */
+
+// sidebar
 #sidebar {
+    background-position: top;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background: url("../assets/ui/bgSidebar.png") no-repeat;
+    top: 0;
+    height: 100%;
+    padding: 0.5rem;
     #sidebar-tabs {
         flex: 0 0 1rem;
         box-sizing: border-box;
         margin: 0 0 0.25rem;
-        border-bottom: 1px solid $l5r5e-white;
+        border-bottom: 1px solid rgba(255,255,255,0.25);
         box-shadow: none;
         > .item {
             line-height: 27px;
@@ -18,5 +26,136 @@
                 box-shadow: 0 0 6px $orange;
             }
         }
+    }
+    .message-sender {
+        color: $l5r5e-red;
+    }
+}
+
+
+// hotbar
+#hotbar {
+    margin: 0;
+    #action-bar {
+        flex: 0 0 100%;
+        .macro {
+            border-image: url("../assets/ui/macro-button.webp");
+            border-image-slice: 8 fill;
+            border-image-width: 0.25rem;
+            border-image-outset: 0;
+            border-radius: 0;
+            .macro-key{
+                background: transparent;
+            }
+        }
+        #macro-list {
+            background: $black;
+            margin: 0;
+            padding: 0.05rem;
+            border: none;
+            border-radius: 0;
+            background-origin: padding-box;
+            border-image: url("../assets/ui/macro-button.webp") 15 repeat;
+            border-image-width: 0.5rem;
+            border-image-outset: 0px;
+            box-shadow: 0.25rem 0.25rem 0.5rem $black;
+        }
+    }
+    .bar-controls {
+        background: $black;
+        background-origin: padding-box;
+        border-image: url("../assets/ui/macro-button.webp") 15 repeat;
+        border-image-width: 0.5rem;
+        border-image-outset: 0px;
+        box-shadow: 0 0 0.25rem $black;
+        border-radius: 0;
+        margin: 0 0.5rem;
+        a.page-control, span.page-number {
+            font-size: 1rem;
+            line-height: 0.95rem;
+        }
+    }
+}
+
+// players
+#players {
+    background: $black;
+    background-origin: padding-box;
+    border-image: url("../assets/ui/macro-button.webp") 15 repeat;
+    border-image-width: 0.5rem;
+    border-image-outset: 0px;
+    margin: 0;
+    padding: 0;
+    left: 1.15rem;
+    bottom: 0.65rem;
+    box-shadow: inset 0 0 0.5rem $black;
+    &:before {
+        z-index: -1;
+        position: absolute;
+        content: "";
+        background: transparent url("../assets/ui/players-border.webp") no-repeat 0 0;
+        background-size: 100%;
+        display: block;
+        top: -12px;
+        right: 10%;
+        left: 10%;
+        bottom: 0;
+    }
+}
+
+// logo
+#logo {
+    height: 80px;
+    margin-left: 0.5rem;
+    opacity: 0.5;
+    &:hover {opacity: 0.75;}
+}
+
+// navigation
+#navigation {
+    left: 120px;
+    #nav-toggle,  #scene-list .scene.nav-item {
+        cursor: default; 
+        color: $white;
+        background: linear-gradient($l5r5e-linear-gradient-blue, $l5r5e-linear-gradient-blue-dark, $l5r5e-linear-gradient-blue);
+        background-origin: padding-box;
+        border-image: url("../assets/ui/macro-button.webp") 10 repeat;
+        border-image-width: 0.25rem;
+        border-image-outset: 0px;
+    }
+    #scene-list {
+        .scene.nav-item.active {
+            background: linear-gradient($l5r5e-linear-gradient-red, $l5r5e-linear-gradient-red-dark, $l5r5e-linear-gradient-red);
+        }
+        .scene.view, .scene.context {
+            cursor: default; 
+            color: #FFF;
+            background: linear-gradient($l5r5e-linear-gradient-red, $l5r5e-linear-gradient-red-dark, $l5r5e-linear-gradient-red);
+            background-origin: padding-box;
+            border-image: url("../assets/ui/macro-button.webp") 10 repeat;
+            border-image-width: 0.25rem;
+            border-image-outset: 0px;
+            box-shadow: 0 0 20px red;
+        }
+    }
+}
+
+// controls
+#controls {
+    top: 100px;
+    .scene-control.active, .control-tool.active, .scene-control:hover, .control-tool:hover {
+        background: linear-gradient($l5r5e-linear-gradient-red, $l5r5e-linear-gradient-red-dark, $l5r5e-linear-gradient-red);
+        background-origin: padding-box;
+        border-image: url("../assets/ui/macro-button.webp") 10 repeat;
+        border-image-width: 0.25rem;
+        border-image-outset: 0px;
+        box-shadow: 0 0 10px $red;
+    }
+    .scene-control, .control-tool {
+        background: linear-gradient($l5r5e-linear-gradient-blue, $l5r5e-linear-gradient-blue-dark, $l5r5e-linear-gradient-blue);
+        background-origin: padding-box;
+        border-image: url("../assets/ui/macro-button.webp") 10 repeat;
+        border-image-width: 0.25rem;
+        border-image-outset: 0px;
     }
 }

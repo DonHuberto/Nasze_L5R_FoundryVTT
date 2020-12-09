@@ -3,32 +3,69 @@
     min-width: 600px;
     .sheet-header {
         h1 {
-            flex: 0 0 100%;
+            flex: auto;
+            margin: 0 0.5rem 0.25rem;
             input {
-                height: 3rem;
-                line-height: 1.5rem;
-                margin: 0;
-                padding: 0 0 0.5rem;
+                flex: 0 0 100%;
+                height: 4rem;
+                margin: 0.5rem 0 0;
                 width: 100%;
-                border: 1px solid $l5r5e-white;
                 color: $l5r5e-red;
+                background: transparent;
+                border: 0 none;
+                border-radius: 0;
+                border-bottom: 1px dotted $l5r5e-black;
+            }
+            &:before {
+                content: "";
+                position: absolute;
+                background: url("../assets/imgs/brushL5r.webp") no-repeat 0 0;
+                background-size: contain;
+                height: 225px;
+                width: 100%;
+                z-index: -1;
+                left: -0.25rem;
             }
         }
         img {
             flex: 0 0 150px;
             height: 150px;
-            margin-right: 0.25rem;
+            margin-right: 0;
+            object-fit: contain;
+            background: $l5r5e-white;
+            border: 1px solid $l5r5e-title;
+            --notchSize: 0.5rem;
+            clip-path: polygon(0% var(--notchSize), var(--notchSize) 0%, calc(100% - var(--notchSize)) 0%, 100% var(--notchSize), 100% calc(100% - var(--notchSize)), calc(100% - var(--notchSize)) 100%, var(--notchSize) 100%, 0% calc(100% - var(--notchSize)));
         }
         .header-fields {
-            display: flex;
-            flex-wrap: wrap;
+            h2 {
+                font-family: $font-secondary;
+                float: right;
+                width: 50%;
+                padding: 0 0.25rem;
+                margin: 0;
+                text-align: right;
+                color: $l5r5e-black;
+                border-bottom: $white;
+                --notchSize: 0.5rem;
+                clip-path: polygon(0% var(--notchSize), var(--notchSize) 0%, calc(100%) 0%, 100% var(--notchSize), 100% calc(100% - var(--notchSize)), calc(100% - var(--notchSize)) 100%, var(--notchSize) 100%, 0% calc(100%));
+                &:before {
+                    content: "";
+                    position: absolute;
+                    height: 1px;
+                    width: 100%;
+                }
+            }
         }
         .identity-wrapper {
+            display: flex;
+            flex-wrap: wrap;
             flex: 0 0 calc(100% - 150px - 0.25rem);
             .identity-content {
                 flex: 0 0 100%;
                 display: flex;
                 flex-wrap: wrap;
+                margin: 0.5rem;
                 li {
                     flex: 33%;
                     &:nth-child(1),
@@ -40,8 +77,8 @@
             }
         }
         .rings {
-            flex: 0 0 calc(50% - 0.25rem);
-            display: flex;
+            float: left;
+            width: calc(50% - 0.25rem);
             padding: 0.25rem;
         }
         .social-content {
@@ -50,9 +87,42 @@
             padding: 0.25rem;
         }
         .attributes-wrapper {
-            flex: 0 0 calc(50% - 0.25rem);
+            float: right;
+            width: calc(50% - 0.25rem);
+            padding: 0.5rem 0 0.5rem 1rem;
             display: flex;
-            padding: 0.25rem;
+            flex-wrap: wrap;
+            flex-direction: column;
+            background: $l5r5e-title;
+            --notchSize: 0.5rem;
+            clip-path: polygon(0% var(--notchSize), var(--notchSize) 0%, calc(100%) 0%, 100% var(--notchSize), 100% calc(100% - var(--notchSize)), calc(100% - var(--notchSize)) 100%, var(--notchSize) 100%, 0% calc(100%));
+            .endurance-content, .composure-content, .void-content {
+                label {float: left; width: 50%;}
+            }
+            li {
+                p {
+                    display: none;
+                    position: absolute;
+                }
+                &:hover {
+                    p {display: block;}
+                }
+            }
         }
+        .identity-wrapper label, .social-content label, .attributes-wrapper label {
+            display: flex;
+            color: $l5r5e-label;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            line-height: 2rem;
+            input {
+                flex: 1;
+                margin: 0 1rem 0 0.5rem;
+            }
+        }
+    }
+    article {
+        background: $l5r5e-white;
+        padding: 0.5rem;
     }
 }
