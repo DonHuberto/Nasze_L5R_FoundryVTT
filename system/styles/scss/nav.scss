@@ -1,7 +1,7 @@
 // -- Nav
 
 nav {
-    .sheet-tabs {
+    &.sheet-tabs {
       background: $l5r5e-title;
       color: $l5r5e-black;
       --notchSize: 0.5rem;
