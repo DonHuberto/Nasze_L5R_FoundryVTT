@@ -1,0 +1,43 @@
+<div class="dice-picker-dialog">
+    {{json this}}
+    <form class="noflex" autocomplete="off">
+        <div class="form-group">
+            <label>Approaches:</label>
+            <div class="form-fields">
+                {{#each elementsList}}
+                <input type="radio" id="{{../id}}_{{this.element}}" name="approach" value="{{this.element}}">
+                <label for="{{../id}}_{{this.element}}">
+                    <i class="i_{{this.element}} {{this.element}}" title="{{this.label}}"></i>
+                </label>
+                {{/each}}
+            </div>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label><i class="d6"></i> Rings:</label>
+            <div class="form-fields">
+
+                {{#each dicesList}}
+                <input type="radio" id="{{../id}}_{{this}}" name="ring" value="{{this}}">
+                <label for="{{../id}}_{{this}}">
+                    {{this}}
+                </label>
+                {{/each}}
+
+            </div>
+        </div>
+        <hr>
+        <div class="form-group">
+            <label><i class="d12"></i> Skill:</label>
+            <div class="form-fields">
+                {{#each dicesList}}
+                <input type="radio" id="{{../id}}_{{this}}" name="skill" value="{{this}}">
+                <label for="{{../id}}_{{this}}">
+                    {{this}}
+                </label>
+                {{/each}}
+            </div>
+        </div>
+    </form>
+    <!--<script>VlyL5rToolbox.changeElementsByToken('air');</script>-->
+</div>

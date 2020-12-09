@@ -3,9 +3,7 @@ import { RegisterSettings } from "./settings.js";
 import { PreloadTemplates } from "./preloadTemplates.js";
 import { ActorL5r5e } from "./actor-l5r5e.js";
 import { ActorSheetL5r5e } from "./sheets/actor-sheet.js";
-import { RollL5r5e } from "./dice/roll.js";
-import { AbilityDie } from "./dice/dietype/ability-die.js";
-import { RingDie } from "./dice/dietype/ring-die.js";
+import { RollL5r5e, AbilityDie, RingDie, DicePickerDialog } from "./dice-l5r5e.js";
 import { ItemL5r5e } from "./items/item.js";
 import { ItemSheetL5r5e } from "./items/item-sheet.js";
 import { WeaponSheetL5r5e } from "./items/weapon-sheet.js";
@@ -31,6 +29,11 @@ Hooks.once("init", async function () {
     // Define DiceTerms
     CONFIG.Dice.terms["s"] = AbilityDie;
     CONFIG.Dice.terms["r"] = RingDie;
+
+    // Add some helper classes in game
+    game.l5r5e = {
+        DicePickerDialog,
+    };
 
     // Define L5R Paths
     CONFIG.L5r5e = {
@@ -105,6 +108,20 @@ Hooks.once("setup", function () {
 /* ------------------------------------ */
 Hooks.once("ready", function () {
     // Do anything once the system is ready
+});
+
+/* ------------------------------------ */
+/* SidebarTab                           */
+/* ------------------------------------ */
+Hooks.on("renderSidebarTab", (app, html, data) => {
+    // Add button on dice icon
+    html.find(".chat-control-icon").click(async (event) => {
+        // let user = {
+        //     data: game.user.data,
+        // };
+
+        await DicePickerDialog.show();
+    });
 });
 
 /* ------------------------------------ */

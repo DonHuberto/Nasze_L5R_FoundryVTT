@@ -16,3 +16,8 @@ export { RollL5r5e } from "./dice/roll.js";
  * Dice pool utility specializing in the L5r5e special dice
  */
 export { DicePoolL5r5e } from "./dice/pool.js";
+
+/**
+ * Dice Picker Dialog
+ */
+export { DicePickerDialog } from "./dice/dice-picker-dialog.js";
