@@ -1,43 +1,51 @@
 <div class="dice-picker-dialog">
-    {{json this}}
     <form class="noflex" autocomplete="off">
         <div class="form-group">
-            <label>Approaches:</label>
+            <label>{{localize "L5r5e.Approaches"}}:</label>
             <div class="form-fields">
                 {{#each elementsList}}
-                <input type="radio" id="{{this.element}}" name="approach" value="{{this.element}}">
-                <label for="{{this.element}}">
-                    <i class="i_{{this.element}} {{this.element}}" title="{{this.label}}"></i>
+                <input type="radio" id="approach_{{this.id}}" name="approach" value="{{this.id}}" data-dice="{{this.value}}">
+                <label for="approach_{{this.id}}">
+                    <i class="i_{{this.id}} {{this.id}}" title="{{this.label}}"></i>
                 </label>
                 {{/each}}
             </div>
         </div>
         <hr>
         <div class="form-group">
-            <label><i class="d6"></i> Rings:</label>
+            <label><i class="d6"></i> {{localize "L5r5e.Rings.Title"}}:</label>
             <div class="form-fields">
-
                 {{#each dicesList}}
-                <input type="radio" id="{{this}}" name="ring" value="{{this}}">
-                <label for="{{this}}">
+                <input type="radio" id="ring_{{this}}" name="ring" value="{{this}}">
+                <label for="ring_{{this}}">
                     {{this}}
                 </label>
                 {{/each}}
-
             </div>
         </div>
         <hr>
         <div class="form-group">
-            <label><i class="d12"></i> Skill:</label>
+            <label><i class="d12"></i> {{localize "L5r5e.Skills.Title"}}: {{skillData.name}}</label>
             <div class="form-fields">
                 {{#each dicesList}}
-                <input type="radio" id="{{this}}" name="skill" value="{{this}}">
-                <label for="{{this}}">
+                <input type="radio" id="skill_{{this}}" name="skill" value="{{this}}">
+                <label for="skill_{{this}}">
                     {{this}}
                 </label>
                 {{/each}}
             </div>
+        </div>
+
+        {{#if skillData.name}}
+        <hr>
+        <div class="form-group">
+            <label>{{skillData.name}}</label>
+        </div>
+        {{/if}}
+
+        <hr>
+        <div class="form-group">
+            <button name="roll">Roll <i class='fas fa-arrow-circle-right'></i></button>
         </div>
     </form>
-    <!--<script>VlyL5rToolbox.changeElementsByToken('air');</script>-->
 </div>
