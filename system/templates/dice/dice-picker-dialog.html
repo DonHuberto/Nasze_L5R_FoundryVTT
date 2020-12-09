@@ -5,8 +5,8 @@
             <label>Approaches:</label>
             <div class="form-fields">
                 {{#each elementsList}}
-                <input type="radio" id="{{../id}}_{{this.element}}" name="approach" value="{{this.element}}">
-                <label for="{{../id}}_{{this.element}}">
+                <input type="radio" id="{{this.element}}" name="approach" value="{{this.element}}">
+                <label for="{{this.element}}">
                     <i class="i_{{this.element}} {{this.element}}" title="{{this.label}}"></i>
                 </label>
                 {{/each}}
@@ -18,8 +18,8 @@
             <div class="form-fields">
 
                 {{#each dicesList}}
-                <input type="radio" id="{{../id}}_{{this}}" name="ring" value="{{this}}">
-                <label for="{{../id}}_{{this}}">
+                <input type="radio" id="{{this}}" name="ring" value="{{this}}">
+                <label for="{{this}}">
                     {{this}}
                 </label>
                 {{/each}}
@@ -31,8 +31,8 @@
             <label><i class="d12"></i> Skill:</label>
             <div class="form-fields">
                 {{#each dicesList}}
-                <input type="radio" id="{{../id}}_{{this}}" name="skill" value="{{this}}">
-                <label for="{{../id}}_{{this}}">
+                <input type="radio" id="{{this}}" name="skill" value="{{this}}">
+                <label for="{{this}}">
                     {{this}}
                 </label>
                 {{/each}}

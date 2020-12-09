@@ -16,7 +16,6 @@ export class DicePickerDialog extends Application {
     skillData = {};
 
     elementsList = [];
-    dicesList = [1, 2, 3, 4, 5, 6];
 
     /**
      * Assign the default options
@@ -66,7 +65,8 @@ export class DicePickerDialog extends Application {
      */
     getData(options = null) {
         return {
-            truc: true,
+            elementsList: this.elementsList,
+            dicesList: [1, 2, 3, 4, 5, 6],
         };
     }
 
