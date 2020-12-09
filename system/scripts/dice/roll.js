@@ -11,8 +11,6 @@ export class RollL5r5e extends Roll {
     // static TOOLTIP_TEMPLATE = `${CONFIG.L5r5e.pathTemplates}dice/tooltip.html`;
 
     constructor(...args) {
-        console.log("RollL5r5e.in.args", args); // TODO tmp
-
         super(...args);
 
         this.l5r5e = {
@@ -32,9 +30,18 @@ export class RollL5r5e extends Roll {
             },
         };
 
-        // TODO parse difficulty stance skillId from cmd line ?
+        // Parse flavor for stance and skillId
+        const flavors = Array.from(args[0].matchAll(/\d+d(s|r)\[([^\]]+)\]/gmu));
+        flavors.forEach((res) => {
+            if (res[1] === "r" && !!res[2] && this.l5r5e.stance === "") {
+                this.l5r5e.stance = res[2];
+            }
+            if (res[1] === "s" && !!res[2] && this.l5r5e.skillId === "") {
+                this.l5r5e.skillId = res[2];
+            }
+        });
 
-        console.log("RollL5r5e.out.args", args, this); // TODO tmp
+        // TODO parse difficulty stance skillId from cmd line ?
     }
 
     /**
@@ -48,8 +55,6 @@ export class RollL5r5e extends Roll {
         if (this.terms.length < 1) {
             throw new Error("This Roll object need dice to be rolled.");
         }
-
-        console.log("RollL5r5e.evaluate.in", this); // TODO tmp
 
         // Clean terms (trim symbols)
         this.terms = this._identifyTerms(this.constructor.cleanFormula(this.terms));
@@ -71,8 +76,6 @@ export class RollL5r5e extends Roll {
         this.l5r5e.dicesTypes.std = this.dice.some((term) => term instanceof DiceTerm && !(term instanceof L5rBaseDie)); // ignore math symbols
         this.l5r5e.dicesTypes.l5r = this.dice.some((term) => term instanceof L5rBaseDie);
 
-        console.log("RollL5r5e.evaluate.out", this); // TODO tmp
-
         return this;
     }
 
@@ -83,12 +86,14 @@ export class RollL5r5e extends Roll {
      * @private
      */
     _l5rSummary(term) {
-        if (term instanceof L5rBaseDie) {
-            ["success", "explosive", "opportunity", "strife"].forEach((props) => {
-                this.l5r5e.summary[props] += parseInt(term.l5r5e[props]);
-            });
-            // TODO Others advantage/disadvantage
+        if (!(term instanceof L5rBaseDie)) {
+            return;
         }
+
+        ["success", "explosive", "opportunity", "strife"].forEach((props) => {
+            this.l5r5e.summary[props] += parseInt(term.l5r5e[props]);
+        });
+        // TODO Others advantage/disadvantage
     }
 
     /**
@@ -201,6 +206,8 @@ export class RollL5r5e extends Roll {
             l5r5e: isPrivate
                 ? {}
                 : {
+                      stance: this.l5r5e.stance,
+                      skillId: this.l5r5e.skillId,
                       dicesTypes: this.l5r5e.dicesTypes,
                       summary: this.l5r5e.summary,
                       dices: this.dice.map((d) => {
@@ -226,8 +233,6 @@ export class RollL5r5e extends Roll {
      * @override
      */
     toMessage(messageData = {}, { rollMode = null, create = true } = {}) {
-        console.log("RollL5r5e.toMessage", this); // TODO tmp
-
         // Perform the roll, if it has not yet been rolled
         if (!this._rolled) {
             this.evaluate();
