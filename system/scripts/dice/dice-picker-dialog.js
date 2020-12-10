@@ -142,11 +142,13 @@ export class DicePickerDialog extends Application {
 
         // Check if a stance is selected
         let selectedStance = "air";
-        ["air", "earth", "fire", "water", "void"].forEach((e) => {
-            if (this.actor.data.data?.stances?.[e]?.isSelected?.value) {
-                selectedStance = e;
-            }
-        });
+        if (this.actor) {
+            ["air", "earth", "fire", "water", "void"].forEach((e) => {
+                if (this.actor.data.data?.stances?.[e]?.isSelected?.value) {
+                    selectedStance = e;
+                }
+            });
+        }
         html.find(`#approach_${selectedStance}`).trigger("click");
         html.find("#skill_" + this.skillData.value).trigger("click");
     }
@@ -167,13 +169,12 @@ export class DicePickerDialog extends Application {
         };
 
         const cat = RollL5r5e.getCategoryForSkillId(skillId);
-        if (!this.actor || !cat) {
+        if (!cat) {
             return;
         }
-
         this.skillData.cat = cat;
-        this.skillData.value = this.actor.data?.data?.skills[cat]?.[this.skillData.id].value || 0;
         this.skillData.name = game.i18n.localize("l5r5e.skills." + cat + "." + this.skillData.id);
+        this.skillData.value = this.actor?.data?.data?.skills[cat]?.[this.skillData.id].value || 0;
     }
 
     /**
