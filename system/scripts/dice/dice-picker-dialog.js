@@ -8,7 +8,7 @@ export class DicePickerDialog extends Application {
     /**
      * Current Actor
      */
-    actor = {};
+    actor = null;
 
     /**
      * Selected Skill data from actor
@@ -49,8 +49,6 @@ export class DicePickerDialog extends Application {
         if (actor instanceof Actor) {
             this.actor = actor;
         }
-
-        console.log(this.actor); // TODO TMP
 
         // Skill ?
         if (options?.skillId) {
@@ -142,8 +140,14 @@ export class DicePickerDialog extends Application {
             await this.close();
         });
 
-        // Default Selected
-        html.find("#approach_air").trigger("click");
+        // Check if a stance is selected
+        let selectedStance = "air";
+        ["air", "earth", "fire", "water", "void"].forEach((e) => {
+            if (this.actor.data.data?.stances?.[e]?.isSelected?.value) {
+                selectedStance = e;
+            }
+        });
+        html.find(`#approach_${selectedStance}`).trigger("click");
         html.find("#skill_" + this.skillData.value).trigger("click");
     }
 
@@ -168,10 +172,8 @@ export class DicePickerDialog extends Application {
         }
 
         this.skillData.cat = cat;
-        this.skillData.value = this.actor.data.data.skills[cat]?.[this.skillData.id].value || 0;
+        this.skillData.value = this.actor.data?.data?.skills[cat]?.[this.skillData.id].value || 0;
         this.skillData.name = game.i18n.localize("l5r5e.skills." + cat + "." + this.skillData.id);
-
-        console.log("****** skillData", this.skillData, this.actor.data.data.skills);
     }
 
     /**
@@ -183,7 +185,7 @@ export class DicePickerDialog extends Application {
             return {
                 id: e,
                 label: game.i18n.localize(`l5r5e.rings.${e}`),
-                value: this.actor ? this.actor.data.data.rings[e] : 0,
+                value: this.actor?.data?.data?.rings?.[e] || 0,
             };
         });
     }

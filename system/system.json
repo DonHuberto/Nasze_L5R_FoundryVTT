@@ -7,11 +7,8 @@
     "compatibleCoreVersion": "1.0.0",
     "author": "Team L5R",
     "scripts": ["./l5r-ui/scripts/l5rui-chat-color.js"],
-
     "esmodules": ["./l5r-ui/scripts/help/l5rui-help.js", "./scripts/dice-l5r5e.js", "./scripts/main-l5r5e.js"],
-
     "styles": ["./l5r-ui/css/l5rui.css", "./l5r-ui/css/cursor.css", "./styles/l5r5e.css"],
-
     "languages": [
         {
             "lang": "en",
@@ -34,9 +31,15 @@
             "path": "lang/pt-br.json"
         }
     ],
-
     "background": "L5R-Header.webp",
-    "packs": [],
+    "packs": [
+        {
+            "name": "macros",
+            "label": "L5R5e Macros",
+            "path": "packs/macros.db",
+            "entity": "Macro"
+        }
+    ],
     "url": "https://gitlab.com/teaml5r/l5r5e",
     "manifest": "https://gitlab.com/teaml5r/l5r5e/-/raw/master/system/system.json",
     "download": "https://gitlab.com/teaml5r/l5r5e/-/jobs/artifacts/v0.0.2/raw/l5r5e.zip?job=build"
