@@ -133,6 +133,6 @@ export class ActorSheetL5r5e extends ActorSheet {
     async _onSkillClicked(skillId) {
         console.log("Clicked on skill " + skillId);
 
-        // TODO
+        new game.l5r5e.DicePickerDialog({ skillId: skillId, actor: this.actor }).render();
     }
 }

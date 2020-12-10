@@ -4,11 +4,11 @@
         <div class="header-fields">
             <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
             <div class="resource">
-            	<label>{{ localize 'L5r5e.Quantity' }}</label>
+            	<label>{{ localize 'l5r5e.quantity' }}</label>
                 <input type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
             </div>
             <div class="resource">
-            	<label>{{ localize 'L5r5e.Weight' }}</label>
+            	<label>{{ localize 'l5r5e.weight' }}</label>
                 <input type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
             </div>
         </div>
@@ -26,15 +26,15 @@
         <div class="tab" data-group="primary" data-tab="description">
             <div class="weapon-stats-content">
                 <div>
-                    <label class="attribute-label">{{ localize 'L5r5e.Damage' }}</label>
+                    <label class="attribute-label">{{ localize 'l5r5e.damage' }}</label>
                     <input type="text" name="data.damage" value="{{data.damage}}" data-dtype="Number" placeholder="0"/>
                 </div>
                 <div>
-                    <label class="attribute-label">{{ localize 'L5r5e.Range' }}</label>
+                    <label class="attribute-label">{{ localize 'l5r5e.range' }}</label>
                     <input type="text" name="data.range" value="{{data.range}}" data-dtype="Number" placeholder="0"/>
                 </div>
             </div>
-            <h4 class="text-block-header">{{ localize  'L5r5e.Properties' }}</h4>
+            <h4 class="text-block-header">{{ localize  'l5r5e.properties' }}</h4>
             {{editor content=data.properties target="data.properties" button=true owner=owner editable=editable}}
         </div>
     </section>

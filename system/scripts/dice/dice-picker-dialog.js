@@ -6,7 +6,7 @@ import { RollL5r5e } from "./roll.js";
 
 export class DicePickerDialog extends Application {
     /**
-     * Current actor
+     * Current Actor
      */
     actor = {};
 
@@ -29,9 +29,11 @@ export class DicePickerDialog extends Application {
             id: "l5r5e-dice-picker-dialog",
             classes: ["l5r5e", "dice-picker-dialog"],
             template: "systems/l5r5e/templates/dice/dice-picker-dialog.html",
-            width: 360,
+            width: 400,
             // height: 400,
             // title: "L5R Dice Roller",
+            actor: null,
+            skillId: "",
         });
     }
 
@@ -43,10 +45,15 @@ export class DicePickerDialog extends Application {
         super(options);
 
         // Get Actor from: sheet, selected token, nothing
-        this.actor = options?.actor || canvas.tokens.controlled[0]?.actor.data || null;
+        const actor = options?.actor || canvas.tokens.controlled[0]?.actor || null;
+        if (actor instanceof Actor) {
+            this.actor = actor;
+        }
+
+        console.log(this.actor); // TODO TMP
 
         // Skill ?
-        if (!!this.actor && !!options?.skillId) {
+        if (options?.skillId) {
             this.setSkillData(options.skillId);
         }
     }
@@ -56,7 +63,7 @@ export class DicePickerDialog extends Application {
      * @type {String}
      */
     get title() {
-        return `L5R Dice Roller` + (this.actor ? " - " + this.actor.name : "");
+        return `L5R Dice Roller` + (this.actor ? " - " + this.actor.data.name : "");
     }
 
     /**
@@ -116,12 +123,22 @@ export class DicePickerDialog extends Application {
                 return false;
             }
 
-            await new RollL5r5e(
-                `${ring}dr[${approach}] + ${skill}ds` + (this.skillData.id ? `[${this.skillData.id}]` : "")
-            )
-                .roll()
-                .toMessage();
+            let formula = [];
+            if (ring > 0) {
+                formula.push(`${ring}dr`);
+            }
+            if (skill > 0) {
+                formula.push(`${skill}ds`);
+            }
 
+            const roll = await new RollL5r5e(formula.join("+"));
+
+            roll.l5r5e.stance = approach;
+            roll.l5r5e.skillId = this.skillData.id;
+            roll.l5r5e.actor = this.actor;
+
+            await roll.roll();
+            await roll.toMessage();
             await this.close();
         });
 
@@ -138,22 +155,23 @@ export class DicePickerDialog extends Application {
             return;
         }
 
-        const skillData = {
-            id: skillId.trim(),
+        this.skillData = {
+            id: skillId.toLowerCase().trim(),
             value: 0,
             cat: "",
             name: "",
         };
 
-        if (!this.actor) {
+        const cat = RollL5r5e.getCategoryForSkillId(skillId);
+        if (!this.actor || !cat) {
             return;
         }
 
-        skillData.cat = Object.keys(this.actor.data.skills).find((e) => !!this.actor.data.skills[e][skillData.id]);
-        skillData.value = this.actor.data.skills[skillData.cat][skillData.id].value ?? 0;
-        skillData.name = game.i18n.localize("L5r5e.Skills." + skillData.cat + "." + skillData.id);
+        this.skillData.cat = cat;
+        this.skillData.value = this.actor.data.data.skills[cat]?.[this.skillData.id].value || 0;
+        this.skillData.name = game.i18n.localize("l5r5e.skills." + cat + "." + this.skillData.id);
 
-        return skillData;
+        console.log("****** skillData", this.skillData, this.actor.data.data.skills);
     }
 
     /**
@@ -164,8 +182,8 @@ export class DicePickerDialog extends Application {
         return ["air", "earth", "fire", "water", "void"].map((e) => {
             return {
                 id: e,
-                label: game.i18n.localize(`L5r5e.Rings.${e.capitalize()}`),
-                value: this.actor ? this.actor.data.rings[e] : 0,
+                label: game.i18n.localize(`l5r5e.rings.${e}`),
+                value: this.actor ? this.actor.data.data.rings[e] : 0,
             };
         });
     }

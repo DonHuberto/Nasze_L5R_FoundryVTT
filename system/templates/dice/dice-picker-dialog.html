@@ -1,7 +1,7 @@
 <div class="dice-picker-dialog">
     <form class="noflex" autocomplete="off">
         <div class="form-group">
-            <label>{{localize "L5r5e.Approaches"}}:</label>
+            <label>{{localize "l5r5e.approaches"}}:</label>
             <div class="form-fields">
                 {{#each elementsList}}
                 <input type="radio" id="approach_{{this.id}}" name="approach" value="{{this.id}}" data-dice="{{this.value}}">
@@ -13,7 +13,7 @@
         </div>
         <hr>
         <div class="form-group">
-            <label><i class="d6"></i> {{localize "L5r5e.Rings.Title"}}:</label>
+            <label><i class="d6"></i> {{localize "l5r5e.rings.title"}}:</label>
             <div class="form-fields">
                 {{#each dicesList}}
                 <input type="radio" id="ring_{{this}}" name="ring" value="{{this}}">
@@ -25,7 +25,7 @@
         </div>
         <hr>
         <div class="form-group">
-            <label><i class="d12"></i> {{localize "L5r5e.Skills.Title"}}: {{skillData.name}}</label>
+            <label><i class="d12"></i> {{localize "l5r5e.skills.title"}}:</label>
             <div class="form-fields">
                 {{#each dicesList}}
                 <input type="radio" id="skill_{{this}}" name="skill" value="{{this}}">
@@ -39,7 +39,7 @@
         {{#if skillData.name}}
         <hr>
         <div class="form-group">
-            <label>{{skillData.name}}</label>
+            <label><i class="d12"></i> {{skillData.value}} : {{skillData.name}} </label>
         </div>
         {{/if}}
 

@@ -66,33 +66,27 @@ Hooks.once("init", async function () {
     });
 
     Handlebars.registerHelper("localizeSkillCategory", function (skillName) {
-        const key = "L5r5e.Skills." + skillName.charAt(0).toUpperCase() + skillName.slice(1) + ".Title";
+        const key = "l5r5e.skills." + skillName.toLowerCase() + ".title";
         return game.i18n.localize(key);
     });
 
     Handlebars.registerHelper("localizeSkill", function (skillCategory, skillName) {
-        const key =
-            "L5r5e.Skills." +
-            skillCategory.charAt(0).toUpperCase() +
-            skillCategory.slice(1) +
-            "." +
-            skillName.charAt(0).toUpperCase() +
-            skillName.slice(1);
+        const key = "l5r5e.skills." + skillCategory.toLowerCase() + "." + skillName.toLowerCase();
         return game.i18n.localize(key);
     });
 
     Handlebars.registerHelper("localizeRing", function (ringName) {
-        const key = "L5r5e.Rings." + ringName.charAt(0).toUpperCase() + ringName.slice(1);
+        const key = "l5r5e.rings." + ringName.toLowerCase();
         return game.i18n.localize(key);
     });
 
     Handlebars.registerHelper("localizeRingTip", function (ringName) {
-        const key = "L5r5e.Rings." + ringName.charAt(0).toUpperCase() + ringName.slice(1) + "Tip";
+        const key = "l5r5e.rings." + ringName.toLowerCase() + "tip";
         return game.i18n.localize(key);
     });
 
     Handlebars.registerHelper("localizeStanceTip", function (ringName) {
-        const key = "L5r5e.Conflict.Stances." + ringName.charAt(0).toUpperCase() + ringName.slice(1) + "Tip";
+        const key = "l5r5e.conflict.stances." + ringName.toLowerCase() + "tip";
         return game.i18n.localize(key);
     });
 });

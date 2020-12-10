@@ -194,6 +194,11 @@ export class RollL5r5e extends Roll {
             this.roll();
         }
 
+        const skillName =
+            game.i18n.translations.l5r5e.skills?.[RollL5r5e.getCategoryForSkillId(this.l5r5e.skillId)]?.[
+                this.l5r5e.skillId
+            ] || "";
+
         // Define chat data
         const chatData = {
             formula: isPrivate ? "???" : this._formula,
@@ -207,7 +212,7 @@ export class RollL5r5e extends Roll {
                 ? {}
                 : {
                       stance: this.l5r5e.stance,
-                      skillId: this.l5r5e.skillId,
+                      skillName: skillName,
                       dicesTypes: this.l5r5e.dicesTypes,
                       summary: this.l5r5e.summary,
                       dices: this.dice.map((d) => {
@@ -264,6 +269,17 @@ export class RollL5r5e extends Roll {
 
         // Either create the message or just return the chat data
         return create ? CONFIG.ChatMessage.entityClass.create(messageData, messageOptions) : messageData;
+    }
+
+    /**
+     * Return the categoryId for the skillId
+     * TODO in proper category helper ?
+     * @param skillId
+     */
+    static getCategoryForSkillId(skillId) {
+        return Object.keys(game.i18n.translations.l5r5e.skills).find((e) => {
+            return !!game.i18n.translations.l5r5e.skills?.[e]?.[skillId];
+        });
     }
 
     /** @override */
