@@ -108,6 +108,8 @@ Hooks.once("setup", function () {
 /* ------------------------------------ */
 Hooks.once("ready", function () {
     // Do anything once the system is ready
+    // Add title on button dice icon
+    $.find(".chat-control-icon")[0].title = game.i18n.localize("l5r5e.chatdices.dicepicker");
 });
 
 /* ------------------------------------ */
@@ -115,7 +117,7 @@ Hooks.once("ready", function () {
 /* ------------------------------------ */
 Hooks.on("renderSidebarTab", (app, html, data) => {
     // Add button on dice icon
-    html.find(".chat-control-icon").click(async (event) => {
+    html.find(".chat-control-icon").click(async () => {
         new game.l5r5e.DicePickerDialog().render();
     });
 });

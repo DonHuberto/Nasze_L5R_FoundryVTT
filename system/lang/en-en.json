@@ -47,6 +47,14 @@
         "passions": "Passions",
         "passionstip": "After performing a check related to your passion, remove 3 strife.",
         "personality": "Personality",
+        "chatdices": {
+            "successes": "Successes",
+            "explosives": "Explosives",
+            "opportunities": "Opportunities",
+            "strives": "Strives",
+            "difficulty": "Difficulty",
+            "dicepicker": "Dice Picker"
+        },
         "max": "Max",
         "current": "Current",
         "quantity": "Quantity",

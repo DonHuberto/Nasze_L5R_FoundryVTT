@@ -25,18 +25,22 @@
 
             {{#l5r5e.summary}}
             <ul>
-                <li>Successes: {{this.success}}</li>
+                <li>{{localize "l5r5e.chatdices.successes"}}: {{this.success}}</li>
+
+                {{#if explosive}}
+                <li>{{localize "l5r5e.chatdices.explosives"}}: {{this.explosive}}</li>
+                {{/if}}
 
                 {{#if opportunity}}
-                <li>Opportunities: {{this.opportunity}}</li>
+                <li>{{localize "l5r5e.chatdices.opportunities"}}: {{this.opportunity}}</li>
                 {{/if}}
 
                 {{#if strife}}
-                <li>Strife: {{this.strife}}</li>
+                <li>{{localize "l5r5e.chatdices.strives"}}: {{this.strife}}</li>
                 {{/if}}
 
                 {{#if difficulty}}
-                <li>Difficulty: {{this.difficulty}}</li>
+                <li>{{localize "l5r5e.chatdices.difficulty"}}: {{this.difficulty}}</li>
                 {{/if}}
             </ul>
             {{/l5r5e.summary}}

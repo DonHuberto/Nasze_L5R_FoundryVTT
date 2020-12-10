@@ -47,6 +47,14 @@
         "passions": "Pasiones",
         "passionstip": "Después de efectuar una tirada relacionada con tu pasión, descarta tres puntos de Conflicto.",
         "personality": "Personalidad",
+        "chatdices": {
+            "successes": "Successes",
+            "explosives": "Explosives",
+            "opportunities": "Opportunities",
+            "strives": "Strives",
+            "difficulty": "Difficulty",
+            "dicepicker": "Dice Picker"
+        },
         "max": "Max",
         "current": "Actuales",
         "quantity": "Cantidad",
