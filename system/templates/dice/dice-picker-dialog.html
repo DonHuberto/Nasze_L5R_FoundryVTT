@@ -1,5 +1,10 @@
-<div class="dice-picker-dialog">
-    <form class="noflex" autocomplete="off">
+<div class="l5r5e dice-picker-dialog">
+
+    <div class="form-group l5r5e profil">
+        <img class="profile-img" src="{{#if actor.img}}{{actor.img}}{{/if}}{{^if actor.img}}icons/svg/mystery-man.svg{{/if}}" data-edit="img" height="100" width="100">
+    </div>
+
+    <form class="noflex l5r5e dices" autocomplete="off">
         <div class="form-group">
             <label>{{localize "l5r5e.approaches"}}:</label>
             <div class="form-fields">

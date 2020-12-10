@@ -111,7 +111,7 @@ export class ActorSheetL5r5e extends ActorSheet {
      */
     async _createFeat() {
         const data = {
-            name: game.i18n.localize("L5r5e.FeatPlaceholderName"),
+            name: game.i18n.localize("l5r5e.featplaceholdername"),
             type: "feat",
         };
         const created = await this.actor.createEmbeddedEntity("OwnedItem", data);

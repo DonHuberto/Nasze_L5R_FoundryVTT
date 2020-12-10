@@ -3,9 +3,9 @@
 @import "../scss/global";
 @import "../scss/fonts";
 @import "../scss/ui";
-@import "../scss/dices";
 
 .l5r5e {
+    @import "../scss/dices";
     @import "../scss/sheets";
     @import "../scss/nav";
     @import "../scss/rings";

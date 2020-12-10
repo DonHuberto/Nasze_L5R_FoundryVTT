@@ -2,7 +2,7 @@
 // dices.scss
 
 // Dice in chat
-.l5r5e.chat-dice > img {
+.chat-dice > img {
     border: 1px solid transparent;
     background-repeat: no-repeat;
     background-position: center;
@@ -16,4 +16,13 @@
     margin: 0;
     flex: 0 0 20px;
     display: inline-block;
+}
+
+.dice-picker-dialog {
+    .profil {
+        float: left;
+    }
+    .dices {
+        float: right;
+    }
 }

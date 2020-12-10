@@ -29,7 +29,7 @@ export class DicePickerDialog extends Application {
             id: "l5r5e-dice-picker-dialog",
             classes: ["l5r5e", "dice-picker-dialog"],
             template: "systems/l5r5e/templates/dice/dice-picker-dialog.html",
-            width: 400,
+            width: 480,
             // height: 400,
             // title: "L5R Dice Roller",
             actor: null,
@@ -44,9 +44,9 @@ export class DicePickerDialog extends Application {
     constructor(options = null) {
         super(options);
 
-        // Get Actor from: sheet, selected token, nothing
-        const actor = options?.actor || canvas.tokens.controlled[0]?.actor || null;
-        if (actor instanceof Actor) {
+        // Get Actor from: options, 1st selected token, selected character
+        const actor = options?.actor || canvas.tokens.controlled[0]?.actor || game.user.character || null;
+        if (actor instanceof Actor && actor.owner) {
             this.actor = actor;
         }
 
@@ -133,7 +133,7 @@ export class DicePickerDialog extends Application {
 
             roll.l5r5e.stance = approach;
             roll.l5r5e.skillId = this.skillData.id;
-            roll.l5r5e.actor = this.actor;
+            roll.actor = this.actor;
 
             await roll.roll();
             await roll.toMessage();

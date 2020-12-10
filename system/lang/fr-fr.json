@@ -36,7 +36,7 @@
         "clan": "Clan",
         "family": "Famille",
         "school": "Ecole",
-        "schoolRank": "Rang",
+        "schoolrank": "Rang",
         "roles": "Rôles",
         "distinctions": "Aptitudes",
         "distinctionstip": "Lorsque vous effectuez un test auquel s'applique une aptitude, vous pouvez relancer jusqu'à 2 dés.",
@@ -51,7 +51,7 @@
             "successes": "Succès",
             "explosives": "Explosifs",
             "opportunities": "Opportunités",
-            "strives": "Conflicts",
+            "strives": "Conflits",
             "difficulty": "Difficulté",
             "dicepicker": "Dice Picker"
         },

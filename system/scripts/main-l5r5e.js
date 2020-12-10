@@ -75,6 +75,12 @@ Hooks.once("init", async function () {
         return game.i18n.localize(key);
     });
 
+    Handlebars.registerHelper("localizeSkillId", function (skillName) {
+        const key =
+            "l5r5e.skills." + RollL5r5e.getCategoryForSkillId(skillName.toLowerCase()) + "." + skillName.toLowerCase();
+        return game.i18n.localize(key);
+    });
+
     Handlebars.registerHelper("localizeRing", function (ringName) {
         const key = "l5r5e.rings." + ringName.toLowerCase();
         return game.i18n.localize(key);

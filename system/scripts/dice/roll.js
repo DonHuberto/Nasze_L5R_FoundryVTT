@@ -44,6 +44,10 @@ export class RollL5r5e extends Roll {
         // TODO parse difficulty stance skillId from cmd line ?
     }
 
+    set actor(actor) {
+        this.l5r5e.actor = (actor instanceof Actor && actor.owner) || null;
+    }
+
     /**
      * Execute the Roll, replacing dice and evaluating the total result
      * @override
@@ -259,6 +263,11 @@ export class RollL5r5e extends Roll {
                 type: template,
                 content: this._total,
                 sound: CONFIG.sounds.dice,
+                speaker: {
+                    actor: this.l5r5e.actor?._id || null,
+                    token: this.l5r5e.actor?.token || null,
+                    alias: this.l5r5e.actor?.name || null,
+                },
             },
             messageData
         );
