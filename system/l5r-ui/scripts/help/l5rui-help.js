@@ -39,7 +39,7 @@ Hooks.once("ready", async function() {
 
     //----logo image
     var logo = document.getElementById("logo");
-    logo.setAttribute("src", "systems/l5r5e/l5r-ui/ui/logo/l5r-logo.webp");
+    logo.setAttribute("src", "systems/l5r5e/assets/l5r-logo.webp");
 
     //--------------ouvrir le menu lien sur click logo
     logo.setAttribute("title", "Aide en Ligne");
