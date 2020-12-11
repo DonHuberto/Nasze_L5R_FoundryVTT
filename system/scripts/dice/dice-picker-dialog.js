@@ -5,20 +5,32 @@
 import { RollL5r5e } from "./roll.js";
 
 export class DicePickerDialog extends Application {
+    static stances = ["earth", "air", "water", "fire", "void"];
+
     /**
      * Current Actor
      */
-    actor = null;
+    _actor = null;
 
     /**
-     * Selected Skill data from actor
+     * Preset ring (attribute / approach)
      */
-    skillData = {
+    _ringId = null;
+
+    /**
+     * Preset Skill (and data from actor if actor provided)
+     */
+    _skillData = {
         id: "",
         value: 0,
         cat: "",
         name: "",
     };
+
+    /**
+     * Difficulty
+     */
+    _difficulty = null;
 
     /**
      * Assign the default options
@@ -29,31 +41,100 @@ export class DicePickerDialog extends Application {
             id: "l5r5e-dice-picker-dialog",
             classes: ["l5r5e", "dice-picker-dialog"],
             template: "systems/l5r5e/templates/dice/dice-picker-dialog.html",
-            width: 480,
+            width: 650,
             // height: 400,
             // title: "L5R Dice Roller",
             actor: null,
+            ringId: null,
             skillId: "",
+            difficulty: null,
         });
     }
 
     /**
      * Create dialog
-     * @param options actor, skillId
+     *
+     * ex: new game.l5r5e.DicePickerDialog({skillId: 'aesthetics', ringId: 'fire', actor: game.user.character}).render();
+     *
+     * @param options actor, ringId, skillId, difficulty
      */
     constructor(options = null) {
         super(options);
 
-        // Get Actor from: options, 1st selected token, selected character
-        const actor = options?.actor || canvas.tokens.controlled[0]?.actor || game.user.character || null;
-        if (actor instanceof Actor && actor.owner) {
-            this.actor = actor;
+        // Try to get Actor from: options, first selected token or player's selected character
+        [options?.actor, canvas.tokens.controlled[0]?.actor, game.user.character].forEach((actor) => {
+            if (!this._actor) {
+                this.actor = actor;
+            }
+        });
+
+        // Ring ?
+        if (options?.ringId) {
+            this.ringId = options.ringId;
         }
 
         // Skill ?
         if (options?.skillId) {
-            this.setSkillData(options.skillId);
+            this.skillId = options.skillId;
         }
+
+        // Difficulty
+        if (options?.difficulty) {
+            this.difficulty = options.difficulty;
+        }
+    }
+
+    /**
+     * Set actor
+     * @param actor
+     */
+    set actor(actor) {
+        this._actor = actor instanceof Actor && actor.owner ? actor : null;
+    }
+
+    /**
+     * Set ring preset
+     * @param ringId
+     */
+    set ringId(ringId) {
+        this._ringId = DicePickerDialog.stances.includes(ringId) || null;
+    }
+
+    /**
+     * Set and load skill's required data from actor and skillId
+     * @param skillId
+     */
+    set skillId(skillId) {
+        if (!skillId) {
+            return;
+        }
+
+        this._skillData = {
+            id: skillId.toLowerCase().trim(),
+            value: 0,
+            cat: "",
+            name: "",
+        };
+
+        const cat = RollL5r5e.getCategoryForSkillId(skillId);
+        if (!cat) {
+            return;
+        }
+        this._skillData.cat = cat;
+        this._skillData.name = game.i18n.localize("l5r5e.skills." + cat + "." + this._skillData.id);
+        this._skillData.value = this._actor?.data?.data?.skills[cat]?.[this._skillData.id].value || 0;
+    }
+
+    /**
+     * Set Difficulty level
+     * @param difficulty
+     */
+    set difficulty(difficulty) {
+        difficulty = parseInt(difficulty) || null;
+        if (difficulty < 0) {
+            difficulty = null;
+        }
+        this._difficulty = difficulty;
     }
 
     /**
@@ -61,7 +142,7 @@ export class DicePickerDialog extends Application {
      * @type {String}
      */
     get title() {
-        return `L5R Dice Roller` + (this.actor ? " - " + this.actor.data.name : "");
+        return `L5R Dice Roller` + (this._actor ? " - " + this._actor.data.name : "");
     }
 
     /**
@@ -73,8 +154,9 @@ export class DicePickerDialog extends Application {
         return {
             elementsList: this._getElements(),
             dicesList: [0, 1, 2, 3, 4, 5, 6],
-            skillData: this.skillData,
-            actor: this.actor,
+            skillData: this._skillData,
+            actor: this._actor,
+            difficulty: this._difficulty,
         };
     }
 
@@ -105,7 +187,29 @@ export class DicePickerDialog extends Application {
 
         // on change approaches
         html.find('input[name="approach"]').on("click", async (event) => {
-            $("#ring_" + event.target.dataset.dice).prop("checked", true);
+            $("#ring_value").val(event.target.value);
+            $(".ring-selection").removeClass("ring-selected");
+            $("." + event.target.dataset.ringid).addClass("ring-selected");
+        });
+
+        // Ring Add button
+        html.find("#ring_add").on("click", async (event) => {
+            this._quantityChange(event, "#ring_value", false);
+        });
+
+        // Ring Subtract button
+        html.find("#ring_sub").on("click", async (event) => {
+            this._quantityChange(event, "#ring_value", true);
+        });
+
+        // Skill Add button
+        html.find("#skill_add").on("click", async (event) => {
+            this._quantityChange(event, "#skill_value", false);
+        });
+
+        // Skill Subtract button
+        html.find("#skill_sub").on("click", async (event) => {
+            this._quantityChange(event, "#skill_value", true);
         });
 
         // Roll button
@@ -113,9 +217,9 @@ export class DicePickerDialog extends Application {
             event.preventDefault();
             event.stopPropagation();
 
-            const approach = html.find('input[name="approach"]:checked')[0].value || null;
-            const ring = html.find('input[name="ring"]:checked')[0].value || null;
-            const skill = html.find('input[name="skill"]:checked')[0].value || null;
+            const approach = $(html.find(".ring-selection.ring-selected > input")[0]).data("ringid") || null;
+            const ring = html.find("#ring_value")[0].value || null;
+            const skill = html.find("#skill_value")[0].value || null;
 
             if (!approach || !skill || !ring || (skill < 1 && ring < 1)) {
                 return false;
@@ -132,8 +236,8 @@ export class DicePickerDialog extends Application {
             const roll = await new RollL5r5e(formula.join("+"));
 
             roll.l5r5e.stance = approach;
-            roll.l5r5e.skillId = this.skillData.id;
-            roll.actor = this.actor;
+            roll.l5r5e.skillId = this._skillData.id;
+            roll.actor = this._actor;
 
             await roll.roll();
             await roll.toMessage();
@@ -142,39 +246,28 @@ export class DicePickerDialog extends Application {
 
         // Check if a stance is selected
         let selectedStance = "air";
-        if (this.actor) {
-            ["air", "earth", "fire", "water", "void"].forEach((e) => {
-                if (this.actor.data.data?.stances?.[e]?.isSelected?.value) {
+        if (this._actor) {
+            DicePickerDialog.stances.forEach((e) => {
+                if (this._actor.data.data?.stances?.[e]?.isSelected?.value) {
                     selectedStance = e;
                 }
             });
         }
-        html.find(`#approach_${selectedStance}`).trigger("click");
-        html.find("#skill_" + this.skillData.value).trigger("click");
+        html.find(`.approach_${selectedStance}`).first().trigger("click");
+        html.find("#skill_value").val(this._skillData.value);
     }
 
-    /**
-     * Load skill's required data from actor and skillId
-     */
-    setSkillData(skillId) {
-        if (!skillId) {
+    _quantityChange(event, elmtSelector, isSubstract) {
+        event.preventDefault();
+        event.stopPropagation();
+        const elmt = $(elmtSelector);
+        if (isSubstract) {
+            const val = parseInt(elmt.val()) - 1;
+            elmt.val(val >= 0 ? val : 0);
             return;
         }
-
-        this.skillData = {
-            id: skillId.toLowerCase().trim(),
-            value: 0,
-            cat: "",
-            name: "",
-        };
-
-        const cat = RollL5r5e.getCategoryForSkillId(skillId);
-        if (!cat) {
-            return;
-        }
-        this.skillData.cat = cat;
-        this.skillData.name = game.i18n.localize("l5r5e.skills." + cat + "." + this.skillData.id);
-        this.skillData.value = this.actor?.data?.data?.skills[cat]?.[this.skillData.id].value || 0;
+        const val = parseInt(elmt.val()) + 1;
+        elmt.val(val < 10 ? val : 9);
     }
 
     /**
@@ -182,11 +275,11 @@ export class DicePickerDialog extends Application {
      * @private
      */
     _getElements() {
-        return ["air", "earth", "fire", "water", "void"].map((e) => {
+        return DicePickerDialog.stances.map((e) => {
             return {
                 id: e,
                 label: game.i18n.localize(`l5r5e.rings.${e}`),
-                value: this.actor?.data?.data?.rings?.[e] || 0,
+                value: this._actor?.data?.data?.rings?.[e] || 0,
             };
         });
     }

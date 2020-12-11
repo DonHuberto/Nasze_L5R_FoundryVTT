@@ -18,11 +18,73 @@
     display: inline-block;
 }
 
+// Dice Picker
 .dice-picker-dialog {
-    .profil {
-        float: left;
+    // Utility
+    * {
+        transition: none;
     }
-    .dices {
-        float: right;
+    input[type="text"]:focus,
+    input[type="text"]:hover {
+        box-shadow: none !important;
+        border: none !important;
+        text-shadow: none !important;
+    }
+
+    img {
+        border: 0;
+    }
+    table {
+        .profil {
+            width: 200px;
+        }
+        .rings {
+            width: 240px;
+        }
+        .skill {
+            width: 200px;
+        }
+    }
+
+    // Approach choice
+    .ring-selection {
+        filter: contrast(10%);
+
+        &.ring-selected {
+            filter: drop-shadow(1px 1px 0 #151515);
+            //text-shadow: 1px 1px 0 #efefef;
+        }
+    }
+
+    .quantity {
+        font-size: xx-large;
+    }
+
+    .center {
+        text-align: center;
+    }
+    .third {
+        float: left;
+        width: 33.333333333%;
+    }
+    #ring_value {
+        width: 20px;
+        position: relative;
+        left: +34px;
+        top: -14px;
+        color: #f0f0e0;
+        background: none;
+        border: none;
+        font-size: large;
+    }
+    #skill_value {
+        width: 20px;
+        position: relative;
+        left: +34px;
+        top: -13px;
+        color: #0f0f0e;
+        background: none;
+        border: none;
+        font-size: large;
     }
 }

@@ -1,54 +1,80 @@
 <div class="l5r5e dice-picker-dialog">
 
-    <div class="form-group l5r5e profil">
-        <img class="profile-img" src="{{#if actor.img}}{{actor.img}}{{/if}}{{^if actor.img}}icons/svg/mystery-man.svg{{/if}}" data-edit="img" height="100" width="100">
-    </div>
-
     <form class="noflex l5r5e dices" autocomplete="off">
-        <div class="form-group">
-            <label>{{localize "l5r5e.approaches"}}:</label>
-            <div class="form-fields">
-                {{#each elementsList}}
-                <input type="radio" id="approach_{{this.id}}" name="approach" value="{{this.id}}" data-dice="{{this.value}}">
-                <label for="approach_{{this.id}}">
-                    <i class="i_{{this.id}} {{this.id}}" title="{{this.label}}"></i>
-                </label>
-                {{/each}}
-            </div>
-        </div>
-        <hr>
-        <div class="form-group">
-            <label><i class="d6"></i> {{localize "l5r5e.rings.title"}}:</label>
-            <div class="form-fields">
-                {{#each dicesList}}
-                <input type="radio" id="ring_{{this}}" name="ring" value="{{this}}">
-                <label for="ring_{{this}}">
-                    {{this}}
-                </label>
-                {{/each}}
-            </div>
-        </div>
-        <hr>
-        <div class="form-group">
-            <label><i class="d12"></i> {{localize "l5r5e.skills.title"}}:</label>
-            <div class="form-fields">
-                {{#each dicesList}}
-                <input type="radio" id="skill_{{this}}" name="skill" value="{{this}}">
-                <label for="skill_{{this}}">
-                    {{this}}
-                </label>
-                {{/each}}
-            </div>
-        </div>
+        <table>
+            <tr>
+                <td class="profil center">
+                    <img class="profile-img"
+                         src="{{#if actor.img}}{{actor.img}}{{/if}}{{^if actor.img}}icons/svg/mystery-man.svg{{/if}}"
+                         data-edit="img"
+                         height="200"
+                         width="200"
+                         alt="{{#if actor.name}}{{actor.name}}{{/if}}{{^if actor.name}}mystery-man{{/if}}"
+                    >
+                </td>
+                <td class="rings center">
+                    <ul class="rings">
+                        {{#each elementsList}}
+                        <li id="{{this.id}}">
+                            <label class="attribute-label {{this.id}} centered-input ring-selection">
+                                <i class="i_{{this.id}}"></i>
+                                <strong>{{this.label}}</strong>
+                                <input class="centered-input approach_{{this.id}}"
+                                       type="text"
+                                       name="approach"
+                                       data-ringid="{{this.id}}"
+                                       value="{{this.value}}"
+                                       readonly="readonly"
+                                />
+                            </label>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </td>
+                <td class="skill center">
+                    {{#if skillData.name}}
+                    <label>{{skillData.name}} </label>
 
-        {{#if skillData.name}}
-        <hr>
-        <div class="form-group">
-            <label><i class="d12"></i> {{skillData.value}} : {{skillData.name}} </label>
-        </div>
-        {{/if}}
+                    {{skillData.value}}
 
-        <hr>
+                    {{/if}}
+                </td>
+            </tr>
+            <tr>
+                <td class="center">
+                    <!--  TODO-->
+                    ND : {{difficulty}}
+                </td>
+                <td class="center">
+                    <div class="third">
+                        <i id="ring_sub" class="quantity fa fa-minus-square"></i>
+                    </div>
+                    <div class="third">
+                        <input id="ring_value" class="centered-input" type="text" name="ring" value="0"
+                               readonly="readonly">
+                        <img src="systems/l5r5e/assets/dices/default/ring_blank.png" alt="1">
+                    </div>
+                    <div class="third">
+                        <i id="ring_add" class="quantity fa fa-plus-square"></i>
+                    </div>
+                </td>
+                <td class="center">
+                    <div class="third">
+                        <i id="skill_sub" class="quantity fa fa-minus-square"></i>
+                    </div>
+                    <div class="third">
+                        <input id="skill_value" class="centered-input" type="text" name="skill"
+                               value="{{skillData.value}}" readonly="readonly">
+                        <img src="systems/l5r5e/assets/dices/default/skill_blank.png" alt="1">
+                    </div>
+                    <div class="third">
+                        <i id="skill_add" class="quantity fa fa-plus-square"></i>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+
         <div class="form-group">
             <button name="roll">Roll <i class='fas fa-arrow-circle-right'></i></button>
         </div>
