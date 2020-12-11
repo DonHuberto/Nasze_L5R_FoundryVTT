@@ -2,8 +2,8 @@
     "name": "l5r5e",
     "title": "Legend of the Five Rings (5th Edition)",
     "description": "This is a game system, multilanguage in En/FR/ES, for Legend of the Five Rings (5th Edition) by <a href='https://edge-studio.net/'>Edge Studio</a> <p> - Join the official Discord server: <a href='https://discord.gg/foundryvtt'> Official Discord</a></p><p> - Rejoignez la communauté Francophone: <a href='https://discord.gg/pPSDNJk'>Francophone Discord</a></p>",
-    "version": "0.0.3",
-    "minimumCoreVersion": "0.7.3",
+    "version": "0.0.4",
+    "minimumCoreVersion": "0.7.5",
     "compatibleCoreVersion": "0.7.8",
     "author": "Team L5R",
     "background": "L5R-Header.webp",
@@ -42,5 +42,5 @@
     ],
     "url": "https://gitlab.com/teaml5r/l5r5e",
     "manifest": "https://gitlab.com/teaml5r/l5r5e/-/raw/master/system/system.json",
-    "download": "https://gitlab.com/teaml5r/l5r5e/-/jobs/artifacts/v0.0.3/raw/l5r5e.zip?job=build"
+    "download": "https://gitlab.com/teaml5r/l5r5e/-/jobs/artifacts/v0.0.4/raw/l5r5e.zip?job=build"
 }
