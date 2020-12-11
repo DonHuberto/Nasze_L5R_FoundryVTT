@@ -9,17 +9,24 @@
 // Font BrushtipTexe
 @font-face {
     font-family: "BrushtipTexe";
-    src: url("../fonts/BrushtipTexe.otf") format("opentype");
+    src: url("../fonts/BrushtipTexe.ttf") format("truetype");
 }
 
-// Font ArchitectsDaughter
+// Font PatrickHand
 @font-face {
     font-family: "PatrickHand";
     src: url("../fonts/PatrickHand.ttf") format("truetype");
 }
 
+// Font ManoNegra
+@font-face {
+    font-family: "ManoNegra";
+    src: url("../fonts/ManoNegra.ttf") format("truetype");
+}
+
 $font-primary: "PatrickHand", sans-serif;
 $font-secondary: "BrushtipTexe", sans-serif;
+$font-tertiary: "ManoNegra", sans-serif;
 $font-dice: "LogotypeL5r", sans-serif;
 
 body {

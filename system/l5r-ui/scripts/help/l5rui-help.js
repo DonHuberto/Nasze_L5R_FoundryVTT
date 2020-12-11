@@ -1,49 +1,47 @@
 //fonctions et class déportées
-import { openES } from './openES.js';
-import { openDTR } from './openDTR.js';
-import { openFR } from './openFR.js';
-import { openEN } from './openEN.js';
+import { openES } from "./openES.js";
+import { openDTR } from "./openDTR.js";
+import { openFR } from "./openFR.js";
+import { openEN } from "./openEN.js";
 
-Hooks.once("ready", async function() {
+Hooks.once("ready", async function () {
     //----------le menu liens externes
     let liensExt = new Dialog({
         title: "Besoin d'aide ?",
         content: "<p>Que voulez vous faire :</p>",
         buttons: {
-
             one: {
                 icon: '<i class="fas fa-check"></i>',
                 label: "Accéder au site de Edge-Studio",
-                callback: () => openES()
+                callback: () => openES(),
             },
             two: {
                 icon: '<i class="fas fa-check"></i>',
                 label: "Acheter un PDF du jeu ?",
-                callback: () => openDTR()
+                callback: () => openDTR(),
             },
             three: {
                 icon: '<i class="fas fa-check"></i>',
                 label: "Rejoindre le Discord Francophone",
-                callback: () => openFR()
+                callback: () => openFR(),
             },
             four: {
                 icon: '<i class="fas fa-check"></i>',
                 label: "Discord Officiel FoundryVTT",
-                callback: () => openEN()
-            }
-
-        }
+                callback: () => openEN(),
+            },
+        },
     });
 
-    //------------message et logo dans console 
+    //------------message et logo dans console
 
     //----logo image
     var logo = document.getElementById("logo");
-    logo.setAttribute("src", "systems/l5r5e/l5r-ui/ui/logo/l5r-logo.webp");
+    logo.setAttribute("src", "systems/l5r5e/assets/l5r-logo.webp");
 
     //--------------ouvrir le menu lien sur click logo
     logo.setAttribute("title", "Aide en Ligne");
-    logo.addEventListener("click", function() {
+    logo.addEventListener("click", function () {
         liensExt.render(true);
     });
 });

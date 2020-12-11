@@ -2,13 +2,22 @@
     "name": "l5r5e",
     "title": "Legend of the Five Rings (5th Edition)",
     "description": "This is a game system, multilanguage in En/FR/ES, for Legend of the Five Rings (5th Edition) by <a href='https://edge-studio.net/'>Edge Studio</a> <p> - Join the official Discord server: <a href='https://discord.gg/foundryvtt'> Official Discord</a></p><p> - Rejoignez la communauté Francophone: <a href='https://discord.gg/pPSDNJk'>Francophone Discord</a></p>",
-    "version": "0.0.2",
-    "minimumCoreVersion": "0.7.8",
-    "compatibleCoreVersion": "1.0.0",
+    "version": "0.0.3",
+    "minimumCoreVersion": "0.7.3",
+    "compatibleCoreVersion": "0.7.8",
     "author": "Team L5R",
-    "scripts": ["./l5r-ui/scripts/l5rui-chat-color.js"],
-    "esmodules": ["./l5r-ui/scripts/help/l5rui-help.js", "./scripts/dice-l5r5e.js", "./scripts/main-l5r5e.js"],
-    "styles": ["./l5r-ui/css/l5rui.css", "./l5r-ui/css/cursor.css", "./styles/l5r5e.css"],
+    "background": "L5R-Header.webp",
+    "scripts": ["./scripts/ui/chatColor-l5r5e.js"],
+    "esmodules": ["./scripts/main-l5r5e.js"],
+    "styles": ["./l5r-ui/css/l5rui.css", "./styles/l5r5e.css"],
+    "packs": [
+        {
+            "name": "macros",
+            "label": "L5R5e Macros",
+            "path": "packs/macros.db",
+            "entity": "Macro"
+        }
+    ],
     "languages": [
         {
             "lang": "en",
@@ -31,16 +40,7 @@
             "path": "lang/pt-br.json"
         }
     ],
-    "background": "L5R-Header.webp",
-    "packs": [
-        {
-            "name": "macros",
-            "label": "L5R5e Macros",
-            "path": "packs/macros.db",
-            "entity": "Macro"
-        }
-    ],
     "url": "https://gitlab.com/teaml5r/l5r5e",
     "manifest": "https://gitlab.com/teaml5r/l5r5e/-/raw/master/system/system.json",
-    "download": "https://gitlab.com/teaml5r/l5r5e/-/jobs/artifacts/v0.0.2/raw/l5r5e.zip?job=build"
+    "download": "https://gitlab.com/teaml5r/l5r5e/-/jobs/artifacts/v0.0.3/raw/l5r5e.zip?job=build"
 }

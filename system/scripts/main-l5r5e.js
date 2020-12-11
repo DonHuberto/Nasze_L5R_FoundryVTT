@@ -174,4 +174,56 @@ Hooks.once("diceSoNiceReady", (dice3d) => {
     );
 });
 
+// Logo & Menu options
+
+Hooks.once("ready", async function () {
+    // -- Function Open Edge-Studio Website
+    function openEdge() {
+        ui.notifications.info(game.i18n.localize("l5r5e.logo.edge-info"));
+        var windowObjectReference = window.open(game.i18n.localize("l5r5e.logo.edge-link"), "_blank");
+    }
+    // -- Open Function Edge's DriveThruRpg
+    function openDrive() {
+        ui.notifications.info(game.i18n.localize("l5r5e.logo.drive-info"));
+        var windowObjectReference = window.open(game.i18n.localize("l5r5e.logo.drive-link"), "_blank");
+    }
+    // -- Open Function Discord Link
+    function openDiscord() {
+        ui.notifications.info(game.i18n.localize("l5r5e.logo.discrod-info"));
+        var windowObjectReference = window.open(game.i18n.localize("l5r5e.logo.discrod-link"), "_blank");
+    }
+
+    //-- Logo Menu Link
+    let liensExt = new Dialog({
+        title: game.i18n.localize("l5r5e.logo.title"),
+        content: "<p>" + game.i18n.localize("l5r5e.logo.content") + "</p>",
+        buttons: {
+            one: {
+                icon: '<i class="fas fa-check"></i>',
+                label: game.i18n.localize("l5r5e.logo.edge"),
+                callback: () => openEdge(),
+            },
+            two: {
+                icon: '<i class="fas fa-check"></i>',
+                label: game.i18n.localize("l5r5e.logo.drive"),
+                callback: () => openDrive(),
+            },
+            three: {
+                icon: '<i class="fas fa-check"></i>',
+                label: game.i18n.localize("l5r5e.logo.discrod"),
+                callback: () => openDiscord(),
+            },
+        },
+    });
+    //-- Logo
+    var logo = document.getElementById("logo");
+    logo.setAttribute("src", game.i18n.localize("l5r5e.logo.src"));
+
+    //-- Open menu on Logo click
+    logo.setAttribute("title", game.i18n.localize("l5r5e.logo.alt"));
+    logo.addEventListener("click", function () {
+        liensExt.render(true);
+    });
+});
+
 // Add any additional hooks if necessary

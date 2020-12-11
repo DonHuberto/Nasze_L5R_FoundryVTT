@@ -1,5 +1,10 @@
 /** Global **/
 
+body {
+    background: url("../assets/imgs/background.webp") no-repeat center;
+    background-size: cover;
+}
+
 /* Windows */
 .window-app {
     .window-content {
@@ -55,4 +60,21 @@ input[type="time"] {
     border: 1px solid $l5r5e-title;
     padding: 0.25rem;
     color: $l5r5e-bold;
+}
+
+// Elements Colors
+.earth {
+    color: $l5r5e-earth;
+}
+.air {
+    color: $l5r5e-air;
+}
+.water {
+    color: $l5r5e-water;
+}
+.fire {
+    color: $l5r5e-fire;
+}
+.void {
+    color: $l5r5e-void;
 }

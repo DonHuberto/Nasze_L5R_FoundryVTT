@@ -2,7 +2,10 @@
 
 nav {
     &.sheet-tabs {
-        background: $l5r5e-title;
+        font-family: $font-tertiary;
+        border: 0 none;
+        margin-bottom: 0;
+        background: $l5r5e-white;
         color: $l5r5e-black;
         --notchSize: 0.5rem;
         clip-path: polygon(
@@ -18,9 +21,9 @@ nav {
     }
     .item {
         &:hover {
-            background-color: rgba(0, 0, 0, 0.75);
-            color: rgba(255, 255, 255, 1);
-            text-shadow: black 1px 2px 0;
+            background-color: $l5r5e-label;
+            color: $white;
+            text-shadow: none;
         }
     }
     .item.active {
