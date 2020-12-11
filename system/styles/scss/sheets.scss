@@ -132,9 +132,17 @@
                 }
             }
             li {
+                position: relative;
                 p {
                     display: none;
+                    z-index: 2;
                     position: absolute;
+                    bottom: -100%;
+                    background: rgba(0,0,0,0.5);
+                    color: #fff;
+                    padding: 0.25rem;
+                    --notchSize: 0.5rem;
+                    clip-path: polygon(0% 0, 0 0%, 100% 0%, 100% var(--notchSize), 100% calc(100% - var(--notchSize)), calc(100% - var(--notchSize)) 100%, var(--notchSize) 100%, 0% calc(100% - var(--notchSize)));
                 }
                 &:hover {
                     p {
