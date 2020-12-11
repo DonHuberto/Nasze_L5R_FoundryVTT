@@ -189,8 +189,8 @@ Hooks.once("ready", async function () {
     }
     // -- Open Function Discord Link
     function openDiscord() {
-        ui.notifications.info(game.i18n.localize("l5r5e.logo.discrod-info"));
-        var windowObjectReference = window.open(game.i18n.localize("l5r5e.logo.discrod-link"), "_blank");
+        ui.notifications.info(game.i18n.localize("l5r5e.logo.discord-info"));
+        var windowObjectReference = window.open(game.i18n.localize("l5r5e.logo.discord-link"), "_blank");
     }
 
     //-- Logo Menu Link
@@ -210,7 +210,7 @@ Hooks.once("ready", async function () {
             },
             three: {
                 icon: '<i class="fas fa-check"></i>',
-                label: game.i18n.localize("l5r5e.logo.discrod"),
+                label: game.i18n.localize("l5r5e.logo.discord"),
                 callback: () => openDiscord(),
             },
         },

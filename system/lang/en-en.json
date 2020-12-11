@@ -28,15 +28,15 @@
             "content": "Follow the guide :",
             "edge": "Go to the Edge-Studio website",
             "drive": "Buy a PDF of the game...",
-            "discrod": "FoundryVTT Official Discord",
+            "discord": "FoundryVTT Official Discord",
             "src": "systems/l5r5e/assets/l5r-logo.webp",
             "alt": "Online Help",
             "edge-info": "your browser will open the EDGE STUDIO website",
             "edge-link": "https://edge-studio.net/",
             "drive-info": "your browser will open the DriveThruRpg site of Edge Studio",
             "drive-link": "https://www.drivethrurpg.com/browse/pub/17946/EDGE-Studio",
-            "discrod-info": "Your browser will open on the official Foundry discord",
-            "discrod-link": "https://discordapp.com/invite/DDBZUDf"
+            "discord-info": "Your browser will open on the official Foundry discord",
+            "discord-link": "https://discordapp.com/invite/DDBZUDf"
         },
         "rings": {
             "title": "Rings",
