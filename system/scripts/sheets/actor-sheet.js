@@ -101,7 +101,7 @@ export class ActorSheetL5r5e extends ActorSheet {
             this._onSkillClicked(skillId);
         });
 
-        html.find(".adquisition-add").click((ev) => {
+        html.find(".acquisition-add").click((ev) => {
             this._createFeat();
         });
     }

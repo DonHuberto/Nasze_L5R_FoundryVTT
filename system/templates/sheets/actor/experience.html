@@ -22,10 +22,10 @@
         </header>
 
         {{#each data.feats as |feat featId| }}
-            {{> 'systems/l5r5e/templates/sheets/actor/adquisition.html' adquisition=feat }}
+            {{> 'systems/l5r5e/templates/sheets/actor/acquisition.html' acquisition=feat }}
         {{/each}}
         <div class="tools">
-            <a class="adquisition-control adquisition-add" title="{{ localize 'l5r5e.add'}}"><i class="fas fa-plus"></i></a>
+            <a class="acquisition-control acquisition-add" title="{{ localize 'l5r5e.add'}}"><i class="fas fa-plus"></i></a>
         </div>
     </div>
 </div>

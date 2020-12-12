@@ -24,6 +24,7 @@
     * {
         transition: none;
     }
+
     input[type="text"]:focus,
     input[type="text"]:hover {
         box-shadow: none !important;
@@ -34,16 +35,27 @@
     img {
         border: 0;
     }
+
     table {
-        .profil {
+        text-align: center;
+        background: none;
+        border: none;
+
+        td:first-child {
             width: 200px;
         }
-        .rings {
+
+        td {
             width: 240px;
         }
-        .skill {
+
+        td:last-child {
             width: 200px;
         }
+    }
+
+    .pointer-choice {
+        cursor: url("../l5r-ui/ui/cursors/pointer.webp"), pointer;
     }
 
     // Approach choice
@@ -52,7 +64,6 @@
 
         &.ring-selected {
             filter: drop-shadow(1px 1px 0 #151515);
-            //text-shadow: 1px 1px 0 #efefef;
         }
     }
 
@@ -60,28 +71,34 @@
         font-size: xx-large;
     }
 
-    .center {
+    .third {
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .dice-container {
+        position: relative;
         text-align: center;
     }
-    .third {
-        float: left;
-        width: 33.333333333%;
+
+    .dice-value {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
-    #ring_value {
+
+    .dice-ring {
         width: 20px;
-        position: relative;
-        left: +34px;
-        top: -14px;
         color: #f0f0e0;
         background: none;
         border: none;
         font-size: large;
     }
-    #skill_value {
+
+    .dice-skill {
         width: 20px;
-        position: relative;
-        left: +34px;
-        top: -13px;
         color: #0f0f0e;
         background: none;
         border: none;

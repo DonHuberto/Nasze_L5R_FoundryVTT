@@ -41,9 +41,9 @@ export class DicePickerDialog extends Application {
             id: "l5r5e-dice-picker-dialog",
             classes: ["l5r5e", "dice-picker-dialog"],
             template: "systems/l5r5e/templates/dice/dice-picker-dialog.html",
-            width: 650,
-            // height: 400,
-            // title: "L5R Dice Roller",
+            title: "L5R Dice Roller",
+            width: 660,
+            height: 390,
             actor: null,
             ringId: null,
             skillId: "",
@@ -152,6 +152,7 @@ export class DicePickerDialog extends Application {
      */
     getData(options = null) {
         return {
+            ...super.getData(options),
             elementsList: this._getElements(),
             dicesList: [0, 1, 2, 3, 4, 5, 6],
             skillData: this._skillData,
@@ -185,31 +186,39 @@ export class DicePickerDialog extends Application {
     activateListeners(html) {
         super.activateListeners(html);
 
-        // on change approaches
+        // On change approaches
         html.find('input[name="approach"]').on("click", async (event) => {
             $("#ring_value").val(event.target.value);
             $(".ring-selection").removeClass("ring-selected");
             $("." + event.target.dataset.ringid).addClass("ring-selected");
+            $("#stance_label").html(
+                game.i18n.localize("l5r5e.skills." + this._skillData.cat + "." + event.target.dataset.ringid)
+            );
         });
 
-        // Ring Add button
+        // Ring - Add button
         html.find("#ring_add").on("click", async (event) => {
             this._quantityChange(event, "#ring_value", false);
         });
 
-        // Ring Subtract button
+        // Ring - Subtract button
         html.find("#ring_sub").on("click", async (event) => {
             this._quantityChange(event, "#ring_value", true);
         });
 
-        // Skill Add button
+        // Skill - Add button
         html.find("#skill_add").on("click", async (event) => {
             this._quantityChange(event, "#skill_value", false);
         });
 
-        // Skill Subtract button
+        // Skill - Subtract button
         html.find("#skill_sub").on("click", async (event) => {
             this._quantityChange(event, "#skill_value", true);
+        });
+
+        // Skill - Default Dice div
+        html.find("#skill_default_value").on("click", async (event) => {
+            $("#skill_value").val(this._skillData.value);
         });
 
         // Roll button
@@ -233,6 +242,10 @@ export class DicePickerDialog extends Application {
                 formula.push(`${skill}ds`);
             }
 
+            // TODO update actor stance ? good idea or not, choice-able ?
+            // this._actor.data.data.stance = approach;
+
+            // Let's roll !
             const roll = await new RollL5r5e(formula.join("+"));
 
             roll.l5r5e.stance = approach;
@@ -244,16 +257,9 @@ export class DicePickerDialog extends Application {
             await this.close();
         });
 
-        // Check if a stance is selected
-        let selectedStance = "air";
-        if (this._actor) {
-            DicePickerDialog.stances.forEach((e) => {
-                if (this._actor.data.data?.stances?.[e]?.isSelected?.value) {
-                    selectedStance = e;
-                }
-            });
-        }
-        html.find(`.approach_${selectedStance}`).first().trigger("click");
+        html.find(`.approach_${this._actor ? this._actor.data.data.stance : "void"}`)
+            .first()
+            .trigger("click");
         html.find("#skill_value").val(this._skillData.value);
     }
 
