@@ -23,6 +23,7 @@ export class RollL5r5e extends Roll {
             },
             summary: {
                 difficulty: 0,
+                difficultyHidden: false,
                 success: 0,
                 explosive: 0,
                 opportunity: 0,
@@ -215,10 +216,7 @@ export class RollL5r5e extends Roll {
             l5r5e: isPrivate
                 ? {}
                 : {
-                      stance: this.l5r5e.stance,
-                      skillName: skillName,
-                      dicesTypes: this.l5r5e.dicesTypes,
-                      summary: this.l5r5e.summary,
+                      ...this.l5r5e,
                       dices: this.dice.map((d) => {
                           return {
                               diceTypeL5r: d instanceof L5rBaseDie,

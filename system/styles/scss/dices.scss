@@ -18,6 +18,25 @@
     display: inline-block;
 }
 
+.chat-profil {
+    text-align: center;
+    vertical-align: middle;
+
+    &-stance {
+        font-size: 40px;
+        position: relative;
+        top: 8px;
+    }
+    &-element {
+        flex-wrap: wrap;
+        flex-grow: 1;
+
+        &-skill {
+            flex-grow: 3;
+        }
+    }
+}
+
 // Dice Picker
 .dice-picker-dialog {
     // Utility
@@ -80,6 +99,11 @@
     .dice-container {
         position: relative;
         text-align: center;
+
+        & > img {
+            height: 40px;
+            width: 40px;
+        }
     }
 
     .dice-value {
@@ -89,19 +113,19 @@
         transform: translate(-50%, -50%);
     }
 
-    .dice-ring {
-        width: 20px;
-        color: #f0f0e0;
-        background: none;
-        border: none;
-        font-size: large;
-    }
-
-    .dice-skill {
+    .input-dice {
         width: 20px;
         color: #0f0f0e;
         background: none;
         border: none;
         font-size: large;
+
+        &-ring {
+            color: #f0f0e0;
+        }
+
+        &-skill {
+            color: #0f0f0e;
+        }
     }
 }

@@ -1,13 +1,36 @@
 <div class="l5r5e dice-roll">
     {{#if isPublicRoll }}
 
-    <div class="l5r5e dice-formula">{{formula}}</div>
-
     {{#if l5r5e.stance}}
-    <div class="l5r5e dice-stance">
-        <i class="i_{{l5r5e.stance}}"></i> {{l5r5e.skillName}}
+    <div class="l5r5e profil">
+        <header class="part-header flexrow chat-profil">
+            <span class="chat-profil-element">
+                <img class="profile-img"
+                     src="{{#if l5r5e.actor.img}}{{l5r5e.actor.img}}{{/if}}{{^if l5r5e.actor.img}}icons/svg/mystery-man.svg{{/if}}"
+                     data-edit="img"
+                     height="40"
+                     width="40"
+                     alt="{{#if l5r5e.actor.name}}{{l5r5e.actor.name}}{{/if}}{{^if l5r5e.actor.name}}mystery-man{{/if}}"
+                >
+            </span>
+
+            <span class="chat-profil-element">
+                <i class="chat-profil-stance i_{{l5r5e.stance}}" title="{{localizeRing l5r5e.stance}}"></i>
+            </span>
+
+            <span class="chat-profil-element-skill">
+                {{#if l5r5e.skillId}}{{localizeSkillId l5r5e.skillId}}{{/if}}
+            </span>
+
+            <span class="chat-profil-element">
+                {{#if l5r5e.summary.difficultyHidden}}ND cachée{{/if}}
+                {{^if l5r5e.summary.difficultyHidden}}ND {{l5r5e.summary.difficulty}}{{/if}}
+            </span>
+        </header>
     </div>
     {{/if}}
+
+    <div class="l5r5e dice-formula">{{formula}}</div>
 
     <div class="l5r5e dice-result">
 

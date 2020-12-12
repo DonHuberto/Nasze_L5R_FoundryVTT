@@ -30,7 +30,10 @@ export class DicePickerDialog extends Application {
     /**
      * Difficulty
      */
-    _difficulty = null;
+    _difficulty = {
+        difficulty: 2,
+        isHidden: false,
+    };
 
     /**
      * Assign the default options
@@ -43,11 +46,12 @@ export class DicePickerDialog extends Application {
             template: "systems/l5r5e/templates/dice/dice-picker-dialog.html",
             title: "L5R Dice Roller",
             width: 660,
-            height: 390,
+            height: 460,
             actor: null,
             ringId: null,
             skillId: "",
-            difficulty: null,
+            difficulty: 2,
+            difficultyHidden: false,
         });
     }
 
@@ -56,7 +60,7 @@ export class DicePickerDialog extends Application {
      *
      * ex: new game.l5r5e.DicePickerDialog({skillId: 'aesthetics', ringId: 'fire', actor: game.user.character}).render();
      *
-     * @param options actor, ringId, skillId, difficulty
+     * @param options actor, ringId, skillId, difficulty, difficultyHidden
      */
     constructor(options = null) {
         super(options);
@@ -81,6 +85,11 @@ export class DicePickerDialog extends Application {
         // Difficulty
         if (options?.difficulty) {
             this.difficulty = options.difficulty;
+        }
+
+        // difficultyHidden
+        if (options?.difficultyHidden) {
+            this.difficultyHidden = options.difficultyHidden;
         }
     }
 
@@ -126,7 +135,7 @@ export class DicePickerDialog extends Application {
     }
 
     /**
-     * Set Difficulty level
+     * Set Difficulty level (default 2)
      * @param difficulty
      */
     set difficulty(difficulty) {
@@ -134,7 +143,15 @@ export class DicePickerDialog extends Application {
         if (difficulty < 0) {
             difficulty = null;
         }
-        this._difficulty = difficulty;
+        this._difficulty.difficulty = difficulty;
+    }
+
+    /**
+     * Set if Difficulty is Hidden or not (default)
+     * @param isHidden
+     */
+    set difficultyHidden(isHidden) {
+        this._difficulty.isHidden = !!isHidden;
     }
 
     /**
@@ -158,6 +175,7 @@ export class DicePickerDialog extends Application {
             skillData: this._skillData,
             actor: this._actor,
             difficulty: this._difficulty,
+            canUseVoidPoint: !this._actor || this._actor.data.data.void_points.current > 0,
         };
     }
 
@@ -196,31 +214,71 @@ export class DicePickerDialog extends Application {
             );
         });
 
+        // ****************** DIFF ******************
+        // Difficulty - Add button
+        html.find("#diff_add").on("click", async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            this._difficulty.difficulty = this._quantityChange("#diff_value", 1);
+        });
+
+        // Difficulty - Subtract button
+        html.find("#diff_sub").on("click", async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            this._difficulty.difficulty = this._quantityChange("#diff_value", -1);
+        });
+
+        // Difficulty - hidden checkbox
+        html.find("#diff_hidden").on("click", async (event) => {
+            this._difficulty.isHidden = !this._difficulty.isHidden;
+            $("#difficulty_picker").toggle();
+        });
+
+        // ****************** RING ******************
         // Ring - Add button
         html.find("#ring_add").on("click", async (event) => {
-            this._quantityChange(event, "#ring_value", false);
+            event.preventDefault();
+            event.stopPropagation();
+            this._quantityChange("#ring_value", 1);
         });
 
         // Ring - Subtract button
         html.find("#ring_sub").on("click", async (event) => {
-            this._quantityChange(event, "#ring_value", true);
+            event.preventDefault();
+            event.stopPropagation();
+            this._quantityChange("#ring_value", -1);
         });
 
+        // Ring - Spend a Void point checkbox
+        html.find("#use_void_point").on("click", async (event) => {
+            this._quantityChange("#ring_value", event.target.checked ? 1 : -1);
+            html.find("#use_void_point").attr("checked", event.target.checked);
+        });
+
+        // ****************** SKILL ******************
         // Skill - Add button
         html.find("#skill_add").on("click", async (event) => {
-            this._quantityChange(event, "#skill_value", false);
+            event.preventDefault();
+            event.stopPropagation();
+            this._quantityChange("#skill_value", 1);
         });
 
         // Skill - Subtract button
         html.find("#skill_sub").on("click", async (event) => {
-            this._quantityChange(event, "#skill_value", true);
+            event.preventDefault();
+            event.stopPropagation();
+            this._quantityChange("#skill_value", -1);
         });
 
         // Skill - Default Dice div
         html.find("#skill_default_value").on("click", async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             $("#skill_value").val(this._skillData.value);
         });
 
+        // ****************** ROLL ******************
         // Roll button
         html.find('button[name="roll"]').on("click", async (event) => {
             event.preventDefault();
@@ -242,38 +300,61 @@ export class DicePickerDialog extends Application {
                 formula.push(`${skill}ds`);
             }
 
-            // TODO update actor stance ? good idea or not, choice-able ?
-            // this._actor.data.data.stance = approach;
+            // Update Actor
+            if (this._actor) {
+                // TODO update actor stance ? good idea or not, choice-able ?
+                // this._actor.data.data.stance = approach;
+
+                // If Void point is used, minus the actor
+                if ($("#use_void_point").attr("checked")) {
+                    this._actor.data.data.void_points.current = Math.max(
+                        this._actor.data.data.void_points.current - 1,
+                        0
+                    );
+                }
+
+                // If hidden add void 1pt
+                if (this._difficulty.isHidden) {
+                    this._actor.data.data.void_points.current = Math.min(
+                        this._actor.data.data.void_points.current + 1,
+                        this._actor.data.data.void_points.max
+                    );
+                }
+            }
 
             // Let's roll !
             const roll = await new RollL5r5e(formula.join("+"));
 
+            roll.actor = this._actor;
             roll.l5r5e.stance = approach;
             roll.l5r5e.skillId = this._skillData.id;
-            roll.actor = this._actor;
+            roll.l5r5e.summary.difficulty = this._difficulty.difficulty;
+            roll.l5r5e.summary.difficultyHidden = this._difficulty.isHidden;
 
             await roll.roll();
             await roll.toMessage();
             await this.close();
         });
 
+        // ****************** INIT ******************
+        // Select current actor's stance
         html.find(`.approach_${this._actor ? this._actor.data.data.stance : "void"}`)
             .first()
             .trigger("click");
+
+        // Set skill point
         html.find("#skill_value").val(this._skillData.value);
     }
 
-    _quantityChange(event, elmtSelector, isSubstract) {
-        event.preventDefault();
-        event.stopPropagation();
+    /**
+     * Change quantity between 0-9 on the element, and return the new value
+     * @private
+     */
+    _quantityChange(elmtSelector, add) {
         const elmt = $(elmtSelector);
-        if (isSubstract) {
-            const val = parseInt(elmt.val()) - 1;
-            elmt.val(val >= 0 ? val : 0);
-            return;
-        }
-        const val = parseInt(elmt.val()) + 1;
-        elmt.val(val < 10 ? val : 9);
+        const value = Math.max(Math.min(parseInt(elmt.val()) + add, 9), 0);
+        elmt.val(value);
+        return value;
     }
 
     /**

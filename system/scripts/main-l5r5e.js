@@ -66,14 +66,14 @@ Hooks.once("init", async function () {
         return new Handlebars.SafeString(objects.map((e) => `<textarea>${JSON.stringify(e)}</textarea>`));
     });
 
-    Handlebars.registerHelper("localizeSkillCategory", function (skillName) {
-        const key = "l5r5e.skills." + skillName.toLowerCase() + ".title";
-        return game.i18n.localize(key);
-    });
-
     // Add props "checked" if a and b are equal ({{radioChecked a b}}
     Handlebars.registerHelper("radioChecked", function (a, b) {
         return a === b ? new Handlebars.SafeString('checked="checked"') : "";
+    });
+
+    Handlebars.registerHelper("localizeSkillCategory", function (skillName) {
+        const key = "l5r5e.skills." + skillName.toLowerCase() + ".title";
+        return game.i18n.localize(key);
     });
 
     Handlebars.registerHelper("localizeSkill", function (skillCategory, skillName) {
