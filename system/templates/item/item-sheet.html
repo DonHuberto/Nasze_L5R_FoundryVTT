@@ -14,22 +14,22 @@
         </div>
     </header>
 
-    {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">Description</a>
-        <a class="item" data-tab="attributes">Attributes</a>
-    </nav>
-
     {{!-- Sheet Body --}}
     <section class="sheet-body">
 
+        {{!-- Sheet Tab Navigation --}}
+        <nav class="sheet-tabs tabs" data-group="primary">
+            <a class="item" data-tab="description">Description</a>
+            <a class="item" data-tab="attributes">Attributes</a>
+        </nav>
+
         {{!-- Description Tab --}}
-        <div class="tab" data-group="primary" data-tab="description">
+        <article class="tab" data-group="primary" data-tab="description">
             {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
-        </div>
+        </article>
 
         {{!-- Attributes Tab --}}
-        <div class="tab attributes" data-group="primary" data-tab="attributes">
+        <article class="tab attributes" data-group="primary" data-tab="attributes">
             <header class="attributes-header flexrow">
                 <span class="attribute-key">Attribute Key</span>
                 <span class="attribute-value">Value</span>
@@ -59,6 +59,6 @@
                 </li>
             {{/each}}
             </ol>
-        </div>
+        </article>
     </section>
 </form>

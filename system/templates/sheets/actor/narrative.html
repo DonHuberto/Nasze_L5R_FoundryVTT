@@ -12,5 +12,7 @@
         <input type="text" name="data.social_standing.titles" value="{{data.social_standing.titles}}"/>
     </li>
 </ul>
-<h4 class="text-block-header">{{ localize 'l5r5e.notes' }}</h4>
-{{ editor content=data.notes.value target="data.notes.value" button=true editable=editable }}
+<fieldset>
+    <legend class="text-block-header">{{ localize 'l5r5e.notes' }}</legend>
+    {{ editor content=data.notes.value target="data.notes.value" button=true editable=editable }}
+</fieldset>

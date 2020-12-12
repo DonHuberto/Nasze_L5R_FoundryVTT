@@ -12,6 +12,7 @@ body {
         position: relative;
         background: url("../assets/imgs/bgL5R.webp") no-repeat;
         background-size: cover;
+        scrollbar-width: thin;
     }
     .window-resizable-handle {
         z-index: 2;
@@ -50,6 +51,12 @@ li {
     padding: 0;
 }
 
+// Fieldset
+fieldset {
+    flex: 1;
+    display: flex;
+}
+
 // inputs
 input[type="text"],
 input[type="number"],
@@ -60,6 +67,11 @@ input[type="time"] {
     border: 1px solid $l5r5e-title;
     padding: 0.25rem;
     color: $l5r5e-bold;
+}
+
+// Editors
+.editor {
+    flex: 1;
 }
 
 // Elements Colors

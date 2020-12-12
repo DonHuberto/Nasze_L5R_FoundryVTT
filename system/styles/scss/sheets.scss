@@ -1,6 +1,14 @@
 /** Sheets **/
 &.sheet {
     min-width: 600px;
+    form {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .sheet-header,
+    .sheet-body {
+        flex: 100%;
+    }
     .sheet-header {
         h1 {
             flex: auto;
@@ -178,6 +186,7 @@
         background: $l5r5e-white;
         padding: 0.5rem;
         flex-wrap: wrap;
+        min-height: calc(100% - 2.25rem);
         &.tab[data-tab] {
             &.active {
                 display: flex;
