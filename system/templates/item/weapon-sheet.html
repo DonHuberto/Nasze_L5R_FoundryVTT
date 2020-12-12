@@ -14,16 +14,16 @@
         </div>
     </header>
 
-    {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">Description</a>
-    </nav>
-
     {{!-- Sheet Body --}}
     <section class="sheet-body">
 
+        {{!-- Sheet Tab Navigation --}}
+        <nav class="sheet-tabs tabs" data-group="primary">
+            <a class="item" data-tab="description">Description</a>
+        </nav>
+
         {{!-- Description Tab --}}
-        <div class="tab" data-group="primary" data-tab="description">
+        <article class="tab" data-group="primary" data-tab="description">
             <div class="weapon-stats-content">
                 <div>
                     <label class="attribute-label">{{ localize 'l5r5e.damage' }}</label>
@@ -36,6 +36,6 @@
             </div>
             <h4 class="text-block-header">{{ localize  'l5r5e.properties' }}</h4>
             {{editor content=data.properties target="data.properties" button=true owner=owner editable=editable}}
-        </div>
+        </article>
     </section>
 </form>

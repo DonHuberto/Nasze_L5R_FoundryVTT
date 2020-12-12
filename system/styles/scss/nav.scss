@@ -1,52 +1,60 @@
 // -- Nav
-
 nav {
     &.sheet-tabs {
-      font-family: $font-tertiary;
-      border: 0 none;
-      margin-bottom: 0;
-      background: $l5r5e-white;
-      color: $l5r5e-black;
-      --notchSize: 0.5rem;
-      clip-path: polygon(
-          0% var(--notchSize),
-          var(--notchSize) 0%,
-          calc(100% - var(--notchSize)) 0%,
-          100% var(--notchSize),
-          100% calc(100% - var(--notchSize)),
-          calc(100%) 100%,
-          var(--notchSize) 100%,
-          0% calc(100%)
-      );
+        font-family: $font-tertiary;
+        border: 0 none;
+        margin-bottom: 0;
+        background: $l5r5e-white;
+        color: $l5r5e-black;
+        --notchSize: 0.5rem;
+        clip-path: polygon(
+            0% var(--notchSize),
+            var(--notchSize) 0%,
+            calc(100% - var(--notchSize)) 0%,
+            100% var(--notchSize),
+            100% calc(100% - var(--notchSize)),
+            calc(100%) 100%,
+            var(--notchSize) 100%,
+            0% calc(100%)
+        );
     }
     .item {
-
-      &:hover {
-          background-color: $l5r5e-label;
-          color: $white;
-          text-shadow: none;
-      }
+        &:hover {
+            background-color: $l5r5e-label;
+            color: $white;
+            text-shadow: none;
+            clip-path: polygon(
+                0% var(--notchSize),
+                var(--notchSize) 0%,
+                calc(100% - var(--notchSize)) 0%,
+                100% var(--notchSize),
+                100% 100%,
+                0 100%,
+                0% 0%,
+                0% 100%
+            );
+        }
     }
     .item.active {
-      height: 2.5rem;
-      line-height: 2rem;
-      background-color: rgba(73, 12, 11, 0.85);
-      color: rgba(255, 255, 255, 1);
-      background-color: rgba(73, 12, 11, 0.85);
-      clip-path: polygon(
-          0% var(--notchSize),
-          var(--notchSize) 0%,
-          calc(100% - var(--notchSize)) 0%,
-          100% var(--notchSize),
-          100% 100%,
-          0 100%,
-          0% 0%,
-          0% 100%
-      );
+        height: 2.5rem;
+        line-height: 2rem;
+        background-color: rgba(73, 12, 11, 0.85);
+        color: rgba(255, 255, 255, 1);
+        background-color: rgba(73, 12, 11, 0.85);
+        clip-path: polygon(
+            0% var(--notchSize),
+            var(--notchSize) 0%,
+            calc(100% - var(--notchSize)) 0%,
+            100% var(--notchSize),
+            100% 100%,
+            0 100%,
+            0% 0%,
+            0% 100%
+        );
 
-      &:hover {
-          background-color: rgba(73, 12, 11, 0.85);
-          cursor: default;
-      }
+        &:hover {
+            background-color: rgba(73, 12, 11, 0.85);
+            cursor: default;
+        }
     }
 }

@@ -12,6 +12,7 @@ body {
         position: relative;
         background: url("../assets/imgs/bgL5R.webp") no-repeat;
         background-size: cover;
+        scrollbar-width: thin;
     }
     .window-resizable-handle {
         z-index: 2;
@@ -50,6 +51,12 @@ li {
     padding: 0;
 }
 
+// Fieldset
+fieldset {
+    flex: 1;
+    display: flex;
+}
+
 // inputs
 input[type="text"],
 input[type="number"],
@@ -62,9 +69,24 @@ input[type="time"] {
     color: $l5r5e-bold;
 }
 
+// Editors
+.editor {
+    flex: 1;
+}
+
 // Elements Colors
-.earth {color: $l5r5e-earth;}
-.air {color: $l5r5e-air;}
-.water {color: $l5r5e-water;}
-.fire {color: $l5r5e-fire;}
-.void {color: $l5r5e-void;}
+.earth {
+    color: $l5r5e-earth;
+}
+.air {
+    color: $l5r5e-air;
+}
+.water {
+    color: $l5r5e-water;
+}
+.fire {
+    color: $l5r5e-fire;
+}
+.void {
+    color: $l5r5e-void;
+}

@@ -1,6 +1,14 @@
 /** Sheets **/
 &.sheet {
     min-width: 600px;
+    form {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .sheet-header,
+    .sheet-body {
+        flex: 100%;
+    }
     .sheet-header {
         h1 {
             flex: auto;
@@ -138,11 +146,20 @@
                     z-index: 2;
                     position: absolute;
                     bottom: -100%;
-                    background: rgba(0,0,0,0.5);
+                    background: rgba(0, 0, 0, 0.5);
                     color: #fff;
                     padding: 0.25rem;
                     --notchSize: 0.5rem;
-                    clip-path: polygon(0% 0, 0 0%, 100% 0%, 100% var(--notchSize), 100% calc(100% - var(--notchSize)), calc(100% - var(--notchSize)) 100%, var(--notchSize) 100%, 0% calc(100% - var(--notchSize)));
+                    clip-path: polygon(
+                        0% 0,
+                        0 0%,
+                        100% 0%,
+                        100% var(--notchSize),
+                        100% calc(100% - var(--notchSize)),
+                        calc(100% - var(--notchSize)) 100%,
+                        var(--notchSize) 100%,
+                        0% calc(100% - var(--notchSize))
+                    );
                 }
                 &:hover {
                     p {
@@ -169,10 +186,14 @@
         background: $l5r5e-white;
         padding: 0.5rem;
         flex-wrap: wrap;
-        &.tab[data-tab]{
-            &.active {display: flex;}
+        min-height: calc(100% - 2.25rem);
+        &.tab[data-tab] {
+            &.active {
+                display: flex;
+            }
         }
-        .skills-wrapper, .feats-wrapper {
+        .skills-wrapper,
+        .feats-wrapper {
             flex: 50%;
             > li {
                 display: flex;
@@ -181,7 +202,16 @@
                 margin: 0 0 1rem;
                 border: 1px solid $l5r5e-title;
                 --notchSize: 0.75rem;
-                clip-path: polygon(0 var(--notchSize), var(--notchSize) 0, 100% 0, 100% var(--notchSize), 100% calc(100% - var(--notchSize)), 100% 100%, 0 100%, 0 100%);
+                clip-path: polygon(
+                    0 var(--notchSize),
+                    var(--notchSize) 0,
+                    100% 0,
+                    100% var(--notchSize),
+                    100% calc(100% - var(--notchSize)),
+                    100% 100%,
+                    0 100%,
+                    0 100%
+                );
                 h4 {
                     flex: 100%;
                     margin: 0;
@@ -190,7 +220,16 @@
                     background: $l5r5e-title;
                     color: $l5r5e-label;
                     --notchSize: 0.5rem;
-                    clip-path: polygon(0% var(--notchSize), var(--notchSize) 0%, calc(100%) 0%, 100% var(--notchSize), 100% calc(100% - var(--notchSize)), calc(100% - var(--notchSize)) 100%, var(--notchSize) 100%, 0% calc(100%));
+                    clip-path: polygon(
+                        0% var(--notchSize),
+                        var(--notchSize) 0%,
+                        calc(100%) 0%,
+                        100% var(--notchSize),
+                        100% calc(100% - var(--notchSize)),
+                        calc(100% - var(--notchSize)) 100%,
+                        var(--notchSize) 100%,
+                        0% calc(100%)
+                    );
                 }
                 ul {
                     flex: 50%;
@@ -204,7 +243,9 @@
                             strong {
                                 color: $l5r5e-black;
                             }
-                            &[data-skill="melee"], &[data-skill="ranged"], &[data-skill="unarmed"] {
+                            &[data-skill="melee"],
+                            &[data-skill="ranged"],
+                            &[data-skill="unarmed"] {
                                 strong {
                                     float: left;
                                     line-height: 0.75rem;

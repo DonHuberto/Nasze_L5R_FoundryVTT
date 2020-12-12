@@ -13,18 +13,17 @@
             {{> 'systems/l5r5e/templates/sheets/actor/attributes.html' }}
         </div>
     </header>
-
-    {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="skills">{{ localize 'l5r5e.skills.title' }}</a>
-        <a class="item" data-tab="narrative">{{ localize 'l5r5e.narrative' }}</a>
-        <a class="item" data-tab="conflict">{{ localize 'l5r5e.conflict.title' }}</a>
-        <a class="item" data-tab="inventory">{{ localize 'l5r5e.inventory' }}</a>
-        <a class="item" data-tab="experience">{{ localize 'l5r5e.experience' }}</a>
-    </nav>
-
     {{!-- Sheet Body --}}
     <section class="sheet-body">
+        {{!-- Sheet Tab Navigation --}}
+        <nav class="sheet-tabs tabs" data-group="primary">
+            <a class="item" data-tab="skills">{{ localize 'l5r5e.skills.title' }}</a>
+            <a class="item" data-tab="narrative">{{ localize 'l5r5e.narrative' }}</a>
+            <a class="item" data-tab="conflict">{{ localize 'l5r5e.conflict.title' }}</a>
+            <a class="item" data-tab="inventory">{{ localize 'l5r5e.inventory' }}</a>
+            <a class="item" data-tab="experience">{{ localize 'l5r5e.experience' }}</a>
+        </nav>
+
         {{!-- Skills Tab --}}
         <article class="tab skills" data-group="primary" data-tab="skills">
             <ul class="skills-wrapper">
