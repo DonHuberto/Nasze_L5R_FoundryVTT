@@ -67,8 +67,15 @@
             "explosives": "Explosives",
             "opportunities": "Opportunities",
             "strives": "Strives",
-            "difficulty": "Difficulty",
+            "difficulty": "TN",
+            "difficulty_hidden": "TN ???",
             "dicepicker": "Dice Picker"
+        },
+        "dicepicker": {
+            "difficulty_title": "Difficulty",
+            "difficulty_hidden_label": "Hide TN",
+            "use_void_point_label": "Spend a Void point",
+            "roll_label": "Roll"
         },
         "max": "Max",
         "current": "Current",

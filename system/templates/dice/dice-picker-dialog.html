@@ -63,7 +63,7 @@
         <!-- Second line-->
         <tr>
             <td>
-                {{localize "l5r5e.chatdices.difficulty"}}
+                {{localize "l5r5e.dicepicker.difficulty_title"}}
             </td>
             <td>
                 {{localize "l5r5e.rings.title"}}
@@ -140,16 +140,14 @@
             <td>
                 <input type="checkbox" id="diff_hidden" name="diff_hidden" value="1">
                 <label for="diff_hidden">
-                    <!-- TODO lang-->
-                    Cachée
+                    {{localize 'l5r5e.dicepicker.difficulty_hidden_label'}}
                 </label>
             </td>
             <td>
                 {{#if canUseVoidPoint}}
                     <input type="checkbox" id="use_void_point" name="diff_hidden" value="1">
                     <label for="use_void_point">
-                        <!-- TODO lang-->
-                        Dépenser un point de Vide
+                        {{localize 'l5r5e.dicepicker.use_void_point_label'}}
                     </label>
                 {{/if}}
             </td>
@@ -160,6 +158,6 @@
     </table>
 
     <div class="form-group">
-        <button name="roll">Roll <i class='fas fa-arrow-circle-right'></i></button>
+        <button name="roll">{{localize 'l5r5e.dicepicker.roll_label'}} <i class='fas fa-arrow-circle-right'></i></button>
     </div>
 </form>
