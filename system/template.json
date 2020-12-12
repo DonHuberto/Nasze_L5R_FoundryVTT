@@ -77,23 +77,7 @@
                 },
                 "fatigue": 0,
                 "strife": 0,
-                "stances": {
-                    "air": {
-                        "isSelected": false
-                    },
-                    "earth": {
-                        "isSelected": false
-                    },
-                    "fire": {
-                        "isSelected": false
-                    },
-                    "water": {
-                        "isSelected": false
-                    },
-                    "void": {
-                        "isSelected": false
-                    }
-                }
+                "stance": "air"
             },
             "xp": {
                 "xp_total": 0,

@@ -61,13 +61,19 @@ Hooks.once("init", async function () {
     Items.registerSheet("l5r5e", FeatSheetL5r5e, { types: ["feat"], makeDefault: true });
 
     // for debug
-    Handlebars.registerHelper("json", function (object) {
-        return new Handlebars.SafeString(JSON.stringify(object));
+    Handlebars.registerHelper("json", function (...objects) {
+        objects.pop(); // remove this function call
+        return new Handlebars.SafeString(objects.map((e) => `<textarea>${JSON.stringify(e)}</textarea>`));
     });
 
     Handlebars.registerHelper("localizeSkillCategory", function (skillName) {
         const key = "l5r5e.skills." + skillName.toLowerCase() + ".title";
         return game.i18n.localize(key);
+    });
+
+    // Add props "checked" if a and b are equal ({{radioChecked a b}}
+    Handlebars.registerHelper("radioChecked", function (a, b) {
+        return a === b ? new Handlebars.SafeString('checked="checked"') : "";
     });
 
     Handlebars.registerHelper("localizeSkill", function (skillCategory, skillName) {
@@ -115,7 +121,7 @@ Hooks.once("setup", function () {
 Hooks.once("ready", function () {
     // Do anything once the system is ready
     // Add title on button dice icon
-    $.find(".chat-control-icon")[0].title = game.i18n.localize("l5r5e.chatdices.dicepicker");
+    $(".chat-control-icon")[0].title = game.i18n.localize("l5r5e.chatdices.dicepicker");
 });
 
 /* ------------------------------------ */
@@ -175,7 +181,6 @@ Hooks.once("diceSoNiceReady", (dice3d) => {
 });
 
 // Logo & Menu options
-
 Hooks.once("ready", async function () {
     // -- Function Open Edge-Studio Website
     function openEdge() {

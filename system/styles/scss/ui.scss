@@ -54,6 +54,9 @@ button {
         }
     }
     .sidebar-tab {
+        .chat-control-icon {
+            cursor: url("../l5r-ui/ui/cursors/pointer.webp"), pointer;
+        }
         .action-buttons button {
             cursor: default;
             color: $white;

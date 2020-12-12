@@ -12,7 +12,7 @@ export const PreloadTemplates = async function () {
         "systems/l5r5e/templates/sheets/actor/stance.html",
         "systems/l5r5e/templates/sheets/actor/feats.html",
         "systems/l5r5e/templates/sheets/actor/experience.html",
-        "systems/l5r5e/templates/sheets/actor/adquisition.html",
+        "systems/l5r5e/templates/sheets/actor/acquisition.html",
         // items
         "systems/l5r5e/templates/item/weapon-sheet.html",
         "systems/l5r5e/templates/item/items.html",
