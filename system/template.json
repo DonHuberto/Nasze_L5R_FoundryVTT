@@ -1,6 +1,6 @@
 {
     "Actor": {
-        "types": ["character"],
+        "types": ["character", "npc"],
         "templates": {
             "identity": {
                 "clan": "",
@@ -88,6 +88,35 @@
         "character": {
             "templates": ["identity", "rings", "social", "skills", "conflict", "xp"],
             "notes": "",
+            "feats": []
+        },
+        "npc": {
+            "templates": ["rings", "social", "conflict"],
+            "name": "",
+            "type": "minion",
+            "attitude": "",
+            "notes": "",
+            "conflict_rank": {
+                "martial": 0,
+                "social": 0
+            },
+            "rings_affinities": {
+                "strength": {
+                    "ring": "fire",
+                    "value": 2
+                },
+                "weakness": {
+                    "ring": "water",
+                    "value": -2
+                }
+            },
+            "skills": {
+                "artisan": 0,
+                "martial": 0,
+                "scholar": 0,
+                "social": 0,
+                "trade": 0
+            },
             "feats": []
         }
     },

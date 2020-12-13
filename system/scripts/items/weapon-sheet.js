@@ -8,7 +8,7 @@ export class WeaponSheetL5r5e extends ItemSheetL5r5e {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             classes: ["l5r5e", "sheet", "weapon"],
-            template: "systems/l5r5e/templates/item/weapon-sheet.html",
+            template: CONFIG.L5r5e.paths.templates + "item/weapon-sheet.html",
             width: 520,
             height: 480,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],

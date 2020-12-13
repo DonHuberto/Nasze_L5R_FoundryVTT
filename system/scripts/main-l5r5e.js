@@ -1,8 +1,10 @@
 // Import Modules
+import { L5R5E } from "./l5r5e-config.js";
 import { RegisterSettings } from "./settings.js";
 import { PreloadTemplates } from "./preloadTemplates.js";
 import { ActorL5r5e } from "./actor-l5r5e.js";
 import { ActorSheetL5r5e } from "./sheets/actor-sheet.js";
+import { NpcSheetL5r5e } from "./sheets/npc-sheet.js";
 import { RollL5r5e, AbilityDie, RingDie, DicePickerDialog } from "./dice-l5r5e.js";
 import { ItemL5r5e } from "./items/item.js";
 import { ItemSheetL5r5e } from "./items/item-sheet.js";
@@ -15,7 +17,18 @@ import { FeatSheetL5r5e } from "./items/feat-sheet.js";
 /* Initialize system                    */
 /* ------------------------------------ */
 Hooks.once("init", async function () {
-    console.log("l5r5e | Initializing l5r5e");
+    // console.log("L5R5e | Initializing l5r5e");
+    // Ascii art
+    console.log(
+        "  _    ___ ___   ___\n" +
+            " | |  | __| _ \\ | __| ___ \n" +
+            " | |__|__ \\   / |__ \\/ -_)\n" +
+            " |____|___/_|_\\ |___/\\___|\n" +
+            " "
+    );
+
+    // Global access to L5R Config
+    CONFIG.L5r5e = L5R5E;
 
     // Assign custom classes and constants here
     CONFIG.Actor.entityClass = ActorL5r5e;
@@ -35,14 +48,6 @@ Hooks.once("init", async function () {
         DicePickerDialog,
     };
 
-    // Define L5R Paths
-    CONFIG.L5r5e = {
-        paths: {
-            assets: `systems/l5r5e/assets/`,
-            templates: `systems/l5r5e/templates/`,
-        },
-    };
-
     // Register custom system settings
     RegisterSettings();
 
@@ -53,6 +58,7 @@ Hooks.once("init", async function () {
     // Actors sheet
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("l5r5e", ActorSheetL5r5e, { types: ["character"], makeDefault: true });
+    Actors.registerSheet("l5r5e", NpcSheetL5r5e, { types: ["npc"], makeDefault: false });
 
     // Items sheet
     Items.unregisterSheet("core", ItemSheet);

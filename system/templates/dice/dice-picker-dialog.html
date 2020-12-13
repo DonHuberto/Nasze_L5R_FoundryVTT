@@ -35,9 +35,13 @@
                 <div>
                     <label>{{localizeSkill skillData.cat 'title'}}</label>
                 </div>
+
+                {{#if actorIsPc}}
                 <div>
                     <label>{{skillData.name}}</label>
                 </div>
+                {{/if}}
+
                 <div>
                     <label id="stance_label">unknown</label>
                 </div>

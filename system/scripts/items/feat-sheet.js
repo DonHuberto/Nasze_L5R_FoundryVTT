@@ -8,7 +8,7 @@ export class FeatSheetL5r5e extends ItemSheetL5r5e {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             classes: ["l5r5e", "sheet", "feat"],
-            template: "systems/l5r5e/templates/item/feat-sheet.html",
+            template: CONFIG.L5r5e.paths.templates + "item/feat-sheet.html",
             width: 520,
             height: 480,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],

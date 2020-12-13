@@ -1,8 +1,11 @@
-export class ActorSheetL5r5e extends ActorSheet {
+// TODO extend ActorSheetL5r5e ?
+export class NpcSheetL5r5e extends ActorSheet {
+    static types = ["minion", "adversary"];
+
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            classes: ["l5r5e", "sheet", "actor"],
-            template: CONFIG.L5r5e.paths.templates + "sheets/actor-sheet.html",
+            classes: ["l5r5e", "sheet", "npc"],
+            template: CONFIG.L5r5e.paths.templates + "sheets/npc-sheet.html",
             width: 600,
             height: 800,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
@@ -15,9 +18,9 @@ export class ActorSheetL5r5e extends ActorSheet {
 
         this._prepareItems(sheetData);
 
-        const feats = sheetData.items.filter((item) => item.type === "feat");
-
-        sheetData.data.feats = feats;
+        sheetData.data.feats = sheetData.items.filter((item) => item.type === "feat");
+        sheetData.data.types = NpcSheetL5r5e.types;
+        sheetData.data.stances = CONFIG.L5r5e.stances;
 
         return sheetData;
     }

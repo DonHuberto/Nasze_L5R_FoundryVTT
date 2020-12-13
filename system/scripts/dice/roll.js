@@ -4,11 +4,8 @@ import { L5rBaseDie } from "./dietype/l5r-base-die.js";
  * Roll for L5R5e
  */
 export class RollL5r5e extends Roll {
-    static CHAT_TEMPLATE = "systems/l5r5e/templates/dice/chat-roll.html";
-    static TOOLTIP_TEMPLATE = "systems/l5r5e/templates/dice/tooltip.html";
-
-    // static CHAT_TEMPLATE = `${CONFIG.L5r5e.pathTemplates}dice/chat-roll.html`;
-    // static TOOLTIP_TEMPLATE = `${CONFIG.L5r5e.pathTemplates}dice/tooltip.html`;
+    static CHAT_TEMPLATE = "dice/chat-roll.html";
+    static TOOLTIP_TEMPLATE = "dice/tooltip.html";
 
     constructor(...args) {
         super(...args);
@@ -175,7 +172,7 @@ export class RollL5r5e extends Roll {
             displaySummary: contexte?.from !== "render",
         };
 
-        return renderTemplate(this.constructor.TOOLTIP_TEMPLATE, { chatData });
+        return renderTemplate(CONFIG.L5r5e.paths.templates + this.constructor.TOOLTIP_TEMPLATE, { chatData });
     }
 
     /**
@@ -187,7 +184,7 @@ export class RollL5r5e extends Roll {
             {
                 user: game.user._id,
                 flavor: null,
-                template: this.constructor.CHAT_TEMPLATE,
+                template: CONFIG.L5r5e.paths.templates + this.constructor.CHAT_TEMPLATE,
                 blind: false,
             },
             chatOptions

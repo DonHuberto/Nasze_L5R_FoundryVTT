@@ -5,8 +5,6 @@
 import { RollL5r5e } from "./roll.js";
 
 export class DicePickerDialog extends Application {
-    static stances = ["earth", "air", "water", "fire", "void"];
-
     /**
      * Current Actor
      */
@@ -43,7 +41,7 @@ export class DicePickerDialog extends Application {
         return mergeObject(super.defaultOptions, {
             id: "l5r5e-dice-picker-dialog",
             classes: ["l5r5e", "dice-picker-dialog"],
-            template: "systems/l5r5e/templates/dice/dice-picker-dialog.html",
+            template: CONFIG.L5r5e.paths.templates + "dice/dice-picker-dialog.html",
             title: "L5R Dice Roller",
             width: 660,
             height: 460,
@@ -106,7 +104,7 @@ export class DicePickerDialog extends Application {
      * @param ringId
      */
     set ringId(ringId) {
-        this._ringId = DicePickerDialog.stances.includes(ringId) || null;
+        this._ringId = CONFIG.L5r5e.stances.includes(ringId) || null;
     }
 
     /**
@@ -131,7 +129,20 @@ export class DicePickerDialog extends Application {
         }
         this._skillData.cat = cat;
         this._skillData.name = game.i18n.localize("l5r5e.skills." + cat + "." + this._skillData.id);
-        this._skillData.value = this._actor?.data?.data?.skills[cat]?.[this._skillData.id].value || 0;
+
+        if (!this._actor) {
+            return;
+        }
+        switch (this._actor.data.type) {
+            case "character":
+                this._skillData.value = this._actor.data.data.skills[cat]?.[this._skillData.id]?.value || 0;
+                break;
+
+            case "npc":
+                // Skill value is in categories for npc
+                this._skillData.value = this._actor.data.data.skills[cat] || 0;
+                break;
+        }
     }
 
     /**
@@ -174,6 +185,7 @@ export class DicePickerDialog extends Application {
             dicesList: [0, 1, 2, 3, 4, 5, 6],
             skillData: this._skillData,
             actor: this._actor,
+            actorIsPc: !this._actor || this._actor.data?.type === "character",
             difficulty: this._difficulty,
             canUseVoidPoint: !this._actor || this._actor.data.data.void_points.current > 0,
         };
@@ -362,7 +374,7 @@ export class DicePickerDialog extends Application {
      * @private
      */
     _getElements() {
-        return DicePickerDialog.stances.map((e) => {
+        return CONFIG.L5r5e.stances.map((e) => {
             return {
                 id: e,
                 label: game.i18n.localize(`l5r5e.rings.${e}`),

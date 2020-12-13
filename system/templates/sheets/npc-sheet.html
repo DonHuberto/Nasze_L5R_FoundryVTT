@@ -1,0 +1,103 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+    {{json this}}
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="150" width="150"/>
+        <div class="header-fields identity-wrapper">
+            <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
+        </div>
+        <div class="header-fields">
+            {{> 'systems/l5r5e/templates/sheets/actor/social.html' }}
+            <h2>{{ localize 'l5r5e.attributes.title' }}</h2>
+            {{> 'systems/l5r5e/templates/sheets/actor/rings.html' }}
+            {{> 'systems/l5r5e/templates/sheets/actor/attributes.html' }}
+        </div>
+    </header>
+
+    <div>
+        conflict rank
+        <br>martial : <input type="text" name="data.conflict_rank.martial" value="{{data.conflict_rank.martial}}" data-dtype="Number" placeholder="0"/>
+        <br>social : <input type="text" name="data.conflict_rank.social" value="{{data.conflict_rank.social}}" data-dtype="Number" placeholder="0"/>
+    </div>
+    <div>
+        Npc Type
+        <br>
+        <!-- Npc Type (minion / adversary) -->
+        <select class="attribute-dtype" name="data.type">
+            {{#select data.type}}
+            {{#each data.types as |t|}}
+            <option value="{{t}}">{{t}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+    </div>
+
+    <div>
+        attitude:
+        <input type="text" name="data.attitude" value="{{data.attitude}}" data-dtype="String" placeholder=""/>
+    </div>
+
+    <div>
+        Skills
+        <ul>
+        {{#each data.skills as |skillValue skillCatId|}}
+            <li>
+                {{localizeSkill skillCatId "title"}} :
+                <input type="text" name="data.skills.{{skillCatId}}" value="{{skillValue}}" data-dtype="Number" placeholder="0"/>
+            </li>
+        {{/each}}
+        </ul>
+    </div>
+
+    <div>
+        rings_affinities
+
+        <br>
+        strengths :
+        <select class="attribute-dtype" name="data.rings_affinities.strength.ring">
+            {{#select data.rings_affinities.strength.ring}}
+            {{#each data.stances as |stance|}}
+            <option value="{{stance}}">{{localizeRing stance}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+        <input type="text" name="data.rings_affinities.strength.value" value="{{data.rings_affinities.strength.value}}" data-dtype="Number" placeholder="0"/>
+
+        <br>
+        weakness :
+        <select class="attribute-dtype" name="data.rings_affinities.weakness.ring">
+            {{#select data.rings_affinities.weakness.ring}}
+            {{#each data.stances as |stance|}}
+            <option value="{{stance}}">{{localizeRing stance}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+        <input type="text" name="data.rings_affinities.weakness.value" value="{{data.rings_affinities.weakness.value}}" data-dtype="Number" placeholder="0"/>
+
+    </div>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+
+        {{!-- Skills Tab --}}
+        <article class="tab skills" data-group="primary" data-tab="skills">
+            <ul class="skills-wrapper">
+                {{#each data.skills as |category id|}}
+                    {{> 'systems/l5r5e/templates/sheets/actor/category.html' category=category categoryId=id}}
+                {{/each}}
+            </ul>
+            {{> 'systems/l5r5e/templates/sheets/actor/feats.html' }}
+        </article>
+
+
+        {{> 'systems/l5r5e/templates/sheets/actor/narrative.html' }}
+
+        {{> 'systems/l5r5e/templates/item/items.html' }}
+
+        {{> 'systems/l5r5e/templates/item/weapons.html' }}
+
+    </section>
+</form>
