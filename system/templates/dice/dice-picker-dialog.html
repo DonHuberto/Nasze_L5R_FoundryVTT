@@ -149,7 +149,7 @@
             </td>
             <td>
                 {{#if canUseVoidPoint}}
-                    <input type="checkbox" id="use_void_point" name="diff_hidden" value="1">
+                    <input type="checkbox" id="use_void_point" name="use_void_point" value="1">
                     <label for="use_void_point">
                         {{localize 'l5r5e.dicepicker.use_void_point_label'}}
                     </label>
@@ -162,6 +162,6 @@
     </table>
 
     <div class="form-group">
-        <button name="roll">{{localize 'l5r5e.dicepicker.roll_label'}} <i class='fas fa-arrow-circle-right'></i></button>
+        <button name="roll" type="submit">{{localize 'l5r5e.dicepicker.roll_label'}} <i class='fas fa-arrow-circle-right'></i></button>
     </div>
 </form>

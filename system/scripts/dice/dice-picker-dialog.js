@@ -4,7 +4,7 @@
  */
 import { RollL5r5e } from "./roll.js";
 
-export class DicePickerDialog extends Application {
+export class DicePickerDialog extends FormApplication {
     /**
      * Current Actor
      */
@@ -58,24 +58,39 @@ export class DicePickerDialog extends Application {
      *
      * ex: new game.l5r5e.DicePickerDialog({skillId: 'aesthetics', ringId: 'fire', actor: game.user.character}).render();
      *
-     * @param options actor, ringId, skillId, difficulty, difficultyHidden
+     * Options :
+     *   actor             A instance of actor (game.user.character, canvas.tokens.controlled[0].actor, ...)
+     *   actorId           string (AbYgKrNwWeAxa9jT)
+     *   ringId            string (fire)
+     *   skillId           string (design)
+     *   difficulty        number (0-9)
+     *   difficultyHidden  boolean
+     *
+     * @param options actor, actorId, ringId, skillId, difficulty, difficultyHidden
      */
     constructor(options = null) {
         super(options);
 
         // Try to get Actor from: options, first selected token or player's selected character
-        [options?.actor, canvas.tokens.controlled[0]?.actor, game.user.character].forEach((actor) => {
+        [
+            options?.actor,
+            game.actors.get(options?.actorId),
+            canvas.tokens.controlled[0]?.actor,
+            game.user.character,
+        ].forEach((actor) => {
             if (!this._actor) {
                 this.actor = actor;
             }
         });
 
-        // Ring ?
+        // Ring
         if (options?.ringId) {
             this.ringId = options.ringId;
         }
 
-        // Skill ?
+        // TODO SkillCategory ?
+
+        // Skill
         if (options?.skillId) {
             this.skillId = options.skillId;
         }
@@ -290,64 +305,6 @@ export class DicePickerDialog extends Application {
             $("#skill_value").val(this._skillData.value);
         });
 
-        // ****************** ROLL ******************
-        // Roll button
-        html.find('button[name="roll"]').on("click", async (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-
-            const approach = $(html.find(".ring-selection.ring-selected > input")[0]).data("ringid") || null;
-            const ring = html.find("#ring_value")[0].value || null;
-            const skill = html.find("#skill_value")[0].value || null;
-
-            if (!approach || !skill || !ring || (skill < 1 && ring < 1)) {
-                return false;
-            }
-
-            let formula = [];
-            if (ring > 0) {
-                formula.push(`${ring}dr`);
-            }
-            if (skill > 0) {
-                formula.push(`${skill}ds`);
-            }
-
-            // Update Actor
-            if (this._actor) {
-                // TODO update actor stance ? good idea or not, choice-able ?
-                // this._actor.data.data.stance = approach;
-
-                // If Void point is used, minus the actor
-                if ($("#use_void_point").attr("checked")) {
-                    this._actor.data.data.void_points.current = Math.max(
-                        this._actor.data.data.void_points.current - 1,
-                        0
-                    );
-                }
-
-                // If hidden add void 1pt
-                if (this._difficulty.isHidden) {
-                    this._actor.data.data.void_points.current = Math.min(
-                        this._actor.data.data.void_points.current + 1,
-                        this._actor.data.data.void_points.max
-                    );
-                }
-            }
-
-            // Let's roll !
-            const roll = await new RollL5r5e(formula.join("+"));
-
-            roll.actor = this._actor;
-            roll.l5r5e.stance = approach;
-            roll.l5r5e.skillId = this._skillData.id;
-            roll.l5r5e.summary.difficulty = this._difficulty.difficulty;
-            roll.l5r5e.summary.difficultyHidden = this._difficulty.isHidden;
-
-            await roll.roll();
-            await roll.toMessage();
-            await this.close();
-        });
-
         // ****************** INIT ******************
         // Select current actor's stance
         html.find(`.approach_${this._actor ? this._actor.data.data.stance : "void"}`)
@@ -356,6 +313,65 @@ export class DicePickerDialog extends Application {
 
         // Set skill point
         html.find("#skill_value").val(this._skillData.value);
+    }
+
+    /**
+     * This method is called upon form submission after form data is validated
+     * @param event    The initial triggering submission event
+     * @param formData The object of validated form data with which to update the object
+     * @returns        A Promise which resolves once the update operation has completed
+     * @override
+     */
+    async _updateObject(event, formData) {
+        const approach = $(".ring-selection.ring-selected > input").data("ringid") || null;
+        const ring = formData.ring || null;
+        const skill = formData.skill || null;
+
+        if (!approach || !skill || !ring || (skill < 1 && ring < 1)) {
+            return false;
+        }
+
+        let formula = [];
+        if (ring > 0) {
+            formula.push(`${ring}dr`);
+        }
+        if (skill > 0) {
+            formula.push(`${skill}ds`);
+        }
+
+        // Update Actor
+        if (this._actor) {
+            // TODO update actor stance ? good idea or not, choice-able ?
+            // this._actor.data.data.stance = approach;
+
+            // If Void point is used, minus the actor
+            if (formData.use_void_point) {
+                this._actor.data.data.void_points.current = Math.max(this._actor.data.data.void_points.current - 1, 0);
+            }
+
+            // If hidden add void 1pt
+            // this._difficulty.isHidden = !!formData.diff_hidden;
+            // this._difficulty.difficulty = formData.diff;
+            if (this._difficulty.isHidden) {
+                this._actor.data.data.void_points.current = Math.min(
+                    this._actor.data.data.void_points.current + 1,
+                    this._actor.data.data.void_points.max
+                );
+            }
+        }
+
+        // Let's roll !
+        const roll = await new RollL5r5e(formula.join("+"));
+
+        roll.actor = this._actor;
+        roll.l5r5e.stance = approach;
+        roll.l5r5e.skillId = this._skillData.id;
+        roll.l5r5e.summary.difficulty = this._difficulty.difficulty;
+        roll.l5r5e.summary.difficultyHidden = this._difficulty.isHidden;
+
+        await roll.roll();
+        await roll.toMessage();
+        return this.close();
     }
 
     /**
