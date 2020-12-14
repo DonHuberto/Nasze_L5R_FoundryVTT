@@ -1,7 +1,6 @@
 <form class="l5r5e dice-picker-dialog" autocomplete="off">
 
     <!--TODO Localization !-->
-    {{json skillsList}}
 
     <h1>Vingt questions</h1>
     <div>
@@ -14,11 +13,11 @@
     <h2>Partie I: Identité (clan et famille)</h2>
     <div>
         1. A quel clan appartient votre personnage ? (p. 41)
-        <input type="text" name="step1_clan">
+        <input type="text" name="step1_clan" value="{{actor.identity.clan}}">
 
         <div>
             Augmentation d'Anneau (1)
-            <select name="step1_ring">
+            <select name="rings">
                 <option value="none">En choisir un</option>
                 {{#each elementsList as |obj|}}
                 <option value="{{obj.id}}">{{obj.label}}</option>
@@ -28,7 +27,7 @@
 
         <div>
             Augmentation de compétence (1)
-            <select name="step1_skill">
+            <select name="skills">
                 <option value="none">En choisir une</option>
                 {{#each skillsList as |skills catId|}}
                 <optgroup label="{{localizeSkill catId 'title'}}">
@@ -43,17 +42,17 @@
         <div>
             <label>
                 Statut
-                <input type="number" name="step1_social_status" min="0" max="100" value="0">
+                <input type="number" name="step1_social_status" min="0" max="100"  value="{{actor.social.status}}">
             </label>
         </div>
     </div>
     <div>
         2. A quelle famille appartient votre personnage ? (p. 49)
-        <input type="text" name="step2_family">
+        <input type="text" name="step2_family" value="{{actor.identity.family}}">
 
         <div>
             Augmentation d'Anneau (1)
-            <select name="step2_ring">
+            <select name="rings">
                 <option value="none">En choisir un</option>
                 {{#each elementsList as |obj|}}
                 <option value="{{obj.id}}">{{obj.label}}</option>
@@ -62,7 +61,7 @@
         </div>
         <div>
             Augmentation de compétence (2)
-            <select name="step2_skill_1">
+            <select name="skills">
                 <option value="none">En choisir une</option>
                 {{#each skillsList as |skills catId|}}
                 <optgroup label="{{localizeSkill catId 'title'}}">
@@ -72,7 +71,7 @@
                 </optgroup>
                 {{/each}}
             </select>
-            <select name="step2_skill_2">
+            <select name="skills">
                 <option value="none">En choisir une</option>
                 {{#each skillsList as |skills catId|}}
                 <optgroup label="{{localizeSkill catId 'title'}}">
@@ -88,13 +87,14 @@
             <label>
                 Fortune de départ :
                 <input type="text" name="step2_wealth">
+                <!-- TODO add to template.json -->
             </label>
         </div>
 
         <div>
             <label>
                 Gloire
-                <input type="number" name="step2_social_glory" min="0" max="100" value="0">
+                <input type="number" name="step2_social_glory" min="0" max="100" value="{{actor.social.glory}}">
             </label>
         </div>
     </div>
@@ -106,23 +106,23 @@
 
         <label>
             École
-            <input type="text" name="step3_school">
+            <input type="text" name="step3_school" value="{{actor.identity.school}}">
         </label>
 
         <label>
             Rôles
-            <input type="text" name="step3_roles">
+            <input type="text" name="step3_roles" value="{{actor.identity.roles}}">
         </label>
 
         <div>
             Augmentations d'Anneau (2)
-            <select name="step3_ring_1">
+            <select name="rings">
                 <option value="none">En choisir un</option>
                 {{#each elementsList as |obj|}}
                 <option value="{{obj.id}}">{{obj.label}}</option>
                 {{/each}}
             </select>
-            <select name="step3_ring_2">
+            <select name="rings">
                 <option value="none">En choisir un</option>
                 {{#each elementsList as |obj|}}
                 <option value="{{obj.id}}">{{obj.label}}</option>
@@ -131,7 +131,7 @@
         </div>
         <div>
             Augmentations de compétence (3-5)
-            <select name="step3_skill_1">
+            <select name="skills">
                 <option value="none">En choisir une</option>
                 {{#each skillsList as |skills catId|}}
                 <optgroup label="{{localizeSkill catId 'title'}}">
@@ -141,7 +141,7 @@
                 </optgroup>
                 {{/each}}
             </select>
-            <select name="step3_skill_2">
+            <select name="skills">
                 <option value="none">En choisir une</option>
                 {{#each skillsList as |skills catId|}}
                 <optgroup label="{{localizeSkill catId 'title'}}">
@@ -151,7 +151,7 @@
                 </optgroup>
                 {{/each}}
             </select>
-            <select name="step3_skill_3">
+            <select name="skills">
                 <option value="none">En choisir une</option>
                 {{#each skillsList as |skills catId|}}
                 <optgroup label="{{localizeSkill catId 'title'}}">
@@ -161,7 +161,7 @@
                 </optgroup>
                 {{/each}}
             </select>
-            <select name="step3_skill_4">
+            <select name="skills">
                 <option value="none">En choisir une</option>
                 {{#each skillsList as |skills catId|}}
                 <optgroup label="{{localizeSkill catId 'title'}}">
@@ -171,7 +171,7 @@
                 </optgroup>
                 {{/each}}
             </select>
-            <select name="step3_skill_5">
+            <select name="skills">
                 <option value="none">En choisir une</option>
                 {{#each skillsList as |skills catId|}}
                 <optgroup label="{{localizeSkill catId 'title'}}">
@@ -183,28 +183,29 @@
             </select>
         </div>
 
+        <!--TODO in feat or props ? -->
         Types de techniques accessibles
         <div>
             <label>
-                <input type="checkbox" name="step3_kata">Kata
+                <input type="checkbox" name="step3_tech_kata">Kata
             </label>
             <label>
-                <input type="checkbox" name="step3_kiho">Kihō
+                <input type="checkbox" name="step3_tech_kiho">Kihō
             </label>
             <label>
-                <input type="checkbox" name="step3_invocations">Invocations
+                <input type="checkbox" name="step3_tech_invocations">Invocations
             </label>
             <label>
-                <input type="checkbox" name="step3_rituals">Rituels
+                <input type="checkbox" name="step3_tech_rituals">Rituels
             </label>
             <label>
-                <input type="checkbox" name="step3_shui">Shūji
+                <input type="checkbox" name="step3_tech_shuji">Shūji
             </label>
             <label>
-                <input type="checkbox" name="step3_maho">Mahō
+                <input type="checkbox" name="step3_tech_maho">Mahō
             </label>
             <label>
-                <input type="checkbox" name="step3_ninjutsu">Ninjutsu
+                <input type="checkbox" name="step3_tech_ninjutsu">Ninjutsu
             </label>
         </div>
 
@@ -227,16 +228,16 @@
     <div>
         <label>
             Honneur
-            <input type="number" name="step3_social_honor" min="0" max="100" value="0">
+            <input type="number" name="step3_social_honor" min="0" max="100" value="{{actor.social.honor}}">
         </label>
     </div>
 
     <div>
         4. De quelle manière votre personnage se démarque-t-il au sein de son école ? (p. 88)
-        <textarea name="step4_answer"></textarea>
+        <textarea name="step4_stand_out"></textarea>
 
         Augmentation d'Anneau (1)
-        <select name="step4_ring">
+        <select name="rings">
             <option value="none">En choisir un</option>
             {{#each elementsList as |obj|}}
             <option value="{{obj.id}}">{{obj.label}}</option>
@@ -249,20 +250,20 @@
     <div>
         5. Qui est le seigneur de votre personnage et quel est le devoir de votre personnage envers lui ? (p. 88)
         Choisissez un giri:
-        <textarea name="step5_social_giri"></textarea>
+        <textarea name="step5_social_giri">{{actor.social.giri}}</textarea>
     </div>
     <div>
         6. Que désire votre personnage, et en quoi ce désir risque-t-il de l’empêcher d’accomplir son devoir ? (p. 90)
         Choisissez un ninjō:
-        <textarea name="step6_social_ninjo"></textarea>
+        <textarea name="step6_social_ninjo">{{actor.social.ninjo}}</textarea>
     </div>
     <div>
         7. Quelle relation votre personnage entretient-il avec son clan ? (p. 91)
-        <textarea name="step7_answer"></textarea>
+        <textarea name="step7_clan_relations"></textarea>
 
         <div>
             Augmentation de compétence (1)
-            <select name="step7_skill">
+            <select name="skills">
                 <option value="none">En choisir une</option>
                 {{#each skillsList as |skills catId|}}
                 <optgroup label="{{localizeSkill catId 'title'}}">
@@ -277,17 +278,17 @@
 
             <label>
                 Augmentation de la gloire (+5)
-                <input type="number" name="step7_social_glory" value="0">
+                <input type="number" name="step7_social_add_glory" value="0">
             </label>
         </div>
     </div>
     <div>
         8. Que pense votre personnage du bushido ? (p. 91)
-        <textarea name="step8_answer"></textarea>
+        <textarea name="step8_bushido"></textarea>
 
         <div>
             Augmentation de compétence (1)
-            <select name="step8_skill">
+            <select name="skills">
                 <option value="none">En choisir une</option>
                 {{#each skillsList as |skills catId|}}
                 <optgroup label="{{localizeSkill catId 'title'}}">
@@ -302,7 +303,7 @@
 
             <label>
                 Augmentation de l'honneur
-                <input type="number" name="step8_social_honor" value="0">
+                <input type="number" name="step8_social_add_honor" value="0">
             </label>
         </div>
     </div>
@@ -311,39 +312,39 @@
     <h3>Partie IV: Forces et Faiblesses</h3>
     <div>
         9. Quelle est à ce jour la plus belle réussite de votre personnage ? (p. 92)
-        <textarea name="step9_answer"></textarea>
+        <textarea name="step9_success"></textarea>
 
         Aptitude (1)
         <textarea name="step9_distinction"></textarea>
     </div>
     <div>
         10. Quel est le frein principal dans la vie de votre personnage ? (p. 92)
-        <textarea name="step10_answer"></textarea>
+        <textarea name="step10_difficulty"></textarea>
 
         Coup du sort (1)
         <textarea name="step10_adversity"></textarea>
     </div>
     <div>
         11. Quelle activité apaise le plus votre personnage ? (p. 93)
-        <textarea name="step11_answer"></textarea>
+        <textarea name="step11_calms"></textarea>
 
         Passion (1)
         <textarea name="step11_passion"></textarea>
     </div>
     <div>
         12. Quelle inquiétude, crainte ou manie tracasse le plus votre personnage ? (p. 93)
-        <textarea name="step12_answer"></textarea>
+        <textarea name="step12_worries"></textarea>
 
         Défaillance (1)
         <textarea name="step12_failure"></textarea>
     </div>
     <div>
         13. De qui votre personnage a-t-il le plus appris au cours de sa vie ? (p. 93)
-        <textarea name="step13_answer"></textarea>
+        <textarea name="step13_most_learn"></textarea>
 
         <div>
             Augmentation de compétence (1)
-            <select name="step13_skill">
+            <select name="skills">
                 <option value="none">En choisir une</option>
                 {{#each skillsList as |skills catId|}}
                 <optgroup label="{{localizeSkill catId 'title'}}">
@@ -368,19 +369,19 @@
     <h3>Partie V: Personnalité et Comportement</h3>
     <div>
         14. Que remarque-t-on en premier chez votre personnage ? (p. 93)
-        <textarea name="step14_answer"></textarea>
+        <textarea name="step14_first_sight"></textarea>
 
         Particularités
         <textarea name="step14_special_features"></textarea>
     </div>
     <div>
         15. Comment votre personnage réagit-il aux situations stressantes ? (p. 94)
-        <textarea name="step15_answer"></textarea>
+        <textarea name="step15_stress"></textarea>
     </div>
     <div>
         16. Quelles relations votre personnage entretient-il avec des familles, des organisations, des traditions et des
         clans différents ? (p. 94)
-        <textarea name="step16_answer"></textarea>
+        <textarea name="step16_relations"></textarea>
 
         Objet (Rareté inférieur ou égale à 7)
         <textarea name="step16_item"></textarea>
@@ -390,10 +391,10 @@
     <h3>Partie VI: Lignée et Famille</h3>
     <div>
         17. Comment les parents de votre personnage le décriraient-ils ? (p. 95)
-        <textarea name="step17_answer"></textarea>
+        <textarea name="step17_parents_pov"></textarea>
 
         Augmentation de compétence (1)
-        <select name="step17_skill">
+        <select name="skills">
             <option value="none">En choisir une</option>
             {{#each skillsList as |skills catId|}}
             <optgroup label="{{localizeSkill catId 'title'}}">
@@ -406,27 +407,27 @@
     </div>
     <div>
         18. En l’honneur de qui votre personnage a-t-il été prénommé ? (p. 95)
-        <textarea name="step18_answer"></textarea>
+        <textarea name="step18_heritage_name"></textarea>
 
         <label>
-            Résultat du 1er D10
+            Résultat du 1er D10 [[/r 1d10]]
             <input type="number" name="step18_heritage_1">
         </label>
 
         <label>
-            Résultat du 2eme D10
+            Résultat du 2eme D10 [[/r 1d10]]
             <input type="number" name="step18_heritage_2">
         </label>
     </div>
     <div>
         19. Quel est le prénom de votre personnage ? (p. 95)
-        <textarea name="step19_answer"></textarea>
+        <textarea name="step19_firstname"></textarea>
     </div>
 
     <h3>Partie VII: Mort</h3>
     <div>
         20. Comment envisagez-vous la mort de votre personnage ? (p. 95)
-        <textarea name="step20_answer"></textarea>
+        <textarea name="step20_death"></textarea>
     </div>
 
     <div class="form-group">

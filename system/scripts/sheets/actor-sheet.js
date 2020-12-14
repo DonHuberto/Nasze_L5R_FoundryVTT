@@ -1,3 +1,5 @@
+import { TwentyQuestionsDialog } from "./twenty-questions-dialog.js";
+
 export class ActorSheetL5r5e extends ActorSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
@@ -8,6 +10,25 @@ export class ActorSheetL5r5e extends ActorSheet {
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
             dragDrop: [{ dragSelector: ".item-list .item", dropSelector: null }],
         });
+    }
+
+    /**
+     * Add the TwentyQuestions button on top of sheet
+     * @override
+     */
+    _getHeaderButtons() {
+        let buttons = super._getHeaderButtons();
+
+        buttons.unshift({
+            label: "20Q", // TODO localization
+            class: "twenty-questions",
+            icon: "fas fa-graduation-cap",
+            onclick: async () => {
+                await new TwentyQuestionsDialog({}, this.actor).render(true);
+            },
+        });
+
+        return buttons;
     }
 
     getData() {
@@ -131,8 +152,6 @@ export class ActorSheetL5r5e extends ActorSheet {
      * @param {string} skillId Unique ID of the skill been clicked.
      */
     async _onSkillClicked(skillId) {
-        console.log("Clicked on skill " + skillId);
-
-        new game.l5r5e.DicePickerDialog({ skillId: skillId, actor: this.actor }).render();
+        new game.l5r5e.DicePickerDialog({ skillId: skillId, actor: this.actor }).render(true);
     }
 }

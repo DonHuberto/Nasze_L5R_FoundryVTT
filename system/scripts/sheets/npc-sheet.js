@@ -134,8 +134,6 @@ export class NpcSheetL5r5e extends ActorSheet {
      * @param {string} skillId Unique ID of the skill been clicked.
      */
     async _onSkillClicked(skillId) {
-        console.log("Clicked on skill " + skillId);
-
-        new game.l5r5e.DicePickerDialog({ skillId: skillId, actor: this.actor }).render();
+        new game.l5r5e.DicePickerDialog({ skillId: skillId, actor: this.actor }).render(true);
     }
 }
