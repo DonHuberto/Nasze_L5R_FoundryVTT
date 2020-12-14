@@ -1,3 +1,4 @@
+import { L5R5E } from "../l5r5e-config.js";
 import { L5rBaseDie } from "./dietype/l5r-base-die.js";
 
 /**
@@ -197,9 +198,7 @@ export class RollL5r5e extends Roll {
         }
 
         const skillName =
-            game.i18n.translations.l5r5e.skills?.[RollL5r5e.getCategoryForSkillId(this.l5r5e.skillId)]?.[
-                this.l5r5e.skillId
-            ] || "";
+            game.i18n.translations.l5r5e.skills?.[L5R5E.skills.get(this.l5r5e.skillId)]?.[this.l5r5e.skillId] || "";
 
         // Define chat data
         const chatData = {
@@ -273,17 +272,6 @@ export class RollL5r5e extends Roll {
 
         // Either create the message or just return the chat data
         return create ? CONFIG.ChatMessage.entityClass.create(messageData, messageOptions) : messageData;
-    }
-
-    /**
-     * Return the categoryId for the skillId
-     * TODO in proper category helper ?
-     * @param skillId
-     */
-    static getCategoryForSkillId(skillId) {
-        return Object.keys(game.i18n.translations.l5r5e.skills).find((e) => {
-            return !!game.i18n.translations.l5r5e.skills?.[e]?.[skillId];
-        });
     }
 
     /** @override */

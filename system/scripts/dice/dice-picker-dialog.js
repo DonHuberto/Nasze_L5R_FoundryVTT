@@ -2,6 +2,7 @@
  * L5R Dice picker dialog
  * @extends {FormApplication}
  */
+import { L5R5E } from "../l5r5e-config.js";
 import { RollL5r5e } from "./roll.js";
 
 export class DicePickerDialog extends FormApplication {
@@ -138,7 +139,7 @@ export class DicePickerDialog extends FormApplication {
             name: "",
         };
 
-        const cat = RollL5r5e.getCategoryForSkillId(skillId);
+        const cat = L5R5E.skills.get(skillId);
         if (!cat) {
             return;
         }

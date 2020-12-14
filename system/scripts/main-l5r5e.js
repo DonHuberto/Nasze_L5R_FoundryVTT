@@ -10,6 +10,7 @@ import { ItemL5r5e } from "./items/item.js";
 import { ItemSheetL5r5e } from "./items/item-sheet.js";
 import { WeaponSheetL5r5e } from "./items/weapon-sheet.js";
 import { FeatSheetL5r5e } from "./items/feat-sheet.js";
+import { TwentyQuestionsDialog } from "./sheets/twenty-questions-dialog.js";
 
 // Import Dice Types
 
@@ -46,6 +47,7 @@ Hooks.once("init", async function () {
     // Add some helper classes in game
     game.l5r5e = {
         DicePickerDialog,
+        TwentyQuestionsDialog,
     };
 
     // Register custom system settings
@@ -88,8 +90,7 @@ Hooks.once("init", async function () {
     });
 
     Handlebars.registerHelper("localizeSkillId", function (skillName) {
-        const key =
-            "l5r5e.skills." + RollL5r5e.getCategoryForSkillId(skillName.toLowerCase()) + "." + skillName.toLowerCase();
+        const key = "l5r5e.skills." + L5R5E.skills.get(skillName.toLowerCase()) + "." + skillName.toLowerCase();
         return game.i18n.localize(key);
     });
 
