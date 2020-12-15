@@ -85,6 +85,11 @@
         "range": "Rango",
         "properties": "Propiedades",
         "weapons": "Armas",
+        "armors": {
+            "title": "Armors",
+            "physical": "physical",
+            "spiritual": "spiritual"
+        },
         "items": "Equipo",
         "feats": "Rasgos",
         "skill": "Habilidad",
@@ -96,14 +101,14 @@
         "equipment": "Equipo",
         "rank": "Rango",
         "name": "Nombre",
-        "socialstanding": {
+        "social": {
             "title": "Posición Social",
             "honor": "Honor",
             "glory": "Gloria",
             "status": "Estatus",
             "ninjo": "Ninjo",
             "giri": "Giri",
-            "socialtitles": "Títulos"
+            "titles": "Títulos"
         },
         "skills": {
             "title": "Habilidades",

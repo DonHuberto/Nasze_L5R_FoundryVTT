@@ -8,6 +8,7 @@ import { NpcSheetL5r5e } from "./sheets/npc-sheet.js";
 import { RollL5r5e, AbilityDie, RingDie, DicePickerDialog } from "./dice-l5r5e.js";
 import { ItemL5r5e } from "./items/item.js";
 import { ItemSheetL5r5e } from "./items/item-sheet.js";
+import { ArmorSheetL5r5e } from "./items/armor-sheet.js";
 import { WeaponSheetL5r5e } from "./items/weapon-sheet.js";
 import { FeatSheetL5r5e } from "./items/feat-sheet.js";
 
@@ -63,6 +64,7 @@ Hooks.once("init", async function () {
     // Items sheet
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("l5r5e", ItemSheetL5r5e, { types: ["item"], makeDefault: true });
+    Items.registerSheet("l5r5e", ArmorSheetL5r5e, { types: ["armor"], makeDefault: true });
     Items.registerSheet("l5r5e", WeaponSheetL5r5e, { types: ["weapon"], makeDefault: true });
     Items.registerSheet("l5r5e", FeatSheetL5r5e, { types: ["feat"], makeDefault: true });
 

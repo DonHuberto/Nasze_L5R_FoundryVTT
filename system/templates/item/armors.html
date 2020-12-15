@@ -1,0 +1,10 @@
+<fieldset class="armors-content">
+    <legend class="section-header">{{ localize 'l5r5e.armors.title' }}</legend>
+    <ul class="item-list">
+        {{#each actor.items as |item id|}}
+            {{#if item.isArmor }}
+                {{> 'systems/l5r5e/templates/item/armor-entry.html' item=item id=id }}
+            {{/if}}
+        {{/each}}
+    </ul>
+</fieldset>

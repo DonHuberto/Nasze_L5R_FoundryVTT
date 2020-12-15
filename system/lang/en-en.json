@@ -85,6 +85,11 @@
         "range": "Range",
         "properties": "Properties",
         "weapons": "Weapons",
+        "armors": {
+            "title": "Armors",
+            "physical": "physical",
+            "spiritual": "spiritual"
+        },
         "items": "Items",
         "feats": "Feats",
         "skill": "Skill",
@@ -96,14 +101,14 @@
         "equipment": "Equipment",
         "rank": "Rank",
         "name": "Name",
-        "socialstanding": {
+        "social": {
             "title": "Social Standing",
             "honor": "Honor",
             "glory": "Glory",
             "status": "Status",
             "ninjo": "Ninjo",
             "giri": "Giri",
-            "socialtitles": "Titles"
+            "titles": "Titles"
         },
         "skills": {
             "title": "Skills",

@@ -1,0 +1,12 @@
+<li class="item flexcol" data-item-id="{{item._id}}">
+    <ul class="item-header item-control">
+        <li class="item-img"><img src="{{item.img}}" title="{{item.name}}" width="32px" height="32px"/></li>
+        <li class="item-name">{{ item.name }}</li>
+        <li class="icon-stat-container">{{item.data.weight}}</li>
+        <li class="icon-stat-container">{{item.data.armor.physical}} <i class="fas fa-certificate"></i></li>
+        <li class="icon-stat-container">{{item.data.armor.spiritual}} <i class="fas fa-arrows-alt-h"></i></li>
+        <li class="item-edit" title="Edit Feat"><i class="fas fa-edit"></i></li>
+        <li class="item-delete" title="Delete Feat"><i class="fas fa-trash"></i></li>
+    </ul>
+    <div class="item-description">{{{ item.data.properties }}}</div>
+</li>

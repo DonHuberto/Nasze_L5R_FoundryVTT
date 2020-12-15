@@ -40,13 +40,24 @@ export class NpcSheetL5r5e extends ActorSheet {
      */
     _prepareItems(sheetData) {
         for (let item of sheetData.items) {
-            if (item.type === "weapon") {
-                item.isWeapon = true;
-                item.isEquipment = true;
-            } else if (item.type === "feat") {
-                item.isFeat = true;
-            } else {
-                item.isEquipment = true;
+            switch (item.type) {
+                case "weapon":
+                    item.isWeapon = true;
+                    item.isEquipment = true;
+                    break;
+
+                case "armor":
+                    item.isArmor = true;
+                    item.isEquipment = true;
+                    break;
+
+                case "feat":
+                    item.isFeat = true;
+                    break;
+
+                default:
+                    item.isEquipment = true;
+                    break;
             }
         }
     }

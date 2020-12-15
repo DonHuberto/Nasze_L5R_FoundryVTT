@@ -19,6 +19,8 @@ export const PreloadTemplates = async function () {
         "systems/l5r5e/templates/item/item-entry.html",
         "systems/l5r5e/templates/item/weapons.html",
         "systems/l5r5e/templates/item/weapon-entry.html",
+        "systems/l5r5e/templates/item/armors.html",
+        "systems/l5r5e/templates/item/armor-entry.html",
         "systems/l5r5e/templates/item/feat-sheet.html",
         "systems/l5r5e/templates/item/feat-entry.html",
     ];

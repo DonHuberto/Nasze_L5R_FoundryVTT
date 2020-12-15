@@ -121,11 +121,21 @@
         }
     },
     "Item": {
-        "types": ["item", "weapon", "feat", "xp-advancement"],
+        "types": ["item", "armor", "weapon", "feat", "xp-advancement"],
         "item": {
             "description": "",
             "quantity": 1,
             "weight": 0
+        },
+        "armor": {
+            "quantity": 1,
+            "weight": 0,
+            "description": "",
+            "armor": {
+                "physical": 0,
+                "spiritual": 0
+            },
+            "properties": ""
         },
         "weapon": {
             "quantity": 1,
