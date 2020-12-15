@@ -121,7 +121,7 @@
         }
     },
     "Item": {
-        "types": ["item", "armor", "weapon", "feat", "quality", "xp-advancement"],
+        "types": ["item", "armor", "weapon", "feat", "quality", "advantage", "disadvantage", "advancement"],
         "item": {
             "description": "",
             "properties": "",
@@ -168,7 +168,13 @@
         "quality": {
             "description": ""
         },
-        "xp-advancement": {
+        "advantage": {
+            "description": ""
+        },
+        "disadvantage": {
+            "description": ""
+        },
+        "advancement": {
             "description": "TODO"
         }
     }

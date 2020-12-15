@@ -1,6 +1,27 @@
 /** Sheets **/
 &.sheet {
     min-width: 600px;
+    &.actor {
+        .sheet-header {
+            height: 26.75rem;
+        }
+        .sheet-body {
+            height: calc(100% - 26.75rem);
+        }
+    }
+    &.item,
+    .feat,
+    .weapon,
+    .armor,
+    .advantages,
+    .disadvantages {
+        .sheet-header {
+            height: 10rem;
+        }
+        .sheet-body {
+            height: calc(100% - 10rem);
+        }
+    }
     form {
         display: flex;
         flex-wrap: wrap;
@@ -8,18 +29,16 @@
     .sheet-body {
         flex: 0 0 100%;
         align-items: flex-start;
-        height: calc(100% - 26.75rem);
     }
     .sheet-header {
         flex: 0 0 100%;
         align-items: flex-start;
-        height: 26.75rem;
         input {
             font-size: 1rem;
         }
         h1 {
             flex: auto;
-            margin: 0 0.5rem 0.25rem;
+            margin: 0 0 0.25rem 1rem;
             input {
                 flex: 0 0 100%;
                 font-size: 3rem;
@@ -95,12 +114,12 @@
         .identity-wrapper {
             display: flex;
             flex-wrap: wrap;
-            flex: 0 0 calc(100% - 150px - 0.25rem);
+            flex: 0 0 calc(100% - 150px - 1.05rem);
             .identity-content {
                 flex: 0 0 100%;
                 display: flex;
                 flex-wrap: wrap;
-                margin: 0.5rem;
+                margin: 0.5rem 0 0.5rem 1rem;
                 li {
                     flex: 33%;
                     &:nth-child(1),
@@ -307,6 +326,13 @@
         tbody {
             th {
                 flex: 0 0 70%;
+            }
+        }
+    }
+    .feats-wrapper {
+        fieldset {
+            &:last-child {
+                margin: 0 0 0 0.5rem;
             }
         }
     }

@@ -117,7 +117,9 @@
             "status": "Status",
             "ninjo": "Ninjo",
             "giri": "Giri",
-            "titles": "Titles"
+            "titles": "Titles",
+            "advantages": "Distinctions et Passions",
+            "disadvantages": "Adversities et Anxieties"
         },
         "skills": {
             "title": "Skills",
@@ -125,7 +127,7 @@
                 "title": "Artisan",
                 "aesthetics": "Aesthetics",
                 "composition": "Composition",
-                "Design": "Design",
+                "design": "Design",
                 "smithing": "Smithing",
                 "air": "Refine",
                 "earth": "Restore",

@@ -1,0 +1,20 @@
+<fieldset class="narrative-content">
+    <legend class="text-block-header">{{ localize 'l5r5e.social.advantages' }}</legend>
+    <ul class="item-list">
+        {{#each actor.item as |item id|}}
+            {{#if item.isEquipment }}
+                {{> 'systems/l5r5e/templates/item/item-entry.html' item=item id=id }}
+            {{/if}}
+        {{/each}}
+    </ul>
+</fieldset>
+<fieldset class="narrative-content">
+    <legend class="text-block-header">{{ localize 'l5r5e.social.disadvantages' }}</legend>
+    <ul class="item-list">
+        {{#each actor.item as |item id|}}
+            {{#if item.isEquipment }}
+                {{> 'systems/l5r5e/templates/item/item-entry.html' item=item id=id }}
+            {{/if}}
+        {{/each}}
+    </ul>
+</fieldset>

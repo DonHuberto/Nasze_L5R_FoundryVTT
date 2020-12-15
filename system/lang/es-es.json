@@ -117,7 +117,9 @@
             "status": "Estatus",
             "ninjo": "Ninjo",
             "giri": "Giri",
-            "titles": "Títulos"
+            "titles": "Títulos",
+            "advantages": "Advantages",
+            "disadvantages": "Disadvantages"
         },
         "skills": {
             "title": "Habilidades",

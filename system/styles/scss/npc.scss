@@ -1,0 +1,48 @@
+&.npc {
+    .sheet-header {
+        fieldset {
+            flex: none;
+            min-height: 2rem;
+            width: 100%;
+        }
+    }
+}
+.npc-skill {
+    display: flex;
+    width: 100%;
+    line-height: 2rem;
+    font-size: 0.75rem;
+    text-align: center;
+    li {
+        flex: 1;
+        padding: 0.25rem;
+        text-transform: uppercase;
+        color: $white;
+        &:nth-child(1) {
+            background: $l5r5e-void;
+        }
+        &:nth-child(2) {
+            background: $l5r5e-earth;
+        }
+        &:nth-child(3) {
+            background: $l5r5e-fire;
+        }
+        &:nth-child(4) {
+            background: $l5r5e-air;
+        }
+        &:nth-child(5) {
+            flex: 1.25;
+            background: $l5r5e-water;
+        }
+    }
+    input[type="text"] {
+        float: right;
+        height: 2rem;
+        width: 1rem;
+        margin: 0;
+        padding: 0;
+        border: 0 none;
+        background: transparent;
+        color: $white;
+    }
+}

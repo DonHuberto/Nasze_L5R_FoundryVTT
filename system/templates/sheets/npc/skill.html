@@ -1,0 +1,10 @@
+<ul class="npc-skill">{{!-- Skills --}}
+    {{#each data.skills as |skillValue skillCatId|}}
+        <li>
+            <label>
+                {{localizeSkill skillCatId "title"}}
+                <input type="text" name="data.skills.{{skillCatId}}" value="{{skillValue}}" data-dtype="Number" placeholder="0"/>
+            </label>
+        </li>
+    {{/each}}
+</ul>

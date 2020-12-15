@@ -11,6 +11,30 @@
         <label class="attribute-label">{{ localize 'l5r5e.social.titles' }}</label>
         <input type="text" name="data.social_standing.titles" value="{{data.social.titles}}"/>
     </li>
+    <li>
+        <fieldset>
+            <legend class="text-block-header">{{ localize 'l5r5e.social.advantages' }}</legend>
+            <ul class="item-list">
+                {{#each actor.item as |item id|}}
+                    {{#if item.isEquipment }}
+                        {{> 'systems/l5r5e/templates/item/item-entry.html' item=item id=id }}
+                    {{/if}}
+                {{/each}}
+            </ul>
+        </fieldset>
+    </li>
+    <li>
+        <fieldset>
+            <legend class="text-block-header">{{ localize 'l5r5e.social.disadvantages' }}</legend>
+            <ul class="item-list">
+                {{#each actor.item as |item id|}}
+                    {{#if item.isEquipment }}
+                        {{> 'systems/l5r5e/templates/item/item-entry.html' item=item id=id }}
+                    {{/if}}
+                {{/each}}
+            </ul>
+        </fieldset>
+    </li>
 </ul>
 <fieldset>
     <legend class="text-block-header">{{ localize 'l5r5e.notes' }}</legend>

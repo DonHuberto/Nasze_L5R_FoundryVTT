@@ -1,0 +1,19 @@
+<ul>
+    <li>{{!-- Npc Type (minion / adversary) --}}
+        <select class="attribute-dtype" name="data.type">
+            {{#select data.type}}
+                {{#each data.types as |t|}}
+                    <option value="{{t}}">{{t}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+    </li>
+    {{!-- Martial --}}
+    <li>
+        <input type="text" name="data.conflict_rank.martial" value="{{data.conflict_rank.martial}}" data-dtype="Number" placeholder="0"/>
+    </li>
+    {{!-- Social --}}
+    <li>
+        <input type="text" name="data.conflict_rank.social" value="{{data.conflict_rank.social}}" data-dtype="Number" placeholder="0"/>
+    </li>
+</ul>

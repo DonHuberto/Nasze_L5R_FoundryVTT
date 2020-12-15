@@ -1,6 +1,7 @@
 export const PreloadTemplates = async function () {
     const templatePaths = [
         // Add paths to "systems/l5r5e/templates"
+        // actor
         "systems/l5r5e/templates/sheets/actor/rings.html",
         "systems/l5r5e/templates/sheets/actor/narrative.html",
         "systems/l5r5e/templates/sheets/actor/identity.html",
@@ -13,6 +14,14 @@ export const PreloadTemplates = async function () {
         "systems/l5r5e/templates/sheets/actor/feats.html",
         "systems/l5r5e/templates/sheets/actor/experience.html",
         "systems/l5r5e/templates/sheets/actor/acquisition.html",
+        // npc
+        "systems/l5r5e/templates/sheets/npc/identity.html",
+        "systems/l5r5e/templates/sheets/npc/narrative.html",
+        "systems/l5r5e/templates/sheets/npc/social.html",
+        "systems/l5r5e/templates/sheets/npc/rings.html",
+        "systems/l5r5e/templates/sheets/npc/attributes.html",
+        "systems/l5r5e/templates/sheets/npc/skill.html",
+        "systems/l5r5e/templates/sheets/npc/feats.html",
         // items
         "systems/l5r5e/templates/item/weapon-sheet.html",
         "systems/l5r5e/templates/item/items.html",
