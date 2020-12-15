@@ -1,4 +1,5 @@
-<div class="items-content">
+<fieldset class="items-content">
+    <legend>{{ localize 'l5r5e.equipment' }}</legend>
     <ul class="item-list">
         {{#each actor.items as |item id|}}
         {{#if item.isEquipment }}
@@ -6,4 +7,4 @@
         {{/if}}
         {{/each}}
     </ul>
-</div>
+</fieldset>

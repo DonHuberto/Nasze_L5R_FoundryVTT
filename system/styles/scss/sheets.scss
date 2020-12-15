@@ -5,19 +5,28 @@
         display: flex;
         flex-wrap: wrap;
     }
-    .sheet-header,
     .sheet-body {
-        flex: 100%;
+        flex: 0 0 100%;
+        align-items: flex-start;
+        height: calc(100% - 26.75rem);
     }
     .sheet-header {
+        flex: 0 0 100%;
+        align-items: flex-start;
+        height: 26.75rem;
+        input {
+            font-size: 1rem;
+        }
         h1 {
             flex: auto;
             margin: 0 0.5rem 0.25rem;
             input {
                 flex: 0 0 100%;
+                font-size: 3rem;
                 height: 4rem;
                 margin: 0.5rem 0 0;
                 width: 100%;
+                text-align: right;
                 color: $l5r5e-red;
                 background: transparent;
                 border: 0 none;
@@ -63,7 +72,7 @@
                 margin: 0;
                 text-align: right;
                 color: $l5r5e-black;
-                border-bottom: $white;
+                border-bottom: $white-light;
                 --notchSize: 0.5rem;
                 clip-path: polygon(
                     0% var(--notchSize),
@@ -115,10 +124,10 @@
         .attributes-wrapper {
             float: right;
             width: calc(50% - 0.25rem);
-            padding: 0.5rem 0 0.5rem 1rem;
+            padding: 0.5rem;
             display: flex;
             flex-wrap: wrap;
-            flex-direction: column;
+            flex-direction: row;
             background: $l5r5e-title;
             --notchSize: 0.5rem;
             clip-path: polygon(
@@ -131,12 +140,56 @@
                 var(--notchSize) 100%,
                 0% calc(100%)
             );
+            label {
+                display: flex;
+                color: $l5r5e-label;
+                text-transform: uppercase;
+                font-size: 0.75rem;
+                line-height: 2rem;
+                margin: 0 0.5rem;
+                strong {
+                    flex: 1 0 calc(100% - 3rem);
+                }
+                input {
+                    flex: 0 0 2rem;
+                    &[disabled] {
+                        flex: 0 0 2rem;
+                        background: transparent;
+                    }
+                }
+            }
             .endurance-content,
-            .composure-content,
-            .void-content {
+            .composure-content {
+                flex: 1;
                 label {
-                    float: left;
-                    width: 50%;
+                    &:nth-child(2) {
+                        display: flex;
+                        flex-direction: column;
+                        flex-wrap: wrap;
+                        input {
+                            flex: 1rem;
+                            margin: 0 0 0.25rem;
+                        }
+                    }
+                }
+            }
+            .focus-content,
+            .vigilante-content {
+                flex: 0 0 50%;
+                label {
+                    flex: 1;
+                    input {
+                        flex: 1rem;
+                    }
+                }
+            }
+            .void-content {
+                display: flex;
+                label {
+                    flex: 1;
+                    input {
+                        flex: 1rem;
+                    }
                 }
             }
             li {
@@ -145,7 +198,6 @@
                     display: none;
                     z-index: 2;
                     position: absolute;
-                    bottom: -100%;
                     background: rgba(0, 0, 0, 0.5);
                     color: #fff;
                     padding: 0.25rem;
@@ -169,8 +221,7 @@
             }
         }
         .identity-wrapper label,
-        .social-content label,
-        .attributes-wrapper label {
+        .social-content label {
             display: flex;
             color: $l5r5e-label;
             text-transform: uppercase;
@@ -192,81 +243,70 @@
                 display: flex;
             }
         }
-        .skills-wrapper,
-        .feats-wrapper {
-            flex: 50%;
-            > li {
-                display: flex;
-                flex-wrap: wrap;
-                font-size: 0.75rem;
-                margin: 0 0 1rem;
-                border: 1px solid $l5r5e-title;
-                --notchSize: 0.75rem;
-                clip-path: polygon(
-                    0 var(--notchSize),
-                    var(--notchSize) 0,
-                    100% 0,
-                    100% var(--notchSize),
-                    100% calc(100% - var(--notchSize)),
-                    100% 100%,
-                    0 100%,
-                    0 100%
-                );
-                h4 {
-                    flex: 100%;
-                    margin: 0;
-                    padding: 0.5rem 0.5rem 0;
-                    text-align: center;
-                    background: $l5r5e-title;
-                    color: $l5r5e-label;
-                    --notchSize: 0.5rem;
-                    clip-path: polygon(
-                        0% var(--notchSize),
-                        var(--notchSize) 0%,
-                        calc(100%) 0%,
-                        100% var(--notchSize),
-                        100% calc(100% - var(--notchSize)),
-                        calc(100% - var(--notchSize)) 100%,
-                        var(--notchSize) 100%,
-                        0% calc(100%)
-                    );
+        .stance-content {
+            label {
+                display: block;
+                width: 100%;
+                line-height: 1.5rem;
+                padding: 0.25rem;
+                color: $white;
+                &.earth {
+                    background: $l5r5e-earth;
                 }
-                ul {
-                    flex: 50%;
-                    padding: 0.25rem 0.5rem 0.25rem 0;
-                    li {
-                        text-align: left;
-                        line-height: 1.5rem;
-                        margin: 0.25rem 0;
-                        &.skill {
-                            text-align: right;
-                            strong {
-                                color: $l5r5e-black;
-                            }
-                            &[data-skill="melee"],
-                            &[data-skill="ranged"],
-                            &[data-skill="unarmed"] {
-                                strong {
-                                    float: left;
-                                    line-height: 0.75rem;
-                                    width: calc(100% - 1.75rem);
-                                }
-                            }
-                        }
-                    }
-                    &.skill-category-ring-actions {
-                        padding: 0.25rem 0 0.25rem 0.5rem;
-                        border-left: 1px solid $l5r5e-title;
-                    }
+                &.air {
+                    background: $l5r5e-air;
+                }
+                &.water {
+                    background: $l5r5e-water;
+                }
+                &.fire {
+                    background: $l5r5e-fire;
+                }
+                &.void {
+                    background: $l5r5e-void;
                 }
                 input {
-                    width: 1.5rem;
-                    height: 1.5rem;
-                    text-align: center;
+                    float: right;
+                    position: relative;
+                    top: 0.3rem;
+                    right: 0.25rem;
                 }
-                &:last-child {
-                    margin: 0;
+            }
+            .quick-rules {
+                display: none;
+                height: 0;
+                margin: 0;
+                padding: 0.25rem;
+                font-size: 0.75rem;
+                color: rgba(0, 0, 0, 0.75);
+                overflow: hidden;
+                border: 1px solid $l5r5e-title;
+                transition: height 0.25s ease-in;
+            }
+            &:hover {
+                .quick-rules {
+                    display: block;
+                    height: 6rem;
+                    overflow-y: auto;
+                    scrollbar-width: thin;
                 }
+            }
+        }
+    }
+    .xp {
+        flex: 0 0 5rem;
+    }
+    table {
+        thead {
+            th {
+                &:first-child {
+                    flex: 0 0 70%;
+                }
+            }
+        }
+        tbody {
+            th {
+                flex: 0 0 70%;
             }
         }
     }

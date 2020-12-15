@@ -1,11 +1,8 @@
-<div class="conflict-wrapper">
-    <div class="conflict-top-content">
-        <div class="conflict-stances-content">
-            <h4 class="section-header">{{ localize 'l5r5e.conflict.stance' }}</h4>
-            {{#each data.rings as |ringValue ringId|}}
-                {{> 'systems/l5r5e/templates/sheets/actor/stance.html' stance=../data.stance ringId=ringId }}
-            {{/each}}
-        </div>
-        {{> 'systems/l5r5e/templates/item/weapons.html' }}
-    </div>
-</div>
+<fieldset class="stances-content flexrow">
+    <legend class="section-header">{{ localize 'l5r5e.conflict.stance' }}</legend>
+    <ul>
+        {{#each data.rings as |ringValue ringId|}}
+            {{> 'systems/l5r5e/templates/sheets/actor/stance.html' stance=../data.stance ringId=ringId }}
+        {{/each}}
+    </ul>
+</fieldset>

@@ -9,7 +9,7 @@ button {
     padding: 0.5rem 0.25rem 0.5rem 0.5rem;
     background-position: top;
     background-size: 100%;
-    background: url(../assets/ui/bgSidebar.webp) no-repeat;
+    background: url("../assets/ui/bgSidebar.webp") no-repeat;
     border: 1px solid rgb(195, 165, 130);
     border-radius: 0;
     overflow: initial;
@@ -33,24 +33,120 @@ button {
         margin: 0 0 0.25rem;
         border-bottom: 1px solid rgba(195, 165, 130, 0.5);
         box-shadow: none;
-        > .item {
-            line-height: 1.6rem;
+        display: flex;
+        i {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100%;
             border-radius: 100%;
-            margin: 0;
-            flex: 0 0 1.6rem;
-            height: 1.6rem;
+            &.fa-comments {
+                background-image: url("../assets/ui/sidebar/chat.svg");
+                &:before {
+                    content: "";
+                }
+            }
+            &.fa-fist-raised {
+                background-image: url("../assets/ui/sidebar/combat-tracker.svg");
+                background-size: 85%;
+                &:before {
+                    content: "";
+                }
+            }
+            &.fa-map {
+                background-image: url("../assets/ui/sidebar/scenes.svg");
+                background-size: 80%;
+                &:before {
+                    content: "";
+                }
+            }
+            &.fa-users {
+                background-image: url("../assets/ui/sidebar/actors.svg");
+                background-size: 90%;
+                &:before {
+                    content: "";
+                }
+            }
+            &.fa-suitcase {
+                background-image: url("../assets/ui/sidebar/object.svg");
+                &:before {
+                    content: "";
+                }
+            }
+            &.fa-book-open {
+                background-image: url("../assets/ui/sidebar/journal.svg");
+                &:before {
+                    content: "";
+                }
+            }
+            &.fa-th-list {
+                background-image: url("../assets/ui/sidebar/rolltable.svg");
+                background-size: 85%;
+                &:before {
+                    content: "";
+                }
+            }
+            &.fa-music {
+                background-image: url("../assets/ui/sidebar/playlist.svg");
+                background-size: 80%;
+                &:before {
+                    content: "";
+                }
+            }
+            &.fa-atlas {
+                background-image: url("../assets/ui/sidebar/compendium.svg");
+                &:before {
+                    content: "";
+                }
+            }
+            &.fa-cogs {
+                background-image: url("../assets/ui/sidebar/settings.svg");
+                background-size: 85%;
+                &:before {
+                    content: "";
+                }
+            }
+        }
+        > .item {
+            flex: 0 0 1.5rem;
+            height: 1.5rem;
+            line-height: 1.5rem;
+            margin: 0.1rem;
+            border-radius: 100%;
+            background: $l5r5e-white;
             &.active,
             &:hover {
-                border: 1px solid $orange;
-                box-shadow: 0 0 6px $orange;
+                background: $white;
+                border: 1px solid $l5r5e-border-sidebar;
+                box-shadow: 0 0 10px $l5r5e-white;
             }
         }
         .collapse {
             position: relative;
-            flex: 0 0 1.5rem;
-            line-height: 1.5rem;
+            flex: 0 0 0.85rem;
+            line-height: 1.75rem;
             color: rgb(195, 165, 130);
             text-align: center;
+            i {
+                background-color: transparent;
+            }
+        }
+    }
+    &.collapsed {
+        #sidebar-tabs {
+            > .item {
+                &.active {
+                    border: 1px solid $l5r5e-border-sidebar;
+                    box-shadow: 0 0 10px $l5r5e-white;
+                    border-radius: 100%;
+                }
+            }
+            .collapse {
+                flex: 0 0 1.5rem;
+                margin: 0.1rem;
+            }
         }
     }
     .sidebar-tab {
@@ -61,9 +157,9 @@ button {
             cursor: default;
             color: $white;
             background: linear-gradient(
-                $l5r5e-linear-gradient-green,
-                $l5r5e-linear-gradient-green-dark,
-                $l5r5e-linear-gradient-green
+                $l5r5e-linear-gradient-third,
+                $l5r5e-linear-gradient-third-dark,
+                $l5r5e-linear-gradient-third
             );
             background-origin: padding-box;
             border-image: url("../assets/ui/macro-button.webp") 10 repeat;
@@ -71,15 +167,42 @@ button {
             border-image-outset: 0px;
             &:hover {
                 background: linear-gradient(
-                    $l5r5e-linear-gradient-green-dark,
-                    $l5r5e-linear-gradient-green,
-                    $l5r5e-linear-gradient-green-dark
+                    $l5r5e-linear-gradient-first-dark,
+                    $l5r5e-linear-gradient-first,
+                    $l5r5e-linear-gradient-first-dark
                 );
+            }
+        }
+    }
+    #chat-log {
+        margin: 0 0 0.5rem;
+        .message.whisper,
+        .message.blind {
+            position: relative;
+            font-style: italic;
+            .message-header {
+                .message-metadata:before {
+                    content: " (Private Roll) ";
+                    position: absolute;
+                    top: -0.5rem;
+                    right: 0.25rem;
+                    font-size: 0.5rem;
+                    color: rgba(255, 255, 255, 0.5);
+                    height: 0;
+                }
+            }
+        }
+        .message.blind {
+            .message-header {
+                .message-metadata:before {
+                    content: " (Blind Roll) ";
+                }
             }
         }
     }
     .message-sender {
         color: $l5r5e-red;
+        text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
     }
 }
 
@@ -89,6 +212,14 @@ button {
     #action-bar {
         flex: 0 0 100%;
         .macro {
+            background-position: center;
+            background-size: 100%;
+            background: linear-gradient(
+                $l5r5e-linear-gradient-second,
+                $l5r5e-linear-gradient-second-dark,
+                $l5r5e-linear-gradient-second
+            );
+            background-origin: padding-box;
             border-image: url("../assets/ui/macro-button.webp");
             border-image-slice: 8 fill;
             border-image-width: 0.25rem;
@@ -97,29 +228,38 @@ button {
             .macro-key {
                 background: $l5r5e-black;
             }
+            &.active {
+                background: linear-gradient(
+                    $l5r5e-linear-gradient-second-dark,
+                    $l5r5e-linear-gradient-second,
+                    $l5r5e-linear-gradient-second-dark
+                );
+                box-shadow: 1px 1px 10px $black inset;
+                border: 1px solid rgba(195, 165, 130, 0.5);
+            }
         }
         #macro-list {
-            background: $black;
+            background: transparent;
             margin: 0;
             padding: 0.05rem;
             border-radius: 0;
-            background-position: center;
-            background-size: 100%;
-            background: url(../assets/ui/bgSidebar.webp) no-repeat;
-            background-origin: padding-box;
             border: 0 none;
-            box-shadow: 0.25rem 0.25rem 0.5rem $black;
+            box-shadow: 0.25rem 0.25rem 0.5rem $black-light;
         }
     }
     .bar-controls {
         background-position: center;
         background-size: 100%;
-        background: url(../assets/ui/bgSidebar.webp) no-repeat;
+        background: linear-gradient(
+            $l5r5e-linear-gradient-second,
+            $l5r5e-linear-gradient-second-dark,
+            $l5r5e-linear-gradient-second
+        );
         background-origin: padding-box;
         border-image: url("../assets/ui/macro-button.webp") 15 repeat;
         border-image-width: 0.5rem;
         border-image-outset: 0px;
-        box-shadow: 0 0 0.25rem $black;
+        box-shadow: 0 0 0.25rem $black-light;
         border-radius: 0;
         margin: 0 0.5rem;
         a.page-control,
@@ -135,7 +275,11 @@ button {
     border-radius: 0;
     background-position: center;
     background-size: 100%;
-    background: url(../assets/ui/bgSidebar.webp) no-repeat;
+    background: linear-gradient(
+        $l5r5e-linear-gradient-second,
+        $l5r5e-linear-gradient-second-dark,
+        $l5r5e-linear-gradient-second
+    );
     background-origin: padding-box;
     border: 1px solid rgb(195, 165, 130);
     background-origin: padding-box;
@@ -146,7 +290,7 @@ button {
     padding: 0;
     left: 1.15rem;
     bottom: 0.65rem;
-    box-shadow: inset 0 0 0.5rem $black;
+    box-shadow: inset 0 0 0.5rem $black-light;
     &:before {
         z-index: -1;
         position: absolute;
@@ -179,9 +323,9 @@ button {
         cursor: default;
         color: $white;
         background: linear-gradient(
-            $l5r5e-linear-gradient-blue,
-            $l5r5e-linear-gradient-blue-dark,
-            $l5r5e-linear-gradient-blue
+            $l5r5e-linear-gradient-second,
+            $l5r5e-linear-gradient-second-dark,
+            $l5r5e-linear-gradient-second
         );
         background-origin: padding-box;
         border-image: url("../assets/ui/macro-button.webp") 10 repeat;
@@ -189,24 +333,24 @@ button {
         border-image-outset: 0px;
         &:hover {
             background: linear-gradient(
-                $l5r5e-linear-gradient-blue-dark,
-                $l5r5e-linear-gradient-blue,
-                $l5r5e-linear-gradient-blue-dark
+                $l5r5e-linear-gradient-first-dark,
+                $l5r5e-linear-gradient-first,
+                $l5r5e-linear-gradient-first-dark
             );
         }
     }
     #scene-list {
         .scene.nav-item.active {
             background: linear-gradient(
-                $l5r5e-linear-gradient-red,
-                $l5r5e-linear-gradient-red-dark,
-                $l5r5e-linear-gradient-red
+                $l5r5e-linear-gradient-first,
+                $l5r5e-linear-gradient-first-dark,
+                $l5r5e-linear-gradient-first
             );
             &:hover {
                 background: linear-gradient(
-                    $l5r5e-linear-gradient-red-dark,
-                    $l5r5e-linear-gradient-red,
-                    $l5r5e-linear-gradient-red-dark
+                    $l5r5e-linear-gradient-first-dark,
+                    $l5r5e-linear-gradient-first,
+                    $l5r5e-linear-gradient-first-dark
                 );
             }
         }
@@ -215,9 +359,9 @@ button {
             cursor: default;
             color: #fff;
             background: linear-gradient(
-                $l5r5e-linear-gradient-red,
-                $l5r5e-linear-gradient-red-dark,
-                $l5r5e-linear-gradient-red
+                $l5r5e-linear-gradient-first,
+                $l5r5e-linear-gradient-first-dark,
+                $l5r5e-linear-gradient-first
             );
             background-origin: padding-box;
             border-image: url("../assets/ui/macro-button.webp") 10 repeat;
@@ -226,9 +370,9 @@ button {
             box-shadow: 0 0 20px red;
             &:hover {
                 background: linear-gradient(
-                    $l5r5e-linear-gradient-red-dark,
-                    $l5r5e-linear-gradient-red,
-                    $l5r5e-linear-gradient-red-dark
+                    $l5r5e-linear-gradient-first-dark,
+                    $l5r5e-linear-gradient-first,
+                    $l5r5e-linear-gradient-first-dark
                 );
             }
         }
@@ -243,9 +387,9 @@ button {
     .scene-control:hover,
     .control-tool:hover {
         background: linear-gradient(
-            $l5r5e-linear-gradient-red,
-            $l5r5e-linear-gradient-red-dark,
-            $l5r5e-linear-gradient-red
+            $l5r5e-linear-gradient-first,
+            $l5r5e-linear-gradient-first-dark,
+            $l5r5e-linear-gradient-first
         );
         background-origin: padding-box;
         border-image: url("../assets/ui/macro-button.webp") 10 repeat;
@@ -254,18 +398,19 @@ button {
         box-shadow: 0 0 10px $red;
         &:hover {
             background: linear-gradient(
-                $l5r5e-linear-gradient-red-dark,
-                $l5r5e-linear-gradient-red,
-                $l5r5e-linear-gradient-red-dark
+                $l5r5e-linear-gradient-first-dark,
+                $l5r5e-linear-gradient-first,
+                $l5r5e-linear-gradient-first-dark
             );
         }
     }
     .scene-control,
     .control-tool {
+        color: $white;
         background: linear-gradient(
-            $l5r5e-linear-gradient-blue,
-            $l5r5e-linear-gradient-blue-dark,
-            $l5r5e-linear-gradient-blue
+            $l5r5e-linear-gradient-second,
+            $l5r5e-linear-gradient-second-dark,
+            $l5r5e-linear-gradient-second
         );
         background-origin: padding-box;
         border-image: url("../assets/ui/macro-button.webp") 10 repeat;
@@ -273,42 +418,33 @@ button {
         border-image-outset: 0px;
         &:hover {
             background: linear-gradient(
-                $l5r5e-linear-gradient-blue-dark,
-                $l5r5e-linear-gradient-blue,
-                $l5r5e-linear-gradient-blue-dark
+                $l5r5e-linear-gradient-first-dark,
+                $l5r5e-linear-gradient-first,
+                $l5r5e-linear-gradient-first-dark
             );
         }
     }
 }
 
+// Chat-form
+#chat-form textarea,
+.chat-message,
+#chat-controls .roll-type-select,
+.sidebar-tab .directory-header .header-search input {
+    background: transparent url("../assets/ui/chat-texture.webp") no-repeat;
+}
+.sidebar-tab .directory-header .header-search input {
+    color: $white;
+}
+
 // Chat-Message
 .chat-message {
-    background-image: url("../assets/ui/chat-texture.webp");
     .message-header {
         line-height: 2rem;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         margin-bottom: 0.25rem;
+        border-radius: 0;
     }
-}
-
-/* #region Chat log */
-/* differentiate public roll from private or blind.
- Private uses class whisper, blind uses class blind AND whisper, Self Roll
- uses class whisper (identical to Private Roll for CSS) */
-#chat-log .message.whisper {
-    font-style: italic;
-}
-
-#chat-log .message.whisper .message-header .message-metadata::before {
-    color: rgba(88, 88, 88, 0.25);
-    content: " (Private Roll) ";
-    float: left;
-}
-
-#chat-log .message.blind .message-header .message-metadata::before {
-    color: rgba(88, 88, 88, 0.25);
-    content: " (Blind Roll) " !important;
-    float: left;
 }
 
 // Playlist
@@ -329,9 +465,9 @@ button {
     cursor: default;
     color: $white;
     background: linear-gradient(
-        $l5r5e-linear-gradient-blue,
-        $l5r5e-linear-gradient-blue-dark,
-        $l5r5e-linear-gradient-blue
+        $l5r5e-linear-gradient-third,
+        $l5r5e-linear-gradient-third-dark,
+        $l5r5e-linear-gradient-third
     );
     background-origin: padding-box;
     border-image: url("../assets/ui/macro-button.webp") 10 repeat;
@@ -339,9 +475,9 @@ button {
     border-image-outset: 0px;
     &:hover {
         background: linear-gradient(
-            $l5r5e-linear-gradient-blue-dark,
-            $l5r5e-linear-gradient-blue,
-            $l5r5e-linear-gradient-blue-dark
+            $l5r5e-linear-gradient-first-dark,
+            $l5r5e-linear-gradient-first,
+            $l5r5e-linear-gradient-first-dark
         );
     }
 }

@@ -93,6 +93,7 @@
         "featplaceholdername": "Nouvelle technique",
         "notes": "Notes",
         "inventory": "Inventaire",
+        "equipment": "Equipement",
         "rank": "Rang",
         "name": "Nom",
         "socialstanding": {
@@ -176,7 +177,7 @@
             "endurance": "Endurance",
             "endurancetip": "(Terre + Feu) x2",
             "composure": "Sang Froid",
-            "composuretip": "(Earth + Eau) x2",
+            "composuretip": "(Terre + Eau) x2",
             "focus": "Attention",
             "focustip": "Air + Feu",
             "vigilante": "Vigilance",

@@ -27,7 +27,7 @@ export class L5rBaseDie extends DiceTerm {
      * @override
      */
     static getResultLabel(result) {
-        return `<img src="${CONFIG.L5r5e.paths.assets}dices/default/${this.FACES[result].image}.png" alt="${result}" />`;
+        return `<img src="${CONFIG.L5r5e.paths.assets}dices/default/${this.FACES[result].image}.svg" alt="${result}" />`;
     }
 
     /**

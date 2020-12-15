@@ -3,7 +3,7 @@ Hooks.on("init", () => {
     game.settings.register("l5r5e", "icBgColor", {
         name: game.i18n.localize("ic.bg.color"),
         hint: game.i18n.localize("hexa.color"),
-        default: "#D3E5F5",
+        default: "rgba(255,255,255,0.5)",
         type: String,
         scope: "client",
         config: true,
@@ -19,7 +19,7 @@ Hooks.on("init", () => {
     game.settings.register("l5r5e", "emoteBgColor", {
         name: game.i18n.localize("emote.bg.color"),
         hint: game.i18n.localize("hexa.color"),
-        default: "#D1F5D1",
+        default: "rgba(255,255,255,0.5)",
         type: String,
         scope: "client",
         config: true,
@@ -35,7 +35,7 @@ Hooks.on("init", () => {
     game.settings.register("l5r5e", "rollBgColor", {
         name: game.i18n.localize("roll.bg.color"),
         hint: game.i18n.localize("hexa.color"),
-        default: "#E6BB81",
+        default: "rgba(195,165,130,0.5)",
         type: String,
         scope: "client",
         config: true,
@@ -51,7 +51,7 @@ Hooks.on("init", () => {
     game.settings.register("l5r5e", "otherBgColor", {
         name: game.i18n.localize("other.bg.color"),
         hint: game.i18n.localize("hexa.color"),
-        default: "#DBD9CD",
+        default: "rgba(255,255,255,0.5)",
         type: String,
         scope: "client",
         config: true,

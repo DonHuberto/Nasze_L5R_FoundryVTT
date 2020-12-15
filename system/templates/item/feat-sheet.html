@@ -5,33 +5,27 @@
             <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
         </div>
     </header>
-
     {{!-- Sheet Body --}}
     <section class="sheet-body">
-
         {{!-- Sheet Tab Navigation --}}
         <nav class="sheet-tabs tabs" data-group="primary">
             <a class="item" data-tab="description">Description</a>
             <a class="item" data-tab="attributes">Attributes</a>
         </nav>
-
         {{!-- Description Tab --}}
-        <article class="tab" data-group="primary" data-tab="description">
+        <article class="tab flexcol" data-group="primary" data-tab="description">
             {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
         </article>
-
         {{!-- Attributes Tab --}}
         <article class="tab attributes" data-group="primary" data-tab="attributes">
-            <div class="flexrow">
-                <div class="attribute-container">
-                    <label class="attribute-label">{{ localize 'l5r5e.xp.spent' }}</label>
-                    <input type="text" name="data.xp_used" value="{{data.xp_used}}" data-dtype="Number" placeholder="0"/>
-                </div>
-                <div class="attribute-container">
-                    <label class="attribute-label">{{ localize 'l5r5e.rank' }}</label>
-                    <input type="text" name="data.rank" value="{{data.rank}}" data-dtype="Number" placeholder="0"/>
-                </div>
-            </div>
+            <label class="attribute">
+                {{ localize 'l5r5e.xp.spent' }}
+                <input type="text" name="data.xp_used" value="{{data.xp_used}}" data-dtype="Number" placeholder="0"/>
+            </label>
+            <label class="attribute">
+                {{ localize 'l5r5e.rank' }}
+                <input type="text" name="data.rank" value="{{data.rank}}" data-dtype="Number" placeholder="0"/>
+            </label>
         </article>
     </section>
 </form>

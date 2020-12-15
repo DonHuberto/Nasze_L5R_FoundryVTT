@@ -24,9 +24,16 @@
     src: url("../fonts/ManoNegra.ttf") format("truetype");
 }
 
+// Font ArchitectsDaughter
+@font-face {
+    font-family: "ArchitectsDaughter";
+    src: url("../fonts/ArchitectsDaughter.ttf") format("truetype");
+}
+
 $font-primary: "PatrickHand", sans-serif;
 $font-secondary: "BrushtipTexe", sans-serif;
-$font-tertiary: "ManoNegra", sans-serif;
+$font-tertiary: "BrushtipTexe", sans-serif;
+$font-quaternary: "ArchitectsDaughter", sans-serif;
 $font-dice: "LogotypeL5r", sans-serif;
 
 body {
@@ -41,8 +48,18 @@ h4 {
 h1 {
     font-size: 2rem;
 }
+h2 {
+    font-size: 1.5rem;
+}
+h3 {
+    font-size: 1.25rem;
+}
 h4 {
     font-size: 1.25rem;
+}
+
+p {
+    font-family: $font-quaternary;
 }
 
 i.strife,

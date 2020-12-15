@@ -9,13 +9,19 @@
     "background": "L5R-Header.webp",
     "scripts": ["./scripts/ui/chatColor-l5r5e.js"],
     "esmodules": ["./scripts/main-l5r5e.js"],
-    "styles": ["./l5r-ui/css/l5rui.css", "./styles/l5r5e.css"],
+    "styles": ["./styles/l5r5e.css"],
     "packs": [
         {
             "name": "macros",
             "label": "L5R5e Macros",
             "path": "packs/macros.db",
             "entity": "Macro"
+        },
+        {
+            "label": "Clans presentation",
+            "entity": "Scene",
+            "name": "clans-presentation",
+            "path": "packs/clans-presentation.db"
         }
     ],
     "languages": [

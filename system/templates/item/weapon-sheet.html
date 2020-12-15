@@ -13,29 +13,28 @@
             </div>
         </div>
     </header>
-
     {{!-- Sheet Body --}}
     <section class="sheet-body">
-
         {{!-- Sheet Tab Navigation --}}
         <nav class="sheet-tabs tabs" data-group="primary">
             <a class="item" data-tab="description">Description</a>
         </nav>
-
         {{!-- Description Tab --}}
         <article class="tab" data-group="primary" data-tab="description">
-            <div class="weapon-stats-content">
-                <div>
-                    <label class="attribute-label">{{ localize 'l5r5e.damage' }}</label>
+            <fieldset class="weapon-stats-content">
+                <label class="attribute-label">
+                    {{ localize 'l5r5e.damage' }}
                     <input type="text" name="data.damage" value="{{data.damage}}" data-dtype="Number" placeholder="0"/>
-                </div>
-                <div>
-                    <label class="attribute-label">{{ localize 'l5r5e.range' }}</label>
+                </label>
+                <label class="attribute-label">
+                    {{ localize 'l5r5e.range' }}
                     <input type="text" name="data.range" value="{{data.range}}" data-dtype="Number" placeholder="0"/>
-                </div>
-            </div>
-            <h4 class="text-block-header">{{ localize  'l5r5e.properties' }}</h4>
-            {{editor content=data.properties target="data.properties" button=true owner=owner editable=editable}}
+                </label>
+            </fieldset>
+            <fieldset>
+                <legend class="text-block-header">{{ localize  'l5r5e.properties' }}</legend>
+                {{editor content=data.properties target="data.properties" button=true owner=owner editable=editable}}
+            </fieldset>
         </article>
     </section>
 </form>

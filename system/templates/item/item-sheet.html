@@ -13,31 +13,26 @@
             </div>
         </div>
     </header>
-
     {{!-- Sheet Body --}}
     <section class="sheet-body">
-
         {{!-- Sheet Tab Navigation --}}
         <nav class="sheet-tabs tabs" data-group="primary">
             <a class="item" data-tab="description">Description</a>
             <a class="item" data-tab="attributes">Attributes</a>
         </nav>
-
         {{!-- Description Tab --}}
-        <article class="tab" data-group="primary" data-tab="description">
+        <article class="tab flexcol" data-group="primary" data-tab="description">
             {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
         </article>
-
         {{!-- Attributes Tab --}}
         <article class="tab attributes" data-group="primary" data-tab="attributes">
-            <header class="attributes-header flexrow">
-                <span class="attribute-key">Attribute Key</span>
-                <span class="attribute-value">Value</span>
-                <span class="attribute-label">Label</span>
-                <span class="attribute-dtype">Data Type</span>
-                <a class="attribute-control" data-action="create"><i class="fas fa-plus"></i></a>
-            </header>
-
+            <ul class="attributes-header flexrow">
+                <li class="attribute-key">Attribute Key</li>
+                <li class="attribute-value">Value</li>
+                <li class="attribute-label">Label</li>
+                <li class="attribute-dtype">Data Type</li>
+                <li class="attribute-control" data-action="create"><i class="fas fa-plus"></i></li>
+            </ul>
             <ol class="attributes-list">
             {{#each data.attributes as |attr key|}}
                 <li class="attribute flexrow" data-attribute="{{key}}">

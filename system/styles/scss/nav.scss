@@ -21,7 +21,7 @@ nav {
     .item {
         &:hover {
             background-color: $l5r5e-label;
-            color: $white;
+            color: $white-light;
             text-shadow: none;
             clip-path: polygon(
                 0% var(--notchSize),

@@ -1,5 +1,7 @@
-<div class="stance-content">
-    <input id="stance_{{ringId}}" type="radio" name="data.stance" value="{{ringId}}" {{radioChecked ringId stance}}/>
-    <label for="stance_{{ringId}}" class="stance-title {{ringId}}">{{ localizeRing ringId }}</label>
-    <p class="quick-rules" style="display: inline;"> {{ localizeStanceTip ringId }}</p>
-</div>
+<li class="stance-content">
+    <label for="stance_{{ringId}}" class="stance-title {{ringId}}">
+        {{ localizeRing ringId }}
+        <input id="stance_{{ringId}}" type="radio" name="data.stance" value="{{ringId}}" {{radioChecked ringId stance}}/>
+    </label>
+    <p class="quick-rules">{{ localizeStanceTip ringId }}</p>
+</li>

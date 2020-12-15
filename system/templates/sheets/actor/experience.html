@@ -1,31 +1,32 @@
-<div class="tab-container">
-    <div class="flexrow" style="flex: 0 0 100px; justify-content: center;">
-        <div class="short-attribute-container">
-            <h4 class="attribute-label center">{{ localize 'l5r5e.xp.total' }}</h4>
-            <input type="text" name="data.xp_total" value="{{ data.xp_total }}" data-dtype="Number" placeholder="0"/>
-        </div>
-        <div class="short-attribute-container">
-            <h4 class="attribute-label">{{ localize 'l5r5e.xp.spent' }}</h4>
-            <input type="text" name="data.xp_spent" value="{{ data.xp_spent }}" data-dtype="Number" placeholder="0"/>
-        </div>
-        <div class="short-attribute-container">
-            <h4 class="attribute-label">{{ localize 'l5r5e.xp.saved' }}</h4>
-            <input type="text" name="data.xp_saved" value="{{ data.xp_saved }}" data-dtype="Number" placeholder="0"/>
-        </div>
-    </div>
-    <div class="acquisitions">
-        <h4 class="section-header flexrow">{{ localize 'l5r5e.xp.acquisitions'}}</h4>
-        <header class="flexrow row">
-            <h4 class="name">{{ localize 'l5r5e.name' }}</h4>
-            <h4 class="xp">{{ localize 'l5r5e.xp.spent' }}</h4>
-            <h4 class="rank">{{ localize 'l5r5e.rank' }}</h4>
-        </header>
-
-        {{#each data.feats as |feat featId| }}
-            {{> 'systems/l5r5e/templates/sheets/actor/acquisition.html' acquisition=feat }}
-        {{/each}}
-        <div class="tools">
-            <a class="acquisition-control acquisition-add" title="{{ localize 'l5r5e.add'}}"><i class="fas fa-plus"></i></a>
-        </div>
-    </div>
-</div>
+<fieldset class="xp">
+    <legend>{{ localize 'l5r5e.experience'}}</legend>
+    <label class="attribute-label">
+        {{ localize 'l5r5e.xp.total' }}
+        <input type="text" name="data.xp_total" value="{{ data.xp_total }}" data-dtype="Number" placeholder="0"/>
+    </label>
+    <label class="attribute-label">
+        {{ localize 'l5r5e.xp.spent' }}
+        <input type="text" name="data.xp_spent" value="{{ data.xp_spent }}" data-dtype="Number" placeholder="0"/>
+    </label>
+    <label class="attribute-label">
+        {{ localize 'l5r5e.xp.saved' }}
+        <input type="text" name="data.xp_saved" value="{{ data.xp_saved }}" data-dtype="Number" placeholder="0"/>
+    </label>
+</fieldset>
+<fieldset class="acquisitions">
+    <legend class="tools">{{ localize 'l5r5e.xp.acquisitions'}} <a class="acquisition-control acquisition-add" title="{{ localize 'l5r5e.add'}}"><i class="fas fa-plus"></i></a></legend>
+    <table>
+        <thead class="flex">
+            <tr class="flexrow row">
+                <th class="name">{{ localize 'l5r5e.name' }}</th>
+                <th class="xp">{{ localize 'l5r5e.xp.spent' }}</th>
+                <th class="rank">{{ localize 'l5r5e.rank' }}</th>
+            </tr>
+        </thead>
+        <tbody class="flex">
+            {{#each data.feats as |feat featId| }}
+                {{> 'systems/l5r5e/templates/sheets/actor/acquisition.html' acquisition=feat }}
+            {{/each}}
+        </tbody>
+    </table>
+</fieldset>

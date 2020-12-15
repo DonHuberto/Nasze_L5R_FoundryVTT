@@ -3,6 +3,9 @@
 body {
     background: url("../assets/imgs/background.webp") no-repeat center;
     background-size: cover;
+    > * {
+        scrollbar-width: thin;
+    }
 }
 
 /* Windows */
@@ -16,7 +19,7 @@ body {
     }
     .window-resizable-handle {
         z-index: 2;
-        background: $black;
+        background: $black-light;
     }
 }
 
@@ -43,6 +46,13 @@ input[type="time"]:focus {
     box-shadow: 0 0 10px $red;
 }
 
+button:hover {
+    box-shadow: 0 0 10px $red;
+}
+button:focus {
+    box-shadow: 0 0 10px $red;
+}
+
 /* lists */
 ul,
 li {
@@ -50,11 +60,39 @@ li {
     margin: 0;
     padding: 0;
 }
+.item-list {
+    > li {
+        padding: 0.25rem;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 0 none;
+        &:nth-child(odd) {
+            background: $l5r5e-odd;
+        }
+        &:nth-child(even) {
+            background: $l5r5e-even;
+        }
+        &:last-child {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+    }
+}
 
 // Fieldset
 fieldset {
     flex: 1;
     display: flex;
+    margin: 0 0.25rem;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid $l5r5e-title;
+    &:last-child {
+        margin: 0 0 0 0.5rem;
+    }
+    legend {
+        color: $l5r5e-label;
+    }
+    .editor {
+        height: calc(100% - 1.5rem);
+    }
 }
 
 // inputs
@@ -63,15 +101,20 @@ input[type="number"],
 input[type="password"],
 input[type="date"],
 input[type="time"] {
+    text-align: center;
+    padding: 0.25rem;
     background: $l5r5e-white;
     border: 1px solid $l5r5e-title;
-    padding: 0.25rem;
     color: $l5r5e-bold;
+    &[disabled] {
+        background: $l5r5e-white-light;
+    }
 }
 
 // Editors
 .editor {
     flex: 1;
+    height: 100%;
 }
 
 // Elements Colors
@@ -89,4 +132,26 @@ input[type="time"] {
 }
 .void {
     color: $l5r5e-void;
+}
+
+table {
+    text-align: center;
+    background: transparent;
+    border: 1px solid $l5r5e-title;
+    thead {
+        background: $l5r5e-title;
+        color: $l5r5e-label;
+        text-shadow: none;
+        border-bottom: $l5r5e-title;
+    }
+    tbody {
+    }
+    tr {
+        &:nth-child(odd) {
+            background: $l5r5e-odd;
+        }
+        &:nth-child(even) {
+            background: $l5r5e-even;
+        }
+    }
 }
