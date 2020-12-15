@@ -11,6 +11,7 @@ import { ItemSheetL5r5e } from "./items/item-sheet.js";
 import { ArmorSheetL5r5e } from "./items/armor-sheet.js";
 import { WeaponSheetL5r5e } from "./items/weapon-sheet.js";
 import { FeatSheetL5r5e } from "./items/feat-sheet.js";
+import { QualitySheetL5r5e } from "./items/quality-sheet.js";
 
 // Import Dice Types
 
@@ -67,6 +68,7 @@ Hooks.once("init", async function () {
     Items.registerSheet("l5r5e", ArmorSheetL5r5e, { types: ["armor"], makeDefault: true });
     Items.registerSheet("l5r5e", WeaponSheetL5r5e, { types: ["weapon"], makeDefault: true });
     Items.registerSheet("l5r5e", FeatSheetL5r5e, { types: ["feat"], makeDefault: true });
+    Items.registerSheet("l5r5e", QualitySheetL5r5e, { types: ["quality"], makeDefault: true });
 
     // for debug
     Handlebars.registerHelper("json", function (...objects) {
@@ -107,6 +109,10 @@ Hooks.once("init", async function () {
     Handlebars.registerHelper("localizeStanceTip", function (ringName) {
         const key = "l5r5e.conflict.stances." + ringName.toLowerCase() + "tip";
         return game.i18n.localize(key);
+    });
+
+    Handlebars.registerHelper("localizeFeat", function (featName) {
+        return game.i18n.localize("l5r5e.feats." + featName.toLowerCase());
     });
 });
 

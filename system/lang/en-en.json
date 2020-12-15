@@ -88,10 +88,19 @@
         "armors": {
             "title": "Armors",
             "physical": "physical",
-            "spiritual": "spiritual"
+            "supernatural": "supernatural"
         },
         "items": "Items",
-        "feats": "Feats",
+        "feats": {
+            "title": "Feats",
+            "kata": "Kata",
+            "kiho": "Kihõ",
+            "invocation": "Invocation",
+            "ritual": "Ritual",
+            "shuji": "Shuji",
+            "maho": "Mahõ",
+            "ninjutsu": "Ninjutsu"
+        },
         "skill": "Skill",
         "level": "Level",
         "approaches": "Approaches",
@@ -207,6 +216,31 @@
             "spent": "Used",
             "saved": "Saved",
             "acquisitions": "Acquisitions"
+        },
+        "twenty_questions": {
+            "title": "Twenty questions",
+            "bt_abrev": "20Q",
+            "part1": {
+                "title": "Partie I: Core Identity (Clan and Family)"
+            },
+            "part2": {
+                "title": "Partie II: Role and School"
+            },
+            "part3": {
+                "title": "Partie III: Honor and Glory"
+            },
+            "part4": {
+                "title": "Partie IV: Strengths and Weaknesses"
+            },
+            "part5": {
+                "title": "Partie V: Personality and Behavior"
+            },
+            "part6": {
+                "title": "Partie VI: Ancestry and Family"
+            },
+            "part7": {
+                "title": "Partie VII: Death"
+            }
         }
     }
 }

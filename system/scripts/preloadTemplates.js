@@ -23,6 +23,9 @@ export const PreloadTemplates = async function () {
         "systems/l5r5e/templates/item/armor-entry.html",
         "systems/l5r5e/templates/item/feat-sheet.html",
         "systems/l5r5e/templates/item/feat-entry.html",
+        "systems/l5r5e/templates/item/qualities.html",
+        "systems/l5r5e/templates/item/quality-sheet.html",
+        "systems/l5r5e/templates/item/quality-entry.html",
     ];
 
     return loadTemplates(templatePaths);

@@ -7,10 +7,38 @@ export class ActorL5r5e extends Actor {
      * @override
      */
     static async create(data, options = {}) {
-        if (!Object.keys(data).includes("type")) {
-            data.type = "character";
-        }
+        // if (!Object.keys(data).includes("type")) {
+        //     data.type = "character";
+        // }
 
+        // Some tweak on actors
+        data.token = data.token || {};
+        switch (data.type) {
+            case "character":
+                mergeObject(
+                    data.token,
+                    {
+                        // vision: true,
+                        // dimSight: 30,
+                        // brightSight: 0,
+                        actorLink: true,
+                        disposition: 1, // friendly
+                    },
+                    { overwrite: false }
+                );
+                break;
+
+            case "npc":
+                mergeObject(
+                    data.token,
+                    {
+                        actorLink: false,
+                        disposition: 0, // neutral
+                    },
+                    { overwrite: false }
+                );
+                break;
+        }
         await super.create(data, options);
     }
 

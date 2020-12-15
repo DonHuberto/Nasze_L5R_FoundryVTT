@@ -44,6 +44,7 @@ export class TwentyQuestionsDialog extends FormApplication {
             ...super.getData(options),
             elementsList: this._getElements(),
             skillsList: this._getSkills(),
+            featsList: CONFIG.L5r5e.feats,
             actor: this.actor.data.data,
         };
     }
@@ -96,13 +97,13 @@ export class TwentyQuestionsDialog extends FormApplication {
         actorTmp.social.glory = formData.step2_social_glory;
         actorTmp.identity.school = formData.step3_school;
         actorTmp.identity.roles = formData.step3_roles;
-        // actorTmp = formData.step3_tech_kata;
-        // actorTmp = formData.step3_tech_kiho;
-        // actorTmp = formData.step3_tech_invocations;
-        // actorTmp = formData.step3_tech_rituals;
-        // actorTmp = formData.step3_tech_shuji;
-        // actorTmp = formData.step3_tech_maho;
-        // actorTmp = formData.step3_tech_ninjutsu;
+        // actorTmp = formData.step3_feat_kata;
+        // actorTmp = formData.step3_feat_kiho;
+        // actorTmp = formData.step3_feat_invocations;
+        // actorTmp = formData.step3_feat_rituals;
+        // actorTmp = formData.step3_feat_shuji;
+        // actorTmp = formData.step3_feat_maho;
+        // actorTmp = formData.step3_feat_ninjutsu;
         // actorTmp = formData.step3_feats;
         // actorTmp = formData.step3_school_ability;
         // actorTmp = formData.step3_equipment;

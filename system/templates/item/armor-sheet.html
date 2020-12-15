@@ -12,6 +12,17 @@
                 <input type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
             </div>
         </div>
+
+        <div class="header-fields">
+            <div class="resource">
+                <label>{{ localize 'l5r5e.rarity' }}</label>
+                <input type="text" name="data.rarity" value="{{data.rarity}}" data-dtype="Number"/>
+            </div>
+            <div class="resource">
+                <label>{{ localize 'l5r5e.zeni' }}</label>
+                <input type="text" name="data.zeni" value="{{data.zeni}}" data-dtype="Number"/>
+            </div>
+        </div>
     </header>
     {{!-- Sheet Body --}}
     <section class="sheet-body">
@@ -21,17 +32,23 @@
         </nav>
         {{!-- Description Tab --}}
         <article class="tab" data-group="primary" data-tab="description">
-            {{ localize 'l5r5e.armors.title' }}
+            <fieldset>
+                <legend class="text-block-header">{{ localize 'l5r5e.description' }}</legend>
+                {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            </fieldset>
+
             <fieldset class="weapon-stats-content">
+                {{ localize 'l5r5e.armors.title' }}
                 <label class="attribute-label">
                     {{ localize 'l5r5e.armors.physical' }}
                     <input type="text" name="data.armor.physical" value="{{data.armor.physical}}" data-dtype="Number" placeholder="0"/>
                 </label>
                 <label class="attribute-label">
-                    {{ localize 'l5r5e.armors.spiritual' }}
-                    <input type="text" name="data.armor.spiritual" value="{{data.armor.spiritual}}" data-dtype="Number" placeholder="0"/>
+                    {{ localize 'l5r5e.armors.supernatural' }}
+                    <input type="text" name="data.armor.supernatural" value="{{data.armor.supernatural}}" data-dtype="Number" placeholder="0"/>
                 </label>
             </fieldset>
+
             <fieldset>
                 <legend class="text-block-header">{{ localize 'l5r5e.properties' }}</legend>
                 {{editor content=data.properties target="data.properties" button=true owner=owner editable=editable}}

@@ -1,0 +1,10 @@
+<fieldset class="weapons-content">
+    <legend class="section-header">{{ localize 'l5r5e.quality' }}</legend>
+    <ul class="item-list">
+        {{#each actor.items as |item id|}}
+            {{#if item.isQuality }}
+                {{> 'systems/l5r5e/templates/item/quality-entry.html' item=item id=id }}
+            {{/if}}
+        {{/each}}
+    </ul>
+</fieldset>

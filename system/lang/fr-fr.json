@@ -88,17 +88,26 @@
         "armors": {
             "title": "Armures",
             "physical": "Physique",
-            "spiritual": "Spirituelle"
+            "supernatural": "Spirituelle"
         },
-        "items": "Equipement",
-        "feats": "Techniques",
+        "items": "Objets",
+        "feats": {
+            "title": "Techniques",
+            "kata": "Kata",
+            "kiho": "Kihõ",
+            "invocation": "Invocation",
+            "ritual": "Rituel",
+            "shuji": "Shuji",
+            "maho": "Mahõ",
+            "ninjutsu": "Ninjutsu"
+        },
         "skill": "Compétence",
         "level": "Niveau",
         "approaches": "Approches",
         "featplaceholdername": "Nouvelle technique",
         "notes": "Notes",
         "inventory": "Inventaire",
-        "equipment": "Equipement",
+        "equipment": "Équipement",
         "rank": "Rang",
         "name": "Nom",
         "social": {
@@ -207,6 +216,31 @@
             "spent": "Dépensée",
             "saved": "Restante",
             "acquisitions": "Acquisitions"
+        },
+        "twenty_questions": {
+            "title": "Vingt questions",
+            "bt_abrev": "20Q",
+            "part1": {
+                "title": "Partie I: Identité (clan et famille)"
+            },
+            "part2": {
+                "title": "Partie II: Rôle et École"
+            },
+            "part3": {
+                "title": "Partie III: Honneur et Gloire"
+            },
+            "part4": {
+                "title": "Partie IV: Forces et Faiblesses"
+            },
+            "part5": {
+                "title": "Partie V: Personnalité et Comportement"
+            },
+            "part6": {
+                "title": "Partie VI: Lignée et Famille"
+            },
+            "part7": {
+                "title": "Partie VII: Mort"
+            }
         }
     }
 }

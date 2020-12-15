@@ -4,11 +4,11 @@
         <tr>
             <td class="profil center">
                 <img class="profile-img"
-                     src="{{#if actor.img}}{{actor.img}}{{/if}}{{^if actor.img}}icons/svg/mystery-man.svg{{/if}}"
+                     src="{{#if actor.img}}{{actor.img}}{{else}}icons/svg/mystery-man.svg{{/if}}"
                      data-edit="img"
                      height="200"
                      width="200"
-                     alt="{{#if actor.name}}{{actor.name}}{{/if}}{{^if actor.name}}mystery-man{{/if}}"
+                     alt="{{#if actor.name}}{{actor.name}}{{else}}mystery-man{{/if}}"
                 >
             </td>
             <td class="rings center">
@@ -51,8 +51,7 @@
                         <span class="dice-skill" type="text" name="skill_{{skillData.name}}">{{skillData.value}}</span>
                     </div>
                 </div>
-                {{/if}}
-                {{^if skillData.name}}
+                {{else}}
                 <img class="profile-img"
                      src="systems/l5r5e/assets/imgs/noskill.png"
                      data-edit="img"

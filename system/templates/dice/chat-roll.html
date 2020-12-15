@@ -6,11 +6,11 @@
         <header class="part-header flexrow chat-profil">
             <span class="chat-profil-element">
                 <img class="profile-img"
-                     src="{{#if l5r5e.actor.img}}{{l5r5e.actor.img}}{{/if}}{{^if l5r5e.actor.img}}icons/svg/mystery-man.svg{{/if}}"
+                     src="{{#if l5r5e.actor.img}}{{l5r5e.actor.img}}{{else}}icons/svg/mystery-man.svg{{/if}}"
                      data-edit="img"
                      height="40"
                      width="40"
-                     alt="{{#if l5r5e.actor.name}}{{l5r5e.actor.name}}{{/if}}{{^if l5r5e.actor.name}}mystery-man{{/if}}"
+                     alt="{{#if l5r5e.actor.name}}{{l5r5e.actor.name}}{{else}}mystery-man{{/if}}"
                 >
             </span>
 
@@ -23,8 +23,11 @@
             </span>
 
             <span class="chat-profil-element">
-                {{#if l5r5e.summary.difficultyHidden}}{{localize 'l5r5e.chatdices.difficulty_hidden'}}{{/if}}
-                {{^if l5r5e.summary.difficultyHidden}}{{localize 'l5r5e.chatdices.difficulty'}} {{l5r5e.summary.difficulty}}{{/if}}
+                {{#if l5r5e.summary.difficultyHidden}}
+                    {{localize 'l5r5e.chatdices.difficulty_hidden'}}
+                {{else}}
+                    {{localize 'l5r5e.chatdices.difficulty'}} {{l5r5e.summary.difficulty}}
+                {{/if}}
             </span>
         </header>
     </div>

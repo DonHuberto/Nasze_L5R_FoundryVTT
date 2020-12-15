@@ -2,7 +2,7 @@
 
     <!--TODO Localization !-->
 
-    <h1>Vingt questions</h1>
+    <h1>{{localize 'l5r5e.twenty_questions.title'}}</h1>
     <div>
         Renseignez vos réponses au jeu des vingt questions sur ce formulaire et notez-y des éléments à utiliser
         ultérieurement !
@@ -10,7 +10,7 @@
     </div>
 
 
-    <h2>Partie I: Identité (clan et famille)</h2>
+    <h2>{{localize 'l5r5e.twenty_questions.part1.title'}}</h2>
     <div>
         1. A quel clan appartient votre personnage ? (p. 41)
         <input type="text" name="step1_clan" value="{{actor.identity.clan}}">
@@ -100,7 +100,7 @@
     </div>
 
 
-    <h2>Partie II: Rôle et École</h2>
+    <h2>{{localize 'l5r5e.twenty_questions.part2.title'}}</h2>
     <div>
         3. Quelle est l'École votre personnage, et quel rôle remplit-elle ? (p. 56)
 
@@ -186,27 +186,11 @@
         <!--TODO in feat or props ? -->
         Types de techniques accessibles
         <div>
+            {{localizeFeat 'title'}}
+            {{#each featsList as |feat|}}
+                <label><input type="checkbox" name="step3_feat_{{feat}}">{{localizeFeat feat}}</label>
+            {{/each}}
             <label>
-                <input type="checkbox" name="step3_tech_kata">Kata
-            </label>
-            <label>
-                <input type="checkbox" name="step3_tech_kiho">Kihō
-            </label>
-            <label>
-                <input type="checkbox" name="step3_tech_invocations">Invocations
-            </label>
-            <label>
-                <input type="checkbox" name="step3_tech_rituals">Rituels
-            </label>
-            <label>
-                <input type="checkbox" name="step3_tech_shuji">Shūji
-            </label>
-            <label>
-                <input type="checkbox" name="step3_tech_maho">Mahō
-            </label>
-            <label>
-                <input type="checkbox" name="step3_tech_ninjutsu">Ninjutsu
-            </label>
         </div>
 
         <div>
@@ -246,7 +230,7 @@
     </div>
 
 
-    <h2>Partie III: Honneur et Gloire</h2>
+    <h2>{{localize 'l5r5e.twenty_questions.part3.title'}}</h2>
     <div>
         5. Qui est le seigneur de votre personnage et quel est le devoir de votre personnage envers lui ? (p. 88)
         Choisissez un giri:
@@ -309,7 +293,7 @@
     </div>
 
 
-    <h3>Partie IV: Forces et Faiblesses</h3>
+    <h2>{{localize 'l5r5e.twenty_questions.part4.title'}}</h2>
     <div>
         9. Quelle est à ce jour la plus belle réussite de votre personnage ? (p. 92)
         <textarea name="step9_success"></textarea>
@@ -366,7 +350,7 @@
     </div>
 
 
-    <h3>Partie V: Personnalité et Comportement</h3>
+    <h2>{{localize 'l5r5e.twenty_questions.part5.title'}}</h2>
     <div>
         14. Que remarque-t-on en premier chez votre personnage ? (p. 93)
         <textarea name="step14_first_sight"></textarea>
@@ -388,7 +372,7 @@
     </div>
 
 
-    <h3>Partie VI: Lignée et Famille</h3>
+    <h2>{{localize 'l5r5e.twenty_questions.part6.title'}}</h2>
     <div>
         17. Comment les parents de votre personnage le décriraient-ils ? (p. 95)
         <textarea name="step17_parents_pov"></textarea>
@@ -424,7 +408,7 @@
         <textarea name="step19_firstname"></textarea>
     </div>
 
-    <h3>Partie VII: Mort</h3>
+    <h2>{{localize 'l5r5e.twenty_questions.part7.title'}}</h2>
     <div>
         20. Comment envisagez-vous la mort de votre personnage ? (p. 95)
         <textarea name="step20_death"></textarea>

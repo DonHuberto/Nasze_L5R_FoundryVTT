@@ -121,11 +121,14 @@
         }
     },
     "Item": {
-        "types": ["item", "armor", "weapon", "feat", "xp-advancement"],
+        "types": ["item", "armor", "weapon", "feat", "quality", "xp-advancement"],
         "item": {
             "description": "",
+            "properties": "",
             "quantity": 1,
-            "weight": 0
+            "rarity": 0,
+            "weight": 0,
+            "zeni": 0
         },
         "armor": {
             "quantity": 1,
@@ -133,24 +136,40 @@
             "description": "",
             "armor": {
                 "physical": 0,
-                "spiritual": 0
+                "supernatural": 0
             },
-            "properties": ""
+            "properties": "",
+            "rarity": 0,
+            "zeni": 0
         },
         "weapon": {
-            "quantity": 1,
-            "weight": 0,
-            "description": "",
-            "damage": 0,
+            "category": "",
+            "skill": "melee",
             "range": 0,
-            "properties": ""
+            "damage": 0,
+            "deadliness": 0,
+            "grip_1": "",
+            "grip_2": "",
+            "properties": "",
+            "quantity": 1,
+            "rarity": 0,
+            "weight": 0,
+            "zeni": 0,
+            "description": ""
         },
         "feat": {
             "feat_type": "",
             "xp_used": 0,
             "rank": 0,
             "ring": "",
+            "effects": "",
             "description": ""
+        },
+        "quality": {
+            "description": ""
+        },
+        "xp-advancement": {
+            "description": "TODO"
         }
     }
 }

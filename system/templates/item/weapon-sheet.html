@@ -12,6 +12,34 @@
                 <input type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
             </div>
         </div>
+
+        <div class="header-fields">
+            <div class="resource">
+                <label>{{ localize 'l5r5e.category' }}</label>
+                <input type="text" name="data.category" value="{{data.category}}" />
+            </div>
+            <div class="resource">
+                <label>{{ localize 'l5r5e.skill' }}</label>
+                <select class="attribute-dtype" name="data.skill">
+                    {{#select data.skill}}
+                    {{#each data.skills as |id cat|}}
+                    <option value="{{id}}">{{localizeSkillId id}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+        </div>
+
+        <div class="header-fields">
+            <div class="resource">
+                <label>{{ localize 'l5r5e.rarity' }}</label>
+                <input type="text" name="data.rarity" value="{{data.rarity}}" data-dtype="Number"/>
+            </div>
+            <div class="resource">
+                <label>{{ localize 'l5r5e.zeni' }}</label>
+                <input type="text" name="data.zeni" value="{{data.zeni}}" data-dtype="Number"/>
+            </div>
+        </div>
     </header>
     {{!-- Sheet Body --}}
     <section class="sheet-body">
@@ -31,9 +59,24 @@
                     <input type="text" name="data.range" value="{{data.range}}" data-dtype="Number" placeholder="0"/>
                 </label>
             </fieldset>
+            <fieldset class="weapon-stats-content">
+                <label class="attribute-label">
+                    {{ localize 'l5r5e.deadliness' }}
+                    <input type="text" name="data.deadliness" value="{{data.deadliness}}" data-dtype="Number" placeholder="0"/>
+                </label>
+                <label class="attribute-label">
+                    {{ localize 'l5r5e.grips' }}
+                    <input type="text" name="data.grip_1" value="{{data.grip_1}}" />
+                    <input type="text" name="data.grip_2" value="{{data.grip_2}}" />
+                </label>
+            </fieldset>
             <fieldset>
                 <legend class="text-block-header">{{ localize  'l5r5e.properties' }}</legend>
                 {{editor content=data.properties target="data.properties" button=true owner=owner editable=editable}}
+            </fieldset>
+            <fieldset>
+                <legend class="text-block-header">{{ localize  'l5r5e.description' }}</legend>
+                {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
             </fieldset>
         </article>
     </section>
