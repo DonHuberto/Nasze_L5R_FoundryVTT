@@ -1,5 +1,9 @@
-<tr class="flexrow row">
+<tr class="flexrow row advancement" data-advancement-id="{{advancement._id}}">
     <td class="name" name="advancement.name">{{ advancement.name }}</td>
     <td class="xp" name="advancement.xp">{{ advancement.data.xp_used }}</td>
     <td class="rank" name="advancement.rank">{{ advancement.data.rank }}</td>
+    <td class="actions">
+        <li class="item-control advancement-edit" title="Edit advancement"><i class="fas fa-edit"></i></li>
+        <li class="item-control advancement-delete" title="Delete advancement"><i class="fas fa-trash"></i></li>
+    </td>
 </tr>

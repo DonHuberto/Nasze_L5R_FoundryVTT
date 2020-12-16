@@ -130,8 +130,20 @@ export class BaseSheetL5r5e extends ActorSheet {
         });
 
         // *** Advancement ***
-        html.find(".acquisition-add").on("click", (ev) => {
+        html.find(".advancement-add").on("click", (ev) => {
             this._createAdvancement();
+        });
+
+        html.find(".advancement-edit").on("click", (ev) => {
+            const li = $(ev.currentTarget).parents(".advancement");
+            const advancementId = li.data("advancementId");
+            const advancement = this.actor.getOwnedItem(advancementId);
+            advancement.sheet.render(true);
+        });
+
+        html.find(".advancement-delete").on("click", (ev) => {
+            const li = $(ev.currentTarget).parents(".advancement");
+            this.actor.deleteOwnedItem(li.data("advancementId"));
         });
     }
 

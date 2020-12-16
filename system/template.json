@@ -106,7 +106,7 @@
             "twenty_questions": {}
         },
         "npc": {
-            "templates": ["rings", "social", "conflict"],
+            "templates": ["rings", "social", "techniques", "conflict"],
             "type": "minion",
             "attitude": "",
             "notes": "",
