@@ -101,7 +101,6 @@
         },
         "character": {
             "templates": ["identity", "rings", "social", "skills", "techniques", "conflict", "xp"],
-            "advancements": [],
             "zeni": 0,
             "notes": "",
             "twenty_questions": {}
@@ -189,7 +188,9 @@
             "description": ""
         },
         "advancement": {
-            "description": "TODO"
+            "xp_used": 0,
+            "rank": "",
+            "description": ""
         }
     }
 }

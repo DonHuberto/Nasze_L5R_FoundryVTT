@@ -24,9 +24,11 @@
             </tr>
         </thead>
         <tbody class="flex">
-            {{#each data.advancements as |acquisition acquisitionId| }}
-                {{> 'systems/l5r5e/templates/sheets/actor/advancement.html' acquisition=acquisition }}
-            {{/each}}
+        {{#each actor.items as |advancement advancementId|}}
+            {{#if advancement.isAdvancement }}
+                {{> 'systems/l5r5e/templates/sheets/actor/advancement.html' advancement=advancement }}
+            {{/if}}
+        {{/each}}
         </tbody>
     </table>
 </fieldset>

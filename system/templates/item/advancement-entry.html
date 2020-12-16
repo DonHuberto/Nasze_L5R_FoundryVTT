@@ -1,0 +1,9 @@
+<li class="item advancement flexcol" data-advancement-id="{{advancement._id}}">
+    <ul class="item-header advancement-controls">
+        <li class="item-img"><img src="{{advancement.img}}" title="{{advancement.name}}" width="32px" height="32px"/></li>
+        <li class="item-name">{{ advancement.name }}</li>
+        <li class="item-control advancement-edit" title="Edit advancement"><i class="fas fa-edit"></i></li>
+        <li class="item-control advancement-delete" title="Delete advancement"><i class="fas fa-trash"></i></li>
+    </ul>
+    <div class="item-description">{{{ advancement.data.description }}}</div>
+</li>

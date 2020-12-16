@@ -90,6 +90,7 @@
             "physical": "physical",
             "supernatural": "supernatural"
         },
+        "add": "Add",
         "items": "Equipo",
         "feats": "Feats",
         "techniques": {

@@ -35,6 +35,9 @@ export const PreloadTemplates = async function () {
         "systems/l5r5e/templates/item/qualities.html",
         "systems/l5r5e/templates/item/quality-sheet.html",
         "systems/l5r5e/templates/item/quality-entry.html",
+        "systems/l5r5e/templates/item/advancements.html",
+        "systems/l5r5e/templates/item/advancement-sheet.html",
+        "systems/l5r5e/templates/item/advancement-entry.html",
     ];
 
     return loadTemplates(templatePaths);

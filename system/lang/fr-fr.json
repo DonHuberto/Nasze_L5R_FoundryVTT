@@ -90,6 +90,7 @@
             "physical": "Physique",
             "supernatural": "Spirituelle"
         },
+        "add": "Ajouter",
         "items": "Objets",
         "feats": "Prouesses",
         "techniques": {
