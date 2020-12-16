@@ -13,7 +13,7 @@
     <h2>{{localize 'l5r5e.twenty_questions.part1.title'}}</h2>
     <div>
         1. A quel clan appartient votre personnage ? (p. 41)
-        <input type="text" name="step1_clan" value="{{actor.identity.clan}}">
+        <input type="text" name="step1_clan" value="{{datas.step1_clan}}">
 
         <div>
             Augmentation d'Anneau (1)
@@ -42,13 +42,13 @@
         <div>
             <label>
                 Statut
-                <input type="number" name="step1_social_status" min="0" max="100"  value="{{actor.social.status}}">
+                <input type="number" name="step1_social_status" min="0" max="100" value="{{datas.step1_social_status}}" data-dtype="Number" placeholder="0">
             </label>
         </div>
     </div>
     <div>
         2. A quelle famille appartient votre personnage ? (p. 49)
-        <input type="text" name="step2_family" value="{{actor.identity.family}}">
+        <input type="text" name="step2_family" value="{{datas.step2_family}}">
 
         <div>
             Augmentation d'Anneau (1)
@@ -86,15 +86,14 @@
         <div>
             <label>
                 Fortune de départ :
-                <input type="text" name="step2_wealth">
-                <!-- TODO add to template.json -->
+                <input type="text" name="step2_wealth" value="{{datas.step2_wealth}}" data-dtype="Number" placeholder="0">
             </label>
         </div>
 
         <div>
             <label>
                 Gloire
-                <input type="number" name="step2_social_glory" min="0" max="100" value="{{actor.social.glory}}">
+                <input type="number" name="step2_social_glory" min="0" max="100" value="{{datas.step2_social_glory}}" data-dtype="Number" placeholder="0">
             </label>
         </div>
     </div>
@@ -106,12 +105,12 @@
 
         <label>
             École
-            <input type="text" name="step3_school" value="{{actor.identity.school}}">
+            <input type="text" name="step3_school" value="{{datas.step3_school}}">
         </label>
 
         <label>
             Rôles
-            <input type="text" name="step3_roles" value="{{actor.identity.roles}}">
+            <input type="text" name="step3_roles" value="{{datas.step3_roles}}">
         </label>
 
         <div>
@@ -190,35 +189,34 @@
             {{#each featsList as |feat|}}
                 <label><input type="checkbox" name="step3_feat_{{feat}}">{{localizeFeat feat}}</label>
             {{/each}}
-            <label>
         </div>
 
         <div>
             Techniques de départ (2-5)
-            <textarea name="step3_feats"></textarea>
+            <textarea name="step3_feats">{{datas.step3_feats}}</textarea>
             <!-- TODO Drag n drop feats-->
         </div>
 
         <div>
             Capacité d'école
-            <textarea name="step3_school_ability"></textarea>
+            <textarea name="step3_school_ability">{{datas.step3_school_ability}}</textarea>
         </div>
 
         <div>
             Équipement de départ
-            <textarea name="step3_equipment"></textarea>
+            <textarea name="step3_equipment">{{datas.step3_equipment}}</textarea>
         </div>
     </div>
     <div>
         <label>
             Honneur
-            <input type="number" name="step3_social_honor" min="0" max="100" value="{{actor.social.honor}}">
+            <input type="number" name="step3_social_honor" min="0" max="100" value="{{datas.step3_social_honor}}" data-dtype="Number" placeholder="0">
         </label>
     </div>
 
     <div>
         4. De quelle manière votre personnage se démarque-t-il au sein de son école ? (p. 88)
-        <textarea name="step4_stand_out"></textarea>
+        <textarea name="step4_stand_out">{{datas.step4_stand_out}}</textarea>
 
         Augmentation d'Anneau (1)
         <select name="rings">
@@ -234,16 +232,16 @@
     <div>
         5. Qui est le seigneur de votre personnage et quel est le devoir de votre personnage envers lui ? (p. 88)
         Choisissez un giri:
-        <textarea name="step5_social_giri">{{actor.social.giri}}</textarea>
+        <textarea name="step5_social_giri">{{datas.step5_social_giri}}</textarea>
     </div>
     <div>
         6. Que désire votre personnage, et en quoi ce désir risque-t-il de l’empêcher d’accomplir son devoir ? (p. 90)
         Choisissez un ninjō:
-        <textarea name="step6_social_ninjo">{{actor.social.ninjo}}</textarea>
+        <textarea name="step6_social_ninjo">{{datas.step6_social_ninjo}}</textarea>
     </div>
     <div>
         7. Quelle relation votre personnage entretient-il avec son clan ? (p. 91)
-        <textarea name="step7_clan_relations"></textarea>
+        <textarea name="step7_clan_relations">{{datas.step7_clan_relations}}</textarea>
 
         <div>
             Augmentation de compétence (1)
@@ -262,13 +260,13 @@
 
             <label>
                 Augmentation de la gloire (+5)
-                <input type="number" name="step7_social_add_glory" value="0">
+                <input type="number" name="step7_social_add_glory" value="{{datas.step7_social_add_glory}}" data-dtype="Number" placeholder="0">
             </label>
         </div>
     </div>
     <div>
         8. Que pense votre personnage du bushido ? (p. 91)
-        <textarea name="step8_bushido"></textarea>
+        <textarea name="step8_bushido">{{datas.step8_bushido}}</textarea>
 
         <div>
             Augmentation de compétence (1)
@@ -286,8 +284,8 @@
             OU
 
             <label>
-                Augmentation de l'honneur
-                <input type="number" name="step8_social_add_honor" value="0">
+                Augmentation de l'honneur (+10)
+                <input type="number" name="step8_social_add_honor" value="{{datas.step8_social_add_honor}}" data-dtype="Number" placeholder="0">
             </label>
         </div>
     </div>
@@ -296,35 +294,35 @@
     <h2>{{localize 'l5r5e.twenty_questions.part4.title'}}</h2>
     <div>
         9. Quelle est à ce jour la plus belle réussite de votre personnage ? (p. 92)
-        <textarea name="step9_success"></textarea>
+        <textarea name="step9_success">{{datas.step9_success}}</textarea>
 
         Aptitude (1)
-        <textarea name="step9_distinction"></textarea>
+        <textarea name="step9_distinction">{{datas.step9_distinction}}</textarea>
     </div>
     <div>
         10. Quel est le frein principal dans la vie de votre personnage ? (p. 92)
-        <textarea name="step10_difficulty"></textarea>
+        <textarea name="step10_difficulty">{{datas.step10_difficulty}}</textarea>
 
         Coup du sort (1)
-        <textarea name="step10_adversity"></textarea>
+        <textarea name="step10_adversity">{{datas.step10_adversity}}</textarea>
     </div>
     <div>
         11. Quelle activité apaise le plus votre personnage ? (p. 93)
-        <textarea name="step11_calms"></textarea>
+        <textarea name="step11_calms">{{datas.step11_calms}}</textarea>
 
         Passion (1)
-        <textarea name="step11_passion"></textarea>
+        <textarea name="step11_passion">{{datas.step11_passion}}</textarea>
     </div>
     <div>
         12. Quelle inquiétude, crainte ou manie tracasse le plus votre personnage ? (p. 93)
-        <textarea name="step12_worries"></textarea>
+        <textarea name="step12_worries">{{datas.step12_worries}}</textarea>
 
         Défaillance (1)
-        <textarea name="step12_failure"></textarea>
+        <textarea name="step12_failure">{{datas.step12_failure}}</textarea>
     </div>
     <div>
         13. De qui votre personnage a-t-il le plus appris au cours de sa vie ? (p. 93)
-        <textarea name="step13_most_learn"></textarea>
+        <textarea name="step13_most_learn">{{datas.step13_most_learn}}</textarea>
 
         <div>
             Augmentation de compétence (1)
@@ -340,12 +338,12 @@
             </select>
 
             Désavantage (1)
-            <textarea name="step13_disadvantage"></textarea>
+            <textarea name="step13_disadvantage">{{datas.step13_disadvantage}}</textarea>
         </div>
         <div>
             OU
             Avantage (1)
-            <textarea name="step13_advantage"></textarea>
+            <textarea name="step13_advantage">{{datas.step13_advantage}}</textarea>
         </div>
     </div>
 
@@ -353,29 +351,29 @@
     <h2>{{localize 'l5r5e.twenty_questions.part5.title'}}</h2>
     <div>
         14. Que remarque-t-on en premier chez votre personnage ? (p. 93)
-        <textarea name="step14_first_sight"></textarea>
+        <textarea name="step14_first_sight">{{datas.step14_first_sight}}</textarea>
 
         Particularités
-        <textarea name="step14_special_features"></textarea>
+        <textarea name="step14_special_features">{{datas.step14_special_features}}</textarea>
     </div>
     <div>
         15. Comment votre personnage réagit-il aux situations stressantes ? (p. 94)
-        <textarea name="step15_stress"></textarea>
+        <textarea name="step15_stress">{{datas.step15_stress}}</textarea>
     </div>
     <div>
         16. Quelles relations votre personnage entretient-il avec des familles, des organisations, des traditions et des
         clans différents ? (p. 94)
-        <textarea name="step16_relations"></textarea>
+        <textarea name="step16_relations">{{datas.step16_relations}}</textarea>
 
         Objet (Rareté inférieur ou égale à 7)
-        <textarea name="step16_item"></textarea>
+        <textarea name="step16_item">{{datas.step16_item}}</textarea>
     </div>
 
 
     <h2>{{localize 'l5r5e.twenty_questions.part6.title'}}</h2>
     <div>
         17. Comment les parents de votre personnage le décriraient-ils ? (p. 95)
-        <textarea name="step17_parents_pov"></textarea>
+        <textarea name="step17_parents_pov">{{datas.step17_parents_pov}}</textarea>
 
         Augmentation de compétence (1)
         <select name="skills">
@@ -391,31 +389,31 @@
     </div>
     <div>
         18. En l’honneur de qui votre personnage a-t-il été prénommé ? (p. 95)
-        <textarea name="step18_heritage_name"></textarea>
+        <textarea name="step18_heritage_name">{{datas.step18_heritage_name}}</textarea>
 
         <label>
             Résultat du 1er D10 [[/r 1d10]]
-            <input type="number" name="step18_heritage_1">
+            <input type="number" name="step18_heritage_1" value="{{datas.step18_heritage_1}}" data-dtype="Number">
         </label>
 
         <label>
             Résultat du 2eme D10 [[/r 1d10]]
-            <input type="number" name="step18_heritage_2">
+            <input type="number" name="step18_heritage_2" value="{{datas.step18_heritage_2}}" data-dtype="Number">
         </label>
     </div>
     <div>
         19. Quel est le prénom de votre personnage ? (p. 95)
-        <textarea name="step19_firstname"></textarea>
+        <textarea name="step19_firstname">{{datas.step19_firstname}}</textarea>
     </div>
 
     <h2>{{localize 'l5r5e.twenty_questions.part7.title'}}</h2>
     <div>
         20. Comment envisagez-vous la mort de votre personnage ? (p. 95)
-        <textarea name="step20_death"></textarea>
+        <textarea name="step20_death">{{datas.step20_death}}</textarea>
     </div>
 
     <div class="form-group">
-        <button name="roll" type="submit">
+        <button name="submit" type="submit">
             Générer un nouveau personnage <i class='fas fa-arrow-circle-right'></i>
         </button>
     </div>

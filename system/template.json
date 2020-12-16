@@ -3,11 +3,13 @@
         "types": ["character", "npc"],
         "templates": {
             "identity": {
-                "clan": "",
-                "family": "",
-                "school": "",
-                "school_rank": 0,
-                "roles": ""
+                "identity": {
+                    "clan": "",
+                    "family": "",
+                    "school": "",
+                    "school_rank": 0,
+                    "roles": ""
+                }
             },
             "rings": {
                 "rings": {
@@ -83,16 +85,28 @@
                 "xp_total": 0,
                 "xp_spent": 0,
                 "xp_saved": 0
+            },
+            "techniques": {
+                "techniques": {
+                    "kata": false,
+                    "kiho": false,
+                    "invocation": false,
+                    "ritual": false,
+                    "shuji": false,
+                    "maho": false,
+                    "ninjutsu": false
+                }
             }
         },
         "character": {
-            "templates": ["identity", "rings", "social", "skills", "conflict", "xp"],
+            "templates": ["identity", "rings", "social", "skills", "techniques", "conflict", "xp"],
+            "zeni": 0,
             "notes": "",
-            "feats": []
+            "feats": [],
+            "twenty_questions": {}
         },
         "npc": {
             "templates": ["rings", "social", "conflict"],
-            "name": "",
             "type": "minion",
             "attitude": "",
             "notes": "",

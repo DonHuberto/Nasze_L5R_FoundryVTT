@@ -2,6 +2,7 @@ import { L5R5E } from "../l5r5e-config.js";
 
 /**
  * L5R Twenty Questions form
+ *
  * @extends {FormApplication}
  */
 export class TwentyQuestionsDialog extends FormApplication {
@@ -9,6 +10,11 @@ export class TwentyQuestionsDialog extends FormApplication {
      * Current actor data
      */
     actor = null;
+
+    /**
+     * Current form datas
+     */
+    datas = {};
 
     /**
      * Assign the default options
@@ -19,7 +25,7 @@ export class TwentyQuestionsDialog extends FormApplication {
             id: "l5r5e-twenty-questions-dialog",
             classes: ["l5r5e", "twenty-questions-dialog"],
             template: CONFIG.L5r5e.paths.templates + "sheets/twenty-questions-dialog.html",
-            title: "L5R Twenty Questions", // TODO Localize
+            title: game.i18n.localize("l5r5e.twenty_questions.title"),
             width: 600,
             height: 600,
             resizable: true,
@@ -32,6 +38,7 @@ export class TwentyQuestionsDialog extends FormApplication {
     constructor(options = null, actor = null) {
         super(options);
         this.actor = actor;
+        this.datas = this._initFormDatas(actor);
     }
 
     /**
@@ -44,8 +51,8 @@ export class TwentyQuestionsDialog extends FormApplication {
             ...super.getData(options),
             elementsList: this._getElements(),
             skillsList: this._getSkills(),
-            featsList: CONFIG.L5r5e.feats,
-            actor: this.actor.data.data,
+            featsList: CONFIG.L5r5e.techniques,
+            datas: this.datas,
         };
     }
 
@@ -86,63 +93,75 @@ export class TwentyQuestionsDialog extends FormApplication {
      */
     async _updateObject(event, formData) {
         // this.actor
-        const actorTmp = this.actor.data.data; //.clone();
+        const actorDatas = this.actor.data.data;
+        //this.actor.data.twenty_questions = formData; // TODO a tester
 
-        console.log(actorTmp);
+        actorDatas.name = (formData.step2_family + " " + formData.step19_firstname).trim();
+        actorDatas.zeni = formData.step2_wealth;
+        actorDatas.identity = {
+            ...actorDatas.identity,
+            clan: formData.step1_clan,
+            family: formData.step2_family,
+            school: formData.step3_school,
+            roles: formData.step3_roles,
+        };
 
-        actorTmp.identity.clan = formData.step1_clan;
-        actorTmp.social.status = formData.step1_social_status;
-        actorTmp.identity.family = formData.step2_family;
-        // actorTmp = formData.step2_wealth;
-        actorTmp.social.glory = formData.step2_social_glory;
-        actorTmp.identity.school = formData.step3_school;
-        actorTmp.identity.roles = formData.step3_roles;
-        // actorTmp = formData.step3_feat_kata;
-        // actorTmp = formData.step3_feat_kiho;
-        // actorTmp = formData.step3_feat_invocations;
-        // actorTmp = formData.step3_feat_rituals;
-        // actorTmp = formData.step3_feat_shuji;
-        // actorTmp = formData.step3_feat_maho;
-        // actorTmp = formData.step3_feat_ninjutsu;
-        // actorTmp = formData.step3_feats;
-        // actorTmp = formData.step3_school_ability;
-        // actorTmp = formData.step3_equipment;
-        actorTmp.social.honor = formData.step3_social_honor;
-        // actorTmp = formData.step4_stand_out;
-        actorTmp.social.giri = formData.step5_social_giri;
-        actorTmp.social.ninjo = formData.step6_social_ninjo;
-        // actorTmp = formData.step7_clan_relations;
-        // actorTmp = formData.step7_social_add_glory;
-        // actorTmp = formData.step8_bushido;
-        // actorTmp = formData.step8_social_add_honor;
-        // actorTmp = formData.step9_success;
-        // actorTmp = formData.step9_distinction;
-        // actorTmp = formData.step10_difficulty;
-        // actorTmp = formData.step10_adversity;
-        // actorTmp = formData.step11_calms;
-        // actorTmp = formData.step11_passion;
-        // actorTmp = formData.step12_worries;
-        // actorTmp = formData.step12_failure;
-        // actorTmp = formData.step13_most_learn;
-        // actorTmp = formData.step13_disadvantage;
-        // actorTmp = formData.step13_advantage;
-        // actorTmp = formData.step14_first_sight;
-        // actorTmp = formData.step14_special_features;
-        // actorTmp = formData.step15_stress;
-        // actorTmp = formData.step16_relations;
-        // actorTmp = formData.step16_item;
-        // actorTmp = formData.step17_parents_pov;
-        // actorTmp = formData.step18_heritage_name;
-        // actorTmp = formData.step18_heritage_1;
-        // actorTmp = formData.step18_heritage_2;
-        actorTmp.name = actorTmp.identity.family + " " + formData.step19_firstname;
-        // actorTmp = formData.step20_death;
+        actorDatas.social = {
+            ...actorDatas.social,
+            status: formData.step1_social_status,
+            glory: formData.step2_social_glory,
+            honor: formData.step3_social_honor,
+            giri: formData.step5_social_giri,
+            ninjo: formData.step6_social_ninjo,
+        };
+
+        actorDatas.techniques = {
+            kata: !!formData.step3_feat_kata,
+            kiho: formData.step3_feat_kiho,
+            invocation: !!formData.step3_feat_invocation,
+            ritual: !!formData.step3_feat_ritual,
+            shuji: !!formData.step3_feat_shuji,
+            maho: !!formData.step3_feat_maho,
+            ninjutsu: !!formData.step3_feat_ninjutsu,
+        };
+
+        // actorDatas = formData.step3_feats;
+        // actorDatas = formData.step3_school_ability;
+        // actorDatas = formData.step3_equipment;
+        // actorDatas = formData.step4_stand_out;
+        // actorDatas = formData.step7_clan_relations;
+        // actorDatas = formData.step7_social_add_glory;
+        // actorDatas = formData.step8_bushido;
+        // actorDatas = formData.step8_social_add_honor;
+        // actorDatas = formData.step9_success;
+        // actorDatas = formData.step9_distinction;
+        // actorDatas = formData.step10_difficulty;
+        // actorDatas = formData.step10_adversity;
+        // actorDatas = formData.step11_calms;
+        // actorDatas = formData.step11_passion;
+        // actorDatas = formData.step12_worries;
+        // actorDatas = formData.step12_failure;
+        // actorDatas = formData.step13_most_learn;
+        // actorDatas = formData.step13_disadvantage;
+        // actorDatas = formData.step13_advantage;
+        // actorDatas = formData.step14_first_sight;
+        // actorDatas = formData.step14_special_features;
+        // actorDatas = formData.step15_stress;
+        // actorDatas = formData.step16_relations;
+        // actorDatas = formData.step16_item;
+        // actorDatas = formData.step17_parents_pov;
+        // actorDatas = formData.step18_heritage_name;
+        // actorDatas = formData.step18_heritage_1;
+        // actorDatas = formData.step18_heritage_2;
+        // actorDatas = formData.step20_death;
 
         const rings = this._filterRingOrSkills(formData.rings);
         const skills = this._filterRingOrSkills(formData.skills);
 
+        console.log(actorDatas);
+
         // TODO
-        console.log(rings, skills, actorTmp, formData);
+        console.log(rings, skills, formData, actorDatas, this.actor);
 
         // return this.close();
     }
@@ -189,5 +208,39 @@ export class TwentyQuestionsDialog extends FormApplication {
             });
         });
         return skills;
+    }
+
+    /**
+     * Initialize form array
+     * @private
+     */
+    _initFormDatas(actor) {
+        const actorDatas = actor.data.data;
+
+        // already 20q struct ?
+        if (actorDatas.twenty_questions?.step1_clan) {
+            return actorDatas.twenty_questions;
+        }
+
+        // If not fill some values
+        return {
+            step1_clan: actorDatas.identity.clan,
+            step1_social_status: actorDatas.social.status,
+            step2_family: actorDatas.identity.family,
+            step2_social_glory: actorDatas.social.glory,
+            step3_school: actorDatas.identity.school,
+            step3_roles: actorDatas.identity.roles,
+            step3_feat_kata: actorDatas.techniques.kata,
+            step3_feat_kiho: actorDatas.techniques.kiho,
+            step3_feat_invocations: actorDatas.techniques.invocation,
+            step3_feat_rituals: actorDatas.techniques.ritual,
+            step3_feat_shuji: actorDatas.techniques.shuji,
+            step3_feat_maho: actorDatas.techniques.maho,
+            step3_feat_ninjutsu: actorDatas.techniques.ninjutsu,
+            step3_social_honor: actorDatas.social.honor,
+            step5_social_giri: actorDatas.social.giri,
+            step6_social_ninjo: actorDatas.social.ninjo,
+            step19_firstname: actor.data.name.replace(/^(?:\w+\s+)?(.+)$/gi, "$1") || "",
+        };
     }
 }
