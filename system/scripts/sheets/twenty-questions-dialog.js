@@ -51,7 +51,7 @@ export class TwentyQuestionsDialog extends FormApplication {
             ...super.getData(options),
             elementsList: this._getElements(),
             skillsList: this._getSkills(),
-            featsList: CONFIG.L5r5e.techniques,
+            techniquesList: CONFIG.L5r5e.techniques,
             datas: this.datas,
         };
     }
@@ -116,16 +116,16 @@ export class TwentyQuestionsDialog extends FormApplication {
         };
 
         actorDatas.techniques = {
-            kata: !!formData.step3_feat_kata,
-            kiho: formData.step3_feat_kiho,
-            invocation: !!formData.step3_feat_invocation,
-            ritual: !!formData.step3_feat_ritual,
-            shuji: !!formData.step3_feat_shuji,
-            maho: !!formData.step3_feat_maho,
-            ninjutsu: !!formData.step3_feat_ninjutsu,
+            kata: !!formData.step3_technique_kata,
+            kiho: formData.step3_technique_kiho,
+            invocation: !!formData.step3_technique_invocation,
+            ritual: !!formData.step3_technique_ritual,
+            shuji: !!formData.step3_technique_shuji,
+            maho: !!formData.step3_technique_maho,
+            ninjutsu: !!formData.step3_technique_ninjutsu,
         };
 
-        // actorDatas = formData.step3_feats;
+        // actorDatas = formData.step3_techniques;
         // actorDatas = formData.step3_school_ability;
         // actorDatas = formData.step3_equipment;
         // actorDatas = formData.step4_stand_out;
@@ -230,13 +230,13 @@ export class TwentyQuestionsDialog extends FormApplication {
             step2_social_glory: actorDatas.social.glory,
             step3_school: actorDatas.identity.school,
             step3_roles: actorDatas.identity.roles,
-            step3_feat_kata: actorDatas.techniques.kata,
-            step3_feat_kiho: actorDatas.techniques.kiho,
-            step3_feat_invocations: actorDatas.techniques.invocation,
-            step3_feat_rituals: actorDatas.techniques.ritual,
-            step3_feat_shuji: actorDatas.techniques.shuji,
-            step3_feat_maho: actorDatas.techniques.maho,
-            step3_feat_ninjutsu: actorDatas.techniques.ninjutsu,
+            step3_technique_kata: actorDatas.techniques.kata,
+            step3_technique_kiho: actorDatas.techniques.kiho,
+            step3_technique_invocation: actorDatas.techniques.invocation,
+            step3_technique_ritual: actorDatas.techniques.ritual,
+            step3_technique_shuji: actorDatas.techniques.shuji,
+            step3_technique_maho: actorDatas.techniques.maho,
+            step3_technique_ninjutsu: actorDatas.techniques.ninjutsu,
             step3_social_honor: actorDatas.social.honor,
             step5_social_giri: actorDatas.social.giri,
             step6_social_ninjo: actorDatas.social.ninjo,

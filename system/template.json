@@ -94,15 +94,16 @@
                     "ritual": false,
                     "shuji": false,
                     "maho": false,
-                    "ninjutsu": false
+                    "ninjutsu": false,
+                    "list": []
                 }
             }
         },
         "character": {
             "templates": ["identity", "rings", "social", "skills", "techniques", "conflict", "xp"],
+            "advancements": [],
             "zeni": 0,
             "notes": "",
-            "feats": [],
             "twenty_questions": {}
         },
         "npc": {
@@ -130,12 +131,11 @@
                 "scholar": 0,
                 "social": 0,
                 "trade": 0
-            },
-            "feats": []
+            }
         }
     },
     "Item": {
-        "types": ["item", "armor", "weapon", "feat", "quality", "advantage", "disadvantage", "advancement"],
+        "types": ["item", "armor", "weapon", "technique", "quality", "advantage", "disadvantage", "advancement"],
         "item": {
             "description": "",
             "properties": "",
@@ -171,8 +171,8 @@
             "zeni": 0,
             "description": ""
         },
-        "feat": {
-            "feat_type": "",
+        "technique": {
+            "technique_type": "",
             "xp_used": 0,
             "rank": 0,
             "ring": "",

@@ -185,16 +185,16 @@
         <!--TODO in feat or props ? -->
         Types de techniques accessibles
         <div>
-            {{localizeFeat 'title'}}
-            {{#each featsList as |feat|}}
-                <label><input type="checkbox" name="step3_feat_{{feat}}">{{localizeFeat feat}}</label>
+            {{localizeTechnique 'title'}}
+            {{#each techniquesList as |technique|}}
+                <label><input type="checkbox" name="step3_technique_{{technique}}">{{localizeTechnique technique}}</label>
             {{/each}}
         </div>
 
         <div>
             Techniques de départ (2-5)
-            <textarea name="step3_feats">{{datas.step3_feats}}</textarea>
-            <!-- TODO Drag n drop feats-->
+            <textarea name="step3_techniques">{{datas.step3_techniques}}</textarea>
+            <!-- TODO Drag n drop techniques-->
         </div>
 
         <div>

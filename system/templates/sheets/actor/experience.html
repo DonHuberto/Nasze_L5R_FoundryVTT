@@ -24,8 +24,8 @@
             </tr>
         </thead>
         <tbody class="flex">
-            {{#each data.feats as |feat featId| }}
-                {{> 'systems/l5r5e/templates/sheets/actor/acquisition.html' acquisition=feat }}
+            {{#each data.advancements as |acquisition acquisitionId| }}
+                {{> 'systems/l5r5e/templates/sheets/actor/advancement.html' acquisition=acquisition }}
             {{/each}}
         </tbody>
     </table>

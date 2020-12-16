@@ -91,8 +91,10 @@
             "supernatural": "supernatural"
         },
         "items": "Equipo",
-        "feats": {
-            "title": "Rasgos",
+        "feats": "Feats",
+        "techniques": {
+            "title": "Techniques",
+            "title_new": "Nuevo Rasgo",
             "kata": "Kata",
             "kiho": "Kihõ",
             "invocation": "Invocation",
@@ -104,7 +106,6 @@
         "skill": "Habilidad",
         "level": "Nivel",
         "approaches": "Planteamientos",
-        "featplaceholdername": "Nuevo Rasgo",
         "notes": "Notas",
         "inventory": "Inventario",
         "equipment": "Equipo",

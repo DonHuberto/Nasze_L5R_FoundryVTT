@@ -91,8 +91,10 @@
             "supernatural": "Spirituelle"
         },
         "items": "Objets",
-        "feats": {
+        "feats": "Prouesses",
+        "techniques": {
             "title": "Techniques",
+            "title_new": "Nouvelle Technique",
             "kata": "Kata",
             "kiho": "Kihõ",
             "invocation": "Invocation",
@@ -104,7 +106,6 @@
         "skill": "Compétence",
         "level": "Niveau",
         "approaches": "Approches",
-        "featplaceholdername": "Nouvelle technique",
         "notes": "Notes",
         "inventory": "Inventaire",
         "equipment": "Équipement",

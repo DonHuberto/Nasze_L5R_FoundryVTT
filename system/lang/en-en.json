@@ -91,8 +91,10 @@
             "supernatural": "supernatural"
         },
         "items": "Items",
-        "feats": {
-            "title": "Feats",
+        "feats": "Feats",
+        "techniques": {
+            "title": "Techniques",
+            "title_new": "New Technique",
             "kata": "Kata",
             "kiho": "Kihõ",
             "invocation": "Invocation",
@@ -104,7 +106,6 @@
         "skill": "Skill",
         "level": "Level",
         "approaches": "Approaches",
-        "featplaceholdername": "New Feat",
         "notes": "Notes",
         "inventory": "Inventory",
         "equipment": "Equipment",

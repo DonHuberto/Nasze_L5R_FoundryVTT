@@ -10,9 +10,9 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         this._prepareItems(sheetData);
 
-        const feats = sheetData.items.filter((item) => item.type === "feat");
+        const techniques = sheetData.items.filter((item) => item.type === "technique");
 
-        sheetData.data.feats = feats;
+        sheetData.data.techniques.list = techniques;
         sheetData.data.stances = CONFIG.L5r5e.stances;
 
         return sheetData;
@@ -44,16 +44,24 @@ export class BaseSheetL5r5e extends ActorSheet {
                     item.isEquipment = true;
                     break;
 
-                case "feat":
-                    item.isFeat = true;
+                case "technique":
+                    item.isTechnique = true;
                     break;
 
                 case "quality":
                     item.isQuality = true;
                     break;
 
-                case "xp-advancement":
-                    item.isXpAdvancement = true;
+                case "advancement":
+                    item.isAdvancement = true;
+                    break;
+
+                case "advantage":
+                    item.isAdvantage = true;
+                    break;
+
+                case "disadvantage":
+                    item.isDisadvantage = true;
                     break;
 
                 default:
@@ -66,7 +74,7 @@ export class BaseSheetL5r5e extends ActorSheet {
     /**
      * TODO
      */
-    _prepareFeats() {}
+    _prepareTechniques() {}
 
     /**
      * Subscribe to events from the sheet.
@@ -80,6 +88,7 @@ export class BaseSheetL5r5e extends ActorSheet {
             return;
         }
 
+        // *** Items ***
         // Update Inventory Item
         html.find(".item-edit").on("click", (ev) => {
             const li = $(ev.currentTarget).parents(".item");
@@ -94,60 +103,75 @@ export class BaseSheetL5r5e extends ActorSheet {
             this.actor.deleteOwnedItem(li.data("itemId"));
         });
 
-        html.find(".feat-add").on("click", (ev) => {
-            this._createFeat();
+        // *** Techniques ***
+        html.find(".technique-add").on("click", (ev) => {
+            this._createTechnique();
         });
 
-        html.find(".feat-delete").on("click", (ev) => {
-            const li = $(ev.currentTarget).parents(".feat");
-            const featId = li.data("featId");
-            console.log("Remove feat" + featId + " clicked");
+        html.find(".technique-delete").on("click", (ev) => {
+            const li = $(ev.currentTarget).parents(".technique");
+            const techniqueId = li.data("techniqueId");
+            console.log("Remove technique" + techniqueId + " clicked");
 
-            this.actor.deleteOwnedItem(featId);
+            this.actor.deleteOwnedItem(techniqueId);
         });
 
-        html.find(".feat-edit").on("click", (ev) => {
-            const li = $(ev.currentTarget).parents(".feat");
-            const featId = li.data("featId");
-            const feat = this.actor.getOwnedItem(featId);
-            feat.sheet.render(true);
+        html.find(".technique-edit").on("click", (ev) => {
+            const li = $(ev.currentTarget).parents(".technique");
+            const techniqueId = li.data("techniqueId");
+            const technique = this.actor.getOwnedItem(techniqueId);
+            technique.sheet.render(true);
         });
 
+        // *** Skills ***
         html.find(".skill-name").on("click", (ev) => {
             const li = $(ev.currentTarget).parents(".skill");
-            this._onSkillClicked(li.data("skill"));
+            new game.l5r5e.DicePickerDialog({ skillId: li.data("skill"), actor: this.actor }).render(true);
         });
 
+        // *** Advancement ***
         html.find(".acquisition-add").on("click", (ev) => {
-            this._createFeat();
+            this._createAdvancement();
         });
     }
 
     /**
      * Creates a new feat for the character and shows a window to edit it.
      */
-    async _createFeat() {
+    async _createTechnique() {
         const data = {
-            name: game.i18n.localize("l5r5e.featplaceholdername"),
-            type: "feat",
+            name: game.i18n.localize("l5r5e.techniques.title_new"),
+            type: "technique",
         };
         const created = await this.actor.createEmbeddedEntity("OwnedItem", data);
-        const feat = this.actor.getOwnedItem(created._id);
+        const technique = this.actor.getOwnedItem(created._id);
 
         // Default values
-        //feat.rank = 1;
-        //feat.xp_used = 0;
+        //technique.rank = 1;
+        //technique.xp_used = 0;
 
-        feat.sheet.render(true);
+        technique.sheet.render(true);
 
-        return feat;
+        return technique;
     }
 
     /**
-     * React to a skill from the skills list been clicked.
-     * @param {string} skillId Unique ID of the skill been clicked.
+     * Creates a new feat for the character and shows a window to edit it.
      */
-    async _onSkillClicked(skillId) {
-        new game.l5r5e.DicePickerDialog({ skillId: skillId, actor: this.actor }).render(true);
+    async _createAdvancement() {
+        const data = {
+            name: game.i18n.localize("l5r5e.xp.acquisitions"),
+            type: "advancement",
+        };
+        const created = await this.actor.createEmbeddedEntity("OwnedItem", data);
+        const acquisition = this.actor.getOwnedItem(created._id);
+
+        acquisition.sheet.render(true);
+
+        // Default values
+        //acquisition.rank = 1;
+        //acquisition.xp_used = 0;
+
+        return acquisition;
     }
 }

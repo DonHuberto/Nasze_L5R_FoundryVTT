@@ -10,7 +10,7 @@ import { ItemL5r5e } from "./items/item.js";
 import { ItemSheetL5r5e } from "./items/item-sheet.js";
 import { ArmorSheetL5r5e } from "./items/armor-sheet.js";
 import { WeaponSheetL5r5e } from "./items/weapon-sheet.js";
-import { FeatSheetL5r5e } from "./items/feat-sheet.js";
+import { TechniqueSheetL5r5e } from "./items/technique-sheet.js";
 import { QualitySheetL5r5e } from "./items/quality-sheet.js";
 
 // Import Dice Types
@@ -67,7 +67,7 @@ Hooks.once("init", async function () {
     Items.registerSheet("l5r5e", ItemSheetL5r5e, { types: ["item"], makeDefault: true });
     Items.registerSheet("l5r5e", ArmorSheetL5r5e, { types: ["armor"], makeDefault: true });
     Items.registerSheet("l5r5e", WeaponSheetL5r5e, { types: ["weapon"], makeDefault: true });
-    Items.registerSheet("l5r5e", FeatSheetL5r5e, { types: ["feat"], makeDefault: true });
+    Items.registerSheet("l5r5e", TechniqueSheetL5r5e, { types: ["technique"], makeDefault: true });
     Items.registerSheet("l5r5e", QualitySheetL5r5e, { types: ["quality"], makeDefault: true });
 
     // for debug
@@ -111,8 +111,8 @@ Hooks.once("init", async function () {
         return game.i18n.localize(key);
     });
 
-    Handlebars.registerHelper("localizeFeat", function (featName) {
-        return game.i18n.localize("l5r5e.feats." + featName.toLowerCase());
+    Handlebars.registerHelper("localizeTechniques", function (techniqueName) {
+        return game.i18n.localize("l5r5e.techniques." + techniqueName.toLowerCase());
     });
 });
 

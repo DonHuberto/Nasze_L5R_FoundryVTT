@@ -1,0 +1,9 @@
+<li class="item technique flexcol" data-technique-id="{{technique._id}}">
+    <ul class="item-header technique-controls">
+        <li class="item-img"><img src="{{technique.img}}" title="{{technique.name}}" width="32px" height="32px"/></li>
+        <li class="item-name">{{ technique.name }}</li>
+        <li class="item-control technique-edit" title="Edit technique"><i class="fas fa-edit"></i></li>
+        <li class="item-control technique-delete" title="Delete technique"><i class="fas fa-trash"></i></li>
+    </ul>
+    <div class="item-description">{{{ technique.data.description }}}</div>
+</li>

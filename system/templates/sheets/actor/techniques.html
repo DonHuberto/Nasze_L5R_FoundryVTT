@@ -1,0 +1,15 @@
+<div class="techniques-wrapper">
+    <fieldset class="section-header flexrow">
+        <legend class="technique-controls">
+            {{ localize 'l5r5e.techniques.title' }}
+            <a class="technique-control technique-add" title="Add {{ localize 'l5r5e.techniques.title' }}"><i class="fas fa-plus"></i></a>
+        </legend>
+        <ul class="item-list">
+            {{#each actor.items as |item id|}}
+                {{#if item.isTechnique }}
+                    {{> 'systems/l5r5e/templates/item/technique-entry.html' technique=item }}
+                {{/if}}
+            {{/each}}
+        </ul>
+    </fieldset>
+</div>

@@ -10,7 +10,7 @@
         }
     }
     &.item,
-    .feat,
+    .technique,
     .weapon,
     .armor,
     .advantages,
@@ -329,7 +329,7 @@
             }
         }
     }
-    .feats-wrapper {
+    .techniques-wrapper {
         fieldset {
             &:last-child {
                 margin: 0 0 0 0.5rem;
