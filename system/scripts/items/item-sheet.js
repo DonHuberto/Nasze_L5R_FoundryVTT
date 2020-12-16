@@ -19,8 +19,6 @@ export class ItemSheetL5r5e extends ItemSheet {
 
         sheetData.data.dtypes = ["String", "Number", "Boolean"];
 
-        sheetData.data.isEquipment = true;
-
         return sheetData;
     }
 
@@ -32,7 +30,9 @@ export class ItemSheetL5r5e extends ItemSheet {
         super.activateListeners(html);
 
         // Everything below here is only needed if the sheet is editable
-        if (!this.options.editable) return;
+        // if (!this.options.editable) {
+        //     return;
+        // }
     }
 
     /**

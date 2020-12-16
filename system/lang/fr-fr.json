@@ -23,6 +23,11 @@
     "spe.chat.pref": "Si renseignée, la chaîne sera préfixée pour tous les messages de chat qui ne sont pas déjà des commandes (comme /emote.)",
 
     "l5r5e": {
+        "global": {
+            "add": "Ajouter",
+            "edit": "Modifier",
+            "delete": "Supprimer"
+        },
         "logo": {
             "title": "Besoin d'aide ?",
             "content": "Suivez le guide :",
@@ -90,7 +95,6 @@
             "physical": "Physique",
             "supernatural": "Spirituelle"
         },
-        "add": "Ajouter",
         "items": "Objets",
         "feats": "Prouesses",
         "techniques": {
@@ -219,31 +223,51 @@
             "total": "Totale",
             "spent": "Dépensée",
             "saved": "Restante",
-            "acquisitions": "Acquisitions"
+            "advancements": "Progressions"
         },
         "twenty_questions": {
             "title": "Vingt questions",
             "bt_abrev": "20Q",
             "part1": {
-                "title": "Partie I: Identité (clan et famille)"
+                "title": "Partie I: Identité (clan et famille)",
+                "q1": "1. A quel clan appartient votre personnage ? (p. 41)",
+                "q2": "2. A quelle famille appartient votre personnage ? (p. 49)"
             },
             "part2": {
-                "title": "Partie II: Rôle et École"
+                "title": "Partie II: Rôle et École",
+                "q3": "3. Quelle est l'École votre personnage, et quel rôle remplit-elle ? (p. 56)",
+                "q4": "4. De quelle manière votre personnage se démarque-t-il au sein de son école ? (p. 88)"
             },
             "part3": {
-                "title": "Partie III: Honneur et Gloire"
+                "title": "Partie III: Honneur et Gloire",
+                "q5": "5. Qui est le seigneur de votre personnage et quel est le devoir de votre personnage envers lui ? (p. 88)",
+                "q6": "6. Que désire votre personnage, et en quoi ce désir risque-t-il de l’empêcher d’accomplir son devoir ? (p. 90)",
+                "q7": "7. Quelle relation votre personnage entretient-il avec son clan ? (p. 91)",
+                "q8": "8. Que pense votre personnage du bushido ? (p. 91)"
             },
             "part4": {
-                "title": "Partie IV: Forces et Faiblesses"
+                "title": "Partie IV: Forces et Faiblesses",
+                "q9": "9. Quelle est à ce jour la plus belle réussite de votre personnage ? (p. 92)",
+                "q10": "10. Quel est le frein principal dans la vie de votre personnage ? (p. 92)",
+                "q11": "11. Quelle activité apaise le plus votre personnage ? (p. 93)",
+                "q12": "12. Quelle inquiétude, crainte ou manie tracasse le plus votre personnage ? (p. 93)",
+                "q13": "13. De qui votre personnage a-t-il le plus appris au cours de sa vie ? (p. 93)"
             },
             "part5": {
-                "title": "Partie V: Personnalité et Comportement"
+                "title": "Partie V: Personnalité et Comportement",
+                "q14": "14. Que remarque-t-on en premier chez votre personnage ? (p. 93)",
+                "q15": "15. Comment votre personnage réagit-il aux situations stressantes ? (p. 94)",
+                "q16": "16. Quelles relations votre personnage entretient-il avec des familles, des organisations, des traditions et des clans différents ? (p. 94)"
             },
             "part6": {
-                "title": "Partie VI: Lignée et Famille"
+                "title": "Partie VI: Lignée et Famille",
+                "q17": "17. Comment les parents de votre personnage le décriraient-ils ? (p. 95)",
+                "q18": "18. En l’honneur de qui votre personnage a-t-il été prénommé ? (p. 95)",
+                "q19": "19. Quel est le prénom de votre personnage ? (p. 95)"
             },
             "part7": {
-                "title": "Partie VII: Mort"
+                "title": "Partie VII: Mort",
+                "q20": "20. Comment envisagez-vous la mort de votre personnage ? (p. 95)"
             }
         }
     }

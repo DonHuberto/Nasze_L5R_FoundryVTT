@@ -83,38 +83,74 @@ Hooks.once("init", async function () {
         return a === b ? new Handlebars.SafeString('checked="checked"') : "";
     });
 
-    Handlebars.registerHelper("localizeSkillCategory", function (skillName) {
-        const key = "l5r5e.skills." + skillName.toLowerCase() + ".title";
+    Handlebars.registerHelper("localizeSkill", function (categoryId, skillId) {
+        const key = "l5r5e.skills." + categoryId.toLowerCase() + "." + skillId.toLowerCase();
+        return game.i18n.localize(key);
+    });
+    Handlebars.registerHelper("localizeSkillId", function (skillId) {
+        const key = "l5r5e.skills." + L5R5E.skills.get(skillId.toLowerCase()) + "." + skillId.toLowerCase();
         return game.i18n.localize(key);
     });
 
-    Handlebars.registerHelper("localizeSkill", function (skillCategory, skillName) {
-        const key = "l5r5e.skills." + skillCategory.toLowerCase() + "." + skillName.toLowerCase();
+    Handlebars.registerHelper("localizeRing", function (ringId) {
+        const key = "l5r5e.rings." + ringId.toLowerCase();
         return game.i18n.localize(key);
     });
 
-    Handlebars.registerHelper("localizeSkillId", function (skillName) {
-        const key = "l5r5e.skills." + L5R5E.skills.get(skillName.toLowerCase()) + "." + skillName.toLowerCase();
-        return game.i18n.localize(key);
-    });
-
-    Handlebars.registerHelper("localizeRing", function (ringName) {
-        const key = "l5r5e.rings." + ringName.toLowerCase();
-        return game.i18n.localize(key);
-    });
-
-    Handlebars.registerHelper("localizeRingTip", function (ringName) {
-        const key = "l5r5e.rings." + ringName.toLowerCase() + "tip";
-        return game.i18n.localize(key);
-    });
-
-    Handlebars.registerHelper("localizeStanceTip", function (ringName) {
-        const key = "l5r5e.conflict.stances." + ringName.toLowerCase() + "tip";
+    Handlebars.registerHelper("localizeStanceTip", function (ringId) {
+        const key = "l5r5e.conflict.stances." + ringId.toLowerCase() + "tip";
         return game.i18n.localize(key);
     });
 
     Handlebars.registerHelper("localizeTechnique", function (techniqueName) {
         return game.i18n.localize("l5r5e.techniques." + techniqueName.toLowerCase());
+    });
+
+    // Utility conditional, usable in nested expression
+    // ex: {{#ifCond (ifCond advancement.type '==' 'technique') '||' (ifCond advancement.type '==' 'advancement')}}
+    Handlebars.registerHelper("ifCond", function (a, operator, b, options) {
+        let result = false;
+        switch (operator) {
+            case "==":
+                result = a == b;
+                break;
+            case "===":
+                result = a === b;
+                break;
+            case "!=":
+                result = a != b;
+                break;
+            case "!==":
+                result = a !== b;
+                break;
+            case "<":
+                result = a < b;
+                break;
+            case "<=":
+                result = a <= b;
+                break;
+            case ">":
+                result = a > b;
+                break;
+            case ">=":
+                result = a >= b;
+                break;
+            case "&&":
+                result = a && b;
+                break;
+            case "||":
+                result = a || b;
+                break;
+            case "includes":
+                result = a && b && a.includes(b);
+                break;
+            default:
+                break;
+        }
+        if (typeof options.fn === "function") {
+            return result ? options.fn(this) : options.inverse(this);
+        }
+        return result;
     });
 });
 

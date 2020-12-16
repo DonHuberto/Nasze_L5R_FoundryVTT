@@ -13,8 +13,8 @@
         <input type="text" name="data.xp_saved" value="{{ data.xp_saved }}" data-dtype="Number" placeholder="0"/>
     </label>
 </fieldset>
-<fieldset class="acquisitions">
-    <legend class="tools">{{ localize 'l5r5e.xp.acquisitions'}} <a class="acquisition-control acquisition-add" title="{{ localize 'l5r5e.add'}}"><i class="fas fa-plus"></i></a></legend>
+<fieldset class="advancement">
+    <legend class="tools">{{ localize 'l5r5e.xp.advancements'}} <a class="advancement-control advancement-add" title="{{ localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a></legend>
     <table>
         <thead class="flex">
             <tr class="flexrow row">
@@ -26,9 +26,9 @@
         </thead>
         <tbody class="flex">
         {{#each actor.items as |advancement advancementId|}}
-            {{#if advancement.isAdvancement }}
+            {{#ifCond (ifCond advancement.type '==' 'technique') '||' (ifCond advancement.type '==' 'advancement')}}
                 {{> 'systems/l5r5e/templates/sheets/actor/advancement.html' advancement=advancement }}
-            {{/if}}
+            {{/ifCond}}
         {{/each}}
         </tbody>
     </table>

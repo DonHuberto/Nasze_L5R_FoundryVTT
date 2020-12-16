@@ -1,10 +1,10 @@
 <fieldset class="weapons-content">
-    <legend class="section-header">{{ localize 'l5r5e.xp.Acquisitions' }}</legend>
+    <legend class="section-header">{{ localize 'l5r5e.xp.advancements' }}</legend>
     <ul class="item-list">
         {{#each actor.items as |item id|}}
-            {{#if item.isAdvancement }}
+            {{#ifCond item.type '==' 'advancement'}}
                 {{> 'systems/l5r5e/templates/item/advancement-entry.html' advancement=item id=id }}
-            {{/if}}
+            {{/ifCond}}
         {{/each}}
     </ul>
 </fieldset>

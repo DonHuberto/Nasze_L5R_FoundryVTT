@@ -219,31 +219,51 @@
             "total": "Total",
             "spent": "Used",
             "saved": "Saved",
-            "acquisitions": "Acquisitions"
+            "advancements": "Advancements"
         },
         "twenty_questions": {
             "title": "Twenty questions",
             "bt_abrev": "20Q",
             "part1": {
-                "title": "Partie I: Core Identity (Clan and Family)"
+                "title": "Part I: Core Identity (Clan and Family)",
+                "q1": "1. What clan does your character belong to? (p. 41)",
+                "q2": "2. What family does your character belong to? (p. 49)"
             },
             "part2": {
-                "title": "Partie II: Role and School"
+                "title": "Part II: Role and School",
+                "q3": "3. What is your character’s school, and what roles does that school fall into?(p. 56)",
+                "q4": "4. How does your character stand out within their school?(p. 88)"
             },
             "part3": {
-                "title": "Partie III: Honor and Glory"
+                "title": "Part III: Honor and Glory",
+                "q5": "5. Who is your lord and what is your character’s duty to them? (p. 88)",
+                "q6": "6. What does your character long for, and how might this impede their duty? (p. 90)",
+                "q7": "7. What is your character’s relationship with their clan?(p. 91)",
+                "q8": "8. What does your character think of Bushidō? (p. 91)"
             },
             "part4": {
-                "title": "Partie IV: Strengths and Weaknesses"
+                "title": "Part IV: Strengths and Weaknesses",
+                "q9": "9. What is your character’s greatest accomplishment so far?(p. 92)",
+                "q10": "10. What holds your character back the most in life?(p. 92)",
+                "q11": "11. What activity Most makes your character feel at peace? (p. 92)",
+                "q12": "12. What concern, fear, or foible troubles your character the most? (p. 93)",
+                "q13": "13. Who has your character learned the most from during their life (p. 93)"
             },
             "part5": {
-                "title": "Partie V: Personality and Behavior"
+                "title": "Part V: Personality and Behavior",
+                "q14": "14. What do people notice first upon encountering your character? (p. 93)",
+                "q15": "15. How does your character react to stressful situations? (p. 94)",
+                "q16": "16. What are your character’s preexisting relationships with other clans, families, organizations, and traditions? (p. 94)"
             },
             "part6": {
-                "title": "Partie VI: Ancestry and Family"
+                "title": "Part VI: Ancestry and Family",
+                "q17": "17. How would your character’s parents describe them? (p. 95)",
+                "q18": "18. Who was your character named to honor? (p. 95)",
+                "q19": "19. What is your character’s personal name? (p. 95)"
             },
             "part7": {
-                "title": "Partie VII: Death"
+                "title": "Part VII: Death",
+                "q20": "20. How should your character die? (p. 95)"
             }
         }
     }

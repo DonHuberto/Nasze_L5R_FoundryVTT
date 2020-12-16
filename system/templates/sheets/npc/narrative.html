@@ -2,9 +2,9 @@
     <legend class="text-block-header">{{ localize 'l5r5e.social.advantages' }}</legend>
     <ul class="item-list">
         {{#each actor.item as |item id|}}
-            {{#if item.isEquipment }}
+            {{#ifCond item.type '==' 'advantage'}}
                 {{> 'systems/l5r5e/templates/item/item-entry.html' item=item id=id }}
-            {{/if}}
+            {{/ifCond}}
         {{/each}}
     </ul>
 </fieldset>
@@ -12,9 +12,9 @@
     <legend class="text-block-header">{{ localize 'l5r5e.social.disadvantages' }}</legend>
     <ul class="item-list">
         {{#each actor.item as |item id|}}
-            {{#if item.isEquipment }}
+            {{#ifCond item.type '==' 'disadvantage'}}
                 {{> 'systems/l5r5e/templates/item/item-entry.html' item=item id=id }}
-            {{/if}}
+            {{/ifCond}}
         {{/each}}
     </ul>
 </fieldset>

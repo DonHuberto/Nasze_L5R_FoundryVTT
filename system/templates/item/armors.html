@@ -2,9 +2,9 @@
     <legend class="section-header">{{ localize 'l5r5e.armors.title' }}</legend>
     <ul class="item-list">
         {{#each actor.items as |item id|}}
-            {{#if item.isArmor }}
+            {{#ifCond item.type '==' 'armor'}}
                 {{> 'systems/l5r5e/templates/item/armor-entry.html' item=item id=id }}
-            {{/if}}
+            {{/ifCond}}
         {{/each}}
     </ul>
 </fieldset>
