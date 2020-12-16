@@ -141,7 +141,8 @@
             "quantity": 1,
             "rarity": 0,
             "weight": 0,
-            "zeni": 0
+            "zeni": 0,
+            "equipped": false
         },
         "armor": {
             "quantity": 1,
@@ -153,7 +154,8 @@
             },
             "properties": "",
             "rarity": 0,
-            "zeni": 0
+            "zeni": 0,
+            "equipped": false
         },
         "weapon": {
             "category": "",
@@ -168,7 +170,8 @@
             "rarity": 0,
             "weight": 0,
             "zeni": 0,
-            "description": ""
+            "description": "",
+            "equipped": false
         },
         "technique": {
             "technique_type": "",

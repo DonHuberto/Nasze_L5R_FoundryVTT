@@ -23,6 +23,14 @@ export class BaseSheetL5r5e extends ActorSheet {
     }
 
     /**
+     * Handle dropped data on the Actor sheet
+     */
+    // _onDrop(event) {
+    //     console.log('*** event', event);
+    //     return false;
+    // }
+
+    /**
      * Subscribe to events from the sheet.
      * @param html HTML content of the sheet.
      */

@@ -20,8 +20,6 @@ export class NpcSheetL5r5e extends BaseSheetL5r5e {
     getData() {
         const sheetData = super.getData();
 
-        this._prepareItems(sheetData);
-
         sheetData.data.types = NpcSheetL5r5e.types;
 
         return sheetData;
