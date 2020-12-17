@@ -22,7 +22,12 @@
                 <label>{{ localize 'l5r5e.zeni' }}</label>
                 <input type="text" name="data.zeni" value="{{data.zeni}}" data-dtype="Number"/>
             </div>
+            <label class="attribute-value checkbox">
+                <input type="checkbox" name="data.equipped" {{checked item.data.equipped}} />
+                equipped
+            </label>
         </div>
+
     </header>
     {{!-- Sheet Body --}}
     <section class="sheet-body">
@@ -51,7 +56,7 @@
 
             <fieldset>
                 <legend class="text-block-header">{{ localize 'l5r5e.properties' }}</legend>
-                {{editor content=data.properties target="data.properties" button=true owner=owner editable=editable}}
+                <!-- TODO data.properties a faire en dnd avec les items de type "quality" -->
             </fieldset>
         </article>
     </section>

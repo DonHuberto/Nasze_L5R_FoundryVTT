@@ -81,7 +81,7 @@
                 "strife": 0,
                 "stance": "void"
             },
-            "xp": {
+            "advancement": {
                 "xp_total": 0,
                 "xp_spent": 0,
                 "xp_saved": 0
@@ -134,10 +134,10 @@
         }
     },
     "Item": {
-        "types": ["item", "armor", "weapon", "technique", "quality", "advantage", "disadvantage", "advancement"],
+        "types": ["item", "armor", "weapon", "technique", "quality", "peculiarity", "advancement"],
         "item": {
             "description": "",
-            "properties": "",
+            "properties": [],
             "quantity": 1,
             "rarity": 0,
             "weight": 0,
@@ -152,7 +152,7 @@
                 "physical": 0,
                 "supernatural": 0
             },
-            "properties": "",
+            "properties": [],
             "rarity": 0,
             "zeni": 0,
             "equipped": false
@@ -165,7 +165,7 @@
             "deadliness": 0,
             "grip_1": "",
             "grip_2": "",
-            "properties": "",
+            "properties": [],
             "quantity": 1,
             "rarity": 0,
             "weight": 0,
@@ -175,8 +175,10 @@
         },
         "technique": {
             "technique_type": "",
+            "in_curriculum": false,
             "xp_used": 0,
-            "rank": 0,
+            "rank": 1,
+            "bought_at_rank": 1,
             "ring": "",
             "effects": "",
             "description": ""
@@ -184,15 +186,22 @@
         "quality": {
             "description": ""
         },
-        "advantage": {
-            "description": ""
-        },
-        "disadvantage": {
+        "peculiarity": {
+            "peculiarity_type": "distinction",
+            "in_curriculum": false,
+            "xp_used": 0,
+            "rank": 1,
+            "bought_at_rank": 1,
+            "ring": "void",
+            "types": "",
             "description": ""
         },
         "advancement": {
+            "advancement_type": "",
+            "in_curriculum": false,
             "xp_used": 0,
-            "rank": "",
+            "rank": 1,
+            "bought_at_rank": 1,
             "description": ""
         }
     }

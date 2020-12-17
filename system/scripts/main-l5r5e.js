@@ -13,6 +13,7 @@ import { WeaponSheetL5r5e } from "./items/weapon-sheet.js";
 import { TechniqueSheetL5r5e } from "./items/technique-sheet.js";
 import { QualitySheetL5r5e } from "./items/quality-sheet.js";
 import { AdvancementSheetL5r5e } from "./items/advancement-sheet.js";
+import { PeculiaritySheetL5r5e } from "./items/peculiarity-sheet.js";
 
 // Import Dice Types
 
@@ -70,6 +71,7 @@ Hooks.once("init", async function () {
     Items.registerSheet("l5r5e", WeaponSheetL5r5e, { types: ["weapon"], makeDefault: true });
     Items.registerSheet("l5r5e", TechniqueSheetL5r5e, { types: ["technique"], makeDefault: true });
     Items.registerSheet("l5r5e", QualitySheetL5r5e, { types: ["quality"], makeDefault: true });
+    Items.registerSheet("l5r5e", PeculiaritySheetL5r5e, { types: ["peculiarity"], makeDefault: true });
     Items.registerSheet("l5r5e", AdvancementSheetL5r5e, { types: ["advancement"], makeDefault: true });
 
     // for debug

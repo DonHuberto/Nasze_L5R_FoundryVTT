@@ -18,13 +18,31 @@
         </article>
         {{!-- Attributes Tab --}}
         <article class="tab attributes" data-group="primary" data-tab="attributes">
+            <!-- TODO j'ai mis tous les attributs en vrac, à réorganiser -->
+            <select name="data.advancement_type">
+                {{#select item.data.advancement_type}}
+                {{#each item.data.subTypesList as |type|}}
+                <option value="{{type}}">{{type}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+            <!-- TODO drag n drop de l'item sélectionné ? -->
+
+            <label class="attribute-value checkbox">
+                <input type="checkbox" name="data.in_curriculum" {{checked item.data.in_curriculum}} />
+                in curriculum
+            </label>
             <label class="attribute">
-                {{ localize 'l5r5e.xp.spent' }}
+                {{ localize 'l5r5e.advancements.spent' }}
                 <input type="text" name="data.xp_used" value="{{data.xp_used}}" data-dtype="Number" placeholder="0"/>
             </label>
             <label class="attribute">
                 {{ localize 'l5r5e.rank' }}
                 <input type="text" name="data.rank" value="{{data.rank}}" data-dtype="Number" placeholder="0"/>
+            </label>
+            <label class="attribute">
+                {{ localize 'l5r5e.bought_at_rank' }}
+                <input type="text" name="data.bought_at_rank" value="{{data.bought_at_rank}}" data-dtype="Number" placeholder="0"/>
             </label>
         </article>
     </section>

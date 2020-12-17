@@ -211,11 +211,12 @@
                 "voidtip": "You do not receive strife from Strife symbols on checks."
             }
         },
-        "xp": {
+        "advancements": {
+            "title": "Advancements",
+            "title_new": "New advancement",
             "total": "Total",
             "spent": "Used",
-            "saved": "Saved",
-            "advancements": "Advancements"
+            "saved": "Saved"
         },
         "twenty_questions": {
             "title": "Twenty questions",

@@ -215,11 +215,12 @@
                 "voidtip": "Tant que vous êtes dans cette posture, vous ne subissez aucun point de Conflit en cas de Conflit."
             }
         },
-        "xp": {
+        "advancements": {
+            "title": "Progressions",
+            "title_new": "Nouvelle progression",
             "total": "Totale",
             "spent": "Dépensée",
-            "saved": "Restante",
-            "advancements": "Progressions"
+            "saved": "Restante"
         },
         "twenty_questions": {
             "title": "Vingt questions",

@@ -38,6 +38,9 @@ export const PreloadTemplates = async function () {
         "systems/l5r5e/templates/item/advancements.html",
         "systems/l5r5e/templates/item/advancement-sheet.html",
         "systems/l5r5e/templates/item/advancement-entry.html",
+        "systems/l5r5e/templates/item/peculiarities.html",
+        "systems/l5r5e/templates/item/peculiarity-sheet.html",
+        "systems/l5r5e/templates/item/peculiarity-entry.html",
     ];
 
     return loadTemplates(templatePaths);

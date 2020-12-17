@@ -210,11 +210,12 @@
                 "voidtip": "No acumulas Conflicto de los símbolos de Conflicto de tus tiradas."
             }
         },
-        "xp": {
+        "advancements": {
+            "title": "Advancements",
+            "title_new": "New advancement",
             "total": "Total",
             "spent": "Usada",
-            "saved": "Restante",
-            "advancements": "Advancements"
+            "saved": "Restante"
         },
         "twenty_questions": {
             "title": "Twenty questions",

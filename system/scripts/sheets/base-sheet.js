@@ -8,6 +8,7 @@ export class BaseSheetL5r5e extends ActorSheet {
     getData() {
         const sheetData = super.getData();
 
+        sheetData.data.dtypes = ["String", "Number", "Boolean"];
         sheetData.data.stances = CONFIG.L5r5e.stances;
 
         return sheetData;
@@ -48,40 +49,34 @@ export class BaseSheetL5r5e extends ActorSheet {
             return;
         }
 
-        // *** Items / Inventory ***
-        html.find(".item-edit").on("click", (ev) => {
-            this._editSubItem(ev, "item");
-        });
-        html.find(".item-delete").on("click", (ev) => {
-            this._deleteSubItem(ev, "item");
+        // *** Items : edit, delete ***
+        ["item", "peculiarity", "technique", "advancement"].forEach((type) => {
+            html.find(`.${type}-edit`).on("click", (ev) => {
+                this._editSubItem(ev, type);
+            });
+            html.find(`.${type}-delete`).on("click", (ev) => {
+                this._deleteSubItem(ev, type);
+            });
+
+            if (type !== "item") {
+                html.find(`.${type}-curriculum`).on("click", (ev) => {
+                    this._switchSubItemCurriculum(ev, type);
+                });
+            }
         });
 
-        // *** Techniques ***
+        // *** Items : add ***
         html.find(".technique-add").on("click", (ev) => {
             this._addSubItem({
                 name: game.i18n.localize("l5r5e.techniques.title_new"),
                 type: "technique",
             });
         });
-        html.find(".technique-edit").on("click", (ev) => {
-            this._editSubItem(ev, "technique");
-        });
-        html.find(".technique-delete").on("click", (ev) => {
-            this._deleteSubItem(ev, "technique");
-        });
-
-        // *** Advancement ***
         html.find(".advancement-add").on("click", (ev) => {
             this._addSubItem({
-                name: game.i18n.localize("l5r5e.xp.advancements"),
+                name: game.i18n.localize("l5r5e.advancements.title_new"),
                 type: "advancement",
             });
-        });
-        html.find(".advancement-edit").on("click", (ev) => {
-            this._editSubItem(ev, "advancement");
-        });
-        html.find(".advancement-delete").on("click", (ev) => {
-            this._deleteSubItem(ev, "advancement");
         });
     }
 
@@ -114,5 +109,20 @@ export class BaseSheetL5r5e extends ActorSheet {
     async _deleteSubItem(ev, type) {
         const li = $(ev.currentTarget).parents("." + type);
         return this.actor.deleteOwnedItem(li.data(type + "Id"));
+    }
+
+    /**
+     * Switch "in_curriculum"
+     * @private
+     */
+    _switchSubItemCurriculum(ev, type) {
+        const li = $(ev.currentTarget).parents("." + type);
+        const itemId = li.data(type + "Id");
+        const item = this.actor.getOwnedItem(itemId);
+        return item.update({
+            data: {
+                in_curriculum: !item.data.data.in_curriculum,
+            },
+        });
     }
 }

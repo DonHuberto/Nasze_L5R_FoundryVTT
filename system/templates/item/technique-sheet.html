@@ -18,14 +18,46 @@
         </article>
         {{!-- Attributes Tab --}}
         <article class="tab attributes" data-group="primary" data-tab="attributes">
+            <!-- TODO j'ai mis tous les attributs en vrac, à réorganiser -->
+            <select name="data.ring">
+                {{#select item.data.ring}}
+                {{#each item.data.ringsList as |obj|}}
+                <option value="{{obj.id}}">{{obj.label}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+            <select name="data.technique_type">
+                {{#select item.data.technique_type}}
+                {{#each item.data.techniquesList as |obj|}}
+                <option value="{{obj.id}}">{{obj.label}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+
+            <label class="attribute-value checkbox">
+                <input type="checkbox" name="data.in_curriculum" {{checked item.data.in_curriculum}} />
+                in curriculum
+            </label>
+
+
             <label class="attribute">
-                {{ localize 'l5r5e.xp.spent' }}
-                <input type="text" name="data.xp_used" value="{{data.xp_used}}" data-dtype="Number" placeholder="0"/>
+                {{ localize 'l5r5e.advancements.spent' }}
+                <input type="text" name="data.xp_used" value="{{item.data.xp_used}}" data-dtype="Number" placeholder="0"/>
             </label>
             <label class="attribute">
                 {{ localize 'l5r5e.rank' }}
-                <input type="text" name="data.rank" value="{{data.rank}}" data-dtype="Number" placeholder="0"/>
+                <input type="text" name="data.rank" value="{{item.data.rank}}" data-dtype="Number" placeholder="0"/>
             </label>
+
+            <label class="attribute">
+                {{ localize 'l5r5e.bought_at_rank' }}
+                <input type="text" name="data.bought_at_rank" value="{{item.data.bought_at_rank}}" data-dtype="Number" placeholder="0"/>
+            </label>
+            <label class="attribute">
+                {{ localize 'l5r5e.effects' }}
+                <input type="text" name="data.effects" value="{{item.data.effects}}"/>
+            </label>
+
         </article>
     </section>
 </form>

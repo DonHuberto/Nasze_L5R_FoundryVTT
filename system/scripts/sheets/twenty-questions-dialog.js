@@ -128,21 +128,21 @@ export class TwentyQuestionsDialog extends FormApplication {
         let data;
         try {
             data = JSON.parse(event.dataTransfer.getData("text/plain"));
-            if (data.type !== "Item") return;
-
-            const item = game.items.get(data.id);
-
-            if (item.data.type !== type) {
+            if (data.type !== "Item") {
                 return;
             }
+
+            const item = game.items.get(data.id);
+            if (item || item.data.type !== type) {
+                return;
+            }
+
+            // TODO
             console.log("** OK ", item);
             // sub_type === 'peculiarity'
         } catch (err) {
-            return false;
+            console.warn(err);
         }
-
-        // TODO
-
         return false;
     }
 

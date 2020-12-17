@@ -19,6 +19,20 @@ export class ItemSheetL5r5e extends ItemSheet {
 
         sheetData.data.dtypes = ["String", "Number", "Boolean"];
 
+        sheetData.data.ringsList = CONFIG.L5r5e.stances.map((e) => {
+            return {
+                id: e,
+                label: game.i18n.localize(`l5r5e.rings.${e}`),
+            };
+        });
+
+        sheetData.data.techniquesList = CONFIG.L5r5e.techniques.map((e) => {
+            return {
+                id: e,
+                label: game.i18n.localize(`l5r5e.techniques.${e}`),
+            };
+        });
+
         return sheetData;
     }
 

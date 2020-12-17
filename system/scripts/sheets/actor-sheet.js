@@ -31,7 +31,44 @@ export class ActorSheetL5r5e extends BaseSheetL5r5e {
                 await new TwentyQuestionsDialog({}, this.actor).render(true);
             },
         });
-
         return buttons;
+    }
+
+    /**
+     * Commons datas
+     */
+    getData() {
+        const sheetData = super.getData();
+
+        // Sort Items by rank 0->6 for advancements tab
+        sheetData.items.sort((a, b) => {
+            return (a.data.bought_at_rank || 0) - (b.data.bought_at_rank || 0);
+        });
+
+        // Xp spent only in current rank
+        sheetData.data.advancement.xp_spent_rank = this.getXpSpentInThisRank();
+
+        return sheetData;
+    }
+
+    /**
+     * Return the current total xp spent for this rank
+     */
+    getXpSpentInThisRank() {
+        const currentRank = this.actor.data.data.identity.school_rank || 0;
+        const spent = this.actor.items.reduce((tot, item) => {
+            // TODO c'est bien par rang actuel +1 ?
+            if (currentRank + 1 === item.data.data.rank) {
+                let xp = item.data.data.xp_used || 0;
+
+                // if not in curriculum, xp spent /2 for this item
+                if (!item.data.data.in_curriculum && xp > 0) {
+                    xp = Math.floor(xp / 2);
+                }
+                return tot + xp;
+            }
+            return tot;
+        }, 0);
+        return spent;
     }
 }
