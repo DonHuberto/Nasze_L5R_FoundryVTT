@@ -42,6 +42,36 @@ export class TwentyQuestionsDialog extends FormApplication {
     }
 
     /**
+     * Create drag-and-drop workflow handlers for this Application
+     * @return An array of DragDrop handlers
+     */
+    _createDragDropHandlers() {
+        return [
+            new DragDrop({
+                dragSelector: ".item",
+                dropSelector: ".items",
+                permissions: { dragstart: this._canDragStart.bind(this), drop: this._canDragDrop.bind(this) },
+                callbacks: { dragstart: this._onDragStart.bind(this), drop: this._onDropItem.bind(this, "item") },
+            }),
+            new DragDrop({
+                dragSelector: ".technique",
+                dropSelector: ".techniques",
+                permissions: { dragstart: this._canDragStart.bind(this), drop: this._canDragDrop.bind(this) },
+                callbacks: { dragstart: this._onDragStart.bind(this), drop: this._onDropItem.bind(this, "technique") },
+            }),
+            new DragDrop({
+                dragSelector: ".peculiarity",
+                dropSelector: ".peculiarities",
+                permissions: { dragstart: this._canDragStart.bind(this), drop: this._canDragDrop.bind(this) },
+                callbacks: {
+                    dragstart: this._onDragStart.bind(this),
+                    drop: this._onDropItem.bind(this, "peculiarity"),
+                },
+            }),
+        ];
+    }
+
+    /**
      * Construct and return the data object used to render the HTML template for this form application.
      * @param options
      * @return {Object}
@@ -83,6 +113,43 @@ export class TwentyQuestionsDialog extends FormApplication {
 
         // html.find('input[name="approach"]').on("click", async (event) => {});
     }
+
+    /**
+     * Handle dropped items
+     */
+    _onDropItem(type, event) {
+        console.log("*** _onDrop event", event, type);
+        if (!["item", "technique", "peculiarity"].includes(type)) {
+            return;
+        }
+
+        // Try to extract the data
+        // {type: "Item", id: "pC37smMSCqu3aSRM"}
+        let data;
+        try {
+            data = JSON.parse(event.dataTransfer.getData("text/plain"));
+            if (data.type !== "Item") return;
+
+            const item = game.items.get(data.id);
+
+            if (item.data.type !== type) {
+                return;
+            }
+            console.log("** OK ", item);
+            // sub_type === 'peculiarity'
+        } catch (err) {
+            return false;
+        }
+
+        // TODO
+
+        return false;
+    }
+
+    // _canDragDrop(event) {
+    //     console.log("*** _canDragDrop event", event);
+    //     return false;
+    // }
 
     /**
      * This method is called upon form submission after form data is validated
@@ -140,7 +207,7 @@ export class TwentyQuestionsDialog extends FormApplication {
         // actorDatas = formData.step11_calms;
         // actorDatas = formData.step11_passion;
         // actorDatas = formData.step12_worries;
-        // actorDatas = formData.step12_failure;
+        // actorDatas = formData.step12_anxiety;
         // actorDatas = formData.step13_most_learn;
         // actorDatas = formData.step13_disadvantage;
         // actorDatas = formData.step13_advantage;

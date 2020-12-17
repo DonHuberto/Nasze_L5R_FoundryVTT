@@ -1,15 +1,12 @@
 {
     "i18n.language": "Español",
     "i18n.maintainers": ["Team L5R"],
-
     "settings.simplemacroshorthandn": "Macro sintaxis acortada",
     "settings.simplemacroshorthandl": "Habilitar una sintaxis de macro abreviada que permita referenciar directamente los atributos, por ejemplo @str en lugar de @attributes.str.value. Deshabilitar esta configuración si se necesita la capacidad de referenciar el modelo de atributos completo, por ejemplo @attributes.str.label",
     "settings.simpleinitformulan": "Fórmula de iniciativa",
     "settings.simpleinitformulal": "Introduzca una fórmula de iniciativa, como d20+@dex",
-
     "simple.notifyinitformulaupdated": "La fórmula de la iniciativa fue actualizada a:",
     "simple.notifyinitformulainvalid": "La fórmula de la iniciativa fue inválida:",
-
     "hexa.color": "Introduzca un color hexadecimal (como #FFFFFF)",
     "ic.bg.color": "Color de fondo en el gato",
     "ic.text.color": "Color del texto en el chat",
@@ -21,7 +18,6 @@
     "other.text.color": "Otro color de texto",
     "def.chat.pref": "Prefijo del chat por defecto",
     "spe.chat.pref": "Si está configurado, la cadena será prefijada para todos los mensajes de chat que no sean ya comandos (como /emote.)",
-
     "l5r5e": {
         "logo": {
             "título": "¿Necesitas ayuda?",
@@ -223,46 +219,81 @@
         "twenty_questions": {
             "title": "Twenty questions",
             "bt_abrev": "20Q",
+            "intro": "You can use this sheet to fill in your answers to The Game of Twenty Questions, and to take notes for later!",
+            "section": "Legend of the Five Rings Core Rulebook, Chapter 2 : Creating a character, p. 41-95",
+            "incring1": "Ring increase (1)",
+            "incring2": "Ring increase (2)",
+            "incskill1": "Skill increases (1)",
+            "incskill2": "Skill increases (2)",
+            "incskill3": "Skill increases (3-5)",
+            "choosem": "Pick one",
+            "choosef": "Pick one",
+            "money": "Starting wealth :",
+            "glory": "Glory :",
+            "school": "School :",
+            "status": "Status",
+            "role": "Roles",
+            "access": "Technique types available",
+            "startech": "Starting techniques (2-5)",
+            "schoolab": "School ability",
+            "outfit": "Starting outfit",
+            "honor": "Honor",
+            "choogiri": "Select giri:",
+            "chooninjo": "Select ninjō:",
+            "or": "OR",
+            "incglory": "Glory increase",
+            "inchonor": "Honor increase",
+            "distinction": "Distinction (1)",
+            "adversity": "Adversity (1)",
+            "passion": "Passion (1)",
+            "anxiety": "Anxiety (1)",
+            "disadvant": "Disadvantage (1)",
+            "advant": "Advantage (1)",
+            "accoutr": "Personal accoutrement",
+            "object": "Item (Rarity 7 or lower)",
+            "d10r1": "D10 Result (1/2)",
+            "d10r2": "D10 Result (2/2)",
+            "generchar": "Generate a new character",
             "part1": {
-                "title": "Partie I: Core Identity (Clan and Family)",
-                "q1": "1. What clan does your character belong to? (p. 41)",
-                "q2": "2. What family does your character belong to? (p. 49)"
+                "title": "Part I: Core Identity (Clan and Family)",
+                "q1": "1. What clan does your character belong to ? (p. 41)",
+                "q2": "2. What family does your character belong to ? (p. 49)"
             },
             "part2": {
-                "title": "Partie II: Role and School",
-                "q3": "3. 3. What is your character’s school, and what roles does that school fall into?(p. 56)",
-                "q4": "4. How does your character stand out within their school?(p. 88)"
+                "title": "Part II: Role and School",
+                "q3": "3. What is your character’s school, and what roles does that school fall into ? (p. 56)",
+                "q4": "4. How does your character stand out within their school ? (p. 88)"
             },
             "part3": {
-                "title": "Partie III: Honor and Glory",
-                "q5": "5. Who is your lord and what is your character’s duty to them? (p. 88)",
-                "q6": "6. What does your character long for, and how might this impede their duty? (p. 90)",
-                "q7": "7. What is your character’s relationship with their clan?(p. 91)",
-                "q8": "8. What does your character think of Bushidō? (p. 91)"
+                "title": "Part III: Honor and Glory",
+                "q5": "5. Who is your lord and what is your character’s duty to them ? (p. 88)",
+                "q6": "6. What does your character long for, and how might this impede their duty ? (p. 90)",
+                "q7": "7. What is your character’s relationship with their clan ? (p. 91)",
+                "q8": "8. What does your character think of Bushidō ? (p. 91)"
             },
             "part4": {
-                "title": "Partie IV: Strengths and Weaknesses",
-                "q9": "9. What is your character’s greatest accomplishment so far?(p. 92)",
-                "q10": "10. What holds your character back the most in life?(p. 92)",
-                "q11": "11. What activity Most makes your character feel at peace? (p. 93)",
-                "q12": "12. What concern, fear, or foible troubles your character the most? (p. 93)",
-                "q13": "12. Who has your character learned the most from during their life(p. 93)"
+                "title": "Part IV: Strengths and Weaknesses",
+                "q9": "9. What is your character’s greatest accomplishment so far ? (p. 92)",
+                "q10": "10. What holds your character back the most in life ? (p. 92)",
+                "q11": "11. What activity Most makes your character feel at peace ? (p. 93)",
+                "q12": "12. What concern, fear, or foible troubles your character the most ? (p. 93)",
+                "q13": "13. Who has your character learned the most from during their life (p. 93)"
             },
             "part5": {
-                "title": "Partie V: Personality and Behavior",
+                "title": "Part V: Personality and Behavior",
                 "q14": "14. What do people notice first upon encountering your character? (p. 93)",
-                "q15": "15. How does your character react to stressful situations? (p. 94)",
-                "q16": "16. What are your character’s preexisting relationships with other clans, families, organizations, and traditions? (p. 94)"
+                "q15": "15. How does your character react to stressful situations ? (p. 94)",
+                "q16": "16. What are your character’s preexisting relationships with other clans, families, organizations, and traditions ? (p. 94)"
             },
             "part6": {
-                "title": "Partie VI: Ancestry and Family",
-                "q17": "17. How would your character’s parents describe them? (p. 95)",
-                "q18": "18. Who was your character named to honor? (p. 95)",
-                "q19": "19. What is your character’s personal name? (p. 95)"
+                "title": "Part VI: Ancestry and Family",
+                "q17": "17. How would your character’s parents describe them ? (p. 95)",
+                "q18": "18. Who was your character named to honor ? (p. 95)",
+                "q19": "19. What is your character’s personal name ? (p. 95)"
             },
             "part7": {
-                "title": "Partie VII: Death",
-                "q20": "20. How should your character die? (p. 95)"
+                "title": "Part VII: Death",
+                "q20": "20. How should your character die ? (p. 95)"
             }
         }
     }
