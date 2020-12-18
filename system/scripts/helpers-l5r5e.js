@@ -1,4 +1,4 @@
-import { L5R5E } from "./l5r5e-config.js";
+import { L5R5E } from "./config-l5r5e.js";
 
 /**
  * Extends the actor to process special things from L5R.

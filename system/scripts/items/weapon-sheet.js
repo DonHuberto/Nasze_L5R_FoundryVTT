@@ -1,4 +1,4 @@
-import { L5R5E } from "../l5r5e-config.js";
+import { L5R5E } from "../config-l5r5e.js";
 import { ItemSheetL5r5e } from "./item-sheet.js";
 
 /**

@@ -1,5 +1,5 @@
 // Import Modules
-import { L5R5E } from "./l5r5e-config.js";
+import { L5R5E } from "./config-l5r5e.js";
 import { HelpersL5r5e } from "./helpers-l5r5e.js";
 import { RegisterSettings } from "./settings.js";
 import { PreloadTemplates } from "./preloadTemplates.js";
