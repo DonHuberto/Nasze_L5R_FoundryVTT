@@ -135,29 +135,36 @@
     },
     "Item": {
         "types": ["item", "armor", "weapon", "technique", "quality", "peculiarity", "advancement"],
+        "templates": {
+            "advancement": {
+                "in_curriculum": false,
+                "xp_used": 0,
+                "rank": 1,
+                "bought_at_rank": 1
+            },
+            "item": {
+                "equipped": false,
+                "quantity": 1,
+                "weight": 0,
+                "rarity": 0,
+                "zeni": 0,
+                "properties": []
+            }
+        },
         "item": {
-            "description": "",
-            "properties": [],
-            "quantity": 1,
-            "rarity": 0,
-            "weight": 0,
-            "zeni": 0,
-            "equipped": false
+            "templates": ["item"],
+            "description": ""
         },
         "armor": {
-            "quantity": 1,
-            "weight": 0,
-            "description": "",
+            "templates": ["item"],
             "armor": {
                 "physical": 0,
                 "supernatural": 0
             },
-            "properties": [],
-            "rarity": 0,
-            "zeni": 0,
-            "equipped": false
+            "description": ""
         },
         "weapon": {
+            "templates": ["item"],
             "category": "",
             "skill": "melee",
             "range": 0,
@@ -165,21 +172,12 @@
             "deadliness": 0,
             "grip_1": "",
             "grip_2": "",
-            "properties": [],
-            "quantity": 1,
-            "rarity": 0,
-            "weight": 0,
-            "zeni": 0,
-            "description": "",
-            "equipped": false
+            "description": ""
         },
         "technique": {
+            "templates": ["advancement"],
             "technique_type": "",
-            "in_curriculum": false,
-            "xp_used": 0,
-            "rank": 1,
-            "bought_at_rank": 1,
-            "ring": "",
+            "ring": "void",
             "effects": "",
             "description": ""
         },
@@ -187,21 +185,15 @@
             "description": ""
         },
         "peculiarity": {
+            "templates": ["advancement"],
             "peculiarity_type": "distinction",
-            "in_curriculum": false,
-            "xp_used": 0,
-            "rank": 1,
-            "bought_at_rank": 1,
             "ring": "void",
             "types": "",
             "description": ""
         },
         "advancement": {
+            "templates": ["advancement"],
             "advancement_type": "",
-            "in_curriculum": false,
-            "xp_used": 0,
-            "rank": 1,
-            "bought_at_rank": 1,
             "description": ""
         }
     }
