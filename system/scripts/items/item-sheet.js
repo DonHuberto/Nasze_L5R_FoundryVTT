@@ -7,7 +7,7 @@ export class ItemSheetL5r5e extends ItemSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             classes: ["l5r5e", "sheet", "item"],
-            template: CONFIG.L5r5e.paths.templates + "item/item-sheet.html",
+            template: CONFIG.l5r5e.paths.templates + "item/item-sheet.html",
             width: 520,
             height: 480,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
@@ -18,20 +18,8 @@ export class ItemSheetL5r5e extends ItemSheet {
         const sheetData = super.getData();
 
         sheetData.data.dtypes = ["String", "Number", "Boolean"];
-
-        sheetData.data.ringsList = CONFIG.L5r5e.stances.map((e) => {
-            return {
-                id: e,
-                label: game.i18n.localize(`l5r5e.rings.${e}`),
-            };
-        });
-
-        sheetData.data.techniquesList = CONFIG.L5r5e.techniques.map((e) => {
-            return {
-                id: e,
-                label: game.i18n.localize(`l5r5e.techniques.${e}`),
-            };
-        });
+        sheetData.data.ringsList = game.l5r5e.HelpersL5r5e.getRingsList();
+        sheetData.data.techniquesList = game.l5r5e.HelpersL5r5e.getTechniquesList();
 
         return sheetData;
     }

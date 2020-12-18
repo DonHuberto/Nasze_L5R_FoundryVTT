@@ -140,7 +140,8 @@
                 "in_curriculum": false,
                 "xp_used": 0,
                 "rank": 1,
-                "bought_at_rank": 1
+                "bought_at_rank": 1,
+                "ring": "void"
             },
             "item": {
                 "equipped": false,
@@ -177,7 +178,6 @@
         "technique": {
             "templates": ["advancement"],
             "technique_type": "",
-            "ring": "void",
             "effects": "",
             "description": ""
         },
@@ -187,13 +187,13 @@
         "peculiarity": {
             "templates": ["advancement"],
             "peculiarity_type": "distinction",
-            "ring": "void",
             "types": "",
             "description": ""
         },
         "advancement": {
             "templates": ["advancement"],
             "advancement_type": "",
+            "skill": "",
             "description": ""
         }
     }

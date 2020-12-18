@@ -1,5 +1,6 @@
 // Import Modules
 import { L5R5E } from "./l5r5e-config.js";
+import { HelpersL5r5e } from "./helpers-l5r5e.js";
 import { RegisterSettings } from "./settings.js";
 import { PreloadTemplates } from "./preloadTemplates.js";
 import { ActorL5r5e } from "./actor-l5r5e.js";
@@ -32,7 +33,7 @@ Hooks.once("init", async function () {
     );
 
     // Global access to L5R Config
-    CONFIG.L5r5e = L5R5E;
+    CONFIG.l5r5e = L5R5E;
 
     // Assign custom classes and constants here
     CONFIG.Actor.entityClass = ActorL5r5e;
@@ -49,6 +50,7 @@ Hooks.once("init", async function () {
 
     // Add some helper classes in game
     game.l5r5e = {
+        HelpersL5r5e,
         DicePickerDialog,
     };
 
@@ -191,7 +193,7 @@ Hooks.on("renderSidebarTab", (app, html, data) => {
 /* DiceSoNice Hook                      */
 /* ------------------------------------ */
 Hooks.once("diceSoNiceReady", (dice3d) => {
-    const texturePath = `${CONFIG.L5r5e.paths.assets}dices/default/3d/`;
+    const texturePath = `${CONFIG.l5r5e.paths.assets}dices/default/3d/`;
 
     // dice3d.addSystem({
     //     id: "l5r5e",

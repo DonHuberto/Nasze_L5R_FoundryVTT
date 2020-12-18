@@ -42,7 +42,7 @@ export class DicePickerDialog extends FormApplication {
         return mergeObject(super.defaultOptions, {
             id: "l5r5e-dice-picker-dialog",
             classes: ["l5r5e", "dice-picker-dialog"],
-            template: CONFIG.L5r5e.paths.templates + "dice/dice-picker-dialog.html",
+            template: CONFIG.l5r5e.paths.templates + "dice/dice-picker-dialog.html",
             title: "L5R Dice Roller",
             width: 660,
             height: 460,
@@ -120,7 +120,7 @@ export class DicePickerDialog extends FormApplication {
      * @param ringId
      */
     set ringId(ringId) {
-        this._ringId = CONFIG.L5r5e.stances.includes(ringId) || null;
+        this._ringId = CONFIG.l5r5e.stances.includes(ringId) || null;
     }
 
     /**
@@ -197,7 +197,7 @@ export class DicePickerDialog extends FormApplication {
     getData(options = null) {
         return {
             ...super.getData(options),
-            elementsList: this._getElements(),
+            ringsList: game.l5r5e.HelpersL5r5e.getRingsList(),
             dicesList: [0, 1, 2, 3, 4, 5, 6],
             skillData: this._skillData,
             actor: this._actor,
@@ -384,20 +384,6 @@ export class DicePickerDialog extends FormApplication {
         const value = Math.max(Math.min(parseInt(elmt.val()) + add, 9), 0);
         elmt.val(value);
         return value;
-    }
-
-    /**
-     * Load elements (id, label, value)
-     * @private
-     */
-    _getElements() {
-        return CONFIG.L5r5e.stances.map((e) => {
-            return {
-                id: e,
-                label: game.i18n.localize(`l5r5e.rings.${e}`),
-                value: this._actor?.data?.data?.rings?.[e] || 0,
-            };
-        });
     }
 
     // /**

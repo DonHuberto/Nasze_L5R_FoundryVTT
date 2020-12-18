@@ -173,7 +173,7 @@ export class RollL5r5e extends Roll {
             displaySummary: contexte?.from !== "render",
         };
 
-        return renderTemplate(CONFIG.L5r5e.paths.templates + this.constructor.TOOLTIP_TEMPLATE, { chatData });
+        return renderTemplate(CONFIG.l5r5e.paths.templates + this.constructor.TOOLTIP_TEMPLATE, { chatData });
     }
 
     /**
@@ -185,7 +185,7 @@ export class RollL5r5e extends Roll {
             {
                 user: game.user._id,
                 flavor: null,
-                template: CONFIG.L5r5e.paths.templates + this.constructor.CHAT_TEMPLATE,
+                template: CONFIG.l5r5e.paths.templates + this.constructor.CHAT_TEMPLATE,
                 blind: false,
             },
             chatOptions

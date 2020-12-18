@@ -13,7 +13,7 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             classes: ["l5r5e", "sheet", "advancement"],
-            template: CONFIG.L5r5e.paths.templates + "item/advancement-sheet.html",
+            template: CONFIG.l5r5e.paths.templates + "item/advancement-sheet.html",
             width: 520,
             height: 480,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
@@ -25,6 +25,7 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
 
         sheetData.data.dtypes = ["String", "Number", "Boolean"];
         sheetData.data.subTypesList = AdvancementSheetL5r5e.types;
+        sheetData.data.skillsList = game.l5r5e.HelpersL5r5e.getSkillsList(true);
 
         return sheetData;
     }

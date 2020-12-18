@@ -19,14 +19,45 @@
         {{!-- Attributes Tab --}}
         <article class="tab attributes" data-group="primary" data-tab="attributes">
             <!-- TODO j'ai mis tous les attributs en vrac, à réorganiser -->
-            <select name="data.advancement_type">
-                {{#select item.data.advancement_type}}
-                {{#each item.data.subTypesList as |type|}}
-                <option value="{{type}}">{{type}}</option>
-                {{/each}}
-                {{/select}}
-            </select>
-            <!-- TODO drag n drop de l'item sélectionné ? -->
+
+            <div>
+                <select name="data.advancement_type">
+                    {{#select item.data.advancement_type}}
+                    {{#each item.data.subTypesList as |type|}}
+                    <option value="{{type}}">{{type}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+
+                {{#ifCond item.data.advancement_type '==' 'advantage' }}
+                <!-- TODO zone de drag n drop de l'item sélectionné ? -->
+                {{/ifCond}}
+
+                {{#ifCond item.data.advancement_type '==' 'ring' }}
+                <select name="data.ring">
+                    {{#select item.data.ring}}
+                    {{#each item.data.ringsList as |obj|}}
+                    <option value="{{obj.id}}">{{obj.label}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+                {{/ifCond}}
+
+                {{#ifCond item.data.advancement_type '==' 'skill' }}
+                <select name="data.skill">
+                    <option value="none">{{localize 'l5r5e.twenty_questions.choosef'}}</option>
+                    {{#select item.data.skill}}
+                    {{#each item.data.skillsList as |skills catId|}}
+                    <optgroup label="{{localizeSkill catId 'title'}}">
+                        {{#each skills as |obj|}}
+                        <option value="{{obj.id}}">{{obj.label}}</option>
+                        {{/each}}
+                    </optgroup>
+                    {{/each}}
+                    {{/select}}
+                </select>
+                {{/ifCond}}
+            </div>
 
             <label class="attribute-value checkbox">
                 <input type="checkbox" name="data.in_curriculum" {{checked item.data.in_curriculum}} />

@@ -9,7 +9,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         const sheetData = super.getData();
 
         sheetData.data.dtypes = ["String", "Number", "Boolean"];
-        sheetData.data.stances = CONFIG.L5r5e.stances;
+        sheetData.data.stances = CONFIG.l5r5e.stances;
 
         return sheetData;
     }

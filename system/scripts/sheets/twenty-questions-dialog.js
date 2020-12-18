@@ -24,7 +24,7 @@ export class TwentyQuestionsDialog extends FormApplication {
         return mergeObject(super.defaultOptions, {
             id: "l5r5e-twenty-questions-dialog",
             classes: ["l5r5e", "twenty-questions-dialog"],
-            template: CONFIG.L5r5e.paths.templates + "sheets/twenty-questions-dialog.html",
+            template: CONFIG.l5r5e.paths.templates + "sheets/twenty-questions-dialog.html",
             title: game.i18n.localize("l5r5e.twenty_questions.title"),
             width: 600,
             height: 600,
@@ -77,11 +77,12 @@ export class TwentyQuestionsDialog extends FormApplication {
      * @return {Object}
      */
     getData(options = null) {
+        console.log(game.l5r5e.HelpersL5r5e.getRingsList());
         return {
             ...super.getData(options),
-            elementsList: this._getElements(),
-            skillsList: this._getSkills(),
-            techniquesList: CONFIG.L5r5e.techniques,
+            ringsList: game.l5r5e.HelpersL5r5e.getRingsList(),
+            skillsList: game.l5r5e.HelpersL5r5e.getSkillsList(true),
+            techniquesList: CONFIG.l5r5e.techniques,
             datas: this.datas,
         };
     }
@@ -243,38 +244,6 @@ export class TwentyQuestionsDialog extends FormApplication {
                 acc.set(id, acc.get(id) + 1);
                 return acc;
             }, new Map());
-    }
-
-    /**
-     * Load elements list (id, label)
-     * @private
-     */
-    _getElements() {
-        return CONFIG.L5r5e.stances.map((e) => {
-            return {
-                id: e,
-                label: game.i18n.localize(`l5r5e.rings.${e}`),
-            };
-        });
-    }
-
-    /**
-     * Load Skills list (id, cat, label)
-     * @private
-     */
-    _getSkills() {
-        const skills = {};
-        Array.from(L5R5E.skills).forEach(([id, cat]) => {
-            if (!skills[cat]) {
-                skills[cat] = [];
-            }
-            skills[cat].push({
-                id: id,
-                cat: cat,
-                label: game.i18n.localize(`l5r5e.skills.${cat}.${id}`),
-            });
-        });
-        return skills;
     }
 
     /**

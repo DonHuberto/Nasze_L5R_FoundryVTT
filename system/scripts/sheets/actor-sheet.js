@@ -8,7 +8,7 @@ export class ActorSheetL5r5e extends BaseSheetL5r5e {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             classes: ["l5r5e", "sheet", "actor"],
-            template: CONFIG.L5r5e.paths.templates + "sheets/actor-sheet.html",
+            template: CONFIG.l5r5e.paths.templates + "sheets/actor-sheet.html",
             width: 600,
             height: 800,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],

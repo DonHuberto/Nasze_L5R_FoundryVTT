@@ -26,8 +26,8 @@
 
             <!-- TODO j'ai mis tous les attributs en vrac, à réorganiser -->
             <select name="data.ring">
-                {{#select item.data.ringsList}}
-                {{#each item.data.rings as |obj|}}
+                {{#select item.data.ring}}
+                {{#each item.data.ringsList as |obj|}}
                 <option value="{{obj.id}}">{{obj.label}}</option>
                 {{/each}}
                 {{/select}}

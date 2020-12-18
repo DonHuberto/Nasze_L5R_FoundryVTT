@@ -19,7 +19,7 @@
                 {{localize 'l5r5e.twenty_questions.incring1'}}
                 <select name="rings">
                     <option value="none">{{localize 'l5r5e.twenty_questions.choosem'}}</option>
-                    {{#each elementsList as |obj|}}
+                    {{#each ringsList as |obj|}}
                     <option value="{{obj.id}}">{{obj.label}}</option>
                     {{/each}}
                 </select>
@@ -61,7 +61,7 @@
                 {{localize 'l5r5e.twenty_questions.incring1'}}
                 <select name="rings">
                     <option value="none">{{localize 'l5r5e.twenty_questions.choosem'}}</option>
-                    {{#each elementsList as |obj|}}
+                    {{#each ringsList as |obj|}}
                     <option value="{{obj.id}}">{{obj.label}}</option>
                     {{/each}}
                 </select>
@@ -130,14 +130,14 @@
                 {{localize 'l5r5e.twenty_questions.incring2'}}
                 <select name="rings">
                     <option value="none">{{localize 'l5r5e.twenty_questions.choosem'}}</option>
-                    {{#each elementsList as |obj|}}
+                    {{#each ringsList as |obj|}}
                     <option value="{{obj.id}}">{{obj.label}}</option>
                     {{/each}}
                 </select>
             </label>
             <select name="rings">
                 <option value="none">{{localize 'l5r5e.twenty_questions.choosem'}}</option>
-                {{#each elementsList as |obj|}}
+                {{#each ringsList as |obj|}}
                 <option value="{{obj.id}}">{{obj.label}}</option>
                 {{/each}}
             </select>
@@ -257,7 +257,7 @@
             {{localize 'l5r5e.twenty_questions.incring1'}}
             <select name="rings">
                 <option value="none">{{localize 'l5r5e.twenty_questions.choosem'}}</option>
-                {{#each elementsList as |obj|}}
+                {{#each ringsList as |obj|}}
                 <option value="{{obj.id}}">{{obj.label}}</option>
                 {{/each}}
             </select>

@@ -8,10 +8,11 @@ export class QualitySheetL5r5e extends ItemSheetL5r5e {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             classes: ["l5r5e", "sheet", "quality"],
-            template: CONFIG.L5r5e.paths.templates + "item/quality-sheet.html",
+            template: CONFIG.l5r5e.paths.templates + "item/quality-sheet.html",
             width: 520,
             height: 480,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
         });
     }
+    // TODO certain propriétés en annule d'autres : aiguisé <-> abimé. voir comment faire.
 }
