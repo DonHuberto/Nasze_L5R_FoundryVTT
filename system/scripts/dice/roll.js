@@ -14,6 +14,7 @@ export class RollL5r5e extends Roll {
         this.l5r5e = {
             stance: "",
             skillId: "",
+            skillCatId: "",
             actor: null,
             dicesTypes: {
                 std: false,
@@ -196,9 +197,6 @@ export class RollL5r5e extends Roll {
         if (!this._rolled) {
             this.roll();
         }
-
-        const skillName =
-            game.i18n.translations.l5r5e.skills?.[L5R5E.skills.get(this.l5r5e.skillId)]?.[this.l5r5e.skillId] || "";
 
         // Define chat data
         const chatData = {

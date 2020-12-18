@@ -67,7 +67,7 @@ export class DicePickerDialog extends FormApplication {
      *   difficulty        number (0-9)
      *   difficultyHidden  boolean
      *
-     * @param options actor, actorId, ringId, skillId, difficulty, difficultyHidden
+     * @param options actor, actorId, ringId, skillId, skillCatId, difficulty, difficultyHidden
      */
     constructor(options = null) {
         super(options);
@@ -89,11 +89,14 @@ export class DicePickerDialog extends FormApplication {
             this.ringId = options.ringId;
         }
 
-        // TODO SkillCategory ?
-
-        // Skill
+        // Skill / SkillCategory
         if (options?.skillId) {
             this.skillId = options.skillId;
+        }
+
+        // SkillCategory skillCatId
+        if (options?.skillCatId) {
+            this.skillCatId = options.skillCatId;
         }
 
         // Difficulty
@@ -139,24 +142,36 @@ export class DicePickerDialog extends FormApplication {
             name: "",
         };
 
-        const cat = L5R5E.skills.get(skillId);
-        if (!cat) {
+        this.skillCatId = L5R5E.skills.get(skillId);
+    }
+
+    /**
+     * Set and load skill's required data from actor and skillCatId
+     * @param skillId
+     */
+    set skillCatId(skillCatId) {
+        if (!skillCatId) {
             return;
         }
-        this._skillData.cat = cat;
-        this._skillData.name = game.i18n.localize("l5r5e.skills." + cat + "." + this._skillData.id);
+
+        this._skillData = {
+            ...this._skillData,
+            value: 0,
+            cat: skillCatId.toLowerCase().trim(),
+            name: game.i18n.localize("l5r5e.skills." + skillCatId + "." + (this._skillData.id || "title")),
+        };
 
         if (!this._actor) {
             return;
         }
         switch (this._actor.data.type) {
             case "character":
-                this._skillData.value = this._actor.data.data.skills[cat]?.[this._skillData.id]?.value || 0;
+                this._skillData.value = this._actor.data.data.skills[skillCatId]?.[this._skillData.id] || 0;
                 break;
 
             case "npc":
                 // Skill value is in categories for npc
-                this._skillData.value = this._actor.data.data.skills[cat] || 0;
+                this._skillData.value = this._actor.data.data.skills[skillCatId] || 0;
                 break;
         }
     }
@@ -367,6 +382,7 @@ export class DicePickerDialog extends FormApplication {
         roll.actor = this._actor;
         roll.l5r5e.stance = approach;
         roll.l5r5e.skillId = this._skillData.id;
+        roll.l5r5e.skillCatId = this._skillData.cat;
         roll.l5r5e.summary.difficulty = this._difficulty.difficulty;
         roll.l5r5e.summary.difficultyHidden = this._difficulty.isHidden;
 

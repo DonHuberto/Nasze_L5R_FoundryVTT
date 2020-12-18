@@ -19,7 +19,11 @@
             </span>
 
             <span class="chat-profil-element-skill">
-                {{#if l5r5e.skillId}}{{localizeSkillId l5r5e.skillId}}{{/if}}
+                {{#if l5r5e.skillId}}
+                    {{localizeSkillId l5r5e.skillId}}
+                {{else}}
+                    {{#if l5r5e.skillCatId}}{{localizeSkill l5r5e.skillCatId 'title'}}{{/if}}
+                {{/if}}
             </span>
 
             <span class="chat-profil-element">

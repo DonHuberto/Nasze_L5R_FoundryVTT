@@ -41,7 +41,11 @@ export class BaseSheetL5r5e extends ActorSheet {
         // *** Skills ***
         html.find(".skill-name").on("click", (ev) => {
             const li = $(ev.currentTarget).parents(".skill");
-            new game.l5r5e.DicePickerDialog({ skillId: li.data("skill"), actor: this.actor }).render(true);
+            new game.l5r5e.DicePickerDialog({
+                skillId: li.data("skill"),
+                skillCatId: li.data("skillcat"),
+                actor: this.actor,
+            }).render(true);
         });
 
         // *** Everything below here is only needed if the sheet is editable ***
