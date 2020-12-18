@@ -77,7 +77,6 @@ export class TwentyQuestionsDialog extends FormApplication {
      * @return {Object}
      */
     getData(options = null) {
-        console.log(game.l5r5e.HelpersL5r5e.getRingsList());
         return {
             ...super.getData(options),
             ringsList: game.l5r5e.HelpersL5r5e.getRingsList(),

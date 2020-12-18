@@ -7,11 +7,12 @@ export class HelpersL5r5e {
     /**
      * Get Rings/Element for List / Select
      */
-    static getRingsList() {
+    static getRingsList(actor = null) {
         return CONFIG.l5r5e.stances.map((e) => {
             return {
                 id: e,
                 label: game.i18n.localize(`l5r5e.rings.${e}`),
+                value: actor?.data?.data?.rings?.[e] || 0,
             };
         });
     }
@@ -19,7 +20,7 @@ export class HelpersL5r5e {
     /**
      * Get Skills for List / Select with groups
      */
-    static getSkillsList(useGroup) {
+    static getSkillsList(useGroup = false) {
         if (!useGroup) {
             return Array.from(L5R5E.skills).map(([id, cat]) => {
                 return {

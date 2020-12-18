@@ -197,7 +197,7 @@ export class DicePickerDialog extends FormApplication {
     getData(options = null) {
         return {
             ...super.getData(options),
-            ringsList: game.l5r5e.HelpersL5r5e.getRingsList(),
+            ringsList: game.l5r5e.HelpersL5r5e.getRingsList(this._actor),
             dicesList: [0, 1, 2, 3, 4, 5, 6],
             skillData: this._skillData,
             actor: this._actor,
