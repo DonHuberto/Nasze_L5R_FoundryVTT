@@ -44,7 +44,7 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
         sheetData.items.sort((a, b) => {
             return (a.data.bought_at_rank || 0) - (b.data.bought_at_rank || 0);
         });
-        console.log(sheetData);
+
         // Xp spent only in current rank
         sheetData.data.xp_spent_rank = this.getXpSpentInThisRank();
 
