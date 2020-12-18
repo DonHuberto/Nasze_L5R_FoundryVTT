@@ -1,0 +1,38 @@
+<form class="{{cssClass}}" autocomplete="off">
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="150" width="150"/>
+        <div class="header-fields identity-wrapper">
+            <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
+            {{> 'systems/l5r5e/templates/actors/npc/identity.html' }}
+        </div>
+        <fieldset>
+            <legend class="text-block-header">{{ localize 'l5r5e.notes' }}</legend>
+            {{ editor content=data.notes.value target="data.notes.value" button=true editable=editable }}
+        </fieldset>
+        <div class="header-fields">
+            {{> 'systems/l5r5e/templates/actors/npc/social.html' }}
+            {{> 'systems/l5r5e/templates/actors/npc/rings.html' }}
+            {{> 'systems/l5r5e/templates/actors/npc/attributes.html' }}
+        </div>
+    </header>
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+        {{> 'systems/l5r5e/templates/actors/npc/skill.html' }}
+        <article>
+            {{> 'systems/l5r5e/templates/actors/npc/techniques.html' }}
+        </article>
+        <article>
+            {{> 'systems/l5r5e/templates/actors/npc/narrative.html' }}
+        </article>
+        <article>
+            {{> 'systems/l5r5e/templates/items/item/items.html' }}
+        </article>
+        <article>
+            {{> 'systems/l5r5e/templates/items/weapon/weapons.html' }}
+        </article>
+        <article>
+            {{> 'systems/l5r5e/templates/items/armor/armors.html' }}
+        </article>
+    </section>
+</form>

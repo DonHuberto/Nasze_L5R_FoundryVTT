@@ -1,4 +1,4 @@
-import { L5R5E } from "../config-l5r5e.js";
+import { L5R5E } from "../config.js";
 import { L5rBaseDie } from "./dietype/l5r-base-die.js";
 
 /**

@@ -1,0 +1,63 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+        <div class="header-fields">
+            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+            <div class="resource">
+            	<label>{{ localize 'l5r5e.quantity' }}</label>
+                <input type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
+            </div>
+            <div class="resource">
+            	<label>{{ localize 'l5r5e.weight' }}</label>
+                <input type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
+            </div>
+        </div>
+
+        <div class="header-fields">
+            <div class="resource">
+                <label>{{ localize 'l5r5e.rarity' }}</label>
+                <input type="text" name="data.rarity" value="{{data.rarity}}" data-dtype="Number"/>
+            </div>
+            <div class="resource">
+                <label>{{ localize 'l5r5e.zeni' }}</label>
+                <input type="text" name="data.zeni" value="{{data.zeni}}" data-dtype="Number"/>
+            </div>
+            <label class="attribute-value checkbox">
+                <input type="checkbox" name="data.equipped" {{checked item.data.equipped}} />
+                equipped
+            </label>
+        </div>
+
+    </header>
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+        {{!-- Sheet Tab Navigation --}}
+        <nav class="sheet-tabs tabs" data-group="primary">
+            <a class="item" data-tab="description">Description</a>
+        </nav>
+        {{!-- Description Tab --}}
+        <article class="tab" data-group="primary" data-tab="description">
+            <fieldset>
+                <legend class="text-block-header">{{ localize 'l5r5e.description' }}</legend>
+                {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            </fieldset>
+
+            <fieldset class="weapon-stats-content">
+                <legend class="text-header">{{ localize 'l5r5e.armors.title' }}</legend>
+                <label class="attribute-label">
+                    {{ localize 'l5r5e.armors.physical' }}
+                    <input type="text" name="data.armor.physical" value="{{data.armor.physical}}" data-dtype="Number" placeholder="0"/>
+                </label>
+                <label class="attribute-label">
+                    {{ localize 'l5r5e.armors.supernatural' }}
+                    <input type="text" name="data.armor.supernatural" value="{{data.armor.supernatural}}" data-dtype="Number" placeholder="0"/>
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend class="text-block-header">{{ localize 'l5r5e.properties' }}</legend>
+                <!-- TODO data.properties a faire en dnd avec les items de type "property" -->
+            </fieldset>
+        </article>
+    </section>
+</form>

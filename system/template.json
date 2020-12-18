@@ -134,7 +134,7 @@
         }
     },
     "Item": {
-        "types": ["item", "armor", "weapon", "technique", "quality", "peculiarity", "advancement"],
+        "types": ["item", "armor", "weapon", "technique", "property", "peculiarity", "advancement"],
         "templates": {
             "advancement": {
                 "in_curriculum": false,
@@ -181,7 +181,7 @@
             "effects": "",
             "description": ""
         },
-        "quality": {
+        "property": {
             "description": ""
         },
         "peculiarity": {

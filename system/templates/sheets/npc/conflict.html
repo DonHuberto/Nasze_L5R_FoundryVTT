@@ -1,8 +1,0 @@
-<fieldset class="stances-content flexrow">
-    <legend class="section-header">{{ localize 'l5r5e.conflict.stance' }}</legend>
-    <ul>
-        {{#each data.rings as |ringValue ringId|}}
-            {{> 'systems/l5r5e/templates/sheets/actor/stance.html' stance=../data.stance ringId=ringId }}
-        {{/each}}
-    </ul>
-</fieldset>

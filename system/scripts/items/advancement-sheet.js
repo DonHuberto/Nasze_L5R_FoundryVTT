@@ -13,7 +13,7 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             classes: ["l5r5e", "sheet", "advancement"],
-            template: CONFIG.l5r5e.paths.templates + "item/advancement-sheet.html",
+            template: CONFIG.l5r5e.paths.templates + "items/advancement/advancement-sheet.html",
             width: 520,
             height: 480,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],

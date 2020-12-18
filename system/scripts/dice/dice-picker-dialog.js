@@ -2,7 +2,7 @@
  * L5R Dice picker dialog
  * @extends {FormApplication}
  */
-import { L5R5E } from "../config-l5r5e.js";
+import { L5R5E } from "../config.js";
 import { RollL5r5e } from "./roll.js";
 
 export class DicePickerDialog extends FormApplication {

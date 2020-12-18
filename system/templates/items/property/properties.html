@@ -1,0 +1,10 @@
+<fieldset class="weapons-content">
+    <legend class="section-header">{{ localize 'l5r5e.property' }}</legend>
+    <ul class="item-list">
+        {{#each actor.items as |item id|}}
+            {{#ifCond item.type '==' 'property'}}
+                {{> 'systems/l5r5e/templates/items/property/property-entry.html' item=item id=id }}
+            {{/ifCond}}
+        {{/each}}
+    </ul>
+</fieldset>

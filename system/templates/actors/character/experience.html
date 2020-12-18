@@ -1,0 +1,41 @@
+<fieldset class="xp">
+    <legend>{{ localize 'l5r5e.experience'}}</legend>
+    <label class="attribute-label">
+        {{ localize 'l5r5e.advancements.total' }}
+        <input type="text" name="data.advancement.xp_total" value="{{ data.advancement.xp_total }}" data-dtype="Number" placeholder="0"/>
+    </label>
+    <label class="attribute-label">
+        {{ localize 'l5r5e.advancements.spent' }}
+        <input type="text" name="data.xp_spent" value="{{ data.xp_spent }}" data-dtype="Number" placeholder="0"/>
+    </label>
+    <label class="attribute-label">
+        {{ localize 'l5r5e.advancements.saved' }}
+        <input type="text" name="data.advancement.xp_saved" value="{{ data.advancement.xp_saved }}" data-dtype="Number" placeholder="0"/>
+    </label>
+
+    <label class="attribute-label">
+        Total dépensé dans ce rang:
+        {{ data.advancement.xp_spent_rank }}
+    </label>
+
+</fieldset>
+<fieldset class="advancement">
+    <legend class="tools">{{ localize 'l5r5e.advancements.title'}} <a class="advancement-control advancement-add" title="{{ localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a></legend>
+    <table>
+        <thead class="flex">
+            <tr class="flexrow row">
+                <th class="name">{{ localize 'l5r5e.name' }}</th>
+                <th class="xp">{{ localize 'l5r5e.advancements.spent' }}</th>
+                <th class="rank">{{ localize 'l5r5e.rank' }}</th>
+                <th class="actions"></th>
+            </tr>
+        </thead>
+        <tbody class="flex">
+        {{#each actor.items as |advancement advancementId|}}
+            {{#ifCond '["peculiarity", "technique","advancement"]' 'includes' advancement.type}}
+                {{> 'systems/l5r5e/templates/actors/character/advancement.html' advancement=advancement }}
+            {{/ifCond}}
+        {{/each}}
+        </tbody>
+    </table>
+</fieldset>

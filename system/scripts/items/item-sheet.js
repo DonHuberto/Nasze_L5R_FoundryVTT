@@ -7,7 +7,7 @@ export class ItemSheetL5r5e extends ItemSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             classes: ["l5r5e", "sheet", "item"],
-            template: CONFIG.l5r5e.paths.templates + "item/item-sheet.html",
+            template: CONFIG.l5r5e.paths.templates + "items/item/item-sheet.html",
             width: 520,
             height: 480,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],

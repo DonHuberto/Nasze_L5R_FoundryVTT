@@ -1,22 +1,26 @@
-// Import Modules
-import { L5R5E } from "./config-l5r5e.js";
-import { HelpersL5r5e } from "./helpers-l5r5e.js";
+// Import Commons Modules
+import { L5R5E } from "./config.js";
+import { HelpersL5r5e } from "./helpers.js";
 import { RegisterSettings } from "./settings.js";
 import { PreloadTemplates } from "./preloadTemplates.js";
-import { ActorL5r5e } from "./actor-l5r5e.js";
-import { ActorSheetL5r5e } from "./sheets/actor-sheet.js";
-import { NpcSheetL5r5e } from "./sheets/npc-sheet.js";
-import { RollL5r5e, AbilityDie, RingDie, DicePickerDialog } from "./dice-l5r5e.js";
+// Actors
+import { ActorL5r5e } from "./actor.js";
+import { CharacterSheetL5r5e } from "./actors/character-sheet.js";
+import { NpcSheetL5r5e } from "./actors/npc-sheet.js";
+// Dice and rolls
+import { AbilityDie } from "./dice/dietype/ability-die.js";
+import { RingDie } from "./dice/dietype/ring-die.js";
+import { RollL5r5e } from "./dice/roll.js";
+import { DicePickerDialog } from "./dice/dice-picker-dialog.js";
+// Items
 import { ItemL5r5e } from "./items/item.js";
 import { ItemSheetL5r5e } from "./items/item-sheet.js";
 import { ArmorSheetL5r5e } from "./items/armor-sheet.js";
 import { WeaponSheetL5r5e } from "./items/weapon-sheet.js";
 import { TechniqueSheetL5r5e } from "./items/technique-sheet.js";
-import { QualitySheetL5r5e } from "./items/quality-sheet.js";
+import { PropertySheetL5r5e } from "./items/property-sheet.js";
 import { AdvancementSheetL5r5e } from "./items/advancement-sheet.js";
 import { PeculiaritySheetL5r5e } from "./items/peculiarity-sheet.js";
-
-// Import Dice Types
 
 /* ------------------------------------ */
 /* Initialize system                    */
@@ -37,7 +41,7 @@ Hooks.once("init", async function () {
 
     // Assign custom classes and constants here
     CONFIG.Actor.entityClass = ActorL5r5e;
-    CONFIG.Actor.sheetClasses = ActorSheetL5r5e;
+    CONFIG.Actor.sheetClasses = CharacterSheetL5r5e;
     CONFIG.Item.entityClass = ItemL5r5e;
 
     // Define custom Roll class
@@ -63,7 +67,7 @@ Hooks.once("init", async function () {
     // Register custom sheets (if any)
     // Actors sheet
     Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("l5r5e", ActorSheetL5r5e, { types: ["character"], makeDefault: true });
+    Actors.registerSheet("l5r5e", CharacterSheetL5r5e, { types: ["character"], makeDefault: true });
     Actors.registerSheet("l5r5e", NpcSheetL5r5e, { types: ["npc"], makeDefault: false });
 
     // Items sheet
@@ -72,7 +76,7 @@ Hooks.once("init", async function () {
     Items.registerSheet("l5r5e", ArmorSheetL5r5e, { types: ["armor"], makeDefault: true });
     Items.registerSheet("l5r5e", WeaponSheetL5r5e, { types: ["weapon"], makeDefault: true });
     Items.registerSheet("l5r5e", TechniqueSheetL5r5e, { types: ["technique"], makeDefault: true });
-    Items.registerSheet("l5r5e", QualitySheetL5r5e, { types: ["quality"], makeDefault: true });
+    Items.registerSheet("l5r5e", PropertySheetL5r5e, { types: ["property"], makeDefault: true });
     Items.registerSheet("l5r5e", PeculiaritySheetL5r5e, { types: ["peculiarity"], makeDefault: true });
     Items.registerSheet("l5r5e", AdvancementSheetL5r5e, { types: ["advancement"], makeDefault: true });
 

@@ -1,4 +1,4 @@
-import { L5R5E } from "../config-l5r5e.js";
+import { L5R5E } from "../config.js";
 import { ItemSheetL5r5e } from "./item-sheet.js";
 
 /**
@@ -9,7 +9,7 @@ export class WeaponSheetL5r5e extends ItemSheetL5r5e {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             classes: ["l5r5e", "sheet", "weapon"],
-            template: CONFIG.l5r5e.paths.templates + "item/weapon-sheet.html",
+            template: CONFIG.l5r5e.paths.templates + "items/weapon/weapon-sheet.html",
             width: 520,
             height: 480,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
