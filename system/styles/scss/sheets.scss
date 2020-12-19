@@ -3,10 +3,17 @@
     min-width: 600px;
     &.actor {
         .sheet-header {
-            height: 26.75rem;
+            height: 28rem;
         }
         .sheet-body {
-            height: calc(100% - 26.75rem);
+            height: calc(100% - 28rem);
+        }
+        .techniques-wrapper {
+            fieldset {
+                &:last-child {
+                    margin: 0 0 0 0.5rem;
+                }
+            }
         }
     }
     &.item,
@@ -34,7 +41,9 @@
         flex: 0 0 100%;
         align-items: flex-start;
         input {
-            font-size: 1rem;
+            flex: 0 0 3rem;
+            font-size: 1.5rem;
+            height: 2rem;
         }
         h1 {
             flex: auto;
@@ -50,7 +59,7 @@
                 background: transparent;
                 border: 0 none;
                 border-radius: 0;
-                border-bottom: 1px dotted $l5r5e-black;
+                border-bottom: 1px solid $l5r5e-label-light;
             }
             &:before {
                 content: "";
@@ -60,6 +69,7 @@
                 height: 225px;
                 width: 100%;
                 z-index: -1;
+                top: -1.5rem;
                 left: -0.25rem;
             }
         }
@@ -83,15 +93,18 @@
             );
         }
         .header-fields {
+            position: relative;
             h2 {
                 font-family: $font-secondary;
-                float: right;
-                width: 50%;
+                float: left;
+                width: 30%;
                 padding: 0 0.25rem;
-                margin: 0;
-                text-align: right;
-                color: $l5r5e-black;
-                border-bottom: $white-light;
+                margin: 1rem 20% 0 0;
+                text-align: center;
+                color: $white;
+                text-shadow: 0 0 1px $l5r5e-label;
+                border-bottom: 0 none;
+                background: $l5r5e-title;
                 --notchSize: 0.5rem;
                 clip-path: polygon(
                     0% var(--notchSize),
@@ -103,6 +116,19 @@
                     var(--notchSize) 100%,
                     0% calc(100%)
                 );
+                &.right {
+                    margin: 1rem 0 0 20%;
+                    clip-path: polygon(
+                        0% 0,
+                        var(--notchSize) 0%,
+                        calc(100% - var(--notchSize)) 0%,
+                        100% var(--notchSize),
+                        100% 100%,
+                        100% 100%,
+                        var(--notchSize) 100%,
+                        0% calc(100% - var(--notchSize))
+                    );
+                }
                 &:before {
                     content: "";
                     position: absolute;
@@ -113,6 +139,7 @@
         }
         .identity-wrapper {
             display: flex;
+            position: initial;
             flex-wrap: wrap;
             flex: 0 0 calc(100% - 150px - 1.05rem);
             .identity-content {
@@ -132,87 +159,149 @@
         }
         .rings {
             float: left;
-            width: calc(50% - 0.25rem);
-            padding: 0.25rem;
+            width: 40%;
+            padding: 0;
+            position: relative;
+            top: -2.5rem;
         }
-        .social-content {
-            flex: 0 0 100%;
-            display: flex;
-            padding: 0.25rem;
-        }
+        .social-content,
         .attributes-wrapper {
-            float: right;
-            width: calc(50% - 0.25rem);
-            padding: 0.5rem;
+            flex: none;
+            float: left;
+            width: 30%;
+            flex-direction: column;
             display: flex;
-            flex-wrap: wrap;
-            flex-direction: row;
-            background: $l5r5e-title;
-            --notchSize: 0.5rem;
-            clip-path: polygon(
-                0% var(--notchSize),
-                var(--notchSize) 0%,
-                calc(100%) 0%,
-                100% var(--notchSize),
-                100% calc(100% - var(--notchSize)),
-                calc(100% - var(--notchSize)) 100%,
-                var(--notchSize) 100%,
-                0% calc(100%)
-            );
+            padding: 0.5rem 0 0 0.25rem;
+            border-left: 2px solid $l5r5e-title;
+            li {
+                position: relative;
+                &:before {
+                    content: "";
+                    position: absolute;
+                    background: linear-gradient($l5r5e-title, rgba(186, 187, 177, 0));
+                    height: 2px;
+                    width: 100%;
+                    top: -0.25rem;
+                    left: -0.25rem;
+                }
+                &:nth-child(2) {
+                    &:before {
+                        width: 90%;
+                    }
+                }
+                &:nth-child(3) {
+                    &:before {
+                        width: 80%;
+                    }
+                }
+                &:nth-child(4) {
+                    &:before {
+                        width: 90%;
+                    }
+                }
+            }
             label {
                 display: flex;
                 color: $l5r5e-label;
                 text-transform: uppercase;
                 font-size: 0.75rem;
-                line-height: 2rem;
-                margin: 0 0.5rem;
+                height: 3rem;
+                margin: 0.25rem 0;
+                flex-direction: row-reverse;
                 strong {
-                    flex: 1 0 calc(100% - 3rem);
+                    flex: 0 0 calc(100% - 3.5rem);
                 }
                 input {
-                    flex: 0 0 2rem;
+                    flex: 0 0 3rem;
+                    margin: 0 0.25rem;
+                    height: 2.5rem;
                     &[disabled] {
-                        flex: 0 0 2rem;
+                        flex: 0 0 3rem;
                         background: transparent;
+                    }
+                }
+            }
+        }
+        .attributes-wrapper {
+            padding: 0.5rem 0.25rem 0 0;
+            border-left: 0 none;
+            border-right: 2px solid $l5r5e-title;
+            li {
+                &:before {
+                    left: auto;
+                    right: -0.25rem;
+                }
+                &.void-content {
+                    &:before {
+                        width: 0;
+                    }
+                }
+            }
+            label {
+                flex-direction: row;
+                strong {
+                    text-align: right;
+                }
+                &:nth-child(2) {
+                    position: relative;
+                    flex: 50%;
+                    right: 1.5rem;
+                    strong {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        font-size: 0.65rem;
+                        width: 3rem;
+                        color: $l5r5e-black;
+                    }
+                    input {
+                        border-top: 0 none;
+                        font-size: 1.25rem;
+                        padding-top: 0.75rem;
                     }
                 }
             }
             .endurance-content,
             .composure-content {
-                flex: 1;
-                label {
-                    &:nth-child(2) {
-                        display: flex;
-                        flex-direction: column;
-                        flex-wrap: wrap;
-                        input {
-                            flex: 1rem;
-                            margin: 0 0 0.25rem;
-                        }
-                    }
-                }
-            }
-            .focus-content,
-            .vigilante-content {
-                flex: 0 0 50%;
-                label {
-                    flex: 1;
-                    input {
-                        flex: 1rem;
+                input {
+                    &[disabled] {
+                        flex: 0 0 4.75rem;
+                        padding-right: 3rem;
                     }
                 }
             }
             .void-content {
                 display: flex;
+                position: absolute;
+                bottom: 0.25rem;
+                right: 35%;
+                width: 10rem;
                 label {
-                    flex: 1;
+                    margin: 0;
+                    strong {
+                        flex: 1 0 calc(100% - 5rem);
+                        padding: 0 0.25rem;
+                    }
                     input {
-                        flex: 1rem;
+                        &:nth-child(2) {
+                            flex: 3rem;
+                            padding-right: 1.25rem;
+                        }
+                        &:last-child {
+                            flex: 1;
+                            border: 0 none;
+                            font-size: 1rem;
+                            text-align: left;
+                            padding-left: 0.25rem;
+                            padding-top: 0.75rem;
+                            position: relative;
+                            right: 2rem;
+                        }
                     }
                 }
             }
             li {
-                position: relative;
+                display: flex;
                 p {
                     display: none;
                     z-index: 2;
@@ -220,6 +309,8 @@
                     background: rgba(0, 0, 0, 0.5);
                     color: #fff;
                     padding: 0.25rem;
+                    bottom: -75%;
+                    right: 0;
                     --notchSize: 0.5rem;
                     clip-path: polygon(
                         0% 0,
@@ -239,8 +330,7 @@
                 }
             }
         }
-        .identity-wrapper label,
-        .social-content label {
+        .identity-wrapper label {
             display: flex;
             color: $l5r5e-label;
             text-transform: uppercase;
@@ -326,13 +416,6 @@
         tbody {
             th {
                 flex: 0 0 70%;
-            }
-        }
-    }
-    .techniques-wrapper {
-        fieldset {
-            &:last-child {
-                margin: 0 0 0 0.5rem;
             }
         }
     }

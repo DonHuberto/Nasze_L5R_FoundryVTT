@@ -151,7 +151,7 @@ button {
     }
     .sidebar-tab {
         .chat-control-icon {
-            cursor: url("../l5r-ui/ui/cursors/pointer.webp"), pointer;
+            cursor: url("../assets/cursors/pointer.webp"), pointer;
         }
         .action-buttons button {
             cursor: default;
@@ -494,10 +494,19 @@ button {
 }
 
 // Dialog
-.dialog {
-    .dialog-buttons {
-        button {
-            line-height: 1rem;
+.dialo {
+    .logo-dialog {
+        height: 125px;
+        .dialog-buttons {
+            button {
+                line-height: 1rem;
+            }
+        }
+        .dialog-content {
+            height: 1rem;
+            p {
+                margin: 0;
+            }
         }
     }
 }

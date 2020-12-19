@@ -1,23 +1,23 @@
 <ul class="social-content">
     <li>
         <label class="attribute-label centered-input">
-            {{ localize 'l5r5e.social.honor' }}
+            <strong>{{ localize 'l5r5e.social.honor' }}</strong>
             <input class="centered-input" type="text" name="data.social.honor" value="{{data.social.honor}}" placeholder="0"/>
         </label>
     </li>
     <li>
         <label class="attribute-label centered-input">
-            {{ localize 'l5r5e.social.glory' }}
+            <strong>{{ localize 'l5r5e.social.glory' }}</strong>
             <input class="centered-input" type="text" name="data.social.glory" value="{{data.social.glory}}" placeholder="0"/>
         </label>
     </li>
     <li>
         <label class="attribute-label centered-input">
-            {{ localize 'l5r5e.social.status' }}
+            <strong>{{ localize 'l5r5e.social.status' }}</strong>
             <input class="centered-input" type="text" name="data.social.status" value="{{data.social.status}}" placeholder="0"/>
         </label>
     </li>
-    <li>
+    <li class="affinities">
         {{!-- Strength --}}
         <select class="attribute-dtype" name="data.rings_affinities.strength.ring">
             {{#select data.rings_affinities.strength.ring}}
@@ -26,7 +26,7 @@
                 {{/each}}
             {{/select}}
         </select>
-        <input type="text" name="data.rings_affinities.strength.value" value="{{data.rings_affinities.strength.value}}" data-dtype="Number" placeholder="0"/>, 
+        <input type="text" name="data.rings_affinities.strength.value" value="{{data.rings_affinities.strength.value}}" data-dtype="Number" placeholder="0"/>
         {{!-- Weakness --}}
         <select class="attribute-dtype" name="data.rings_affinities.weakness.ring">
             {{#select data.rings_affinities.weakness.ring}}
@@ -37,7 +37,9 @@
         </select>
         <input type="text" name="data.rings_affinities.weakness.value" value="{{data.rings_affinities.weakness.value}}" data-dtype="Number" placeholder="0"/>
         {{!-- Attitude --}}
-        <input type="text" name="data.attitude" value="{{data.attitude}}" data-dtype="String" placeholder=""/>
-        <h2>{{ localize 'l5r5e.attributes.title' }}</h2>
+        <label class="attitude">
+            <input type="text" name="data.attitude" value="{{data.attitude}}" data-dtype="String" placeholder=""/>
+            {{ localize 'l5r5e.social.attitude' }}
+        </label>
     </li>
 </ul>

@@ -34,7 +34,7 @@ $font-primary: "PatrickHand", sans-serif;
 $font-secondary: "BrushtipTexe", sans-serif;
 $font-tertiary: "BrushtipTexe", sans-serif;
 $font-quaternary: "ArchitectsDaughter", sans-serif;
-$font-dice: "LogotypeL5r", sans-serif;
+$font-logoType: "LogotypeL5r", sans-serif;
 
 body {
     font: 16px $font-primary;
@@ -73,7 +73,7 @@ i.i_water,
 i.i_fire,
 i.i_air,
 i.i_void {
-    font-family: LogotypeL5r;
+    font-family: $font-logoType;
     line-height: 1rem;
     font-style: normal;
     font-weight: normal;

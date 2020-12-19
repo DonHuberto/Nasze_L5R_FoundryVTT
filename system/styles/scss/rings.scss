@@ -37,6 +37,8 @@
             border-radius: 100%;
             top: 0;
             left: 0;
+            text-align: center;
+            font-size: 1rem;
             border: 2px solid $l5r5e-title;
             color: $white-light;
             &:hover {
@@ -54,7 +56,7 @@
         input {
             top: auto;
             right: 0;
-            bottom: -1rem;
+            bottom: -0.9rem;
             left: auto;
             background: $l5r5e-earth;
         }
@@ -73,7 +75,7 @@
         input {
             top: auto;
             right: auto;
-            bottom: -1rem;
+            bottom: -0.9rem;
             left: 0;
             background: $l5r5e-air;
         }

@@ -259,6 +259,7 @@ Hooks.once("ready", async function () {
 
     //-- Logo Menu Link
     let liensExt = new Dialog({
+        classes: ["logo-dialog"],
         title: game.i18n.localize("l5r5e.logo.title"),
         content: "<p>" + game.i18n.localize("l5r5e.logo.content") + "</p>",
         buttons: {

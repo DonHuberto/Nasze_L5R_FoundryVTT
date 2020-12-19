@@ -1,48 +1,153 @@
 &.npc {
     .sheet-header {
+        h1 {
+            &:before {
+                top: -50%;
+                left: -0.5rem;
+            }
+        }
+        img {
+            flex: 0 0 75px;
+            height: 75px;
+            width: 75px;
+        }
         fieldset {
-            flex: none;
+            flex: 1 1 100%;
             min-height: 2rem;
             width: 100%;
         }
+        .identity-wrapper {
+            flex: 1 1 100%;
+            h1 {
+                margin: 0 0 1rem 1rem;
+            }
+            .identity-list {
+                flex: 0 0 100%;
+                display: flex;
+                margin-bottom: 0.5rem;
+                li {
+                    flex: 1;
+                    select {
+                        width: 100%;
+                        background: transparent;
+                        border: 0 none;
+                        text-transform: capitalize;
+                    }
+                    input {
+                        font-size: 1.25rem;
+                        height: 1.5rem;
+                        line-height: 1.5rem;
+                    }
+                }
+            }
+        }
+        .affinities {
+            display: flex;
+            flex-wrap: wrap;
+            select {
+                position: relative;
+                background: transparent;
+                border: 0 none;
+                margin: 0;
+                padding: 0;
+                text-align: left;
+                font-weight: bold;
+                margin: 0 0 0.25rem 0;
+                color: $l5r5e-label;
+                option {
+                    font-family: $font-primary;
+                }
+                option:before {
+                    font-family: $font-logoType;
+                    line-height: 1rem;
+                    font-style: normal;
+                    font-weight: normal;
+                    vertical-align: middle;
+                }
+                option[value="earth"]:before {
+                    content: "g";
+                }
+                option[value="water"]:before {
+                    content: "w";
+                }
+                option[value="fire"]:before {
+                    content: "i";
+                }
+                option[value="air"]:before {
+                    content: "a";
+                }
+                option[value="void"]:before {
+                    content: "v";
+                }
+            }
+            input {
+                font-size: 1rem;
+                flex: 1rem;
+                height: 1.5rem;
+            }
+        }
+        .social-content {
+            margin-bottom: 0.5rem;
+            .attitude {
+                height: 1.5rem;
+                padding-left: 0.25rem;
+                input {
+                    height: 1rem;
+                }
+                input {
+                    height: 1.5rem;
+                    flex: 1;
+                    margin-right: 0;
+                }
+            }
+        }
     }
-}
-.npc-skill {
-    display: flex;
-    width: 100%;
-    line-height: 2rem;
-    font-size: 0.75rem;
-    text-align: center;
-    li {
-        flex: 1;
-        padding: 0.25rem;
-        text-transform: uppercase;
-        color: $white;
-        &:nth-child(1) {
-            background: $l5r5e-void;
+    .npc-skill {
+        display: flex;
+        width: 100%;
+        line-height: 2rem;
+        font-size: 0.75rem;
+        text-align: center;
+        li {
+            flex: 1;
+            padding: 0.25rem;
+            text-transform: uppercase;
+            color: $white;
+            &:nth-child(1) {
+                background: $l5r5e-void;
+            }
+            &:nth-child(2) {
+                background: $l5r5e-earth;
+            }
+            &:nth-child(3) {
+                background: $l5r5e-fire;
+            }
+            &:nth-child(4) {
+                background: $l5r5e-air;
+            }
+            &:nth-child(5) {
+                flex: 1.25;
+                background: $l5r5e-water;
+            }
         }
-        &:nth-child(2) {
-            background: $l5r5e-earth;
-        }
-        &:nth-child(3) {
-            background: $l5r5e-fire;
-        }
-        &:nth-child(4) {
-            background: $l5r5e-air;
-        }
-        &:nth-child(5) {
-            flex: 1.25;
-            background: $l5r5e-water;
+        input[type="text"] {
+            float: right;
+            font-size: 1.25rem;
+            height: 2rem;
+            width: 1rem;
+            margin: 0;
+            padding: 0;
+            border: 0 none;
+            background: transparent;
+            color: $white;
         }
     }
-    input[type="text"] {
-        float: right;
-        height: 2rem;
-        width: 1rem;
-        margin: 0;
-        padding: 0;
-        border: 0 none;
-        background: transparent;
-        color: $white;
+    article {
+        min-height: auto;
+        display: flex;
+        .items-content {
+            flex: 0 0 calc(100% - 0.5rem);
+            margin: 0.5rem 0.25rem 0;
+        }
     }
 }

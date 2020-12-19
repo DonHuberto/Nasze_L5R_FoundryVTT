@@ -109,9 +109,11 @@ input[type="time"] {
 }
 
 // Editors
-.editor {
+.editor,
+.editor-content {
     flex: 1;
     height: 100%;
+    min-height: 5rem;
 }
 
 // Elements Colors
