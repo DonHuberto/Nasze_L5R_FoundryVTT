@@ -178,7 +178,7 @@
         },
         "technique": {
             "templates": ["advancement"],
-            "technique_type": "",
+            "technique_type": "kata",
             "effects": "",
             "description": ""
         },

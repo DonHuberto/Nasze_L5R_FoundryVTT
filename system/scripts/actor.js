@@ -11,7 +11,10 @@ export class ActorL5r5e extends Actor {
         //     data.type = "character";
         // }
 
-        // Some tweak on actors
+        // Replace default image
+        data.img = `${CONFIG.l5r5e.paths.assets}icons/actors/${data.type}.svg`;
+
+        // Some tweak on actors token
         data.token = data.token || {};
         switch (data.type) {
             case "character":

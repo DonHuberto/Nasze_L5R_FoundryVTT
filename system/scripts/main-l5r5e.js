@@ -3,6 +3,7 @@ import { L5R5E } from "./config.js";
 import { HelpersL5r5e } from "./helpers.js";
 import { RegisterSettings } from "./settings.js";
 import { PreloadTemplates } from "./preloadTemplates.js";
+import { ImporterL5r5e } from "./importer/importer-dialog.js";
 // Actors
 import { ActorL5r5e } from "./actor.js";
 import { CharacterSheetL5r5e } from "./actors/character-sheet.js";
@@ -56,6 +57,7 @@ Hooks.once("init", async function () {
     game.l5r5e = {
         HelpersL5r5e,
         DicePickerDialog,
+        ImporterL5r5e,
     };
 
     // Register custom system settings

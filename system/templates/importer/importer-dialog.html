@@ -1,0 +1,67 @@
+<form id="l5r5e-import-compendium" autocomplete="off">
+
+    <div class="form-group">
+        <label>Compendium</label>
+        <select name="compendiumName" id="l5r5e-import-cn">
+            {{#select data.selectedCompendium.name}}
+            {{#each data.compendiumList}}
+            <option value="{{this.collection}}">{{this.collection}} [{{this.entity}}]</option>
+            {{/each}}
+            {{/select}}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Options</label>
+        <div class="form-group-stacked items">
+            {{#each data.typesList as |typesList primaryClass|}}
+            {{#ifCond ../data.selectedCompendium.type '==' primaryClass}}
+            {{#each typesList}}
+            <label class="import-options">
+                <input type="radio" name="importType" value="{{this}}" />
+                {{this}}
+            </label>
+            {{/each}}
+            {{/ifCond}}
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Langue</label>
+        <label class="import-options">
+            <input type="radio" name="importLang" value="fr" />
+            Français
+        </label>
+        <label class="import-options">
+            <input type="radio" name="importLang" value="en" />
+            Anglais
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+        <label class="import-options">
+            <input type="radio" name="importDesc" value="light" />
+            Light
+        </label>
+        <label class="import-options">
+            <input type="radio" name="importDesc" value="full" />
+            Full
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>Separator
+            <input type="text" name="separator" value=";" maxlength="3" />
+        </label>
+    </div>
+    <div class="form-group-stacked">
+        <label>Raw CSV datas
+            <textarea name="rawtext" style="height: 200px"></textarea>
+        </label>
+    </div>
+    <div class="form-group">
+        <button name="submit" type="submit">Import <i class='fas fa-arrow-circle-right'></i></button>
+    </div>
+</form>
