@@ -307,6 +307,7 @@ button {
 
 // logo
 #logo {
+    content: url("../assets/l5r-logo.webp");
     height: 80px;
     margin-left: 0.5rem;
     opacity: 0.5;
@@ -508,5 +509,13 @@ button {
                 margin: 0;
             }
         }
+    }
+}
+
+// Pause
+
+#pause {
+    img {
+        content: url("../assets/icons/pause.svg");
     }
 }

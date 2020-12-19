@@ -259,7 +259,6 @@ Hooks.once("ready", async function () {
 
     //-- Logo Menu Link
     let liensExt = new Dialog({
-        classes: ["logo-dialog"],
         title: game.i18n.localize("l5r5e.logo.title"),
         content: "<p>" + game.i18n.localize("l5r5e.logo.content") + "</p>",
         buttons: {
@@ -282,7 +281,6 @@ Hooks.once("ready", async function () {
     });
     //-- Logo
     var logo = document.getElementById("logo");
-    logo.setAttribute("src", game.i18n.localize("l5r5e.logo.src"));
 
     //-- Open menu on Logo click
     logo.setAttribute("title", game.i18n.localize("l5r5e.logo.alt"));

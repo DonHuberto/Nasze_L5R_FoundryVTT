@@ -66,13 +66,32 @@ i.strife,
 i.success,
 i.explosive,
 i.opportunity,
-i.d6,
-i.d12,
 i.i_earth,
 i.i_water,
 i.i_fire,
 i.i_air,
-i.i_void {
+i.i_void,
+i.i_kiho,
+i.i_maho,
+i.i_ninjitsu,
+i.i_prerequisite_exemption,
+i.i_rituals,
+i.i_shuji,
+i.i_invocations,
+i.i_kata,
+i.i_imperial,
+i.i_crab,
+i.i_crane,
+i.i_dragon,
+i.i_lion,
+i.i_mantis,
+i.i_phoenix,
+i.i_scorpion,
+i.i_tortoise,
+i.i_unicorn,
+i.i_bushi,
+i.i_courtier,
+i.i_shugenja {
     font-family: $font-logoType;
     line-height: 1rem;
     font-style: normal;
@@ -80,36 +99,104 @@ i.i_void {
     vertical-align: middle;
 }
 
+// Dices
 i.strife:before {
-    content: "f";
+    content: "\E91B";
 }
 i.success:before {
-    content: "s";
+    content: "\E91C";
 }
 i.explosive:before {
-    content: "e";
+    content: "\E91D";
 }
 i.opportunity:before {
-    content: "o";
+    content: "\E91A";
 }
-i.d6:before {
-    content: "r";
-}
-i.d12:before {
-    content: "k";
-}
+
+// Rings
 i.i_earth:before {
-    content: "g";
+    content: "\E90C";
 }
 i.i_water:before {
-    content: "w";
+    content: "\E90A";
 }
 i.i_fire:before {
-    content: "i";
+    content: "\E908";
 }
 i.i_air:before {
-    content: "a";
+    content: "\E90B";
 }
 i.i_void:before {
-    content: "v";
+    content: "\E909";
+}
+
+// Techs
+i.i_kiho:before {
+    content: "\E900";
+}
+i.i_maho:before {
+    content: "\E901";
+}
+i.i_ninjitsu:before {
+    content: "\E902";
+}
+i.i_prerequisite_exemption:before {
+    content: "\E903";
+}
+i.i_rituals:before {
+    content: "\E904";
+}
+i.i_shuji:before {
+    content: "\E905";
+}
+i.i_invocations:before {
+    content: "\E906";
+}
+i.i_kata:before {
+    content: "\E907";
+}
+
+// Clans
+i.i_imperial:before {
+    content: "\E90D";
+}
+i.i_crab:before {
+    content: "\E914";
+}
+i.i_crane:before {
+    content: "\E915";
+}
+i.i_dragon:before {
+    content: "\E916";
+}
+i.i_lion:before {
+    content: "\E90E";
+}
+i.i_mantis:before {
+    content: "\E90F";
+}
+i.i_phoenix:before {
+    content: "\E910";
+}
+i.i_scorpion:before {
+    content: "\E911";
+}
+i.i_tortoise:before {
+    content: "\E912";
+}
+i.i_unicorn:before {
+    content: "\E913";
+}
+
+// Titles
+i.i_bushi:before {
+    content: "\E917";
+    color: rgb(165, 90, 90);
+}
+i.i_courtier:before {
+    content: "\E918";
+    color: rgb(105, 130, 165);
+}
+i.i_shugenja:before {
+    content: "\E919";
 }

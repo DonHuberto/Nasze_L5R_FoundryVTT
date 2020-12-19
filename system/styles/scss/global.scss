@@ -53,6 +53,13 @@ button:focus {
     box-shadow: 0 0 10px $red;
 }
 
+option {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    padding: 0.25rem;
+    color: $black-light;
+}
+
 /* lists */
 ul,
 li {
