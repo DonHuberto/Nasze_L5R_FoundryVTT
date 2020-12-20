@@ -26,6 +26,12 @@ export class ActorL5r5e extends Actor {
                         // brightSight: 0,
                         actorLink: true,
                         disposition: 1, // friendly
+                        bar1: {
+                            attribute: "fatigue",
+                        },
+                        bar2: {
+                            attribute: "strife",
+                        },
                     },
                     { overwrite: false }
                 );
@@ -37,6 +43,12 @@ export class ActorL5r5e extends Actor {
                     {
                         actorLink: false,
                         disposition: 0, // neutral
+                        bar1: {
+                            attribute: "fatigue",
+                        },
+                        bar2: {
+                            attribute: "strife",
+                        },
                     },
                     { overwrite: false }
                 );
