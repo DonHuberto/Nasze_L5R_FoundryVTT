@@ -79,10 +79,8 @@
                 </label>
             </fieldset>
             <fieldset>
-                {{json data.properties}}
                 <legend class="text-block-header">{{ localize  'l5r5e.properties' }}</legend>
-                <!-- TODO data.properties a faire en dnd avec les items de type "property" -->
-                {{> 'systems/l5r5e/templates/items/property/properties.html' properties=data.properties }}
+                {{> 'systems/l5r5e/templates/items/property/properties.html' properties=data.propertiesList }}
             </fieldset>
             <fieldset>
                 <legend class="text-block-header">{{ localize  'l5r5e.description' }}</legend>

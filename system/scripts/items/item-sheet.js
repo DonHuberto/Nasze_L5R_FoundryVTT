@@ -21,6 +21,11 @@ export class ItemSheetL5r5e extends ItemSheet {
         sheetData.data.ringsList = game.l5r5e.HelpersL5r5e.getRingsList();
         sheetData.data.techniquesList = game.l5r5e.HelpersL5r5e.getTechniquesList();
 
+        // Prepare Properties (id => object)
+        if (sheetData.data.properties) {
+            sheetData.data.propertiesList = sheetData.data.properties.map((e) => game.items.get(e));
+        }
+
         return sheetData;
     }
 
@@ -39,6 +44,12 @@ export class ItemSheetL5r5e extends ItemSheet {
         // On focus on one numeric element, select all text for better experience
         html.find(".select-on-focus").on("focus", (event) => {
             event.target.select();
+        });
+
+        // Delete a property
+        html.find(`.property-delete`).on("click", (event) => {
+            const li = $(event.currentTarget).parents(".property");
+            this._deleteProperty(li.data("propertyId"));
         });
     }
 
@@ -74,13 +85,48 @@ export class ItemSheetL5r5e extends ItemSheet {
         // Check item type and subtype
         const item = game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
         if (!item || item.entity !== "Item" || item.data.type !== "property" || this.item.type === "property") {
-            return Promise.resolve();
+            return;
         }
 
-        // TODO
-        console.log("Item - _onDrop - ", item, this);
-
         // Ok add item
-        // return super._onDrop(event);
+        this._addProperty(item.id);
+    }
+
+    /**
+     * Add a property to the current item
+     * @private
+     */
+    _addProperty(id) {
+        let props = this.entity.data.data.properties || [];
+        if (!Array.isArray(props)) {
+            props = [];
+        }
+        if (props.includes(id)) {
+            return;
+        }
+
+        props.push(id);
+
+        this.entity.update({
+            data: {
+                properties: props,
+            },
+        });
+    }
+
+    /**
+     * Delete a property from the current item
+     * @private
+     */
+    _deleteProperty(id) {
+        let props = this.entity.data.data.properties || [];
+        if (!Array.isArray(props) || !props.includes(id)) {
+            return;
+        }
+        this.entity.update({
+            data: {
+                properties: props.filter((e) => e !== id),
+            },
+        });
     }
 }
