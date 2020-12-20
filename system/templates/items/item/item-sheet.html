@@ -33,28 +33,18 @@
         {{!-- Sheet Tab Navigation --}}
         <nav class="sheet-tabs tabs" data-group="primary">
             <a class="item" data-tab="description">Description</a>
-            <a class="item" data-tab="attributes">Attributes</a>
+            <a class="item" data-tab="properties">Properties</a>
         </nav>
         {{!-- Description Tab --}}
         <article class="tab flexcol" data-group="primary" data-tab="description">
             {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
         </article>
-        {{!-- Attributes Tab --}}
-        <article class="tab attributes" data-group="primary" data-tab="attributes">
-            <ul class="attributes-header flexrow">
-                <li class="attribute-key">Attribute Key</li>
-                <li class="attribute-value">Value</li>
-                <li class="attribute-label">Label</li>
-                <li class="attribute-dtype">Data Type</li>
-                <li class="attribute-control" data-action="create" title="{{ localize 'l5r5e.add' }}"><i class="fas fa-plus"></i></li>
-            </ul>
-            <ol class="attributes-list">
-                <fieldset>
-                    <legend class="text-block-header">{{ localize 'l5r5e.properties' }}</legend>
-                    <!-- TODO data.properties a faire en dnd avec les items de type "property" -->
-                </fieldset>
-                <!--{{#each data.attributes as |attr key|}} {{/each}}-->
-            </ol>
+        {{!-- properties Tab --}}
+        <article class="tab properties" data-group="primary" data-tab="properties">
+            <fieldset>
+                <legend class="text-block-header">{{ localize 'l5r5e.properties' }}</legend>
+                {{> 'systems/l5r5e/templates/items/property/properties.html' properties=data.propertiesList }}
+            </fieldset>
         </article>
     </section>
 </form>

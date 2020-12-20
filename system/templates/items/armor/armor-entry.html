@@ -8,5 +8,10 @@
         <li class="item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
         <li class="item-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
     </ul>
-    <div class="item-description">{{{ item.data.properties }}}</div>
+    <div class="item-properties">
+        {{#each item.data.properties as |property id|}}
+            {{{ property.name }}}
+        {{/each}}
+    </div>
+    <div class="item-description">{{{ item.data.description }}}</div>
 </li>

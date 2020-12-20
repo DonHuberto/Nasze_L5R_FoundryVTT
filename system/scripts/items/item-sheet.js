@@ -22,8 +22,9 @@ export class ItemSheetL5r5e extends ItemSheet {
         sheetData.data.techniquesList = game.l5r5e.HelpersL5r5e.getTechniquesList();
 
         // Prepare Properties (id => object)
-        if (sheetData.data.properties) {
-            sheetData.data.propertiesList = sheetData.data.properties.map((e) => game.items.get(e));
+        sheetData.data.propertiesList = [];
+        if (Array.isArray(sheetData.data.properties)) {
+            sheetData.data.propertiesList = sheetData.data.properties.map((e) => game.items.get(e.id));
         }
 
         return sheetData;
@@ -89,23 +90,23 @@ export class ItemSheetL5r5e extends ItemSheet {
         }
 
         // Ok add item
-        this._addProperty(item.id);
+        this._addProperty(item);
     }
 
     /**
      * Add a property to the current item
      * @private
      */
-    _addProperty(id) {
+    _addProperty(item) {
         let props = this.entity.data.data.properties || [];
         if (!Array.isArray(props)) {
             props = [];
         }
-        if (props.includes(id)) {
+        if (props.findIndex((p) => p.id === item.id) !== -1) {
             return;
         }
 
-        props.push(id);
+        props.push({ id: item.id, name: item.name });
 
         this.entity.update({
             data: {
@@ -120,12 +121,12 @@ export class ItemSheetL5r5e extends ItemSheet {
      */
     _deleteProperty(id) {
         let props = this.entity.data.data.properties || [];
-        if (!Array.isArray(props) || !props.includes(id)) {
+        if (!Array.isArray(props) || props.findIndex((p) => p.id === id) === -1) {
             return;
         }
         this.entity.update({
             data: {
-                properties: props.filter((e) => e !== id),
+                properties: props.filter((p) => p.id !== id),
             },
         });
     }
