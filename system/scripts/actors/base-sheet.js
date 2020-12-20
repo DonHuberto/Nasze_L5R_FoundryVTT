@@ -26,10 +26,20 @@ export class BaseSheetL5r5e extends ActorSheet {
     /**
      * Handle dropped data on the Actor sheet
      */
-    // _onDrop(event) {
-    //     console.log('*** event', event);
-    //     return false;
-    // }
+    _onDrop(event) {
+        // Check item type and subtype
+        const item = game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
+        if (
+            !item ||
+            item.entity !== "Item" ||
+            !["item", "armor", "weapon", "technique", "peculiarity", "advancement"].includes(item.data.type)
+        ) {
+            return Promise.resolve();
+        }
+
+        // Ok add item
+        return super._onDrop(event);
+    }
 
     /**
      * Subscribe to events from the sheet.
@@ -38,9 +48,9 @@ export class BaseSheetL5r5e extends ActorSheet {
     activateListeners(html) {
         super.activateListeners(html);
 
-        // *** Skills ***
-        html.find(".skill-name").on("click", (ev) => {
-            const li = $(ev.currentTarget).parents(".skill");
+        // *** Dice event on Skills clic ***
+        html.find(".skill-name").on("click", (event) => {
+            const li = $(event.currentTarget).parents(".skill");
             new game.l5r5e.DicePickerDialog({
                 skillId: li.data("skill"),
                 skillCatId: li.data("skillcat"),
@@ -53,30 +63,35 @@ export class BaseSheetL5r5e extends ActorSheet {
             return;
         }
 
+        // On focus on one numeric element, select all text for better experience
+        html.find(".select-on-focus").on("focus", (event) => {
+            event.target.select();
+        });
+
         // *** Items : edit, delete ***
         ["item", "peculiarity", "technique", "advancement"].forEach((type) => {
-            html.find(`.${type}-edit`).on("click", (ev) => {
-                this._editSubItem(ev, type);
+            html.find(`.${type}-edit`).on("click", (event) => {
+                this._editSubItem(event, type);
             });
-            html.find(`.${type}-delete`).on("click", (ev) => {
-                this._deleteSubItem(ev, type);
+            html.find(`.${type}-delete`).on("click", (event) => {
+                this._deleteSubItem(event, type);
             });
 
             if (type !== "item") {
-                html.find(`.${type}-curriculum`).on("click", (ev) => {
-                    this._switchSubItemCurriculum(ev, type);
+                html.find(`.${type}-curriculum`).on("click", (event) => {
+                    this._switchSubItemCurriculum(event, type);
                 });
             }
         });
 
         // *** Items : add ***
-        html.find(".technique-add").on("click", (ev) => {
+        html.find(".technique-add").on("click", (event) => {
             this._addSubItem({
                 name: game.i18n.localize("l5r5e.techniques.title_new"),
                 type: "technique",
             });
         });
-        html.find(".advancement-add").on("click", (ev) => {
+        html.find(".advancement-add").on("click", (event) => {
             this._addSubItem({
                 name: game.i18n.localize("l5r5e.advancements.title_new"),
                 type: "advancement",
@@ -99,8 +114,8 @@ export class BaseSheetL5r5e extends ActorSheet {
      * Edit a generic item with sub type
      * @private
      */
-    async _editSubItem(ev, type) {
-        const li = $(ev.currentTarget).parents("." + type);
+    async _editSubItem(event, type) {
+        const li = $(event.currentTarget).parents("." + type);
         const itemId = li.data(type + "Id");
         const item = this.actor.getOwnedItem(itemId);
         item.sheet.render(true);
@@ -110,8 +125,8 @@ export class BaseSheetL5r5e extends ActorSheet {
      * Delete a generic item with sub type
      * @private
      */
-    async _deleteSubItem(ev, type) {
-        const li = $(ev.currentTarget).parents("." + type);
+    async _deleteSubItem(event, type) {
+        const li = $(event.currentTarget).parents("." + type);
         return this.actor.deleteOwnedItem(li.data(type + "Id"));
     }
 
@@ -119,8 +134,8 @@ export class BaseSheetL5r5e extends ActorSheet {
      * Switch "in_curriculum"
      * @private
      */
-    _switchSubItemCurriculum(ev, type) {
-        const li = $(ev.currentTarget).parents("." + type);
+    _switchSubItemCurriculum(event, type) {
+        const li = $(event.currentTarget).parents("." + type);
         const itemId = li.data(type + "Id");
         const item = this.actor.getOwnedItem(itemId);
         return item.update({

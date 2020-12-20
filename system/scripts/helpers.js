@@ -56,4 +56,38 @@ export class HelpersL5r5e {
             };
         });
     }
+
+    /**
+     * Return the target object on a drag n drop event, or null if not found
+     */
+    static getDragnDropTargetObject(event) {
+        let data = null;
+        let targetItem = null;
+
+        try {
+            data = JSON.parse(event.dataTransfer.getData("text/plain"));
+        } catch (err) {
+            return null;
+        }
+
+        switch (data.type) {
+            case "Actor":
+                targetItem = game.actors.get(data.id);
+                break;
+
+            case "Item":
+                targetItem = game.items.get(data.id);
+                break;
+
+            case "JournalEntry":
+                targetItem = game.journal.get(data.id);
+                break;
+
+            case "Macro":
+                targetItem = game.macros.get(data.id);
+                break;
+        }
+
+        return targetItem;
+    }
 }

@@ -1,6 +1,15 @@
 <li class="skill skill-wrapper" data-skill="{{skillId}}">
     <label class="skill-content">
         <span class="skill-name attribute-label rollable">{{ localizeSkill categoryId skillId }}</span>
-        <input type="text" name="data.skills.{{categoryId}}.{{skillId}}" value="{{skill}}" data-dtype="Number" placeholder="0"/>
+        <input
+            class="centered-input select-on-focus"
+            type="number"
+            name="data.skills.{{categoryId}}.{{skillId}}"
+            value="{{skill}}"
+            data-dtype="Number"
+            min="0"
+            max="9"
+            placeholder="0"
+        />
     </label>
 </li>

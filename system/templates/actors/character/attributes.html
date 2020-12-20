@@ -6,7 +6,7 @@
         </label>
         <label class="attribute-label">
             <strong>{{ localize 'l5r5e.attributes.fatigue' }}</strong>
-            <input class="centered-input" type="text" name="data.fatigue" value="{{data.fatigue}}" data-dtype="Number"/>
+            <input class="centered-input select-on-focus" type="number" name="data.fatigue" value="{{data.fatigue}}" data-dtype="Number" min="0" placeholder="0"/>
         </label>
         <p class="quick-rules"> {{ localize 'l5r5e.attributes.endurancetip' }}</p>
     </li>
@@ -17,7 +17,7 @@
         </label>
         <label class="attribute-label">
             <strong>{{ localize 'l5r5e.attributes.strife' }}</strong>
-            <input class="centered-input" type="text" name="data.strife" value="{{data.strife}}" data-dtype="Number"/>
+            <input class="centered-input select-on-focus" type="number" name="data.strife" value="{{data.strife}}" data-dtype="Number" min="0" placeholder="0"/>
         </label>
         <p class="quick-rules"> {{ localize 'l5r5e.attributes.composuretip' }}</p>
     </li>
@@ -38,7 +38,7 @@
     <li class="void-content">
         <label class="attribute-label">
             <strong>{{ localize 'l5r5e.attributes.voidpoints' }}</strong>
-            <input class="centered-input" type="text" name="data.void_points.current" value="{{data.void_points.current}}" data-dtype="Number"/>
+            <input class="centered-input select-on-focus" type="number" name="data.void_points.current" value="{{data.void_points.current}}" data-dtype="Number" placeholder="0" min="0" max="{{data.void_points.max}}"/>
             <input class="centered-input" type="text" name="data.void_points.max" value="{{data.void_points.max}}" data-dtype="Number" disabled/>
         </label>
     </li>

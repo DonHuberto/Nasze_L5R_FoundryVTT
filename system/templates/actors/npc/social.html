@@ -2,19 +2,19 @@
     <li>
         <label class="attribute-label centered-input">
             <strong>{{ localize 'l5r5e.social.honor' }}</strong>
-            <input class="centered-input" type="text" name="data.social.honor" value="{{data.social.honor}}" placeholder="0"/>
+            <input class="centered-input select-on-focus" type="number" name="data.social.honor" value="{{data.social.honor}}" data-dtype="Number" placeholder="0"/>
         </label>
     </li>
     <li>
         <label class="attribute-label centered-input">
             <strong>{{ localize 'l5r5e.social.glory' }}</strong>
-            <input class="centered-input" type="text" name="data.social.glory" value="{{data.social.glory}}" placeholder="0"/>
+            <input class="centered-input select-on-focus" type="number" name="data.social.glory" value="{{data.social.glory}}" data-dtype="Number" placeholder="0"/>
         </label>
     </li>
     <li>
         <label class="attribute-label centered-input">
             <strong>{{ localize 'l5r5e.social.status' }}</strong>
-            <input class="centered-input" type="text" name="data.social.status" value="{{data.social.status}}" placeholder="0"/>
+            <input class="centered-input select-on-focus" type="number" name="data.social.status" value="{{data.social.status}}" data-dtype="Number" placeholder="0"/>
         </label>
     </li>
     <li class="affinities">
@@ -26,7 +26,7 @@
                 {{/each}}
             {{/select}}
         </select>
-        <input type="text" name="data.rings_affinities.strength.value" value="{{data.rings_affinities.strength.value}}" data-dtype="Number" placeholder="0"/>
+        <input class="centered-input select-on-focus" type="number" name="data.rings_affinities.strength.value" value="{{data.rings_affinities.strength.value}}" data-dtype="Number" min="1" max="9" placeholder="0"/>
         {{!-- Weakness --}}
         <select class="attribute-dtype" name="data.rings_affinities.weakness.ring">
             {{#select data.rings_affinities.weakness.ring}}
@@ -35,7 +35,7 @@
                 {{/each}}
             {{/select}}
         </select>
-        <input type="text" name="data.rings_affinities.weakness.value" value="{{data.rings_affinities.weakness.value}}" data-dtype="Number" placeholder="0"/>
+        <input class="centered-input select-on-focus" type="number" name="data.rings_affinities.weakness.value" value="{{data.rings_affinities.weakness.value}}" data-dtype="Number" min="-9" max="-1" placeholder="0"/>
         {{!-- Attitude --}}
         <label class="attitude">
             <input type="text" name="data.attitude" value="{{data.attitude}}" data-dtype="String" placeholder=""/>

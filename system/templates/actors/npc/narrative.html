@@ -1,9 +1,9 @@
 <fieldset class="narrative-content">
     <legend class="text-block-header">{{ localize 'l5r5e.social.advantages' }}</legend>
     <ul class="item-list">
-        {{#each actor.item as |item id|}}
-            {{#ifCond item.type '==' 'advantage'}}
-                {{> 'systems/l5r5e/templates/items/item/item-entry.html' item=item id=id }}
+        {{#each actor.items as |item id|}}
+            {{#ifCond '["distinction","passion"]' 'includes' item.data.peculiarity_type}}
+                {{> 'systems/l5r5e/templates/items/peculiarity/peculiarity-entry.html' peculiarity=item id=id }}
             {{/ifCond}}
         {{/each}}
     </ul>
@@ -11,9 +11,9 @@
 <fieldset class="narrative-content">
     <legend class="text-block-header">{{ localize 'l5r5e.social.disadvantages' }}</legend>
     <ul class="item-list">
-        {{#each actor.item as |item id|}}
-            {{#ifCond item.type '==' 'disadvantage'}}
-                {{> 'systems/l5r5e/templates/items/item/item-entry.html' item=item id=id }}
+        {{#each actor.items as |item id|}}
+            {{#ifCond '["adversity","anxiety"]' 'includes' item.data.peculiarity_type}}
+                {{> 'systems/l5r5e/templates/items/peculiarity/peculiarity-entry.html' peculiarity=item id=id }}
             {{/ifCond}}
         {{/each}}
     </ul>

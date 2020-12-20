@@ -57,7 +57,6 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
     getXpSpentInThisRank() {
         const currentRank = this.actor.data.data.identity.school_rank || 0;
         return this.actor.items.reduce((tot, item) => {
-            // TODO c'est bien par rang actuel +1 ?
             if (currentRank + 1 === item.data.data.rank) {
                 let xp = item.data.data.xp_used || 0;
 

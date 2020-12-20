@@ -1,10 +1,10 @@
 <ul class="npc-skill">{{!-- Skills --}}
     {{#each data.skills as |skillValue skillCatId|}}
         <li class="skill skill-wrapper" data-skillcat="{{skillCatId}}">
-            <label for="skill_{{skillCatId}}" class="skill-name">
+            <label class="skill-name">
                 {{localizeSkill skillCatId "title"}}
             </label>
-            <input id="skill_{{skillCatId}}" type="text" name="data.skills.{{skillCatId}}" value="{{skillValue}}" data-dtype="Number" placeholder="0"/>
+            <input class="centered-input select-on-focus" id="skill_{{skillCatId}}" type="number" name="data.skills.{{skillCatId}}" value="{{skillValue}}" data-dtype="Number" min="0" max="9" placeholder="0"/>
         </li>
     {{/each}}
 </ul>
