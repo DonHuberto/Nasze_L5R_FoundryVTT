@@ -218,7 +218,7 @@ export class DicePickerDialog extends FormApplication {
             actor: this._actor,
             actorIsPc: !this._actor || this._actor.data?.type === "character",
             difficulty: this._difficulty,
-            canUseVoidPoint: !this._actor || this._actor.data.data.void_points.current > 0,
+            canUseVoidPoint: !this._actor || this._actor.data.data.void_points.value > 0,
         };
     }
 
@@ -362,15 +362,15 @@ export class DicePickerDialog extends FormApplication {
 
             // If Void point is used, minus the actor
             if (formData.use_void_point) {
-                this._actor.data.data.void_points.current = Math.max(this._actor.data.data.void_points.current - 1, 0);
+                this._actor.data.data.void_points.value = Math.max(this._actor.data.data.void_points.value - 1, 0);
             }
 
             // If hidden add void 1pt
             // this._difficulty.isHidden = !!formData.diff_hidden;
             // this._difficulty.difficulty = formData.diff;
             if (this._difficulty.isHidden) {
-                this._actor.data.data.void_points.current = Math.min(
-                    this._actor.data.data.void_points.current + 1,
+                this._actor.data.data.void_points.value = Math.min(
+                    this._actor.data.data.void_points.value + 1,
                     this._actor.data.data.void_points.max
                 );
             }

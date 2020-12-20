@@ -74,11 +74,17 @@
                 "focus": 0,
                 "vigilante": 0,
                 "void_points": {
-                    "max": 0,
-                    "current": 0
+                    "max": 1,
+                    "value": 0
                 },
-                "fatigue": 0,
-                "strife": 0,
+                "fatigue": {
+                    "max": 1,
+                    "value": 0
+                },
+                "strife": {
+                    "max": 1,
+                    "value": 0
+                },
                 "stance": "void"
             },
             "advancement": {

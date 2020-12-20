@@ -61,20 +61,22 @@ export class ActorL5r5e extends Actor {
     prepareData() {
         super.prepareData();
 
-        const actorData = this.data;
-        const data = actorData.data;
-        const isCharacter = ["character", "npc"].includes(actorData.type);
+        if (["character", "npc"].includes(this.data.type)) {
+            const data = this.data.data;
 
-        if (isCharacter) {
             data.endurance = (Number(data.rings.earth) + Number(data.rings.fire)) * 2;
             data.composure = (Number(data.rings.earth) + Number(data.rings.water)) * 2;
             data.focus = Number(data.rings.air) + Number(data.rings.fire);
             data.vigilante = Math.floor((Number(data.rings.air) + Number(data.rings.water)) / 2);
+
+            // Attributes bars
             data.void_points.max = data.rings.void;
+            data.fatigue.max = data.endurance;
+            data.strife.max = data.composure;
 
             // Make sure void points are never greater than max
-            if (data.void_points.current > data.void_points.max) {
-                data.void_points.current = data.void_points.max;
+            if (data.void_points.value > data.void_points.max) {
+                data.void_points.value = data.void_points.max;
             }
         }
     }
