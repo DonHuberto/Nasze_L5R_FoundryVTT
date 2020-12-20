@@ -21,13 +21,33 @@ export class ItemSheetL5r5e extends ItemSheet {
         sheetData.data.ringsList = game.l5r5e.HelpersL5r5e.getRingsList();
         sheetData.data.techniquesList = game.l5r5e.HelpersL5r5e.getTechniquesList();
 
-        // Prepare Properties (id => object)
-        sheetData.data.propertiesList = [];
-        if (Array.isArray(sheetData.data.properties)) {
-            sheetData.data.propertiesList = sheetData.data.properties.map((e) => game.items.get(e.id));
-        }
+        // Prepare Properties (id/name => object)
+        this._prepareProperties(sheetData);
 
         return sheetData;
+    }
+
+    /**
+     * Prepare properties list
+     * @private
+     */
+    _prepareProperties(sheetData) {
+        sheetData.data.propertiesList = [];
+        if (Array.isArray(sheetData.data.properties)) {
+            const props = [];
+            sheetData.data.properties.forEach((e) => {
+                const obj = game.items.get(e.id);
+                // remove item if not found (probably a deleted item)
+                if (!obj) {
+                    return;
+                }
+                sheetData.data.propertiesList.push(obj);
+
+                // update name if referenced object was rename
+                props.push({ id: e.id, name: obj.name });
+            });
+            sheetData.data.properties = props;
+        }
     }
 
     /**
@@ -98,19 +118,19 @@ export class ItemSheetL5r5e extends ItemSheet {
      * @private
      */
     _addProperty(item) {
-        let props = this.entity.data.data.properties || [];
-        if (!Array.isArray(props)) {
-            props = [];
+        if (!Array.isArray(this.entity.data.data.properties)) {
+            this.entity.data.data.properties = [];
         }
-        if (props.findIndex((p) => p.id === item.id) !== -1) {
+
+        if (this.entity.data.data.properties.findIndex((p) => p.id === item.id) !== -1) {
             return;
         }
 
-        props.push({ id: item.id, name: item.name });
+        this.entity.data.data.properties.push({ id: item.id, name: item.name });
 
         this.entity.update({
             data: {
-                properties: props,
+                properties: this.entity.data.data.properties,
             },
         });
     }
@@ -120,13 +140,18 @@ export class ItemSheetL5r5e extends ItemSheet {
      * @private
      */
     _deleteProperty(id) {
-        let props = this.entity.data.data.properties || [];
-        if (!Array.isArray(props) || props.findIndex((p) => p.id === id) === -1) {
+        if (
+            !Array.isArray(this.entity.data.data.properties) ||
+            this.entity.data.data.properties.findIndex((p) => p.id === id) === -1
+        ) {
             return;
         }
+
+        this.entity.data.data.properties = this.entity.data.data.properties.filter((p) => p.id !== id);
+
         this.entity.update({
             data: {
-                properties: props.filter((p) => p.id !== id),
+                properties: this.entity.data.data.properties,
             },
         });
     }
