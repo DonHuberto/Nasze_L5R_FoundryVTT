@@ -57,6 +57,18 @@ export class ActorL5r5e extends Actor {
         await super.create(data, options);
     }
 
+    /**
+     * Entity-specific actions that should occur when the Entity is updated
+     * @override
+     */
+    update(data, options = {}) {
+        // Fix for token image unliked from character... dunno why
+        if (data.img) {
+            data["token.img"] = data.img;
+        }
+        return super.update(data, options);
+    }
+
     /** @override */
     prepareData() {
         super.prepareData();

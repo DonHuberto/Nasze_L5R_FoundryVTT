@@ -14,7 +14,7 @@ import { RingDie } from "./dice/dietype/ring-die.js";
 import { RollL5r5e } from "./dice/roll.js";
 import { DicePickerDialog } from "./dice/dice-picker-dialog.js";
 // Items
-import { ItemL5r5e } from "./items/item.js";
+import { ItemL5r5e } from "./item.js";
 import { ItemSheetL5r5e } from "./items/item-sheet.js";
 import { ArmorSheetL5r5e } from "./items/armor-sheet.js";
 import { WeaponSheetL5r5e } from "./items/weapon-sheet.js";
