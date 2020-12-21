@@ -10,6 +10,7 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         sheetData.data.dtypes = ["String", "Number", "Boolean"];
         sheetData.data.stances = CONFIG.l5r5e.stances;
+        sheetData.data.techniquesList = CONFIG.l5r5e.techniques;
 
         return sheetData;
     }
@@ -35,6 +36,13 @@ export class BaseSheetL5r5e extends ActorSheet {
             !["item", "armor", "weapon", "technique", "peculiarity", "advancement"].includes(item.data.type)
         ) {
             return Promise.resolve();
+        }
+
+        // Check if technique is allowed
+        if (item.data.type === "technique") {
+            // TODO Verifier que la technique est possible pour ce persos ? technique_type / techniques.kata
+            //console.log(item.data.data.technique_type, this.actor.data.data.techniques);
+            //return Promise.resolve();
         }
 
         // Ok add item
