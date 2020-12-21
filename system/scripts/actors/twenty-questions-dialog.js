@@ -1,4 +1,4 @@
-import { L5R5E } from "../config.js";
+import { TwentyQuestions } from "./twenty-questions.js";
 
 /**
  * L5R Twenty Questions form
@@ -11,10 +11,7 @@ export class TwentyQuestionsDialog extends FormApplication {
      */
     actor = null;
 
-    /**
-     * Current form datas
-     */
-    datas = {};
+    errors = [];
 
     /**
      * Assign the default options
@@ -38,7 +35,7 @@ export class TwentyQuestionsDialog extends FormApplication {
     constructor(options = null, actor = null) {
         super(options);
         this.actor = actor;
-        this.datas = this._initFormDatas(actor);
+        this.object = new TwentyQuestions(actor);
     }
 
     /**
@@ -82,7 +79,7 @@ export class TwentyQuestionsDialog extends FormApplication {
             ringsList: game.l5r5e.HelpersL5r5e.getRingsList(),
             skillsList: game.l5r5e.HelpersL5r5e.getSkillsList(true),
             techniquesList: CONFIG.l5r5e.techniques,
-            datas: this.datas,
+            data: this.object.data,
         };
     }
 
@@ -111,7 +108,28 @@ export class TwentyQuestionsDialog extends FormApplication {
     activateListeners(html) {
         super.activateListeners(html);
 
-        // html.find('input[name="approach"]').on("click", async (event) => {});
+        // *** Everything below here is only needed if the sheet is editable ***
+        if (!this.options.editable) {
+            return;
+        }
+
+        // Check rings total
+        html.find(".ring-select").on("change", async (event) => {
+            const sum = this._summarySelects(html, ".ring-select");
+            // sum = Map(4) {"void" => 2, "water" => 1, "fire" => 1, "earth" => 1}
+            console.log(sum);
+        });
+
+        // Check skills total
+        html.find(".skill-select").on("change", async (event) => {
+            const sum = this._summarySelects(html, ".skill-select");
+            console.log(sum);
+        });
+
+        // Submit button
+        html.find("#generate").on("click", async (event) => {
+            this.submit();
+        });
     }
 
     /**
@@ -159,123 +177,30 @@ export class TwentyQuestionsDialog extends FormApplication {
      * @override
      */
     async _updateObject(event, formData) {
-        // this.actor
-        const actorDatas = this.actor.data.data;
-        //this.actor.data.twenty_questions = formData; // TODO a tester
-
-        actorDatas.name = (formData.step2_family + " " + formData.step19_firstname).trim();
-        actorDatas.zeni = formData.step2_wealth;
-        actorDatas.identity = {
-            ...actorDatas.identity,
-            clan: formData.step1_clan,
-            family: formData.step2_family,
-            school: formData.step3_school,
-            roles: formData.step3_roles,
-        };
-
-        actorDatas.social = {
-            ...actorDatas.social,
-            status: formData.step1_social_status,
-            glory: formData.step2_social_glory,
-            honor: formData.step3_social_honor,
-            giri: formData.step5_social_giri,
-            ninjo: formData.step6_social_ninjo,
-        };
-
-        actorDatas.techniques = {
-            kata: !!formData.step3_technique_kata,
-            kiho: formData.step3_technique_kiho,
-            invocation: !!formData.step3_technique_invocation,
-            ritual: !!formData.step3_technique_ritual,
-            shuji: !!formData.step3_technique_shuji,
-            maho: !!formData.step3_technique_maho,
-            ninjutsu: !!formData.step3_technique_ninjutsu,
-        };
-
-        // actorDatas = formData.step3_techniques;
-        // actorDatas = formData.step3_school_ability;
-        // actorDatas = formData.step3_equipment;
-        // actorDatas = formData.step4_stand_out;
-        // actorDatas = formData.step7_clan_relations;
-        // actorDatas = formData.step7_social_add_glory;
-        // actorDatas = formData.step8_bushido;
-        // actorDatas = formData.step8_social_add_honor;
-        // actorDatas = formData.step9_success;
-        // actorDatas = formData.step9_distinction;
-        // actorDatas = formData.step10_difficulty;
-        // actorDatas = formData.step10_adversity;
-        // actorDatas = formData.step11_calms;
-        // actorDatas = formData.step11_passion;
-        // actorDatas = formData.step12_worries;
-        // actorDatas = formData.step12_anxiety;
-        // actorDatas = formData.step13_most_learn;
-        // actorDatas = formData.step13_disadvantage;
-        // actorDatas = formData.step13_advantage;
-        // actorDatas = formData.step14_first_sight;
-        // actorDatas = formData.step14_special_features;
-        // actorDatas = formData.step15_stress;
-        // actorDatas = formData.step16_relations;
-        // actorDatas = formData.step16_item;
-        // actorDatas = formData.step17_parents_pov;
-        // actorDatas = formData.step18_heritage_name;
-        // actorDatas = formData.step18_heritage_1;
-        // actorDatas = formData.step18_heritage_2;
-        // actorDatas = formData.step20_death;
-
-        const rings = this._filterRingOrSkills(formData.rings);
-        const skills = this._filterRingOrSkills(formData.skills);
-
-        console.log(actorDatas);
-
-        // TODO
-        console.log(rings, skills, formData, actorDatas, this.actor);
-
-        // return this.close();
-    }
-
-    _filterRingOrSkills(obj) {
-        return obj
-            .filter((e) => e !== "none")
-            .reduce((acc, id) => {
-                if (!acc.has(id)) {
-                    acc.set(id, 0);
-                }
-                acc.set(id, acc.get(id) + 1);
-                return acc;
-            }, new Map());
+        this.object.updateFromForm(formData);
+        this.object.toActor(this.actor);
+        return this.close();
     }
 
     /**
-     * Initialize form array
+     * Return a map of skill/ring with count
      * @private
      */
-    _initFormDatas(actor) {
-        const actorDatas = actor.data.data;
-
-        // already 20q struct ?
-        if (actorDatas.twenty_questions?.step1_clan) {
-            return actorDatas.twenty_questions;
-        }
-
-        // If not fill some values
-        return {
-            step1_clan: actorDatas.identity.clan,
-            step1_social_status: actorDatas.social.status,
-            step2_family: actorDatas.identity.family,
-            step2_social_glory: actorDatas.social.glory,
-            step3_school: actorDatas.identity.school,
-            step3_roles: actorDatas.identity.roles,
-            step3_technique_kata: actorDatas.techniques.kata,
-            step3_technique_kiho: actorDatas.techniques.kiho,
-            step3_technique_invocation: actorDatas.techniques.invocation,
-            step3_technique_ritual: actorDatas.techniques.ritual,
-            step3_technique_shuji: actorDatas.techniques.shuji,
-            step3_technique_maho: actorDatas.techniques.maho,
-            step3_technique_ninjutsu: actorDatas.techniques.ninjutsu,
-            step3_social_honor: actorDatas.social.honor,
-            step5_social_giri: actorDatas.social.giri,
-            step6_social_ninjo: actorDatas.social.ninjo,
-            step19_firstname: actor.data.name.replace(/^(?:\w+\s+)?(.+)$/gi, "$1") || "",
-        };
+    _summarySelects(html, selector) {
+        return html
+            .find(selector)
+            .get()
+            .reduce((acc, curr) => {
+                curr = curr.value;
+                if (curr === "none") {
+                    return acc;
+                }
+                let val = acc.get(curr);
+                if (!val) {
+                    val = 0;
+                }
+                acc.set(curr, val + 1);
+                return acc;
+            }, new Map());
     }
 }
