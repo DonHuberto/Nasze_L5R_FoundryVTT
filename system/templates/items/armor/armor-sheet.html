@@ -40,6 +40,10 @@
             <fieldset>
                 <legend class="text-block-header">{{ localize 'l5r5e.description' }}</legend>
                 {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+                <div class="resource">
+                    <label>{{ localize 'l5r5e.book_reference' }}</label>
+                    <input type="text" name="data.book_reference" value="{{data.book_reference}}" />
+                </div>
             </fieldset>
 
             <fieldset class="weapon-stats-content">

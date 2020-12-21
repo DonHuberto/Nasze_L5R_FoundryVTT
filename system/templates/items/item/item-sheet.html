@@ -38,6 +38,10 @@
         {{!-- Description Tab --}}
         <article class="tab flexcol" data-group="primary" data-tab="description">
             {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            <div class="resource">
+                <label>{{ localize 'l5r5e.book_reference' }}</label>
+                <input type="text" name="data.book_reference" value="{{data.book_reference}}" />
+            </div>
         </article>
         {{!-- properties Tab --}}
         <article class="tab properties" data-group="primary" data-tab="properties">
