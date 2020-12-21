@@ -142,6 +142,10 @@
     "Item": {
         "types": ["item", "armor", "weapon", "technique", "property", "peculiarity", "advancement"],
         "templates": {
+            "basics": {
+                "book_reference": "",
+                "description": ""
+            },
             "advancement": {
                 "in_curriculum": false,
                 "xp_used": 0,
@@ -159,19 +163,17 @@
             }
         },
         "item": {
-            "templates": ["item"],
-            "description": ""
+            "templates": ["basics", "item"]
         },
         "armor": {
-            "templates": ["item"],
+            "templates": ["basics", "item"],
             "armor": {
                 "physical": 0,
                 "supernatural": 0
-            },
-            "description": ""
+            }
         },
         "weapon": {
-            "templates": ["item"],
+            "templates": ["basics", "item"],
             "category": "",
             "skill": "melee",
             "readied": false,
@@ -179,29 +181,25 @@
             "damage": 0,
             "deadliness": 0,
             "grip_1": "",
-            "grip_2": "",
-            "description": ""
+            "grip_2": ""
         },
         "technique": {
-            "templates": ["advancement"],
+            "templates": ["basics", "advancement"],
             "technique_type": "kata",
-            "effects": "",
-            "description": ""
+            "effects": ""
         },
         "property": {
-            "description": ""
+            "templates": ["basics"]
         },
         "peculiarity": {
-            "templates": ["advancement"],
+            "templates": ["basics", "advancement"],
             "peculiarity_type": "distinction",
-            "types": "",
-            "description": ""
+            "types": ""
         },
         "advancement": {
-            "templates": ["advancement"],
+            "templates": ["basics", "advancement"],
             "advancement_type": "",
-            "skill": "",
-            "description": ""
+            "skill": ""
         }
     }
 }
