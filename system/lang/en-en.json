@@ -272,7 +272,8 @@
             "object": "Item (Rarity 7 or lower)",
             "d10r1": "D10 Result (1/2)",
             "d10r2": "D10 Result (2/2)",
-            "generchar": "Generate a new character",
+            "generchar": "Generate the character",
+            "generchar_disclaimer": "Warning, this will erase character's current datas !",
             "part1": {
                 "title": "Part I: Core Identity (Clan and Family)",
                 "q1": "1. What clan does your character belong to ? (p. 41)",

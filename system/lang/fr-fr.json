@@ -276,7 +276,8 @@
             "object": "Objet (Rareté inférieur ou égale à 7)",
             "d10r1": "Résultat du 1er D10",
             "d10r2": "Résultat du 2eme D10",
-            "generchar": "Générer un nouveau personnage",
+            "generchar": "Générer le personnage",
+            "generchar_disclaimer": "Attention cela écrasera les données de votre personnage actuel !",
             "part1": {
                 "title": "Partie I: Identité (clan et famille)",
                 "q1": "1. A quel clan appartient votre personnage ? (p. 41)",

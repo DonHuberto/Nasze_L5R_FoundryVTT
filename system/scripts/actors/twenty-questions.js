@@ -198,10 +198,6 @@ export class TwentyQuestions {
         const actorDatas = actor.data.data;
         const formData = this.data;
 
-        // Store this form datas
-        // TODO maybe elsewhere than in the actor ?
-        actorDatas.twenty_questions = this.data;
-
         // Update the actor real datas
         actorDatas.zeni = formData.step2.wealth;
         actorDatas.identity = {
@@ -236,7 +232,9 @@ export class TwentyQuestions {
         CONFIG.l5r5e.stances.forEach((ring) => (actorDatas.rings[ring] = 1));
         TwentyQuestions.ringList.forEach((formName) => {
             const ring = getProperty(this.data, formName);
-            actorDatas.rings[ring] = actorDatas.rings[ring] + 1;
+            if (ring !== "none") {
+                actorDatas.rings[ring] = actorDatas.rings[ring] + 1;
+            }
         });
 
         // Skills - Reset to 0, and apply modifiers
@@ -246,7 +244,9 @@ export class TwentyQuestions {
         TwentyQuestions.skillList.forEach((formName) => {
             const skillId = getProperty(this.data, formName);
             const skillCat = CONFIG.l5r5e.skills.get(skillId);
-            actorDatas.skills[skillCat][skillId] = actorDatas.skills[skillCat][skillId] + 1;
+            if (skillId !== "none") {
+                actorDatas.skills[skillCat][skillId] = actorDatas.skills[skillCat][skillId] + 1;
+            }
         });
 
         // TODO Items references
@@ -261,29 +261,35 @@ export class TwentyQuestions {
         console.log(actor);
     }
 
-    // checkRings() {
-    //     const rings = {};
-    //     const exceed = {};
-    //     CONFIG.l5r5e.stances.forEach(ring => rings[ring] = 1);
-    //     TwentyQuestions.ringList.forEach((formName) => {
-    //         const ring = getProperty(this.data, formName);
-    //         rings[ring] = rings[ring] + 1;
-    //
-    //         console.log(rings);
-    //
-    //         if (rings[ring] > 3) {
-    //             exceed[ring] = ring;
-    //         }
-    //     });
-    //     return exceed;
-    // }
-    //
-    // checkSkills() {
-    //     const skills = {};
-    //     TwentyQuestions.skillList.forEach((formName) => {
-    //         const skillId = getProperty(this.data, formName);
-    //         const skillCat = CONFIG.l5r5e.skills.get(skillId);
-    //         actorDatas.skills[skillCat][skillId] = actorDatas.skills[skillCat][skillId] + 1;
-    //     });
-    // }
+    /**
+     * Return a array of errors, empty array if no errors founds
+     */
+    validateForm() {
+        // Rings & Skills
+        const rings = this._checkRingsOrSkills("ringList", 2); // ring start at 1
+        const skills = this._checkRingsOrSkills("skillList", 3); // skill start at 0
+
+        // TODO Techniques / peculiarities
+
+        return { ...rings, ...skills };
+    }
+
+    /**
+     * Return a list of exceeded ring/skill
+     */
+    _checkRingsOrSkills(listName, max) {
+        const store = {};
+        const exceed = {};
+        TwentyQuestions[listName].forEach((formName) => {
+            const id = getProperty(this.data, formName);
+            if (!store[id]) {
+                store[id] = 0;
+            }
+            store[id] = store[id] + 1;
+            if (store[id] > max) {
+                exceed[id] = store[id];
+            }
+        });
+        return exceed;
+    }
 }

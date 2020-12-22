@@ -11,7 +11,10 @@ export class TwentyQuestionsDialog extends FormApplication {
      */
     actor = null;
 
-    errors = [];
+    /**
+     * Errors object
+     */
+    errors = {};
 
     /**
      * Assign the default options
@@ -26,6 +29,9 @@ export class TwentyQuestionsDialog extends FormApplication {
             width: 600,
             height: 600,
             resizable: true,
+            closeOnSubmit: false,
+            submitOnClose: true,
+            submitOnChange: true,
         });
     }
 
@@ -36,6 +42,7 @@ export class TwentyQuestionsDialog extends FormApplication {
         super(options);
         this.actor = actor;
         this.object = new TwentyQuestions(actor);
+        this.errors = this.object.validateForm();
     }
 
     /**
@@ -78,8 +85,11 @@ export class TwentyQuestionsDialog extends FormApplication {
             ...super.getData(options),
             ringsList: game.l5r5e.HelpersL5r5e.getRingsList(),
             skillsList: game.l5r5e.HelpersL5r5e.getSkillsList(true),
+            noHonorSkillsList: ["commerce", "skulduggery", "medicine", "seafaring", "survival", "labor"],
             techniquesList: CONFIG.l5r5e.techniques,
             data: this.object.data,
+            errors: this.errors,
+            hasErrors: Object.keys(this.errors).length > 0,
         };
     }
 
@@ -113,22 +123,10 @@ export class TwentyQuestionsDialog extends FormApplication {
             return;
         }
 
-        // Check rings total
-        html.find(".ring-select").on("change", async (event) => {
-            const sum = this._summarySelects(html, ".ring-select");
-            // sum = Map(4) {"void" => 2, "water" => 1, "fire" => 1, "earth" => 1}
-            console.log(sum);
-        });
-
-        // Check skills total
-        html.find(".skill-select").on("change", async (event) => {
-            const sum = this._summarySelects(html, ".skill-select");
-            console.log(sum);
-        });
-
         // Submit button
         html.find("#generate").on("click", async (event) => {
-            this.submit();
+            this.object.toActor(this.actor);
+            await this.close({ submit: true, force: true });
         });
     }
 
@@ -164,11 +162,6 @@ export class TwentyQuestionsDialog extends FormApplication {
         return false;
     }
 
-    // _canDragDrop(event) {
-    //     console.log("*** _canDragDrop event", event);
-    //     return false;
-    // }
-
     /**
      * This method is called upon form submission after form data is validated
      * @param event    The initial triggering submission event
@@ -177,30 +170,22 @@ export class TwentyQuestionsDialog extends FormApplication {
      * @override
      */
     async _updateObject(event, formData) {
+        // Update 20Q object data
         this.object.updateFromForm(formData);
-        this.object.toActor(this.actor);
-        return this.close();
-    }
 
-    /**
-     * Return a map of skill/ring with count
-     * @private
-     */
-    _summarySelects(html, selector) {
-        return html
-            .find(selector)
-            .get()
-            .reduce((acc, curr) => {
-                curr = curr.value;
-                if (curr === "none") {
-                    return acc;
-                }
-                let val = acc.get(curr);
-                if (!val) {
-                    val = 0;
-                }
-                acc.set(curr, val + 1);
-                return acc;
-            }, new Map());
+        // Get errors if any
+        this.errors = this.object.validateForm();
+
+        // Only on close/submit
+        if (event.type === "submit") {
+            // Store this form datas in actor
+            this.actor.data.data.twenty_questions = this.object.data;
+            this.actor.update({
+                data: {
+                    twenty_questions: this.object.data,
+                },
+            });
+        }
+        this.render(false);
     }
 }

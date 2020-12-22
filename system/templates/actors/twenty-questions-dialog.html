@@ -1,4 +1,5 @@
 <form class="l5r5e dice-picker-dialog" autocomplete="off">
+    <div id="errors" class="errors">{{json errors}}</div>
 
     <h1>{{localize 'l5r5e.twenty_questions.title'}}</h1>
     <div>
@@ -354,12 +355,8 @@
                 <select name="step8.skill" class="skill-select">
                     {{#select data.step8.skill}}
                     <option value="none">{{localize 'l5r5e.twenty_questions.choosef'}}</option>
-                    {{#each skillsList as |skills catId|}}
-                    <optgroup label="{{localizeSkill catId 'title'}}">
-                        {{#each skills as |obj|}}
-                        <option value="{{obj.id}}">{{obj.label}}</option>
-                        {{/each}}
-                    </optgroup>
+                    {{#each noHonorSkillsList as |skillId|}}
+                    <option value="{{skillId}}">{{localizeSkillId skillId}}</option>
                     {{/each}}
                     {{/select}}
                 </select>
@@ -561,9 +558,18 @@
         </label>
     </div>
 
+    <hr>
+    {{#if hasErrors}}
+        corriger les erreurs pour poursuivre !
+    {{else}}
     <div class="form-group footer">
+        <div id="generchar_disclaimer">
+            {{localize 'l5r5e.twenty_questions.generchar_disclaimer'}}
+        </div>
+
         <button name="generate" id="generate" type="button">
             {{localize 'l5r5e.twenty_questions.generchar'}} <i class='fas fa-arrow-circle-right'></i>
         </button>
     </div>
+    {{/if}}
 </form>
