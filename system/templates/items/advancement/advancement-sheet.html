@@ -1,71 +1,52 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
-        <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
-        </div>
+        <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
     </header>
     {{!-- Sheet Body --}}
     <section class="sheet-body">
-        {{!-- Sheet Tab Navigation --}}
-        <nav class="sheet-tabs tabs" data-group="primary">
-            <a class="item" data-tab="description">Description</a>
-            <a class="item" data-tab="attributes">Attributes</a>
-        </nav>
-        {{!-- Description Tab --}}
-        <article class="tab flexcol" data-group="primary" data-tab="description">
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
-            <div class="resource">
-                <label>{{ localize 'l5r5e.book_reference' }}</label>
-                <input type="text" name="data.book_reference" value="{{item.data.book_reference}}" />
-            </div>
-        </article>
         {{!-- Attributes Tab --}}
-        <article class="tab attributes" data-group="primary" data-tab="attributes">
+        <article class="attributes" data-group="primary" data-tab="attributes">
             <!-- TODO j'ai mis tous les attributs en vrac, à réorganiser -->
-
-            <div>
-                <select name="data.advancement_type">
-                    {{#select item.data.advancement_type}}
+            <select name="data.advancement_type">
+                {{#select item.data.advancement_type}}
                     {{#each item.data.subTypesList as |type|}}
-                    <option value="{{type}}">{{type}}</option>
+                        <option value="{{type}}">{{type}}</option>
                     {{/each}}
-                    {{/select}}
-                </select>
+                {{/select}}
+            </select>
 
-                {{#ifCond item.data.advancement_type '==' 'advantage' }}
+            {{#ifCond item.data.advancement_type '==' 'advantage' }}
                 <!-- TODO zone de drag n drop de l'item sélectionné ? -->
-                {{/ifCond}}
+            {{/ifCond}}
 
-                {{#ifCond item.data.advancement_type '==' 'ring' }}
-                <select name="data.ring">
-                    {{#select item.data.ring}}
+            {{#ifCond item.data.advancement_type '==' 'ring' }}
+            <select name="data.ring">
+                {{#select item.data.ring}}
                     {{#each item.data.ringsList as |obj|}}
-                    <option value="{{obj.id}}">{{obj.label}}</option>
+                        <option value="{{obj.id}}">{{obj.label}}</option>
                     {{/each}}
-                    {{/select}}
-                </select>
-                {{/ifCond}}
+                {{/select}}
+            </select>
+            {{/ifCond}}
 
-                {{#ifCond item.data.advancement_type '==' 'skill' }}
+            {{#ifCond item.data.advancement_type '==' 'skill' }}
                 <select name="data.skill">
                     <option value="none">{{localize 'l5r5e.twenty_questions.choosef'}}</option>
                     {{#select item.data.skill}}
-                    {{#each item.data.skillsList as |skills catId|}}
-                    <optgroup label="{{localizeSkill catId 'title'}}">
-                        {{#each skills as |obj|}}
-                        <option value="{{obj.id}}">{{obj.label}}</option>
+                        {{#each item.data.skillsList as |skills catId|}}
+                        <optgroup label="{{localizeSkill catId 'title'}}">
+                            {{#each skills as |obj|}}
+                            <option value="{{obj.id}}">{{obj.label}}</option>
+                            {{/each}}
+                        </optgroup>
                         {{/each}}
-                    </optgroup>
-                    {{/each}}
                     {{/select}}
                 </select>
-                {{/ifCond}}
-            </div>
-
-            <label class="attribute-value checkbox">
+            {{/ifCond}}
+            <label class="cursus attribute-value checkbox">
                 <input type="checkbox" name="data.in_curriculum" {{checked item.data.in_curriculum}} />
-                in curriculum
+                {{ localize 'l5r5e.advancements.curriculum' }}
             </label>
             <label class="attribute">
                 {{ localize 'l5r5e.advancements.spent' }}
@@ -80,5 +61,6 @@
                 <input type="text" name="data.bought_at_rank" value="{{data.bought_at_rank}}" data-dtype="Number" placeholder="0"/>
             </label>
         </article>
+        {{> 'systems/l5r5e/templates/items/item/item-infos.html' }}
     </section>
 </form>

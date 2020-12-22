@@ -58,6 +58,12 @@
         "passions": "Pasiones",
         "passionstip": "Después de efectuar una tirada relacionada con tu pasión, descarta tres puntos de Conflicto.",
         "personality": "Personalidad",
+        "description": "Description",
+        "bought_at_rank": "Bought at rank",
+        "book_reference": "Reference",
+        "value": "Value",
+        "rarity": "Rarity",
+        "zeni": "Zeni",
         "chatdices": {
             "successes": "Successes",
             "explosives": "Explosives",
@@ -77,14 +83,24 @@
         "current": "Actuales",
         "quantity": "Cantidad",
         "weight": "Peso",
-        "damage": "Daño",
-        "range": "Rango",
         "properties": "Propiedades",
-        "weapons": "Armas",
+        "weapons": {
+            "title": "Armas",
+            "damage": "Daño",
+            "range": "Rango",
+            "stats": "Stats",
+            "sheathed": "Equipped / Sheathed",
+            "readied": "Readied",
+            "category": "Category",
+            "power": "Power",
+            "deadliness": "Deadliness",
+            "grips": "Grips"
+        },
         "armors": {
             "title": "Armors",
             "physical": "physical",
-            "supernatural": "supernatural"
+            "supernatural": "supernatural",
+            "equipped": "Equipped"
         },
         "add": "Add",
         "items": "Equipo",
@@ -216,7 +232,8 @@
             "title_new": "New advancement",
             "total": "Total",
             "spent": "Usada",
-            "saved": "Restante"
+            "saved": "Restante",
+            "curriculum": "in curriculum"
         },
         "twenty_questions": {
             "title": "Twenty questions",

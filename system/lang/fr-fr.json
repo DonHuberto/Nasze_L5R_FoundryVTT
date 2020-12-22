@@ -63,6 +63,12 @@
         "passions": "Passions",
         "passionstip": "Lorsque vous effectuez un test auquel s'applique une passion, éliminez 3 points de Conflit.",
         "personality": "Personnalité",
+        "description": "Description",
+        "bought_at_rank": "Acheté au rang",
+        "book_reference": "Référence",
+        "value": "Valeur",
+        "rarity": "Rareté",
+        "zeni": "Zeni",
         "chatdices": {
             "successes": "Succès",
             "explosives": "Explosifs",
@@ -82,14 +88,23 @@
         "current": "Actuel",
         "quantity": "Quantité",
         "weight": "Poids",
-        "damage": "Dommage",
-        "range": "Distance",
         "properties": "Propriétés",
-        "weapons": "Armement",
+        "weapons": {
+            "title": "Armement",
+            "damage": "Dégâts de base (DDB)",
+            "range": "Portée (PRT)",
+            "stats": "Attributs",
+            "sheathed": "Équipé / Rengainée",
+            "readied": "Apprêté",
+            "category": "Catégorie",
+            "deadliness": "Dangerosité (DGR)",
+            "grips": "Prise"
+        },
         "armors": {
             "title": "Armures",
             "physical": "Physique",
-            "supernatural": "Spirituelle"
+            "supernatural": "Spirituelle",
+            "equipped": "Équipé"
         },
         "items": "Objets",
         "feats": "Prouesses",
@@ -221,7 +236,8 @@
             "title_new": "Nouvelle progression",
             "total": "Totale",
             "spent": "Dépensée",
-            "saved": "Restante"
+            "saved": "Restante",
+            "curriculum": "Inclus dans le cursus"
         },
         "twenty_questions": {
             "title": "Vingt questions",

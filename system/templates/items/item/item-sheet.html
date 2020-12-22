@@ -1,54 +1,19 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
-        <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
-            <div class="resource">
-            	<label>Quantity</label>
-                <input type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
-            </div>
-            <div class="resource">
-            	<label>Weight</label>
-                <input type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
-            </div>
-        </div>
-
-        <div class="header-fields">
-            <div class="resource">
-                <label>{{ localize 'l5r5e.rarity' }}</label>
-                <input type="text" name="data.rarity" value="{{data.rarity}}" data-dtype="Number"/>
-            </div>
-            <div class="resource">
-                <label>{{ localize 'l5r5e.zeni' }}</label>
-                <input type="text" name="data.zeni" value="{{data.zeni}}" data-dtype="Number"/>
-            </div>
-        </div>
-        <label class="attribute-value checkbox">
-            <input type="checkbox" name="data.equipped" {{checked item.data.equipped}} />
-            equipped
-        </label>
+        <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
     </header>
     {{!-- Sheet Body --}}
     <section class="sheet-body">
-        {{!-- Sheet Tab Navigation --}}
-        <nav class="sheet-tabs tabs" data-group="primary">
-            <a class="item" data-tab="description">Description</a>
-            <a class="item" data-tab="properties">Properties</a>
-        </nav>
-        {{!-- Description Tab --}}
-        <article class="tab flexcol" data-group="primary" data-tab="description">
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
-            <div class="resource">
-                <label>{{ localize 'l5r5e.book_reference' }}</label>
-                <input type="text" name="data.book_reference" value="{{data.book_reference}}" />
-            </div>
-        </article>
         {{!-- properties Tab --}}
-        <article class="tab properties" data-group="primary" data-tab="properties">
-            <fieldset>
-                <legend class="text-block-header">{{ localize 'l5r5e.properties' }}</legend>
-                {{> 'systems/l5r5e/templates/items/property/properties.html' properties=data.propertiesList }}
-            </fieldset>
+        <article class="attributes" data-group="primary" data-tab="properties">
+            <label class="equipped checkbox">
+                <input type="checkbox" name="data.equipped" {{checked item.data.equipped}} />
+                {{ localize 'l5r5e.armors.equipped' }}
+            </label>
+            {{> 'systems/l5r5e/templates/items/item/item-value.html' }}
+            {{> 'systems/l5r5e/templates/items/property/properties.html' properties=data.propertiesList }}
         </article>
+        {{> 'systems/l5r5e/templates/items/item/item-infos.html' }}
     </section>
 </form>

@@ -44,7 +44,8 @@ a,
 form .form-group .form-fields button,
 .sidebar-tab .action-buttons button,
 .dialog .dialog-buttons button,
-form button {
+form button,
+label {
     cursor: url("../assets/cursors/pointer.webp"), pointer !important;
 }
 .draggable {

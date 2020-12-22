@@ -1,50 +1,31 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
-        <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
-        </div>
+        <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
     </header>
     {{!-- Sheet Body --}}
     <section class="sheet-body">
-        {{!-- Sheet Tab Navigation --}}
-        <nav class="sheet-tabs tabs" data-group="primary">
-            <a class="item" data-tab="description">Description</a>
-            <a class="item" data-tab="attributes">Attributes</a>
-        </nav>
-        {{!-- Description Tab --}}
-        <article class="tab flexcol" data-group="primary" data-tab="description">
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
-        </article>
-        <div class="resource">
-            <label>{{ localize 'l5r5e.book_reference' }}</label>
-            <input type="text" name="data.book_reference" value="{{item.data.book_reference}}" />
-        </div>
-
         {{!-- Attributes Tab --}}
-        <article class="tab attributes" data-group="primary" data-tab="attributes">
+        <article class="attributes" data-group="primary" data-tab="attributes">
             <!-- TODO j'ai mis tous les attributs en vrac, à réorganiser -->
             <select name="data.ring">
                 {{#select item.data.ring}}
-                {{#each item.data.ringsList as |obj|}}
-                <option value="{{obj.id}}">{{obj.label}}</option>
-                {{/each}}
+                    {{#each item.data.ringsList as |obj|}}
+                        <option value="{{obj.id}}">{{obj.label}}</option>
+                    {{/each}}
                 {{/select}}
             </select>
             <select name="data.technique_type">
                 {{#select item.data.technique_type}}
-                {{#each item.data.techniquesList as |obj|}}
-                <option value="{{obj.id}}">{{obj.label}}</option>
-                {{/each}}
+                    {{#each item.data.techniquesList as |obj|}}
+                        <option value="{{obj.id}}">{{obj.label}}</option>
+                    {{/each}}
                 {{/select}}
             </select>
-
             <label class="attribute-value checkbox">
                 <input type="checkbox" name="data.in_curriculum" {{checked item.data.in_curriculum}} />
                 in curriculum
             </label>
-
-
             <label class="attribute">
                 {{ localize 'l5r5e.advancements.spent' }}
                 <input type="text" name="data.xp_used" value="{{item.data.xp_used}}" data-dtype="Number" placeholder="0"/>
@@ -62,7 +43,7 @@
                 {{ localize 'l5r5e.effects' }}
                 <input type="text" name="data.effects" value="{{item.data.effects}}"/>
             </label>
-
         </article>
+        {{> 'systems/l5r5e/templates/items/item/item-infos.html' }}
     </section>
 </form>

@@ -58,6 +58,12 @@
         "passions": "Passions",
         "passionstip": "After performing a check related to your passion, remove 3 strife.",
         "personality": "Personality",
+        "description": "Description",
+        "bought_at_rank": "Bought at rank",
+        "book_reference": "Reference",
+        "value": "Value",
+        "rarity": "Rarity",
+        "zeni": "Zeni",
         "chatdices": {
             "successes": "Successes",
             "explosives": "Explosives",
@@ -77,14 +83,23 @@
         "current": "Current",
         "quantity": "Quantity",
         "weight": "Weight",
-        "damage": "Damage",
-        "range": "Range",
         "properties": "Properties",
-        "weapons": "Weapons",
+        "weapons": {
+            "title": "Weapons",
+            "damage": "Damage",
+            "range": "Range",
+            "stats": "Stats",
+            "sheathed": "Equipped / Sheathed",
+            "readied": "Readied",
+            "category": "Category",
+            "deadliness": "Deadliness",
+            "grips": "Grips"
+        },
         "armors": {
             "title": "Armors",
             "physical": "physical",
-            "supernatural": "supernatural"
+            "supernatural": "supernatural",
+            "equipped": "Equipped"
         },
         "add": "Add",
         "items": "Items",
@@ -217,7 +232,8 @@
             "title_new": "New advancement",
             "total": "Total",
             "spent": "Used",
-            "saved": "Saved"
+            "saved": "Saved",
+            "curriculum": "in curriculum"
         },
         "twenty_questions": {
             "title": "Twenty questions",

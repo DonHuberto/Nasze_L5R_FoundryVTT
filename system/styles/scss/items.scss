@@ -1,3 +1,4 @@
+// Item List
 .item-list {
     flex: 100%;
     .item {
@@ -49,6 +50,147 @@
             }
             &:last-child {
                 padding-bottom: 0.5rem;
+            }
+        }
+    }
+}
+// Advancement Sheet, Armor Sheet, Item Sheet, Peculiarity Sheet, Property Sheet, Technique Sheet, Weapon Sheet
+&.advancement,
+&.armor,
+&.item,
+&.peculiarity,
+&.property,
+&.technique,
+&.weapon {
+    .sheet-header {
+        img {
+            flex: 0 0 75px;
+            height: 75px;
+            width: 75px;
+            background: rgba(255, 255, 255, 0.25);
+        }
+    }
+    article {
+        display: flex;
+        flex-wrap: wrap;
+        min-height: auto;
+        label {
+            color: $l5r5e-label;
+            margin: 0.25rem;
+            line-height: 1.5rem;
+        }
+        &.attributes {
+            select[name="data.advancement_type"],
+            select[name="data.skill"],
+            select[name="data.ring"] {
+                flex: 0 0 calc(40% - 0.5rem);
+                margin: 0.25rem;
+            }
+            .attribute-value,
+            .attribute,
+            .value {
+                flex: 0 0 calc(25% - 0.5rem);
+                margin: 0.5rem 0.25rem 0.25rem;
+            }
+            select[name="data.advancement_type"],
+            select[name="data.skill"] {
+                text-transform: capitalize;
+            }
+            .type,
+            .properties {
+                flex: 0 0 calc(50% - 0.5rem);
+                margin: 0.25rem;
+            }
+            .equipped {
+                flex: 100%;
+                margin: 0;
+                text-align: right;
+            }
+            input[type="text"] {
+                width: 2rem;
+                &.grip {
+                    width: 6rem;
+                }
+            }
+            fieldset {
+                input[type="text"] {
+                    float: right;
+                }
+            }
+        }
+        &.infos {
+            display: flex;
+            .reference {
+                flex: 0 0 calc(100% - 0.5rem);
+                input[name="data.book_reference"] {
+                    float: right;
+                    width: 70%;
+                }
+            }
+        }
+    }
+}
+&.advancement {
+    article {
+        &.attributes {
+            .attribute-value,
+            .attribute,
+            .value {
+                flex: 0 0 calc(33% - 0.5rem);
+            }
+            .cursus {
+                flex: 1;
+                line-height: 0.75rem;
+                text-align: right;
+                margin: 0 0.25rem;
+                input {
+                    margin-top: 0.25rem;
+                }
+            }
+        }
+    }
+}
+&.item {
+    article {
+        &.attributes {
+            .properties {
+                flex: 100%;
+            }
+        }
+    }
+}
+&.property {
+    .sheet-header {
+        img {
+            flex: 0 0 75px;
+            height: 75px;
+            width: 75px;
+            background: rgba(255, 255, 255, 0.25);
+        }
+    }
+    article {
+        min-height: calc(100% - 5rem);
+    }
+}
+&.weapon {
+    article {
+        &.attributes {
+            .attribute-value,
+            .stats {
+                flex: 0 0 calc(50% - 0.5rem);
+                margin: 0.25rem;
+            }
+            .value {
+                flex: 0 0 calc(25% - 0.5rem);
+            }
+            .category,
+            .skillType {
+                flex: 0 0 calc(50% - 0.5rem);
+                input,
+                .attribute-dtype {
+                    width: 100%;
+                    margin: 0.25rem;
+                }
             }
         }
     }
