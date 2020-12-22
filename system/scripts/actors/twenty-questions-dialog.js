@@ -94,28 +94,12 @@ export class TwentyQuestionsDialog extends FormApplication {
             noHonorSkillsList: ["commerce", "skulduggery", "medicine", "seafaring", "survival", "labor"],
             techniquesList: CONFIG.l5r5e.techniques,
             data: this.object.data,
-            errors: this.errors,
-            hasErrors: Object.keys(this.errors).length > 0,
             cache: this.cache,
+            errors: Object.keys(this.errors)
+                .map((key) => `${game.i18n.localize("l5r5e.rings." + key)} (${this.errors[key]})`)
+                .join(", "), // TODO better msg :D
+            hasErrors: Object.keys(this.errors).length > 0,
         };
-    }
-
-    /**
-     * Render the dialog
-     * @param force
-     * @param options
-     * @returns {Application}
-     */
-    render(force, options) {
-        options = {
-            ...options,
-        };
-
-        if (force === undefined) {
-            force = true;
-        }
-
-        return super.render(force, options);
     }
 
     /**
@@ -132,15 +116,15 @@ export class TwentyQuestionsDialog extends FormApplication {
 
         // Delete a dnd element
         html.find(`.property-delete`).on("click", (event) => {
-            const stepName = $(event.currentTarget).parents(".tq-drag-n-drop")[0].name;
+            const stepKey = $(event.currentTarget).parents(".tq-drag-n-drop").data("step");
             const itemId = $(event.currentTarget).parents(".property").data("propertyId");
-            this._deleteOwnedItem(stepName, itemId);
+            this._deleteOwnedItem(stepKey, itemId);
             this.render(false);
         });
 
         // Submit button
         html.find("#generate").on("click", async (event) => {
-            this.object.toActor(this.actor);
+            await this.object.toActor(this.actor, flattenObject(this.cache));
             await this.close({ submit: true, force: true });
         });
     }
@@ -152,8 +136,9 @@ export class TwentyQuestionsDialog extends FormApplication {
         if (!["item", "technique", "peculiarity"].includes(type)) {
             return;
         }
-        if (event.target.name === "undefined") {
-            console.log("event.target.name is undefined");
+        const stepKey = $(event.target).data("step");
+        if (!stepKey) {
+            console.log("event stepKey is undefined");
             return;
         }
 
@@ -167,14 +152,19 @@ export class TwentyQuestionsDialog extends FormApplication {
             }
             // Get item
             const item = game.items.get(data.id);
-            if (!item || item.data.type !== type) {
+            if (
+                !item ||
+                (type !== "item" && item.data.type !== type) ||
+                (type === "item" && !["item", "weapon", "armor"].includes(item.data.type))
+            ) {
+                console.log("forbidden item for this drop zone", type, item.data.type);
                 return;
             }
             // Add the item (step and cache)
-            this._addOwnedItem(item, event.target.name);
+            this._addOwnedItem(item, stepKey);
 
             // TODO specific event (no added honor if tech selected etc)
-            console.log(this.object.data.step3.techniques, this.cache);
+            console.log(this.object.data, this.cache);
 
             this.render(false);
         } catch (err) {
@@ -217,9 +207,9 @@ export class TwentyQuestionsDialog extends FormApplication {
         this.cache = {};
         TwentyQuestions.itemsList.forEach((stepName) => {
             // Check if current step value is a array
-            const store = getProperty(this.object.data, stepName);
-            if (!store || !Array.isArray(store)) {
-                setProperty(this.object.data, stepName, []);
+            let step = getProperty(this.object.data, stepName);
+            if (!step || !Array.isArray(step)) {
+                step = [];
             }
 
             // Init cache if not exist
@@ -227,16 +217,17 @@ export class TwentyQuestionsDialog extends FormApplication {
                 setProperty(this.cache, stepName, []);
             }
 
-            // Get linked Item, and store it in cache
-            const step = getProperty(this.object.data, stepName);
-            step.forEach((id, idx) => {
+            // Get linked Item, and store it in cache (delete null value and old items)
+            const newStep = [];
+            step.forEach((id) => {
                 const item = game.items.get(id);
-                if (!item) {
-                    step.splice(idx, 1);
+                if (!id || !item) {
                     return;
                 }
+                newStep.push(id);
                 getProperty(this.cache, stepName).push(item);
             });
+            setProperty(this.object.data, stepName, newStep);
         });
     }
 
@@ -263,12 +254,12 @@ export class TwentyQuestionsDialog extends FormApplication {
     _deleteOwnedItem(stepName, itemId) {
         // Delete from current step
         let step = getProperty(this.object.data, stepName);
-        step = step.filter((e) => e !== itemId);
+        step = step.filter((e) => !!e && e !== itemId);
         setProperty(this.object.data, stepName, step);
 
         // Delete from cache
         let cache = getProperty(this.cache, stepName);
-        cache = cache.filter((e) => e.id !== itemId);
+        cache = cache.filter((e) => !!e && e.id !== itemId);
         setProperty(this.cache, stepName, cache);
     }
 }

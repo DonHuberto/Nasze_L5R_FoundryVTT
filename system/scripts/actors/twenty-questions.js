@@ -28,7 +28,18 @@ export class TwentyQuestions {
     /**
      * Shortcut for all Items to build cache
      */
-    static itemsList = ["step3.techniques"];
+    static itemsList = [
+        "step3.techniques",
+        "step3.school_ability",
+        "step3.equipment",
+        "step9.distinction",
+        "step10.adversity",
+        "step11.passion",
+        "step12.anxiety",
+        "step13.advantage",
+        "step13.disadvantage",
+        "step16.item",
+    ];
 
     /**
      * Steps datas
@@ -94,25 +105,25 @@ export class TwentyQuestions {
         },
         step9: {
             success: "",
-            distinction: "",
+            distinction: [],
         },
         step10: {
             difficulty: "",
-            adversity: "",
+            adversity: [],
         },
         step11: {
             calms: "",
-            passion: "",
+            passion: [],
         },
         step12: {
             worries: "",
-            anxiety: "",
+            anxiety: [],
         },
         step13: {
             most_learn: "",
             skill: "",
-            advantage: "",
-            disadvantage: "",
+            advantage: [],
+            disadvantage: [],
         },
         step14: {
             first_sight: "",
@@ -123,7 +134,7 @@ export class TwentyQuestions {
         },
         step16: {
             relations: "",
-            item: "",
+            item: [],
         },
         step17: {
             parents_pov: "",
@@ -155,10 +166,7 @@ export class TwentyQuestions {
      * Update object with form data
      */
     updateFromForm(formData) {
-        this.data = {
-            ...this.data,
-            ...expandObject(formData),
-        };
+        this.data = mergeObject(this.data, expandObject(formData));
     }
 
     /**
@@ -199,7 +207,7 @@ export class TwentyQuestions {
     /**
      * Fill a actor data from this object
      */
-    toActor(actor) {
+    async toActor(actor, itemsCache) {
         const actorDatas = actor.data.data;
         const formData = this.data;
 
@@ -254,13 +262,26 @@ export class TwentyQuestions {
             }
         });
 
-        // TODO Items references
+        // Clear and add items to actor
+        const deleteIds = actor.data.items.map((e) => e._id);
+        await actor.deleteEmbeddedEntity("OwnedItem", deleteIds);
+
+        // Add items in 20Q to actor
+        Object.values(itemsCache).forEach((types) => {
+            types.forEach((item) => {
+                const itemData = duplicate(item.data);
+                if (itemData.data?.bought_at_rank) {
+                    itemData.data.bought_at_rank = 0;
+                }
+                actor.createEmbeddedEntity("OwnedItem", duplicate(itemData));
+            });
+        });
 
         // Update actor
         actor.update({
             name: (formData.step2.family + " " + formData.step19.firstname).trim(),
             data: actorDatas,
-        }); // , { diff: true }
+        });
 
         // TODO Tmp
         console.log(actor);

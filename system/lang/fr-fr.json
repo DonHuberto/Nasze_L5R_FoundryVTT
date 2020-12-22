@@ -22,7 +22,8 @@
         "global": {
             "add": "Ajouter",
             "edit": "Modifier",
-            "delete": "Supprimer"
+            "delete": "Supprimer",
+            "drop_here": "Déposez ici"
         },
         "logo": {
             "title": "Besoin d'aide ?",

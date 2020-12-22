@@ -1,5 +1,7 @@
 <form class="l5r5e dice-picker-dialog" autocomplete="off">
-    <div id="errors" class="errors">{{json errors}}</div>
+    {{#if errors}}
+    <div id="errors" class="errors">{{errors}}</div>
+    {{/if}}
 
     <h1>{{localize 'l5r5e.twenty_questions.title'}}</h1>
     <div>
@@ -236,36 +238,18 @@
         </div>
 
         <div>
-
             {{localize 'l5r5e.twenty_questions.startech'}}
-            <fieldset name="step3.techniques" class="tq-drag-n-drop">
-                <ul class="item-list">
-                    {{#each cache.step3.techniques as |item id|}}
-                    {{> 'systems/l5r5e/templates/items/property/property-entry.html' item=item id=id }}
-                    {{/each}}
-                </ul>
-            </fieldset>
-
-            <fieldset class="techniques" name="step3.techniques" style="min-height: 50px">
-                <legend class="section-header"><i class="fa fa-arrow-down" aria-hidden="true"></i> {{ localize 'l5r5e.drophere' }}</legend>
-            </fieldset>
-
+            {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step3.techniques stepName='step3.techniques' itemType='techniques' }}
         </div>
 
         <div>
-            <label>
-                {{localize 'l5r5e.twenty_questions.schoolab'}}
-                <textarea name="step3.school_ability">{{data.step3.school_ability}}</textarea>
-            </label>
-            <!-- TODO Drag n drop tech d'école-->
+            {{localize 'l5r5e.twenty_questions.schoolab'}}
+            {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step3.school_ability stepName='step3.school_ability' itemType='techniques' }}
         </div>
 
         <div>
-            <label>
-                {{localize 'l5r5e.twenty_questions.outfit'}}
-                <textarea name="step3.equipment">{{data.step3.equipment}}</textarea>
-            </label>
-            <!-- TODO Drag n drop equipment-->
+            {{localize 'l5r5e.twenty_questions.outfit'}}
+            {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step3.equipment stepName='step3.equipment' itemType='items' }}
         </div>
     </div>
     <div>
@@ -382,11 +366,8 @@
             <textarea name="step9.success">{{data.step9.success}}</textarea>
         </label>
 
-        <label>
-            {{localize 'l5r5e.twenty_questions.distinction'}}
-            <textarea name="step9.distinction">{{data.step9.distinction}}</textarea>
-        </label>
-        <!-- TODO Drag n drop disadv/distinction-->
+        {{localize 'l5r5e.twenty_questions.distinction'}}
+        {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step9.distinction stepName='step9.distinction' itemType='peculiarities' }}
     </div>
     <div>
         <label>
@@ -394,11 +375,8 @@
             <textarea name="step10.difficulty">{{data.step10.difficulty}}</textarea>
         </label>
 
-        <label>
-            {{localize 'l5r5e.twenty_questions.adversity'}}
-            <textarea name="step10.adversity">{{data.step10.adversity}}</textarea>
-        </label>
-        <!-- TODO Drag n drop disadv/adversity-->
+        {{localize 'l5r5e.twenty_questions.adversity'}}
+        {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step10.adversity stepName='step10.adversity' itemType='peculiarities' }}
     </div>
     <div>
         <label>
@@ -406,11 +384,8 @@
             <textarea name="step11.calms">{{data.step11.calms}}</textarea>
         </label>
 
-        <label>
-            {{localize 'l5r5e.twenty_questions.passion'}}
-            <textarea name="step11.passion">{{data.step11.passion}}</textarea>
-        </label>
-        <!-- TODO Drag n drop disadv/passion-->
+        {{localize 'l5r5e.twenty_questions.passion'}}
+        {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step11.passion stepName='step11.passion' itemType='peculiarities' }}
     </div>
     <div>
         <label>
@@ -418,11 +393,8 @@
             <textarea name="step12.worries">{{data.step12.worries}}</textarea>
         </label>
 
-        <label>
-            {{localize 'l5r5e.twenty_questions.anxiety'}}
-            <textarea name="step12.anxiety">{{data.step12.anxiety}}</textarea>
-        </label>
-        <!-- TODO Drag n drop disadv/anxiety-->
+        {{localize 'l5r5e.twenty_questions.anxiety'}}
+        {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step12.anxiety stepName='step12.anxiety' itemType='peculiarities' }}
     </div>
     <div>
         <label>
@@ -449,18 +421,12 @@
 
             {{localize 'l5r5e.twenty_questions.or'}}
 
-            <label>
-                {{localize 'l5r5e.twenty_questions.advant'}}
-                <textarea name="step13.advantage">{{data.step13.advantage}}</textarea>
-            </label>
-            <!-- TODO Drag n drop advantage-->
+            {{localize 'l5r5e.twenty_questions.advant'}}
+            {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step13.advantage stepName='step13.advantage' itemType='peculiarities' }}
         </div>
         <div>
-            <label>
-                {{localize 'l5r5e.twenty_questions.disadvant'}}
-                <textarea name="step13.disadvantage">{{data.step13.disadvantage}}</textarea>
-            </label>
-            <!-- TODO Drag n drop disadvantage-->
+            {{localize 'l5r5e.twenty_questions.disadvant'}}
+            {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step13.disadvantage stepName='step13.disadvantage' itemType='peculiarities' }}
         </div>
     </div>
 
@@ -474,8 +440,7 @@
 
         <label>
             {{localize 'l5r5e.twenty_questions.accoutr'}}
-            <textarea name="step14.special_features">{{data.step14.special_features}}</textarea>
-            <!-- TODO Drag n drop equipment ? -->
+            {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step14.special_features stepName='step14.special_features' itemType='items' }}
         </label>
     </div>
     <div>
@@ -492,8 +457,7 @@
 
         <label>
             {{localize 'l5r5e.twenty_questions.object'}}
-            <textarea name="step16.item">{{data.step16.item}}</textarea>
-            <!-- TODO Drag n drop item-->
+            {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step16.item stepName='step16.item' itemType='items' }}
         </label>
     </div>
 

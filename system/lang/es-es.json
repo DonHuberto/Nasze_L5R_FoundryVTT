@@ -19,12 +19,18 @@
     "def.chat.pref": "Prefijo del chat por defecto",
     "spe.chat.pref": "Si está configurado, la cadena será prefijada para todos los mensajes de chat que no sean ya comandos (como /emote.)",
     "l5r5e": {
+        "global": {
+            "add": "Add",
+            "edit": "Edit",
+            "delete": "Delete",
+            "drop_here": "Drop here"
+        },
         "logo": {
-            "título": "¿Necesitas ayuda?",
-            "contenido": "Sigue la guía :",
-            "Edge": "Ir a la página web de Edge-Studio",
-            "conducir": "¿Comprar un PDF del juego?",
-            "Discordia": "Discordia oficial de FoundryVTT",
+            "títle": "¿Necesitas ayuda?",
+            "content": "Sigue la guía :",
+            "edge": "Ir a la página web de Edge-Studio",
+            "drive": "¿Comprar un PDF del juego?",
+            "discord": "Discordia oficial de FoundryVTT",
             "src": "systems/l5r5e/assets/l5r-logo.webp",
             "alt": "Ayuda en línea",
             "edge-info": "tu navegador abrirá la página web de EDGE STUDIO",
@@ -38,7 +44,7 @@
             "title": "Anillos",
             "earth": "Tierra",
             "air": "Aire",
-            "WATER": "Agua",
+            "water": "Agua",
             "fire": "Fuego",
             "void": "Vacío"
         },
@@ -92,7 +98,6 @@
             "sheathed": "Equipped / Sheathed",
             "readied": "Readied",
             "category": "Category",
-            "power": "Power",
             "deadliness": "Deadliness",
             "grips": "Grips"
         },
@@ -102,7 +107,6 @@
             "supernatural": "supernatural",
             "equipped": "Equipped"
         },
-        "add": "Add",
         "items": "Equipo",
         "feats": "Feats",
         "techniques": {
@@ -203,7 +207,8 @@
                 "void": "Subsistir"
             }
         },
-        "conflict": {
+        "attributes": {
+            "title": "Attributes",
             "endurance": "Aguante",
             "endurancetip": "(Tierra + Fuego) x2",
             "composure": "Compostura",
@@ -216,7 +221,7 @@
             "fatigue": "Fatiga",
             "strife": "Conflicto"
         },
-        "attributes": {
+        "conflict": {
             "title": "Enfrentamiento",
             "stance": "Actitud",
             "stances": {

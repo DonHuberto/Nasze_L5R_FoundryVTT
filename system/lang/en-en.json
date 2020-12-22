@@ -19,6 +19,12 @@
     "def.chat.pref": "Default Chat Prefix",
     "spe.chat.pref": "If specified, this string will be prefixed to all chat messages that are not already commands (such as /emote.)",
     "l5r5e": {
+        "global": {
+            "add": "Add",
+            "edit": "Edit",
+            "delete": "Delete",
+            "drop_here": "Drop here"
+        },
         "logo": {
             "title": "Need help?",
             "content": "Follow the guide :",
@@ -101,7 +107,6 @@
             "supernatural": "supernatural",
             "equipped": "Equipped"
         },
-        "add": "Add",
         "items": "Items",
         "feats": "Feats",
         "techniques": {
