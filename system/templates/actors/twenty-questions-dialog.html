@@ -236,17 +236,19 @@
         </div>
 
         <div>
-            <label>
-                {{localize 'l5r5e.twenty_questions.startech'}}
-                <textarea name="step3.techniques">{{data.step3.techniques}}</textarea>
-            </label>
-            <!-- TODO Drag n drop techniques-->
-            <div class="techniques 20q-droppable">
-                <span class="techniques 20q-droppable-text">
-                    drop item here
-                </span>
-                {{data.step3.techniques}}
-            </div>
+
+            {{localize 'l5r5e.twenty_questions.startech'}}
+            <fieldset name="step3.techniques" class="tq-drag-n-drop">
+                <ul class="item-list">
+                    {{#each cache.step3.techniques as |item id|}}
+                    {{> 'systems/l5r5e/templates/items/property/property-entry.html' item=item id=id }}
+                    {{/each}}
+                </ul>
+            </fieldset>
+
+            <fieldset class="techniques" name="step3.techniques" style="min-height: 50px">
+                <legend class="section-header"><i class="fa fa-arrow-down" aria-hidden="true"></i> {{ localize 'l5r5e.drophere' }}</legend>
+            </fieldset>
 
         </div>
 

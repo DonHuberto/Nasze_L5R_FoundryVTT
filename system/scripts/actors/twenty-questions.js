@@ -26,6 +26,11 @@ export class TwentyQuestions {
     ];
 
     /**
+     * Shortcut for all Items to build cache
+     */
+    static itemsList = ["step3.techniques"];
+
+    /**
      * Steps datas
      */
     data = {
@@ -62,9 +67,9 @@ export class TwentyQuestions {
                 maho: false,
                 ninjutsu: false,
             },
-            techniques: "",
-            school_ability: "",
-            equipment: "",
+            techniques: [],
+            school_ability: [],
+            equipment: [],
             social_honor: 0,
         },
         step4: {

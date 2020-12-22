@@ -17,6 +17,11 @@ export class TwentyQuestionsDialog extends FormApplication {
     errors = {};
 
     /**
+     * Cache for items (techniques, adv...)
+     */
+    cache = {};
+
+    /**
      * Assign the default options
      * @override
      */
@@ -43,6 +48,7 @@ export class TwentyQuestionsDialog extends FormApplication {
         this.actor = actor;
         this.object = new TwentyQuestions(actor);
         this.errors = this.object.validateForm();
+        this._constructCache();
     }
 
     /**
@@ -90,6 +96,7 @@ export class TwentyQuestionsDialog extends FormApplication {
             data: this.object.data,
             errors: this.errors,
             hasErrors: Object.keys(this.errors).length > 0,
+            cache: this.cache,
         };
     }
 
@@ -123,6 +130,14 @@ export class TwentyQuestionsDialog extends FormApplication {
             return;
         }
 
+        // Delete a dnd element
+        html.find(`.property-delete`).on("click", (event) => {
+            const stepName = $(event.currentTarget).parents(".tq-drag-n-drop")[0].name;
+            const itemId = $(event.currentTarget).parents(".property").data("propertyId");
+            this._deleteOwnedItem(stepName, itemId);
+            this.render(false);
+        });
+
         // Submit button
         html.find("#generate").on("click", async (event) => {
             this.object.toActor(this.actor);
@@ -134,8 +149,11 @@ export class TwentyQuestionsDialog extends FormApplication {
      * Handle dropped items
      */
     _onDropItem(type, event) {
-        console.log("*** _onDrop event", event, type);
         if (!["item", "technique", "peculiarity"].includes(type)) {
+            return;
+        }
+        if (event.target.name === "undefined") {
+            console.log("event.target.name is undefined");
             return;
         }
 
@@ -147,15 +165,18 @@ export class TwentyQuestionsDialog extends FormApplication {
             if (data.type !== "Item") {
                 return;
             }
-
+            // Get item
             const item = game.items.get(data.id);
-            if (item || item.data.type !== type) {
+            if (!item || item.data.type !== type) {
                 return;
             }
+            // Add the item (step and cache)
+            this._addOwnedItem(item, event.target.name);
 
-            // TODO
-            console.log("** OK ", item);
-            // sub_type === 'peculiarity'
+            // TODO specific event (no added honor if tech selected etc)
+            console.log(this.object.data.step3.techniques, this.cache);
+
+            this.render(false);
         } catch (err) {
             console.warn(err);
         }
@@ -187,5 +208,67 @@ export class TwentyQuestionsDialog extends FormApplication {
             });
         }
         this.render(false);
+    }
+
+    /**
+     * Construct the cache tree with Items full object
+     */
+    _constructCache() {
+        this.cache = {};
+        TwentyQuestions.itemsList.forEach((stepName) => {
+            // Check if current step value is a array
+            const store = getProperty(this.object.data, stepName);
+            if (!store || !Array.isArray(store)) {
+                setProperty(this.object.data, stepName, []);
+            }
+
+            // Init cache if not exist
+            if (!hasProperty(this.cache, stepName)) {
+                setProperty(this.cache, stepName, []);
+            }
+
+            // Get linked Item, and store it in cache
+            const step = getProperty(this.object.data, stepName);
+            step.forEach((id, idx) => {
+                const item = game.items.get(id);
+                if (!item) {
+                    step.splice(idx, 1);
+                    return;
+                }
+                getProperty(this.cache, stepName).push(item);
+            });
+        });
+    }
+
+    /**
+     * Add a owned item reference in step and cache
+     * @private
+     */
+    _addOwnedItem(item, stepName) {
+        // Add to Step (uniq id only)
+        const step = getProperty(this.object.data, stepName);
+        if (step.some((e) => e === item.id)) {
+            return;
+        }
+        step.push(item.id);
+
+        // Add to cache
+        getProperty(this.cache, stepName).push(item);
+    }
+
+    /**
+     * Delete a owned item reference in step and cache
+     * @private
+     */
+    _deleteOwnedItem(stepName, itemId) {
+        // Delete from current step
+        let step = getProperty(this.object.data, stepName);
+        step = step.filter((e) => e !== itemId);
+        setProperty(this.object.data, stepName, step);
+
+        // Delete from cache
+        let cache = getProperty(this.cache, stepName);
+        cache = cache.filter((e) => e.id !== itemId);
+        setProperty(this.cache, stepName, cache);
     }
 }
