@@ -18,6 +18,7 @@
         .identity-wrapper {
             flex: 1 1 100%;
             h1 {
+                flex: 0 0 calc(100% - 75px - 1.25rem);
                 margin: 0 0 1rem 1rem;
             }
             .identity-list {
@@ -26,6 +27,8 @@
                 margin-bottom: 0.5rem;
                 li {
                     flex: 1;
+                    flex-wrap: wrap;
+                    display: flex;
                     select {
                         width: 100%;
                         background: transparent;

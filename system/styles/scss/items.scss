@@ -13,16 +13,36 @@
             }
             .item-name {
                 flex: 1 1 auto;
+                font-size: 1rem;
+                line-height: 1rem;
+                color: $l5r5e-bold;
             }
             .item-edit,
             .item-delete,
             .technique-edit,
-            .technique-delete {
+            .technique-delete,
+            .peculiarity-edit,
+            .peculiarity-delete {
+                line-height: 1rem;
+                font-size: 0.75rem;
                 flex: 0 0 1rem;
-                padding: 0 0.25rem;
+                padding: 0 0.1rem;
             }
             .icon-stat-container {
+                line-height: 1rem;
+                font-size: 0.75rem;
                 padding: 0 0.25rem;
+                color: $black-light;
+            }
+            .item-edit,
+            .item-delete,
+            .technique-edit,
+            .technique-delete,
+            .peculiarity-edit,
+            .peculiarity-delete {
+                &:hover {
+                    text-shadow: 0 0 6px $orange;
+                }
             }
         }
         .item-description {
@@ -32,6 +52,26 @@
             overflow: hidden;
             background: rgba(0, 0, 0, 0.05);
             transition: height 0.25s ease-in;
+        }
+        .item-properties {
+            display: flex;
+            flex-direction: row;
+            li {
+                margin: 0.25rem 0.1rem;
+                padding: 0.1rem 0.5rem;
+                background-color: $l5r5e-white;
+                border: 1px solid $white-light;
+                border-radius: 1rem;
+                width: auto;
+                font-size: 0.75rem;
+                color: $black-light;
+                &:first-child {
+                    margin-left: 0;
+                }
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
         }
         &:hover {
             .item-description {
@@ -82,7 +122,9 @@
         &.attributes {
             select[name="data.advancement_type"],
             select[name="data.skill"],
-            select[name="data.ring"] {
+            select[name="data.ring"],
+            select[name="data.peculiarity_type"],
+            select[name="data.technique_type"] {
                 flex: 0 0 calc(40% - 0.5rem);
                 margin: 0.25rem;
             }
@@ -138,6 +180,22 @@
             .value {
                 flex: 0 0 calc(33% - 0.5rem);
             }
+            .cursus {
+                flex: 1;
+                line-height: 0.75rem;
+                text-align: right;
+                margin: 0 0.25rem;
+                input {
+                    margin-top: 0.25rem;
+                }
+            }
+        }
+    }
+}
+&.peculiarity,
+&.technique {
+    article {
+        &.attributes {
             .cursus {
                 flex: 1;
                 line-height: 0.75rem;

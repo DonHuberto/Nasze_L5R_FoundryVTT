@@ -66,6 +66,8 @@
         "personality": "Personnalité",
         "description": "Description",
         "bought_at_rank": "Acheté au rang",
+        "effects": "Effets",
+        "types": "Types",
         "book_reference": "Référence",
         "value": "Valeur",
         "rarity": "Rareté",
@@ -103,6 +105,7 @@
         },
         "armors": {
             "title": "Armures",
+            "type": "Défense",
             "physical": "Physique",
             "supernatural": "Spirituelle",
             "equipped": "Équipé"

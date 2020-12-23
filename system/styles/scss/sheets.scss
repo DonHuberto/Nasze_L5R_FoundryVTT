@@ -1,6 +1,11 @@
 /** Sheets **/
 &.sheet {
     min-width: 600px;
+    label {
+        &:hover {
+            text-shadow: 0 0 6px $orange;
+        }
+    }
     &.actor {
         .sheet-header {
             height: 28rem;
