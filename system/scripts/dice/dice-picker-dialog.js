@@ -69,8 +69,8 @@ export class DicePickerDialog extends FormApplication {
      *
      * @param options actor, actorId, ringId, skillId, skillCatId, difficulty, difficultyHidden
      */
-    constructor(options = null) {
-        super(options);
+    constructor(options = {}) {
+        super({}, options);
 
         // Try to get Actor from: options, first selected token or player's selected character
         [

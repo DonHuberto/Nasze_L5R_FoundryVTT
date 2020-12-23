@@ -284,7 +284,7 @@ export class TwentyQuestions {
         });
 
         // TODO Tmp
-        console.log(actor);
+        // console.log(actor);
     }
 
     /**

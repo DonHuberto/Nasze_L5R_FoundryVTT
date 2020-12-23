@@ -43,8 +43,8 @@ export class TwentyQuestionsDialog extends FormApplication {
     /**
      * Create dialog
      */
-    constructor(options = null, actor = null) {
-        super(options);
+    constructor(actor = null, options = {}) {
+        super({}, options);
         this.actor = actor;
         this.object = new TwentyQuestions(actor);
         this.errors = this.object.validateForm();

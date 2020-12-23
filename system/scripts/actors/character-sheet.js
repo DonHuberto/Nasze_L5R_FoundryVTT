@@ -31,7 +31,7 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
             class: "twenty-questions",
             icon: "fas fa-graduation-cap",
             onclick: async () => {
-                await new TwentyQuestionsDialog({}, this.actor).render(true);
+                await new TwentyQuestionsDialog(this.actor).render(true);
             },
         });
         return buttons;
