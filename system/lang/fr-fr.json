@@ -114,6 +114,7 @@
         "feats": "Prouesses",
         "techniques": {
             "title": "Techniques",
+            "type": "Type accessible",
             "title_new": "Nouvelle Technique",
             "kata": "Kata",
             "kiho": "Kihõ",
@@ -241,6 +242,7 @@
             "total": "Totale",
             "spent": "Dépensée",
             "saved": "Restante",
+            "rank": "Xp Total du rang : ",
             "curriculum": "Inclus dans le cursus"
         },
         "twenty_questions": {

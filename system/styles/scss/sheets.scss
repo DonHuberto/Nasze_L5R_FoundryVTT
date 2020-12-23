@@ -365,6 +365,40 @@
                 display: flex;
             }
         }
+        .techniques-wrapper {
+            .checklist {
+                display: flex;
+                flex-wrap: wrap;
+                font-size: 0.85rem;
+                margin: 0 0 0.25rem 0.5rem;
+                padding: 0.5rem;
+                background: $l5r5e-title;
+                --notchSize: 0.25rem;
+                clip-path: polygon(
+                    0% 0,
+                    var(--notchSize) 0%,
+                    calc(100% - var(--notchSize)) 0%,
+                    100% var(--notchSize),
+                    100% 100%,
+                    100% 100%,
+                    var(--notchSize) 100%,
+                    0% calc(100% - var(--notchSize))
+                );
+                label {
+                    flex: 0 0 auto;
+                    margin: 0 0.25rem 0.25rem;
+                    padding: 0 0.5rem;
+                    color: $l5r5e-label;
+                    border: 1px solid $l5r5e-label;
+                    border-radius: 1rem;
+                }
+                input {
+                    margin: 0.25rem 0 0 0;
+                    height: auto;
+                    width: auto;
+                }
+            }
+        }
         .stance-content {
             label {
                 display: block;
@@ -395,10 +429,9 @@
                 }
             }
             .quick-rules {
-                display: none;
                 height: 0;
                 margin: 0;
-                padding: 0.25rem;
+                padding: 0;
                 font-size: 0.75rem;
                 color: rgba(0, 0, 0, 0.75);
                 overflow: hidden;
@@ -407,28 +440,65 @@
             }
             &:hover {
                 .quick-rules {
-                    display: block;
                     height: 6rem;
+                    padding: 0.25rem;
                     overflow-y: auto;
                     scrollbar-width: thin;
                 }
             }
         }
+        .stance-content,
+        .weapons-content {
+            flex: 0 0 calc(50% - 0.5rem);
+        }
+        .armors-content {
+            flex: 0 0 calc(100% - 0.5rem);
+        }
     }
     .xp {
         flex: 0 0 5rem;
+        flex-direction: column;
+        color: $black-light;
+        label {
+            padding: 0.25rem;
+            font-size: 0.85rem;
+        }
     }
     table {
+        font-size: 0.85rem;
+        color: $black-light;
         thead {
             th {
                 &:first-child {
-                    flex: 0 0 70%;
+                    flex: calc(100% - 16rem);
+                }
+                &:nth-child(2),
+                &:nth-child(3) {
+                    flex: 0 0 5rem;
                 }
             }
         }
         tbody {
             th {
-                flex: 0 0 70%;
+                flex: calc(100% - 13rem);
+            }
+            .xp,
+            .rank {
+                flex: 0 0 5rem;
+            }
+            .actions {
+                flex: 0 0 3rem;
+                font-size: 0.75rem;
+                ul {
+                    display: flex;
+                    flex-direction: row;
+                    li {
+                        flex: 0 0 1rem;
+                        &:hover {
+                            color: $orange;
+                        }
+                    }
+                }
             }
         }
     }

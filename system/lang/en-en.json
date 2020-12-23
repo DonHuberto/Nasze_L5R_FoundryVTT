@@ -114,6 +114,7 @@
         "feats": "Feats",
         "techniques": {
             "title": "Techniques",
+            "type": "Type accessible",
             "title_new": "New Technique",
             "kata": "Kata",
             "kiho": "Kihõ",
@@ -241,6 +242,7 @@
             "total": "Total",
             "spent": "Used",
             "saved": "Saved",
+            "rank": "Rank Total Xp: ",
             "curriculum": "in curriculum"
         },
         "twenty_questions": {

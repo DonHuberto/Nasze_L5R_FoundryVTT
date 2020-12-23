@@ -114,6 +114,7 @@
         "feats": "Feats",
         "techniques": {
             "title": "Techniques",
+            "type": "Tipo accesible",
             "title_new": "Nuevo Rasgo",
             "kata": "Kata",
             "kiho": "Kihõ",
@@ -241,6 +242,7 @@
             "total": "Total",
             "spent": "Usada",
             "saved": "Restante",
+            "rank": "Rank Total Xp: ",
             "curriculum": "in curriculum"
         },
         "twenty_questions": {
