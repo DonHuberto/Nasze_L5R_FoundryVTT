@@ -22,6 +22,9 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
      */
     _getHeaderButtons() {
         let buttons = super._getHeaderButtons();
+        if (!this.options.editable) {
+            return buttons;
+        }
 
         buttons.unshift({
             label: game.i18n.localize("l5r5e.twenty_questions.bt_abrev"),

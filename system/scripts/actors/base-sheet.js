@@ -16,6 +16,17 @@ export class BaseSheetL5r5e extends ActorSheet {
     }
 
     /**
+     * Return a light sheet if in "limited" state
+     * @override
+     */
+    get template() {
+        if (!game.user.isGM && this.actor.limited) {
+            return `${CONFIG.l5r5e.paths.templates}actors/limited-sheet.html`;
+        }
+        return this.options.template;
+    }
+
+    /**
      * Update the actor.
      * @param event
      * @param formData
@@ -56,6 +67,11 @@ export class BaseSheetL5r5e extends ActorSheet {
     activateListeners(html) {
         super.activateListeners(html);
 
+        // *** Everything below here is only needed if the sheet is editable ***
+        if (!this.options.editable) {
+            return;
+        }
+
         // *** Dice event on Skills clic ***
         html.find(".skill-name").on("click", (event) => {
             const li = $(event.currentTarget).parents(".skill");
@@ -65,11 +81,6 @@ export class BaseSheetL5r5e extends ActorSheet {
                 actor: this.actor,
             }).render(true);
         });
-
-        // *** Everything below here is only needed if the sheet is editable ***
-        if (!this.options.editable) {
-            return;
-        }
 
         // On focus on one numeric element, select all text for better experience
         html.find(".select-on-focus").on("focus", (event) => {

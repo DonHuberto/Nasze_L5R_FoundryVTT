@@ -1,0 +1,47 @@
+<form class="{{cssClass}} flexcol limited" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <div class="sheet-header flexrow">
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
+
+        <div class="header-fields identity-wrapper">
+            <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
+        </div>
+
+        {{!-- Sheet Body --}}
+        <section class="sheet-body">
+            <ul class="identity-content">
+                <li>
+                    <label class="attribute-label">
+                        {{ localize 'l5r5e.clan' }}
+                        <input type="text" name="data.identity.clan" value="{{data.identity.clan}}"/>
+                    </label>
+                </li>
+                <li>
+                    <label class="attribute-label">
+                        {{ localize 'l5r5e.family' }}
+                        <input type="text" name="data.identity.family" value="{{data.identity.family}}"/>
+                    </label>
+                </li>
+                <li>
+                    <label class="attribute-label">
+                        {{ localize 'l5r5e.school' }}
+                        <input type="text" name="data.identity.school" value="{{data.identity.school}}"/>
+                    </label>
+                </li>
+                <li>
+                    <label class="attribute-label">
+                        {{ localize 'l5r5e.schoolrank' }}
+                        <input type="number" name="data.identity.school_rank" value="{{data.identity.school_rank}}" class="select-on-focus" data-dtype="Number" min="0" placeholder="0"/>
+                    </label>
+                </li>
+                <li>
+                    <label class="attribute-label">
+                        {{ localize 'l5r5e.roles' }}
+                        <input type="text" name="data.identity.roles" value="{{data.identity.roles}}"/>
+                    </label>
+                </li>
+            </ul>
+        </section>
+    </div>
+</form>
