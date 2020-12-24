@@ -1,7 +1,7 @@
 <fieldset data-step="{{stepName}}" class="tq-drag-n-drop">
     <ul class="item-list">
         {{#each itemsList as |item id|}}
-        {{> 'systems/l5r5e/templates/items/property/property-entry.html' item=item id=id }}
+        {{> 'systems/l5r5e/templates/items/property/property-entry.html' item=item id=id editable=../options.editable }}
         {{/each}}
     </ul>
 </fieldset>

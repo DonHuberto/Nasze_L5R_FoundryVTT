@@ -164,7 +164,7 @@ export class TwentyQuestionsDialog extends FormApplication {
             this._addOwnedItem(item, stepKey);
 
             // TODO specific event (no added honor if tech selected etc)
-            console.log(this.object.data, this.cache);
+            // console.log(this.object.data, this.cache);
 
             this.render(false);
         } catch (err) {
@@ -237,7 +237,10 @@ export class TwentyQuestionsDialog extends FormApplication {
      */
     _addOwnedItem(item, stepName) {
         // Add to Step (uniq id only)
-        const step = getProperty(this.object.data, stepName);
+        let step = getProperty(this.object.data, stepName);
+        if (!step) {
+            step = [];
+        }
         if (step.some((e) => e === item.id)) {
             return;
         }
