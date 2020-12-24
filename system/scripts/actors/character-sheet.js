@@ -22,7 +22,7 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
      */
     _getHeaderButtons() {
         let buttons = super._getHeaderButtons();
-        if (!this.options.editable) {
+        if (!this.options.editable || this.actor.limited) {
             return buttons;
         }
 
