@@ -1,9 +1,9 @@
-<li class="property flexcol" data-property-id="{{item._id}}">
-    <ul class="property-header property-control">
-        <li class="property-img"><img src="{{item.img}}" title="{{item.name}}" width="32px" height="32px"/></li>
-        <li class="property-name">{{ item.name }}</li>
+<li class="item property flexcol" data-property-id="{{item._id}}">
+    <ul class="item-header property-control">
+        <li class="item-img"><img src="{{item.img}}" title="{{item.name}}" width="32px" height="32px"/></li>
+        <li class="item-name">{{ item.name }}</li>
         {{#if editable}}
-        <li class="property-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
+            <li class="property-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
         {{/if}}
     </ul>
     <div class="item-description">{{{ item.data.description }}}</div>

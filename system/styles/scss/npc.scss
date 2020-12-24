@@ -127,6 +127,9 @@
         }
     }
     article {
+        .weapons-content {
+            flex: 1;
+        }
         min-height: auto;
         display: flex;
         .items-content {

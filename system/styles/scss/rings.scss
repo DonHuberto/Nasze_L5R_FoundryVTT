@@ -42,9 +42,9 @@
             border: 2px solid $l5r5e-title;
             color: $white-light;
             &:hover {
-                border: 2px solid $red;
-                text-shadow: 0 0 6px $red;
-                box-shadow: 0 0 6px inset $red;
+                border: 2px solid $red-light;
+                text-shadow: 0 0 3px $red;
+                box-shadow: 0 0 3px inset $red;
             }
         }
     }

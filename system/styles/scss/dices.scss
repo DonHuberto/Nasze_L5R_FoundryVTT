@@ -89,14 +89,13 @@
     .ring-selection {
         &.ring-selected {
             i {
-                text-shadow: 0px 2px 2px $red;
+                text-shadow: 0px 1px 1px $red;
             }
             strong {
-                color: $red;
-                text-decoration: underline;
+                color: $red-light;
             }
             input {
-                border: 2px solid $red !important;
+                border: 2px solid $red-light !important;
             }
         }
     }
