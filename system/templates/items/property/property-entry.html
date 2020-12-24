@@ -1,4 +1,4 @@
-<li class="item property flexcol toggle-on-click" data-toggle="item-description" data-property-id="{{item._id}}">
+<li class="item property flexcol toggle-on-click" data-toggle="item-description-{{item._id}}" data-property-id="{{item._id}}">
     <ul class="item-header property-control">
         <li class="item-img"><img src="{{item.img}}" title="{{item.name}}" width="32px" height="32px"/></li>
         <li class="item-name">{{ item.name }}</li>
@@ -6,5 +6,5 @@
             <li class="property-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
         {{/if}}
     </ul>
-    <div class="item-description">{{{ item.data.description }}}</div>
+    <div class="item-description item-description-{{item._id}}">{{{ item.data.description }}}</div>
 </li>

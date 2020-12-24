@@ -1,4 +1,4 @@
-<li class="item advancement flexcol toggle-on-click" data-toggle="item-description">
+<li class="item advancement flexcol toggle-on-click" data-toggle="item-description-{{advancement._id}}">
     <ul class="item-header advancement-controls">
         <li class="item-img"><img src="{{advancement.img}}" title="{{advancement.name}}" width="32px" height="32px"/></li>
         <li class="item-name">{{ advancement.name }}</li>
@@ -7,5 +7,5 @@
             <li data-item-id="{{advancement._id}}" class="item-control item-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
         {{/if}}
     </ul>
-    <div class="item-description">{{{ advancement.data.description }}}</div>
+    <div class="item-description item-description-{{advancement._id}}">{{{ advancement.data.description }}}</div>
 </li>

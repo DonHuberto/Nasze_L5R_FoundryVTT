@@ -1,4 +1,4 @@
-<li class="item weapon flexcol toggle-on-click" data-toggle="item-description">
+<li class="item weapon flexcol toggle-on-click" data-toggle="item-description-{{item._id}}">
     <ul class="item-header item-control">
         <li class="item-img"><img src="{{item.img}}" title="{{item.name}}" width="32px" height="32px"/></li>
         <li class="item-name">{{ item.name }}</li>
@@ -17,5 +17,5 @@
             <li>{{{ property.name }}}</li>
         {{/each}}
     </ul>
-    <div class="item-description">{{{ item.data.description }}}</div>
+    <div class="item-description item-description-{{item._id}}">{{{ item.data.description }}}</div>
 </li>
