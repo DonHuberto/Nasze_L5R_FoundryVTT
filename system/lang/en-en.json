@@ -20,6 +20,7 @@
     "spe.chat.pref": "If specified, this string will be prefixed to all chat messages that are not already commands (such as /emote.)",
     "l5r5e": {
         "global": {
+            "ok": "OK",
             "add": "Add",
             "edit": "Edit",
             "delete": "Delete",
@@ -120,6 +121,7 @@
         "techniques": {
             "title": "Techniques",
             "title_new": "New Technique",
+            "not_allowed": "Your character does not use this type of technique.",
             "type": "Type accessible",
             "kata": "Kata",
             "kiho": "Kihõ",

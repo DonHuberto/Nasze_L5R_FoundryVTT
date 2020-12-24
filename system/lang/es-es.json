@@ -20,6 +20,7 @@
     "spe.chat.pref": "Si está configurado, la cadena será prefijada para todos los mensajes de chat que no sean ya comandos (como /emote.)",
     "l5r5e": {
         "global": {
+            "ok": "OK",
             "add": "Add",
             "edit": "Edit",
             "delete": "Delete",
@@ -120,6 +121,7 @@
         "techniques": {
             "title": "Techniques",
             "type": "Tipo accesible",
+            "not_allowed": "Your character does not use this type of technique.",
             "title_new": "Nuevo Rasgo",
             "kata": "Kata",
             "kiho": "Kihõ",

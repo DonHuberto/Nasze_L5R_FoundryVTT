@@ -20,6 +20,7 @@
     "spe.chat.pref": "Si renseignée, la chaîne sera préfixée pour tous les messages de chat qui ne sont pas déjà des commandes (comme /emote.)",
     "l5r5e": {
         "global": {
+            "ok": "OK",
             "add": "Ajouter",
             "edit": "Modifier",
             "delete": "Supprimer",
@@ -120,6 +121,7 @@
         "techniques": {
             "title": "Techniques",
             "title_new": "Nouvelle Technique",
+            "not_allowed": "Votre personnage n'utilise pas ce type de technique.",
             "type": "Type accessible",
             "kata": "Kata",
             "kiho": "Kihõ",

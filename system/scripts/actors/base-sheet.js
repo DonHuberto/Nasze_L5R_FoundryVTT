@@ -49,11 +49,19 @@ export class BaseSheetL5r5e extends ActorSheet {
             return Promise.resolve();
         }
 
-        // Check if technique is allowed
-        if (item.data.type === "technique") {
-            // TODO Verifier que la technique est possible pour ce persos ? technique_type / techniques.kata
-            //console.log(item.data.data.technique_type, this.actor.data.data.techniques);
-            //return Promise.resolve();
+        // Check if technique is allowed for this character
+        if (item.data.type === "technique" && !this.actor.data.data.techniques[item.data.data.technique_type]) {
+            new Dialog({
+                title: "Nope !",
+                content: game.i18n.localize("l5r5e.techniques.not_allowed"),
+                buttons: {
+                    ok: {
+                        label: game.i18n.localize("l5r5e.global.ok"),
+                        icon: '<i class="fas fa-check"></i>',
+                    },
+                },
+            }).render(true);
+            return Promise.resolve();
         }
 
         // Ok add item
