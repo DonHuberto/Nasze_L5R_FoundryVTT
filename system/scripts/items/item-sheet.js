@@ -44,7 +44,7 @@ export class ItemSheetL5r5e extends ItemSheet {
                     props.push({ id: property.id, name: item.name });
                 } else {
                     // Pack item
-                    item = await game.packs.get("l5r5e.Properties").getEntry(property.id);
+                    item = await game.packs.get(CONFIG.l5r5e.packsIds.properties.core).getEntry(property.id);
                     if (item) {
                         sheetData.data.propertiesList.push(item);
                         props.push({ id: item._id, name: item.name });

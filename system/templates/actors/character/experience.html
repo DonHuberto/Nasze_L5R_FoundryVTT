@@ -19,20 +19,22 @@
     </label>
 </fieldset>
 <fieldset class="advancement">
-    <legend class="tools">{{ localize 'l5r5e.advancements.title'}} <a class="advancement-control advancement-add" title="{{ localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a></legend>
+    <legend class="tools">{{ localize 'l5r5e.advancements.title'}} <a data-item-type="advancement" class="advancement-control item-add" title="{{ localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a></legend>
     <table>
         <thead class="flex">
             <tr class="flexrow row">
                 <th class="name">{{ localize 'l5r5e.name' }}</th>
                 <th class="xp">{{ localize 'l5r5e.advancements.spent' }}</th>
                 <th class="rank">{{ localize 'l5r5e.rank' }}</th>
+                {{#if editable}}
                 <th class="actions"></th>
+                {{/if}}
             </tr>
         </thead>
         <tbody class="flex">
         {{#each actor.items as |advancement advancementId|}}
             {{#ifCond '["peculiarity", "technique","advancement"]' 'includes' advancement.type}}
-                {{> 'systems/l5r5e/templates/actors/character/advancement.html' advancement=advancement }}
+                {{> 'systems/l5r5e/templates/actors/character/advancement.html' advancement=advancement editable=../editable }}
             {{/ifCond}}
         {{/each}}
         </tbody>

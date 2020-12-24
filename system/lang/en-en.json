@@ -94,6 +94,7 @@
         "properties": "Properties",
         "weapons": {
             "title": "Weapons",
+            "title_new": "New Weapon",
             "damage": "Damage",
             "range": "Range",
             "stats": "Stats",
@@ -105,17 +106,21 @@
         },
         "armors": {
             "title": "Armors",
+            "title_new": "New Armor",
             "type": "Defence",
             "physical": "physical",
             "supernatural": "supernatural",
             "equipped": "Equipped"
         },
-        "items": "Items",
+        "items": {
+            "title": "Items",
+            "title_new": "New Item"
+        },
         "feats": "Feats",
         "techniques": {
             "title": "Techniques",
-            "type": "Type accessible",
             "title_new": "New Technique",
+            "type": "Type accessible",
             "kata": "Kata",
             "kiho": "Kihõ",
             "invocation": "Invocation",
@@ -123,6 +128,9 @@
             "shuji": "Shuji",
             "maho": "Mahõ",
             "ninjutsu": "Ninjutsu"
+        },
+        "peculiarities": {
+            "title_new": "Nouvelle particularité"
         },
         "skill": "Skill",
         "level": "Level",

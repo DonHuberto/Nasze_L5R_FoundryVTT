@@ -94,6 +94,7 @@
         "properties": "Propriétés",
         "weapons": {
             "title": "Armement",
+            "title_new": "Nouvelle Arme",
             "damage": "Dégâts de base (DDB)",
             "range": "Portée (PRT)",
             "stats": "Attributs",
@@ -105,17 +106,21 @@
         },
         "armors": {
             "title": "Armures",
+            "title_new": "Nouvelle Armure",
             "type": "Défense",
             "physical": "Physique",
             "supernatural": "Spirituelle",
             "equipped": "Équipé"
         },
-        "items": "Objets",
+        "items": {
+            "title": "Objets",
+            "title_new": "Nouvel Objet"
+        },
         "feats": "Prouesses",
         "techniques": {
             "title": "Techniques",
-            "type": "Type accessible",
             "title_new": "Nouvelle Technique",
+            "type": "Type accessible",
             "kata": "Kata",
             "kiho": "Kihõ",
             "invocation": "Invocation",
@@ -123,6 +128,9 @@
             "shuji": "Shuji",
             "maho": "Mahõ",
             "ninjutsu": "Ninjutsu"
+        },
+        "peculiarities": {
+            "title_new": "Nouvelle particularité"
         },
         "skill": "Compétence",
         "level": "Niveau",

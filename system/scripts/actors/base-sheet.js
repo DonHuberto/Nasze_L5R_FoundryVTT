@@ -94,34 +94,18 @@ export class BaseSheetL5r5e extends ActorSheet {
         //     tgt.hasClass('toggle-active') ? tgt.removeClass('toggle-active') : tgt.addClass('toggle-active');
         // });
 
-        // *** Items : edit, delete ***
-        ["item", "peculiarity", "technique", "advancement"].forEach((type) => {
-            html.find(`.${type}-edit`).on("click", (event) => {
-                this._editSubItem(event, type);
-            });
-            html.find(`.${type}-delete`).on("click", (event) => {
-                this._deleteSubItem(event, type);
-            });
-
-            if (type !== "item") {
-                html.find(`.${type}-curriculum`).on("click", (event) => {
-                    this._switchSubItemCurriculum(event, type);
-                });
-            }
+        // *** Items : add, edit, delete, curriculum ***
+        html.find(".item-add").on("click", (event) => {
+            this._addSubItem(event);
         });
-
-        // *** Items : add ***
-        html.find(".technique-add").on("click", (event) => {
-            this._addSubItem({
-                name: game.i18n.localize("l5r5e.techniques.title_new"),
-                type: "technique",
-            });
+        html.find(`.item-edit`).on("click", (event) => {
+            this._editSubItem(event);
         });
-        html.find(".advancement-add").on("click", (event) => {
-            this._addSubItem({
-                name: game.i18n.localize("l5r5e.advancements.title_new"),
-                type: "advancement",
-            });
+        html.find(`.item-delete`).on("click", (event) => {
+            this._deleteSubItem(event);
+        });
+        html.find(`.item-curriculum`).on("click", (event) => {
+            this._switchSubItemCurriculum(event);
         });
     }
 
@@ -129,20 +113,30 @@ export class BaseSheetL5r5e extends ActorSheet {
      * Add a generic item with sub type
      * @private
      */
-    async _addSubItem(data) {
-        const created = await this.actor.createEmbeddedEntity("OwnedItem", data);
+    async _addSubItem(event) {
+        const type = $(event.currentTarget).data("item-type");
+        const titles = {
+            item: "l5r5e.items.title_new",
+            armor: "l5r5e.armors.title_new",
+            weapon: "l5r5e.weapons.title_new",
+            technique: "l5r5e.techniques.title_new",
+            peculiarity: "l5r5e.peculiarities.title_new",
+            advancement: "l5r5e.advancements.title_new",
+        };
+        const created = await this.actor.createEmbeddedEntity("OwnedItem", {
+            name: game.i18n.localize(titles[type]),
+            type: type,
+        });
         const item = this.actor.getOwnedItem(created._id);
         item.sheet.render(true);
-        return item;
     }
 
     /**
      * Edit a generic item with sub type
      * @private
      */
-    async _editSubItem(event, type) {
-        const li = $(event.currentTarget).parents("." + type);
-        const itemId = li.data(type + "Id");
+    _editSubItem(event) {
+        const itemId = $(event.currentTarget).data("item-id");
         const item = this.actor.getOwnedItem(itemId);
         item.sheet.render(true);
     }
@@ -151,23 +145,24 @@ export class BaseSheetL5r5e extends ActorSheet {
      * Delete a generic item with sub type
      * @private
      */
-    async _deleteSubItem(event, type) {
-        const li = $(event.currentTarget).parents("." + type);
-        return this.actor.deleteOwnedItem(li.data(type + "Id"));
+    _deleteSubItem(event, type) {
+        const itemId = $(event.currentTarget).data("item-id");
+        return this.actor.deleteOwnedItem(itemId);
     }
 
     /**
      * Switch "in_curriculum"
      * @private
      */
-    _switchSubItemCurriculum(event, type) {
-        const li = $(event.currentTarget).parents("." + type);
-        const itemId = li.data(type + "Id");
+    _switchSubItemCurriculum(event) {
+        const itemId = $(event.currentTarget).data("item-id");
         const item = this.actor.getOwnedItem(itemId);
-        return item.update({
-            data: {
-                in_curriculum: !item.data.data.in_curriculum,
-            },
-        });
+        if (item.type !== "item") {
+            item.update({
+                data: {
+                    in_curriculum: !item.data.data.in_curriculum,
+                },
+            });
+        }
     }
 }

@@ -12,6 +12,60 @@
     "styles": ["./styles/l5r5e.css"],
     "packs": [
         {
+            "name": "core-properties",
+            "label": "Properties",
+            "path": "packs/core-property.db",
+            "entity": "Item"
+        },
+        {
+            "name": "core-techniques",
+            "label": "Techniques",
+            "path": "packs/core-technique.db",
+            "entity": "Item"
+        },
+        {
+            "name": "core-items",
+            "label": "Items",
+            "path": "packs/core-item.db",
+            "entity": "Item"
+        },
+        {
+            "name": "core-armors",
+            "label": "Armors",
+            "path": "packs/core-armor.db",
+            "entity": "Item"
+        },
+        {
+            "name": "core-weapons",
+            "label": "Weapons",
+            "path": "packs/core-weapon.db",
+            "entity": "Item"
+        },
+        {
+            "name": "core-distinctions",
+            "label": "Distinctions",
+            "path": "packs/core-distinction.db",
+            "entity": "Item"
+        },
+        {
+            "name": "core-passions",
+            "label": "Passions",
+            "path": "packs/core-passion.db",
+            "entity": "Item"
+        },
+        {
+            "name": "core-adversities",
+            "label": "Adversities",
+            "path": "packs/core-adversity.db",
+            "entity": "Item"
+        },
+        {
+            "name": "core-anxieties",
+            "label": "Anxieties",
+            "path": "packs/core-anxiety.db",
+            "entity": "Item"
+        },
+        {
             "name": "macros",
             "label": "L5R5e Macros",
             "path": "packs/macros.db",

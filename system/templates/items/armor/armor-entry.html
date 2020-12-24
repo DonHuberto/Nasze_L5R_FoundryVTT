@@ -1,4 +1,4 @@
-<li class="item flexcol" data-item-id="{{item._id}}">
+<li class="item flexcol">
     <ul class="item-header item-control">
         <li class="item-img"><img src="{{item.img}}" title="{{item.name}}" width="32px" height="32px"/></li>
         <li class="item-name">{{ item.name }}</li>
@@ -7,8 +7,8 @@
             <i class="fas fa-bolt" title="{{ localize 'l5r5e.armors.type' }} {{ localize 'l5r5e.armors.supernatural' }}"> {{item.data.armor.supernatural}}</i>
         </li>
         {{#if editable}}
-        <li class="item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
-        <li class="item-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
+        <li data-item-id="{{item._id}}" class="item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
+        <li data-item-id="{{item._id}}" class="item-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
         {{/if}}
     </ul>
     <ul class="item-properties">

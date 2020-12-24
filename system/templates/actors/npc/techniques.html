@@ -2,7 +2,7 @@
     <fieldset class="section-header flexrow">
         <legend class="technique-controls">
             {{ localize 'l5r5e.techniques.title' }}
-            <a class="technique-control technique-add" title="{{ localize 'l5r5e.global.add' }}"><i class="fas fa-plus"></i></a>
+            <a data-item-type="technique" class="technique-control item-add" title="{{ localize 'l5r5e.global.add' }}"><i class="fas fa-plus"></i></a>
         </legend>
         <ul class="item-list">
             {{#each actor.items as |item id|}}

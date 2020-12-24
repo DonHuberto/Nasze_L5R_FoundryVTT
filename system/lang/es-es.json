@@ -94,6 +94,7 @@
         "properties": "Propiedades",
         "weapons": {
             "title": "Armas",
+            "title_new": "New Weapon",
             "damage": "Daño",
             "range": "Rango",
             "stats": "Stats",
@@ -105,12 +106,16 @@
         },
         "armors": {
             "title": "Armors",
+            "title_new": "New Armor",
             "type": "Defensa",
             "physical": "physical",
             "supernatural": "supernatural",
             "equipped": "Equipped"
         },
-        "items": "Equipo",
+        "items": {
+            "title": "Equipo",
+            "title_new": "New Item"
+        },
         "feats": "Feats",
         "techniques": {
             "title": "Techniques",
@@ -123,6 +128,9 @@
             "shuji": "Shuji",
             "maho": "Mahõ",
             "ninjutsu": "Ninjutsu"
+        },
+        "peculiarities": {
+            "title_new": "Nouvelle particularité"
         },
         "skill": "Habilidad",
         "level": "Nivel",

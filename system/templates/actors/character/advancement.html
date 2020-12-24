@@ -1,12 +1,14 @@
-<tr class="flexrow row advancement" data-advancement-id="{{advancement._id}}">
+<tr class="flexrow row advancement">
     <td class="name" name="advancement.name">{{#if advancement.data.in_curriculum}}<i class="fas fa-graduation-cap"></i> {{/if}}{{ advancement.name }}</td>
     <td class="xp" name="advancement.xp">{{ advancement.data.xp_used }}</td>
     <td class="rank" name="advancement.rank">{{ advancement.data.rank }}</td>
+    {{#if editable}}
     <td class="actions">
         <ul>
-            <li class="item-control advancement-curriculum" title="{{localize 'l5r5e.global.curriculum'}}"><i class="fas fa-graduation-cap"></i></li>
-            <li class="item-control advancement-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
-            <li class="item-control advancement-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
+            <li data-item-id="{{advancement._id}}" class="item-control item-curriculum" title="{{localize 'l5r5e.global.curriculum'}}"><i class="fas fa-graduation-cap"></i></li>
+            <li data-item-id="{{advancement._id}}" class="item-control item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
+            <li data-item-id="{{advancement._id}}" class="item-control item-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
         </ul>
     </td>
+    {{/if}}
 </tr>

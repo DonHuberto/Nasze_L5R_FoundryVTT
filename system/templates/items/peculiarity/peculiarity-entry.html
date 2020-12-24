@@ -1,10 +1,10 @@
-<li class="item peculiarity flexcol" data-peculiarity-id="{{peculiarity._id}}">
+<li class="item peculiarity flexcol">
     <ul class="item-header peculiarity-controls">
         <li class="item-img"><img src="{{peculiarity.img}}" title="{{peculiarity.name}}" width="32px" height="32px"/></li>
         <li class="item-name">{{ peculiarity.name }}</li>
         {{#if editable}}
-        <li class="item-control peculiarity-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
-        <li class="item-control peculiarity-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
+        <li data-item-id="{{peculiarity._id}}" class="item-control item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
+        <li data-item-id="{{peculiarity._id}}" class="item-control item-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
         {{/if}}
     </ul>
     <div class="item-description">{{{ peculiarity.data.description }}}</div>

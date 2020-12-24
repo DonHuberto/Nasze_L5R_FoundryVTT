@@ -1,5 +1,14 @@
 export const L5R5E = {};
 
+L5R5E.packsIds = {
+    properties: {
+        core: "l5r5e.core-properties",
+    },
+    techniques: {
+        core: "l5r5e.core-techniques",
+    },
+};
+
 L5R5E.paths = {
     assets: `systems/l5r5e/assets/`,
     templates: `systems/l5r5e/templates/`,
