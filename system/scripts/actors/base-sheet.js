@@ -50,7 +50,11 @@ export class BaseSheetL5r5e extends ActorSheet {
         }
 
         // Check if technique is allowed for this character
-        if (item.data.type === "technique" && !this.actor.data.data.techniques[item.data.data.technique_type]) {
+        if (
+            !game.user.isGM &&
+            item.data.type === "technique" &&
+            !this.actor.data.data.techniques[item.data.data.technique_type]
+        ) {
             new Dialog({
                 title: "Nope !",
                 content: game.i18n.localize("l5r5e.techniques.not_allowed"),
