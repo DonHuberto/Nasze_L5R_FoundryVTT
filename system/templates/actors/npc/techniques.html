@@ -7,7 +7,7 @@
         <ul class="item-list">
             {{#each actor.items as |item id|}}
                 {{#ifCond item.type '==' 'technique'}}
-                    {{> 'systems/l5r5e/templates/items/technique/technique-entry.html' technique=item }}
+                    {{> 'systems/l5r5e/templates/items/technique/technique-entry.html' technique=item editable=../editable }}
                 {{/ifCond}}
             {{/each}}
         </ul>

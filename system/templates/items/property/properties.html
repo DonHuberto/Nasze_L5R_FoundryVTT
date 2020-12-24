@@ -3,7 +3,7 @@
     <ul class="item-list">
         {{#each properties as |item id|}}
 <!--            {{#ifCond item.type '==' 'property'}}-->
-                {{> 'systems/l5r5e/templates/items/property/property-entry.html' item=item id=id }}
+                {{> 'systems/l5r5e/templates/items/property/property-entry.html' item=item id=id editable=../editable }}
 <!--            {{/ifCond}}-->
         {{/each}}
     </ul>

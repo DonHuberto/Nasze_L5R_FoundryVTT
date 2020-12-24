@@ -2,8 +2,10 @@
     <ul class="item-header item-control">
         <li class="item-img"><img src="{{item.img}}" title="{{item.name}}" width="32px" height="32px"/></li>
         <li class="item-name">{{ item.name }} <sub>x{{ item.data.quantity }}</sub></li>
+        {{#if editable}}
         <li class="item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
         <li class="item-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
+        {{/if}}
     </ul>
     <ul class="item-properties">
         {{#each item.data.properties as |property id|}}

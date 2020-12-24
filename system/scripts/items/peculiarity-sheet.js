@@ -21,10 +21,9 @@ export class PeculiaritySheetL5r5e extends ItemSheetL5r5e {
         });
     }
 
-    getData() {
-        const sheetData = super.getData();
+    async getData() {
+        const sheetData = await super.getData();
 
-        sheetData.data.dtypes = ["String", "Number", "Boolean"];
         sheetData.data.subTypesList = PeculiaritySheetL5r5e.types;
 
         return sheetData;

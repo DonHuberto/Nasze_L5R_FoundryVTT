@@ -14,7 +14,7 @@ export class ItemSheetL5r5e extends ItemSheet {
         });
     }
 
-    getData() {
+    async getData() {
         const sheetData = super.getData();
 
         sheetData.data.dtypes = ["String", "Number", "Boolean"];
@@ -22,7 +22,7 @@ export class ItemSheetL5r5e extends ItemSheet {
         sheetData.data.techniquesList = game.l5r5e.HelpersL5r5e.getTechniquesList();
 
         // Prepare Properties (id/name => object)
-        this._prepareProperties(sheetData);
+        await this._prepareProperties(sheetData);
 
         return sheetData;
     }
@@ -31,21 +31,26 @@ export class ItemSheetL5r5e extends ItemSheet {
      * Prepare properties list
      * @private
      */
-    _prepareProperties(sheetData) {
+    async _prepareProperties(sheetData) {
         sheetData.data.propertiesList = [];
+
         if (Array.isArray(sheetData.data.properties)) {
             const props = [];
-            sheetData.data.properties.forEach((e) => {
-                const obj = game.items.get(e.id);
-                // remove item if not found (probably a deleted item)
-                if (!obj) {
-                    return;
+            for (const property of sheetData.data.properties) {
+                let item = game.items.get(property.id);
+                if (item) {
+                    // Live item
+                    sheetData.data.propertiesList.push(item);
+                    props.push({ id: property.id, name: item.name });
+                } else {
+                    // Pack item
+                    item = await game.packs.get("l5r5e.Properties").getEntry(property.id);
+                    if (item) {
+                        sheetData.data.propertiesList.push(item);
+                        props.push({ id: item._id, name: item.name });
+                    }
                 }
-                sheetData.data.propertiesList.push(obj);
-
-                // update name if referenced object was rename
-                props.push({ id: e.id, name: obj.name });
-            });
+            }
             sheetData.data.properties = props;
         }
     }
@@ -66,6 +71,13 @@ export class ItemSheetL5r5e extends ItemSheet {
         html.find(".select-on-focus").on("focus", (event) => {
             event.target.select();
         });
+
+        // Toggle
+        // html.find(".toggle-on-click").on("click", (event) => {
+        //     const elmt = $(event.currentTarget).data("toggle");
+        //     const tgt = html.find("." + elmt);
+        //     tgt.hasClass('toggle-active') ? tgt.removeClass('toggle-active') : tgt.addClass('toggle-active');
+        // });
 
         // Delete a property
         html.find(`.property-delete`).on("click", (event) => {

@@ -7,8 +7,10 @@
             <i class="fas fa-tint" title="{{ localize 'l5r5e.weapons.damage' }}"> {{item.data.damage}}</i>
             <i class="fas fa-skull" title="{{ localize 'l5r5e.weapons.deadliness' }}"> {{item.data.deadliness}}</i>
         </li>
+        {{#if editable}}
         <li class="item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
         <li class="item-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
+        {{/if}}
     </ul>
     <ul class="item-properties">
         {{#each item.data.properties as |property id|}}

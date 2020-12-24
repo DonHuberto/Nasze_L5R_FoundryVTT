@@ -16,9 +16,8 @@ export class WeaponSheetL5r5e extends ItemSheetL5r5e {
         });
     }
 
-    getData() {
-        const sheetData = super.getData();
-        sheetData.data.dtypes = ["String", "Number", "Boolean"];
+    async getData() {
+        const sheetData = await super.getData();
 
         // Martial skills only
         sheetData.data.skills = Array.from(L5R5E.skills)

@@ -87,6 +87,13 @@ export class BaseSheetL5r5e extends ActorSheet {
             event.target.select();
         });
 
+        // Toggle
+        // html.find(".toggle-on-click").on("click", (event) => {
+        //     const elmt = $(event.currentTarget).data("toggle");
+        //     const tgt = html.find("." + elmt);
+        //     tgt.hasClass('toggle-active') ? tgt.removeClass('toggle-active') : tgt.addClass('toggle-active');
+        // });
+
         // *** Items : edit, delete ***
         ["item", "peculiarity", "technique", "advancement"].forEach((type) => {
             html.find(`.${type}-edit`).on("click", (event) => {

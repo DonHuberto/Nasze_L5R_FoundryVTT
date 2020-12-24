@@ -2,8 +2,10 @@
     <ul class="item-header technique-controls">
         <li class="item-img"><img src="{{technique.img}}" title="{{technique.name}}" width="32px" height="32px"/></li>
         <li class="item-name">{{ technique.name }}</li>
+        {{#if editable}}
         <li class="item-control technique-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
         <li class="item-control technique-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
+        {{/if}}
     </ul>
     <div class="item-description">{{{ technique.data.description }}}</div>
 </li>

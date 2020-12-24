@@ -20,10 +20,9 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
         });
     }
 
-    getData() {
-        const sheetData = super.getData();
+    async getData() {
+        const sheetData = await super.getData();
 
-        sheetData.data.dtypes = ["String", "Number", "Boolean"];
         sheetData.data.subTypesList = AdvancementSheetL5r5e.types;
         sheetData.data.skillsList = game.l5r5e.HelpersL5r5e.getSkillsList(true);
 

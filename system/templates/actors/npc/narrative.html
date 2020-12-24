@@ -3,7 +3,7 @@
     <ul class="item-list">
         {{#each actor.items as |item id|}}
             {{#ifCond '["distinction","passion"]' 'includes' item.data.peculiarity_type}}
-                {{> 'systems/l5r5e/templates/items/peculiarity/peculiarity-entry.html' peculiarity=item id=id }}
+                {{> 'systems/l5r5e/templates/items/peculiarity/peculiarity-entry.html' peculiarity=item id=id editable=../editable }}
             {{/ifCond}}
         {{/each}}
     </ul>
@@ -13,7 +13,7 @@
     <ul class="item-list">
         {{#each actor.items as |item id|}}
             {{#ifCond '["adversity","anxiety"]' 'includes' item.data.peculiarity_type}}
-                {{> 'systems/l5r5e/templates/items/peculiarity/peculiarity-entry.html' peculiarity=item id=id }}
+                {{> 'systems/l5r5e/templates/items/peculiarity/peculiarity-entry.html' peculiarity=item id=id editable=../editable }}
             {{/ifCond}}
         {{/each}}
     </ul>

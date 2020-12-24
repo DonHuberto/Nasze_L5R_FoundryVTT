@@ -2,8 +2,10 @@
     <ul class="item-header advancement-controls">
         <li class="item-img"><img src="{{advancement.img}}" title="{{advancement.name}}" width="32px" height="32px"/></li>
         <li class="item-name">{{ advancement.name }}</li>
+        {{#if editable}}
         <li class="item-control advancement-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
         <li class="item-control advancement-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
+        {{/if}}
     </ul>
     <div class="item-description">{{{ advancement.data.description }}}</div>
 </li>
