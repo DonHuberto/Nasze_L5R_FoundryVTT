@@ -7,5 +7,7 @@
             <li data-item-id="{{peculiarity._id}}" class="item-control item-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
         {{/if}}
     </ul>
+    {{#if peculiarity.data.description}}
     <div class="item-description item-description-{{peculiarity._id}}">{{{ peculiarity.data.description }}}</div>
+    {{/if}}
 </li>

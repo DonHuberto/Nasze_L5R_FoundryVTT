@@ -16,5 +16,7 @@
             <li>{{{ property.name }}}</li>
         {{/each}}
     </ul>
+    {{#if item.data.description}}
     <div class="item-description item-description-{{item._id}}">{{{ item.data.description }}}</div>
+    {{/if}}
 </li>
