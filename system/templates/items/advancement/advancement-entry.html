@@ -1,10 +1,10 @@
-<li class="item advancement flexcol">
+<li class="item advancement flexcol toggle-on-click" data-toggle="item-description">
     <ul class="item-header advancement-controls">
         <li class="item-img"><img src="{{advancement.img}}" title="{{advancement.name}}" width="32px" height="32px"/></li>
         <li class="item-name">{{ advancement.name }}</li>
         {{#if editable}}
-        <li data-item-id="{{advancement._id}}" class="item-control item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
-        <li data-item-id="{{advancement._id}}" class="item-control item-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
+            <li data-item-id="{{advancement._id}}" class="item-control item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
+            <li data-item-id="{{advancement._id}}" class="item-control item-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
         {{/if}}
     </ul>
     <div class="item-description">{{{ advancement.data.description }}}</div>

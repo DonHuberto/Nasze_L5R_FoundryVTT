@@ -1,9 +1,12 @@
 // -- Nav
 nav {
     &.sheet-tabs {
+        height: 3rem;
+        line-height: 3rem;
         font-family: $font-tertiary;
         font-size: 1.25rem;
         border: 0 none;
+        border-bottom: 1px solid $l5r5e-title;
         margin-bottom: 0;
         background: $l5r5e-white;
         color: $l5r5e-black;
@@ -37,8 +40,6 @@ nav {
         }
     }
     .item.active {
-        height: 2.5rem;
-        line-height: 2rem;
         background-color: rgba(73, 12, 11, 0.85);
         color: rgba(255, 255, 255, 1);
         background-color: rgba(73, 12, 11, 0.85);

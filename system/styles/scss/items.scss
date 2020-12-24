@@ -49,14 +49,6 @@
                 }
             }
         }
-        .item-description {
-            flex: unset;
-            display: block;
-            height: 0;
-            overflow: hidden;
-            background: rgba(0, 0, 0, 0.05);
-            transition: height 0.25s ease-in;
-        }
         .item-properties {
             display: flex;
             flex-direction: row;
@@ -75,13 +67,6 @@
                 &:last-child {
                     margin-right: 0;
                 }
-            }
-        }
-        &:hover {
-            .item-description {
-                height: 5rem;
-                overflow-y: auto;
-                scrollbar-width: thin;
             }
         }
         p {
@@ -261,21 +246,50 @@
             }
         }
     }
-    p.item-description {
+}
+li {
+    .item-description {
+        flex: unset;
         height: 0;
         margin: 0;
-        padding: 0.25rem;
+        padding: 0;
         font-size: 0.75rem;
         color: rgba(0, 0, 0, 0.75);
         overflow: hidden;
-        border: 1px solid $l5r5e-title;
+        background: rgba(0, 0, 0, 0.05);
+        border: 0 none;
         transition: height 0.25s ease-in;
     }
-    &:hover {
-        p.item-description {
+    div.item-description {
+        padding: 0;
+        &:hover,
+        &:active {
+            padding: 0;
+        }
+    }
+    .toggle-active {
+        height: 6rem;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        border: 1px solid $l5r5e-title;
+    }
+    p {
+        &.toggle-active {
+            padding: 0.25rem;
+        }
+    }
+    &:hover,
+    &:active {
+        .item-description {
             height: 6rem;
             overflow-y: auto;
             scrollbar-width: thin;
+            border: 1px solid $l5r5e-title;
+        }
+        p {
+            .item-description {
+                padding: 0.25rem;
+            }
         }
     }
 }

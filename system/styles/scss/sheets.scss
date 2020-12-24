@@ -321,8 +321,9 @@
                     position: absolute;
                     background: rgba(0, 0, 0, 0.5);
                     color: #fff;
+                    height: auto;
                     padding: 0.25rem;
-                    bottom: -75%;
+                    bottom: -1rem;
                     right: 0;
                     --notchSize: 0.5rem;
                     clip-path: polygon(
@@ -339,6 +340,7 @@
                 &:hover {
                     p {
                         display: block;
+                        height: auto;
                     }
                 }
             }
@@ -359,7 +361,7 @@
         background: $l5r5e-white;
         padding: 0.5rem;
         flex-wrap: wrap;
-        min-height: calc(100% - 2.25rem);
+        min-height: calc(100% - 3.25rem);
         &.tab[data-tab] {
             &.active {
                 display: flex;
@@ -384,11 +386,16 @@
                     var(--notchSize) 100%,
                     0% calc(100% - var(--notchSize))
                 );
+                i {
+                    color: $l5r5e-black;
+                    margin-right: 0.5rem;
+                }
                 label {
                     flex: 0 0 auto;
                     margin: 0 0.25rem 0.25rem;
                     padding: 0 0.5rem;
                     color: $l5r5e-label;
+                    background: $l5r5e-white;
                     border: 1px solid $l5r5e-label;
                     border-radius: 1rem;
                 }
@@ -453,6 +460,8 @@
             th {
                 &:first-child {
                     flex: calc(100% - 16rem);
+                    padding-left: 0.5rem;
+                    text-align: left;
                 }
                 &:nth-child(2),
                 &:nth-child(3) {
@@ -461,8 +470,10 @@
             }
         }
         tbody {
-            th {
+            .name {
                 flex: calc(100% - 13rem);
+                padding-left: 0.5rem;
+                text-align: left;
             }
             .xp,
             .rank {

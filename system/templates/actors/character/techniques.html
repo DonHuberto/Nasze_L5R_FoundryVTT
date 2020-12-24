@@ -1,15 +1,13 @@
 <div class="techniques-wrapper">
-    <fieldset class="checklist">
-        <legend>
-            {{ localize 'l5r5e.techniques.type'}}
-        </legend>
+    <div class="checklist">
+        <i>{{ localize 'l5r5e.techniques.type'}}</i>
         {{#each actor.data.techniquesList as |technique|}}
-        <label>
-            <input type="checkbox" name="data.techniques.{{technique}}" {{checked (lookup ../actor.data.techniques technique)}} />
-            {{localizeTechnique technique}}
-        </label>
+            <label>
+                <input type="checkbox" name="data.techniques.{{technique}}" {{checked (lookup ../actor.data.techniques technique)}} />
+                {{localizeTechnique technique}}
+            </label>
         {{/each}}
-    </fieldset>
+    </div>
     <fieldset class="section-header flexrow">
         <legend class="technique-controls">
             {{ localize 'l5r5e.techniques.title' }}
