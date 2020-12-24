@@ -19,6 +19,12 @@
             </li>
             <li>
                 <label class="attribute-label">
+                    {{ localize 'l5r5e.schoolrank' }}
+                    <input type="number" name="data.identity.school_rank" value="{{data.identity.school_rank}}" class="select-on-focus" data-dtype="Number" min="0" placeholder="0"/>
+                </label>
+            </li>
+            <li>
+                <label class="attribute-label">
                     {{ localize 'l5r5e.school' }}
                     <input type="text" name="data.identity.school" value="{{data.identity.school}}"/>
                 </label>
@@ -27,12 +33,6 @@
                 <label class="attribute-label">
                     {{ localize 'l5r5e.roles' }}
                     <input type="text" name="data.identity.roles" value="{{data.identity.roles}}"/>
-                </label>
-            </li>
-            <li>
-                <label class="attribute-label">
-                    {{ localize 'l5r5e.schoolrank' }}
-                    <input type="number" name="data.identity.school_rank" value="{{data.identity.school_rank}}" class="select-on-focus" data-dtype="Number" min="0" placeholder="0"/>
                 </label>
             </li>
         </ul>

@@ -137,47 +137,4 @@
             margin: 0.5rem 0.25rem 0;
         }
     }
-    .limited {
-        h1 {
-            margin: 0.5rem 0;
-        }
-        img {
-            &.full {
-                flex: 0 0 content;
-                height: auto;
-                width: auto;
-                border: 0 none;
-            }
-        }
-        .sheet-header {
-            flex: none;
-        }
-        ul {
-            display: flex;
-            flex-wrap: wrap;
-            li {
-                flex: 50%;
-                padding: 0.25rem 0;
-                input {
-                    width: 75%;
-                    float: right;
-                }
-                &:nth-child(1) {
-                    flex: calc(50% - 1rem);
-                    margin-right: 1rem;
-                }
-                &:nth-child(3),
-                &:nth-child(4) {
-                    flex: calc(50% - 5rem);
-                    margin-right: 1rem;
-                }
-                &:nth-child(5) {
-                    flex: auto;
-                    input {
-                        width: 2rem;
-                    }
-                }
-            }
-        }
-    }
 }

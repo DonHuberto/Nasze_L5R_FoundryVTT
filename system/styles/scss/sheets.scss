@@ -156,8 +156,21 @@
                     flex: 33%;
                     &:nth-child(1),
                     &:nth-child(2) {
-                        flex: 50%;
+                        flex: calc(50% - 5rem);
                         margin: 0 0 0.5rem;
+                    }
+                    &:nth-child(3) {
+                        flex: auto;
+                        input {
+                            width: 2rem;
+                        }
+                    }
+                    &:nth-child(4),
+                    &:nth-child(5) {
+                        flex: 50%;
+                        input {
+                            font-size: 1rem;
+                        }
                     }
                 }
             }
@@ -489,6 +502,57 @@
                         flex: 0 0 1rem;
                         &:hover {
                             color: $red-light;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.actor,
+    &.npc {
+        .limited {
+            h1 {
+                margin: 0.5rem 0;
+            }
+            img {
+                &.full {
+                    flex: 0 0 content;
+                    height: auto;
+                    width: auto;
+                    border: 0 none;
+                }
+            }
+            .sheet-header {
+                flex: none;
+                height: auto;
+            }
+            ul {
+                display: flex;
+                flex-wrap: wrap;
+                li {
+                    flex: 50%;
+                    padding: 0.25rem 0;
+                    input {
+                        width: 75%;
+                        float: right;
+                    }
+                    &:nth-child(1),
+                    &:nth-child(2) {
+                        flex: calc(50% - 5rem);
+                        margin-right: 1rem;
+                    }
+                    &:nth-child(3) {
+                        flex: auto;
+                        input {
+                            width: 2rem;
+                        }
+                    }
+                    &:nth-child(4),
+                    &:nth-child(5) {
+                        flex: calc(50% - 1rem);
+                        margin-right: 1rem;
+                        input {
+                            font-size: 1rem;
                         }
                     }
                 }
