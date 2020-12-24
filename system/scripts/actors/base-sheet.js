@@ -96,11 +96,11 @@ export class BaseSheetL5r5e extends ActorSheet {
         });
 
         // Toggle
-        // html.find(".toggle-on-click").on("click", (event) => {
-        //     const elmt = $(event.currentTarget).data("toggle");
-        //     const tgt = html.find("." + elmt);
-        //     tgt.hasClass('toggle-active') ? tgt.removeClass('toggle-active') : tgt.addClass('toggle-active');
-        // });
+        html.find(".toggle-on-click").on("click", (event) => {
+            const elmt = $(event.currentTarget).data("toggle");
+            const tgt = html.find("." + elmt);
+            tgt.hasClass("toggle-active") ? tgt.removeClass("toggle-active") : tgt.addClass("toggle-active");
+        });
 
         // *** Items : add, edit, delete, curriculum ***
         html.find(".item-add").on("click", (event) => {

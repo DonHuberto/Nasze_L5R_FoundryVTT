@@ -73,11 +73,11 @@ export class ItemSheetL5r5e extends ItemSheet {
         });
 
         // Toggle
-        // html.find(".toggle-on-click").on("click", (event) => {
-        //     const elmt = $(event.currentTarget).data("toggle");
-        //     const tgt = html.find("." + elmt);
-        //     tgt.hasClass('toggle-active') ? tgt.removeClass('toggle-active') : tgt.addClass('toggle-active');
-        // });
+        html.find(".toggle-on-click").on("click", (event) => {
+            const elmt = $(event.currentTarget).data("toggle");
+            const tgt = html.find("." + elmt);
+            tgt.hasClass("toggle-active") ? tgt.removeClass("toggle-active") : tgt.addClass("toggle-active");
+        });
 
         // Delete a property
         html.find(`.property-delete`).on("click", (event) => {
