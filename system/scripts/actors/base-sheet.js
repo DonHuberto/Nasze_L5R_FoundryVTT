@@ -56,7 +56,7 @@ export class BaseSheetL5r5e extends ActorSheet {
             !this.actor.data.data.techniques[item.data.data.technique_type]
         ) {
             new Dialog({
-                title: "Nope !",
+                title: game.i18n.localize("l5r5e.techniques.title"),
                 content: game.i18n.localize("l5r5e.techniques.not_allowed"),
                 buttons: {
                     ok: {
@@ -67,6 +67,8 @@ export class BaseSheetL5r5e extends ActorSheet {
             }).render(true);
             return Promise.resolve();
         }
+
+        // TODO dropped a item with same id as one owned, add qte instead
 
         // Ok add item
         return super._onDrop(event);
