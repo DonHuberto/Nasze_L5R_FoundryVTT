@@ -3,9 +3,9 @@
     <li>
         <select class="attribute-dtype" name="data.type">
             {{#select data.type}}
-                {{#each data.types as |t|}}
-                    <option value="{{t}}">{{t}}</option>
-                {{/each}}
+            {{#each data.types as |t|}}
+                <option value="{{t.id}}">{{t.label}}</option>
+            {{/each}}
             {{/select}}
         </select>
     </li>

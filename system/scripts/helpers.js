@@ -8,13 +8,11 @@ export class HelpersL5r5e {
      * Get Rings/Element for List / Select
      */
     static getRingsList(actor = null) {
-        return CONFIG.l5r5e.stances.map((e) => {
-            return {
-                id: e,
-                label: game.i18n.localize(`l5r5e.rings.${e}`),
-                value: actor?.data?.data?.rings?.[e] || 0,
-            };
-        });
+        return CONFIG.l5r5e.stances.map((e) => ({
+            id: e,
+            label: game.i18n.localize(`l5r5e.rings.${e}`),
+            value: actor?.data?.data?.rings?.[e] || 0,
+        }));
     }
 
     /**
@@ -22,13 +20,11 @@ export class HelpersL5r5e {
      */
     static getSkillsList(useGroup = false) {
         if (!useGroup) {
-            return Array.from(L5R5E.skills).map(([id, cat]) => {
-                return {
-                    id: id,
-                    cat: cat,
-                    label: game.i18n.localize(`l5r5e.skills.${cat}.${id}`),
-                };
-            });
+            return Array.from(L5R5E.skills).map(([id, cat]) => ({
+                id: id,
+                cat: cat,
+                label: game.i18n.localize(`l5r5e.skills.${cat}.${id}`),
+            }));
         }
 
         const skills = {};
@@ -49,12 +45,10 @@ export class HelpersL5r5e {
      * Get Techniques for List / Select
      */
     static getTechniquesList() {
-        return CONFIG.l5r5e.techniques.map((e) => {
-            return {
-                id: e,
-                label: game.i18n.localize(`l5r5e.techniques.${e}`),
-            };
-        });
+        return CONFIG.l5r5e.techniques.map((e) => ({
+            id: e,
+            label: game.i18n.localize(`l5r5e.techniques.${e}`),
+        }));
     }
 
     /**

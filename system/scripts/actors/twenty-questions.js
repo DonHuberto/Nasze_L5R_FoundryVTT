@@ -308,7 +308,7 @@ export class TwentyQuestions {
         const exceed = {};
         TwentyQuestions[listName].forEach((formName) => {
             const id = getProperty(this.data, formName);
-            if (id === "none") {
+            if (!id || id === "none") {
                 return;
             }
             if (!store[id]) {

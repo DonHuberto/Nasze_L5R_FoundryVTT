@@ -255,6 +255,12 @@
             "rank": "Rank Total Xp: ",
             "curriculum": "in curriculum"
         },
+        "npc": {
+            "types": {
+                "adversary": "Adversary",
+                "minion": "Minion"
+            }
+        },
         "twenty_questions": {
             "title": "Twenty questions",
             "bt_abrev": "20Q",

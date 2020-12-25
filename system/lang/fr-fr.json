@@ -255,6 +255,12 @@
             "rank": "Xp Total du rang : ",
             "curriculum": "Inclus dans le cursus"
         },
+        "npc": {
+            "types": {
+                "adversary": "Antagoniste",
+                "minion": "Sous-fifre"
+            }
+        },
         "twenty_questions": {
             "title": "Vingt questions",
             "bt_abrev": "20Q",

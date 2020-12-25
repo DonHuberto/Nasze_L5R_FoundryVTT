@@ -4,7 +4,10 @@ import { BaseSheetL5r5e } from "./base-sheet.js";
  * NPC Sheet
  */
 export class NpcSheetL5r5e extends BaseSheetL5r5e {
-    static types = ["minion", "adversary"];
+    /**
+     * Sub Types
+     */
+    static types = ["adversary", "minion"];
 
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
@@ -20,7 +23,10 @@ export class NpcSheetL5r5e extends BaseSheetL5r5e {
     getData() {
         const sheetData = super.getData();
 
-        sheetData.data.types = NpcSheetL5r5e.types;
+        sheetData.data.types = NpcSheetL5r5e.types.map((e) => ({
+            id: e,
+            label: game.i18n.localize("l5r5e.npc.types." + e),
+        }));
 
         return sheetData;
     }
