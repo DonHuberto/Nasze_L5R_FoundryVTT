@@ -66,6 +66,12 @@
             "entity": "Item"
         },
         {
+            "name": "great-clans-presentation",
+            "label": "Great Clans Presentation",
+            "path": "packs/great-clans-presentation.db",
+            "entity": "JournalEntry"
+        },
+        {
             "name": "macros",
             "label": "L5R5e Macros",
             "path": "packs/macros.db",
