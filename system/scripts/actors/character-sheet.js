@@ -9,10 +9,6 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
         return mergeObject(super.defaultOptions, {
             classes: ["l5r5e", "sheet", "actor"],
             template: CONFIG.l5r5e.paths.templates + "actors/character-sheet.html",
-            width: 600,
-            height: 800,
-            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
-            dragDrop: [{ dragSelector: ".item-list .item", dropSelector: null }],
         });
     }
 

@@ -14,6 +14,7 @@ export class ItemSheetL5r5e extends ItemSheet {
         });
     }
 
+    /** @override */
     async getData() {
         const sheetData = super.getData();
 
@@ -37,18 +38,10 @@ export class ItemSheetL5r5e extends ItemSheet {
         if (Array.isArray(sheetData.data.properties)) {
             const props = [];
             for (const property of sheetData.data.properties) {
-                let item = game.items.get(property.id);
-                if (item) {
-                    // Live item
-                    sheetData.data.propertiesList.push(item);
-                    props.push({ id: property.id, name: item.name });
-                } else {
-                    // Pack item
-                    item = await game.packs.get(CONFIG.l5r5e.packsIds.properties.core).getEntry(property.id);
-                    if (item) {
-                        sheetData.data.propertiesList.push(item);
-                        props.push({ id: item._id, name: item.name });
-                    }
+                const gameProp = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack(property.id, "Item");
+                if (gameProp) {
+                    sheetData.data.propertiesList.push(gameProp);
+                    props.push({ id: gameProp._id, name: gameProp.name });
                 }
             }
             sheetData.data.properties = props;
@@ -114,9 +107,9 @@ export class ItemSheetL5r5e extends ItemSheet {
      * Handle dropped data on the Item sheet, only "property" allowed.
      * Also a property canot be on another property
      */
-    _onDrop(event) {
+    async _onDrop(event) {
         // Check item type and subtype
-        const item = game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
+        const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
         if (!item || item.entity !== "Item" || item.data.type !== "property" || this.item.type === "property") {
             return;
         }

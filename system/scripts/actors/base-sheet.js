@@ -3,7 +3,22 @@
  */
 export class BaseSheetL5r5e extends ActorSheet {
     /**
+     * Commons options
+     */
+    static get defaultOptions() {
+        return mergeObject(super.defaultOptions, {
+            classes: ["l5r5e", "sheet", "actor"],
+            // template: CONFIG.l5r5e.paths.templates + "actors/character-sheet.html",
+            width: 600,
+            height: 800,
+            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
+            dragDrop: [{ dragSelector: ".item-list .item", dropSelector: null }],
+        });
+    }
+
+    /**
      * Commons datas
+     * @override
      */
     getData() {
         const sheetData = super.getData();
@@ -40,7 +55,7 @@ export class BaseSheetL5r5e extends ActorSheet {
      */
     async _onDrop(event) {
         // Check item type and subtype
-        const item = game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
+        const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
         if (
             !item ||
             item.entity !== "Item" ||
@@ -73,26 +88,21 @@ export class BaseSheetL5r5e extends ActorSheet {
         // Babele and properties specific
         if (item.data.data.properties && typeof Babele !== "undefined") {
             item.data.data.properties = await Promise.all(
-                item.data.data.properties.map(async (prop) => {
-                    let gameProp = game.items.get(prop.id);
+                item.data.data.properties.map(async (property) => {
+                    const gameProp = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack(property.id, "Item");
                     if (gameProp) {
-                        // Live item
-                        return { id: gameProp.id, name: gameProp.name };
-                    } else {
-                        // Pack item
-                        gameProp = await game.packs.get(CONFIG.l5r5e.packsIds.properties.core).getEntry(prop.id);
-                        if (gameProp) {
-                            return { id: gameProp._id, name: gameProp.name };
-                        }
+                        return { id: gameProp._id, name: gameProp.name };
                     }
-                    return prop;
+                    return property;
                 })
             );
         }
 
         // Ok add item - Foundry override cause props
         const allowed = Hooks.call("dropActorSheetData", this.actor, this, item);
-        if (allowed === false) return;
+        if (allowed === false) {
+            return;
+        }
         return this._onDropItem(event, item);
     }
 

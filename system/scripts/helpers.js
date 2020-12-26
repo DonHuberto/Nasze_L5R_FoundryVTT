@@ -54,34 +54,72 @@ export class HelpersL5r5e {
     /**
      * Return the target object on a drag n drop event, or null if not found
      */
-    static getDragnDropTargetObject(event) {
-        let data = null;
-        let targetItem = null;
+    static async getDragnDropTargetObject(event) {
+        const data = JSON.parse(event.dataTransfer.getData("text/plain"));
+        return await HelpersL5r5e.getObjectGameOrPack(data.id, data.type, data.pack);
+    }
 
+    /**
+     * Return the object from Game or Pack by his ID, or null if not found
+     */
+    static async getObjectGameOrPack(id, type, pack = null) {
         try {
-            data = JSON.parse(event.dataTransfer.getData("text/plain"));
+            // Named pack
+            if (pack) {
+                const data = await game.packs.get(pack).getEntry(id);
+                if (data) {
+                    return HelpersL5r5e.createItemFromCompendium(data);
+                }
+            }
+
+            // Game object
+            let item = null;
+            switch (type) {
+                case "Actor":
+                    item = game.actors.get(id);
+                    break;
+
+                case "Item":
+                    item = game.items.get(id);
+                    break;
+
+                case "JournalEntry":
+                    item = game.journal.get(id);
+                    break;
+
+                case "Macro":
+                    item = game.macros.get(id);
+                    break;
+            }
+            if (item) {
+                return item;
+            }
+
+            // Unknown pack object, iterate all packs
+            for (const comp of game.packs) {
+                const data = await comp.getEntity(id);
+                if (data) {
+                    return HelpersL5r5e.createItemFromCompendium(data);
+                }
+            }
         } catch (err) {
-            return null;
+            console.warn(err);
         }
+        return null;
+    }
 
-        switch (data.type) {
-            case "Actor":
-                targetItem = game.actors.get(data.id);
-                break;
-
-            case "Item":
-                targetItem = game.items.get(data.id);
-                break;
-
-            case "JournalEntry":
-                targetItem = game.journal.get(data.id);
-                break;
-
-            case "Macro":
-                targetItem = game.macros.get(data.id);
-                break;
+    /**
+     * Make a temporary item for compendium drag n drop
+     */
+    static async createItemFromCompendium(data) {
+        if (!["item", "armor", "weapon", "technique", "peculiarity", "property"].includes(data.type)) {
+            return data;
         }
+        const item = await Item.create(data, { temporary: true });
 
-        return targetItem;
+        // reinject compendium id
+        item.data._id = data._id;
+
+        return item;
     }
 }
