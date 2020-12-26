@@ -117,7 +117,7 @@ export class HelpersL5r5e {
         }
         const item = await Item.create(data, { temporary: true });
 
-        // reinject compendium id
+        // reinject compendium id (required for properties)
         item.data._id = data._id;
 
         return item;

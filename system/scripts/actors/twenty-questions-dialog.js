@@ -132,7 +132,7 @@ export class TwentyQuestionsDialog extends FormApplication {
     /**
      * Handle dropped items
      */
-    _onDropItem(type, event) {
+    async _onDropItem(type, event) {
         if (!["item", "technique", "peculiarity"].includes(type)) {
             return;
         }
@@ -142,17 +142,11 @@ export class TwentyQuestionsDialog extends FormApplication {
             return;
         }
 
-        // Try to extract the data
-        // {type: "Item", id: "pC37smMSCqu3aSRM"}
-        let data;
         try {
-            data = JSON.parse(event.dataTransfer.getData("text/plain"));
-            if (data.type !== "Item") {
-                return;
-            }
             // Get item
-            const item = game.items.get(data.id);
+            const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
             if (
+                item.entity !== "Item" ||
                 !item ||
                 (type !== "item" && item.data.type !== type) ||
                 (type === "item" && !["item", "weapon", "armor"].includes(item.data.type))

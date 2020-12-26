@@ -61,7 +61,7 @@ export class BaseSheetL5r5e extends ActorSheet {
             item.entity !== "Item" ||
             !["item", "armor", "weapon", "technique", "peculiarity", "advancement"].includes(item.data.type)
         ) {
-            return Promise.resolve();
+            return;
         }
 
         // Check if technique is allowed for this character
@@ -80,10 +80,16 @@ export class BaseSheetL5r5e extends ActorSheet {
                     },
                 },
             }).render(true);
-            return Promise.resolve();
+            return;
         }
 
-        // TODO dropped a item with same id as one owned, add qte instead
+        // Dropped a item with same "id" as one owned, add qte instead
+        if (item.data.data.quantity && this.actor.data.items) {
+            const tmpItem = this.actor.data.items.find((e) => e.name === item.name && e.type === item.type);
+            if (tmpItem && this._modifyQuantity(tmpItem._id, 1)) {
+                return;
+            }
+        }
 
         // Babele and properties specific
         if (item.data.data.properties && typeof Babele !== "undefined") {
@@ -191,8 +197,15 @@ export class BaseSheetL5r5e extends ActorSheet {
      * Delete a generic item with sub type
      * @private
      */
-    _deleteSubItem(event, type) {
+    _deleteSubItem(event) {
         const itemId = $(event.currentTarget).data("item-id");
+
+        // Remove 1 qty if possible
+        const tmpItem = this.actor.getOwnedItem(itemId);
+        if (tmpItem && tmpItem.data.data.quantity > 1 && this._modifyQuantity(tmpItem._id, -1)) {
+            return;
+        }
+
         return this.actor.deleteOwnedItem(itemId);
     }
 
@@ -210,5 +223,23 @@ export class BaseSheetL5r5e extends ActorSheet {
                 },
             });
         }
+    }
+
+    /**
+     * Add or subtract a quantity to a owned item
+     * @private
+     */
+    _modifyQuantity(itemId, add) {
+        const tmpItem = this.actor.getOwnedItem(itemId);
+        if (tmpItem) {
+            tmpItem.data.data.quantity = Math.max(1, tmpItem.data.data.quantity + add);
+            tmpItem.update({
+                data: {
+                    quantity: tmpItem.data.data.quantity,
+                },
+            });
+            return true;
+        }
+        return false;
     }
 }
