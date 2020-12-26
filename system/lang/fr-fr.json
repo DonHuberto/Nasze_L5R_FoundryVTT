@@ -252,8 +252,9 @@
             "total": "Totale",
             "spent": "Dépensée",
             "saved": "Restante",
-            "rank": "Xp Total du rang : ",
-            "curriculum": "Inclus dans le cursus"
+            "total_xp_rank": "Xp Total du rang",
+            "curriculum": "Inclus dans le cursus",
+            "curriculum_validate": "Valider la progression"
         },
         "npc": {
             "types": {

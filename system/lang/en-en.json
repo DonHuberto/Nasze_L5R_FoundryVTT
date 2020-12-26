@@ -252,8 +252,9 @@
             "total": "Total",
             "spent": "Used",
             "saved": "Saved",
-            "rank": "Rank Total Xp: ",
-            "curriculum": "in curriculum"
+            "rank": "Rank Total Xp",
+            "curriculum": "in curriculum",
+            "curriculum_validate": "Complete this rank"
         },
         "npc": {
             "types": {

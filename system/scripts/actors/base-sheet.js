@@ -64,25 +64,6 @@ export class BaseSheetL5r5e extends ActorSheet {
             return;
         }
 
-        // Check if technique is allowed for this character
-        if (
-            !game.user.isGM &&
-            item.data.type === "technique" &&
-            !this.actor.data.data.techniques[item.data.data.technique_type]
-        ) {
-            new Dialog({
-                title: game.i18n.localize("l5r5e.techniques.title"),
-                content: game.i18n.localize("l5r5e.techniques.not_allowed"),
-                buttons: {
-                    ok: {
-                        label: game.i18n.localize("l5r5e.global.ok"),
-                        icon: '<i class="fas fa-check"></i>',
-                    },
-                },
-            }).render(true);
-            return;
-        }
-
         // Dropped a item with same "id" as one owned, add qte instead
         if (item.data.data.quantity && this.actor.data.items) {
             const tmpItem = this.actor.data.items.find((e) => e.name === item.name && e.type === item.type);
@@ -102,6 +83,31 @@ export class BaseSheetL5r5e extends ActorSheet {
                     return property;
                 })
             );
+        }
+
+        // Item subtype specific
+        switch (item.data.type) {
+            case "advancement":
+                // Modify the bought at rank to the current actor rank
+                item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
+                break;
+
+            case "technique":
+                // Check if technique is allowed for this character
+                if (!game.user.isGM && !this.actor.data.data.techniques[item.data.data.technique_type]) {
+                    new Dialog({
+                        title: game.i18n.localize("l5r5e.techniques.title"),
+                        content: game.i18n.localize("l5r5e.techniques.not_allowed"),
+                        buttons: {
+                            ok: {
+                                label: game.i18n.localize("l5r5e.global.ok"),
+                                icon: '<i class="fas fa-check"></i>',
+                            },
+                        },
+                    }).render(true);
+                    return;
+                }
+                break;
         }
 
         // Ok add item - Foundry override cause props
@@ -159,6 +165,18 @@ export class BaseSheetL5r5e extends ActorSheet {
         html.find(`.item-curriculum`).on("click", (event) => {
             this._switchSubItemCurriculum(event);
         });
+        html.find(`button[name=validate-curriculum]`).on("click", (event) => {
+            this.actor.data.data.identity.school_rank = this.actor.data.data.identity.school_rank + 1;
+            // Update actor
+            this.actor.update({
+                data: {
+                    identity: {
+                        school_rank: this.actor.data.data.identity.school_rank,
+                    },
+                },
+            });
+            this.render(false);
+        });
     }
 
     /**
@@ -180,6 +198,12 @@ export class BaseSheetL5r5e extends ActorSheet {
             type: type,
         });
         const item = this.actor.getOwnedItem(created._id);
+
+        // assign current school rank to the new tech
+        if (item.data.type === "advancement") {
+            item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
+        }
+
         item.sheet.render(true);
     }
 

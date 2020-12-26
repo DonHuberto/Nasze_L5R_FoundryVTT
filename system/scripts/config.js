@@ -7,6 +7,7 @@ L5R5E.paths = {
 
 L5R5E.stances = ["earth", "air", "water", "fire", "void"];
 L5R5E.techniques = ["kata", "kiho", "invocation", "ritual", "shuji", "maho", "ninjutsu"];
+L5R5E.xpPerRank = [20, 24, 32, 44, 60];
 
 // Map SkillId - CategoryId
 L5R5E.skills = new Map();

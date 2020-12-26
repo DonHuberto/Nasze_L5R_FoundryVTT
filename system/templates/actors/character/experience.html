@@ -2,20 +2,15 @@
     <legend>{{ localize 'l5r5e.experience'}}</legend>
     <label class="attribute-label">
         {{ localize 'l5r5e.advancements.total' }}
-        <input class="centered-input select-on-focus" type="number" name="data.advancement.xp_total" value="{{ data.advancement.xp_total }}" data-dtype="Number" min="0" placeholder="0"/>
+        <input class="centered-input select-on-focus" type="number" name="data.xp_total" value="{{ data.xp_total }}" data-dtype="Number" min="0" placeholder="0"/>
     </label>
     <label class="attribute-label">
         {{ localize 'l5r5e.advancements.spent' }}
-        <input class="centered-input select-on-focus" type="number" name="data.xp_spent" value="{{ data.xp_spent }}" data-dtype="Number" min="0" placeholder="0"/>
+        <input class="centered-input select-on-focus" type="number" name="data.xp_spent" value="{{ data.xp_spent }}" data-dtype="Number" min="0" placeholder="0" disabled/>
     </label>
     <label class="attribute-label">
         {{ localize 'l5r5e.advancements.saved' }}
-        <input class="centered-input select-on-focus" type="number" name="data.advancement.xp_saved" value="{{ data.advancement.xp_saved }}" data-dtype="Number" min="0" placeholder="0"/>
-    </label>
-
-    <label class="attribute-label">
-        {{ localize 'l5r5e.advancements.rank' }}
-        {{ data.xp_spent_rank }}
+        <input class="centered-input select-on-focus" type="number" name="data.xp_saved" value="{{ data.xp_saved }}" data-dtype="Number" min="0" placeholder="0" disabled/>
     </label>
 </fieldset>
 <fieldset class="advancement">
@@ -37,6 +32,22 @@
                 {{> 'systems/l5r5e/templates/actors/character/advancement.html' advancement=advancement editable=../editable }}
             {{/ifCond}}
         {{/each}}
+        <tfooter class="flex">
+            <tr class="flexrow row">
+                <th class="">
+                    {{#ifCond data.xp_spent_rank '>=' data.xp_goal}}
+                    <button type="button" name="validate-curriculum">
+                        <i class='fas fa-check-square'></i> {{ localize 'l5r5e.advancements.curriculum_validate' }}
+                    </button>
+                    {{/ifCond}}
+                </th>
+                <th class="">
+                    {{ localize 'l5r5e.advancements.total_xp_rank' }} ({{data.identity.school_rank}}) :
+                    {{ data.xp_spent_rank }}
+                    {{#if data.xp_goal}}/{{data.xp_goal}}{{/if}}
+                </th>
+            </tr>
+        </tfooter>
         </tbody>
     </table>
 </fieldset>
