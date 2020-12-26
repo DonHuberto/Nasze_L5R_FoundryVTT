@@ -3,7 +3,7 @@
     min-width: 600px;
     label {
         &:hover {
-            text-shadow: 0 0 3px $red;
+            text-shadow: 0 0 2px $red;
         }
     }
     &.actor {
@@ -61,6 +61,7 @@
                 width: 100%;
                 text-align: right;
                 color: $l5r5e-red;
+                text-shadow: 0 0 1px $l5r5e-red;
                 background: transparent;
                 border: 0 none;
                 border-radius: 0;
@@ -108,8 +109,8 @@
                 padding: 0 0.25rem;
                 margin: 1rem 20% 0 0;
                 text-align: center;
-                color: $white;
-                text-shadow: 0 0 1px $l5r5e-label;
+                color: $l5r5e-red;
+                text-shadow: 0 0 1px $l5r5e-label-light;
                 border-bottom: 0 none;
                 background: $l5r5e-title;
                 --notchSize: 0.5rem;

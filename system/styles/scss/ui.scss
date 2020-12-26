@@ -16,6 +16,7 @@ button {
     height: calc(100% - 1rem);
     top: 0.5rem;
     min-width: 40px;
+    letter-spacing: 0.1rem;
     &:before {
         z-index: -1;
         content: "";
@@ -517,5 +518,21 @@ button {
 #pause {
     img {
         content: url("../assets/icons/pause.svg");
+    }
+}
+
+// Compendium
+.compendium-list {
+    .compendium-pack {
+        .pack-title {
+            margin: 0;
+            line-height: 1rem;
+        }
+        .compendium-footer {
+            text-align: right;
+            margin-right: 2rem;
+            font-size: 0.75rem;
+            color: rgba(240, 240, 225, 0.75);
+        }
     }
 }
