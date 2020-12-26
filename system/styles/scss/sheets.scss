@@ -81,6 +81,7 @@
         img {
             flex: 0 0 150px;
             height: 150px;
+            width: 150px;
             margin-right: 0;
             object-fit: contain;
             background: $l5r5e-white;
@@ -99,6 +100,7 @@
         }
         .header-fields {
             position: relative;
+            flex: 0 0 100%;
             h2 {
                 font-family: $font-secondary;
                 float: left;
