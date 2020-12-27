@@ -249,12 +249,13 @@
         "advancements": {
             "title": "Advancements",
             "title_new": "New advancement",
+            "school_rank": "School rank",
             "total": "Total",
             "cost": "Cost",
             "spent": "Used",
             "saved": "Saved",
-            "rank": "Rank Total Xp",
-            "curriculum": "in curriculum",
+            "total_xp_rank": "Xp spent",
+            "curriculum": "In curriculum",
             "curriculum_validate": "Complete this rank"
         },
         "npc": {

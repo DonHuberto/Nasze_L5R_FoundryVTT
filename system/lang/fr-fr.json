@@ -249,11 +249,12 @@
         "advancements": {
             "title": "Progressions",
             "title_new": "Nouvelle progression",
+            "school_rank": "Rang d'école",
             "total": "Totale",
             "cost": "Coût",
             "spent": "Dépensée",
             "saved": "Restante",
-            "total_xp_rank": "Xp Total du rang",
+            "total_xp_rank": "Xp dépensée",
             "curriculum": "Inclus dans le cursus",
             "curriculum_validate": "Valider la progression"
         },

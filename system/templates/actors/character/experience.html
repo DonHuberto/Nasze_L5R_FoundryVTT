@@ -27,27 +27,28 @@
             </tr>
         </thead>
         <tbody class="flex">
-        {{#each actor.items as |advancement advancementId|}}
-            {{#ifCond '["peculiarity", "technique","advancement"]' 'includes' advancement.type}}
-                {{> 'systems/l5r5e/templates/actors/character/advancement.html' advancement=advancement editable=../editable }}
-            {{/ifCond}}
-        {{/each}}
-        <tfooter class="flex">
+        {{#each advancementsListByRank as |rankObject|}}
+            <tr class="flexrow row">
+                <th>{{localize 'l5r5e.advancements.school_rank'}} {{rankObject.rank}}</th>
+            </tr>
+            {{#each rankObject.list as |advancement advancementId|}}
+                {{> 'systems/l5r5e/templates/actors/character/advancement.html' advancement=advancement editable=../../editable }}
+            {{/each}}
             <tr class="flexrow row">
                 <th class="">
-                    {{#ifCond data.xp_spent_rank '>=' data.xp_goal}}
+                    {{#ifCond (ifCond ../data.identity.school_rank '==' rankObject.rank) '&&' (ifCond rankObject.spent '>=' rankObject.goal)}}
                     <button type="button" name="validate-curriculum">
                         <i class='fas fa-check-square'></i> {{ localize 'l5r5e.advancements.curriculum_validate' }}
                     </button>
                     {{/ifCond}}
                 </th>
                 <th class="">
-                    {{ localize 'l5r5e.advancements.total_xp_rank' }} ({{data.identity.school_rank}}) :
-                    {{ data.xp_spent_rank }}
-                    {{#if data.xp_goal}}/{{data.xp_goal}}{{/if}}
+                    {{ localize 'l5r5e.advancements.total_xp_rank' }} :
+                    {{ rankObject.spent }}
+                    {{#if rankObject.goal}}/{{rankObject.goal}}{{/if}}
                 </th>
             </tr>
-        </tfooter>
+        {{/each}}
         </tbody>
     </table>
 </fieldset>

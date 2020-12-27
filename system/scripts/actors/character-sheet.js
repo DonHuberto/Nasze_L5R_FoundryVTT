@@ -39,20 +39,17 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
     getData() {
         const sheetData = super.getData();
 
-        // Sort Items by rank 1->6 for advancements tab
-        sheetData.items.sort((a, b) => {
-            return (a.data.bought_at_rank || 1) - (b.data.bought_at_rank || 1);
-        });
-
         // Min rank = 1
         this.actor.data.data.identity.school_rank = Math.max(1, this.actor.data.data.identity.school_rank);
 
-        // Xp spent only in current rank
-        const totalXp = this._getXpSpent();
-        sheetData.data.xp_spent_rank = totalXp.rank;
-        sheetData.data.xp_spent = totalXp.total;
+        // Sort Items by name
+        sheetData.items.sort((a, b) => {
+            return a.name.localeCompare(b.name);
+        });
+
+        // split advancements list by rank, and calculate xp spent
+        this._prepareAdvancement(sheetData);
         sheetData.data.xp_saved = sheetData.data.xp_total - sheetData.data.xp_spent;
-        sheetData.data.xp_goal = CONFIG.l5r5e.xp.costPerRank[this.actor.data.data.identity.school_rank - 1] || null;
 
         return sheetData;
     }
@@ -60,24 +57,34 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
     /**
      * Return the total xp spent and the current total xp spent for this rank
      */
-    _getXpSpent() {
-        const total = {
-            total: 0,
-            rank: 0,
-        };
-        const currentRank = this.actor.data.data.identity.school_rank;
-        this.actor.items.map((item) => {
-            let xp = item.data.data.xp_used || 0;
-            total.total = total.total + xp;
-
-            if (currentRank === item.data.data.rank) {
-                // if not in curriculum, xp spent /2 for this item
-                if (!item.data.data.in_curriculum && xp > 0) {
-                    xp = Math.floor(xp / 2);
-                }
-                total.rank = total.rank + xp;
+    _prepareAdvancement(sheetData) {
+        const adv = [];
+        sheetData.data.xp_spent = 0;
+        sheetData.items.forEach((item) => {
+            if (!["peculiarity", "technique", "advancement"].includes(item.type)) {
+                return;
             }
+
+            let xp = item.data.xp_used || 0;
+            sheetData.data.xp_spent = sheetData.data.xp_spent + xp;
+
+            // if not in curriculum, xp spent /2 for this item
+            if (!item.data.in_curriculum && xp > 0) {
+                xp = Math.floor(xp / 2);
+            }
+
+            const rank = Math.max(0, item.data.bought_at_rank - 1);
+            if (!adv[rank]) {
+                adv[rank] = {
+                    rank: rank + 1,
+                    spent: 0,
+                    goal: CONFIG.l5r5e.xp.costPerRank[rank] || null,
+                    list: [],
+                };
+            }
+            adv[rank].list.push(item);
+            adv[rank].spent = adv[rank].spent + xp;
         });
-        return total;
+        sheetData.advancementsListByRank = adv;
     }
 }
