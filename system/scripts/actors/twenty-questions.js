@@ -42,9 +42,10 @@ export class TwentyQuestions {
     ];
 
     /**
-     * Steps datas
+     * All this object data (Steps)
      */
     data = {
+        generated: false,
         step1: {
             clan: "",
             ring: "",
