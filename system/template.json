@@ -186,7 +186,8 @@
         "technique": {
             "templates": ["basics", "advancement"],
             "technique_type": "kata",
-            "effects": ""
+            "effects": "",
+            "xp_cost": 3
         },
         "property": {
             "templates": ["basics"]
@@ -198,7 +199,7 @@
         },
         "advancement": {
             "templates": ["basics", "advancement"],
-            "advancement_type": "",
+            "advancement_type": "skill",
             "skill": ""
         }
     }

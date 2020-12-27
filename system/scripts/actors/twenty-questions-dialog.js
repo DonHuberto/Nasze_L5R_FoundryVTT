@@ -138,7 +138,7 @@ export class TwentyQuestionsDialog extends FormApplication {
         }
         const stepKey = $(event.target).data("step");
         if (!stepKey) {
-            console.log("event stepKey is undefined");
+            console.warn("event stepKey is undefined");
             return;
         }
 
@@ -151,7 +151,7 @@ export class TwentyQuestionsDialog extends FormApplication {
                 (type !== "item" && item.data.type !== type) ||
                 (type === "item" && !["item", "weapon", "armor"].includes(item.data.type))
             ) {
-                console.log("forbidden item for this drop zone", type, item.data.type);
+                console.warn("forbidden item for this drop zone", type, item.data.type);
                 return;
             }
             // Add the item (step and cache)

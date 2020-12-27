@@ -199,8 +199,9 @@ export class BaseSheetL5r5e extends ActorSheet {
         });
         const item = this.actor.getOwnedItem(created._id);
 
-        // assign current school rank to the new tech
-        if (item.data.type === "advancement") {
+        // assign current school rank to the new adv/tech
+        if (["advancement", "technique"].includes(item.data.type)) {
+            item.data.data.rank = this.actor.data.data.identity.school_rank;
             item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
         }
 
@@ -228,6 +229,25 @@ export class BaseSheetL5r5e extends ActorSheet {
         const tmpItem = this.actor.getOwnedItem(itemId);
         if (tmpItem && tmpItem.data.data.quantity > 1 && this._modifyQuantity(tmpItem._id, -1)) {
             return;
+        }
+
+        // Specific advancements, remove 1 to selected ring/skill
+        if (tmpItem.type === "advancement") {
+            const actor = duplicate(this.actor.data.data);
+            const itmData = tmpItem.data.data;
+            if (itmData.advancement_type === "ring") {
+                // Ring
+                actor.rings[itmData.ring] = Math.max(1, actor.rings[itmData.ring] - 1);
+            } else {
+                // Skill
+                const skillCatId = CONFIG.l5r5e.skills.get(itmData.skill);
+                actor.skills[skillCatId][itmData.skill] = Math.max(0, actor.skills[skillCatId][itmData.skill] - 1);
+            }
+
+            // Update Actor
+            this.actor.update({
+                data: diffObject(this.actor.data.data, actor),
+            });
         }
 
         return this.actor.deleteOwnedItem(itemId);

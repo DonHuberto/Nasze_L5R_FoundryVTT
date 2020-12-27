@@ -250,6 +250,7 @@
             "title": "Advancements",
             "title_new": "New advancement",
             "total": "Total",
+            "cost": "Cost",
             "spent": "Used",
             "saved": "Saved",
             "rank": "Rank Total Xp",

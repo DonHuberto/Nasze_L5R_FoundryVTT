@@ -52,7 +52,7 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
         sheetData.data.xp_spent_rank = totalXp.rank;
         sheetData.data.xp_spent = totalXp.total;
         sheetData.data.xp_saved = sheetData.data.xp_total - sheetData.data.xp_spent;
-        sheetData.data.xp_goal = CONFIG.l5r5e.xpPerRank[this.actor.data.data.identity.school_rank - 1] || null;
+        sheetData.data.xp_goal = CONFIG.l5r5e.xp.costPerRank[this.actor.data.data.identity.school_rank - 1] || null;
 
         return sheetData;
     }

@@ -18,9 +18,45 @@
             "entity": "Item"
         },
         {
-            "name": "core-techniques",
-            "label": "Techniques",
-            "path": "packs/core-techniques.db",
+            "name": "core-techniques-kata",
+            "label": "Techniques Kata",
+            "path": "packs/core-techniques-kata.db",
+            "entity": "Item"
+        },
+        {
+            "name": "core-techniques-kiho",
+            "label": "Techniques Kihõ",
+            "path": "packs/core-techniques-kiho.db",
+            "entity": "Item"
+        },
+        {
+            "name": "core-techniques-invocation",
+            "label": "Techniques Invocations",
+            "path": "packs/core-techniques-invocations.db",
+            "entity": "Item"
+        },
+        {
+            "name": "core-techniques-ritual",
+            "label": "Techniques Rituals",
+            "path": "packs/core-techniques-rituals.db",
+            "entity": "Item"
+        },
+        {
+            "name": "core-techniques-shuji",
+            "label": "Techniques Shuji",
+            "path": "packs/core-techniques-shuji.db",
+            "entity": "Item"
+        },
+        {
+            "name": "core-techniques-maho",
+            "label": "Techniques Mahõ",
+            "path": "packs/core-techniques-maho.db",
+            "entity": "Item"
+        },
+        {
+            "name": "core-techniques-ninjutsu",
+            "label": "Techniques Ninjutsu",
+            "path": "packs/core-techniques-ninjutsu.db",
             "entity": "Item"
         },
         {
@@ -42,27 +78,27 @@
             "entity": "Item"
         },
         {
-            "name": "core-distinctions",
+            "name": "core-peculiarities-distinctions",
             "label": "Distinctions",
-            "path": "packs/core-distinctions.db",
+            "path": "packs/core-peculiarities-distinctions.db",
             "entity": "Item"
         },
         {
-            "name": "core-passions",
+            "name": "core-peculiarities-passions",
             "label": "Passions",
-            "path": "packs/core-passions.db",
+            "path": "packs/core-peculiarities-passions.db",
             "entity": "Item"
         },
         {
-            "name": "core-adversities",
+            "name": "core-peculiarities-adversities",
             "label": "Adversities",
-            "path": "packs/core-adversities.db",
+            "path": "packs/core-peculiarities-adversities.db",
             "entity": "Item"
         },
         {
-            "name": "core-anxieties",
+            "name": "core-peculiarities-anxieties",
             "label": "Anxieties",
-            "path": "packs/core-anxieties.db",
+            "path": "packs/core-peculiarities-anxieties.db",
             "entity": "Item"
         },
         {

@@ -8,7 +8,7 @@
         {{!-- Attributes Tab --}}
         <article class="attributes" data-group="primary" data-tab="attributes">
             <!-- TODO j'ai mis tous les attributs en vrac, à réorganiser -->
-            <select name="data.advancement_type">
+            <select name="data.advancement_type" id="advancement_type">
                 {{#select item.data.advancement_type}}
                     {{#each item.data.subTypesList as |type|}}
                         <option value="{{type}}">{{type}}</option>
@@ -16,12 +16,8 @@
                 {{/select}}
             </select>
 
-            {{#ifCond item.data.advancement_type '==' 'advantage' }}
-                <!-- TODO zone de drag n drop de l'item sélectionné ? -->
-            {{/ifCond}}
-
             {{#ifCond item.data.advancement_type '==' 'ring' }}
-            <select name="data.ring">
+            <select name="data.ring" id="advancement_ring">
                 {{#select item.data.ring}}
                     {{#each item.data.ringsList as |obj|}}
                         <option value="{{obj.id}}">{{obj.label}}</option>
@@ -31,7 +27,7 @@
             {{/ifCond}}
 
             {{#ifCond item.data.advancement_type '==' 'skill' }}
-                <select name="data.skill">
+                <select name="data.skill" id="advancement_skill">
                     <option value="none">{{localize 'l5r5e.twenty_questions.choosef'}}</option>
                     {{#select item.data.skill}}
                         {{#each item.data.skillsList as |skills catId|}}

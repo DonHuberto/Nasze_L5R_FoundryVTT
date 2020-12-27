@@ -208,7 +208,7 @@ export class TwentyQuestions {
      * Fill a actor data from this object
      */
     async toActor(actor, itemsCache) {
-        const actorDatas = actor.data.data;
+        const actorDatas = duplicate(actor.data.data);
         const formData = this.data;
 
         // Update the actor real datas
@@ -280,7 +280,7 @@ export class TwentyQuestions {
         // Update actor
         actor.update({
             name: (formData.step2.family + " " + formData.step19.firstname).trim(),
-            data: actorDatas,
+            data: diffObject(actor.data.data, actorDatas),
         });
 
         // TODO Tmp
