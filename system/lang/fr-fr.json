@@ -267,6 +267,7 @@
         "twenty_questions": {
             "title": "Vingt questions",
             "bt_abrev": "20Q",
+            "bt_refresh": "Actualiser",
             "intro": "Renseignez vos réponses au jeu des vingt questions sur ce formulaire et notez-y des éléments à utiliser ultérieurement !",
             "section": "Livre de Règles de La Légende des Cinq Anneaux, Chapitre 2 : Création de personnage, p. 41-95",
             "incring1": "Augmentation d'anneau (1)",

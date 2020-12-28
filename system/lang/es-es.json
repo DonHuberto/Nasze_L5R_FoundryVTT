@@ -267,6 +267,7 @@
         "twenty_questions": {
             "title": "Twenty questions",
             "bt_abrev": "20Q",
+            "bt_refresh": "Refresh",
             "intro": "You can use this sheet to fill in your answers to The Game of Twenty Questions, and to take notes for later!",
             "section": "Legend of the Five Rings Core Rulebook, Chapter 2 : Creating a character, p. 41-95",
             "incring1": "Ring increase (1)",

@@ -35,9 +35,28 @@ export class TwentyQuestionsDialog extends FormApplication {
             height: 600,
             resizable: true,
             closeOnSubmit: false,
-            submitOnClose: true,
+            submitOnClose: false,
             submitOnChange: true,
         });
+    }
+
+    /**
+     * Add a refresh button on top of sheet
+     * Allow a GM or player to see the change made by another player without closing the dialog
+     * @override
+     */
+    _getHeaderButtons() {
+        let buttons = super._getHeaderButtons();
+
+        buttons.unshift({
+            label: game.i18n.localize("l5r5e.twenty_questions.bt_refresh"),
+            class: "twenty-questions",
+            icon: "fas fa-sync-alt",
+            onclick: async () => {
+                await new TwentyQuestionsDialog(this.actor).render(true);
+            },
+        });
+        return buttons;
     }
 
     /**
@@ -182,15 +201,15 @@ export class TwentyQuestionsDialog extends FormApplication {
         this.errors = this.object.validateForm();
 
         // Only on close/submit
-        if (event.type === "submit") {
-            // Store this form datas in actor
-            this.actor.data.data.twenty_questions = this.object.data;
-            this.actor.update({
-                data: {
-                    twenty_questions: this.object.data,
-                },
-            });
-        }
+        // if (event.type === "submit") {
+        // Store this form datas in actor
+        this.actor.data.data.twenty_questions = this.object.data;
+        this.actor.update({
+            data: {
+                twenty_questions: this.object.data,
+            },
+        });
+        // }
         this.render(false);
     }
 

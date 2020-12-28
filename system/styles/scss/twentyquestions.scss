@@ -1,22 +1,20 @@
-&.l5r5e {
-    .twenty-questions-dialog {
-        table {
-            width: 100%;
-        }
-        table tr td {
-            vertical-align: top;
-        }
-        .third {
-            width: 230px;
-        }
-        .fifty {
-            width: 49%;
-        }
-        .or {
-            width: 100px;
-        }
-        .dropbox {
-            min-height: 75px;
-        }
+&.twenty-questions-dialog {
+    table {
+        width: 100%;
+    }
+    table tr td {
+        vertical-align: top;
+    }
+    .third {
+        width: 230px;
+    }
+    .fifty {
+        width: 49%;
+    }
+    .or {
+        width: 100px;
+    }
+    .dropbox {
+        min-height: 75px;
     }
 }
