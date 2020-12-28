@@ -475,17 +475,23 @@
         thead {
             th {
                 &:first-child {
+                    flex: 0 0 2rem;
+                }
+                &:nth-child(2) {
                     flex: calc(100% - 16rem);
                     padding-left: 0.5rem;
                     text-align: left;
                 }
-                &:nth-child(2),
-                &:nth-child(3) {
-                    flex: 0 0 5rem;
+                &:nth-child(3),
+                &:nth-child(4) {
+                    flex: 0 0 4rem;
                 }
             }
         }
         tbody {
+            .curriculum {
+                flex: 0 0 2rem;
+            }
             .name {
                 flex: calc(100% - 13rem);
                 padding-left: 0.5rem;
@@ -493,7 +499,7 @@
             }
             .xp,
             .rank {
-                flex: 0 0 5rem;
+                flex: 0 0 4rem;
             }
             .actions {
                 flex: 0 0 3rem;
@@ -508,6 +514,11 @@
                         }
                     }
                 }
+            }
+            img {
+                width: 16px;
+                height: 16px;
+                border: none;
             }
         }
     }

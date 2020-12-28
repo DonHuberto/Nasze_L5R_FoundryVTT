@@ -148,7 +148,7 @@
             },
             "advancement": {
                 "in_curriculum": false,
-                "xp_used": 0,
+                "xp_used": 3,
                 "rank": 1,
                 "bought_at_rank": 1,
                 "ring": "void"
