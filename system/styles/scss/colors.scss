@@ -8,6 +8,7 @@ $black-light: rgba(0, 0, 0, 0.75);
 $dark-red: rgba(25, 0, 0, 0.75);
 $red: rgba(255, 0, 0, 1);
 $red-light: rgba(255, 0, 0, 0.75);
+$red-dice: rgb(205, 0, 0);
 $orange: rgba(255, 100, 0, 0.75);
 $blue: rgba(0, 0, 255, 0.75);
 $green: rgba(0, 255, 0, 0.75);
@@ -80,21 +81,27 @@ $l5r5e-unicorn: rgb(120, 90, 135);
 // Imperial
 $l5r5e-imperial: rgb(120, 255, 180);
 
-.Crab {
-}
-.Crane {
-}
-.Dragon {
-}
-.Lion {
-}
-.Mantis {
-}
-.Phoenix {
-}
-.Scorpion {
-}
-.Unicorn {
-}
-.Spider {
-}
+// Bushi
+$l5r5e-bushi: rgb(165, 90, 90);
+// Courtier
+$l5r5e-courtier: rgb(105, 130, 165);
+// Shugenja
+$l5r5e-shugenja: rgb(90, 165, 130);
+
+// -- Techs
+// Invocations
+$l5r5e-invocations: rgb(255, 100, 0);
+// Kata
+$l5r5e-kata: rgb(255, 0, 0);
+// Kiho
+$l5r5e-kiho: rgb(0, 150, 50);
+// Maho
+$l5r5e-maho: rgb(200, 50, 0);
+// Ninjitsu
+$l5r5e-ninjitsu: rgb(52, 52, 52);
+// Prerequisite
+$l5r5e-prerequisite: rgb(52, 52, 52);
+// Rituals
+$l5r5e-rituals: rgb(0, 150, 255);
+// Shuji
+$l5r5e-shuji: rgb(0, 255, 150);
