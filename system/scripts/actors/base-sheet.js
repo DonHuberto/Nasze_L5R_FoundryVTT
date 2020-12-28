@@ -87,7 +87,8 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         // Item subtype specific
         switch (item.data.type) {
-            case "advancement":
+            case "advancement": // no break
+            case "peculiarity":
                 // Modify the bought at rank to the current actor rank
                 item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
                 break;
@@ -107,6 +108,14 @@ export class BaseSheetL5r5e extends ActorSheet {
                     }).render(true);
                     return;
                 }
+
+                // Modify the bought at rank to the current actor rank
+                item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
+
+                // Verify cost
+                item.data.data.xp_cost =
+                    item.data.data.xp_cost > 0 ? item.data.data.xp_cost : CONFIG.l5r5e.xp.techniqueCost;
+                item.data.data.xp_used = item.data.data.xp_cost;
                 break;
         }
 

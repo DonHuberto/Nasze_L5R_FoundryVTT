@@ -1,4 +1,4 @@
-<form class="l5r5e dice-picker-dialog" autocomplete="off">
+<form class="l5r5e twenty-questions-dialog" autocomplete="off">
     {{#if errors}}
     <div id="errors" class="errors">{{errors}}</div>
     {{/if}}
@@ -20,9 +20,10 @@
 
                 <table>
                     <tr>
-                        <td>
+                        <td class="third">
                             <label>
                                 {{localize 'l5r5e.twenty_questions.incring1'}}
+                                <br>
                                 <select name="step1.ring" class="ring-select">
                                     {{#select data.step1.ring}}
                                     <option value="none">{{localize 'l5r5e.twenty_questions.choosem'}}</option>
@@ -33,9 +34,10 @@
                                 </select>
                             </label>
                         </td>
-                        <td>
+                        <td class="third">
                             <label>
                                 {{localize 'l5r5e.twenty_questions.incskill1'}}
+                                <br>
                                 <select name="step1.skill" class="skill-select">
                                     {{#select data.step1.skill}}
                                     <option value="none">{{localize 'l5r5e.twenty_questions.choosef'}}</option>
@@ -50,9 +52,10 @@
                                 </select>
                             </label>
                         </td>
-                        <td>
+                        <td class="third">
                             <label>
                                 {{localize 'l5r5e.twenty_questions.status'}}
+                                <br>
                                 <input type="number" name="step1.social_status" min="0" max="100" value="{{data.step1.social_status}}"
                                        data-dtype="Number" placeholder="0">
                             </label>
@@ -69,9 +72,10 @@
 
                 <table>
                     <tr>
-                        <td>
+                        <td class="third">
                             <label>
                                 {{localize 'l5r5e.twenty_questions.incring1'}}
+                                <br>
                                 <select name="step2.ring" class="ring-select">
                                     {{#select data.step2.ring}}
                                     <option value="none">{{localize 'l5r5e.twenty_questions.choosem'}}</option>
@@ -82,9 +86,10 @@
                                 </select>
                             </label>
                         </td>
-                        <td>
+                        <td class="third">
                             <label>
                                 {{localize 'l5r5e.twenty_questions.incskill2'}}
+                                <br>
                                 <select name="step2.skill1" class="skill-select">
                                     {{#select data.step2.skill1}}
                                     <option value="none">{{localize 'l5r5e.twenty_questions.choosef'}}</option>
@@ -112,9 +117,10 @@
                                 {{/select}}
                             </select>
                         </td>
-                        <td>
+                        <td class="third">
                             <label>
                                 {{localize 'l5r5e.twenty_questions.money'}}
+                                <br>
                                 <input type="text" name="step2.wealth" value="{{data.step2.wealth}}" data-dtype="Number"
                                        placeholder="0">
                             </label>
@@ -137,17 +143,19 @@
 
             <label>
                 {{localize 'l5r5e.twenty_questions.school'}}
+                <br>
                 <input type="text" name="step3.school" value="{{data.step3.school}}">
             </label>
 
             <label>
                 {{localize 'l5r5e.twenty_questions.role'}}
+                <br>
                 <input type="text" name="step3.roles" value="{{data.step3.roles}}">
             </label>
 
             <table>
                 <tr>
-                    <td>
+                    <td class="fifty">
                         <label>
                             {{localize 'l5r5e.twenty_questions.incring2'}}
                             <br>
@@ -171,11 +179,12 @@
                         <br>
                         <label>
                             {{localize 'l5r5e.twenty_questions.honor'}}
+                            <br>
                             <input type="number" name="step3.social_honor" min="0" max="100" value="{{data.step3.social_honor}}"
                                    data-dtype="Number" placeholder="0">
                         </label>
                     </td>
-                    <td>
+                    <td class="fifty">
                         <label>
                             {{localize 'l5r5e.twenty_questions.incskill3'}}
                             <br>
@@ -255,15 +264,18 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="fifty">
                         {{localize 'l5r5e.twenty_questions.startech'}}
+                        <br>
                         {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step3.techniques stepName='step3.techniques' itemType='techniques' }}
                         <br>
                         {{localize 'l5r5e.twenty_questions.schoolab'}}
+                        <br>
                         {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step3.school_ability stepName='step3.school_ability' itemType='techniques' }}
                     </td>
-                    <td>
+                    <td class="fifty">
                         {{localize 'l5r5e.twenty_questions.outfit'}}
+                        <br>
                         {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step3.equipment stepName='step3.equipment' itemType='items' }}
                     </td>
                 </tr>
@@ -298,15 +310,17 @@
 
                 <label>
                     {{localize 'l5r5e.twenty_questions.choogiri'}}
+                    <br>
                     <textarea name="step5.social_giri">{{data.step5.social_giri}}</textarea>
                 </label>
             </div>
 
             <div>
-                {{localize 'l5r5e.twenty_questions.part3.q6'}}
+                <h3>{{localize 'l5r5e.twenty_questions.part3.q6'}}</h3>
 
                 <label>
-                    <h3>{{localize 'l5r5e.twenty_questions.chooninjo'}}</h3>
+                    {{localize 'l5r5e.twenty_questions.chooninjo'}}
+                    <br>
                     <textarea name="step6.social_ninjo">{{data.step6.social_ninjo}}</textarea>
                 </label>
             </div>
@@ -319,9 +333,10 @@
 
                 <table>
                     <tr>
-                        <td>
+                        <td class="third">
                             <label>
                                 {{localize 'l5r5e.twenty_questions.incskill1'}}
+                                <br>
                                 <select name="step7.skill" class="skill-select">
                                     {{#select data.step7.skill}}
                                     <option value="none">{{localize 'l5r5e.twenty_questions.choosef'}}</option>
@@ -336,12 +351,13 @@
                                 </select>
                             </label>
                         </td>
-                        <td>
+                        <td class="or">
                             {{localize 'l5r5e.twenty_questions.or'}}
                         </td>
-                        <td>
+                        <td class="">
                             <label>
                                 {{localize 'l5r5e.twenty_questions.incglory'}}
+                                <br>
                                 <input type="number" name="step7.social_add_glory" value="{{data.step7.social_add_glory}}"
                                        data-dtype="Number" placeholder="0">
                             </label>
@@ -358,9 +374,10 @@
 
             <table>
                 <tr>
-                    <td>
+                    <td class="third">
                         <label>
                             {{localize 'l5r5e.twenty_questions.incskill1'}}
+                            <br>
                             <select name="step8.skill" class="skill-select">
                                 {{#select data.step8.skill}}
                                 <option value="none">{{localize 'l5r5e.twenty_questions.choosef'}}</option>
@@ -371,12 +388,13 @@
                             </select>
                         </label>
                     </td>
-                    <td>
+                    <td class="or">
                         {{localize 'l5r5e.twenty_questions.or'}}
                     </td>
-                    <td>
+                    <td class="">
                         <label>
                             {{localize 'l5r5e.twenty_questions.inchonor'}}
+                            <br>
                             <input type="number" name="step8.social_add_honor" value="{{data.step8.social_add_honor}}"
                                    data-dtype="Number" placeholder="0">
                         </label>
@@ -395,6 +413,7 @@
                 </label>
                 <br>
                 {{localize 'l5r5e.twenty_questions.distinction'}}
+                <br>
                 {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step9.distinction stepName='step9.distinction' itemType='peculiarities' }}
             </div>
 
@@ -405,6 +424,7 @@
                 </label>
                 <br>
                 {{localize 'l5r5e.twenty_questions.adversity'}}
+                <br>
                 {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step10.adversity stepName='step10.adversity' itemType='peculiarities' }}
             </div>
 
@@ -415,6 +435,7 @@
                 </label>
                 <br>
                 {{localize 'l5r5e.twenty_questions.passion'}}
+                <br>
                 {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step11.passion stepName='step11.passion' itemType='peculiarities' }}
             </div>
 
@@ -425,6 +446,7 @@
                 </label>
                 <br>
                 {{localize 'l5r5e.twenty_questions.anxiety'}}
+                <br>
                 {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step12.anxiety stepName='step12.anxiety' itemType='peculiarities' }}
             </div>
 
@@ -437,9 +459,10 @@
 
                 <table>
                     <tr>
-                        <td>
+                        <td class="third">
                             <label>
                                 {{localize 'l5r5e.twenty_questions.incskill1'}}
+                                <br>
                                 <select name="step13.skill" class="skill-select">
                                     {{#select data.step13.skill}}
                                     <option value="none">{{localize 'l5r5e.twenty_questions.choosef'}}</option>
@@ -454,11 +477,12 @@
                                 </select>
                             </label>
                         </td>
-                        <td>
+                        <td class="or">
                             {{localize 'l5r5e.twenty_questions.or'}}
                         </td>
-                        <td>
+                        <td class="">
                             {{localize 'l5r5e.twenty_questions.advant'}}
+                            <br>
                             {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step13.advantage stepName='step13.advantage' itemType='peculiarities' }}
                         </td>
                     </tr>
@@ -466,6 +490,7 @@
 
                 <br>
                 {{localize 'l5r5e.twenty_questions.disadvant'}}
+                <br>
                 {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step13.disadvantage stepName='step13.disadvantage' itemType='peculiarities' }}
             </div>
         </div>
@@ -480,6 +505,7 @@
                 <br>
                 <label>
                     {{localize 'l5r5e.twenty_questions.accoutr'}}
+                    <br>
                     {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step14.special_features stepName='step14.special_features' itemType='items' }}
                 </label>
             </div>
@@ -499,6 +525,7 @@
                 <br>
                 <label>
                     {{localize 'l5r5e.twenty_questions.object'}}
+                    <br>
                     {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step16.item stepName='step16.item' itemType='items' }}
                 </label>
             </div>
@@ -537,7 +564,7 @@
                 </label>
                 <table>
                     <tr>
-                        <td>
+                        <td class="fifty">
                             <label>
                                 {{localize 'l5r5e.twenty_questions.d10r1'}}
                                 <a class="inline-roll roll" title="1d10" data-mode="roll"
@@ -548,7 +575,7 @@
                                 <input type="number" name="step18.heritage_1" value="{{data.step18.heritage_1}}" data-dtype="Number">
                             </label>
                         </td>
-                        <td>
+                        <td class="fifty">
                             <label>
                                 {{localize 'l5r5e.twenty_questions.d10r2'}}
                                 <a class="inline-roll roll" title="1d10" data-mode="roll"

@@ -114,13 +114,6 @@ export class TwentyQuestionsDialog extends FormApplication {
             return;
         }
 
-        // Toggle
-        html.find(".toggle-on-click").on("click", (event) => {
-            const elmt = $(event.currentTarget).data("toggle");
-            const tgt = html.find("." + elmt);
-            tgt.hasClass("toggle-active") ? tgt.removeClass("toggle-active") : tgt.addClass("toggle-active");
-        });
-
         // Delete a dnd element
         html.find(`.property-delete`).on("click", (event) => {
             const stepKey = $(event.currentTarget).parents(".tq-drag-n-drop").data("step");
