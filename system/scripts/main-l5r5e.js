@@ -21,13 +21,16 @@ import { TechniqueSheetL5r5e } from "./items/technique-sheet.js";
 import { PropertySheetL5r5e } from "./items/property-sheet.js";
 import { AdvancementSheetL5r5e } from "./items/advancement-sheet.js";
 import { PeculiaritySheetL5r5e } from "./items/peculiarity-sheet.js";
+// JournalEntry
+import { JournalL5r5e } from "./journal.js";
+import { BaseJournalSheetL5r5e } from "./journals/base-journal-sheet.js";
 
 /* ------------------------------------ */
 /* Initialize system                    */
 /* ------------------------------------ */
 Hooks.once("init", async function () {
-    // console.log("L5R5e | Initializing l5r5e");
-    // Ascii art
+    // ***** Initializing l5r5e *****
+    // Ascii art :p
     console.log(
         "  _    ___ ___   ___\n" +
             " | |  | __| _ \\ | __| ___ \n" +
@@ -36,6 +39,7 @@ Hooks.once("init", async function () {
             " "
     );
 
+    // ***** Config *****
     // Global access to L5R Config
     CONFIG.l5r5e = L5R5E;
 
@@ -43,6 +47,8 @@ Hooks.once("init", async function () {
     CONFIG.Actor.entityClass = ActorL5r5e;
     CONFIG.Actor.sheetClasses = CharacterSheetL5r5e;
     CONFIG.Item.entityClass = ItemL5r5e;
+    CONFIG.JournalEntry.entityClass = JournalL5r5e;
+    CONFIG.JournalEntry.sheetClass = BaseJournalSheetL5r5e;
 
     // Define custom Roll class
     CONFIG.Dice.rolls.push(CONFIG.Dice.rolls[0]);
@@ -64,13 +70,13 @@ Hooks.once("init", async function () {
     // Preload Handlebars templates
     await PreloadTemplates();
 
-    // Register custom sheets (if any)
-    // Actors sheet
+    // ***** Register custom sheets *****
+    // Actors
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("l5r5e", CharacterSheetL5r5e, { types: ["character"], makeDefault: true });
-    Actors.registerSheet("l5r5e", NpcSheetL5r5e, { types: ["npc"], makeDefault: false });
+    Actors.registerSheet("l5r5e", NpcSheetL5r5e, { types: ["npc"], makeDefault: true });
 
-    // Items sheet
+    // Items
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("l5r5e", ItemSheetL5r5e, { types: ["item"], makeDefault: true });
     Items.registerSheet("l5r5e", ArmorSheetL5r5e, { types: ["armor"], makeDefault: true });
@@ -80,6 +86,11 @@ Hooks.once("init", async function () {
     Items.registerSheet("l5r5e", PeculiaritySheetL5r5e, { types: ["peculiarity"], makeDefault: true });
     Items.registerSheet("l5r5e", AdvancementSheetL5r5e, { types: ["advancement"], makeDefault: true });
 
+    // Journal
+    Items.unregisterSheet("core", JournalSheet);
+    Items.registerSheet("l5r5e", BaseJournalSheetL5r5e, { makeDefault: true });
+
+    // ***** Handlebars *****
     // for debug
     Handlebars.registerHelper("json", function (...objects) {
         objects.pop(); // remove this function call

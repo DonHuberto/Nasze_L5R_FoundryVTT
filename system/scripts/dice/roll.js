@@ -122,7 +122,7 @@ export class RollL5r5e extends Roll {
             total +=
                 (this.l5r5e.dicesTypes.std ? " | " : "") +
                 ["success", "explosive", "opportunity", "strife"]
-                    .map((props) => (summary[props] > 0 ? `<i class="${props}"></i> ${summary[props]}` : null))
+                    .map((props) => (summary[props] > 0 ? `<i class="i_${props}"></i> ${summary[props]}` : null))
                     .filter((c) => !!c)
                     .join(" | ");
         }

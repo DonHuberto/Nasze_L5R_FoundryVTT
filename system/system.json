@@ -30,13 +30,13 @@
             "entity": "Item"
         },
         {
-            "name": "core-techniques-invocation",
+            "name": "core-techniques-invocations",
             "label": "Techniques Invocations",
             "path": "packs/core-techniques-invocations.db",
             "entity": "Item"
         },
         {
-            "name": "core-techniques-ritual",
+            "name": "core-techniques-rituals",
             "label": "Techniques Rituals",
             "path": "packs/core-techniques-rituals.db",
             "entity": "Item"
