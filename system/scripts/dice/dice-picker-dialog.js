@@ -55,6 +55,25 @@ export class DicePickerDialog extends FormApplication {
     }
 
     /**
+     * Add a create macro button on top of sheet
+     * @override
+     */
+    _getHeaderButtons() {
+        let buttons = super._getHeaderButtons();
+
+        buttons.unshift({
+            label: game.i18n.localize("l5r5e.dicepicker.bt_add_macro"),
+            class: "bt-add-macro",
+            icon: "fas fa-star",
+            onclick: async () => {
+                await this._createMacro();
+            },
+        });
+
+        return buttons;
+    }
+
+    /**
      * Create dialog
      *
      * ex: new game.l5r5e.DicePickerDialog({skillId: 'aesthetics', ringId: 'fire', actor: game.user.character}).render();
@@ -402,13 +421,51 @@ export class DicePickerDialog extends FormApplication {
         return value;
     }
 
-    // /**
-    //  * Return a reference to the target attribute
-    //  * @type {String}
-    //  */
-    // get attribute() {
-    //     console.log('L5R.DicePickerDialog.attribute', this); // TODO tmp
-    //
-    //     return this.options.name;
-    // }
+    /**
+     * Create a macro on the first empty space in player's bar
+     * @private
+     */
+    async _createMacro() {
+        const params = {};
+        let name = "DicePicker";
+
+        if (this._actor?._id) {
+            params.actorId = this._actor._id;
+            name = this._actor.name;
+        }
+
+        if (this._skillData.id) {
+            params.skillId = this._skillData.id;
+        } else if (this._skillData.cat) {
+            params.skillCatId = this._skillData.cat;
+        }
+        if (this._skillData.name) {
+            name = name + " - " + this._skillData.name;
+        }
+
+        let command = `new game.l5r5e.DicePickerDialog(${JSON.stringify(params)}).render(true);`;
+
+        let macro = game.macros.entities.find((m) => m.data.name === name && m.data.command === command);
+        if (!macro) {
+            macro = await Macro.create({
+                name: name,
+                type: "script",
+                scope: "global",
+                command: command,
+                img: this._actor?.img ? this._actor.img : "systems/l5r5e/assets/dices/default/ring_et.svg",
+            });
+        }
+
+        // Search for slot (Fix for FVTT)
+        // slot = false will normally do the 1st available, but always return 0
+        const slot = Array.fromRange(50).find((i) => {
+            if (i < 1) {
+                return false;
+            }
+            return !(i in game.user.data.hotbar);
+        });
+
+        // return game.user.assignHotbarMacro(macro, false); // 1st available
+        return game.user.assignHotbarMacro(macro, slot);
+    }
 }

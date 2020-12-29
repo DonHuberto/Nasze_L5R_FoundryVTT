@@ -86,7 +86,8 @@
             "difficulty_title": "Difficulté",
             "difficulty_hidden_label": "ND Caché",
             "use_void_point_label": "Dépenser un point de Vide",
-            "roll_label": "Lancer"
+            "roll_label": "Lancer",
+            "bt_add_macro": "Ajouter une macro"
         },
         "max": "Max",
         "current": "Actuel",
