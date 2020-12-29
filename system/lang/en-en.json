@@ -245,6 +245,13 @@
                 "firetip": "If you succeed, +1 bonus success per Strife symbol.",
                 "watertip": "Perform a second action on your turn that does not require a check or share a type with first action.",
                 "voidtip": "You do not receive strife from Strife symbols on checks."
+            },
+            "initiative": {
+                "title": "Initiative",
+                "intrigue": "Intrigue",
+                "duel": "Duel",
+                "skirmish": "Skirmish",
+                "mass_battle": "Mass Battle"
             }
         },
         "advancements": {

@@ -1,10 +1,9 @@
+import { RollL5r5e } from "./roll.js";
+
 /**
  * L5R Dice picker dialog
  * @extends {FormApplication}
  */
-import { L5R5E } from "../config.js";
-import { RollL5r5e } from "./roll.js";
-
 export class DicePickerDialog extends FormApplication {
     /**
      * Current Actor
@@ -161,12 +160,12 @@ export class DicePickerDialog extends FormApplication {
             name: "",
         };
 
-        this.skillCatId = L5R5E.skills.get(skillId);
+        this.skillCatId = CONFIG.l5r5e.skills.get(skillId);
     }
 
     /**
      * Set and load skill's required data from actor and skillCatId
-     * @param skillId
+     * @param skillCatId
      */
     set skillCatId(skillCatId) {
         if (!skillCatId) {

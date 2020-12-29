@@ -1,7 +1,7 @@
 <ul class="npc-skill">{{!-- Skills --}}
     {{#each data.skills as |skillValue skillCatId|}}
-        <li class="skill skill-wrapper" data-skillcat="{{skillCatId}}">
-            <label class="skill-name">
+        <li class="skill skill-wrapper">
+            <label class="dice-picker" data-skillcat="{{skillCatId}}">
                 {{localizeSkill skillCatId "title"}}
             </label>
             <input class="centered-input select-on-focus" id="skill_{{skillCatId}}" type="number" name="data.skills.{{skillCatId}}" value="{{skillValue}}" data-dtype="Number" min="0" max="9" placeholder="0"/>

@@ -20,6 +20,25 @@
                 }
             }
         }
+        .initiative {
+            &-wrapper {
+                display: block;
+                flex: 100%;
+                text-align: center;
+            }
+            button {
+                width: 22%;
+                margin: 0 0.25rem 0.25rem;
+                padding: 0 0.5rem;
+                color: #5a6e5a;
+                background: rgba(255, 255, 255, 0.5);
+                border: 1px solid #5a6e5a;
+                border-radius: 1rem;
+            }
+            button:focus {
+                box-shadow: none;
+            }
+        }
     }
     &.item,
     .technique,

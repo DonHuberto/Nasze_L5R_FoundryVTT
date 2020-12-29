@@ -140,11 +140,12 @@ export class BaseSheetL5r5e extends ActorSheet {
         }
 
         // *** Dice event on Skills clic ***
-        html.find(".skill-name").on("click", (event) => {
-            const li = $(event.currentTarget).parents(".skill");
+        html.find(".dice-picker").on("click", (event) => {
+            const li = $(event.currentTarget);
             new game.l5r5e.DicePickerDialog({
-                skillId: li.data("skill"),
-                skillCatId: li.data("skillcat"),
+                skillId: li.data("skill") || null,
+                skillCatId: li.data("skillcat") || null,
+                difficulty: li.data("diff") || 2,
                 actor: this.actor,
             }).render(true);
         });

@@ -245,6 +245,13 @@
                 "firetip": "Si tienes éxito, +1 éxito adicional por cada símbolo de Conflicto.",
                 "watertip": "Efectúa una segunda acción durante tu turno que no requiera tirada ni comparta tipo con tu primera acción.",
                 "voidtip": "No acumulas Conflicto de los símbolos de Conflicto de tus tiradas."
+            },
+            "initiative": {
+                "title": "Initiative",
+                "intrigue": "Intrigue",
+                "duel": "Duel",
+                "skirmish": "Skirmish",
+                "mass_battle": "Mass Battle"
             }
         },
         "advancements": {
