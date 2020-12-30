@@ -455,8 +455,15 @@ export class DicePickerDialog extends FormApplication {
             });
         }
 
-        // Search for slot (Fix for FVTT)
+        // Search if already in player hotbar
+        if (Object.values(game.user.data.hotbar).includes(macro._id)) {
+            return;
+        }
+
+        // Search for slot (Fix for FVTT, will be fixed)
         // slot = false will normally do the 1st available, but always return 0
+        // TODO see when issue is closed to remove these lines and use "assignHotbarMacro(macro, false)"
+        // https://gitlab.com/foundrynet/foundryvtt/-/issues/4382
         const slot = Array.fromRange(50).find((i) => {
             if (i < 1) {
                 return false;
