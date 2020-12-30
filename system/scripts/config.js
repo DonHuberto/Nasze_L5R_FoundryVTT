@@ -13,6 +13,7 @@ L5R5E.xp = {
     skillCostMultiplier: 2,
     techniqueCost: 3,
 };
+L5R5E.money = [50, 10];
 
 // Map SkillId - CategoryId
 L5R5E.skills = new Map();

@@ -72,7 +72,6 @@
         "book_reference": "Reference",
         "value": "Value",
         "rarity": "Rarity",
-        "zeni": "Zeni",
         "chatdices": {
             "successes": "Successes",
             "explosives": "Explosives",
@@ -140,6 +139,12 @@
         "approaches": "Approaches",
         "notes": "Notes",
         "inventory": "Inventory",
+        "money": {
+            "title": "Personal money",
+            "koku": "Koku",
+            "bu": "Bu",
+            "zeni": "Zeni"
+        },
         "equipment": "Equipment",
         "rank": "Rank",
         "name": "Name",

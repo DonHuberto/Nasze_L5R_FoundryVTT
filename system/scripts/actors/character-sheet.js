@@ -42,6 +42,9 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
         // Min rank = 1
         this.actor.data.data.identity.school_rank = Math.max(1, this.actor.data.data.identity.school_rank);
 
+        // Split Money
+        sheetData.data.money = this._zeniToMoney(this.actor.data.data.zeni);
+
         // Sort Items by name
         sheetData.items.sort((a, b) => {
             return a.name.localeCompare(b.name);
@@ -90,5 +93,49 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
             adv[rank].spent = adv[rank].spent + xp;
         });
         sheetData.advancementsListByRank = adv;
+    }
+
+    /**
+     * Update the actor.
+     * @param event
+     * @param formData
+     */
+    _updateObject(event, formData) {
+        // Store money in zeni
+        formData["data.zeni"] = this._moneyToZeni(
+            formData["data.money.koku"],
+            formData["data.money.bu"],
+            formData["data.money.zeni"]
+        );
+
+        // Remove fake money object
+        delete formData["data.money.koku"];
+        delete formData["data.money.bu"];
+        delete formData["data.money.zeni"];
+
+        return super._updateObject(event, formData);
+    }
+
+    _zeniToMoney(zeni) {
+        const money = {
+            koku: 0,
+            bu: 0,
+            zeni: zeni,
+        };
+
+        if (money.zeni >= CONFIG.l5r5e.money[0]) {
+            money.koku = Math.floor(money.zeni / CONFIG.l5r5e.money[0]);
+            money.zeni = Math.floor(money.zeni % CONFIG.l5r5e.money[0]);
+        }
+        if (money.zeni >= CONFIG.l5r5e.money[1]) {
+            money.bu = Math.floor(money.zeni / CONFIG.l5r5e.money[1]);
+            money.zeni = Math.floor(money.zeni % CONFIG.l5r5e.money[1]);
+        }
+
+        return money;
+    }
+
+    _moneyToZeni(koku, bu, zeni) {
+        return Math.floor(koku * CONFIG.l5r5e.money[0]) + Math.floor(bu * CONFIG.l5r5e.money[1]) + Math.floor(zeni);
     }
 }

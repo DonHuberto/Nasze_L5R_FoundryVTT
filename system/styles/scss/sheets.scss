@@ -402,6 +402,20 @@
                 display: flex;
             }
         }
+        .money {
+            &-wrapper {
+                display: block;
+                flex: 100%;
+                text-align: center;
+            }
+            input[type="text"],
+            input[type="number"],
+            input[type="password"],
+            input[type="date"],
+            input[type="time"] {
+                width: 100px;
+            }
+        }
         .techniques-wrapper {
             .checklist {
                 display: flex;
