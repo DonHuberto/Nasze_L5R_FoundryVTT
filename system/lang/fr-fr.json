@@ -273,7 +273,7 @@
             }
         },
         "twenty_questions": {
-            "title": "Vingt questions",
+            "title": "Le jeu des Vingt questions",
             "bt_abrev": "20Q",
             "bt_refresh": "Actualiser",
             "intro": "Renseignez vos réponses au jeu des vingt questions sur ce formulaire et notez-y des éléments à utiliser ultérieurement !",

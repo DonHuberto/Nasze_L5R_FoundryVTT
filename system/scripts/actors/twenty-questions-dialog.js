@@ -34,7 +34,7 @@ export class TwentyQuestionsDialog extends FormApplication {
             title: game.i18n.localize("l5r5e.twenty_questions.title"),
             width: 600,
             height: 800,
-            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "part1" }],
+            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "part0" }],
             resizable: true,
             closeOnSubmit: false,
             submitOnClose: false,

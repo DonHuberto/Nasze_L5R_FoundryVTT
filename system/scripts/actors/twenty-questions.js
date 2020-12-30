@@ -38,6 +38,7 @@ export class TwentyQuestions {
         "step12.anxiety",
         "step13.advantage",
         "step13.disadvantage",
+        "step14.special_features",
         "step16.item",
     ];
 
@@ -97,12 +98,12 @@ export class TwentyQuestions {
         step7: {
             clan_relations: "",
             skill: "",
-            social_add_glory: 0,
+            social_add_glory: 5,
         },
         step8: {
             bushido: "",
             skill: "",
-            social_add_honor: 0,
+            social_add_honor: 10,
         },
         step9: {
             success: "",
@@ -128,7 +129,7 @@ export class TwentyQuestions {
         },
         step14: {
             first_sight: "",
-            special_features: "",
+            special_features: [],
         },
         step15: {
             stress: "",
@@ -187,9 +188,7 @@ export class TwentyQuestions {
 
         // If not fill some values
         this.data.step1.clan = actorDatas.identity.clan;
-        this.data.step1.social_status = actorDatas.social.status;
         this.data.step2.family = actorDatas.identity.family;
-        this.data.step2.social_glory = actorDatas.social.glory;
         this.data.step3.school = actorDatas.identity.school;
         this.data.step3.roles = actorDatas.identity.roles;
         this.data.step3.allowed_techniques.kata = actorDatas.techniques.kata;
@@ -199,7 +198,6 @@ export class TwentyQuestions {
         this.data.step3.allowed_techniques.shuji = actorDatas.techniques.shuji;
         this.data.step3.allowed_techniques.maho = actorDatas.techniques.maho;
         this.data.step3.allowed_techniques.ninjutsu = actorDatas.techniques.ninjutsu;
-        this.data.step3.social_honor = actorDatas.social.honor;
         this.data.step5.social_giri = actorDatas.social.giri;
         this.data.step6.social_ninjo = actorDatas.social.ninjo;
         this.data.step19.firstname = actor.data.name.replace(/^(?:\w+\s+)?(.+)$/gi, "$1") || "";

@@ -4,15 +4,9 @@
     {{/if}}
 
     <div class="content">
-        <h1>{{localize 'l5r5e.twenty_questions.title'}}</h1>
-        <div>
-            {{localize 'l5r5e.twenty_questions.intro'}}
-            <br>
-            <br><i> {{localize 'l5r5e.twenty_questions.section'}}</i>
-        </div>
-
         <section class="sheet-body">
             <nav class="sheet-tabs tabs" data-group="primary">
+                <a class="item" data-tab="part0">?</a>
                 <a class="item" data-tab="part1">I</a>
                 <a class="item" data-tab="part2">II</a>
                 <a class="item" data-tab="part3">III</a>
@@ -21,6 +15,14 @@
                 <a class="item" data-tab="part6">VI</a>
                 <a class="item" data-tab="part7">VII</a>
             </nav>
+            <article class="tab parts part0" data-group="primary" data-tab="part0">
+                <h1>{{localize 'l5r5e.twenty_questions.title'}}</h1>
+                <div>
+                    {{localize 'l5r5e.twenty_questions.intro'}}
+                    <br>
+                    <br><i> {{localize 'l5r5e.twenty_questions.section'}}</i>
+                </div>
+            </article>
             <article class="tab parts part1" data-group="primary" data-tab="part1">
                 <h2>{{localize 'l5r5e.twenty_questions.part1.title'}}</h2>
                 <div>
