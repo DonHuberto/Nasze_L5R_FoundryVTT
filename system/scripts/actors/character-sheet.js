@@ -73,10 +73,14 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
                 xp = Math.floor(xp / 2);
             }
 
-            const rank = Math.max(0, item.data.bought_at_rank - 1);
+            const rank = Math.max(0, item.data.bought_at_rank);
+            if (rank < 1) {
+                // Ignore starting comp/items
+                return;
+            }
             if (!adv[rank]) {
                 adv[rank] = {
-                    rank: rank + 1,
+                    rank: rank,
                     spent: 0,
                     goal: CONFIG.l5r5e.xp.costPerRank[rank] || null,
                     list: [],

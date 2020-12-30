@@ -209,10 +209,10 @@ export class TwentyQuestions {
      * Fill a actor data from this object
      */
     async toActor(actor, itemsCache) {
-        const actorDatas = duplicate(actor.data.data);
+        const actorDatas = actor.data.data;
         const formData = this.data;
 
-        // Update the actor real datas
+        // Update the actor
         actorDatas.zeni = Math.floor(formData.step2.wealth * 50);
         actorDatas.identity = {
             ...actorDatas.identity,
@@ -268,24 +268,24 @@ export class TwentyQuestions {
         await actor.deleteEmbeddedEntity("OwnedItem", deleteIds);
 
         // Add items in 20Q to actor
-        Object.values(itemsCache).forEach((types) => {
-            types.forEach((item) => {
+        for (const types of Object.values(itemsCache)) {
+            for (const item of types) {
                 const itemData = duplicate(item.data);
                 if (itemData.data?.bought_at_rank) {
                     itemData.data.bought_at_rank = 0;
                 }
-                actor.createEmbeddedEntity("OwnedItem", itemData);
-            });
-        });
+                if (itemData.data?.xp_spent) {
+                    itemData.data.xp_spent = 0;
+                }
+                await actor.createEmbeddedEntity("OwnedItem", itemData);
+            }
+        }
 
         // Update actor
-        actor.update({
+        await actor.update({
             name: (formData.step2.family + " " + formData.step19.firstname).trim(),
-            data: diffObject(actor.data.data, actorDatas),
+            data: actor.data.data,
         });
-
-        // TODO Tmp
-        // console.log(actor);
     }
 
     /**
