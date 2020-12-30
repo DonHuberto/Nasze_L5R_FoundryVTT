@@ -50,15 +50,15 @@ export class TwentyQuestions {
             clan: "",
             ring: "",
             skill: "",
-            social_status: 0,
+            social_status: 30,
         },
         step2: {
             family: "",
             ring: "",
             skill1: "",
             skill2: "",
-            wealth: 0,
-            social_glory: 0,
+            wealth: 3,
+            social_glory: 39,
         },
         step3: {
             school: "",
@@ -82,7 +82,7 @@ export class TwentyQuestions {
             techniques: [],
             school_ability: [],
             equipment: [],
-            social_honor: 0,
+            social_honor: 30,
         },
         step4: {
             stand_out: "",
@@ -97,12 +97,12 @@ export class TwentyQuestions {
         step7: {
             clan_relations: "",
             skill: "",
-            social_add_glory: null,
+            social_add_glory: 0,
         },
         step8: {
             bushido: "",
             skill: "",
-            social_add_honor: null,
+            social_add_honor: 0,
         },
         step9: {
             success: "",
@@ -213,7 +213,7 @@ export class TwentyQuestions {
         const formData = this.data;
 
         // Update the actor real datas
-        actorDatas.zeni = formData.step2.wealth;
+        actorDatas.zeni = Math.floor(formData.step2.wealth * 50);
         actorDatas.identity = {
             ...actorDatas.identity,
             clan: formData.step1.clan,
@@ -274,7 +274,7 @@ export class TwentyQuestions {
                 if (itemData.data?.bought_at_rank) {
                     itemData.data.bought_at_rank = 0;
                 }
-                actor.createEmbeddedEntity("OwnedItem", duplicate(itemData));
+                actor.createEmbeddedEntity("OwnedItem", itemData);
             });
         });
 
@@ -292,13 +292,22 @@ export class TwentyQuestions {
      * Return a array of errors, empty array if no errors founds
      */
     validateForm() {
-        // Rings & Skills
+        const errors = [];
+
+        // Rings & Skills, 3pt max for each
         const rings = this._checkRingsOrSkills("ringList", 2); // ring start at 1
+        for (const key in rings) {
+            errors.push(`${game.i18n.localize("l5r5e.rings." + key)} (${rings[key]})`);
+        }
+
         const skills = this._checkRingsOrSkills("skillList", 3); // skill start at 0
+        for (const key in skills) {
+            errors.push(
+                `${game.i18n.localize("l5r5e.skills." + CONFIG.l5r5e.skills.get(key) + "." + key)} (${skills[key]})`
+            );
+        }
 
-        // TODO Techniques / peculiarities
-
-        return { ...rings, ...skills };
+        return errors;
     }
 
     /**

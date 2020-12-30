@@ -121,7 +121,7 @@
                             <label>
                                 {{localize 'l5r5e.twenty_questions.money'}}
                                 <br>
-                                <input type="text" name="step2.wealth" value="{{data.step2.wealth}}" data-dtype="Number"
+                                <input type="number" name="step2.wealth" value="{{data.step2.wealth}}" data-dtype="Number"
                                        placeholder="0">
                             </label>
                             <br>
@@ -265,18 +265,18 @@
                 </tr>
                 <tr>
                     <td class="fifty">
-                        {{localize 'l5r5e.twenty_questions.startech'}}
-                        <br>
-                        {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step3.techniques stepName='step3.techniques' itemType='techniques' }}
-                        <br>
                         {{localize 'l5r5e.twenty_questions.schoolab'}}
                         <br>
-                        {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step3.school_ability stepName='step3.school_ability' itemType='techniques' }}
+                        {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step3.school_ability stepName='step3.school_ability' itemType='techniques' hideDndAt=1 }}
+                        <br>
+                        {{localize 'l5r5e.twenty_questions.startech'}}
+                        <br>
+                        {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step3.techniques stepName='step3.techniques' itemType='techniques' hideDndAt=5 }}
                     </td>
                     <td class="fifty">
                         {{localize 'l5r5e.twenty_questions.outfit'}}
                         <br>
-                        {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step3.equipment stepName='step3.equipment' itemType='items' }}
+                        {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step3.equipment stepName='step3.equipment' itemType='items' hideDndAt=10 }}
                     </td>
                 </tr>
             </table>
@@ -359,7 +359,7 @@
                                 {{localize 'l5r5e.twenty_questions.incglory'}}
                                 <br>
                                 <input type="number" name="step7.social_add_glory" value="{{data.step7.social_add_glory}}"
-                                       data-dtype="Number" placeholder="0">
+                                       data-dtype="Number" placeholder="0" disabled>
                             </label>
                         </td>
                     </tr>
@@ -396,7 +396,7 @@
                             {{localize 'l5r5e.twenty_questions.inchonor'}}
                             <br>
                             <input type="number" name="step8.social_add_honor" value="{{data.step8.social_add_honor}}"
-                                   data-dtype="Number" placeholder="0">
+                                   data-dtype="Number" placeholder="0" disabled>
                         </label>
                     </td>
                 </tr>
@@ -414,7 +414,7 @@
                 <br>
                 {{localize 'l5r5e.twenty_questions.distinction'}}
                 <br>
-                {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step9.distinction stepName='step9.distinction' itemType='peculiarities' }}
+                {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step9.distinction stepName='step9.distinction' itemType='peculiarities' hideDndAt=1 }}
             </div>
 
             <div>
@@ -425,7 +425,7 @@
                 <br>
                 {{localize 'l5r5e.twenty_questions.adversity'}}
                 <br>
-                {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step10.adversity stepName='step10.adversity' itemType='peculiarities' }}
+                {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step10.adversity stepName='step10.adversity' itemType='peculiarities' hideDndAt=1 }}
             </div>
 
             <div>
@@ -436,7 +436,7 @@
                 <br>
                 {{localize 'l5r5e.twenty_questions.passion'}}
                 <br>
-                {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step11.passion stepName='step11.passion' itemType='peculiarities' }}
+                {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step11.passion stepName='step11.passion' itemType='peculiarities' hideDndAt=1 }}
             </div>
 
             <div>
@@ -447,7 +447,7 @@
                 <br>
                 {{localize 'l5r5e.twenty_questions.anxiety'}}
                 <br>
-                {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step12.anxiety stepName='step12.anxiety' itemType='peculiarities' }}
+                {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step12.anxiety stepName='step12.anxiety' itemType='peculiarities' hideDndAt=1 }}
             </div>
 
             <div>
@@ -466,6 +466,7 @@
                                 <select name="step13.skill" class="skill-select">
                                     {{#select data.step13.skill}}
                                     <option value="none">{{localize 'l5r5e.twenty_questions.choosef'}}</option>
+                                    {{#ifCond cache.step13.advantage.length '==' '0'}}
                                     {{#each skillsList as |skills catId|}}
                                     <optgroup label="{{localizeSkill catId 'title'}}">
                                         {{#each skills as |obj|}}
@@ -473,6 +474,7 @@
                                         {{/each}}
                                     </optgroup>
                                     {{/each}}
+                                    {{/ifCond}}
                                     {{/select}}
                                 </select>
                             </label>
@@ -483,7 +485,7 @@
                         <td class="">
                             {{localize 'l5r5e.twenty_questions.advant'}}
                             <br>
-                            {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step13.advantage stepName='step13.advantage' itemType='peculiarities' }}
+                            {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step13.advantage stepName='step13.advantage' itemType='peculiarities' hideDndAt=1 }}
                         </td>
                     </tr>
                 </table>
@@ -491,7 +493,7 @@
                 <br>
                 {{localize 'l5r5e.twenty_questions.disadvant'}}
                 <br>
-                {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step13.disadvantage stepName='step13.disadvantage' itemType='peculiarities' }}
+                {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step13.disadvantage stepName='step13.disadvantage' itemType='peculiarities' hideDndAt=1 }}
             </div>
         </div>
 
@@ -506,7 +508,7 @@
                 <label>
                     {{localize 'l5r5e.twenty_questions.accoutr'}}
                     <br>
-                    {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step14.special_features stepName='step14.special_features' itemType='items' }}
+                    {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step14.special_features stepName='step14.special_features' itemType='items' hideDndAt=1 }}
                 </label>
             </div>
 
@@ -526,7 +528,7 @@
                 <label>
                     {{localize 'l5r5e.twenty_questions.object'}}
                     <br>
-                    {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step16.item stepName='step16.item' itemType='items' }}
+                    {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step16.item stepName='step16.item' itemType='items' hideDndAt=1 }}
                 </label>
             </div>
         </div>

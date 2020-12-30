@@ -97,6 +97,12 @@ export class HelpersL5r5e {
 
             // Unknown pack object, iterate all packs
             for (const comp of game.packs) {
+                // TODO Bug with babele if "comp.getEntity(id)" return null...
+                const babeleFix = (await comp.getIndex()).some((e) => e._id === id);
+                if (!babeleFix) {
+                    continue;
+                }
+
                 const data = await comp.getEntity(id);
                 if (data) {
                     return HelpersL5r5e.createItemFromCompendium(data);

@@ -1,3 +1,4 @@
+import { HelpersL5r5e } from "../helpers.js";
 import { TwentyQuestions } from "./twenty-questions.js";
 
 /**
@@ -12,14 +13,14 @@ export class TwentyQuestionsDialog extends FormApplication {
     actor = null;
 
     /**
-     * Errors object
+     * Errors
      */
-    errors = {};
+    errors = [];
 
     /**
      * Cache for items (techniques, adv...)
      */
-    cache = {};
+    cache = null;
 
     /**
      * Assign the default options
@@ -67,7 +68,15 @@ export class TwentyQuestionsDialog extends FormApplication {
         this.actor = actor;
         this.object = new TwentyQuestions(actor);
         this.errors = this.object.validateForm();
-        this._constructCache();
+    }
+
+    /**
+     * Construct async cache here
+     * @override
+     */
+    async _render(force = false, options = {}) {
+        await this._constructCache();
+        return super._render(force, options);
     }
 
     /**
@@ -105,7 +114,7 @@ export class TwentyQuestionsDialog extends FormApplication {
      * @param options
      * @return {Object}
      */
-    getData(options = null) {
+    async getData(options = null) {
         return {
             ...super.getData(options),
             ringsList: game.l5r5e.HelpersL5r5e.getRingsList(),
@@ -114,10 +123,8 @@ export class TwentyQuestionsDialog extends FormApplication {
             techniquesList: CONFIG.l5r5e.techniques,
             data: this.object.data,
             cache: this.cache,
-            errors: Object.keys(this.errors)
-                .map((key) => `${game.i18n.localize("l5r5e.rings." + key)} (${this.errors[key]})`)
-                .join(", "), // TODO better msg :D
-            hasErrors: Object.keys(this.errors).length > 0,
+            errors: this.errors.join(", "),
+            hasErrors: this.errors.length > 0,
         };
     }
 
@@ -138,7 +145,7 @@ export class TwentyQuestionsDialog extends FormApplication {
             const stepKey = $(event.currentTarget).parents(".tq-drag-n-drop").data("step");
             const itemId = $(event.currentTarget).parents(".property").data("propertyId");
             this._deleteOwnedItem(stepKey, itemId);
-            this.render(false);
+            this.submit();
         });
 
         // Submit button
@@ -176,10 +183,7 @@ export class TwentyQuestionsDialog extends FormApplication {
             // Add the item (step and cache)
             this._addOwnedItem(item, stepKey);
 
-            // TODO specific event (no added honor if tech selected etc)
-            // console.log(this.object.data, this.cache);
-
-            this.render(false);
+            this.submit();
         } catch (err) {
             console.warn(err);
         }
@@ -194,14 +198,19 @@ export class TwentyQuestionsDialog extends FormApplication {
      * @override
      */
     async _updateObject(event, formData) {
+        // Check "Or" conditions
+        formData["step7.social_add_glory"] = formData["step7.skill"] === "none" ? 5 : 0;
+        formData["step8.social_add_honor"] = formData["step8.skill"] === "none" ? 10 : 0;
+        if (formData["step13.skill"] !== "none" && this.object.data.step13.advantage.length > 0) {
+            formData["step13.skill"] = "none";
+        }
+
         // Update 20Q object data
         this.object.updateFromForm(formData);
 
         // Get errors if any
         this.errors = this.object.validateForm();
 
-        // Only on close/submit
-        // if (event.type === "submit") {
         // Store this form datas in actor
         this.actor.data.data.twenty_questions = this.object.data;
         this.actor.update({
@@ -209,16 +218,16 @@ export class TwentyQuestionsDialog extends FormApplication {
                 twenty_questions: this.object.data,
             },
         });
-        // }
+
         this.render(false);
     }
 
     /**
      * Construct the cache tree with Items full object
      */
-    _constructCache() {
+    async _constructCache() {
         this.cache = {};
-        TwentyQuestions.itemsList.forEach((stepName) => {
+        for (const stepName of TwentyQuestions.itemsList) {
             // Check if current step value is a array
             let step = getProperty(this.object.data, stepName);
             if (!step || !Array.isArray(step)) {
@@ -232,16 +241,19 @@ export class TwentyQuestionsDialog extends FormApplication {
 
             // Get linked Item, and store it in cache (delete null value and old items)
             const newStep = [];
-            step.forEach((id) => {
-                const item = game.items.get(id);
-                if (!id || !item) {
-                    return;
+            for (const id of step) {
+                if (!id) {
+                    continue;
+                }
+                const item = await HelpersL5r5e.getObjectGameOrPack(id, "Item");
+                if (!item) {
+                    continue;
                 }
                 newStep.push(id);
                 getProperty(this.cache, stepName).push(item);
-            });
+            }
             setProperty(this.object.data, stepName, newStep);
-        });
+        }
     }
 
     /**
