@@ -6,7 +6,7 @@
             <li class="property-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
         {{/if}}
     </ul>
-    {{#if item.data.description}}
-    <div class="item-description item-description-{{item._id}}">{{{ item.data.description }}}</div>
+    {{#if item.data.data.description}}
+    <div class="item-description item-description-{{item._id}}">{{ item.data.data.description }}</div>
     {{/if}}
 </li>
