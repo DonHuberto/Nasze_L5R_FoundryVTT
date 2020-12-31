@@ -191,6 +191,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         const created = await this.actor.createEmbeddedEntity("OwnedItem", {
             name: game.i18n.localize(titles[type]),
             type: type,
+            img: "icons/svg/mystery-man.svg",
         });
         const item = this.actor.getOwnedItem(created._id);
 
@@ -236,7 +237,9 @@ export class BaseSheetL5r5e extends ActorSheet {
             } else {
                 // Skill
                 const skillCatId = CONFIG.l5r5e.skills.get(itmData.skill);
-                actor.skills[skillCatId][itmData.skill] = Math.max(0, actor.skills[skillCatId][itmData.skill] - 1);
+                if (skillCatId) {
+                    actor.skills[skillCatId][itmData.skill] = Math.max(0, actor.skills[skillCatId][itmData.skill] - 1);
+                }
             }
 
             // Update Actor
