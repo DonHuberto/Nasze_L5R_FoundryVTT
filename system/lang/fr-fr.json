@@ -132,7 +132,13 @@
             "ninjutsu": "Ninjutsu"
         },
         "peculiarities": {
-            "title_new": "Nouvelle particularité"
+            "title_new": "Nouvelle particularité",
+            "types": {
+                "distinction": "Aptitude",
+                "passion": "Passion",
+                "adversity": "Coup du sort",
+                "anxiety": "Défaillance"
+            }
         },
         "skill": "Compétence",
         "level": "Niveau",

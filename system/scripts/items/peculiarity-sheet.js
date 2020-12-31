@@ -24,7 +24,10 @@ export class PeculiaritySheetL5r5e extends ItemSheetL5r5e {
     async getData() {
         const sheetData = await super.getData();
 
-        sheetData.data.subTypesList = PeculiaritySheetL5r5e.types;
+        sheetData.data.subTypesList = PeculiaritySheetL5r5e.types.map((e) => ({
+            id: e,
+            label: game.i18n.localize("l5r5e.peculiarities.types." + e),
+        }));
 
         return sheetData;
     }

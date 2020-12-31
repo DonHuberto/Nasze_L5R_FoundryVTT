@@ -17,7 +17,7 @@
             <select class="attribute" name="data.peculiarity_type">
                 {{#select item.data.peculiarity_type}}
                     {{#each item.data.subTypesList as |type|}}
-                        <option value="{{type}}">{{type}}</option>
+                        <option value="{{type.id}}">{{type.label}}</option>
                     {{/each}}
                 {{/select}}
             </select>

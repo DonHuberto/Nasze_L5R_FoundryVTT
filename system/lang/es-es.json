@@ -132,7 +132,13 @@
             "ninjutsu": "Ninjutsu"
         },
         "peculiarities": {
-            "title_new": "Nouvelle particularité"
+            "title_new": "New peculiarity",
+            "types": {
+                "distinction": "Distinction",
+                "passion": "Passion",
+                "adversity": "Adversity",
+                "anxiety": "Anxiety"
+            }
         },
         "skill": "Habilidad",
         "level": "Nivel",
