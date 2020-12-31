@@ -47,7 +47,7 @@
             <legend>
                 {{ localize 'l5r5e.effects' }}
             </legend>
-            <input type="text" name="data.effects" value="{{item.data.effects}}"/>
+            {{editor content=item.data.effects target="data.effects" button=true owner=owner editable=editable}}
         </fieldset>
         {{> 'systems/l5r5e/templates/items/item/item-infos.html' }}
     </section>
