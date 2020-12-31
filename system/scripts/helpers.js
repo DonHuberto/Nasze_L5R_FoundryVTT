@@ -1,4 +1,5 @@
 import { L5R5E } from "./config.js";
+import { ItemL5r5e } from "./item.js";
 
 /**
  * Extends the actor to process special things from L5R.
@@ -118,14 +119,24 @@ export class HelpersL5r5e {
      * Make a temporary item for compendium drag n drop
      */
     static async createItemFromCompendium(data) {
-        if (!["item", "armor", "weapon", "technique", "peculiarity", "property"].includes(data.type)) {
+        if (
+            data instanceof ItemL5r5e ||
+            !["item", "armor", "weapon", "technique", "peculiarity", "property"].includes(data.type)
+        ) {
             return data;
         }
-        const item = await Item.create(data, { temporary: true });
 
-        // reinject compendium id (required for properties)
-        item.data._id = data._id;
+        let item;
+        if (game.user.hasPermission("ACTOR_CREATE")) {
+            // Fail if a player do not have the right to create object (even if this is a temporary)
+            item = await ItemL5r5e.create(data, { temporary: true });
 
+            // reinject compendium id (required for properties)
+            item.data._id = data._id;
+        } else {
+            // Quick object
+            item = new ItemL5r5e(data);
+        }
         return item;
     }
 }
