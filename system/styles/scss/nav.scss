@@ -1,6 +1,7 @@
 // -- Nav
 nav {
-    &.sheet-tabs {
+    &.sheet-tabs,
+    &.advancements-tabs {
         height: 3rem;
         line-height: 3rem;
         font-family: $font-tertiary;

@@ -13,8 +13,16 @@
         <input class="centered-input select-on-focus" type="number" name="data.xp_saved" value="{{ data.xp_saved }}" data-dtype="Number" min="0" placeholder="0" disabled/>
     </label>
 </fieldset>
-<fieldset class="advancement">
+<fieldset class="advancement advancements-body">
     <legend class="tools">{{ localize 'l5r5e.advancements.title'}} <a data-item-type="advancement" class="advancement-control item-add" title="{{ localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a></legend>
+    <nav class="advancements-tabs tabs" data-group="advancements">
+        <a class="item advancements-tab" data-tab="advancement_rank_0">{{localize 'l5r5e.advancements.school_rank_0'}}</a>
+        {{#each advancementsListByRank as |rankObject|}}
+        {{#ifCond rank '>' 0}}
+        <a class="item advancements-tab" data-tab="advancement_rank_{{rank}}" title="{{localize 'l5r5e.advancements.school_rank'}} {{rankObject.rank}}">{{rankObject.rank}}</a>
+        {{/ifCond}}
+        {{/each}}
+    </nav>
     <table>
         <thead class="flex">
             <tr class="flexrow row">
@@ -29,18 +37,18 @@
         </thead>
         <tbody class="flex">
         {{#each advancementsListByRank as |rankObject|}}
-            <tr class="flexrow row">
-                <th>{{localize 'l5r5e.advancements.school_rank'}} {{rankObject.rank}}</th>
-            </tr>
             {{#each rankObject.list as |advancement advancementId|}}
-                {{> 'systems/l5r5e/templates/actors/character/advancement.html' advancement=advancement editable=../../editable }}
+                {{> 'systems/l5r5e/templates/actors/character/advancement.html' advancement=advancement rank=rankObject.rank editable=../../editable }}
             {{/each}}
-            <tr class="flexrow row">
+            {{#ifCond rankObject.rank '>' 0}}
+            <tr data-group="advancements" data-tab="advancement_rank_{{rankObject.rank}}" class="flexrow row tab">
                 <th class="">
+                    {{#ifCond ../data.identity.school_rank '<' 6}}
                     {{#ifCond (ifCond ../data.identity.school_rank '==' rankObject.rank) '&&' (ifCond rankObject.spent '>=' rankObject.goal)}}
                     <button type="button" name="validate-curriculum">
                         <i class='fas fa-check-square'></i> {{ localize 'l5r5e.advancements.curriculum_validate' }}
                     </button>
+                    {{/ifCond}}
                     {{/ifCond}}
                 </th>
                 <th class="">
@@ -49,6 +57,7 @@
                     {{#if rankObject.goal}}/{{rankObject.goal}}{{/if}}
                 </th>
             </tr>
+            {{/ifCond}}
         {{/each}}
         </tbody>
     </table>

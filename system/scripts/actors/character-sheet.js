@@ -9,6 +9,10 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
         return mergeObject(super.defaultOptions, {
             classes: ["l5r5e", "sheet", "actor"],
             template: CONFIG.l5r5e.paths.templates + "actors/character-sheet.html",
+            tabs: [
+                { navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills" },
+                { navSelector: ".advancements-tabs", contentSelector: ".advancements-body", initial: "last" },
+            ],
         });
     }
 
@@ -58,6 +62,42 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
     }
 
     /**
+     * Subscribe to events from the sheet.
+     * @param html HTML content of the sheet.
+     */
+    activateListeners(html) {
+        super.activateListeners(html);
+
+        // *** Everything below here is only needed if the sheet is editable ***
+        if (!this.options.editable) {
+            return;
+        }
+
+        // *** Items : curriculum management ***
+        html.find(`.item-curriculum`).on("click", (event) => {
+            this._switchSubItemCurriculum(event);
+        });
+        html.find(`button[name=validate-curriculum]`).on("click", (event) => {
+            this.actor.data.data.identity.school_rank = this.actor.data.data.identity.school_rank + 1;
+            // Update actor
+            this.actor.update({
+                data: {
+                    identity: {
+                        school_rank: this.actor.data.data.identity.school_rank,
+                    },
+                },
+            });
+            this.render(false);
+        });
+
+        // Advancements Tab to current rank onload
+        // TODO class "Active" Bug on load, dunno why :/
+        this._tabs
+            .find((e) => e._navSelector === ".advancements-tabs")
+            .activate("advancement_rank_" + (this.actor.data.data.identity.school_rank || 0));
+    }
+
+    /**
      * Return the total xp spent and the current total xp spent for this rank
      */
     _prepareAdvancement(sheetData) {
@@ -77,10 +117,6 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
             }
 
             const rank = Math.max(0, item.data.bought_at_rank);
-            if (rank < 1) {
-                // Ignore starting comp/items
-                return;
-            }
             if (!adv[rank]) {
                 adv[rank] = {
                     rank: rank,

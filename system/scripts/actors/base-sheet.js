@@ -11,7 +11,7 @@ export class BaseSheetL5r5e extends ActorSheet {
             // template: CONFIG.l5r5e.paths.templates + "actors/character-sheet.html",
             width: 600,
             height: 800,
-            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
+            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills" }],
             dragDrop: [{ dragSelector: ".item-list .item", dropSelector: null }],
         });
     }
@@ -162,7 +162,7 @@ export class BaseSheetL5r5e extends ActorSheet {
             tgt.hasClass("toggle-active") ? tgt.removeClass("toggle-active") : tgt.addClass("toggle-active");
         });
 
-        // *** Items : add, edit, delete, curriculum ***
+        // *** Items : add, edit, delete ***
         html.find(".item-add").on("click", (event) => {
             this._addSubItem(event);
         });
@@ -171,21 +171,6 @@ export class BaseSheetL5r5e extends ActorSheet {
         });
         html.find(`.item-delete`).on("click", (event) => {
             this._deleteSubItem(event);
-        });
-        html.find(`.item-curriculum`).on("click", (event) => {
-            this._switchSubItemCurriculum(event);
-        });
-        html.find(`button[name=validate-curriculum]`).on("click", (event) => {
-            this.actor.data.data.identity.school_rank = this.actor.data.data.identity.school_rank + 1;
-            // Update actor
-            this.actor.update({
-                data: {
-                    identity: {
-                        school_rank: this.actor.data.data.identity.school_rank,
-                    },
-                },
-            });
-            this.render(false);
         });
     }
 
