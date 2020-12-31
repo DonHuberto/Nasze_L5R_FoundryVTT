@@ -1,5 +1,6 @@
 import { HelpersL5r5e } from "../helpers.js";
 import { TwentyQuestions } from "./twenty-questions.js";
+import { RollL5r5e } from "../dice/roll.js";
 
 /**
  * L5R Twenty Questions form
@@ -141,8 +142,18 @@ export class TwentyQuestionsDialog extends FormApplication {
             return;
         }
 
+        // Heritage Roll (step 18)
+        html.find(".inline-roll").on("click", (event) => {
+            event.stopPropagation();
+            const diceRoll = $(event.currentTarget);
+            const stepKey = diceRoll.data("step");
+            const formula = diceRoll.data("formula");
+            const flavor = diceRoll.data("flavor");
+            this._rollHeritage(stepKey, formula, flavor).then(() => this.render(false));
+        });
+
         // Delete a dnd element
-        html.find(`.property-delete`).on("click", (event) => {
+        html.find(".property-delete").on("click", (event) => {
             const stepKey = $(event.currentTarget).parents(".tq-drag-n-drop").data("step");
             const itemId = $(event.currentTarget).parents(".property").data("propertyId");
             this._deleteOwnedItem(stepKey, itemId);
@@ -181,6 +192,55 @@ export class TwentyQuestionsDialog extends FormApplication {
                 console.warn("forbidden item for this drop zone", type, item.data.type);
                 return;
             }
+
+            // TODO Check if this item id already exist ?
+
+            // Specific entry
+            switch (type) {
+                case "technique":
+                    // Tech not allowed
+                    if (!this.actor.data.data.techniques[item.data.data.technique_type]) {
+                        console.warn("This technique is not allowed for your character", type, item.data.type);
+                        return;
+                    }
+                    break;
+
+                case "peculiarity":
+                    switch (stepKey) {
+                        case "step9.distinction":
+                            if (item.data.data.peculiarity_type !== "distinction") {
+                                return;
+                            }
+                            break;
+                        case "step10.adversity":
+                            if (item.data.data.peculiarity_type !== "adversity") {
+                                return;
+                            }
+                            break;
+                        case "step11.passion":
+                            if (item.data.data.peculiarity_type !== "passion") {
+                                return;
+                            }
+                            break;
+                        case "step12.anxiety":
+                            if (item.data.data.peculiarity_type !== "anxiety") {
+                                return;
+                            }
+                            break;
+                        case "step13.advantage":
+                            if (!["distinction", "passion"].includes(item.data.data.peculiarity_type)) {
+                                return;
+                            }
+                            break;
+                        case "step13.disadvantage":
+                            if (!["adversity", "anxiety"].includes(item.data.data.peculiarity_type)) {
+                                return;
+                            }
+                            break;
+                    }
+                    break;
+            }
+
             // Add the item (step and cache)
             this._addOwnedItem(item, stepKey);
 
@@ -255,6 +315,19 @@ export class TwentyQuestionsDialog extends FormApplication {
             }
             setProperty(this.object.data, stepName, newStep);
         }
+    }
+
+    /**
+     * Roll Heritage dice and fill the form with the result
+     * @private
+     */
+    async _rollHeritage(stepName, formula, flavor) {
+        const roll = new RollL5r5e(formula);
+        roll.actor = this._actor;
+
+        await roll.roll();
+        setProperty(this.object.data, stepName, roll.result);
+        return roll.toMessage({ flavor: flavor });
     }
 
     /**
