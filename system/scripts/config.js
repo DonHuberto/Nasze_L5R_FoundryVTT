@@ -7,6 +7,7 @@ L5R5E.paths = {
 
 L5R5E.stances = ["earth", "air", "water", "fire", "void"];
 L5R5E.techniques = ["kata", "kiho", "invocation", "ritual", "shuji", "maho", "ninjutsu"];
+L5R5E.techniques_school = ["school_ability", "mastery_ability"];
 L5R5E.xp = {
     costPerRank: [0, 20, 24, 32, 44, 60],
     ringCostMultiplier: 3,

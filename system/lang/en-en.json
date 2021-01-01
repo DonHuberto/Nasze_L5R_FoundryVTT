@@ -122,6 +122,7 @@
             "title": "Techniques",
             "title_new": "New Technique",
             "not_allowed": "Your character does not use this type of technique.",
+            "only_one": "Your character can possess only one of theses technique.",
             "type": "Allowed Techniques",
             "kata": "Kata",
             "kiho": "Kihõ",
@@ -129,7 +130,9 @@
             "ritual": "Ritual",
             "shuji": "Shuji",
             "maho": "Mahõ",
-            "ninjutsu": "Ninjutsu"
+            "ninjutsu": "Ninjutsu",
+            "school_ability": "School Ability",
+            "mastery_ability": "Mastery Ability"
         },
         "peculiarities": {
             "title_new": "New peculiarity",

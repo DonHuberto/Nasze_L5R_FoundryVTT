@@ -14,4 +14,19 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
         });
     }
+
+    /** @override */
+    async getData() {
+        const sheetData = await super.getData();
+
+        // Add "school ability" and "mastery ability"
+        CONFIG.l5r5e.techniques_school.forEach((e) => {
+            sheetData.data.techniquesList.push({
+                id: e,
+                label: game.i18n.localize(`l5r5e.techniques.${e}`),
+            });
+        });
+
+        return sheetData;
+    }
 }

@@ -198,9 +198,23 @@ export class TwentyQuestionsDialog extends FormApplication {
             // Specific entry
             switch (type) {
                 case "technique":
-                    // Tech not allowed
-                    if (!this.actor.data.data.techniques[item.data.data.technique_type]) {
-                        console.warn("This technique is not allowed for your character", type, item.data.type);
+                    // School Ability
+                    if (stepKey === "step3.school_ability") {
+                        if (item.data.data.technique_type !== "school_ability") {
+                            // console.warn("This technique is not a school ability");
+                            return;
+                        }
+                        if (
+                            Array.from(this.actor.items).some(
+                                (e) => e.type === "technique" && e.data.data.technique_type === "school_ability"
+                            )
+                        ) {
+                            // console.warn("This technique is not a school ability", item.data.data.technique_type);
+                            return;
+                        }
+                    } else if (!this.actor.data.data.techniques[item.data.data.technique_type]) {
+                        // Tech not allowed
+                        // console.warn("This technique is not allowed for your character", item.data.data.technique_type);
                         return;
                     }
                     break;

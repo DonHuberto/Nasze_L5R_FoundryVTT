@@ -94,19 +94,41 @@ export class BaseSheetL5r5e extends ActorSheet {
                 break;
 
             case "technique":
-                // Check if technique is allowed for this character
-                if (!game.user.isGM && !this.actor.data.data.techniques[item.data.data.technique_type]) {
-                    new Dialog({
-                        title: game.i18n.localize("l5r5e.techniques.title"),
-                        content: game.i18n.localize("l5r5e.techniques.not_allowed"),
-                        buttons: {
-                            ok: {
-                                label: game.i18n.localize("l5r5e.global.ok"),
-                                icon: '<i class="fas fa-check"></i>',
+                // School_ability and mastery_ability, allow only 1 per type
+                if (CONFIG.l5r5e.techniques_school.includes(item.data.data.technique_type)) {
+                    if (
+                        Array.from(this.actor.items).some(
+                            (e) =>
+                                e.type === "technique" && e.data.data.technique_type === item.data.data.technique_type
+                        )
+                    ) {
+                        new Dialog({
+                            title: game.i18n.localize("l5r5e.techniques.title"),
+                            content: game.i18n.localize("l5r5e.techniques.only_one"),
+                            buttons: {
+                                ok: {
+                                    label: game.i18n.localize("l5r5e.global.ok"),
+                                    icon: '<i class="fas fa-check"></i>',
+                                },
                             },
-                        },
-                    }).render(true);
-                    return;
+                        }).render(true);
+                        return;
+                    }
+                } else {
+                    // Check if technique is allowed for this character
+                    if (!game.user.isGM && !this.actor.data.data.techniques[item.data.data.technique_type]) {
+                        new Dialog({
+                            title: game.i18n.localize("l5r5e.techniques.title"),
+                            content: game.i18n.localize("l5r5e.techniques.not_allowed"),
+                            buttons: {
+                                ok: {
+                                    label: game.i18n.localize("l5r5e.global.ok"),
+                                    icon: '<i class="fas fa-check"></i>',
+                                },
+                            },
+                        }).render(true);
+                        return;
+                    }
                 }
 
                 // Modify the bought at rank to the current actor rank
