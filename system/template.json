@@ -186,7 +186,6 @@
         "technique": {
             "templates": ["basics", "advancement"],
             "technique_type": "kata",
-            "effects": "",
             "xp_cost": 3
         },
         "property": {
