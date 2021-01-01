@@ -186,3 +186,8 @@ sup {
         }
     }
 }
+
+// Fix for "search anywhere" draggable icon
+.window-draggable-handle {
+    z-index: 2;
+}
