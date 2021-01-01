@@ -51,11 +51,9 @@
                             text-align: right;
                             span {
                                 color: $l5r5e-black;
-                            }
-                            &[data-skill="melee"],
-                            &[data-skill="ranged"],
-                            &[data-skill="unarmed"] {
-                                span {
+                                &[data-skill="melee"],
+                                &[data-skill="ranged"],
+                                &[data-skill="unarmed"] {
                                     float: left;
                                     line-height: 1rem;
                                     width: calc(100% - 2rem);

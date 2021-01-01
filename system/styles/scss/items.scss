@@ -52,7 +52,7 @@
         .item-properties {
             display: flex;
             flex-direction: row;
-            li {
+            > li {
                 margin: 0.25rem 0.1rem;
                 padding: 0.1rem 0.5rem;
                 background-color: $l5r5e-white;
@@ -125,11 +125,8 @@
             .attribute-value,
             .attribute,
             .value {
-                flex: 0 0 calc(25% - 0.5rem);
+                flex: 1 1 auto;
                 margin: 0.5rem 0.25rem 0.25rem;
-            }
-            .attribute3 {
-                flex: 0 0 calc(33% - 0.5rem);
             }
             select[name="data.advancement_type"],
             select[name="data.skill"] {
@@ -159,6 +156,15 @@
             fieldset {
                 input[type="text"] {
                     float: right;
+                }
+            }
+            .attribute {
+                &.full {
+                    flex: 100%;
+                    input {
+                        float: right;
+                        width: 70%;
+                    }
                 }
             }
         }

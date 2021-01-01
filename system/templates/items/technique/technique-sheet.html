@@ -37,18 +37,15 @@
                 {{ localize 'l5r5e.rank' }}
                 <input type="text" name="data.rank" value="{{item.data.rank}}" data-dtype="Number" placeholder="0"/>
             </label>
-
             <label class="attribute">
                 {{ localize 'l5r5e.bought_at_rank' }}
                 <input type="text" name="data.bought_at_rank" value="{{item.data.bought_at_rank}}" data-dtype="Number" placeholder="0"/>
             </label>
-        </article>
-        <fieldset class="attributes">
-            <legend>
+            <label class="attribute full">
                 {{ localize 'l5r5e.effects' }}
-            </legend>
-            {{editor content=item.data.effects target="data.effects" button=true owner=owner editable=editable}}
-        </fieldset>
+                <input type="text" name="data.effects" value="{{item.data.effects}}"/>
+            </label>
+        </article>
         {{> 'systems/l5r5e/templates/items/item/item-infos.html' }}
     </section>
 </form>

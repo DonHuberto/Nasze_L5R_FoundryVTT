@@ -39,8 +39,10 @@
                 box-shadow: none;
             }
         }
-        .advancements-tab {
-            min-width: 60px;
+        .advancements-tabs {
+            height: 2rem;
+            line-height: 2rem;
+            font-size: 1rem;
         }
     }
     &.item,
@@ -405,20 +407,6 @@
                 display: flex;
             }
         }
-        .money {
-            &-wrapper {
-                display: block;
-                flex: 100%;
-                text-align: center;
-            }
-            input[type="text"],
-            input[type="number"],
-            input[type="password"],
-            input[type="date"],
-            input[type="time"] {
-                width: 100px;
-            }
-        }
         .techniques-wrapper {
             .checklist {
                 display: flex;
@@ -458,45 +446,60 @@
                 }
             }
         }
-        .stance-content {
-            label {
-                display: block;
-                width: 100%;
-                line-height: 1.5rem;
-                padding: 0.25rem;
-                color: $white;
-                &.earth {
-                    background: $l5r5e-earth;
-                }
-                &.air {
-                    background: $l5r5e-air;
-                }
-                &.water {
-                    background: $l5r5e-water;
-                }
-                &.fire {
-                    background: $l5r5e-fire;
-                }
-                &.void {
-                    background: $l5r5e-void;
-                }
-                input {
-                    float: right;
-                    position: relative;
-                    top: 0.3rem;
-                    right: 0.25rem;
+        .stances-content {
+            flex: 0 0 100%;
+            .item-list {
+                position: relative;
+                padding-top: 2rem;
+                margin: 0;
+            }
+            .stance-content {
+                padding: 0;
+                margin: 0;
+                label {
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 20%;
+                    line-height: 1.5rem;
+                    padding: 0.25rem;
+                    color: $white;
+                    &.earth {
+                        background: $l5r5e-earth;
+                    }
+                    &.air {
+                        background: $l5r5e-air;
+                        left: 20%;
+                    }
+                    &.water {
+                        background: $l5r5e-water;
+                        left: 40%;
+                    }
+                    &.fire {
+                        background: $l5r5e-fire;
+                        left: 60%;
+                    }
+                    &.void {
+                        background: $l5r5e-void;
+                        left: 80%;
+                    }
+                    input {
+                        float: right;
+                        position: relative;
+                        top: 0.3rem;
+                        right: 0.25rem;
+                    }
                 }
             }
         }
-        .stance-content,
-        .weapons-content {
+        .weapons-content,
+        .armors-content {
             flex: 0 0 calc(50% - 0.5rem);
         }
-        .armors-content {
-            flex: 0 0 calc(100% - 0.5rem);
-        }
     }
-    .xp {
+    .xp,
+    .money-wrapper {
         flex: 0 0 5rem;
         flex-direction: column;
         color: $black-light;
