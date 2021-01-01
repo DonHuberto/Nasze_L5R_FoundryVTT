@@ -60,6 +60,18 @@
             "entity": "Item"
         },
         {
+            "name": "core-techniques-school",
+            "label": "School Abilities",
+            "path": "packs/core-techniques-school.db",
+            "entity": "Item"
+        },
+        {
+            "name": "core-techniques-mastery",
+            "label": "Mastery Abilities",
+            "path": "packs/core-techniques-mastery.db",
+            "entity": "Item"
+        },
+        {
             "name": "core-items",
             "label": "Items",
             "path": "packs/core-items.db",
