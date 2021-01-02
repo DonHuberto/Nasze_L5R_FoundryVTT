@@ -70,7 +70,7 @@ export class HelpersL5r5e {
         try {
             // Named pack
             if (pack) {
-                const data = await game.packs.get(pack).getEntry(id);
+                const data = await game.packs.get(pack).getEntity(id);
                 if (data) {
                     return HelpersL5r5e.createItemFromCompendium(data);
                 }
