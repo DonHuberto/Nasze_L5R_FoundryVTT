@@ -200,7 +200,7 @@ export class TwentyQuestionsDialog extends FormApplication {
                     // School Ability
                     if (stepKey === "step3.school_ability") {
                         if (item.data.data.technique_type !== "school_ability") {
-                            // console.warn("This technique is not a school ability");
+                            console.warn("This technique is not a school ability");
                             return;
                         }
                         if (
@@ -208,12 +208,12 @@ export class TwentyQuestionsDialog extends FormApplication {
                                 (e) => e.type === "technique" && e.data.data.technique_type === "school_ability"
                             )
                         ) {
-                            // console.warn("This technique is not a school ability", item.data.data.technique_type);
+                            console.warn("This technique is not a school ability", item.data.data.technique_type);
                             return;
                         }
-                    } else if (!this.actor.data.data.techniques[item.data.data.technique_type]) {
+                    } else if (!this.object.data.step3.allowed_techniques?.[item.data.data.technique_type]) {
                         // Tech not allowed
-                        // console.warn("This technique is not allowed for your character", item.data.data.technique_type);
+                        console.warn("This technique is not allowed for your character", item.data.data.technique_type);
                         return;
                     }
                     break;
@@ -222,31 +222,37 @@ export class TwentyQuestionsDialog extends FormApplication {
                     switch (stepKey) {
                         case "step9.distinction":
                             if (item.data.data.peculiarity_type !== "distinction") {
+                                console.warn("Wrong type", item.data.data.peculiarity_type);
                                 return;
                             }
                             break;
                         case "step10.adversity":
                             if (item.data.data.peculiarity_type !== "adversity") {
+                                console.warn("Wrong type", item.data.data.peculiarity_type);
                                 return;
                             }
                             break;
                         case "step11.passion":
                             if (item.data.data.peculiarity_type !== "passion") {
+                                console.warn("Wrong type", item.data.data.peculiarity_type);
                                 return;
                             }
                             break;
                         case "step12.anxiety":
                             if (item.data.data.peculiarity_type !== "anxiety") {
+                                console.warn("Wrong type", item.data.data.peculiarity_type);
                                 return;
                             }
                             break;
                         case "step13.advantage":
                             if (!["distinction", "passion"].includes(item.data.data.peculiarity_type)) {
+                                console.warn("Wrong type", item.data.data.peculiarity_type);
                                 return;
                             }
                             break;
                         case "step13.disadvantage":
                             if (!["adversity", "anxiety"].includes(item.data.data.peculiarity_type)) {
+                                console.warn("Wrong type", item.data.data.peculiarity_type);
                                 return;
                             }
                             break;
@@ -287,7 +293,7 @@ export class TwentyQuestionsDialog extends FormApplication {
 
         // Store this form datas in actor
         this.actor.data.data.twenty_questions = this.object.data;
-        this.actor.update({
+        await this.actor.update({
             data: {
                 twenty_questions: this.object.data,
             },

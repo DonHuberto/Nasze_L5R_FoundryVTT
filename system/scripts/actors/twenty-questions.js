@@ -282,7 +282,7 @@ export class TwentyQuestions {
         // Update actor
         await actor.update({
             name: (formData.step2.family + " " + formData.step19.firstname).trim(),
-            data: actor.data.data,
+            data: actorDatas,
         });
     }
 
