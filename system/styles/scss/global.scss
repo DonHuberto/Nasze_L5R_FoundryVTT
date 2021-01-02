@@ -166,3 +166,23 @@ sub,
 sup {
     color: $l5r5e-black;
 }
+
+.sheet {
+    nav {
+        &.sheet-tabs {
+            font-size: 0.75rem;
+        }
+    }
+}
+
+.editor-content,
+.item-description {
+    ul {
+        margin: 0.5rem 0;
+        li {
+            list-style-type: initial;
+            margin: 0.5rem 0 0.5rem 1.5rem;
+            padding: 0;
+        }
+    }
+}

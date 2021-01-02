@@ -80,8 +80,8 @@
             input {
                 flex: 0 0 100%;
                 font-size: 3rem;
-                height: 4rem;
-                margin: 0.5rem 0 0;
+                height: 5rem;
+                margin: 0;
                 width: 100%;
                 text-align: right;
                 color: $l5r5e-red;
@@ -173,30 +173,54 @@
             display: flex;
             position: initial;
             flex-wrap: wrap;
-            flex: 0 0 calc(100% - 150px - 1.05rem);
+            flex: 0 0 calc(100% - 150px);
+            label {
+                display: flex;
+                color: $l5r5e-label;
+                text-transform: uppercase;
+                font-size: 0.75rem;
+                line-height: 2rem;
+                input {
+                    flex: 1;
+                    font-size: 1.25rem;
+                    height: 1.75rem;
+                    margin: 0 1rem 0 0.5rem;
+                    padding: 0 0.25rem 0.25rem;
+                }
+            }
             .identity-content {
                 flex: 0 0 100%;
                 display: flex;
                 flex-wrap: wrap;
-                margin: 0.5rem 0 0.5rem 1rem;
+                margin: 0;
+                padding-top: 0.25rem;
+                padding-left: 0.5rem;
                 li {
                     flex: 33%;
                     &:nth-child(1),
                     &:nth-child(2) {
-                        flex: calc(50% - 5rem);
-                        margin: 0 0 0.5rem;
+                        flex: calc(50% - 3rem);
+                        margin: 0 0 0.25rem;
                     }
                     &:nth-child(3) {
                         flex: auto;
                         input {
-                            width: 2rem;
+                            width: 1rem;
+                            padding: 0;
+                            margin-right: 0;
                         }
                     }
                     &:nth-child(4),
                     &:nth-child(5) {
-                        flex: 50%;
+                        flex: 60%;
                         input {
                             font-size: 1rem;
+                        }
+                    }
+                    &:nth-child(5) {
+                        flex: 40%;
+                        input {
+                            margin-right: 0;
                         }
                     }
                 }
@@ -385,17 +409,6 @@
                 }
             }
         }
-        .identity-wrapper label {
-            display: flex;
-            color: $l5r5e-label;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            line-height: 2rem;
-            input {
-                flex: 1;
-                margin: 0 1rem 0 0.5rem;
-            }
-        }
     }
     article {
         background: $l5r5e-white;
@@ -406,6 +419,10 @@
             &.active {
                 display: flex;
             }
+        }
+        .narrative-content,
+        .narrative-note {
+            flex: 0 0 calc(50% - 0.5rem);
         }
         .techniques-wrapper {
             .checklist {
@@ -441,8 +458,8 @@
                 }
                 input {
                     margin: 0.25rem 0 0 0;
-                    height: auto;
-                    width: auto;
+                    height: 0.65rem;
+                    width: 0.65rem;
                 }
             }
         }

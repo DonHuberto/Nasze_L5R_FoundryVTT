@@ -6,9 +6,9 @@
             }
         }
         img {
-            flex: 0 0 75px;
-            height: 75px;
-            width: 75px;
+            flex: 0 0 90px;
+            height: 90px;
+            width: 90px;
             .full {
                 flex: 0 0 content;
                 height: auto;
@@ -23,12 +23,12 @@
         .identity-wrapper {
             flex: 1 1 100%;
             h1 {
-                flex: 0 0 calc(100% - 75px - 1.25rem);
-                margin: 0 0 1rem 1rem;
+                margin: 0 0.25rem 1rem 1rem;
             }
             .identity-list {
                 flex: 0 0 100%;
                 display: flex;
+                margin: 0.25rem;
                 margin-bottom: 0.5rem;
                 li {
                     flex: 1;
@@ -36,18 +36,22 @@
                     display: flex;
                     select {
                         width: 100%;
-                        background: transparent;
+                        background: $l5r5e-white;
                         border: 0 none;
                         text-transform: capitalize;
+                        color: $l5r5e-bold;
+                        font-family: $font-primary;
+                        font-weight: bold;
+                        font-size: 1rem;
+                        letter-spacing: 0.15rem;
                     }
                     i,
                     input {
                         font-size: 1.25rem;
                         height: 1.5rem;
                         line-height: 1.5rem;
-                        width: 4rem;
-                        float: left;
-                        margin: 0 1rem;
+                        width: 7.25rem;
+                        margin: auto;
                         text-align: center;
                     }
                 }
