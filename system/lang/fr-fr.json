@@ -18,6 +18,15 @@
     "other.text.color": "Autre couleur de texte",
     "def.chat.pref": "Préfixe de Chat par défaut",
     "spe.chat.pref": "Si renseignée, la chaîne sera préfixée pour tous les messages de chat qui ne sont pas déjà des commandes (comme /emote.)",
+    "ACTOR.TypeCharacter": "Personnage Joueur",
+    "ACTOR.TypeNpc": "Personnage non Joueur",
+    "ITEM.TypeItem": "Objet",
+    "ITEM.TypeArmor": "Armure",
+    "ITEM.TypeWeapon": "Arme",
+    "ITEM.TypeTechnique": "Technique",
+    "ITEM.TypeProperty": "Propriété",
+    "ITEM.TypePeculiarity": "Particularité",
+    "ITEM.TypeAdvancement": "Progression",
     "l5r5e": {
         "global": {
             "ok": "OK",
