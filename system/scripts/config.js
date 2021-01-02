@@ -53,6 +53,8 @@ L5R5E.symbols.set("(op)", { class: "i_opportunity", label: "l5r5e.chatdices.oppo
 L5R5E.symbols.set("(su)", { class: "i_success", label: "l5r5e.chatdices.successes" });
 L5R5E.symbols.set("(ex)", { class: "i_explosive", label: "l5r5e.chatdices.explosives" });
 L5R5E.symbols.set("(st)", { class: "i_strife", label: "l5r5e.chatdices.strives" });
+L5R5E.symbols.set("(ring)", { class: "i_ring", label: "l5r5e.rings.title" });
+L5R5E.symbols.set("(skill)", { class: "i_skill", label: "l5r5e.skills.title" });
 
 L5R5E.symbols.set("(earth)", { class: "i_earth", label: "l5r5e.rings.earth" });
 L5R5E.symbols.set("(water)", { class: "i_water", label: "l5r5e.rings.water" });
