@@ -91,7 +91,9 @@ i.i_tortoise,
 i.i_unicorn,
 i.i_bushi,
 i.i_courtier,
-i.i_shugenja {
+i.i_shugenja,
+i.i_ring,
+i.i_skill {
     font-family: $font-logoType;
     line-height: 1rem;
     font-size: 1.25rem;
@@ -259,4 +261,21 @@ i.i_courtier:before {
 i.i_shugenja:before {
     content: "\E919";
     color: $l5r5e-shugenja;
+}
+
+// Ring
+i.i_ring {
+    content: "";
+    background: transparent url("../assets/dices/default/ring_blank.svg") no-repeat 0 center;
+    display: inline-block;
+    height: 1rem;
+    width: 0.75rem;
+}
+// Skill
+i.i_skill {
+    content: "";
+    background: transparent url("../assets/dices/default/skill_blank.svg") no-repeat 0 0;
+    display: inline-block;
+    height: 1rem;
+    width: 1rem;
 }
