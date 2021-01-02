@@ -55,7 +55,11 @@ export class HelpersL5r5e {
      * Return the target object on a drag n drop event, or null if not found
      */
     static async getDragnDropTargetObject(event) {
-        const data = JSON.parse(event.dataTransfer.getData("text/plain"));
+        const json = event.dataTransfer.getData("text/plain");
+        if (!json) {
+            return null;
+        }
+        const data = JSON.parse(json);
         return await HelpersL5r5e.getObjectGameOrPack(data.id, data.type, data.pack);
     }
 

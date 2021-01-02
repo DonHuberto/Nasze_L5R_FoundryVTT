@@ -133,6 +133,11 @@ export class BaseSheetL5r5e extends ActorSheet {
                         }).render(true);
                         return;
                     }
+
+                    // No cost for schools
+                    item.data.data.xp_cost = 0;
+                    item.data.data.xp_used = 0;
+                    item.data.data.in_curriculum = true;
                 } else {
                     // Check if technique is allowed for this character
                     if (!game.user.isGM && !this.actor.data.data.techniques[item.data.data.technique_type]) {
@@ -148,15 +153,15 @@ export class BaseSheetL5r5e extends ActorSheet {
                         }).render(true);
                         return;
                     }
+
+                    // Verify cost
+                    item.data.data.xp_cost =
+                        item.data.data.xp_cost > 0 ? item.data.data.xp_cost : CONFIG.l5r5e.xp.techniqueCost;
+                    item.data.data.xp_used = item.data.data.xp_cost;
                 }
 
                 // Modify the bought at rank to the current actor rank
                 item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
-
-                // Verify cost
-                item.data.data.xp_cost =
-                    item.data.data.xp_cost > 0 ? item.data.data.xp_cost : CONFIG.l5r5e.xp.techniqueCost;
-                item.data.data.xp_used = item.data.data.xp_cost;
                 break;
         }
 
