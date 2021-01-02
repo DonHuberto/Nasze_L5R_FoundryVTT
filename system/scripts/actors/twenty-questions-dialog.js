@@ -1,4 +1,3 @@
-import { HelpersL5r5e } from "../helpers.js";
 import { TwentyQuestions } from "./twenty-questions.js";
 import { RollL5r5e } from "../dice/roll.js";
 
@@ -320,7 +319,7 @@ export class TwentyQuestionsDialog extends FormApplication {
                 if (!id) {
                     continue;
                 }
-                const item = await HelpersL5r5e.getObjectGameOrPack(id, "Item");
+                const item = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack(id, "Item");
                 if (!item) {
                     continue;
                 }

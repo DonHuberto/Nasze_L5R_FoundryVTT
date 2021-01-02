@@ -1,4 +1,3 @@
-import { L5R5E } from "./config.js";
 import { ItemL5r5e } from "./item.js";
 
 /**
@@ -21,7 +20,7 @@ export class HelpersL5r5e {
      */
     static getSkillsList(useGroup = false) {
         if (!useGroup) {
-            return Array.from(L5R5E.skills).map(([id, cat]) => ({
+            return Array.from(CONFIG.l5r5e.skills).map(([id, cat]) => ({
                 id: id,
                 cat: cat,
                 label: game.i18n.localize(`l5r5e.skills.${cat}.${id}`),
@@ -138,5 +137,19 @@ export class HelpersL5r5e {
             item = new ItemL5r5e(data);
         }
         return item;
+    }
+
+    /**
+     * Convert (op), (ex)... to associated symbols for content/descriptions
+     */
+    static convertSymbols(text, toSymbol) {
+        CONFIG.l5r5e.symbols.forEach((cfg, tag) => {
+            if (toSymbol) {
+                text = text.replace(tag, `<i class="${cfg.class}" title="${game.i18n.localize(cfg.label)}"></i>`);
+            } else {
+                text = text.replace(new RegExp(`<i class="${cfg.class}" title="[^"]*"></i>`, "gi"), tag);
+            }
+        });
+        return text;
     }
 }

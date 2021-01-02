@@ -49,6 +49,34 @@ export class ItemSheetL5r5e extends ItemSheet {
     }
 
     /**
+     * Activate a named TinyMCE text editor
+     * @param {string} name             The named data field which the editor modifies.
+     * @param {object} options          TinyMCE initialization options passed to TextEditor.create
+     * @param {string} initialContent   Initial text content for the editor area.
+     * @override
+     */
+    activateEditor(name, options = {}, initialContent = "") {
+        if (name === "data.description" && initialContent) {
+            initialContent = game.l5r5e.HelpersL5r5e.convertSymbols(initialContent, false);
+        }
+        super.activateEditor(name, options, initialContent);
+    }
+
+    /**
+     * This method is called upon form submission after form data is validated
+     * @param event {Event}       The initial triggering submission event
+     * @param formData {Object}   The object of validated form data with which to update the object
+     * @returns {Promise}         A Promise which resolves once the update operation has completed
+     * @override
+     */
+    async _updateObject(event, formData) {
+        if (formData["data.description"]) {
+            formData["data.description"] = game.l5r5e.HelpersL5r5e.convertSymbols(formData["data.description"], true);
+        }
+        return super._updateObject(event, formData);
+    }
+
+    /**
      * Subscribe to events from the sheet.
      * @param html HTML content of the sheet.
      */
@@ -77,15 +105,6 @@ export class ItemSheetL5r5e extends ItemSheet {
             const li = $(event.currentTarget).parents(".property");
             this._deleteProperty(li.data("propertyId"));
         });
-    }
-
-    /**
-     * Update the item with data from the sheet.
-     * @param event
-     * @param formData
-     */
-    _updateObject(event, formData) {
-        return this.object.update(formData);
     }
 
     /**

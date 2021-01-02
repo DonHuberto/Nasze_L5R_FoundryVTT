@@ -12,7 +12,7 @@ export class BaseJournalSheetL5r5e extends JournalSheet {
      */
     activateEditor(name, options = {}, initialContent = "") {
         if (initialContent) {
-            initialContent = this._convertSymbols(initialContent, false);
+            initialContent = game.l5r5e.HelpersL5r5e.convertSymbols(initialContent, false);
         }
         super.activateEditor(name, options, initialContent);
     }
@@ -27,23 +27,8 @@ export class BaseJournalSheetL5r5e extends JournalSheet {
     async _updateObject(event, formData) {
         // event.type = mcesave / submit
         if (formData.content) {
-            formData.content = this._convertSymbols(formData.content, true);
+            formData.content = game.l5r5e.HelpersL5r5e.convertSymbols(formData.content, true);
         }
         return super._updateObject(event, formData);
-    }
-
-    /**
-     * Convert (op), (ex)... to associated symbols
-     * @private
-     */
-    _convertSymbols(text, toSymbol) {
-        CONFIG.l5r5e.symbols.forEach((cfg, tag) => {
-            if (toSymbol) {
-                text = text.replace(tag, `<i class="${cfg.class}" title="${game.i18n.localize(cfg.label)}"></i>`);
-            } else {
-                text = text.replace(new RegExp(`<i class="${cfg.class}" title="[^"]*"></i>`, "gi"), tag);
-            }
-        });
-        return text;
     }
 }
