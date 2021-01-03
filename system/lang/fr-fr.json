@@ -253,8 +253,8 @@
             "composuretip": "(Terre + Eau) x2",
             "focus": "Attention",
             "focustip": "Air + Feu",
-            "vigilante": "Vigilance",
-            "vigilantetip": "(Air + Eau) /2",
+            "vigilance": "Vigilance",
+            "vigilancetip": "(Air + Eau) /2",
             "voidpoints": "Points de Vide",
             "fatigue": "Fatigue",
             "strife": "Conflit"
@@ -371,6 +371,7 @@
                 "q18": "18. En l’honneur de qui votre personnage a-t-il été prénommé ? (p. 95)",
                 "d10r1": "Résultat du 1er D10",
                 "d10r2": "Résultat du 2eme D10",
+                "d10r2_choice": "Effet du 2ème D10:",
                 "q19": "19. Quel est le prénom de votre personnage ? (p. 95)"
             },
             "part7": {

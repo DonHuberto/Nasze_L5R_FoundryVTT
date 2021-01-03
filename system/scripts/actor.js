@@ -79,7 +79,7 @@ export class ActorL5r5e extends Actor {
             data.endurance = (Number(data.rings.earth) + Number(data.rings.fire)) * 2;
             data.composure = (Number(data.rings.earth) + Number(data.rings.water)) * 2;
             data.focus = Number(data.rings.air) + Number(data.rings.fire);
-            data.vigilante = Math.floor((Number(data.rings.air) + Number(data.rings.water)) / 2);
+            data.vigilance = Math.ceil((Number(data.rings.air) + Number(data.rings.water)) / 2);
 
             // Attributes bars
             data.void_points.max = data.rings.void;

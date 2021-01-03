@@ -578,7 +578,7 @@
                                 <label>
                                     {{localize 'l5r5e.twenty_questions.part6.d10r1'}}
                                     <a class="inline-roll roll" title="1d10" data-mode="roll"
-                                       data-flavor="{{localize 'l5r5e.twenty_questions.d10r1'}}" data-formula="1d10" data-step="step18.heritage_1">
+                                       data-flavor="{{localize 'l5r5e.twenty_questions.part6.d10r1'}}" data-formula="1d10" data-step="step18.heritage_1">
                                         <i class="fas fa-dice-d20"></i> 1d10
                                     </a>
                                     <br>
@@ -589,12 +589,45 @@
                                 <label>
                                     {{localize 'l5r5e.twenty_questions.part6.d10r2'}}
                                     <a class="inline-roll roll" title="1d10" data-mode="roll"
-                                       data-flavor="{{localize 'l5r5e.twenty_questions.d10r2'}}" data-formula="1d10" data-step="step18.heritage_2">
+                                       data-flavor="{{localize 'l5r5e.twenty_questions.part6.d10r2'}}" data-formula="1d10" data-step="step18.heritage_2">
                                         <i class="fas fa-dice-d20"></i> 1d10
                                     </a>
                                     <br>
                                     <input type="number" name="step18.heritage_2" value="{{data.step18.heritage_2}}" data-dtype="Number">
                                 </label>
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td colspan="3">
+                                {{localize 'l5r5e.twenty_questions.part6.d10r2_choice'}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="third">
+                                <label>
+                                    {{localize 'l5r5e.twenty_questions.increase_skill1'}}
+                                    <br>
+                                    <select name="step18.skill" class="skill-select">
+                                        {{#select data.step18.skill}}
+                                        <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
+                                        {{#each skillsList as |skills catId|}}
+                                        <optgroup label="{{localizeSkill catId 'title'}}">
+                                            {{#each skills as |obj|}}
+                                            <option value="{{obj.id}}">{{obj.label}}</option>
+                                            {{/each}}
+                                        </optgroup>
+                                        {{/each}}
+                                        {{/select}}
+                                    </select>
+                                </label>
+                            </td>
+                            <td class="or">
+                                {{localize 'l5r5e.twenty_questions.or'}}
+                            </td>
+                            <td class="">
+                                {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step18.heritage_item stepName='step18.heritage_item' itemType='items' hideDndAt=1 }}
                             </td>
                         </tr>
                     </table>

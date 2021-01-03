@@ -149,11 +149,21 @@ export class HelpersL5r5e {
     static convertSymbols(text, toSymbol) {
         CONFIG.l5r5e.symbols.forEach((cfg, tag) => {
             if (toSymbol) {
-                text = text.replace(tag, `<i class="${cfg.class}" title="${game.i18n.localize(cfg.label)}"></i>`);
+                text = text.replace(
+                    new RegExp(HelpersL5r5e.escapeRegExp(tag), "gi"),
+                    `<i class="${cfg.class}" title="${game.i18n.localize(cfg.label)}"></i>`
+                );
             } else {
                 text = text.replace(new RegExp(`<i class="${cfg.class}" title="[^"]*"></i>`, "gi"), tag);
             }
         });
         return text;
+    }
+
+    /**
+     * Escape Regx characters
+     */
+    static escapeRegExp(str) {
+        return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     }
 }

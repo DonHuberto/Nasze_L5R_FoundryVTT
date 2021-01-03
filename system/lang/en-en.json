@@ -253,8 +253,8 @@
             "composuretip": "(Earth + Water) x2",
             "focus": "Focus",
             "focustip": "Air + Fire",
-            "vigilante": "Vigilante",
-            "vigilantetip": "(Air + Water) /2",
+            "vigilance": "Vigilante",
+            "vigilancetip": "(Air + Water) /2",
             "voidpoints": "Void Points",
             "fatigue": "Fatigue",
             "strife": "Strife"
@@ -371,6 +371,7 @@
                 "q18": "18. Who was your character named to honor ? (p. 95)",
                 "d10r1": "D10 Result (1/2)",
                 "d10r2": "D10 Result (2/2)",
+                "d10r2_choice": "2nd D10 Effect:",
                 "q19": "19. What is your character’s personal name ? (p. 95)"
             },
             "part7": {

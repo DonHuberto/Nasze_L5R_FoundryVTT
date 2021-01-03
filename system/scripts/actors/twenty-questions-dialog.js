@@ -193,13 +193,20 @@ export class TwentyQuestionsDialog extends FormApplication {
             console.warn("event stepKey is undefined");
             return;
         }
-
         try {
             // Get item
             const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
+            if (item.entity !== "Item" || !item) {
+                console.warn("forbidden item for this drop zone", type, item.data.type);
+                return;
+            }
+
+            // Specific step18_heritage, all item/tech allowed
+            if (stepKey === "step18.heritage_item") {
+                type = item.data.type;
+            }
+
             if (
-                item.entity !== "Item" ||
-                !item ||
                 (type !== "item" && item.data.type !== type) ||
                 (type === "item" && !["item", "weapon", "armor"].includes(item.data.type))
             ) {

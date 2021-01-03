@@ -23,6 +23,7 @@ export class TwentyQuestions {
         "step8.skill",
         "step13.skill",
         "step17.skill",
+        "step18.skill",
     ];
 
     /**
@@ -40,6 +41,7 @@ export class TwentyQuestions {
         "step13.disadvantage",
         "step14.special_features",
         "step16.item",
+        "step18.heritage_item",
     ];
 
     /**
@@ -146,6 +148,7 @@ export class TwentyQuestions {
             heritage_name: "",
             heritage_1: null,
             heritage_2: null,
+            heritage_item: [],
         },
         step19: {
             firstname: "",

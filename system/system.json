@@ -141,11 +141,6 @@
             "lang": "es",
             "name": "Spanish (Spain)",
             "path": "lang/es-es.json"
-        },
-        {
-            "lang": "pt-br",
-            "name": "Português (Brasil)",
-            "path": "lang/pt-br.json"
         }
     ],
     "url": "https://gitlab.com/teaml5r/l5r5e",
