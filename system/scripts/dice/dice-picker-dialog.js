@@ -375,23 +375,25 @@ export class DicePickerDialog extends FormApplication {
 
         // Update Actor
         if (this._actor) {
+            const actorData = duplicate(this._actor.data.data);
+
             // TODO update actor stance ? good idea or not, choice-able ?
-            // this._actor.data.data.stance = approach;
+            // actorData.stance = approach;
+
+            // If hidden add 1 void pt
+            if (this._difficulty.isHidden) {
+                actorData.void_points.value = Math.min(actorData.void_points.value + 1, actorData.void_points.max);
+            }
 
             // If Void point is used, minus the actor
             if (formData.use_void_point) {
-                this._actor.data.data.void_points.value = Math.max(this._actor.data.data.void_points.value - 1, 0);
+                actorData.void_points.value = Math.max(actorData.void_points.value - 1, 0);
             }
 
-            // If hidden add void 1pt
-            // this._difficulty.isHidden = !!formData.diff_hidden;
-            // this._difficulty.difficulty = formData.diff;
-            if (this._difficulty.isHidden) {
-                this._actor.data.data.void_points.value = Math.min(
-                    this._actor.data.data.void_points.value + 1,
-                    this._actor.data.data.void_points.max
-                );
-            }
+            // Update actor
+            this._actor.update({
+                data: diffObject(this._actor.data.data, actorData),
+            });
         }
 
         // Let's roll !
