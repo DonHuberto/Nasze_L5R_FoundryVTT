@@ -13,9 +13,15 @@ export class TwentyQuestionsDialog extends FormApplication {
     actor = null;
 
     /**
-     * Errors
+     * Summary & Errors
      */
-    errors = [];
+    summary = {
+        errors: [],
+        summary: {
+            rings: [],
+            skills: [],
+        },
+    };
 
     /**
      * Cache for items (techniques, adv...)
@@ -68,7 +74,7 @@ export class TwentyQuestionsDialog extends FormApplication {
         super({}, options);
         this.actor = actor;
         this.object = new TwentyQuestions(actor);
-        this.errors = this.object.validateForm();
+        this.summary = this.object.validateForm();
     }
 
     /**
@@ -124,8 +130,10 @@ export class TwentyQuestionsDialog extends FormApplication {
             techniquesList: CONFIG.l5r5e.techniques,
             data: this.object.data,
             cache: this.cache,
-            errors: this.errors.join(", "),
-            hasErrors: this.errors.length > 0,
+            summary: {
+                ...this.summary,
+                errors: this.summary.errors.join(", "),
+            },
         };
     }
 
@@ -135,6 +143,13 @@ export class TwentyQuestionsDialog extends FormApplication {
      */
     activateListeners(html) {
         super.activateListeners(html);
+
+        // Toggle
+        html.find(".toggle-on-click").on("click", (event) => {
+            const elmt = $(event.currentTarget).data("toggle");
+            const tgt = html.find("." + elmt);
+            tgt.hasClass("toggle-active") ? tgt.removeClass("toggle-active") : tgt.addClass("toggle-active");
+        });
 
         // *** Everything below here is only needed if the sheet is editable ***
         if (!this.options.editable) {
@@ -288,8 +303,8 @@ export class TwentyQuestionsDialog extends FormApplication {
         // Update 20Q object data
         this.object.updateFromForm(formData);
 
-        // Get errors if any
-        this.errors = this.object.validateForm();
+        // Get errors if any, and redo summary table
+        this.summary = this.object.validateForm();
 
         // Store this form datas in actor
         this.actor.data.data.twenty_questions = this.object.data;

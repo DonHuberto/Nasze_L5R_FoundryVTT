@@ -109,7 +109,9 @@ export class BaseSheetL5r5e extends ActorSheet {
             case "advancement": // no break
             case "peculiarity":
                 // Modify the bought at rank to the current actor rank
-                item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
+                if (this.actor.data.data.identity?.school_rank) {
+                    item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
+                }
                 break;
 
             case "technique":
@@ -161,7 +163,9 @@ export class BaseSheetL5r5e extends ActorSheet {
                 }
 
                 // Modify the bought at rank to the current actor rank
-                item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
+                if (this.actor.data.data.identity?.school_rank) {
+                    item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
+                }
                 break;
         }
 
@@ -179,6 +183,13 @@ export class BaseSheetL5r5e extends ActorSheet {
      */
     activateListeners(html) {
         super.activateListeners(html);
+
+        // Toggle
+        html.find(".toggle-on-click").on("click", (event) => {
+            const elmt = $(event.currentTarget).data("toggle");
+            const tgt = html.find("." + elmt);
+            tgt.hasClass("toggle-active") ? tgt.removeClass("toggle-active") : tgt.addClass("toggle-active");
+        });
 
         // *** Everything below here is only needed if the sheet is editable ***
         if (!this.options.editable) {
@@ -199,13 +210,6 @@ export class BaseSheetL5r5e extends ActorSheet {
         // On focus on one numeric element, select all text for better experience
         html.find(".select-on-focus").on("focus", (event) => {
             event.target.select();
-        });
-
-        // Toggle
-        html.find(".toggle-on-click").on("click", (event) => {
-            const elmt = $(event.currentTarget).data("toggle");
-            const tgt = html.find("." + elmt);
-            tgt.hasClass("toggle-active") ? tgt.removeClass("toggle-active") : tgt.addClass("toggle-active");
         });
 
         // *** Items : add, edit, delete ***

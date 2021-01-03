@@ -27,7 +27,7 @@
 
             {{#ifCond item.data.advancement_type '==' 'skill' }}
                 <select name="data.skill" id="advancement_skill">
-                    <option value="">{{localize 'l5r5e.twenty_questions.choosef'}}</option>
+                    <option value="">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
                     {{#select item.data.skill}}
                         {{#each item.data.skillsList as |skills catId|}}
                         <optgroup label="{{localizeSkill catId 'title'}}">

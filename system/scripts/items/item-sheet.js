@@ -83,6 +83,13 @@ export class ItemSheetL5r5e extends ItemSheet {
     activateListeners(html) {
         super.activateListeners(html);
 
+        // Toggle
+        html.find(".toggle-on-click").on("click", (event) => {
+            const elmt = $(event.currentTarget).data("toggle");
+            const tgt = html.find("." + elmt);
+            tgt.hasClass("toggle-active") ? tgt.removeClass("toggle-active") : tgt.addClass("toggle-active");
+        });
+
         // Everything below here is only needed if the sheet is editable
         if (!this.options.editable) {
             return;
@@ -91,13 +98,6 @@ export class ItemSheetL5r5e extends ItemSheet {
         // On focus on one numeric element, select all text for better experience
         html.find(".select-on-focus").on("focus", (event) => {
             event.target.select();
-        });
-
-        // Toggle
-        html.find(".toggle-on-click").on("click", (event) => {
-            const elmt = $(event.currentTarget).data("toggle");
-            const tgt = html.find("." + elmt);
-            tgt.hasClass("toggle-active") ? tgt.removeClass("toggle-active") : tgt.addClass("toggle-active");
         });
 
         // Delete a property

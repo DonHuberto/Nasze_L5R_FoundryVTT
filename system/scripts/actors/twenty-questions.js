@@ -287,33 +287,56 @@ export class TwentyQuestions {
     }
 
     /**
-     * Return a array of errors, empty array if no errors founds
+     * Return summary and errors if any
      */
     validateForm() {
-        const errors = [];
+        const out = {
+            errors: [],
+            summary: {
+                rings: [],
+                skills: [],
+            },
+        };
 
         // Rings & Skills, 3pt max for each
-        const rings = this._checkRingsOrSkills("ringList", 2); // ring start at 1
+        const rings = this._summariesRingsOrSkills("ringList");
         for (const key in rings) {
-            errors.push(`${game.i18n.localize("l5r5e.rings." + key)} (${rings[key]})`);
+            // ring start at 1
+            rings[key] = rings[key] + 1;
+            const label = `${game.i18n.localize("l5r5e.rings." + key)} (${rings[key]})`;
+            if (rings[key] > 3) {
+                out.errors.push(label);
+            }
+            out.summary.rings.push(label);
         }
 
-        const skills = this._checkRingsOrSkills("skillList", 3); // skill start at 0
+        const skills = this._summariesRingsOrSkills("skillList");
         for (const key in skills) {
-            errors.push(
-                `${game.i18n.localize("l5r5e.skills." + CONFIG.l5r5e.skills.get(key) + "." + key)} (${skills[key]})`
-            );
+            // skill start at 0
+            const label = `${game.i18n.localize("l5r5e.skills." + CONFIG.l5r5e.skills.get(key) + "." + key)} (${
+                skills[key]
+            })`;
+            if (rings[key] > 3) {
+                out.errors.push(label);
+            }
+            out.summary.skills.push(label);
         }
 
-        return errors;
+        out.summary.rings.sort((a, b) => {
+            return a.localeCompare(b);
+        });
+        out.summary.skills.sort((a, b) => {
+            return a.localeCompare(b);
+        });
+
+        return out;
     }
 
     /**
-     * Return a list of exceeded ring/skill
+     * Return a list of ring/skill
      */
-    _checkRingsOrSkills(listName, max) {
+    _summariesRingsOrSkills(listName) {
         const store = {};
-        const exceed = {};
         TwentyQuestions[listName].forEach((formName) => {
             const id = getProperty(this.data, formName);
             if (!id || id === "none") {
@@ -323,10 +346,7 @@ export class TwentyQuestions {
                 store[id] = 0;
             }
             store[id] = store[id] + 1;
-            if (store[id] > max) {
-                exceed[id] = store[id];
-            }
         });
-        return exceed;
+        return store;
     }
 }

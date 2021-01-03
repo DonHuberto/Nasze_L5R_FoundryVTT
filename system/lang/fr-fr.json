@@ -300,82 +300,86 @@
             "title": "Le jeu des Vingt questions",
             "bt_abrev": "20Q",
             "bt_refresh": "Actualiser",
-            "intro": "Renseignez vos réponses au jeu des vingt questions sur ce formulaire et notez-y des éléments à utiliser ultérieurement !",
-            "section": "Livre de Règles de La Légende des Cinq Anneaux, Chapitre 2 : Création de personnage, p. 41-95",
-            "incring1": "Augmentation d'anneau (1)",
-            "incring2": "Augmentations d'anneau (2)",
-            "incskill1": "Augmentation de compétence (1)",
-            "incskill2": "Augmentations de compétences (2)",
-            "incskill3": "Augmentations de compétences (3-5)",
-            "choosem": "En choisir un",
-            "choosef": "En choisir une",
-            "money": "Fortune de départ en Koku :",
-            "glory": "Gloire :",
-            "school": "École :",
-            "status": "Statut",
-            "role": "Rôles",
-            "access": "Types de techniques accessibles",
-            "startech": "Techniques de départ (2-5)",
-            "schoolab": "Capacité d'école",
-            "outfit": "Équipement de départ",
-            "honor": "Honneur",
-            "choogiri": "Choisissez un giri:",
-            "chooninjo": "Choisissez un ninjō:",
+            "increase_ring1": "Augmentation d'anneau (1)",
+            "increase_ring2": "Augmentations d'anneau (2)",
+            "increase_skill1": "Augmentation de compétence (1)",
+            "increase_skill2": "Augmentations de compétences (2)",
+            "increase_skill3": "Augmentations de compétences (3-5)",
+            "choose_one_ring": "En choisir un",
+            "choose_one_skill": "En choisir une",
             "or": "OU",
-            "incglory": "Augmentation de la gloire (+5)",
-            "inchonor": "Augmentation de l'honneur (+10)",
-            "distinction": "Aptitude (1)",
-            "adversity": "Coup du sort (1)",
-            "passion": "Passion (1)",
-            "anxiety": "Défaillance (1)",
-            "disadvant": "Désavantage (1)",
-            "advant": "Avantage (1)",
-            "accoutr": "Vêtement ou objet distinctif",
-            "object": "Objet (Rareté inférieur ou égale à 7)",
-            "d10r1": "Résultat du 1er D10",
-            "d10r2": "Résultat du 2eme D10",
-            "generchar": "Générer le personnage",
-            "generchar_disclaimer": "Attention cela écrasera les données de votre personnage actuel !",
+            "part0": {
+                "intro": "Renseignez vos réponses au jeu des vingt questions sur ce formulaire et notez-y des éléments à utiliser ultérieurement !",
+                "section": "Livre de Règles de La Légende des Cinq Anneaux, Chapitre 2 : Création de personnage, p. 41-95"
+            },
             "part1": {
                 "title": "Partie I: Identité (clan et famille)",
                 "q1": "1. A quel clan appartient votre personnage ? (p. 41)",
-                "q2": "2. A quelle famille appartient votre personnage ? (p. 49)"
+                "status": "Statut",
+                "q2": "2. A quelle famille appartient votre personnage ? (p. 49)",
+                "money": "Fortune de départ en Koku :",
+                "glory": "Gloire :"
             },
             "part2": {
                 "title": "Partie II: Rôle et École",
                 "q3": "3. Quelle est l'École votre personnage, et quel rôle remplit-elle ? (p. 56)",
+                "school": "École :",
+                "role": "Rôles",
+                "honor": "Honneur",
+                "access": "Types de techniques accessibles",
+                "school_ability": "Capacité d'école",
+                "starting_techniques": "Techniques de départ (2-5)",
+                "outfit": "Équipement de départ",
                 "q4": "4. De quelle manière votre personnage se démarque-t-il au sein de son école ? (p. 88)"
             },
             "part3": {
                 "title": "Partie III: Honneur et Gloire",
                 "q5": "5. Qui est le seigneur de votre personnage et quel est le devoir de votre personnage envers lui ? (p. 88)",
+                "choose_giri": "Choisissez un giri:",
                 "q6": "6. Que désire votre personnage, et en quoi ce désir risque-t-il de l’empêcher d’accomplir son devoir ? (p. 90)",
+                "choose_ninjo": "Choisissez un ninjō:",
                 "q7": "7. Quelle relation votre personnage entretient-il avec son clan ? (p. 91)",
-                "q8": "8. Que pense votre personnage du bushido ? (p. 91)"
+                "increase_glory": "Augmentation de la gloire (+5)",
+                "q8": "8. Que pense votre personnage du bushido ? (p. 91)",
+                "increase_honor": "Augmentation de l'honneur (+10)"
             },
             "part4": {
                 "title": "Partie IV: Forces et Faiblesses",
                 "q9": "9. Quelle est à ce jour la plus belle réussite de votre personnage ? (p. 92)",
+                "distinction": "Aptitude (1)",
                 "q10": "10. Quel est le frein principal dans la vie de votre personnage ? (p. 92)",
+                "adversity": "Coup du sort (1)",
                 "q11": "11. Quelle activité apaise le plus votre personnage ? (p. 93)",
+                "passion": "Passion (1)",
                 "q12": "12. Quelle inquiétude, crainte ou manie tracasse le plus votre personnage ? (p. 93)",
-                "q13": "13. De qui votre personnage a-t-il le plus appris au cours de sa vie ? (p. 93)"
+                "anxiety": "Défaillance (1)",
+                "q13": "13. De qui votre personnage a-t-il le plus appris au cours de sa vie ? (p. 93)",
+                "disadvantage": "Désavantage (1)",
+                "advantage": "Avantage (1)"
             },
             "part5": {
                 "title": "Partie V: Personnalité et Comportement",
                 "q14": "14. Que remarque-t-on en premier chez votre personnage ? (p. 93)",
+                "accoutrement": "Vêtement ou objet distinctif",
                 "q15": "15. Comment votre personnage réagit-il aux situations stressantes ? (p. 94)",
-                "q16": "16. Quelles relations votre personnage entretient-il avec des familles, des organisations, des traditions et des clans différents ? (p. 94)"
+                "q16": "16. Quelles relations votre personnage entretient-il avec des familles, des organisations, des traditions et des clans différents ? (p. 94)",
+                "object": "Objet (Rareté inférieur ou égale à 7)"
             },
             "part6": {
                 "title": "Partie VI: Lignée et Famille",
                 "q17": "17. Comment les parents de votre personnage le décriraient-ils ? (p. 95)",
                 "q18": "18. En l’honneur de qui votre personnage a-t-il été prénommé ? (p. 95)",
+                "d10r1": "Résultat du 1er D10",
+                "d10r2": "Résultat du 2eme D10",
                 "q19": "19. Quel est le prénom de votre personnage ? (p. 95)"
             },
             "part7": {
                 "title": "Partie VII: Mort",
-                "q20": "20. Comment envisagez-vous la mort de votre personnage ? (p. 95)"
+                "q20": "20. Comment envisagez-vous la mort de votre personnage ? (p. 95)",
+                "summary": "Résumé",
+                "generchar": "Générer le personnage",
+                "generchar_disclaimer": "Attention cela écrasera les données de votre personnage actuel !",
+                "generchar_errors": "Corriger les erreurs pour poursuivre !"
             }
         }
     }
