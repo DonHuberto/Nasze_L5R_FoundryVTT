@@ -82,7 +82,9 @@ export class TwentyQuestionsDialog extends FormApplication {
      * @override
      */
     async _render(force = false, options = {}) {
-        await this._constructCache();
+        if (this.cache === null) {
+            await this._constructCache();
+        }
         return super._render(force, options);
     }
 
