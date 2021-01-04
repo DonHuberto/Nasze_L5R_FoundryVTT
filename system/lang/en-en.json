@@ -18,6 +18,7 @@
     "other.text.color": "Other Text Color",
     "def.chat.pref": "Default Chat Prefix",
     "spe.chat.pref": "If specified, this string will be prefixed to all chat messages that are not already commands (such as /emote.)",
+    "SETTINGS.None": "No option",
     "ACTOR.TypeCharacter": "Player Character",
     "ACTOR.TypeNpc": "Non-Player Character",
     "ITEM.TypeItem": "Item",

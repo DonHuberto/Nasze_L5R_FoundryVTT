@@ -1,5 +1,4 @@
 import { TwentyQuestions } from "./twenty-questions.js";
-import { RollL5r5e } from "../dice/roll.js";
 
 /**
  * L5R Twenty Questions form
@@ -366,7 +365,7 @@ export class TwentyQuestionsDialog extends FormApplication {
      * @private
      */
     async _rollHeritage(stepName, formula, flavor) {
-        const roll = new RollL5r5e(formula);
+        const roll = new game.l5r5e.RollL5r5e(formula);
         roll.actor = this._actor;
 
         await roll.roll();

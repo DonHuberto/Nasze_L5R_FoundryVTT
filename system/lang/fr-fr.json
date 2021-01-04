@@ -18,6 +18,7 @@
     "other.text.color": "Autre couleur de texte",
     "def.chat.pref": "Préfixe de Chat par défaut",
     "spe.chat.pref": "Si renseignée, la chaîne sera préfixée pour tous les messages de chat qui ne sont pas déjà des commandes (comme /emote.)",
+    "SETTINGS.None": "Aucune option",
     "ACTOR.TypeCharacter": "Personnage Joueur",
     "ACTOR.TypeNpc": "Personnage non Joueur",
     "ITEM.TypeItem": "Objet",

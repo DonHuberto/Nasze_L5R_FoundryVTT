@@ -61,6 +61,7 @@ Hooks.once("init", async function () {
     // Add some helper classes in game
     game.l5r5e = {
         HelpersL5r5e,
+        RollL5r5e,
         DicePickerDialog,
     };
 

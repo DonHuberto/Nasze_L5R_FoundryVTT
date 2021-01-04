@@ -1,5 +1,3 @@
-import { RollL5r5e } from "./roll.js";
-
 /**
  * L5R Dice picker dialog
  * @extends {FormApplication}
@@ -366,7 +364,7 @@ export class DicePickerDialog extends FormApplication {
         }
 
         // Let's roll !
-        const roll = await new RollL5r5e(formula.join("+"));
+        const roll = await new game.l5r5e.RollL5r5e(formula.join("+"));
 
         roll.actor = this._actor;
         roll.l5r5e.stance = this.object.ring.id;

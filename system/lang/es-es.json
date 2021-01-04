@@ -18,6 +18,7 @@
     "other.text.color": "Otro color de texto",
     "def.chat.pref": "Prefijo del chat por defecto",
     "spe.chat.pref": "Si está configurado, la cadena será prefijada para todos los mensajes de chat que no sean ya comandos (como /emote.)",
+    "SETTINGS.None": "No option",
     "ACTOR.TypeCharacter": "Player Character",
     "ACTOR.TypeNpc": "Non-Player Character",
     "ITEM.TypeItem": "Item",
