@@ -177,10 +177,9 @@ Hooks.once("init", async function () {
 /* ------------------------------------ */
 /* Setup system                         */
 /* ------------------------------------ */
-Hooks.once("setup", function () {
-    // Do anything after initialization but before
-    // ready
-});
+// Hooks.once("setup", function () {
+//     // Do anything after initialization but before ready
+// });
 
 /* ------------------------------------ */
 /* Actor Dialog                         */
@@ -203,6 +202,16 @@ Hooks.on("renderSidebarTab", (app, html, data) => {
     html.find(".chat-control-icon").click(async () => {
         new game.l5r5e.DicePickerDialog().render();
     });
+});
+
+/* ------------------------------------ */
+/* Chat Message                         */
+/* ------------------------------------ */
+Hooks.on("renderChatMessage", (message, html, data) => {
+    // Add a extra CSS class to roll
+    if (message.isRoll) {
+        html.addClass("roll");
+    }
 });
 
 /* ------------------------------------ */
@@ -300,5 +309,3 @@ Hooks.once("ready", async function () {
         liensExt.render(true);
     });
 });
-
-// Add any additional hooks if necessary

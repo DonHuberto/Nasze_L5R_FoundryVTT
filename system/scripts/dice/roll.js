@@ -252,7 +252,6 @@ export class RollL5r5e extends Roll {
         // Prepare chat data
         messageData = mergeObject(
             {
-                borderColor: game.user.color,
                 user: game.user._id,
                 type: template,
                 content: this._total,
