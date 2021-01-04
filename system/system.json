@@ -7,7 +7,7 @@
     "compatibleCoreVersion": "0.7.9",
     "author": "Team L5R",
     "background": "L5R-Header.webp",
-    "scripts": ["./scripts/ui/chatColor-l5r5e.js"],
+    "scripts": [],
     "esmodules": ["./scripts/main-l5r5e.js"],
     "styles": ["./styles/l5r5e.css"],
     "packs": [
