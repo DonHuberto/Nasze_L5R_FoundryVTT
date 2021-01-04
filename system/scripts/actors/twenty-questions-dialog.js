@@ -37,7 +37,7 @@ export class TwentyQuestionsDialog extends FormApplication {
             classes: ["l5r5e", "twenty-questions-dialog"],
             template: CONFIG.l5r5e.paths.templates + "actors/twenty-questions-dialog.html",
             title: game.i18n.localize("l5r5e.twenty_questions.title"),
-            width: 600,
+            width: 700,
             height: 800,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "part0" }],
             resizable: true,
@@ -237,7 +237,7 @@ export class TwentyQuestionsDialog extends FormApplication {
                         }
                     } else if (!this.object.data.step3.allowed_techniques?.[item.data.data.technique_type]) {
                         // Tech not allowed
-                        console.warn("This technique is not allowed for your character", item.data.data.technique_type);
+                        ui.notifications.info(game.i18n.localize("l5r5e.techniques.not_allowed"));
                         return;
                     }
                     break;

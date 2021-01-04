@@ -311,7 +311,7 @@
             "choose_one_skill": "Pick one",
             "or": "OR",
             "part0": {
-                "intro": "You can use this sheet to fill in your answers to The Game of Twenty Questions, and to take notes for later!",
+                "intro": "You can use this sheet to fill in your answers to The Game of Twenty Questions, and to take notes for later !",
                 "section": "Legend of the Five Rings Core Rulebook, Chapter 2 : Creating a character, p. 41-95"
             },
             "part1": {
@@ -319,13 +319,13 @@
                 "q1": "1. What clan does your character belong to ? (p. 41)",
                 "status": "Status",
                 "q2": "2. What family does your character belong to ? (p. 49)",
-                "money": "Starting wealth in Koku :",
-                "glory": "Glory :"
+                "money": "Starting wealth in Koku",
+                "glory": "Glory"
             },
             "part2": {
                 "title": "Part II: Role and School",
                 "q3": "3. What is your character’s school, and what roles does that school fall into ? (p. 56)",
-                "school": "School :",
+                "school": "School",
                 "role": "Roles",
                 "honor": "Honor",
                 "access": "Technique types available",
@@ -372,8 +372,9 @@
                 "q17": "17. How would your character’s parents describe them ? (p. 95)",
                 "q18": "18. Who was your character named to honor ? (p. 95)",
                 "d10r1": "D10 Result (1/2)",
+                "d10r1_choice": "1st D10 Effect",
                 "d10r2": "D10 Result (2/2)",
-                "d10r2_choice": "2nd D10 Effect:",
+                "d10r2_choice": "2nd D10 Effect",
                 "q19": "19. What is your character’s personal name ? (p. 95)"
             },
             "part7": {

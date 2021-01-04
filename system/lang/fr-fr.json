@@ -319,13 +319,13 @@
                 "q1": "1. A quel clan appartient votre personnage ? (p. 41)",
                 "status": "Statut",
                 "q2": "2. A quelle famille appartient votre personnage ? (p. 49)",
-                "money": "Fortune de départ en Koku :",
-                "glory": "Gloire :"
+                "money": "Fortune de départ en Koku",
+                "glory": "Gloire"
             },
             "part2": {
                 "title": "Partie II: Rôle et École",
                 "q3": "3. Quelle est l'École votre personnage, et quel rôle remplit-elle ? (p. 56)",
-                "school": "École :",
+                "school": "École",
                 "role": "Rôles",
                 "honor": "Honneur",
                 "access": "Types de techniques accessibles",
@@ -337,9 +337,9 @@
             "part3": {
                 "title": "Partie III: Honneur et Gloire",
                 "q5": "5. Qui est le seigneur de votre personnage et quel est le devoir de votre personnage envers lui ? (p. 88)",
-                "choose_giri": "Choisissez un giri:",
+                "choose_giri": "Choisissez un giri",
                 "q6": "6. Que désire votre personnage, et en quoi ce désir risque-t-il de l’empêcher d’accomplir son devoir ? (p. 90)",
-                "choose_ninjo": "Choisissez un ninjō:",
+                "choose_ninjo": "Choisissez un ninjō",
                 "q7": "7. Quelle relation votre personnage entretient-il avec son clan ? (p. 91)",
                 "increase_glory": "Augmentation de la gloire (+5)",
                 "q8": "8. Que pense votre personnage du bushido ? (p. 91)",
@@ -372,8 +372,9 @@
                 "q17": "17. Comment les parents de votre personnage le décriraient-ils ? (p. 95)",
                 "q18": "18. En l’honneur de qui votre personnage a-t-il été prénommé ? (p. 95)",
                 "d10r1": "Résultat du 1er D10",
+                "d10r1_choice": "Effet du 1er D10",
                 "d10r2": "Résultat du 2eme D10",
-                "d10r2_choice": "Effet du 2ème D10:",
+                "d10r2_choice": "Effet du 2ème D10",
                 "q19": "19. Quel est le prénom de votre personnage ? (p. 95)"
             },
             "part7": {

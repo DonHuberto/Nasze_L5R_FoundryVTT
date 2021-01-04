@@ -149,6 +149,9 @@ export class TwentyQuestions {
             heritage_1: null,
             heritage_2: null,
             heritage_item: [],
+            heritage_add_honor: 0,
+            heritage_add_glory: 0,
+            heritage_add_status: 0,
         },
         step19: {
             firstname: "",
@@ -213,6 +216,18 @@ export class TwentyQuestions {
         const actorDatas = actor.data.data;
         const formData = this.data;
 
+        const status = parseInt(formData.step1.social_status) + parseInt(formData.step18.heritage_add_status);
+
+        const glory =
+            parseInt(formData.step2.social_glory) +
+            parseInt(formData.step7.social_add_glory) +
+            parseInt(formData.step18.heritage_add_glory);
+
+        const honor =
+            parseInt(formData.step3.social_honor) +
+            parseInt(formData.step8.social_add_honor) +
+            parseInt(formData.step18.heritage_add_honor);
+
         // Update the actor
         actorDatas.zeni = Math.floor(formData.step2.wealth * 50);
         actorDatas.identity = {
@@ -225,9 +240,9 @@ export class TwentyQuestions {
 
         actorDatas.social = {
             ...actorDatas.social,
-            status: formData.step1.social_status,
-            glory: formData.step2.social_glory,
-            honor: formData.step3.social_honor,
+            status: status,
+            glory: glory,
+            honor: honor,
             giri: formData.step5.social_giri,
             ninjo: formData.step6.social_ninjo,
         };
@@ -298,6 +313,9 @@ export class TwentyQuestions {
             summary: {
                 rings: [],
                 skills: [],
+                status: 0,
+                glory: 0,
+                honor: 0,
             },
         };
 
@@ -331,6 +349,18 @@ export class TwentyQuestions {
         out.summary.skills.sort((a, b) => {
             return a.localeCompare(b);
         });
+
+        out.summary.status = parseInt(this.data.step1.social_status) + parseInt(this.data.step18.heritage_add_status);
+
+        out.summary.glory =
+            parseInt(this.data.step2.social_glory) +
+            parseInt(this.data.step7.social_add_glory) +
+            parseInt(this.data.step18.heritage_add_glory);
+
+        out.summary.honor =
+            parseInt(this.data.step3.social_honor) +
+            parseInt(this.data.step8.social_add_honor) +
+            parseInt(this.data.step18.heritage_add_honor);
 
         return out;
     }

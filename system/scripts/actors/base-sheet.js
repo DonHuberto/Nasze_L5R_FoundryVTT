@@ -123,16 +123,7 @@ export class BaseSheetL5r5e extends ActorSheet {
                                 e.type === "technique" && e.data.data.technique_type === item.data.data.technique_type
                         )
                     ) {
-                        new Dialog({
-                            title: game.i18n.localize("l5r5e.techniques.title"),
-                            content: game.i18n.localize("l5r5e.techniques.only_one"),
-                            buttons: {
-                                ok: {
-                                    label: game.i18n.localize("l5r5e.global.ok"),
-                                    icon: '<i class="fas fa-check"></i>',
-                                },
-                            },
-                        }).render(true);
+                        ui.notifications.info(game.i18n.localize("l5r5e.techniques.only_one"));
                         return;
                     }
 
@@ -143,16 +134,7 @@ export class BaseSheetL5r5e extends ActorSheet {
                 } else {
                     // Check if technique is allowed for this character
                     if (!game.user.isGM && !this.actor.data.data.techniques[item.data.data.technique_type]) {
-                        new Dialog({
-                            title: game.i18n.localize("l5r5e.techniques.title"),
-                            content: game.i18n.localize("l5r5e.techniques.not_allowed"),
-                            buttons: {
-                                ok: {
-                                    label: game.i18n.localize("l5r5e.global.ok"),
-                                    icon: '<i class="fas fa-check"></i>',
-                                },
-                            },
-                        }).render(true);
+                        ui.notifications.info(game.i18n.localize("l5r5e.techniques.not_allowed"));
                         return;
                     }
 

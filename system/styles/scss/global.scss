@@ -23,7 +23,7 @@ body {
     }
     &.twenty-questions-dialog {
         .window-content {
-            background: url(https://localhost:30000/systems/l5r5e/assets/imgs/bg20Q.webp) no-repeat;
+            background: url("../assets/imgs/bg20Q.webp") no-repeat;
             background-size: cover;
         }
     }

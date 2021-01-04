@@ -527,15 +527,33 @@
                                 </label>
                             </td>
                         </tr>
-                    </table>
-                    <table>
                         <tr>
-                            <td colspan="3">
+                            <td>
+                                {{localize 'l5r5e.twenty_questions.part6.d10r1_choice'}}
+                            </td>
+                            <td>
                                 {{localize 'l5r5e.twenty_questions.part6.d10r2_choice'}}
                             </td>
                         </tr>
                         <tr>
-                            <td class="third">
+                            <td>
+                                <label>
+                                    {{localize 'l5r5e.twenty_questions.part1.status'}}
+                                    <input type="number" name="step18.heritage_add_status" min="-100" max="100" value="{{data.step18.heritage_add_status}}"
+                                           data-dtype="Number" placeholder="0">
+                                </label>
+                                <label>
+                                    {{localize 'l5r5e.twenty_questions.part1.glory'}}
+                                    <input type="number" name="step18.heritage_add_glory" min="-100" max="100" value="{{data.step18.heritage_add_glory}}"
+                                           data-dtype="Number" placeholder="0">
+                                </label>
+                                <label>
+                                    {{localize 'l5r5e.twenty_questions.part2.honor'}}
+                                    <input type="number" name="step18.heritage_add_honor" min="-100" max="100" value="{{data.step18.heritage_add_honor}}"
+                                           data-dtype="Number" placeholder="0">
+                                </label>
+                            </td>
+                            <td>
                                 <label>
                                     {{localize 'l5r5e.twenty_questions.increase_skill1'}}
                                     <select name="step18.skill" class="skill-select">
@@ -551,11 +569,7 @@
                                         {{/select}}
                                     </select>
                                 </label>
-                            </td>
-                            <td class="or">
-                                {{localize 'l5r5e.twenty_questions.or'}}
-                            </td>
-                            <td class="">
+
                                 {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step18.heritage_item stepName='step18.heritage_item' itemType='items' hideDndAt=1 }}
                             </td>
                         </tr>
@@ -597,14 +611,14 @@
                         </td>
                         <td>
                             {{localize 'l5r5e.twenty_questions.part1.status'}}
-                            {{data.step1.social_status}}
+                            {{summary.summary.status}}
 
                             {{localize 'l5r5e.twenty_questions.part1.glory'}}
-                            {{data.step2.social_glory}} {{#if data.step7.social_add_glory}} + {{data.step7.social_add_glory}}{{/if}}
-                            
+                            {{summary.summary.glory}}
+
                             {{localize 'l5r5e.twenty_questions.part2.honor'}}
-                            {{data.step3.social_honor}} {{#if data.step8.social_add_honor}} + {{data.step8.social_add_honor}}{{/if}}
-                            
+                            {{summary.summary.honor}}
+
                             {{localize 'l5r5e.twenty_questions.part1.money'}}
                             {{data.step2.wealth}}
                         </td>
