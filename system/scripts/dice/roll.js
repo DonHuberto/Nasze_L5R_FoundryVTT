@@ -200,10 +200,11 @@ export class RollL5r5e extends Roll {
 
         // Define chat data
         const chatData = {
+            // borderColor: game.user.color, // don't work :/
             formula: isPrivate ? "???" : this._formula,
             flavor: isPrivate ? null : chatOptions.flavor,
             user: chatOptions.user,
-            isPublicRoll: !chatOptions.isPrivate,
+            isPublicRoll: !isPrivate,
             tooltip: isPrivate ? "" : await this.getTooltip({ from: "render" }),
             total: isPrivate ? "?" : Math.round(this._total * 100) / 100,
             data: this.data,
@@ -251,6 +252,7 @@ export class RollL5r5e extends Roll {
         // Prepare chat data
         messageData = mergeObject(
             {
+                borderColor: game.user.color,
                 user: game.user._id,
                 type: template,
                 content: this._total,

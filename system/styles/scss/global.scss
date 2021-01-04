@@ -8,6 +8,29 @@ body {
     }
 }
 
+/* Chat */
+#chat-log .message.ic {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 0, 0, 0.75);
+}
+#chat-log .message.ic .message-header {
+    color: rgba(0, 0, 0, 0.75);
+}
+#chat-log .message.emote {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 0, 0, 0.75);
+}
+#chat-log .message.emote .message-header {
+    color: rgba(0, 0, 0, 0.75);
+}
+#chat-log .message {
+    background-color: rgba(195, 165, 130, 0.5);
+    color: rgba(0, 0, 0, 0.75);
+}
+#chat-log .message .message-header {
+    color: rgba(0, 0, 0, 0.75);
+}
+
 /* Windows */
 .window-app {
     .window-content {
