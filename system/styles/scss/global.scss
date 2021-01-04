@@ -8,29 +8,6 @@ body {
     }
 }
 
-/* Chat */
-#chat-log .message.ic {
-    background-color: rgba(255, 255, 255, 0.5);
-    color: rgba(0, 0, 0, 0.75);
-}
-#chat-log .message.ic .message-header {
-    color: rgba(0, 0, 0, 0.75);
-}
-#chat-log .message.emote {
-    background-color: rgba(255, 255, 255, 0.5);
-    color: rgba(0, 0, 0, 0.75);
-}
-#chat-log .message.emote .message-header {
-    color: rgba(0, 0, 0, 0.75);
-}
-#chat-log .message {
-    background-color: rgba(195, 165, 130, 0.5);
-    color: rgba(0, 0, 0, 0.75);
-}
-#chat-log .message .message-header {
-    color: rgba(0, 0, 0, 0.75);
-}
-
 /* Windows */
 .window-app {
     .window-content {
@@ -44,6 +21,17 @@ body {
         z-index: 2;
         background: $black-light;
     }
+    &.twenty-questions-dialog {
+        .window-content {
+            background: url(https://localhost:30000/systems/l5r5e/assets/imgs/bg20Q.webp) no-repeat;
+            background-size: cover;
+        }
+    }
+}
+
+#l5r5e-twenty-questions-dialog {
+    min-height: 800px;
+    min-width: 600px;
 }
 
 /* Focus, Active */
@@ -67,6 +55,12 @@ input[type="time"]:focus {
 #controls .scene-control:hover,
 #controls .control-tool:hover {
     box-shadow: 0 0 10px $red;
+}
+
+#sidebar #settings button,
+#sidebar .sidebar-tab .action-buttons button {
+    height: 2rem;
+    line-height: initial;
 }
 
 button:hover {

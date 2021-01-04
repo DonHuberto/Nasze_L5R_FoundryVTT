@@ -164,7 +164,7 @@ button {
             );
             background-origin: padding-box;
             border-image: url("../assets/ui/macro-button.webp") 10 repeat;
-            border-image-width: 0.25rem;
+            border-image-width: 0.5rem;
             border-image-outset: 0px;
             &:hover {
                 background: linear-gradient(
@@ -175,28 +175,105 @@ button {
             }
         }
     }
+    // Settings
+    #settings button {
+        cursor: default;
+        color: $white;
+        background: linear-gradient(
+            $l5r5e-linear-gradient-third,
+            $l5r5e-linear-gradient-third-dark,
+            $l5r5e-linear-gradient-third
+        );
+        background-origin: padding-box;
+        border-image: url("../assets/ui/macro-button.webp") 10 repeat;
+        border-image-width: 0.5rem;
+        border-image-outset: 0px;
+        &:hover {
+            background: linear-gradient(
+                $l5r5e-linear-gradient-first-dark,
+                $l5r5e-linear-gradient-first,
+                $l5r5e-linear-gradient-first-dark
+            );
+        }
+    }
+
+    // Chat
+    #chat-form textarea,
+    .chat-message,
+    .blind,
+    .whisper,
+    #chat-controls .roll-type-select,
+    .header-search input {
+        background: transparent url("../assets/ui/chat-texture.webp") no-repeat;
+    }
+    .header-search input[name="search"] {
+        background-color: $l5r5e-chat-color-mid;
+        color: $l5r5e-black;
+        &:focus {
+            background-color: $l5r5e-chat-color;
+        }
+    }
+
+    // Chat-Message
+    .chat-message {
+        .message-header {
+            line-height: 2rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            margin-bottom: 0.25rem;
+            border-radius: 0;
+        }
+    }
+
     #chat-log {
         margin: 0 0 0.5rem;
         .message.whisper,
-        .message.blind {
+        .message.blind,
+        .message.roll {
             position: relative;
             font-style: italic;
             .message-header {
                 .message-metadata:before {
-                    content: " (Private Roll) ";
                     position: absolute;
                     top: -0.5rem;
                     right: 0.25rem;
                     font-size: 0.5rem;
-                    color: rgba(255, 255, 255, 0.5);
+                    color: $l5r5e-red;
                     height: 0;
+                }
+            }
+        }
+        .message.whisper {
+            .message-header {
+                .message-metadata:before {
+                    content: "(Private)";
+                }
+            }
+            &.roll {
+                .message-header {
+                    .message-metadata:before {
+                        content: "(Private Roll)";
+                    }
                 }
             }
         }
         .message.blind {
             .message-header {
                 .message-metadata:before {
-                    content: " (Blind Roll) ";
+                    content: "(Blind)";
+                }
+            }
+            &.roll {
+                .message-header {
+                    .message-metadata:before {
+                        content: "(Blind Roll)";
+                    }
+                }
+            }
+        }
+        .message.roll {
+            .message-header {
+                .message-metadata:before {
+                    content: "(Roll)";
                 }
             }
         }
@@ -204,6 +281,22 @@ button {
     .message-sender {
         color: $l5r5e-red;
         text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
+    }
+    .message {
+        background-color: $l5r5e-chat-color-light;
+        color: $l5r5e-black;
+        &.roll {
+            background-color: $l5r5e-chat-color-mid;
+        }
+        &.blind {
+            background-color: $l5r5e-chat-color-light;
+        }
+        &.whisper {
+            background-color: $l5r5e-white;
+            &.roll {
+                background-color: $l5r5e-chat-color;
+            }
+        }
     }
 }
 
@@ -428,27 +521,6 @@ button {
     }
 }
 
-// Chat-form
-#chat-form textarea,
-.chat-message,
-#chat-controls .roll-type-select,
-.sidebar-tab .directory-header .header-search input {
-    background: transparent url("../assets/ui/chat-texture.webp") no-repeat;
-}
-.sidebar-tab .directory-header .header-search input {
-    color: $white;
-}
-
-// Chat-Message
-.chat-message {
-    .message-header {
-        line-height: 2rem;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        margin-bottom: 0.25rem;
-        border-radius: 0;
-    }
-}
-
 // Playlist
 #playlists {
     .playlist {
@@ -462,34 +534,12 @@ button {
     }
 }
 
-// Settings
-#settings button {
-    cursor: default;
-    color: $white;
-    background: linear-gradient(
-        $l5r5e-linear-gradient-third,
-        $l5r5e-linear-gradient-third-dark,
-        $l5r5e-linear-gradient-third
-    );
-    background-origin: padding-box;
-    border-image: url("../assets/ui/macro-button.webp") 10 repeat;
-    border-image-width: 0.25rem;
-    border-image-outset: 0px;
-    &:hover {
-        background: linear-gradient(
-            $l5r5e-linear-gradient-first-dark,
-            $l5r5e-linear-gradient-first,
-            $l5r5e-linear-gradient-first-dark
-        );
-    }
-}
-
 // Combat
 #combat {
     #combat-round {
         .encounters {
             h3 {
-                font-size: 0.75rem;
+                font-size: 0.85rem;
             }
         }
     }

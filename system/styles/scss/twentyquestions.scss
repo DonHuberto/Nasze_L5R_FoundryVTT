@@ -1,47 +1,95 @@
 &.twenty-questions-dialog {
-    table {
-        width: 100%;
+    .sheet-tabs {
+        float: left;
+        flex-direction: column;
+        width: 9%;
+        height: 100%;
+        margin: 7% 4.75%;
+        padding: 0;
+        border-bottom: 0 none;
+        --notchSize: 0.5rem;
+        clip-path: polygon(
+            0% var(--notchSize),
+            var(--notchSize) 0%,
+            calc(100% - var(--notchSize)) 0%,
+            100% var(--notchSize),
+            100% calc(100% - var(--notchSize)),
+            calc(100% - var(--notchSize)) 100%,
+            var(--notchSize) 100%,
+            0% calc(100% - var(--notchSize))
+        );
     }
-    table tr td {
-        vertical-align: top;
+    h3 {
+        font-size: 1rem;
+        color: $l5r5e-label;
     }
-    .third {
-        width: 230px;
+    nav {
+        .item {
+            &.active,
+            &:hover {
+                clip-path: none;
+            }
+        }
     }
-    .fifty {
-        width: 49%;
-    }
-    .or {
-        width: 100px;
-    }
-    .dropbox {
-        min-height: 75px;
-    }
-    .errors {
-        position: sticky;
-        top: 0px;
-        left: 0px;
-        z-index: 999;
-        display: block;
-        width: 100%;
-        background-color: $l5r5e-red;
-        border: 1px solid $dark-red;
-        border-radius: 1rem;
-        text-align: center;
-    }
-    .checklist label {
-        font-size: 0.85rem;
-        flex: 0 0 auto;
-        margin: 0 0.25rem 0.25rem;
-        padding: 0 0.5rem;
-        color: #5a6e5a;
-        background: rgba(255, 255, 255, 0.5);
-        border: 1px solid #5a6e5a;
-        border-radius: 1rem;
-    }
-    .checklist input {
-        margin: 0.25rem 0 0 0;
-        height: 0.65rem;
-        width: 0.65rem;
+    article {
+        float: left;
+        width: 80%;
+        label {
+            &.full {
+                display: block;
+                width: 100%;
+                line-height: 2rem;
+                input {
+                    display: inline;
+                    width: 70%;
+                    float: right;
+                }
+            }
+        }
+        table {
+            width: 100%;
+        }
+        table tr td {
+            vertical-align: top;
+        }
+        .third {
+            width: 230px;
+        }
+        .fifty {
+            width: 49%;
+        }
+        .or {
+            width: 100px;
+        }
+        .dropbox {
+            min-height: 75px;
+        }
+        .errors {
+            position: sticky;
+            top: 0px;
+            left: 0px;
+            z-index: 999;
+            display: block;
+            width: 100%;
+            background-color: $l5r5e-red;
+            border: 1px solid $dark-red;
+            border-radius: 1rem;
+            text-align: center;
+        }
+        .checklist label {
+            font-size: 0.85rem;
+            flex: 0 0 auto;
+            margin: 0 0.25rem 0.25rem;
+            padding: 0 0.5rem;
+            color: #5a6e5a;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid #5a6e5a;
+            border-radius: 1rem;
+        }
+        .checklist input {
+            margin: 0.25rem 0 0 0;
+            height: 0.65rem;
+            width: 0.65rem;
+        }
     }
 }
