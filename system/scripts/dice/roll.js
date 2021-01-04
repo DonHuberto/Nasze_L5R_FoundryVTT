@@ -26,6 +26,7 @@ export class RollL5r5e extends Roll {
                 explosive: 0,
                 opportunity: 0,
                 strife: 0,
+                voidPointUsed: false,
             },
         };
 

@@ -32,6 +32,9 @@
                 {{else}}
                     {{localize 'l5r5e.chatdices.difficulty'}} {{l5r5e.summary.difficulty}}
                 {{/if}}
+                {{#if l5r5e.summary.voidPointUsed}}
+                    <br><i class="i_void" title="{{localize 'l5r5e.chatdices.void_point_used'}}"></i>
+                {{/if}}
             </span>
         </header>
     </div>

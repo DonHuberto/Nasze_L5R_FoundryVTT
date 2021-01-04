@@ -160,6 +160,7 @@ export class TwentyQuestionsDialog extends FormApplication {
 
         // Heritage Roll (step 18)
         html.find(".inline-roll").on("click", (event) => {
+            event.preventDefault();
             event.stopPropagation();
             const diceRoll = $(event.currentTarget);
             const stepKey = diceRoll.data("step");

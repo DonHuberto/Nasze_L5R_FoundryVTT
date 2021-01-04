@@ -11,26 +11,25 @@ export class DicePickerDialog extends FormApplication {
     _actor = null;
 
     /**
-     * Preset ring (attribute / approach)
+     * Payload Object
      */
-    _ringId = null;
-
-    /**
-     * Preset Skill (and data from actor if actor provided)
-     */
-    _skillData = {
-        id: "",
-        value: 0,
-        cat: "",
-        name: "",
-    };
-
-    /**
-     * Difficulty
-     */
-    _difficulty = {
-        difficulty: 2,
-        isHidden: false,
+    object = {
+        ring: {
+            id: null,
+            value: 1,
+        },
+        skill: {
+            id: "",
+            value: 0,
+            default_value: 0,
+            cat: "",
+            name: "",
+        },
+        difficulty: {
+            value: 2,
+            hidden: false,
+        },
+        useVoidPoint: false,
     };
 
     /**
@@ -133,7 +132,13 @@ export class DicePickerDialog extends FormApplication {
      * @param actor
      */
     set actor(actor) {
-        this._actor = actor instanceof Actor && actor.owner ? actor : null;
+        if (!actor || !(actor instanceof Actor) || !actor.owner) {
+            return;
+        }
+        this._actor = actor;
+        if (this.object.ring.id === null) {
+            this.ringId = this._actor.data.data.stance;
+        }
     }
 
     /**
@@ -141,7 +146,7 @@ export class DicePickerDialog extends FormApplication {
      * @param ringId
      */
     set ringId(ringId) {
-        this._ringId = CONFIG.l5r5e.stances.includes(ringId) || null;
+        this.object.ring.id = CONFIG.l5r5e.stances.includes(ringId) ? ringId : "void";
     }
 
     /**
@@ -153,7 +158,7 @@ export class DicePickerDialog extends FormApplication {
             return;
         }
 
-        this._skillData = {
+        this.object.skill = {
             id: skillId.toLowerCase().trim(),
             value: 0,
             cat: "",
@@ -172,11 +177,11 @@ export class DicePickerDialog extends FormApplication {
             return;
         }
 
-        this._skillData = {
-            ...this._skillData,
+        this.object.skill = {
+            ...this.object.skill,
             value: 0,
             cat: skillCatId.toLowerCase().trim(),
-            name: game.i18n.localize("l5r5e.skills." + skillCatId + "." + (this._skillData.id || "title")),
+            name: game.i18n.localize("l5r5e.skills." + skillCatId + "." + (this.object.skill.id || "title")),
         };
 
         if (!this._actor) {
@@ -184,12 +189,14 @@ export class DicePickerDialog extends FormApplication {
         }
         switch (this._actor.data.type) {
             case "character":
-                this._skillData.value = this._actor.data.data.skills[skillCatId]?.[this._skillData.id] || 0;
+                this.object.skill.value = this._actor.data.data.skills[skillCatId]?.[this.object.skill.id] || 0;
+                this.object.skill.default_value = this.object.skill.value;
                 break;
 
             case "npc":
                 // Skill value is in categories for npc
-                this._skillData.value = this._actor.data.data.skills[skillCatId] || 0;
+                this.object.skill.value = this._actor.data.data.skills[skillCatId] || 0;
+                this.object.skill.default_value = this.object.skill.value;
                 break;
         }
     }
@@ -201,9 +208,9 @@ export class DicePickerDialog extends FormApplication {
     set difficulty(difficulty) {
         difficulty = parseInt(difficulty) || null;
         if (difficulty < 0) {
-            difficulty = null;
+            difficulty = 2;
         }
-        this._difficulty.difficulty = difficulty;
+        this.object.difficulty.value = difficulty;
     }
 
     /**
@@ -211,7 +218,7 @@ export class DicePickerDialog extends FormApplication {
      * @param isHidden
      */
     set difficultyHidden(isHidden) {
-        this._difficulty.isHidden = !!isHidden;
+        this.object.difficulty.hidden = !!isHidden;
     }
 
     /**
@@ -231,12 +238,11 @@ export class DicePickerDialog extends FormApplication {
         return {
             ...super.getData(options),
             ringsList: game.l5r5e.HelpersL5r5e.getRingsList(this._actor),
-            dicesList: [0, 1, 2, 3, 4, 5, 6],
-            skillData: this._skillData,
+            data: this.object,
             actor: this._actor,
             actorIsPc: !this._actor || this._actor.data?.type === "character",
-            difficulty: this._difficulty,
-            canUseVoidPoint: !this._actor || this._actor.data.data.void_points.value > 0,
+            canUseVoidPoint:
+                this.object.difficulty.hidden || !this._actor || this._actor.data.data.void_points.value > 0,
         };
     }
 
@@ -265,88 +271,55 @@ export class DicePickerDialog extends FormApplication {
     activateListeners(html) {
         super.activateListeners(html);
 
-        // On change approaches
+        // Select Ring
         html.find('input[name="approach"]').on("click", async (event) => {
-            $("#ring_value").val(event.target.value);
-            $(".ring-selection").removeClass("ring-selected");
-            $("." + event.target.dataset.ringid).addClass("ring-selected");
-            $("#stance_label").html(
-                game.i18n.localize("l5r5e.skills." + this._skillData.cat + "." + event.target.dataset.ringid)
-            );
+            this.object.ring.id = event.target.dataset.ringid;
+            this.object.ring.value = event.target.value;
+            this.render(false);
         });
 
-        // ****************** DIFF ******************
-        // Difficulty - Add button
-        html.find("#diff_add").on("click", async (event) => {
+        // Quantity change for difficulty, ring and skill
+        html.find(".quantity").on("click", async (event) => {
             event.preventDefault();
             event.stopPropagation();
-            this._difficulty.difficulty = this._quantityChange("#diff_value", 1);
+            const data = $(event.currentTarget);
+            this._quantityChange(data.data("item"), data.data("value"));
+            this.render(false);
         });
 
-        // Difficulty - Subtract button
-        html.find("#diff_sub").on("click", async (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            this._difficulty.difficulty = this._quantityChange("#diff_value", -1);
-        });
-
-        // Difficulty - hidden checkbox
-        html.find("#diff_hidden").on("click", async (event) => {
-            this._difficulty.isHidden = !this._difficulty.isHidden;
-            $("#difficulty_picker").toggle();
-        });
-
-        // ****************** RING ******************
-        // Ring - Add button
-        html.find("#ring_add").on("click", async (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            this._quantityChange("#ring_value", 1);
-        });
-
-        // Ring - Subtract button
-        html.find("#ring_sub").on("click", async (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            this._quantityChange("#ring_value", -1);
-        });
-
-        // Ring - Spend a Void point checkbox
-        html.find("#use_void_point").on("click", async (event) => {
-            this._quantityChange("#ring_value", event.target.checked ? 1 : -1);
-            html.find("#use_void_point").attr("checked", event.target.checked);
-        });
-
-        // ****************** SKILL ******************
-        // Skill - Add button
-        html.find("#skill_add").on("click", async (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            this._quantityChange("#skill_value", 1);
-        });
-
-        // Skill - Subtract button
-        html.find("#skill_sub").on("click", async (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            this._quantityChange("#skill_value", -1);
-        });
-
-        // Skill - Default Dice div
+        // Click on the Default Skill Dice
         html.find("#skill_default_value").on("click", async (event) => {
             event.preventDefault();
             event.stopPropagation();
-            $("#skill_value").val(this._skillData.value);
+            this.object.skill.value = this.object.skill.default_value;
+            this.render(false);
         });
 
-        // ****************** INIT ******************
-        // Select current actor's stance
-        html.find(`.approach_${this._actor ? this._actor.data.data.stance : "void"}`)
-            .first()
-            .trigger("click");
+        // Spend a Void point checkbox
+        html.find("#use_void_point").on("click", async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            this.object.useVoidPoint = event.target.checked;
+            this._quantityChange("ring", this.object.useVoidPoint ? 1 : -1);
+            this.render(false);
+        });
 
-        // Set skill point
-        html.find("#skill_value").val(this._skillData.value);
+        // Difficulty Hidden
+        html.find("#diff_hidden").on("click", async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            this.object.difficulty.hidden = !this.object.difficulty.hidden;
+            if (
+                this.object.useVoidPoint &&
+                !this.object.difficulty.hidden &&
+                !!this._actor &&
+                this._actor.data.data.void_points.value < 1
+            ) {
+                this.object.useVoidPoint = false;
+                this._quantityChange("ring", -1);
+            }
+            this.render(false);
+        });
     }
 
     /**
@@ -357,20 +330,16 @@ export class DicePickerDialog extends FormApplication {
      * @override
      */
     async _updateObject(event, formData) {
-        const approach = $(".ring-selection.ring-selected > input").data("ringid") || null;
-        const ring = formData.ring || null;
-        const skill = formData.skill || null;
-
-        if (!approach || !skill || !ring || (skill < 1 && ring < 1)) {
+        if (this.object.skill.value < 1 && this.object.ring.value < 1) {
             return false;
         }
 
         let formula = [];
-        if (ring > 0) {
-            formula.push(`${ring}dr`);
+        if (this.object.ring.value > 0) {
+            formula.push(`${this.object.ring.value}dr`);
         }
-        if (skill > 0) {
-            formula.push(`${skill}ds`);
+        if (this.object.skill.value > 0) {
+            formula.push(`${this.object.skill.value}ds`);
         }
 
         // Update Actor
@@ -381,12 +350,12 @@ export class DicePickerDialog extends FormApplication {
             // actorData.stance = approach;
 
             // If hidden add 1 void pt
-            if (this._difficulty.isHidden) {
+            if (this.object.difficulty.hidden) {
                 actorData.void_points.value = Math.min(actorData.void_points.value + 1, actorData.void_points.max);
             }
 
             // If Void point is used, minus the actor
-            if (formData.use_void_point) {
+            if (this.object.useVoidPoint) {
                 actorData.void_points.value = Math.max(actorData.void_points.value - 1, 0);
             }
 
@@ -400,11 +369,12 @@ export class DicePickerDialog extends FormApplication {
         const roll = await new RollL5r5e(formula.join("+"));
 
         roll.actor = this._actor;
-        roll.l5r5e.stance = approach;
-        roll.l5r5e.skillId = this._skillData.id;
-        roll.l5r5e.skillCatId = this._skillData.cat;
-        roll.l5r5e.summary.difficulty = this._difficulty.difficulty;
-        roll.l5r5e.summary.difficultyHidden = this._difficulty.isHidden;
+        roll.l5r5e.stance = this.object.ring.id;
+        roll.l5r5e.skillId = this.object.skill.id;
+        roll.l5r5e.skillCatId = this.object.skill.cat;
+        roll.l5r5e.summary.difficulty = this.object.difficulty.value;
+        roll.l5r5e.summary.difficultyHidden = this.object.difficulty.hidden;
+        roll.l5r5e.summary.voidPointUsed = this.object.useVoidPoint;
 
         await roll.roll();
         await roll.toMessage();
@@ -415,11 +385,8 @@ export class DicePickerDialog extends FormApplication {
      * Change quantity between 0-9 on the element, and return the new value
      * @private
      */
-    _quantityChange(elmtSelector, add) {
-        const elmt = $(elmtSelector);
-        const value = Math.max(Math.min(parseInt(elmt.val()) + add, 9), 0);
-        elmt.val(value);
-        return value;
+    _quantityChange(element, add) {
+        this.object[element].value = Math.max(Math.min(parseInt(this.object[element].value) + add, 9), 0);
     }
 
     /**
@@ -435,13 +402,13 @@ export class DicePickerDialog extends FormApplication {
             name = this._actor.name;
         }
 
-        if (this._skillData.id) {
-            params.skillId = this._skillData.id;
-        } else if (this._skillData.cat) {
-            params.skillCatId = this._skillData.cat;
+        if (this.object.skill.id) {
+            params.skillId = this.object.skill.id;
+        } else if (this.object.skill.cat) {
+            params.skillCatId = this.object.skill.cat;
         }
-        if (this._skillData.name) {
-            name = name + " - " + this._skillData.name;
+        if (this.object.skill.name) {
+            name = name + " - " + this.object.skill.name;
         }
 
         let command = `new game.l5r5e.DicePickerDialog(${JSON.stringify(params)}).render(true);`;

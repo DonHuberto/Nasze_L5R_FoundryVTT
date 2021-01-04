@@ -1,6 +1,6 @@
 <form class="l5r5e dice-picker-dialog" autocomplete="off">
     <table>
-        <!-- First line-->
+        {{!-- First line--}}
         <tr>
             <td class="profil center">
                 <img class="profile-img"
@@ -15,7 +15,7 @@
                 <ul class="rings">
                     {{#each ringsList}}
                     <li id="{{this.id}}">
-                        <label class="attribute-label {{this.id}} centered-input ring-selection pointer-choice">
+                        <label class="attribute-label {{this.id}} centered-input ring-selection pointer-choice {{#ifCond ../data.ring.id '==' this.id}}ring-selected{{/ifCond}}">
                             <i class="i_{{this.id}}"></i>
                             <strong>{{this.label}}</strong>
                             <input class="centered-input approach_{{this.id}}"
@@ -31,24 +31,24 @@
                 </ul>
             </td>
             <td class="skill">
-                {{#if skillData.name}}
+                {{#if data.skill.name}}
                 <div>
-                    <label>{{localizeSkill skillData.cat 'title'}}</label>
+                    <label>{{localizeSkill data.skill.cat 'title'}}</label>
                 </div>
 
                 {{#if actorIsPc}}
                 <div>
-                    <label>{{skillData.name}}</label>
+                    <label>{{data.skill.name}}</label>
                 </div>
                 {{/if}}
 
                 <div>
-                    <label id="stance_label">unknown</label>
+                    <label id="stance_label">{{localizeSkill data.skill.cat data.ring.id}}</label>
                 </div>
                 <div id="skill_default_value" class="dice-container pointer-choice">
                     <img src="systems/l5r5e/assets/dices/default/skill_blank.svg" alt="1">
                     <div class="dice-value">
-                        <span class="dice-skill" type="text" name="skill_{{skillData.name}}">{{skillData.value}}</span>
+                        <span class="dice-skill" type="text" name="skill_{{data.skill.name}}">{{data.skill.default_value}}</span>
                     </div>
                 </div>
                 {{else}}
@@ -63,7 +63,7 @@
             </td>
         </tr>
 
-        <!-- Second line-->
+        {{!-- Second line--}}
         <tr>
             <td>
                 {{localize "l5r5e.dicepicker.difficulty_title"}}
@@ -76,80 +76,82 @@
             </td>
         </tr>
 
-        <!-- Third line-->
+        {{!-- Third line--}}
         <tr>
             <td>
+                {{^if data.difficulty.hidden}}
                 <div id="difficulty_picker">
                     <div class="third">
-                        <i id="diff_sub" class="quantity pointer-choice fa fa-minus-square"></i>
+                        <i class="quantity pointer-choice fa fa-minus-square" data-item="difficulty" data-value="-1"></i>
                     </div>
 
                     <div class="third">
                         <div class="dice-container">
                             <img src="systems/l5r5e/assets/dices/default/3d/blank.png" alt="1">
                             <div class="dice-value">
-                                <input id="diff_value" class="input-dice" type="text" name="diff" value="{{difficulty.difficulty}}" readonly="readonly">
+                                <input class="input-dice" type="text" name="difficulty.value" value="{{data.difficulty.value}}" readonly="readonly">
                             </div>
                         </div>
                     </div>
 
                     <div class="third">
-                        <i id="diff_add" class="quantity pointer-choice fa fa-plus-square"></i>
+                        <i class="quantity pointer-choice fa fa-plus-square" data-item="difficulty" data-value="1"></i>
                     </div>
                 </div>
+                {{/if}}
             </td>
 
             <td>
                 <div class="third">
-                    <i id="ring_sub" class="quantity pointer-choice fa fa-minus-square"></i>
+                    <i class="quantity pointer-choice fa fa-minus-square" data-item="ring" data-value="-1"></i>
                 </div>
 
                 <div class="third">
                     <div class="dice-container">
                         <img src="systems/l5r5e/assets/dices/default/ring_blank.svg" alt="1">
                         <div class="dice-value">
-                            <input id="ring_value" class="input-dice input-dice-ring" type="text" name="ring" value="0" readonly="readonly">
+                            <input class="input-dice input-dice-ring" type="text" name="ring.value" value="{{data.ring.value}}" readonly="readonly">
                         </div>
                     </div>
                 </div>
 
                 <div class="third">
-                    <i id="ring_add" class="quantity pointer-choice fa fa-plus-square"></i>
+                    <i class="quantity pointer-choice fa fa-plus-square" data-item="ring" data-value="1"></i>
                 </div>
             </td>
 
             <td>
                 <div class="third">
-                    <i id="skill_sub" class="quantity pointer-choice fa fa-minus-square"></i>
+                    <i class="quantity pointer-choice fa fa-minus-square" data-item="skill" data-value="-1"></i>
                 </div>
 
                 <div class="third">
                     <div class="dice-container">
                         <img src="systems/l5r5e/assets/dices/default/skill_blank.svg" alt="1">
                         <div class="dice-value">
-                            <input id="skill_value" class="input-dice input-dice-skill" type="text" name="skill" value="{{skillData.value}}" readonly="readonly">
+                            <input class="input-dice input-dice-skill" type="text" name="skill.value" value="{{data.skill.value}}" readonly="readonly">
                         </div>
                     </div>
                 </div>
 
                 <div class="third">
-                    <i id="skill_add" class="quantity pointer-choice fa fa-plus-square"></i>
+                    <i class="quantity pointer-choice fa fa-plus-square" data-item="skill" data-value="1"></i>
                 </div>
             </td>
         </tr>
 
-        <!-- Fourth line -->
+        {{!-- Fourth line--}}
         <tr>
             <td>
                 <label>
-                    <input type="checkbox" id="diff_hidden" name="diff_hidden" value="1">
+                    <input type="checkbox" id="diff_hidden" name="difficulty.hidden" value="1" {{checked data.difficulty.hidden}}>
                     {{localize 'l5r5e.dicepicker.difficulty_hidden_label'}}
                 </label>
             </td>
             <td>
                 {{#if canUseVoidPoint}}
                     <label>
-                        <input type="checkbox" id="use_void_point" name="use_void_point" value="1">
+                        <input type="checkbox" id="use_void_point" name="useVoidPoint" value="1" {{checked data.useVoidPoint}}>
                         {{localize 'l5r5e.dicepicker.use_void_point_label'}}
                     </label>
                 {{/if}}

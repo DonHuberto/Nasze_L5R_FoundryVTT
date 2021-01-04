@@ -88,7 +88,8 @@
             "strives": "Strives",
             "difficulty": "TN",
             "difficulty_hidden": "TN ???",
-            "dicepicker": "Dice Picker"
+            "dicepicker": "Dice Picker",
+            "void_point_used": "Void point used"
         },
         "dicepicker": {
             "difficulty_title": "Difficulty",

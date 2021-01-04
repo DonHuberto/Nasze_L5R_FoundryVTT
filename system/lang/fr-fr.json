@@ -88,7 +88,8 @@
             "strives": "Conflits",
             "difficulty": "ND",
             "difficulty_hidden": "ND ???",
-            "dicepicker": "Dice Picker"
+            "dicepicker": "Dice Picker",
+            "void_point_used": "Point de vide utilisé"
         },
         "dicepicker": {
             "difficulty_title": "Difficulté",
