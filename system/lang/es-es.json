@@ -302,6 +302,7 @@
             "title": "Twenty questions",
             "bt_abrev": "20Q",
             "bt_refresh": "Refresh",
+            "bt_next": "Next",
             "increase_ring1": "Ring increase (1)",
             "increase_ring2": "Ring increase (2)",
             "increase_skill1": "Skill increases (1)",

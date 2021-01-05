@@ -152,6 +152,15 @@ export class TwentyQuestionsDialog extends FormApplication {
             tgt.hasClass("toggle-active") ? tgt.removeClass("toggle-active") : tgt.addClass("toggle-active");
         });
 
+        // BT Next
+        html.find(".next").on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            const tab = this._tabs.find((e) => e._navSelector === ".sheet-tabs");
+            const next = parseInt(tab.active.replace(/[^0-9]/g, "")) + 1;
+            tab.activate("part" + next);
+        });
+
         // *** Everything below here is only needed if the sheet is editable ***
         if (!this.options.editable) {
             return;

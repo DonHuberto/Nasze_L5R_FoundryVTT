@@ -241,6 +241,7 @@ export class DicePickerDialog extends FormApplication {
             actorIsPc: !this._actor || this._actor.data?.type === "character",
             canUseVoidPoint:
                 this.object.difficulty.hidden || !this._actor || this._actor.data.data.void_points.value > 0,
+            disableSubmit: this.object.skill.value < 1 && this.object.ring.value < 1,
         };
     }
 

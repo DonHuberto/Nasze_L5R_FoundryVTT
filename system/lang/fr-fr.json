@@ -302,6 +302,7 @@
             "title": "Le jeu des Vingt questions",
             "bt_abrev": "20Q",
             "bt_refresh": "Actualiser",
+            "bt_next": "Suivant",
             "increase_ring1": "Augmentation d'anneau (1)",
             "increase_ring2": "Augmentations d'anneau (2)",
             "increase_skill1": "Augmentation de compétence (1)",
