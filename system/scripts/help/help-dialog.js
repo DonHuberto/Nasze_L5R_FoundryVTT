@@ -47,6 +47,8 @@ export class HelpDialog extends FormApplication {
         // Buttons
         ["edge", "drivethrurpg", "discord"].forEach((name) => {
             html.find(`button[name='${name}']`).on("click", (event) => {
+                event.preventDefault();
+                event.stopPropagation();
                 ui.notifications.info(game.i18n.localize(`l5r5e.logo.${name}-info`));
                 window.open(game.i18n.localize(`l5r5e.logo.${name}-link`), "_blank");
             });

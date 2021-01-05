@@ -272,6 +272,8 @@ export class DicePickerDialog extends FormApplication {
 
         // Select Ring
         html.find('input[name="approach"]').on("click", async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             this.object.ring.id = event.target.dataset.ringid;
             this.object.ring.value = event.target.value;
             this.render(false);

@@ -168,6 +168,8 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         // Toggle
         html.find(".toggle-on-click").on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             const elmt = $(event.currentTarget).data("toggle");
             const tgt = html.find("." + elmt);
             tgt.hasClass("toggle-active") ? tgt.removeClass("toggle-active") : tgt.addClass("toggle-active");
@@ -180,6 +182,8 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         // *** Dice event on Skills clic ***
         html.find(".dice-picker").on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             const li = $(event.currentTarget);
             new game.l5r5e.DicePickerDialog({
                 skillId: li.data("skill") || null,
@@ -191,17 +195,25 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         // On focus on one numeric element, select all text for better experience
         html.find(".select-on-focus").on("focus", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             event.target.select();
         });
 
         // *** Items : add, edit, delete ***
         html.find(".item-add").on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             this._addSubItem(event);
         });
         html.find(`.item-edit`).on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             this._editSubItem(event);
         });
         html.find(`.item-delete`).on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             this._deleteSubItem(event);
         });
     }

@@ -147,6 +147,8 @@ export class TwentyQuestionsDialog extends FormApplication {
 
         // Toggle
         html.find(".toggle-on-click").on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             const elmt = $(event.currentTarget).data("toggle");
             const tgt = html.find("." + elmt);
             tgt.hasClass("toggle-active") ? tgt.removeClass("toggle-active") : tgt.addClass("toggle-active");
@@ -179,6 +181,8 @@ export class TwentyQuestionsDialog extends FormApplication {
 
         // Delete a dnd element
         html.find(".property-delete").on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             const stepKey = $(event.currentTarget).parents(".tq-drag-n-drop").data("step");
             const itemId = $(event.currentTarget).parents(".property").data("propertyId");
             this._deleteOwnedItem(stepKey, itemId);
@@ -187,6 +191,8 @@ export class TwentyQuestionsDialog extends FormApplication {
 
         // Submit button
         html.find("#generate").on("click", async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             await this.object.toActor(this.actor, flattenObject(this.cache));
             await this.close({ submit: true, force: true });
         });

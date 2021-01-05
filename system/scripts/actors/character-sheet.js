@@ -75,11 +75,14 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
 
         // *** Items : curriculum management ***
         html.find(`.item-curriculum`).on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             this._switchSubItemCurriculum(event);
         });
         html.find(`button[name=validate-curriculum]`).on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             this.actor.data.data.identity.school_rank = this.actor.data.data.identity.school_rank + 1;
-            // Update actor
             this.actor.update({
                 data: {
                     identity: {

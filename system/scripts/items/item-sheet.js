@@ -85,6 +85,8 @@ export class ItemSheetL5r5e extends ItemSheet {
 
         // Toggle
         html.find(".toggle-on-click").on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             const elmt = $(event.currentTarget).data("toggle");
             const tgt = html.find("." + elmt);
             tgt.hasClass("toggle-active") ? tgt.removeClass("toggle-active") : tgt.addClass("toggle-active");
@@ -97,11 +99,15 @@ export class ItemSheetL5r5e extends ItemSheet {
 
         // On focus on one numeric element, select all text for better experience
         html.find(".select-on-focus").on("focus", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             event.target.select();
         });
 
         // Delete a property
         html.find(`.property-delete`).on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             const li = $(event.currentTarget).parents(".property");
             this._deleteProperty(li.data("propertyId"));
         });
