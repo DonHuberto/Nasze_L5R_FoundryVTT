@@ -4,17 +4,17 @@
     {{/if}}
 
     <div class="content">
+        <nav class="sheet-tabs tabs" data-group="primary">
+            <a class="item" data-tab="part0">?</a>
+            <a class="item" data-tab="part1">I</a>
+            <a class="item" data-tab="part2">II</a>
+            <a class="item" data-tab="part3">III</a>
+            <a class="item" data-tab="part4">IV</a>
+            <a class="item" data-tab="part5">V</a>
+            <a class="item" data-tab="part6">VI</a>
+            <a class="item" data-tab="part7">VII</a>
+        </nav>
         <section class="sheet-body">
-            <nav class="sheet-tabs tabs" data-group="primary">
-                <a class="item" data-tab="part0">?</a>
-                <a class="item" data-tab="part1">I</a>
-                <a class="item" data-tab="part2">II</a>
-                <a class="item" data-tab="part3">III</a>
-                <a class="item" data-tab="part4">IV</a>
-                <a class="item" data-tab="part5">V</a>
-                <a class="item" data-tab="part6">VI</a>
-                <a class="item" data-tab="part7">VII</a>
-            </nav>
             <article class="tab parts part0" data-group="primary" data-tab="part0">
                 <h1>{{localize 'l5r5e.twenty_questions.title'}}</h1>
                 {{localize 'l5r5e.twenty_questions.part0.intro'}}
@@ -600,27 +600,26 @@
                     </tr>
                     <tr>
                         <td>
-                            {{#each summary.summary.rings}}
-                                {{this}}
-                            {{/each}}
+                            <ul>
+                                {{#each summary.summary.rings}}
+                                    <li>{{this}}</li>
+                                {{/each}}
+                            </ul>
                         </td>
                         <td>
-                            {{#each summary.summary.skills}}
-                                {{this}}
-                            {{/each}}
+                            <ul>
+                                {{#each summary.summary.skills}}
+                                    <li>{{this}}</li>
+                                {{/each}}
+                            </ul>
                         </td>
                         <td>
-                            {{localize 'l5r5e.twenty_questions.part1.status'}}
-                            {{summary.summary.status}}
-
-                            {{localize 'l5r5e.twenty_questions.part1.glory'}}
-                            {{summary.summary.glory}}
-
-                            {{localize 'l5r5e.twenty_questions.part2.honor'}}
-                            {{summary.summary.honor}}
-
-                            {{localize 'l5r5e.twenty_questions.part1.money'}}
-                            {{data.step2.wealth}}
+                            <ul>
+                                <li>{{localize 'l5r5e.twenty_questions.part1.status'}} ({{summary.social.status}})</li>
+                                <li>{{localize 'l5r5e.twenty_questions.part1.glory'}} ({{summary.social.glory}})</li>
+                                <li>{{localize 'l5r5e.twenty_questions.part2.honor'}} ({{summary.social.honor}})</li>
+                                <li>{{localize 'l5r5e.twenty_questions.part1.money'}} ({{data.step2.wealth}})</li>
+                            </ul>
                         </td>
                     </tr>
                 </table>

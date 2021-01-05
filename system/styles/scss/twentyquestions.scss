@@ -1,23 +1,15 @@
 &.twenty-questions-dialog {
     .sheet-tabs {
-        float: left;
+        position: fixed;
         flex-direction: column;
-        width: 9%;
-        height: 100%;
-        margin: 7% 4.75%;
-        padding: 0;
+        background: url("../assets/imgs/bg-20nav.webp") no-repeat;
+        background-size: cover;
+        width: 5%;
+        height: 52vw;
+        margin: 1%;
+        line-height: 5rem;
+        padding: 0.25rem;
         border-bottom: 0 none;
-        --notchSize: 0.5rem;
-        clip-path: polygon(
-            0% var(--notchSize),
-            var(--notchSize) 0%,
-            calc(100% - var(--notchSize)) 0%,
-            100% var(--notchSize),
-            100% calc(100% - var(--notchSize)),
-            calc(100% - var(--notchSize)) 100%,
-            var(--notchSize) 100%,
-            0% calc(100% - var(--notchSize))
-        );
     }
     h3 {
         font-size: 1rem;
@@ -25,15 +17,29 @@
     }
     nav {
         .item {
+            background-color: $l5r5e-white-light;
             &.active,
             &:hover {
-                clip-path: none;
+                background-color: rgba(73, 12, 11, 0.85);
+                --notchSize: 0.5rem;
+                clip-path: polygon(
+                    0% var(--notchSize),
+                    var(--notchSize) 0%,
+                    calc(100% - var(--notchSize)) 0%,
+                    100% var(--notchSize),
+                    100% calc(100% - var(--notchSize)),
+                    calc(100% - var(--notchSize)) 100%,
+                    var(--notchSize) 100%,
+                    0% calc(100% - var(--notchSize))
+                );
+            }
+            &:hover {
+                background-color: $l5r5e-label;
             }
         }
     }
     article {
-        float: left;
-        width: 80%;
+        padding: 2% 2% 0 18%;
         label {
             &.full {
                 display: block;
@@ -50,7 +56,11 @@
             width: 100%;
         }
         table tr td {
-            vertical-align: top;
+            vertical-align: middle;
+            line-height: 2rem;
+            border: 1px solid $l5r5e-title;
+            font-size: 0.85rem;
+            padding: 0.25rem;
         }
         .third {
             width: 230px;

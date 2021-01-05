@@ -1,7 +1,7 @@
 /** Global **/
 
 body {
-    background: url("../assets/imgs/background.webp") no-repeat center;
+    background: url("../assets/imgs/bg-table.webp") no-repeat center;
     background-size: cover;
     > * {
         scrollbar-width: thin;
@@ -13,8 +13,9 @@ body {
     .window-content {
         z-index: 1;
         position: relative;
-        background: url("../assets/imgs/bgL5R.webp") no-repeat;
+        background: rgb(255, 250, 230) url("../assets/imgs/bg-l5r.webp") no-repeat;
         background-size: cover;
+        overflow-y: scroll;
         scrollbar-width: thin;
     }
     .window-resizable-handle {
@@ -23,7 +24,7 @@ body {
     }
     &.twenty-questions-dialog {
         .window-content {
-            background: url("../assets/imgs/bg20Q.webp") no-repeat;
+            background: rgb(255, 250, 230) url("../assets/imgs/bg-scroll.webp") no-repeat;
             background-size: cover;
         }
     }

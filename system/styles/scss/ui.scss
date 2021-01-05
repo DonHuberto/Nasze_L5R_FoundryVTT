@@ -280,7 +280,7 @@ button {
     }
     .message-sender {
         color: $l5r5e-red;
-        text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
+        text-shadow: 1px 1px 0px $l5r5e-black-light;
     }
     .message {
         background-color: $l5r5e-chat-color-light;

@@ -20,6 +20,9 @@
             min-height: 2rem;
             width: 100%;
         }
+        .header-fields {
+            padding: 0 0.25rem;
+        }
         .identity-wrapper {
             flex: 1 1 100%;
             h1 {
@@ -89,6 +92,9 @@
                 }
             }
         }
+    }
+    .sheet-body {
+        padding: 0.25rem;
     }
     .npc-skill {
         display: flex;
