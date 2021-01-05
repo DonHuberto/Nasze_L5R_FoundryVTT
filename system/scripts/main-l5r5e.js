@@ -3,6 +3,7 @@ import { L5R5E } from "./config.js";
 import { HelpersL5r5e } from "./helpers.js";
 import { RegisterSettings } from "./settings.js";
 import { PreloadTemplates } from "./preloadTemplates.js";
+import { HelpDialog } from "./help/help-dialog.js";
 // Actors
 import { ActorL5r5e } from "./actor.js";
 import { CharacterSheetL5r5e } from "./actors/character-sheet.js";
@@ -63,6 +64,7 @@ Hooks.once("init", async function () {
         HelpersL5r5e,
         RollL5r5e,
         DicePickerDialog,
+        HelpDialog,
     };
 
     // Register custom system settings
@@ -182,16 +184,16 @@ Hooks.once("init", async function () {
 // });
 
 /* ------------------------------------ */
-/* Actor Dialog                         */
-/* ------------------------------------ */
-
-/* ------------------------------------ */
-/* When ready                           */
+/* Do anything once the system is ready */
 /* ------------------------------------ */
 Hooks.once("ready", function () {
-    // Do anything once the system is ready
     // Add title on button dice icon
     $(".chat-control-icon")[0].title = game.i18n.localize("l5r5e.chatdices.dicepicker");
+
+    // Open Help dialog on clic on logo
+    $("#logo")
+        .on("click", () => new game.l5r5e.HelpDialog().render(true))
+        .prop("title", game.i18n.localize("l5r5e.logo.alt"));
 });
 
 /* ------------------------------------ */
@@ -258,54 +260,4 @@ Hooks.once("diceSoNiceReady", (dice3d) => {
         },
         "d12"
     );
-});
-
-// Logo & Menu options
-Hooks.once("ready", async function () {
-    // -- Function Open Edge-Studio Website
-    function openEdge() {
-        ui.notifications.info(game.i18n.localize("l5r5e.logo.edge-info"));
-        var windowObjectReference = window.open(game.i18n.localize("l5r5e.logo.edge-link"), "_blank");
-    }
-    // -- Open Function Edge's DriveThruRpg
-    function openDrive() {
-        ui.notifications.info(game.i18n.localize("l5r5e.logo.drive-info"));
-        var windowObjectReference = window.open(game.i18n.localize("l5r5e.logo.drive-link"), "_blank");
-    }
-    // -- Open Function Discord Link
-    function openDiscord() {
-        ui.notifications.info(game.i18n.localize("l5r5e.logo.discord-info"));
-        var windowObjectReference = window.open(game.i18n.localize("l5r5e.logo.discord-link"), "_blank");
-    }
-
-    //-- Logo Menu Link
-    let liensExt = new Dialog({
-        title: game.i18n.localize("l5r5e.logo.title"),
-        content: "<p>" + game.i18n.localize("l5r5e.logo.content") + "</p>",
-        buttons: {
-            one: {
-                icon: '<i class="fas fa-check"></i>',
-                label: game.i18n.localize("l5r5e.logo.edge"),
-                callback: () => openEdge(),
-            },
-            two: {
-                icon: '<i class="fas fa-check"></i>',
-                label: game.i18n.localize("l5r5e.logo.drive"),
-                callback: () => openDrive(),
-            },
-            three: {
-                icon: '<i class="fas fa-check"></i>',
-                label: game.i18n.localize("l5r5e.logo.discord"),
-                callback: () => openDiscord(),
-            },
-        },
-    });
-    //-- Logo
-    var logo = document.getElementById("logo");
-
-    //-- Open menu on Logo click
-    logo.setAttribute("title", game.i18n.localize("l5r5e.logo.alt"));
-    logo.addEventListener("click", function () {
-        liensExt.render(true);
-    });
 });
