@@ -239,14 +239,6 @@ export class TwentyQuestionsDialog extends FormApplication {
                     // School Ability
                     if (stepKey === "step3.school_ability") {
                         if (item.data.data.technique_type !== "school_ability") {
-                            console.warn("This technique is not a school ability");
-                            return;
-                        }
-                        if (
-                            Array.from(this.actor.items).some(
-                                (e) => e.type === "technique" && e.data.data.technique_type === "school_ability"
-                            )
-                        ) {
                             console.warn("This technique is not a school ability", item.data.data.technique_type);
                             return;
                         }

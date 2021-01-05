@@ -376,6 +376,7 @@
                 "d10r1_choice": "1st D10 Effect",
                 "d10r2": "D10 Result (2/2)",
                 "d10r2_choice": "2nd D10 Effect",
+                "d10r2_drop_items": "Or a technique, a advantage, a object...",
                 "q19": "19. What is your character’s personal name ? (p. 95)"
             },
             "part7": {
