@@ -13,7 +13,7 @@ export class DicePickerDialog extends FormApplication {
      */
     object = {
         ring: {
-            id: null,
+            id: "void",
             value: 1,
         },
         skill: {
@@ -73,17 +73,19 @@ export class DicePickerDialog extends FormApplication {
     /**
      * Create dialog
      *
-     * ex: new game.l5r5e.DicePickerDialog({skillId: 'aesthetics', ringId: 'fire', actor: game.user.character}).render();
+     * ex: new game.l5r5e.DicePickerDialog({skillId: 'aesthetics', ringId: 'water', actor: game.user.character}).render(true);
      *
      * Options :
      *   actor             A instance of actor (game.user.character, canvas.tokens.controlled[0].actor, ...)
      *   actorId           string (AbYgKrNwWeAxa9jT)
+     *   actorName         string (Isawa Aki) Careful this is case sensitive
      *   ringId            string (fire)
      *   skillId           string (design)
+     *   skillCatId        string (artisan)
      *   difficulty        number (0-9)
      *   difficultyHidden  boolean
      *
-     * @param options actor, actorId, ringId, skillId, skillCatId, difficulty, difficultyHidden
+     * @param options actor, actorId, ringId, actorName, skillId, skillCatId, difficulty, difficultyHidden
      */
     constructor(options = {}) {
         super({}, options);
@@ -92,6 +94,7 @@ export class DicePickerDialog extends FormApplication {
         [
             options?.actor,
             game.actors.get(options?.actorId),
+            game.actors.getName(options?.actorName),
             canvas.tokens.controlled[0]?.actor,
             game.user.character,
         ].forEach((actor) => {
@@ -135,7 +138,7 @@ export class DicePickerDialog extends FormApplication {
             return;
         }
         this._actor = actor;
-        if (this.object.ring.id === null) {
+        if (this.object.ring.id === "void") {
             this.ringId = this._actor.data.data.stance;
             this.object.ring.value = this._actor.data.data.rings[this.object.ring.id];
         }
@@ -276,7 +279,7 @@ export class DicePickerDialog extends FormApplication {
         html.find('input[name="approach"]').on("click", async (event) => {
             event.preventDefault();
             event.stopPropagation();
-            this.object.ring.id = event.target.dataset.ringid;
+            this.ringId = event.target.dataset.ringid;
             this.object.ring.value = parseInt(event.target.value) + (this.object.useVoidPoint ? 1 : 0);
             this.render(false);
         });

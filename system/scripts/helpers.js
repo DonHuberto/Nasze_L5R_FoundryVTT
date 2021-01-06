@@ -11,7 +11,7 @@ export class HelpersL5r5e {
         return CONFIG.l5r5e.stances.map((e) => ({
             id: e,
             label: game.i18n.localize(`l5r5e.rings.${e}`),
-            value: actor?.data?.data?.rings?.[e] || 0,
+            value: actor?.data?.data?.rings?.[e] || 1,
         }));
     }
 
