@@ -43,8 +43,11 @@ Cette version est autorisée par Edge Studio, tous les textes, images et droits 
 Copier ce lien et chargez-le dans le menu système de Foundry.
 > https://gitlab.com/teaml5r/l5r5e/-/raw/master/system/system.json
 
-### Module Requis pour le français
-La traduction du système fonctionne directement mais pour les compendiums il vous faut installer et activer le module Babele :
+### Modules requis pour le français
+Pour traduire les éléments de base de FoundryVTT (interface), il vous faut installer et activer le module suivant :
+> https://gitlab.com/baktov.sugar/foundryvtt-lang-fr-fr
+
+La traduction du système fonctionne directement, cependant les compendiums nécessitent d'installer et activer le module Babele pour être traduit :
 > https://gitlab.com/riccisi/foundryvtt-babele
 
 ### Modules recommandés
