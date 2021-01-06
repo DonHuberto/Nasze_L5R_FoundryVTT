@@ -1,0 +1,201 @@
+{
+    "label": "Techniques Kata",
+    "mapping": {
+        "description": "data.description",
+        "book_reference": "data.book_reference"
+    },
+    "entries": [
+        {
+            "id": "Flowing Water Strike",
+            "name": "Assaut de l’eau courante",
+            "description": "",
+            "book_reference": "LdR p.174"
+        },
+        {
+            "id": "Crimson Leaves Strike",
+            "name": "Assaut des feuilles pourpres",
+            "description": "",
+            "book_reference": "LdR p.175"
+        },
+        {
+            "id": "Heartpiercing Strike",
+            "name": "Assaut en plein coeur",
+            "description": "",
+            "book_reference": "LdR p.175"
+        },
+        {
+            "id": "Battle in the Mind",
+            "name": "Bataille mentale",
+            "description": "",
+            "book_reference": "LdR p.175"
+        },
+        {
+            "id": "Lord Shiba’s Valor",
+            "name": "Bravoure de Sire Shiba",
+            "description": "",
+            "book_reference": "LdR p.175"
+        },
+        {
+            "id": "Soul Sunder",
+            "name": "Destruction de l’âme",
+            "description": "",
+            "book_reference": "LdR p.176"
+        },
+        {
+            "id": "Warrior’s Resolve",
+            "name": "Détermination du guerrier",
+            "description": "",
+            "book_reference": "LdR p.176"
+        },
+        {
+            "id": "Tactical Assessment",
+            "name": "Évaluation tactique",
+            "description": "",
+            "book_reference": "LdR p.176"
+        },
+        {
+            "id": "Soaring Slice",
+            "name": "Mortelle envolée",
+            "description": "",
+            "book_reference": "LdR p.177"
+        },
+        {
+            "id": "Striking as Air",
+            "name": "Offensive de l’Air",
+            "description": "",
+            "book_reference": "LdR p.177"
+        },
+        {
+            "id": "Striking as Water",
+            "name": "Offensive de l'Eau",
+            "description": "",
+            "book_reference": "LdR p.177"
+        },
+        {
+            "id": "Striking as Earth",
+            "name": "Offensive de la Terre",
+            "description": "",
+            "book_reference": "LdR p.177"
+        },
+        {
+            "id": "Striking as Fire",
+            "name": "Offensive du Feu",
+            "description": "",
+            "book_reference": "LdR p.177"
+        },
+        {
+            "id": "Striking as Void",
+            "name": "Offensive du Vide",
+            "description": "",
+            "book_reference": "LdR p.177"
+        },
+        {
+            "id": "Lord Hida’s Grip",
+            "name": "Poigne de Sire Hida",
+            "description": "",
+            "book_reference": "LdR p.178"
+        },
+        {
+            "id": "Disappearing World Style",
+            "name": "Style de la disparition du monde",
+            "description": "",
+            "book_reference": "LdR p.178"
+        },
+        {
+            "id": "Crashing Wave Style",
+            "name": "Style de la vague déferlante",
+            "description": "",
+            "book_reference": "LdR p.178"
+        },
+        {
+            "id": "Crescent Moon Style",
+            "name": "Style du croissant de lune",
+            "description": "",
+            "book_reference": "LdR p.178"
+        },
+        {
+            "id": "Iron in the Mountains Style",
+            "name": "Style du fer dans les montagnes",
+            "description": "",
+            "book_reference": "LdR p.178"
+        },
+        {
+            "id": "Breath of Wind Style",
+            "name": "Style du souffle du vent",
+            "description": "",
+            "book_reference": "LdR p.178"
+        },
+        {
+            "id": "Thunderclap Strike",
+            "name": "Assaut du coup de tonnerre",
+            "description": "",
+            "book_reference": "LdR p.179"
+        },
+        {
+            "id": "Iaijutsu Cut: Rising Blade",
+            "name": "Attaque de iaijutsu : lame ascendante",
+            "description": "",
+            "book_reference": "LdR p.179"
+        },
+        {
+            "id": "Iaijutsu Cut: Crossing Blade",
+            "name": "Attaque de iaijutsu : lame horizontale",
+            "description": "",
+            "book_reference": "LdR p.180"
+        },
+        {
+            "id": "Rushing Avalanche Style",
+            "name": "Style de l’avalanche meurtrière",
+            "description": "",
+            "book_reference": "LdR p.180"
+        },
+        {
+            "id": "Iron Forest Style",
+            "name": "Style de la forêt de fer",
+            "description": "",
+            "book_reference": "LdR p.180"
+        },
+        {
+            "id": "Open-Hand Style",
+            "name": "Style de la main ouverte",
+            "description": "",
+            "book_reference": "LdR p.180"
+        },
+        {
+            "id": "Veiled Menace Style",
+            "name": "Style de la menace voilée",
+            "description": "",
+            "book_reference": "LdR p.180"
+        },
+        {
+            "id": "Spinning Blades Style",
+            "name": "Style des lames tournoyantes",
+            "description": "",
+            "book_reference": "LdR p.180"
+        },
+        {
+            "id": "Coiling Serpent Style",
+            "name": "Style du serpent constricteur",
+            "description": "",
+            "book_reference": "LdR p.181"
+        },
+        {
+            "id": "Pin the Fan",
+            "name": "Clouer l’éventail",
+            "description": "",
+            "book_reference": "LdR p.181"
+        },
+        {
+            "id": "Hawk’s Precision",
+            "name": "Précision du faucon",
+            "description": "",
+            "book_reference": "LdR p.181"
+        },
+        {
+            "id": "Pelting Hail Style",
+            "name": "Style de l’averse de grêle",
+            "description": "",
+            "book_reference": "LdR p.181"
+        }
+    ]
+}

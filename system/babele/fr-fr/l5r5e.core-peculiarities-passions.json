@@ -1,0 +1,150 @@
+{
+    "label": "Passions",
+    "mapping": {
+        "types": "data.types",
+        "description": "data.description",
+        "book_reference": "data.book_reference"
+    },
+    "entries": [
+        {
+            "id": "Animal Bond",
+            "name": "Animaux",
+            "types": "relations, mental",
+            "description": "",
+            "book_reference": "LdR p.111"
+        },
+        {
+            "id": "Armament",
+            "name": "Armement",
+            "types": "mental",
+            "description": "",
+            "book_reference": "LdR p.111"
+        },
+        {
+            "id": "Brushwork",
+            "name": "Pinceau",
+            "types": "mental, physique",
+            "description": "",
+            "book_reference": "LdR p.114"
+        },
+        {
+            "id": "Curiosity",
+            "name": "Curiosité",
+            "types": "mental",
+            "description": "",
+            "book_reference": "LdR p.112"
+        },
+        {
+            "id": "Daredevil",
+            "name": "Casse-cou",
+            "types": "mental, physique",
+            "description": "",
+            "book_reference": "LdR p.111"
+        },
+        {
+            "id": "Enlightenment",
+            "name": "Illumination",
+            "types": "spirituel",
+            "description": "",
+            "book_reference": "LdR p.113"
+        },
+        {
+            "id": "Fashion",
+            "name": "Mode",
+            "types": "relations, mental",
+            "description": "",
+            "book_reference": "LdR p.113"
+        },
+        {
+            "id": "Fortune-Telling",
+            "name": "Voyance",
+            "types": "mental, spirituel",
+            "description": "",
+            "book_reference": "LdR p.116"
+        },
+        {
+            "id": "Generosity",
+            "name": "Générosité",
+            "types": "relations",
+            "description": "",
+            "book_reference": "LdR p.112"
+        },
+        {
+            "id": "Gossip",
+            "name": "Commérages",
+            "types": "relations",
+            "description": "",
+            "book_reference": "LdR p.111"
+        },
+        {
+            "id": "History",
+            "name": "Histoire",
+            "types": "mental",
+            "description": "",
+            "book_reference": "LdR p.112"
+        },
+        {
+            "id": "Ikebana",
+            "name": "Ikebana",
+            "types": "mental",
+            "description": "",
+            "book_reference": "LdR p.113"
+        },
+        {
+            "id": "Playfulness",
+            "name": "Plaisanteries",
+            "types": "relations",
+            "description": "",
+            "book_reference": "LdR p.114"
+        },
+        {
+            "id": "Provocation",
+            "name": "Provocation",
+            "types": "relations",
+            "description": "",
+            "book_reference": "LdR p.114"
+        },
+        {
+            "id": "Sake",
+            "name": "Saké",
+            "types": "mental",
+            "description": "",
+            "book_reference": "LdR p.115"
+        },
+        {
+            "id": "Secrets",
+            "name": "Secrets",
+            "types": "mental, relations",
+            "description": "",
+            "book_reference": "LdR p.115"
+        },
+        {
+            "id": "Stories",
+            "name": "Contes",
+            "types": "mental, relations",
+            "description": "",
+            "book_reference": "LdR p.112"
+        },
+        {
+            "id": "Tea",
+            "name": "Thé",
+            "types": "physique, spirituel",
+            "description": "",
+            "book_reference": "LdR p.115"
+        },
+        {
+            "id": "Travel",
+            "name": "Voyages",
+            "types": "mental, physique",
+            "description": "",
+            "book_reference": "LdR p.115"
+        },
+        {
+            "id": "Wordplay",
+            "name": "Jeux de mots",
+            "types": "relations, mental",
+            "description": "",
+            "book_reference": "LdR p.113"
+        }
+    ]
+}

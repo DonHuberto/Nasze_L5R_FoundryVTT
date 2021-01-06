@@ -1,0 +1,33 @@
+{
+    "label": "Techniques Ninjutsu",
+    "mapping": {
+        "description": "data.description",
+        "book_reference": "data.book_reference"
+    },
+    "entries": [
+        {
+            "id": "Deadly Sting",
+            "name": "Dard mortel",
+            "description": "",
+            "book_reference": "LdR p.226"
+        },
+        {
+            "id": "Skulk",
+            "name": "Disparition",
+            "description": "",
+            "book_reference": "LdR p.226"
+        },
+        {
+            "id": "Silencing Stroke",
+            "name": "Neutralisation",
+            "description": "",
+            "book_reference": "LdR p.227"
+        },
+        {
+            "id": "Noxious Cloud",
+            "name": "Nuage toxique",
+            "description": "",
+            "book_reference": "LdR p.227"
+        }
+    ]
+}

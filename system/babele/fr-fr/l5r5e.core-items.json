@@ -1,0 +1,189 @@
+{
+    "label": "Objets",
+    "mapping": {
+        "description": "data.description",
+        "book_reference": "data.book_reference"
+    },
+    "entries": [
+        {
+            "id": "Tattoo Needles",
+            "name": "Aiguilles de tatoueur",
+            "description": "",
+            "book_reference": "LdR p.242"
+        },
+        {
+            "id": "Finger of Jade",
+            "name": "Amulette de jade",
+            "description": "",
+            "book_reference": "LdR p.242"
+        },
+        {
+            "id": "Chopsticks",
+            "name": "Baguettes",
+            "description": "",
+            "book_reference": "LdR p.242"
+        },
+        {
+            "id": "Quiver of Arrow",
+            "name": "Carquois",
+            "description": "",
+            "book_reference": "LdR p.242"
+        },
+        {
+            "id": "Rope (By the Foot)",
+            "name": "Corde",
+            "description": "",
+            "book_reference": "LdR p.242"
+        },
+        {
+            "id": "Sake Cup",
+            "name": "Coupe à saké",
+            "description": "",
+            "book_reference": "LdR p.242"
+        },
+        {
+            "id": "Lucky Cricket",
+            "name": "Criquet porte-bonheur",
+            "description": "",
+            "book_reference": "LdR p.242"
+        },
+        {
+            "id": "Bottle of Sake",
+            "name": "Cruche de saké",
+            "description": "",
+            "book_reference": "LdR p.242"
+        },
+        {
+            "id": "Dice and Cup",
+            "name": "Dés et gobelet",
+            "description": "",
+            "book_reference": "LdR p.242"
+        },
+        {
+            "id": "Sweets (Four Servings)",
+            "name": "Douceurs (4 portions)",
+            "description": "",
+            "book_reference": "LdR p.242"
+        },
+        {
+            "id": "Spices",
+            "name": "Épices",
+            "description": "",
+            "book_reference": "LdR p.243"
+        },
+        {
+            "id": "Musical Instrument",
+            "name": "Instrument de musique",
+            "description": "",
+            "book_reference": "LdR p.243"
+        },
+        {
+            "id": "Games",
+            "name": "Jeux",
+            "description": "",
+            "book_reference": "LdR p.243"
+        },
+        {
+            "id": "Kubi Bukuro",
+            "name": "Kubi Bukuro",
+            "description": "",
+            "book_reference": "LdR p.243"
+        },
+        {
+            "id": "Pillow Book",
+            "name": "Livre de chevet",
+            "description": "",
+            "book_reference": "LdR p.243"
+        },
+        {
+            "id": "Bowyer’s Kit",
+            "name": "Nécessaire d'archer",
+            "description": "",
+            "book_reference": "LdR p.243"
+        },
+        {
+            "id": "Calligraphy Set",
+            "name": "Nécessaire de calligraphie",
+            "description": "",
+            "book_reference": "LdR p.243"
+        },
+        {
+            "id": "Divination Kit",
+            "name": "Nécessaire de divination",
+            "description": "",
+            "book_reference": "LdR p.243"
+        },
+        {
+            "id": "Medicine Kit",
+            "name": "Nécessaire médical",
+            "description": "",
+            "book_reference": "LdR p.244"
+        },
+        {
+            "id": "Omamori",
+            "name": "Omamori",
+            "description": "",
+            "book_reference": "LdR p.244"
+        },
+        {
+            "id": "Umbrella",
+            "name": "Ombrelle",
+            "description": "",
+            "book_reference": "LdR p.244"
+        },
+        {
+            "id": "Whetstone",
+            "name": "Pierre à aiguiser",
+            "description": "",
+            "book_reference": "LdR p.244"
+        },
+        {
+            "id": "Poison (One Vial)",
+            "name": "Poison (une dose)",
+            "description": "",
+            "book_reference": "LdR p.244"
+        },
+        {
+            "id": "Daishō Stand",
+            "name": "Présentoir de Daishō",
+            "description": "",
+            "book_reference": "LdR p.245"
+        },
+        {
+            "id": "Traveling Rations",
+            "name": "Rations de voyage",
+            "description": "",
+            "book_reference": "LdR p.245"
+        },
+        {
+            "id": "Personal Seal or Chop",
+            "name": "Sceau ou tampon personnel",
+            "description": "",
+            "book_reference": "LdR p.245"
+        },
+        {
+            "id": "Tea Set (Portable)",
+            "name": "Service à thé (portatif)",
+            "description": "",
+            "book_reference": "LdR p.245"
+        },
+        {
+            "id": "Tent (Chomchong)",
+            "name": "Tente (Chomchong)",
+            "description": "",
+            "book_reference": "LdR p.245"
+        },
+        {
+            "id": "Tent (Small)",
+            "name": "Tente (Petite)",
+            "description": "",
+            "book_reference": "LdR p.245"
+        },
+        {
+            "id": "Tent (Yurt)",
+            "name": "Tente (Yourte)",
+            "description": "",
+            "book_reference": "LdR p.245"
+        }
+    ]
+}

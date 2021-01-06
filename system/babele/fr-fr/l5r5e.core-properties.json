@@ -1,0 +1,105 @@
+{
+    "label": "Propriétés",
+    "mapping": {
+        "description": "data.description",
+        "book_reference": "data.book_reference"
+    },
+    "entries": [
+        {
+            "id": "Razor-Edged",
+            "name": "Acéré",
+            "description": "",
+            "book_reference": "LdR p.240"
+        },
+        {
+            "id": "Ceremonial",
+            "name": "Cérémoniel",
+            "description": "",
+            "book_reference": "LdR p.240"
+        },
+        {
+            "id": "Damaged",
+            "name": "Détérioré",
+            "description": "",
+            "book_reference": "LdR p.240"
+        },
+        {
+            "id": "Destroyed",
+            "name": "Détruit",
+            "description": "",
+            "book_reference": "LdR p.240"
+        },
+        {
+            "id": "Concealable",
+            "name": "Discret",
+            "description": "",
+            "book_reference": "LdR p.240"
+        },
+        {
+            "id": "Cumbersome",
+            "name": "Encombrant",
+            "description": "",
+            "book_reference": "LdR p.240"
+        },
+        {
+            "id": "Snaring",
+            "name": "Entrave",
+            "description": "",
+            "book_reference": "LdR p.240"
+        },
+        {
+            "id": "Unholy",
+            "name": "Impie",
+            "description": "",
+            "book_reference": "LdR p.240"
+        },
+        {
+            "id": "Forbidden",
+            "name": "Interdit",
+            "description": "",
+            "book_reference": "LdR p.241"
+        },
+        {
+            "id": "Resplendent",
+            "name": "Magnifique",
+            "description": "",
+            "book_reference": "LdR p.241"
+        },
+        {
+            "id": "Wargear",
+            "name": "Militaire",
+            "description": "",
+            "book_reference": "LdR p.241"
+        },
+        {
+            "id": "Mundane",
+            "name": "Ordinaire",
+            "description": "",
+            "book_reference": "LdR p.241"
+        },
+        {
+            "id": "Prepare",
+            "name": "Préparation",
+            "description": "",
+            "book_reference": "LdR p.241"
+        },
+        {
+            "id": "Sacred",
+            "name": "Sacré",
+            "description": "",
+            "book_reference": "LdR p.241"
+        },
+        {
+            "id": "Durable",
+            "name": "Solide",
+            "description": "",
+            "book_reference": "LdR p.241"
+        },
+        {
+            "id": "Subtle",
+            "name": "Subtil",
+            "description": "",
+            "book_reference": "LdR p.241"
+        }
+    ]
+}

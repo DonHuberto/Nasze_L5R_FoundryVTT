@@ -93,6 +93,16 @@ Hooks.once("init", async function () {
     Items.unregisterSheet("core", JournalSheet);
     Items.registerSheet("l5r5e", BaseJournalSheetL5r5e, { makeDefault: true });
 
+    // Babele
+    if (typeof Babele !== "undefined") {
+        // eslint-disable-next-line no-undef
+        Babele.get().register({
+            module: "../systems/l5r5e", // babele only accept modules, so... well :D
+            lang: "fr",
+            dir: "babele/fr-fr",
+        });
+    }
+
     // ***** Handlebars *****
     // for debug
     Handlebars.registerHelper("json", function (...objects) {
@@ -129,7 +139,8 @@ Hooks.once("init", async function () {
     });
 
     // Utility conditional, usable in nested expression
-    // ex: {{#ifCond (ifCond advancement.type '==' 'technique') '||' (ifCond advancement.type '==' 'advancement')}}
+    // {{#ifCond (ifCond advancement.type '==' 'technique') '||' (ifCond item.data.technique_type '==' 'kata')}}
+    // {#ifCond '["distinction","passion"]' 'includes' item.data.peculiarity_type}}
     Handlebars.registerHelper("ifCond", function (a, operator, b, options) {
         let result = false;
         switch (operator) {

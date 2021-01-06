@@ -1,0 +1,63 @@
+{
+    "label": "Armures",
+    "mapping": {
+        "description": "data.description",
+        "book_reference": "data.book_reference"
+    },
+    "entries": [
+        {
+            "id": "Ashigaru Armor",
+            "name": "Armure d'Ashigaru",
+            "description": "",
+            "book_reference": "LdR p.239"
+        },
+        {
+            "id": "Plated Armor",
+            "name": "Armure de plates",
+            "description": "",
+            "book_reference": "LdR p.239"
+        },
+        {
+            "id": "Concealed Armor",
+            "name": "Armure dissimulée",
+            "description": "",
+            "book_reference": "LdR p.239"
+        },
+        {
+            "id": "Lacquered Armor",
+            "name": "Armure laquée",
+            "description": "",
+            "book_reference": "LdR p.239"
+        },
+        {
+            "id": "Ceremonial Clothes",
+            "name": "Tenue de cérémonie",
+            "description": "",
+            "book_reference": "LdR p.239"
+        },
+        {
+            "id": "Traveling Clothes",
+            "name": "Vêtements de voyage",
+            "description": "",
+            "book_reference": "LdR p.239"
+        },
+        {
+            "id": "Sanctified Robes",
+            "name": "Tunique sanctifiée",
+            "description": "",
+            "book_reference": "LdR p.239"
+        },
+        {
+            "id": "Sleeping Garb",
+            "name": "Vêtements de nuit",
+            "description": "",
+            "book_reference": "LdR p.239"
+        },
+        {
+            "id": "Common Clothes",
+            "name": "Vêtements ordinaires",
+            "description": "",
+            "book_reference": "LdR p.239"
+        }
+    ]
+}

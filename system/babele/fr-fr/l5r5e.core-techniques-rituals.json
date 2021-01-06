@@ -1,0 +1,39 @@
+{
+    "label": "Techniques Rituels",
+    "mapping": {
+        "description": "data.description",
+        "book_reference": "data.book_reference"
+    },
+    "entries": [
+        {
+            "id": "Tea Ceremony",
+            "name": "Cérémonie du thé",
+            "description": "",
+            "book_reference": "LdR p.212"
+        },
+        {
+            "id": "Commune with the Spirits",
+            "name": "Communier avec les esprits",
+            "description": "",
+            "book_reference": "LdR p.212"
+        },
+        {
+            "id": "Divination",
+            "name": "Divination",
+            "description": "",
+            "book_reference": "LdR p.213"
+        },
+        {
+            "id": "Cleansing Rite",
+            "name": "Rite de purification",
+            "description": "",
+            "book_reference": "LdR p.213"
+        },
+        {
+            "id": "Threshold Barrier",
+            "name": "Seuil infranchissable",
+            "description": "",
+            "book_reference": "LdR p.213"
+        }
+    ]
+}

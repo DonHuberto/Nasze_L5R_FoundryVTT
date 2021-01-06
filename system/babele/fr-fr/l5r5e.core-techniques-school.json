@@ -1,0 +1,195 @@
+{
+    "label": "Capacités d’école",
+    "mapping": {
+        "description": "data.description",
+        "book_reference": "data.book_reference"
+    },
+    "entries": [
+        {
+            "id": "Way of the Crab",
+            "name": "La voie du Crabe",
+            "description": "",
+            "book_reference": "LdR p.57"
+        },
+        {
+            "id": "Flickering Flame Skirmisher",
+            "name": "Dérobade de la flamme fugitive",
+            "description": "",
+            "book_reference": "LdR p.58"
+        },
+        {
+            "id": "Masterful Builder",
+            "name": "Maître bâtisseur",
+            "description": "",
+            "book_reference": "LdR p.59"
+        },
+        {
+            "id": "Gaze into Shadow",
+            "name": "Regarder dans les ténèbres",
+            "description": "",
+            "book_reference": "LdR p.60"
+        },
+        {
+            "id": "Way of the Carp",
+            "name": "La voie de la Carpe",
+            "description": "",
+            "book_reference": "LdR p.61"
+        },
+        {
+            "id": "Spiritual Artisan",
+            "name": "Artisan spirituel",
+            "description": "",
+            "book_reference": "LdR p.62"
+        },
+        {
+            "id": "Vigilance of Mind",
+            "name": "Vigilance de l’esprit",
+            "description": "",
+            "book_reference": "LdR p.63"
+        },
+        {
+            "id": "Speaking in Silence",
+            "name": "Communication silencieuse",
+            "description": "",
+            "book_reference": "LdR p.64"
+        },
+        {
+            "id": "Way of the Crane",
+            "name": "La voie de la Grue",
+            "description": "",
+            "book_reference": "LdR p.65"
+        },
+        {
+            "id": "Elemental Transmutation",
+            "name": "Transmutation élémentaire",
+            "description": "",
+            "book_reference": "LdR p.66"
+        },
+        {
+            "id": "Kitsuki’s Method",
+            "name": "La méthode Kitsuki",
+            "description": "",
+            "book_reference": "LdR p.67"
+        },
+        {
+            "id": "Way of the Dragon",
+            "name": "La voie du Dragon",
+            "description": "",
+            "book_reference": "LdR p.68"
+        },
+        {
+            "id": "Blood of the Kami",
+            "name": "Sang des Kamis",
+            "description": "",
+            "book_reference": "LdR p.69"
+        },
+        {
+            "id": "Way of the Lion",
+            "name": "La voie du Lion",
+            "description": "",
+            "book_reference": "LdR p.70"
+        },
+        {
+            "id": "Heart of the Lion",
+            "name": "Le cœur du Lion",
+            "description": "",
+            "book_reference": "LdR p.71"
+        },
+        {
+            "id": "Favor of the Ancestors",
+            "name": "Faveur des ancêtres",
+            "description": "",
+            "book_reference": "LdR p.72"
+        },
+        {
+            "id": "Matsu’s Fury",
+            "name": "La fureur de Matsu",
+            "description": "",
+            "book_reference": "LdR p.73"
+        },
+        {
+            "id": "Wisdom of the Ages",
+            "name": "Sagesse éternelle",
+            "description": "",
+            "book_reference": "LdR p.74"
+        },
+        {
+            "id": "One with the Elements",
+            "name": "Union avec les éléments",
+            "description": "",
+            "book_reference": "LdR p.75"
+        },
+        {
+            "id": "Way of the Phoenix",
+            "name": "La voie du Phénix",
+            "description": "",
+            "book_reference": "LdR p.76"
+        },
+        {
+            "id": "Sacred Arrows",
+            "name": "Flèches sacrées",
+            "description": "",
+            "book_reference": "LdR p.77"
+        },
+        {
+            "id": "Weakness Is My Strength",
+            "name": "La faiblesse est ma force",
+            "description": "",
+            "book_reference": "LdR p.78"
+        },
+        {
+            "id": "The Path of Shadows",
+            "name": "Le sentier des ombres",
+            "description": "",
+            "book_reference": "LdR p.79"
+        },
+        {
+            "id": "The Kami’s Whisper",
+            "name": "Le murmure des kamis",
+            "description": "",
+            "book_reference": "LdR p.80"
+        },
+        {
+            "id": "Mystical Script",
+            "name": "Calligraphie mystique",
+            "description": "",
+            "book_reference": "LdR p.81"
+        },
+        {
+            "id": "Vendor of Strange Wares",
+            "name": "Vendeur d’étranges articles",
+            "description": "",
+            "book_reference": "LdR p.82"
+        },
+        {
+            "id": "The Way of Names",
+            "name": "La voie des noms",
+            "description": "",
+            "book_reference": "LdR p.83"
+        },
+        {
+            "id": "Swirling Desert Wind",
+            "name": "Le tourbillon du simoun",
+            "description": "",
+            "book_reference": "LdR p.84"
+        },
+        {
+            "id": "Born in the Saddle",
+            "name": "Né sur une selle",
+            "description": "",
+            "book_reference": "LdR p.85"
+        },
+        {
+            "id": "Heroic Charge",
+            "name": "Charge héroïque",
+            "description": "",
+            "book_reference": "LdR p.86"
+        },
+        {
+            "id": "School of Waves",
+            "name": "L’école des vagues",
+            "description": "",
+            "book_reference": "LdR p.87"
+        }
+    ]
+}

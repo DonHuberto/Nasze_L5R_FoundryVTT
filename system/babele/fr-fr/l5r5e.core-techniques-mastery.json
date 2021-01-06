@@ -1,0 +1,195 @@
+{
+    "label": "Capacités de Maîtrise",
+    "mapping": {
+        "description": "data.description",
+        "book_reference": "data.book_reference"
+    },
+    "entries": [
+        {
+            "id": "The Mountain Does Not Fall",
+            "name": "La montagne ne recule pas",
+            "description": "",
+            "book_reference": "LdR p.57"
+        },
+        {
+            "id": "Slayer’s Slash",
+            "name": "Entaille du tueur",
+            "description": "",
+            "book_reference": "LdR p.58"
+        },
+        {
+            "id": "Ingenious Design",
+            "name": "Ingénieuse conception",
+            "description": "",
+            "book_reference": "LdR p.59"
+        },
+        {
+            "id": "Purge the Wicked",
+            "name": "Purifier le mal",
+            "description": "",
+            "book_reference": "LdR p.60"
+        },
+        {
+            "id": "Treasures of the Carp",
+            "name": "Les trésors de la carpe",
+            "description": "",
+            "book_reference": "LdR p.61"
+        },
+        {
+            "id": "Stir the Slumbering Spirit",
+            "name": "Éveiller l’esprit endormi",
+            "description": "",
+            "book_reference": "LdR p.62"
+        },
+        {
+            "id": "To Tread the Sword",
+            "name": "Dans l’ombre de ma lame",
+            "description": "",
+            "book_reference": "LdR p.63"
+        },
+        {
+            "id": "The Lady’s Grace",
+            "name": "La grâce de la Dame",
+            "description": "",
+            "book_reference": "LdR p.64"
+        },
+        {
+            "id": "Strike with No Thought",
+            "name": "Frappe instinctive",
+            "description": "",
+            "book_reference": "LdR p.65"
+        },
+        {
+            "id": "Experiment and Adapt",
+            "name": "Expérimente et adapte-toi",
+            "description": "",
+            "book_reference": "LdR p.66"
+        },
+        {
+            "id": "The Eyes Betray the Heart",
+            "name": "Les yeux trahissent le cœur",
+            "description": "",
+            "book_reference": "LdR p.67"
+        },
+        {
+            "id": "Heart of the Dragon",
+            "name": "Le cœur du Dragon",
+            "description": "",
+            "book_reference": "LdR p.68"
+        },
+        {
+            "id": "Blood of the Dragon",
+            "name": "Le sang du Dragon",
+            "description": "",
+            "book_reference": "LdR p.69"
+        },
+        {
+            "id": "Akodo’s Final Lesson",
+            "name": "L’ultime leçon d’Akodo",
+            "description": "",
+            "book_reference": "LdR p.70"
+        },
+        {
+            "id": "Lion’s Pride",
+            "name": "La fierté du Lion",
+            "description": "",
+            "book_reference": "LdR p.71"
+        },
+        {
+            "id": "Strength of a Thousand Ancestors",
+            "name": "La force d’un millier d’ancêtres",
+            "description": "",
+            "book_reference": "LdR p.72"
+        },
+        {
+            "id": "Rending Jaws of the Lion",
+            "name": "Féroces mâchoires du lion",
+            "description": "",
+            "book_reference": "LdR p.73"
+        },
+        {
+            "id": "Insufferable Genius",
+            "name": "Génie exaspérant",
+            "description": "",
+            "book_reference": "LdR p.74"
+        },
+        {
+            "id": "Master of Elements",
+            "name": "Maître des éléments",
+            "description": "",
+            "book_reference": "LdR p.75"
+        },
+        {
+            "id": "Stand of Honor",
+            "name": "Résistance de l’Honneur",
+            "description": "",
+            "book_reference": "LdR p.76"
+        },
+        {
+            "id": "Demon, Begone!",
+            "name": "Arrière, démon !",
+            "description": "",
+            "book_reference": "LdR p.77"
+        },
+        {
+            "id": "Little Truths",
+            "name": "Petites vérités",
+            "description": "",
+            "book_reference": "LdR p.78"
+        },
+        {
+            "id": "The Final Silence",
+            "name": "L’ultime silence",
+            "description": "",
+            "book_reference": "LdR p.79"
+        },
+        {
+            "id": "World of Shadows",
+            "name": "Un monde d’ombres",
+            "description": "",
+            "book_reference": "LdR p.80"
+        },
+        {
+            "id": "Bound in Ink",
+            "name": "Prison d’encre",
+            "description": "",
+            "book_reference": "LdR p.81"
+        },
+        {
+            "id": "A Friend in Every City",
+            "name": "Un ami dans chaque ville",
+            "description": "",
+            "book_reference": "LdR p.82"
+        },
+        {
+            "id": "The Spirits Unbound",
+            "name": "Esprits déchaînés",
+            "description": "",
+            "book_reference": "LdR p.83"
+        },
+        {
+            "id": "Scouring Sirocco",
+            "name": "Sirocco cinglant",
+            "description": "",
+            "book_reference": "LdR p.84"
+        },
+        {
+            "id": "I Will Always Return",
+            "name": "Je reviendrai toujours",
+            "description": "",
+            "book_reference": "LdR p.85"
+        },
+        {
+            "id": "Sensing the Breeze",
+            "name": "Sentir la brise",
+            "description": "",
+            "book_reference": "LdR p.86"
+        },
+        {
+            "id": "A Bottomless Ocean",
+            "name": "Un insondable océan",
+            "description": "",
+            "book_reference": "LdR p.87"
+        }
+    ]
+}

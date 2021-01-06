@@ -1,0 +1,290 @@
+{
+    "label": "Aptitudes",
+    "mapping": {
+        "types": "data.types",
+        "description": "data.description",
+        "book_reference": "data.book_reference"
+    },
+    "entries": [
+        {
+            "id": "Ally [Name]",
+            "name": "Allié [Nom]",
+            "types": "relations",
+            "description": "",
+            "book_reference": "LdR p.102"
+        },
+        {
+            "id": "Ambidexterity",
+            "name": "Ambidextrie",
+            "types": "physique",
+            "description": "",
+            "book_reference": "LdR p.102"
+        },
+        {
+            "id": "Benten’s Blessing",
+            "name": "Bénédiction de Benten",
+            "types": "relations, spirituel",
+            "description": "",
+            "book_reference": "LdR p.103"
+        },
+        {
+            "id": "Bishamon’s Blessing",
+            "name": "Bénédiction de Bishamon",
+            "types": "physique, spirituel",
+            "description": "",
+            "book_reference": "LdR p.103"
+        },
+        {
+            "id": "Blackmail on [Name]",
+            "name": "Chantage contre [Nom d’un personnage]",
+            "types": "relations",
+            "description": "",
+            "book_reference": "LdR p.104"
+        },
+        {
+            "id": "Blessed Lineage",
+            "name": "Lignée prestigieuse",
+            "types": "relations, spirituel",
+            "description": "",
+            "book_reference": "LdR p.106"
+        },
+        {
+            "id": "Blissful Betrothal",
+            "name": "Fiançailles bienheureuses",
+            "types": "relations",
+            "description": "",
+            "book_reference": "LdR p.105"
+        },
+        {
+            "id": "Daikoku’s Blessing",
+            "name": "Bénédiction de Daikoku",
+            "types": "relations, spirituel",
+            "description": "",
+            "book_reference": "LdR p.103"
+        },
+        {
+            "id": "Dangerous Allure",
+            "name": "Beauté fatale",
+            "types": "physique, relations",
+            "description": "",
+            "book_reference": "LdR p.102"
+        },
+        {
+            "id": "Ebisu’s Blessing",
+            "name": "Bénédiction d’Ebisu",
+            "types": "physique, spirituel",
+            "description": "",
+            "book_reference": "LdR p.103"
+        },
+        {
+            "id": "Famously Honest",
+            "name": "Notoirement honnête",
+            "types": "renommée, relations",
+            "description": "",
+            "book_reference": "LdR p.107"
+        },
+        {
+            "id": "Famously Lucky",
+            "name": "Notoirement chanceux",
+            "types": "renommée, relations",
+            "description": "",
+            "book_reference": "LdR p.106"
+        },
+        {
+            "id": "Famously Reliable",
+            "name": "Notoirement fiable",
+            "types": "renommée, relations",
+            "description": "",
+            "book_reference": "LdR p.107"
+        },
+        {
+            "id": "Famously Successful",
+            "name": "Notoirement efficace",
+            "types": "renommée, relations",
+            "description": "",
+            "book_reference": "LdR p.106"
+        },
+        {
+            "id": "Famously Wealthy",
+            "name": "Notoirement riche",
+            "types": "renommée, relations",
+            "description": "",
+            "book_reference": "LdR p.107"
+        },
+        {
+            "id": "Flexibility",
+            "name": "Souplesse",
+            "types": "physique",
+            "description": "",
+            "book_reference": "LdR p.109"
+        },
+        {
+            "id": "Fukurokujin’s Blessing",
+            "name": "Bénédiction de Fukurokujin",
+            "types": "mental, spirituel",
+            "description": "",
+            "book_reference": "LdR p.104"
+        },
+        {
+            "id": "Indomitable Will",
+            "name": "Volonté indomptable",
+            "types": "mental, relations",
+            "description": "",
+            "book_reference": "LdR p.110"
+        },
+        {
+            "id": "Jurojin’s Blessing",
+            "name": "Bénédiction de Jurōjin",
+            "types": "physique, spirituel",
+            "description": "",
+            "book_reference": "LdR p.104"
+        },
+        {
+            "id": "Keen Balance",
+            "name": "Équilibre exceptionnel",
+            "types": "mental, physique",
+            "description": "",
+            "book_reference": "LdR p.104"
+        },
+        {
+            "id": "Keen Hearing",
+            "name": "Ouïe exceptionnelle",
+            "types": "physique, mental",
+            "description": "",
+            "book_reference": "LdR p.108"
+        },
+        {
+            "id": "Keen Sight",
+            "name": "Vue exceptionnelle",
+            "types": "physique, mental",
+            "description": "",
+            "book_reference": "LdR p.110"
+        },
+        {
+            "id": "Keen Smell",
+            "name": "Odorat exceptionnel",
+            "types": "physique, mental",
+            "description": "",
+            "book_reference": "LdR p.108"
+        },
+        {
+            "id": "Karmic Tie",
+            "name": "Lien karmique",
+            "types": "relations, spirituel",
+            "description": "",
+            "book_reference": "LdR p.105"
+        },
+        {
+            "id": "Kisshōten’s Blessing",
+            "name": "Bénédiction de Kisshōten",
+            "types": "physique, spirituel",
+            "description": "",
+            "book_reference": "LdR p.104"
+        },
+        {
+            "id": "Large Stature",
+            "name": "Stature imposante",
+            "types": "physique",
+            "description": "",
+            "book_reference": "LdR p.110"
+        },
+        {
+            "id": "Paragon of Compassion",
+            "name": "Parangon de Compassion",
+            "types": "mental, vertu",
+            "description": "",
+            "book_reference": "LdR p.108"
+        },
+        {
+            "id": "Paragon of Courage",
+            "name": "Parangon de Courage",
+            "types": "mental, vertu",
+            "description": "",
+            "book_reference": "LdR p.108"
+        },
+        {
+            "id": "Paragon of Courtesy",
+            "name": "Parangon de Courtoisie",
+            "types": "mental, vertu",
+            "description": "",
+            "book_reference": "LdR p.108"
+        },
+        {
+            "id": "Paragon of Duty and Loyalty",
+            "name": "Parangon de Devoir et loyauté",
+            "types": "mental, vertu",
+            "description": "",
+            "book_reference": "LdR p.108"
+        },
+        {
+            "id": "Paragon of Honor",
+            "name": "Parangon d'Honneur",
+            "types": "mental, vertu",
+            "description": "",
+            "book_reference": "LdR p.108"
+        },
+        {
+            "id": "Paragon of Righteousness",
+            "name": "Parangon de Droiture",
+            "types": "mental, vertu",
+            "description": "",
+            "book_reference": "LdR p.108"
+        },
+        {
+            "id": "Paragon of Sincerity",
+            "name": "Parangon de Sincérité",
+            "types": "mental, vertu",
+            "description": "",
+            "book_reference": "LdR p.108"
+        },
+        {
+            "id": "Precise Memory",
+            "name": "Excellente mémoire",
+            "types": "mental",
+            "description": "",
+            "book_reference": "LdR p.105"
+        },
+        {
+            "id": "Quick Reflexes",
+            "name": "Réflexes fulgurants",
+            "types": "physique, relations",
+            "description": "",
+            "book_reference": "LdR p.109"
+        },
+        {
+            "id": "Seasoned",
+            "name": "Aguerri",
+            "types": "mental, relations",
+            "description": "",
+            "book_reference": "LdR p.101"
+        },
+        {
+            "id": "Sixth Sense",
+            "name": "Sixième sens",
+            "types": "spirituel",
+            "description": "",
+            "book_reference": "LdR p.109"
+        },
+        {
+            "id": "Small Stature",
+            "name": "Petit",
+            "types": "physique",
+            "description": "",
+            "book_reference": "LdR p.108"
+        },
+        {
+            "id": "Subtle Observer",
+            "name": "Observateur subtil",
+            "types": "relations, mental",
+            "description": "",
+            "book_reference": "LdR p.107"
+        },
+        {
+            "id": "Support of [One Group]",
+            "name": "Soutien de [un groupe]",
+            "types": "relations",
+            "description": "",
+            "book_reference": "LdR p.109"
+        }
+    ]
+}

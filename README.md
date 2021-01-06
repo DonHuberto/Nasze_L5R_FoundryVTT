@@ -11,7 +11,7 @@ This version is authorized by Edge Studio, all texts, images and copyrights are 
 1. Copy this link and use it in Foundry system manager to install the system.
 > https://gitlab.com/teaml5r/l5r5e/-/raw/master/system/system.json
 
-### Optional modules
+### Recommended modules
 - Dice so Nice, for 3D dices : https://gitlab.com/riccisi/foundryvtt-dice-so-nice
 - Search Anywhere : https://gitlab.com/riccisi/foundryvtt-search-anywhere (don't spent too much time searching the right technique)
 
@@ -43,14 +43,13 @@ Cette version est autorisée par Edge Studio, tous les textes, images et droits 
 Copier ce lien et chargez-le dans le menu système de Foundry.
 > https://gitlab.com/teaml5r/l5r5e/-/raw/master/system/system.json
 
-### Modules Requis pour le français
-Pour la traduction des compendiums il vous faut installer ces deux modules :
-- L5R5e-Fr (la traduction) : https://gitlab.com/teaml5r/l5r5e-fr/-/raw/master/module/module.json
-- Babele (le traducteur) : https://gitlab.com/riccisi/foundryvtt-babele
+### Module Requis pour le français
+La traduction du système fonctionne directement mais pour les compendiums il vous faut installer et activer le module Babele :
+> https://gitlab.com/riccisi/foundryvtt-babele
 
-### Modules Optionnels
+### Modules recommandés
 - Dice so Nice, pour avoir des dés 3D : https://gitlab.com/riccisi/foundryvtt-dice-so-nice
-- Search Anywhere : https://gitlab.com/riccisi/foundryvtt-search-anywhere (pour ne pas perdre top de temps à chercher cette technique)
+- Search Anywhere : https://gitlab.com/riccisi/foundryvtt-search-anywhere (pour ne pas perdre top de temps à chercher une technique)
 
 
 ## Nous rejoindre

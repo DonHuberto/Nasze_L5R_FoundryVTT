@@ -1,0 +1,39 @@
+{
+    "label": "Techniques Mahõ",
+    "mapping": {
+        "description": "data.description",
+        "book_reference": "data.book_reference"
+    },
+    "entries": [
+        {
+            "id": "Incite Haunting",
+            "name": "Emprise maléfique",
+            "description": "",
+            "book_reference": "LdR p.224"
+        },
+        {
+            "id": "Grip of Anguish",
+            "name": "Étreinte de l’angoisse",
+            "description": "",
+            "book_reference": "LdR p.224"
+        },
+        {
+            "id": "Unholy Fervor",
+            "name": "Ferveur impie",
+            "description": "",
+            "book_reference": "LdR p.225"
+        },
+        {
+            "id": "Mark of Desecration",
+            "name": "Marque de profanation",
+            "description": "",
+            "book_reference": "LdR p.225"
+        },
+        {
+            "id": "Sinful Whispers",
+            "name": "Murmures déviants",
+            "description": "",
+            "book_reference": "LdR p.225"
+        }
+    ]
+}

@@ -1,0 +1,143 @@
+{
+    "label": "Défaillances",
+    "mapping": {
+        "types": "data.types",
+        "description": "data.description",
+        "book_reference": "data.book_reference"
+    },
+    "entries": [
+        {
+            "id": "Addiction",
+            "name": "Addiction",
+            "types": "mental, physique",
+            "description": "",
+            "book_reference": "LdR p.130"
+        },
+        {
+            "id": "Battle Trauma",
+            "name": "Traumatisme de guerre",
+            "types": "mental, physique",
+            "description": "",
+            "book_reference": "LdR p.136"
+        },
+        {
+            "id": "Cynicism",
+            "name": "Cynisme",
+            "types": "relations, mental",
+            "description": "",
+            "book_reference": "LdR p.131"
+        },
+        {
+            "id": "Dark Secret",
+            "name": "Sombre secret",
+            "types": "relations",
+            "description": "",
+            "book_reference": "LdR p.135"
+        },
+        {
+            "id": "Delusions of Grandeur",
+            "name": "Mégalomanie",
+            "types": "mental, relations",
+            "description": "",
+            "book_reference": "LdR p.134"
+        },
+        {
+            "id": "Fear of Death",
+            "name": "Peur de la mort",
+            "types": "mental, physique",
+            "description": "",
+            "book_reference": "LdR p.135"
+        },
+        {
+            "id": "Ferocity",
+            "name": "Férocité",
+            "types": "physique, mental",
+            "description": "",
+            "book_reference": "LdR p.132"
+        },
+        {
+            "id": "Impatience",
+            "name": "Impatience",
+            "types": "mental",
+            "description": "",
+            "book_reference": "LdR p.132"
+        },
+        {
+            "id": "Intolerance",
+            "name": "Intolérance",
+            "types": "relations",
+            "description": "",
+            "book_reference": "LdR p.132"
+        },
+        {
+            "id": "Irrepressible Flirtation",
+            "name": "Joli cœur",
+            "types": "relations",
+            "description": "",
+            "book_reference": "LdR p.133"
+        },
+        {
+            "id": "Jealousy",
+            "name": "Jalousie",
+            "types": "physique, mental",
+            "description": "",
+            "book_reference": "LdR p.133"
+        },
+        {
+            "id": "Materialism",
+            "name": "Matérialisme",
+            "types": "mental",
+            "description": "",
+            "book_reference": "LdR p.134"
+        },
+        {
+            "id": "Meekness",
+            "name": "Timidité",
+            "types": "relations",
+            "description": "",
+            "book_reference": "LdR p.136"
+        },
+        {
+            "id": "Painful Honesty",
+            "name": "Douloureuse honnêteté",
+            "types": "relations",
+            "description": "",
+            "book_reference": "LdR p.132"
+        },
+        {
+            "id": "Paranoia",
+            "name": "Paranoïa",
+            "types": "physique, mental",
+            "description": "",
+            "book_reference": "LdR p.134"
+        },
+        {
+            "id": "Perfectionism",
+            "name": "Perfectionnisme",
+            "types": "physique, mental",
+            "description": "",
+            "book_reference": "LdR p.134"
+        },
+        {
+            "id": "Phobia",
+            "name": "Phobie",
+            "types": "physique, mental",
+            "description": "",
+            "book_reference": "LdR p.135"
+        },
+        {
+            "id": "Softheartedness",
+            "name": "Cœur tendre",
+            "types": "relations, mental",
+            "description": "",
+            "book_reference": "LdR p.131"
+        },
+        {
+            "id": "Superstition",
+            "name": "Superstition",
+            "types": "mental, spirituel",
+            "description": "",
+            "book_reference": "LdR p.136"
+        }
+    ]
+}

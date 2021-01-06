@@ -1,0 +1,267 @@
+{
+    "label": "Techniques Shuji",
+    "mapping": {
+        "description": "data.description",
+        "book_reference": "data.book_reference"
+    },
+    "entries": [
+        {
+            "id": "Rustling of Leaves",
+            "name": "Bruissement des feuilles",
+            "description": "",
+            "book_reference": "LdR p.214"
+        },
+        {
+            "id": "Cadence",
+            "name": "Cadence",
+            "description": "",
+            "book_reference": "LdR p.214"
+        },
+        {
+            "id": "Artisan’s Appraisal",
+            "name": "Estimation de l’artisan",
+            "description": "",
+            "book_reference": "LdR p.214"
+        },
+        {
+            "id": "Bend with the Storm",
+            "name": "Le roseau plie sous la tempête",
+            "description": "",
+            "book_reference": "LdR p.214"
+        },
+        {
+            "id": "The Wind Blows Both Ways",
+            "name": "Le vent tourne",
+            "description": "",
+            "book_reference": "LdR p.215"
+        },
+        {
+            "id": "Prey on the Weak",
+            "name": "Malheur aux faibles",
+            "description": "",
+            "book_reference": "LdR p.215"
+        },
+        {
+            "id": "Whispers of Court",
+            "name": "Murmures de la cour",
+            "description": "",
+            "book_reference": "LdR p.215"
+        },
+        {
+            "id": "Feigned Opening",
+            "name": "Ouverture feinte",
+            "description": "",
+            "book_reference": "LdR p.215"
+        },
+        {
+            "id": "Wolf’s Proposal",
+            "name": "Proposition du loup",
+            "description": "",
+            "book_reference": "LdR p.215"
+        },
+        {
+            "id": "Ancestry Unearthed",
+            "name": "Ascendance dévoilée",
+            "description": "",
+            "book_reference": "LdR p.216"
+        },
+        {
+            "id": "Touchstone of Courage",
+            "name": "Courage exemplaire",
+            "description": "",
+            "book_reference": "LdR p.216"
+        },
+        {
+            "id": "Honest Assessment",
+            "name": "Évaluation honnête",
+            "description": "",
+            "book_reference": "LdR p.216"
+        },
+        {
+            "id": "The Immovable Hand of Peace",
+            "name": "L’immuable main de la paix",
+            "description": "",
+            "book_reference": "LdR p.216"
+        },
+        {
+            "id": "Civility Foremost",
+            "name": "La courtoisie prime",
+            "description": "",
+            "book_reference": "LdR p.217"
+        },
+        {
+            "id": "Weight of Duty",
+            "name": "Le fardeau du devoir",
+            "description": "",
+            "book_reference": "LdR p.217"
+        },
+        {
+            "id": "Pillar of Calm",
+            "name": "Pilier de sérénité",
+            "description": "",
+            "book_reference": "LdR p.217"
+        },
+        {
+            "id": "Stonewall Tactics",
+            "name": "Tactique d’obstruction",
+            "description": "",
+            "book_reference": "LdR p.218"
+        },
+        {
+            "id": "Fanning the Flames",
+            "name": "Attiser les flammes",
+            "description": "",
+            "book_reference": "LdR p.218"
+        },
+        {
+            "id": "Bravado",
+            "name": "Bravade",
+            "description": "",
+            "book_reference": "LdR p.218"
+        },
+        {
+            "id": "Rallying Cry",
+            "name": "Cri de ralliement",
+            "description": "",
+            "book_reference": "LdR p.218"
+        },
+        {
+            "id": "Sensational Distraction",
+            "name": "Distraction sensationnelle",
+            "description": "",
+            "book_reference": "LdR p.219"
+        },
+        {
+            "id": "Dazzling Performance",
+            "name": "Éclatante démonstration",
+            "description": "",
+            "book_reference": "LdR p.219"
+        },
+        {
+            "id": "Truth Burns through Lies",
+            "name": "La vérité derrière l’écran de fumée",
+            "description": "",
+            "book_reference": "LdR p.219"
+        },
+        {
+            "id": "Sear the Wound",
+            "name": "Le couteau dans la plaie",
+            "description": "",
+            "book_reference": "LdR p.219"
+        },
+        {
+            "id": "Lightning Raid",
+            "name": "Raid éclair",
+            "description": "",
+            "book_reference": "LdR p.219"
+        },
+        {
+            "id": "Stirring the Embers",
+            "name": "Souffler sur les braises",
+            "description": "",
+            "book_reference": "LdR p.219"
+        },
+        {
+            "id": "Tributaries of Trade",
+            "name": "Affluents du négoce",
+            "description": "",
+            "book_reference": "LdR p.220"
+        },
+        {
+            "id": "All in Jest",
+            "name": "Aimable plaisanterie",
+            "description": "",
+            "book_reference": "LdR p.220"
+        },
+        {
+            "id": "Buoyant Arrival",
+            "name": "Entrée en douceur",
+            "description": "",
+            "book_reference": "LdR p.220"
+        },
+        {
+            "id": "Ebb and Flow",
+            "name": "Flux et reflux",
+            "description": "",
+            "book_reference": "LdR p.220"
+        },
+        {
+            "id": "Slippery Maneuvers",
+            "name": "Manœuvres d’esquive",
+            "description": "",
+            "book_reference": "LdR p.220"
+        },
+        {
+            "id": "Regal Bearing",
+            "name": "Port altier",
+            "description": "",
+            "book_reference": "LdR p.221"
+        },
+        {
+            "id": "Well of Desire",
+            "name": "Puits du désir",
+            "description": "",
+            "book_reference": "LdR p.221"
+        },
+        {
+            "id": "Shallow Waters",
+            "name": "Sous la surface",
+            "description": "",
+            "book_reference": "LdR p.221"
+        },
+        {
+            "id": "Lady Shinjo’s Speed (Unicorn)",
+            "name": "Célérité de Dame Shinjo (Licorne)",
+            "description": "",
+            "book_reference": "LdR p.222"
+        },
+        {
+            "id": "Lady Doji’s Decree (Crane)",
+            "name": "Décret de Dame Doji (Grue)",
+            "description": "",
+            "book_reference": "LdR p.222"
+        },
+        {
+            "id": "Courtier’s Resolve",
+            "name": "La détermination du courtisan",
+            "description": "",
+            "book_reference": "LdR p.222"
+        },
+        {
+            "id": "A Samurai’s Fate",
+            "name": "Le destin du samouraï",
+            "description": "",
+            "book_reference": "LdR p.222"
+        },
+        {
+            "id": "Lord Bayushi’s Whispers (Scorpion)",
+            "name": "Murmures de Sire Bayushi (Scorpion)",
+            "description": "",
+            "book_reference": "LdR p.222"
+        },
+        {
+            "id": "Lord Togashi’s Insight (Dragon)",
+            "name": "Perspicacité de Sire Togashi (Dragon)",
+            "description": "",
+            "book_reference": "LdR p.223"
+        },
+        {
+            "id": "Rouse the Soul",
+            "name": "Réveil de l’âme",
+            "description": "",
+            "book_reference": "LdR p.223"
+        },
+        {
+            "id": "Lord Akodo’s Roar (Lion)",
+            "name": "Rugissement de Sire Akodo (Lion)",
+            "description": "",
+            "book_reference": "LdR p.223"
+        },
+        {
+            "id": "All Arts Are One",
+            "name": "Tous les arts ne font qu’un",
+            "description": "",
+            "book_reference": "LdR p.223"
+        }
+    ]
+}

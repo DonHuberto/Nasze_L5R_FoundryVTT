@@ -1,0 +1,354 @@
+{
+    "label": "Armes",
+    "mapping": {
+        "category": "data.category",
+        "grip_1": "data.grip_1",
+        "grip_2": "data.grip_2",
+        "description": "data.description",
+        "book_reference": "data.book_reference"
+    },
+    "entries": [
+        {
+            "id": "Bokken",
+            "name": "Bokken",
+            "category": "Sabre",
+            "grip_1": "-",
+            "grip_2": "Dégâts +2",
+            "description": "",
+            "book_reference": "LdR p.232"
+        },
+        {
+            "id": "Chokutō",
+            "name": "Chokutō",
+            "category": "Sabre",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.232"
+        },
+        {
+            "id": "Scimitar",
+            "name": "Cimeterre",
+            "category": "Sabre",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.232"
+        },
+        {
+            "id": "Dao",
+            "name": "Dao",
+            "category": "Sabre",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.232"
+        },
+        {
+            "id": "Gao",
+            "name": "Gao",
+            "category": "Sabre",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.232"
+        },
+        {
+            "id": "Jian",
+            "name": "Jian",
+            "category": "Sabre",
+            "grip_1": "-",
+            "grip_2": "Dangerosité +1",
+            "description": "",
+            "book_reference": "LdR p.232"
+        },
+        {
+            "id": "Katana",
+            "name": "Katana",
+            "category": "Sabre",
+            "grip_1": "-",
+            "grip_2": "Dangerosité +2",
+            "description": "",
+            "book_reference": "LdR p.232"
+        },
+        {
+            "id": "Nodachi",
+            "name": "Nodachi",
+            "category": "Sabre",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.233"
+        },
+        {
+            "id": "Wakizashi",
+            "name": "Wakizashi",
+            "category": "Sabre",
+            "grip_1": "-",
+            "grip_2": "Dangerosité +2",
+            "description": "",
+            "book_reference": "LdR p.233"
+        },
+        {
+            "id": "Zanbatō",
+            "name": "Zanbatō",
+            "category": "Sabre",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.233"
+        },
+        {
+            "id": "Masakari",
+            "name": "Masakari",
+            "category": "Hache",
+            "grip_1": "-",
+            "grip_2": "Dangerosité +2",
+            "description": "",
+            "book_reference": "LdR p.233"
+        },
+        {
+            "id": "Ono",
+            "name": "Ono",
+            "category": "Hache",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.233"
+        },
+        {
+            "id": "Club",
+            "name": "Gourdin",
+            "category": "Armes Contondantes",
+            "grip_1": "-",
+            "grip_2": "Dégâts +1",
+            "description": "",
+            "book_reference": "LdR p.234"
+        },
+        {
+            "id": "Kiseru",
+            "name": "Kiseru",
+            "category": "Armes Contondantes",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.234"
+        },
+        {
+            "id": "Hammer",
+            "name": "Marteau",
+            "category": "Armes Contondantes",
+            "grip_1": "-",
+            "grip_2": "Dégâts +2",
+            "description": "",
+            "book_reference": "LdR p.234"
+        },
+        {
+            "id": "Ōtsuchi",
+            "name": "Ōtsuchi",
+            "category": "Armes Contondantes",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.234"
+        },
+        {
+            "id": "Tetsubō",
+            "name": "Tetsubō",
+            "category": "Armes Contondantes",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.234"
+        },
+        {
+            "id": "Jitte",
+            "name": "Jitte",
+            "category": "Armes de Poing",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.234"
+        },
+        {
+            "id": "Knife",
+            "name": "Couteau",
+            "category": "Armes de Poing",
+            "grip_1": "-",
+            "grip_2": "Dangerosité +2",
+            "description": "",
+            "book_reference": "LdR p.234"
+        },
+        {
+            "id": "Nunchaku",
+            "name": "Nunchaku",
+            "category": "Armes de Poing",
+            "grip_1": "-",
+            "grip_2": "Entrave",
+            "description": "",
+            "book_reference": "LdR p.235"
+        },
+        {
+            "id": "Tessen",
+            "name": "Tessen",
+            "category": "Armes de Poing",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.235"
+        },
+        {
+            "id": "Bisentō",
+            "name": "Bisentō",
+            "category": "Armes d'Hast",
+            "grip_1": "Portée 1",
+            "grip_2": "Dégâts +2",
+            "description": "",
+            "book_reference": "LdR p.235"
+        },
+        {
+            "id": "Bō",
+            "name": "Bō",
+            "category": "Armes d'Hast",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.235"
+        },
+        {
+            "id": "Ji",
+            "name": "Ji",
+            "category": "Armes d'Hast",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.235"
+        },
+        {
+            "id": "Naginata",
+            "name": "Naginata",
+            "category": "Armes d'Hast",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.235"
+        },
+        {
+            "id": "Trident",
+            "name": "Trident",
+            "category": "Armes d'Hast",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.235"
+        },
+        {
+            "id": "Yari",
+            "name": "Yari",
+            "category": "Armes d'Hast",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.235"
+        },
+        {
+            "id": "Horsebow",
+            "name": "Arc de cavalerie",
+            "category": "Arcs",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.236"
+        },
+        {
+            "id": "Daikyū",
+            "name": "Daikyū",
+            "category": "Arcs",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.236"
+        },
+        {
+            "id": "Yumi",
+            "name": "Yumi",
+            "category": "Arcs",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.236"
+        },
+        {
+            "id": "Oyumi",
+            "name": "Oyumi",
+            "category": "Arbalètes",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.236"
+        },
+        {
+            "id": "Kama",
+            "name": "Kama",
+            "category": "Armes Spécialisées",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.237"
+        },
+        {
+            "id": "Kusari-gama",
+            "name": "Kusari-gama",
+            "category": "Armes Spécialisées",
+            "grip_1": "-",
+            "grip_2": "Portée 2-3",
+            "description": "",
+            "book_reference": "LdR p.237"
+        },
+        {
+            "id": "Blowgun",
+            "name": "Sarbacane",
+            "category": "Armes Spécialisées",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.237"
+        },
+        {
+            "id": "Shuriken",
+            "name": "Shuriken",
+            "category": "Armes Spécialisées",
+            "grip_1": "(lancé) Arts Martiaux (Distance), Portée 1-3",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.237"
+        },
+        {
+            "id": "Punch",
+            "name": "Coup de poing",
+            "category": "Attaques à mains nues",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.237"
+        },
+        {
+            "id": "Kick",
+            "name": "Coup de pied",
+            "category": "Attaques à mains nues",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.237"
+        },
+        {
+            "id": "BIte",
+            "name": "Morsure",
+            "category": "Attaques à mains nues",
+            "grip_1": "-",
+            "grip_2": "-",
+            "description": "",
+            "book_reference": "LdR p.237"
+        }
+    ]
+}
