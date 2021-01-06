@@ -95,7 +95,8 @@
         "dicepicker": {
             "difficulty_title": "Difficulty",
             "difficulty_hidden_label": "Hide TN",
-            "use_void_point_label": "Spend a Void point",
+            "use_void_point_label": "Spend a",
+            "void_point_tooltip": "Void point",
             "roll_label": "Roll",
             "bt_add_macro": "Add a macro"
         },

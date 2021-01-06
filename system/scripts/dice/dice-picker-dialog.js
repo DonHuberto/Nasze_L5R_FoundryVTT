@@ -26,6 +26,7 @@ export class DicePickerDialog extends FormApplication {
         difficulty: {
             value: 2,
             hidden: false,
+            add_void_point: true,
         },
         useVoidPoint: false,
     };
@@ -136,6 +137,7 @@ export class DicePickerDialog extends FormApplication {
         this._actor = actor;
         if (this.object.ring.id === null) {
             this.ringId = this._actor.data.data.stance;
+            this.object.ring.value = this._actor.data.data.rings[this.object.ring.id];
         }
     }
 
@@ -240,7 +242,7 @@ export class DicePickerDialog extends FormApplication {
             actor: this._actor,
             actorIsPc: !this._actor || this._actor.data?.type === "character",
             canUseVoidPoint:
-                this.object.difficulty.hidden || !this._actor || this._actor.data.data.void_points.value > 0,
+                this.object.difficulty.add_void_point || !this._actor || this._actor.data.data.void_points.value > 0,
             disableSubmit: this.object.skill.value < 1 && this.object.ring.value < 1,
         };
     }
@@ -275,7 +277,7 @@ export class DicePickerDialog extends FormApplication {
             event.preventDefault();
             event.stopPropagation();
             this.object.ring.id = event.target.dataset.ringid;
-            this.object.ring.value = event.target.value;
+            this.object.ring.value = parseInt(event.target.value) + (this.object.useVoidPoint ? 1 : 0);
             this.render(false);
         });
 
@@ -310,15 +312,17 @@ export class DicePickerDialog extends FormApplication {
             event.preventDefault();
             event.stopPropagation();
             this.object.difficulty.hidden = !this.object.difficulty.hidden;
-            if (
-                this.object.useVoidPoint &&
-                !this.object.difficulty.hidden &&
-                !!this._actor &&
-                this._actor.data.data.void_points.value < 1
-            ) {
-                this.object.useVoidPoint = false;
-                this._quantityChange("ring", -1);
-            }
+            this.object.difficulty.add_void_point = this.object.difficulty.hidden;
+            this._updateVoidPointUsage();
+            this.render(false);
+        });
+
+        // Difficulty Add a void point
+        html.find("#diff_add_void_point").on("click", async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            this.object.difficulty.add_void_point = !this.object.difficulty.add_void_point;
+            this._updateVoidPointUsage();
             this.render(false);
         });
     }
@@ -388,6 +392,22 @@ export class DicePickerDialog extends FormApplication {
      */
     _quantityChange(element, add) {
         this.object[element].value = Math.max(Math.min(parseInt(this.object[element].value) + add, 9), 0);
+    }
+
+    /**
+     * Remove the use of void point if actor don't have any and use of vp is un checked
+     * @private
+     */
+    _updateVoidPointUsage() {
+        if (
+            this.object.useVoidPoint &&
+            !this.object.difficulty.add_void_point &&
+            !!this._actor &&
+            this._actor.data.data.void_points.value < 1
+        ) {
+            this.object.useVoidPoint = false;
+            this._quantityChange("ring", -1);
+        }
     }
 
     /**

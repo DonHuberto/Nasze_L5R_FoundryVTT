@@ -79,7 +79,12 @@
         {{!-- Third line--}}
         <tr>
             <td>
-                {{^if data.difficulty.hidden}}
+                {{#if data.difficulty.hidden}}
+                <label>
+                    <input type="checkbox" id="diff_add_void_point" name="difficulty.add_void_point" value="1" {{checked data.difficulty.add_void_point}}>
+                    +1 <i class="i_void" title="{{localize 'l5r5e.dicepicker.void_point_tooltip'}}"></i>
+                </label>
+                {{else}}
                 <div id="difficulty_picker">
                     <div class="third">
                         <i class="quantity pointer-choice fa fa-minus-square" data-item="difficulty" data-value="-1"></i>
@@ -152,7 +157,7 @@
                 {{#if canUseVoidPoint}}
                     <label>
                         <input type="checkbox" id="use_void_point" name="useVoidPoint" value="1" {{checked data.useVoidPoint}}>
-                        {{localize 'l5r5e.dicepicker.use_void_point_label'}}
+                        {{localize 'l5r5e.dicepicker.use_void_point_label'}} <i class="i_void" title="{{localize 'l5r5e.dicepicker.void_point_tooltip'}}"></i>
                     </label>
                 {{/if}}
             </td>
