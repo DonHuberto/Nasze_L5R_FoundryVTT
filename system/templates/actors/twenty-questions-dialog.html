@@ -422,9 +422,14 @@
                     <table>
                         <tr>
                             <td class="third">
+                                {{localize 'l5r5e.twenty_questions.part4.disadvantage'}}
+                                {{#ifCond data.step13.advantage.length '==' 0}}
+                                    {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step13.disadvantage stepName='step13.disadvantage' itemType='peculiarities' hideDndAt=1 }}
+                                {{/ifCond}}
+                                {{localize 'l5r5e.twenty_questions.and'}}<br />
                                 <label>
                                     {{localize 'l5r5e.twenty_questions.increase_skill1'}}
-                                    <select name="step13.skill" class="skill-select">
+                                    <select name="step13.skill" class="skill-select" {{#ifCond data.step13.advantage.length '>' 0}}disabled{{/ifCond}}>
                                         {{#select data.step13.skill}}
                                         <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
                                         {{#ifCond cache.step13.advantage.length '==' '0'}}
@@ -445,12 +450,12 @@
                             </td>
                             <td class="">
                                 {{localize 'l5r5e.twenty_questions.part4.advantage'}}
-                                {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step13.advantage stepName='step13.advantage' itemType='peculiarities' hideDndAt=1 }}
+                                {{#ifCond (ifCond data.step13.disadvantage.length '==' 0) '&&' (ifCond data.step13.skill '==' 'none')}}
+                                    {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step13.advantage stepName='step13.advantage' itemType='peculiarities' hideDndAt=1 }}
+                                {{/ifCond}}
                             </td>
                         </tr>
                     </table>
-                    {{localize 'l5r5e.twenty_questions.part4.disadvantage'}}
-                    {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step13.disadvantage stepName='step13.disadvantage' itemType='peculiarities' hideDndAt=1 }}
                 </div>
                 <br />
                 <br /><button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>

@@ -312,8 +312,10 @@ export class TwentyQuestionsDialog extends FormApplication {
         // Check "Or" conditions
         formData["step7.social_add_glory"] = formData["step7.skill"] === "none" ? 5 : 0;
         formData["step8.social_add_honor"] = formData["step8.skill"] === "none" ? 10 : 0;
-        if (formData["step13.skill"] !== "none" && this.object.data.step13.advantage.length > 0) {
+
+        if (this.object.data.step13.advantage.length > 0) {
             formData["step13.skill"] = "none";
+            setProperty(this.object.data, "step13.disadvantage", []);
         }
 
         // Update 20Q object data

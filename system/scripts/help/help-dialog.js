@@ -45,13 +45,12 @@ export class HelpDialog extends FormApplication {
         super.activateListeners(html);
 
         // Buttons
-        ["edge", "drivethrurpg", "discord"].forEach((name) => {
-            html.find(`button[name='${name}']`).on("click", (event) => {
-                event.preventDefault();
-                event.stopPropagation();
-                ui.notifications.info(game.i18n.localize(`l5r5e.logo.${name}-info`));
-                window.open(game.i18n.localize(`l5r5e.logo.${name}-link`), "_blank");
-            });
+        html.find(`button`).on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            const name = $(event.currentTarget).data("type");
+            ui.notifications.info(game.i18n.localize(`l5r5e.logo.${name}-info`));
+            window.open(game.i18n.localize(`l5r5e.logo.${name}-link`), "_blank");
         });
     }
 
