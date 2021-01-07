@@ -114,7 +114,8 @@
             line-height: 1.5rem;
         }
         &.attributes {
-            select[name="data.advancement_type"],
+            .advancement_type,
+            .advancement_skill,
             select[name="data.skill"],
             select[name="data.ring"],
             select[name="data.peculiarity_type"],
