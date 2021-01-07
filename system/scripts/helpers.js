@@ -96,6 +96,7 @@ export class HelpersL5r5e {
                     break;
             }
             if (item) {
+                await HelpersL5r5e.refreshItemProperties(item);
                 return item;
             }
 
@@ -122,15 +123,14 @@ export class HelpersL5r5e {
      * Make a temporary item for compendium drag n drop
      */
     static async createItemFromCompendium(data) {
-        if (
-            data instanceof ItemL5r5e ||
-            !["item", "armor", "weapon", "technique", "peculiarity", "property"].includes(data.type)
-        ) {
+        if (!["item", "armor", "weapon", "technique", "peculiarity", "property"].includes(data.type)) {
             return data;
         }
 
         let item;
-        if (game.user.hasPermission("ACTOR_CREATE")) {
+        if (data instanceof ItemL5r5e) {
+            item = data;
+        } else if (game.user.hasPermission("ACTOR_CREATE")) {
             // Fail if a player do not have the right to create object (even if this is a temporary)
             item = await ItemL5r5e.create(data, { temporary: true });
 
@@ -140,7 +140,25 @@ export class HelpersL5r5e {
             // Quick object
             item = new ItemL5r5e(data);
         }
+        await HelpersL5r5e.refreshItemProperties(item);
         return item;
+    }
+
+    /**
+     * Babele and properties specific
+     */
+    static async refreshItemProperties(item) {
+        if (item.data.data.properties && typeof Babele !== "undefined") {
+            item.data.data.properties = await Promise.all(
+                item.data.data.properties.map(async (property) => {
+                    const gameProp = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack(property.id, "Item");
+                    if (gameProp) {
+                        return { id: gameProp._id, name: gameProp.name };
+                    }
+                    return property;
+                })
+            );
+        }
     }
 
     /**

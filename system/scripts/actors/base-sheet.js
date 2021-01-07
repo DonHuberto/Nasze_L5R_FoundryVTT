@@ -91,19 +91,6 @@ export class BaseSheetL5r5e extends ActorSheet {
             }
         }
 
-        // Babele and properties specific
-        if (item.data.data.properties && typeof Babele !== "undefined") {
-            item.data.data.properties = await Promise.all(
-                item.data.data.properties.map(async (property) => {
-                    const gameProp = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack(property.id, "Item");
-                    if (gameProp) {
-                        return { id: gameProp._id, name: gameProp.name };
-                    }
-                    return property;
-                })
-            );
-        }
-
         // Item subtype specific
         switch (item.data.type) {
             case "advancement": // no break
