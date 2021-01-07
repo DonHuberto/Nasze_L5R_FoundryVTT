@@ -56,7 +56,7 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
 
         // split advancements list by rank, and calculate xp spent
         this._prepareAdvancement(sheetData);
-        sheetData.data.xp_saved = sheetData.data.xp_total - sheetData.data.xp_spent;
+        sheetData.data.xp_saved = Math.floor(parseInt(sheetData.data.xp_total) - parseInt(sheetData.data.xp_spent));
 
         return sheetData;
     }
@@ -111,8 +111,8 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
                 return;
             }
 
-            let xp = item.data.xp_used || 0;
-            sheetData.data.xp_spent = sheetData.data.xp_spent + xp;
+            let xp = parseInt(item.data.xp_used) || 0;
+            sheetData.data.xp_spent = parseInt(sheetData.data.xp_spent) + xp;
 
             // if not in curriculum, xp spent /2 for this item
             if (!item.data.in_curriculum && xp > 0) {
