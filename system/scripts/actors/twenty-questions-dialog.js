@@ -171,6 +171,7 @@ export class TwentyQuestionsDialog extends FormApplication {
             const tab = this._tabs.find((e) => e._navSelector === ".sheet-tabs");
             const next = parseInt(tab.active.replace(/[^0-9]/g, "")) + 1;
             tab.activate("part" + next);
+            $(event.currentTarget).closest(".window-content").scrollTop(0);
         });
 
         // *** Everything below here is only needed if the sheet is editable ***
