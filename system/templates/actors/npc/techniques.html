@@ -1,15 +1,13 @@
-<div class="techniques-wrapper">
-    <fieldset class="section-header flexrow">
-        <legend class="technique-controls">
-            {{ localize 'l5r5e.techniques.title' }}
-            <a data-item-type="technique" class="technique-control item-add" title="{{ localize 'l5r5e.global.add' }}"><i class="fas fa-plus"></i></a>
-        </legend>
-        <ul class="item-list">
-            {{#each actor.items as |item id|}}
-                {{#ifCond item.type '==' 'technique'}}
-                    {{> 'systems/l5r5e/templates/items/technique/technique-entry.html' technique=item editable=../editable }}
-                {{/ifCond}}
-            {{/each}}
-        </ul>
-    </fieldset>
-</div>
+<fieldset class="techniques-wrapper section-header flexrow">
+    <legend class="technique-controls">
+        {{ localize 'l5r5e.techniques.title' }}
+        <a data-item-type="technique" class="technique-control item-add" title="{{ localize 'l5r5e.global.add' }}"><i class="fas fa-plus"></i></a>
+    </legend>
+    <ul class="item-list">
+        {{#each actor.items as |item id|}}
+            {{#ifCond item.type '==' 'technique'}}
+                {{> 'systems/l5r5e/templates/items/technique/technique-entry.html' technique=item editable=../editable }}
+            {{/ifCond}}
+        {{/each}}
+    </ul>
+</fieldset>
