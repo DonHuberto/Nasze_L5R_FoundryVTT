@@ -60,7 +60,9 @@ export class TwentyQuestionsDialog extends FormApplication {
             class: "twenty-questions",
             icon: "fas fa-sync-alt",
             onclick: async () => {
-                await new TwentyQuestionsDialog(this.actor).render(true);
+                this._initialize(game.actors.get(this.actor._id));
+                await this._constructCache();
+                this.render(false);
             },
         });
         return buttons;
@@ -71,6 +73,14 @@ export class TwentyQuestionsDialog extends FormApplication {
      */
     constructor(actor = null, options = {}) {
         super({}, options);
+        this._initialize(actor);
+    }
+
+    /**
+     * Initialize actor and object for dialog
+     * @private
+     */
+    _initialize(actor) {
         this.actor = actor;
         this.object = new TwentyQuestions(actor);
         this.summary = this.object.validateForm();
