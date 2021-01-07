@@ -92,17 +92,30 @@
 &.technique,
 &.weapon {
     .sheet-header {
+        margin-bottom: 0.5rem;
         img {
             flex: 0 0 90px;
             height: 90px;
             width: 90px;
             background: rgba(255, 255, 255, 0.25);
         }
+        h1 {
+            input {
+                height: 5.5rem;
+            }
+        }
     }
     fieldset {
         input[name="data.effects"] {
             text-align: left;
         }
+    }
+    .sheet-body {
+        flex: 100%;
+        height: calc(100% - 90px);
+        align-self: stretch;
+        display: flex;
+        flex-wrap: wrap;
     }
     article {
         display: flex;
@@ -114,8 +127,14 @@
             line-height: 1.5rem;
         }
         &.attributes {
-            .advancement_type,
-            .advancement_skill,
+            align-self: flex-start;
+            width: 100%;
+            height: 6.5rem;
+            #advancement_type,
+            #advancement_skill {
+                flex: 0 0 calc(40% - 2rem);
+                margin: 0.25rem;
+            }
             select[name="data.skill"],
             select[name="data.ring"],
             select[name="data.peculiarity_type"],
@@ -133,7 +152,12 @@
             select[name="data.skill"] {
                 text-transform: capitalize;
             }
-            .type,
+            .type {
+                flex: 100%;
+                label {
+                    width: 50%;
+                }
+            }
             .properties {
                 flex: 0 0 calc(50% - 0.5rem);
                 margin: 0.25rem;
@@ -147,7 +171,7 @@
             input[type="number"] {
                 width: 2rem;
                 &.grip {
-                    width: 12rem;
+                    width: 100%;
                     margin-bottom: 0.25rem;
                 }
             }
@@ -173,12 +197,24 @@
         }
         &.infos {
             display: flex;
+            align-self: stretch;
+            height: calc(100% - 7.5rem);
+            width: 100%;
             .reference {
                 flex: 0 0 calc(100% - 0.5rem);
                 input[name="data.book_reference"] {
                     float: right;
                     width: 70%;
                 }
+            }
+            fieldset {
+                align-self: stretch;
+                height: calc(100% - 2rem);
+            }
+        }
+        &.properties {
+            fieldset {
+                margin-bottom: 0.5rem;
             }
         }
     }
@@ -219,35 +255,69 @@
         }
     }
 }
+&.peculiarity {
+    article {
+        &.attributes {
+            height: 8.5rem;
+        }
+        &.infos {
+            height: calc(100% - 9.5rem);
+        }
+    }
+}
 &.item {
     article {
         &.attributes {
+            height: 4.5rem;
             .properties {
                 flex: 100%;
             }
         }
+        &.infos {
+            flex: 0 0 60%;
+            height: calc(100% - 5.5rem);
+        }
+        &.properties {
+            flex: 0 0 40%;
+            height: calc(100% - 5.5rem);
+        }
     }
 }
 &.property {
-    .sheet-header {
-        img {
-            flex: 0 0 75px;
-            height: 75px;
-            width: 75px;
-            background: rgba(255, 255, 255, 0.25);
-        }
+    &.infos {
+        height: 100%;
     }
     article {
         min-height: calc(100% - 5rem);
     }
 }
+&.armor {
+    article {
+        &.attributes {
+            height: 9.5rem;
+        }
+        &.infos {
+            flex: 0 0 60%;
+            height: calc(100% - 10.5rem);
+        }
+        &.properties {
+            flex: 0 0 40%;
+            height: calc(100% - 10.5rem);
+        }
+    }
+}
 &.weapon {
     article {
         &.attributes {
-            .attribute-value,
-            .stats {
+            height: 18.5rem;
+            .stats,
+            .attribute-value {
                 flex: 0 0 calc(50% - 0.5rem);
+                flex-wrap: wrap;
                 margin: 0.25rem;
+                label {
+                    width: 100%;
+                }
             }
             .value {
                 flex: 0 0 calc(25% - 0.5rem);
@@ -261,6 +331,14 @@
                     margin: 0.25rem;
                 }
             }
+        }
+        &.infos {
+            flex: 0 0 60%;
+            height: calc(100% - 19.5rem);
+        }
+        &.properties {
+            flex: 0 0 40%;
+            height: calc(100% - 19.5rem);
         }
     }
 }

@@ -39,6 +39,11 @@
                 box-shadow: none;
             }
         }
+        fieldset {
+            &.advancement {
+                display: block;
+            }
+        }
         .advancements-tabs {
             height: 2rem;
             line-height: 2rem;
@@ -49,22 +54,10 @@
             margin: 0 0 0.25rem 0.5rem;
         }
     }
-    &.item,
-    .technique,
-    .weapon,
-    .armor,
-    .advantages,
-    .disadvantages {
-        .sheet-header {
-            height: 10rem;
-        }
-        .sheet-body {
-            height: calc(100% - 10rem);
-        }
-    }
     form {
         display: flex;
         flex-wrap: wrap;
+        align-content: flex-start;
     }
     .sheet-body {
         flex: 0 0 100%;
@@ -430,6 +423,12 @@
         .narrative-content,
         .narrative-note {
             flex: 0 0 calc(50% - 0.5rem);
+            fieldset {
+                display: block;
+                label {
+                    width: 100%;
+                }
+            }
         }
         .techniques-wrapper {
             .checklist {

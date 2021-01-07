@@ -44,12 +44,14 @@
                     {{ localize 'l5r5e.weapons.deadliness' }}
                     <input class="select-on-focus" type="number" name="data.deadliness" value="{{data.deadliness}}" data-dtype="Number" min="0" placeholder="0"/>
                 </label>
-                <label>
-                    {{ localize 'l5r5e.weapons.grips' }}
-                    <input class="grip" type="text" name="data.grip_1" value="{{data.grip_1}}" />
-                    <input class="grip" type="text" name="data.grip_2" value="{{data.grip_2}}" />
-                </label>
             </fieldset>
+            <fieldset class="stats">
+                <legend class="text-block-header">{{ localize 'l5r5e.weapons.grips' }}</legend>
+                <input class="grip" type="text" name="data.grip_1" value="{{data.grip_1}}" />
+                <input class="grip" type="text" name="data.grip_2" value="{{data.grip_2}}" />
+            </fieldset>
+        </article>
+        <article class="properties" data-group="primary" data-tab="properties">
             {{> 'systems/l5r5e/templates/items/property/properties.html' properties=data.propertiesList }}
         </article>
         {{> 'systems/l5r5e/templates/items/item/item-infos.html' }}
