@@ -403,6 +403,7 @@ button {
 #logo {
     content: url("../assets/l5r-logo.webp");
     height: 80px;
+    width: 88px;
     margin-left: 0.5rem;
     opacity: 0.5;
     &:hover {
@@ -413,6 +414,17 @@ button {
 // navigation
 #navigation {
     left: 120px;
+    &:before {
+        content: "";
+        background: url("../assets/l5r-logo.webp") no-repeat 0 0;
+        background-size: cover;
+        height: 80px;
+        width: 88px;
+        opacity: 0.5;
+        &:hover {
+            opacity: 0.75;
+        }
+    }
     #nav-toggle,
     #scene-list .scene.nav-item {
         cursor: default;

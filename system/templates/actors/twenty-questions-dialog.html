@@ -19,9 +19,9 @@
                 <h1>{{localize 'l5r5e.twenty_questions.title'}}</h1>
                 {{localize 'l5r5e.twenty_questions.part0.intro'}}
                 <br />
-                <br /><i> {{localize 'l5r5e.twenty_questions.part0.section'}}</i>
                 <br />
-                <br /><button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>
+                <i> {{localize 'l5r5e.twenty_questions.part0.section'}}</i>
+                <button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>
             </article>
             <article class="tab parts part1" data-group="primary" data-tab="part1">
                 <h2>{{localize 'l5r5e.twenty_questions.part1.title'}}</h2>
@@ -62,8 +62,7 @@
                         <td class="third">
                             <label>
                                 {{localize 'l5r5e.twenty_questions.part1.status'}}
-                                <input type="number" name="step1.social_status" min="0" max="100" value="{{data.step1.social_status}}"
-                                       data-dtype="Number" placeholder="0">
+                                <input type="number" name="step1.social_status" min="0" max="100" value="{{data.step1.social_status}}" data-dtype="Number" placeholder="0" />
                             </label>
                         </td>
                     </tr>
@@ -73,34 +72,30 @@
                 <table>
                     <tr>
                         <td class="third">
-                            <label>
-                                {{localize 'l5r5e.twenty_questions.increase_ring1'}}
-                                <select name="step2.ring" class="ring-select">
-                                    {{#select data.step2.ring}}
-                                    <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_ring'}}</option>
-                                    {{#each ringsList as |obj|}}
-                                    <option value="{{obj.id}}">{{obj.label}}</option>
-                                    {{/each}}
-                                    {{/select}}
-                                </select>
-                            </label>
+                            {{localize 'l5r5e.twenty_questions.increase_ring1'}}
+                            <select name="step2.ring" class="ring-select">
+                                {{#select data.step2.ring}}
+                                <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_ring'}}</option>
+                                {{#each ringsList as |obj|}}
+                                <option value="{{obj.id}}">{{obj.label}}</option>
+                                {{/each}}
+                                {{/select}}
+                            </select>
                         </td>
                         <td class="third">
-                            <label>
-                                {{localize 'l5r5e.twenty_questions.increase_skill2'}}
-                                <select name="step2.skill1" class="skill-select">
-                                    {{#select data.step2.skill1}}
-                                    <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
-                                    {{#each skillsList as |skills catId|}}
-                                    <optgroup label="{{localizeSkill catId 'title'}}">
-                                        {{#each skills as |obj|}}
-                                        <option value="{{obj.id}}">{{obj.label}}</option>
-                                        {{/each}}
-                                    </optgroup>
+                            {{localize 'l5r5e.twenty_questions.increase_skill2'}}
+                            <select name="step2.skill1" class="skill-select">
+                                {{#select data.step2.skill1}}
+                                <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
+                                {{#each skillsList as |skills catId|}}
+                                <optgroup label="{{localizeSkill catId 'title'}}">
+                                    {{#each skills as |obj|}}
+                                    <option value="{{obj.id}}">{{obj.label}}</option>
                                     {{/each}}
-                                    {{/select}}
-                                </select>
-                            </label>
+                                </optgroup>
+                                {{/each}}
+                                {{/select}}
+                            </select>
                             <select name="step2.skill2" class="skill-select">
                                 {{#select data.step2.skill2}}
                                 <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
@@ -115,21 +110,14 @@
                             </select>
                         </td>
                         <td class="third">
-                            <label>
-                                {{localize 'l5r5e.twenty_questions.part1.money'}}
-                                <input type="number" name="step2.wealth" value="{{data.step2.wealth}}" data-dtype="Number"
-                                       placeholder="0">
-                            </label>
-                            <label>
-                                {{localize 'l5r5e.twenty_questions.part1.glory'}}
-                                <input type="number" name="step2.social_glory" min="0" max="100" value="{{data.step2.social_glory}}"
-                                       data-dtype="Number" placeholder="0">
-                            </label>
+                            {{localize 'l5r5e.twenty_questions.part1.money'}}
+                            <input type="number" name="step2.wealth" value="{{data.step2.wealth}}" data-dtype="Number" placeholder="0" />
+                            {{localize 'l5r5e.twenty_questions.part1.glory'}}
+                            <input type="number" name="step2.social_glory" min="0" max="100" value="{{data.step2.social_glory}}" data-dtype="Number" placeholder="0" />
                         </td>
                     </tr>
                 </table>
-                <br />
-                <br /><button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>
+                <button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>
             </article>
             <article class="tab parts part2" data-group="primary" data-tab="part2">
                 <h2>{{localize 'l5r5e.twenty_questions.part2.title'}}</h2>
@@ -145,17 +133,15 @@
                 <table>
                     <tr>
                         <td class="fifty">
-                            <label>
-                                {{localize 'l5r5e.twenty_questions.increase_ring2'}}
-                                <select name="step3.ring1" class="ring-select">
-                                    {{#select data.step3.ring1}}
-                                    <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_ring'}}</option>
-                                    {{#each ringsList as |obj|}}
-                                    <option value="{{obj.id}}">{{obj.label}}</option>
-                                    {{/each}}
-                                    {{/select}}
-                                </select>
-                            </label>
+                            {{localize 'l5r5e.twenty_questions.increase_ring2'}}
+                            <select name="step3.ring1" class="ring-select">
+                                {{#select data.step3.ring1}}
+                                <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_ring'}}</option>
+                                {{#each ringsList as |obj|}}
+                                <option value="{{obj.id}}">{{obj.label}}</option>
+                                {{/each}}
+                                {{/select}}
+                            </select>
                             <select name="step3.ring2" class="ring-select">
                                 {{#select data.step3.ring2}}
                                 <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_ring'}}</option>
@@ -164,28 +150,23 @@
                                 {{/each}}
                                 {{/select}}
                             </select>
-                            <label>
-                                {{localize 'l5r5e.twenty_questions.part2.honor'}}
-                                <input type="number" name="step3.social_honor" min="0" max="100" value="{{data.step3.social_honor}}"
-                                       data-dtype="Number" placeholder="0">
-                            </label>
+                            {{localize 'l5r5e.twenty_questions.part2.honor'}}
+                            <input type="number" name="step3.social_honor" min="0" max="100" value="{{data.step3.social_honor}}" data-dtype="Number" placeholder="0" />
                         </td>
                         <td class="fifty">
-                            <label>
-                                {{localize 'l5r5e.twenty_questions.increase_skill3'}}
-                                <select name="step3.skill1" class="skill-select">
-                                    {{#select data.step3.skill1}}
-                                    <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
-                                    {{#each skillsList as |skills catId|}}
-                                    <optgroup label="{{localizeSkill catId 'title'}}">
-                                        {{#each skills as |obj|}}
-                                        <option value="{{obj.id}}">{{obj.label}}</option>
-                                        {{/each}}
-                                    </optgroup>
+                            {{localize 'l5r5e.twenty_questions.increase_skill3'}}
+                            <select name="step3.skill1" class="skill-select">
+                                {{#select data.step3.skill1}}
+                                <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
+                                {{#each skillsList as |skills catId|}}
+                                <optgroup label="{{localizeSkill catId 'title'}}">
+                                    {{#each skills as |obj|}}
+                                    <option value="{{obj.id}}">{{obj.label}}</option>
                                     {{/each}}
-                                    {{/select}}
-                                </select>
-                            </label>
+                                </optgroup>
+                                {{/each}}
+                                {{/select}}
+                            </select>
                             <select name="step3.skill2" class="skill-select">
                                 {{#select data.step3.skill2}}
                                 <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
@@ -238,12 +219,12 @@
                     </tr>
                     <tr>
                         <td colspan="2" class="checklist">
-                            {{localize 'l5r5e.twenty_questions.part2.access'}}
+                            <strong>{{localize 'l5r5e.twenty_questions.part2.access'}}</strong>
                             {{#each techniquesList as |technique|}}
-                            <label>
-                                <input type="checkbox" name="step3.allowed_techniques.{{technique}}" {{checked (lookup ../data.step3.allowed_techniques technique)}}>
-                                {{localizeTechnique technique}}
-                            </label>
+                                <label class="technique">
+                                    <input type="checkbox" name="step3.allowed_techniques.{{technique}}" {{checked (lookup ../data.step3.allowed_techniques technique)}} />
+                                    {{localizeTechnique technique}}
+                                </label>
                             {{/each}}
                         </td>
                     </tr>
@@ -251,7 +232,6 @@
                         <td class="fifty">
                             {{localize 'l5r5e.twenty_questions.part2.school_ability'}}
                             {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step3.school_ability stepName='step3.school_ability' itemType='techniques' hideDndAt=1 }}
-                            <br />
                             {{localize 'l5r5e.twenty_questions.part2.starting_techniques'}}
                             {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step3.techniques stepName='step3.techniques' itemType='techniques' hideDndAt=5 }}
                         </td>
@@ -261,10 +241,8 @@
                         </td>
                     </tr>
                 </table>
-                <label>
-                    <h3>{{localize 'l5r5e.twenty_questions.part2.q4'}}</h3>
-                    <textarea name="step4.stand_out">{{data.step4.stand_out}}</textarea>
-                </label>
+                <h3>{{localize 'l5r5e.twenty_questions.part2.q4'}}</h3>
+                <textarea name="step4.stand_out">{{data.step4.stand_out}}</textarea>
                 <label>
                     {{localize 'l5r5e.twenty_questions.increase_ring1'}}
                     <select name="step4.ring" class="ring-select">
@@ -276,331 +254,236 @@
                         {{/select}}
                     </select>
                 </label>
-                <br />
-                <br /><button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>
+                <button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>
             </article>
             <article class="tab parts part3" data-group="primary" data-tab="part3">
                 <h2>{{localize 'l5r5e.twenty_questions.part3.title'}}</h2>
-                <div>
-                    <h3>{{localize 'l5r5e.twenty_questions.part3.q5'}}</h3>
-
-                    <label>
-                        {{localize 'l5r5e.twenty_questions.part3.choose_giri'}}
-                        <textarea name="step5.social_giri">{{data.step5.social_giri}}</textarea>
-                    </label>
-                </div>
-
-                <div>
-                    <h3>{{localize 'l5r5e.twenty_questions.part3.q6'}}</h3>
-
-                    <label>
-                        {{localize 'l5r5e.twenty_questions.part3.choose_ninjo'}}
-                        <textarea name="step6.social_ninjo">{{data.step6.social_ninjo}}</textarea>
-                    </label>
-                </div>
-
-                <div>
-                    <label>
-                        <h3>{{localize 'l5r5e.twenty_questions.part3.q7'}}</h3>
-                        <textarea name="step7.clan_relations">{{data.step7.clan_relations}}</textarea>
-                    </label>
-
-                    <table>
-                        <tr>
-                            <td class="third">
-                                <label>
-                                    {{localize 'l5r5e.twenty_questions.increase_skill1'}}
-                                    <br>
-                                    <select name="step7.skill" class="skill-select">
-                                        {{#select data.step7.skill}}
-                                        <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
-                                        {{#each skillsList as |skills catId|}}
-                                        <optgroup label="{{localizeSkill catId 'title'}}">
-                                            {{#each skills as |obj|}}
-                                            <option value="{{obj.id}}">{{obj.label}}</option>
-                                            {{/each}}
-                                        </optgroup>
-                                        {{/each}}
-                                        {{/select}}
-                                    </select>
-                                </label>
-                            </td>
-                            <td class="or">
-                                {{localize 'l5r5e.twenty_questions.or'}}
-                            </td>
-                            <td class="">
-                                <label>
-                                    {{localize 'l5r5e.twenty_questions.part3.increase_glory'}}
-                                    <input type="number" name="step7.social_add_glory" value="{{data.step7.social_add_glory}}"
-                                           data-dtype="Number" placeholder="0" disabled>
-                                </label>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div>
-                    <label>
-                        <h3>{{localize 'l5r5e.twenty_questions.part3.q8'}}</h3>
-                        <textarea name="step8.bushido">{{data.step8.bushido}}</textarea>
-                    </label>
-
-                    <table>
-                        <tr>
-                            <td class="third">
-                                <label>
-                                    {{localize 'l5r5e.twenty_questions.increase_skill1'}}
-                                    <select name="step8.skill" class="skill-select">
-                                        {{#select data.step8.skill}}
-                                        <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
-                                        {{#each noHonorSkillsList as |skillId|}}
-                                        <option value="{{skillId}}">{{localizeSkillId skillId}}</option>
-                                        {{/each}}
-                                        {{/select}}
-                                    </select>
-                                </label>
-                            </td>
-                            <td class="or">
-                                {{localize 'l5r5e.twenty_questions.or'}}
-                            </td>
-                            <td class="">
-                                <label>
-                                    {{localize 'l5r5e.twenty_questions.part3.increase_honor'}}
-                                    <input type="number" name="step8.social_add_honor" value="{{data.step8.social_add_honor}}"
-                                           data-dtype="Number" placeholder="0" disabled>
-                                </label>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <br />
-                <br /><button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>
+                <h3>{{localize 'l5r5e.twenty_questions.part3.q5'}}</h3>
+                <label>
+                    {{localize 'l5r5e.twenty_questions.part3.choose_giri'}}
+                    <textarea name="step5.social_giri">{{data.step5.social_giri}}</textarea>
+                </label>
+                <h3>{{localize 'l5r5e.twenty_questions.part3.q6'}}</h3>
+                <label>
+                    {{localize 'l5r5e.twenty_questions.part3.choose_ninjo'}}
+                    <textarea name="step6.social_ninjo">{{data.step6.social_ninjo}}</textarea>
+                </label>
+                <h3>{{localize 'l5r5e.twenty_questions.part3.q7'}}</h3>
+                <textarea name="step7.clan_relations">{{data.step7.clan_relations}}</textarea>
+                <table>
+                    <tr>
+                        <td class="third">
+                            {{localize 'l5r5e.twenty_questions.increase_skill1'}}
+                            <select name="step7.skill" class="skill-select">
+                                {{#select data.step7.skill}}
+                                <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
+                                {{#each skillsList as |skills catId|}}
+                                <optgroup label="{{localizeSkill catId 'title'}}">
+                                    {{#each skills as |obj|}}
+                                    <option value="{{obj.id}}">{{obj.label}}</option>
+                                    {{/each}}
+                                </optgroup>
+                                {{/each}}
+                                {{/select}}
+                            </select>
+                        </td>
+                        <td class="or">
+                            {{localize 'l5r5e.twenty_questions.or'}}
+                        </td>
+                        <td class="">
+                            {{localize 'l5r5e.twenty_questions.part3.increase_glory'}}
+                            <input type="number" name="step7.social_add_glory" value="{{data.step7.social_add_glory}}" data-dtype="Number" placeholder="0" disabled />
+                        </td>
+                    </tr>
+                </table>
+                <h3>{{localize 'l5r5e.twenty_questions.part3.q8'}}</h3>
+                <textarea name="step8.bushido">{{data.step8.bushido}}</textarea>
+                <table>
+                    <tr>
+                        <td class="third">
+                            {{localize 'l5r5e.twenty_questions.increase_skill1'}}
+                            <select name="step8.skill" class="skill-select">
+                                {{#select data.step8.skill}}
+                                <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
+                                {{#each noHonorSkillsList as |skillId|}}
+                                <option value="{{skillId}}">{{localizeSkillId skillId}}</option>
+                                {{/each}}
+                                {{/select}}
+                            </select>
+                        </td>
+                        <td class="or">
+                            {{localize 'l5r5e.twenty_questions.or'}}
+                        </td>
+                        <td class="">
+                            {{localize 'l5r5e.twenty_questions.part3.increase_honor'}}
+                            <input type="number" name="step8.social_add_honor" value="{{data.step8.social_add_honor}}" data-dtype="Number" placeholder="0" disabled />
+                        </td>
+                    </tr>
+                </table>
+                <button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>
             </article>
             <article class="tab parts part4" data-group="primary" data-tab="part4">
                 <h2>{{localize 'l5r5e.twenty_questions.part4.title'}}</h2>
-                <div>
-                    <label>
-                        <h3>{{localize 'l5r5e.twenty_questions.part4.q9'}}</h3>
-                        <textarea name="step9.success">{{data.step9.success}}</textarea>
-                    </label>
+                <h3>{{localize 'l5r5e.twenty_questions.part4.q9'}}</h3>
+                <textarea name="step9.success">{{data.step9.success}}</textarea>
+                <label>
                     {{localize 'l5r5e.twenty_questions.part4.distinction'}}
                     {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step9.distinction stepName='step9.distinction' itemType='peculiarities' hideDndAt=1 }}
-                </div>
-
-                <div>
-                    <label>
-                        <h3>{{localize 'l5r5e.twenty_questions.part4.q10'}}</h3>
-                        <textarea name="step10.difficulty">{{data.step10.difficulty}}</textarea>
-                    </label>
+                </label>
+                <h3>{{localize 'l5r5e.twenty_questions.part4.q10'}}</h3>
+                <textarea name="step10.difficulty">{{data.step10.difficulty}}</textarea>
+                <label>
                     {{localize 'l5r5e.twenty_questions.part4.adversity'}}
                     {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step10.adversity stepName='step10.adversity' itemType='peculiarities' hideDndAt=1 }}
-                </div>
-
-                <div>
-                    <label>
-                        <h3>{{localize 'l5r5e.twenty_questions.part4.q11'}}</h3>
-                        <textarea name="step11.calms">{{data.step11.calms}}</textarea>
-                    </label>
+                </label>
+                <h3>{{localize 'l5r5e.twenty_questions.part4.q11'}}</h3>
+                <textarea name="step11.calms">{{data.step11.calms}}</textarea>
+                <label>
                     {{localize 'l5r5e.twenty_questions.part4.passion'}}
                     {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step11.passion stepName='step11.passion' itemType='peculiarities' hideDndAt=1 }}
-                </div>
-
-                <div>
-                    <label>
-                        <h3>{{localize 'l5r5e.twenty_questions.part4.q12'}}</h3>
-                        <textarea name="step12.worries">{{data.step12.worries}}</textarea>
-                    </label>
+                </label>
+                <h3>{{localize 'l5r5e.twenty_questions.part4.q12'}}</h3>
+                <textarea name="step12.worries">{{data.step12.worries}}</textarea>
+                <label>
                     {{localize 'l5r5e.twenty_questions.part4.anxiety'}}
                     {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step12.anxiety stepName='step12.anxiety' itemType='peculiarities' hideDndAt=1 }}
-                </div>
-
-                <div>
-                    <label>
-                        <h3>{{localize 'l5r5e.twenty_questions.part4.q13'}}</h3>
-                        <textarea name="step13.most_learn">{{data.step13.most_learn}}</textarea>
-                    </label>
-                    <table>
-                        <tr>
-                            <td class="third">
-                                {{localize 'l5r5e.twenty_questions.part4.disadvantage'}}
-                                {{#ifCond data.step13.advantage.length '==' 0}}
-                                    {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step13.disadvantage stepName='step13.disadvantage' itemType='peculiarities' hideDndAt=1 }}
+                </label>
+                <h3>{{localize 'l5r5e.twenty_questions.part4.q13'}}</h3>
+                <textarea name="step13.most_learn">{{data.step13.most_learn}}</textarea>
+                <table>
+                    <tr>
+                        <td class="third">
+                            {{localize 'l5r5e.twenty_questions.part4.disadvantage'}}
+                            {{#ifCond data.step13.advantage.length '==' 0}}
+                                {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step13.disadvantage stepName='step13.disadvantage' itemType='peculiarities' hideDndAt=1 }}
+                            {{/ifCond}}
+                            {{localize 'l5r5e.twenty_questions.and'}}
+                            {{localize 'l5r5e.twenty_questions.increase_skill1'}}
+                            <select name="step13.skill" class="skill-select" {{#ifCond data.step13.advantage.length '>' 0}}disabled{{/ifCond}}>
+                                {{#select data.step13.skill}}
+                                <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
+                                {{#ifCond cache.step13.advantage.length '==' '0'}}
+                                {{#each skillsList as |skills catId|}}
+                                <optgroup label="{{localizeSkill catId 'title'}}">
+                                    {{#each skills as |obj|}}
+                                    <option value="{{obj.id}}">{{obj.label}}</option>
+                                    {{/each}}
+                                </optgroup>
+                                {{/each}}
                                 {{/ifCond}}
-                                {{localize 'l5r5e.twenty_questions.and'}}<br />
-                                <label>
-                                    {{localize 'l5r5e.twenty_questions.increase_skill1'}}
-                                    <select name="step13.skill" class="skill-select" {{#ifCond data.step13.advantage.length '>' 0}}disabled{{/ifCond}}>
-                                        {{#select data.step13.skill}}
-                                        <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
-                                        {{#ifCond cache.step13.advantage.length '==' '0'}}
-                                        {{#each skillsList as |skills catId|}}
-                                        <optgroup label="{{localizeSkill catId 'title'}}">
-                                            {{#each skills as |obj|}}
-                                            <option value="{{obj.id}}">{{obj.label}}</option>
-                                            {{/each}}
-                                        </optgroup>
-                                        {{/each}}
-                                        {{/ifCond}}
-                                        {{/select}}
-                                    </select>
-                                </label>
-                            </td>
-                            <td class="or">
-                                {{localize 'l5r5e.twenty_questions.or'}}
-                            </td>
-                            <td class="">
-                                {{localize 'l5r5e.twenty_questions.part4.advantage'}}
-                                {{#ifCond (ifCond data.step13.disadvantage.length '==' 0) '&&' (ifCond data.step13.skill '==' 'none')}}
-                                    {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step13.advantage stepName='step13.advantage' itemType='peculiarities' hideDndAt=1 }}
-                                {{/ifCond}}
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <br />
-                <br /><button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>
+                                {{/select}}
+                            </select>
+                        </td>
+                        <td class="or">
+                            {{localize 'l5r5e.twenty_questions.or'}}
+                        </td>
+                        <td class="">
+                            {{localize 'l5r5e.twenty_questions.part4.advantage'}}
+                            {{#ifCond (ifCond data.step13.disadvantage.length '==' 0) '&&' (ifCond data.step13.skill '==' 'none')}}
+                                {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step13.advantage stepName='step13.advantage' itemType='peculiarities' hideDndAt=1 }}
+                            {{/ifCond}}
+                        </td>
+                    </tr>
+                </table>
+                <button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>
             </article>
             <article class="tab parts part5" data-group="primary" data-tab="part5">
                 <h2>{{localize 'l5r5e.twenty_questions.part5.title'}}</h2>
-                <div>
-                    <label>
-                        <h3>{{localize 'l5r5e.twenty_questions.part5.q14'}}</h3>
-                        <textarea name="step14.first_sight">{{data.step14.first_sight}}</textarea>
-                    </label>
-                    <label>
-                        {{localize 'l5r5e.twenty_questions.part5.accoutrement'}}
-                        {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step14.special_features stepName='step14.special_features' itemType='items' hideDndAt=1 }}
-                    </label>
-                </div>
-
-                <div>
-                    <label>
-                        <h3>{{localize 'l5r5e.twenty_questions.part5.q15'}}</h3>
-                        <textarea name="step15.stress">{{data.step15.stress}}</textarea>
-                    </label>
-                </div>
-
-                <div>
-                    <label>
-                        <h3>{{localize 'l5r5e.twenty_questions.part5.q16'}}</h3>
-                        <textarea name="step16.relations">{{data.step16.relations}}</textarea>
-                    </label>
-                    <label>
-                        {{localize 'l5r5e.twenty_questions.part5.object'}}
-                        {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step16.item stepName='step16.item' itemType='items' hideDndAt=1 }}
-                    </label>
-                </div>
-                <br />
-                <br /><button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>
+                <h3>{{localize 'l5r5e.twenty_questions.part5.q14'}}</h3>
+                <textarea name="step14.first_sight">{{data.step14.first_sight}}</textarea>
+                <label>
+                    {{localize 'l5r5e.twenty_questions.part5.accoutrement'}}
+                    {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step14.special_features stepName='step14.special_features' itemType='items' hideDndAt=1 }}
+                </label>
+                <h3>{{localize 'l5r5e.twenty_questions.part5.q15'}}</h3>
+                <textarea name="step15.stress">{{data.step15.stress}}</textarea>
+                <h3>{{localize 'l5r5e.twenty_questions.part5.q16'}}</h3>
+                <textarea name="step16.relations">{{data.step16.relations}}</textarea>
+                <label>
+                    {{localize 'l5r5e.twenty_questions.part5.object'}}
+                    {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step16.item stepName='step16.item' itemType='items' hideDndAt=1 }}
+                </label>
+                <button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>
             </article>
             <article class="tab parts part6" data-group="primary" data-tab="part6">
                 <h2>{{localize 'l5r5e.twenty_questions.part6.title'}}</h2>
-                <div>
-                    <label>
-                        <h3>{{localize 'l5r5e.twenty_questions.part6.q17'}}</h3>
-                        <textarea name="step17.parents_pov">{{data.step17.parents_pov}}</textarea>
-                    </label>
-                    <label>
-                        {{localize 'l5r5e.twenty_questions.increase_skill1'}}
-                        <select name="step17.skill" class="skill-select">
-                            {{#select data.step17.skill}}
-                            <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
-                            {{#each skillsList as |skills catId|}}
-                            <optgroup label="{{localizeSkill catId 'title'}}">
-                                {{#each skills as |obj|}}
-                                <option value="{{obj.id}}">{{obj.label}}</option>
-                                {{/each}}
-                            </optgroup>
+                <h3>{{localize 'l5r5e.twenty_questions.part6.q17'}}</h3>
+                <textarea name="step17.parents_pov">{{data.step17.parents_pov}}</textarea>
+                <label>
+                    {{localize 'l5r5e.twenty_questions.increase_skill1'}}
+                    <select name="step17.skill" class="skill-select">
+                        {{#select data.step17.skill}}
+                        <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
+                        {{#each skillsList as |skills catId|}}
+                        <optgroup label="{{localizeSkill catId 'title'}}">
+                            {{#each skills as |obj|}}
+                            <option value="{{obj.id}}">{{obj.label}}</option>
                             {{/each}}
-                            {{/select}}
-                        </select>
-                    </label>
-                </div>
-                <div>
-                    <label>
-                        <h3>{{localize 'l5r5e.twenty_questions.part6.q18'}}</h3>
-                        <textarea name="step18.heritage_name">{{data.step18.heritage_name}}</textarea>
-                    </label>
-                    <table>
-                        <tr>
-                            <td class="fifty">
-                                <label>
-                                    {{localize 'l5r5e.twenty_questions.part6.d10r1'}}
-                                    <a class="inline-roll roll" title="1d10" data-mode="roll"
-                                       data-flavor="{{localize 'l5r5e.twenty_questions.part6.d10r1'}}" data-formula="1d10" data-step="step18.heritage_1">
-                                        <i class="fas fa-dice-d20"></i> 1d10
-                                    </a>
-                                    <input type="number" name="step18.heritage_1" value="{{data.step18.heritage_1}}" data-dtype="Number">
-                                </label>
-                            </td>
-                            <td class="fifty">
-                                <label>
-                                    {{localize 'l5r5e.twenty_questions.part6.d10r2'}}
-                                    <a class="inline-roll roll" title="1d10" data-mode="roll"
-                                       data-flavor="{{localize 'l5r5e.twenty_questions.part6.d10r2'}}" data-formula="1d10" data-step="step18.heritage_2">
-                                        <i class="fas fa-dice-d20"></i> 1d10
-                                    </a>
-                                    <input type="number" name="step18.heritage_2" value="{{data.step18.heritage_2}}" data-dtype="Number">
-                                </label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                {{localize 'l5r5e.twenty_questions.part6.d10r1_choice'}}
-                            </td>
-                            <td>
-                                {{localize 'l5r5e.twenty_questions.part6.d10r2_choice'}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>
-                                    {{localize 'l5r5e.twenty_questions.part1.status'}}
-                                    <input type="number" name="step18.heritage_add_status" min="-100" max="100" value="{{data.step18.heritage_add_status}}"
-                                           data-dtype="Number" placeholder="0">
-                                </label>
-                                <label>
-                                    {{localize 'l5r5e.twenty_questions.part1.glory'}}
-                                    <input type="number" name="step18.heritage_add_glory" min="-100" max="100" value="{{data.step18.heritage_add_glory}}"
-                                           data-dtype="Number" placeholder="0">
-                                </label>
-                                <label>
-                                    {{localize 'l5r5e.twenty_questions.part2.honor'}}
-                                    <input type="number" name="step18.heritage_add_honor" min="-100" max="100" value="{{data.step18.heritage_add_honor}}"
-                                           data-dtype="Number" placeholder="0">
-                                </label>
-                            </td>
-                            <td>
-                                <label>
-                                    {{localize 'l5r5e.twenty_questions.increase_skill1'}}
-                                    <select name="step18.skill" class="skill-select">
-                                        {{#select data.step18.skill}}
-                                        <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
-                                        {{#each skillsList as |skills catId|}}
-                                        <optgroup label="{{localizeSkill catId 'title'}}">
-                                            {{#each skills as |obj|}}
-                                            <option value="{{obj.id}}">{{obj.label}}</option>
-                                            {{/each}}
-                                        </optgroup>
-                                        {{/each}}
-                                        {{/select}}
-                                    </select>
-                                </label>
-                                <br />{{localize 'l5r5e.twenty_questions.part6.d10r2_drop_items'}}
-                                {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step18.heritage_item stepName='step18.heritage_item' itemType='items' hideDndAt=1 }}
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div>
-                    <label>
-                        <h3>{{localize 'l5r5e.twenty_questions.part6.q19'}}</h3>
-                        <textarea name="step19.firstname">{{data.step19.firstname}}</textarea>
-                    </label>
-                </div>
-                <br />
-                <br /><button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>
+                        </optgroup>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                </label>
+                <h3>{{localize 'l5r5e.twenty_questions.part6.q18'}}</h3>
+                <textarea name="step18.heritage_name">{{data.step18.heritage_name}}</textarea>
+                <table>
+                    <tr>
+                        <td class="fifty">
+                            {{localize 'l5r5e.twenty_questions.part6.d10r1'}}
+                            <a class="inline-roll roll" title="1d10" data-mode="roll"
+                               data-flavor="{{localize 'l5r5e.twenty_questions.part6.d10r1'}}" data-formula="1d10" data-step="step18.heritage_1">
+                                <i class="fas fa-dice-d20"></i> 1d10
+                            </a>
+                            <input type="number" name="step18.heritage_1" value="{{data.step18.heritage_1}}" data-dtype="Number" />
+                        </td>
+                        <td class="fifty">
+                            {{localize 'l5r5e.twenty_questions.part6.d10r2'}}
+                            <a class="inline-roll roll" title="1d10" data-mode="roll"
+                               data-flavor="{{localize 'l5r5e.twenty_questions.part6.d10r2'}}" data-formula="1d10" data-step="step18.heritage_2">
+                                <i class="fas fa-dice-d20"></i> 1d10
+                            </a>
+                            <input type="number" name="step18.heritage_2" value="{{data.step18.heritage_2}}" data-dtype="Number" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{localize 'l5r5e.twenty_questions.part6.d10r1_choice'}}
+                        </td>
+                        <td>
+                            {{localize 'l5r5e.twenty_questions.part6.d10r2_choice'}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {{localize 'l5r5e.twenty_questions.part1.status'}}
+                            <input type="number" name="step18.heritage_add_status" min="-100" max="100" value="{{data.step18.heritage_add_status}}" data-dtype="Number" placeholder="0" />
+                            {{localize 'l5r5e.twenty_questions.part1.glory'}}
+                            <input type="number" name="step18.heritage_add_glory" min="-100" max="100" value="{{data.step18.heritage_add_glory}}" data-dtype="Number" placeholder="0" />
+                            {{localize 'l5r5e.twenty_questions.part2.honor'}}
+                            <input type="number" name="step18.heritage_add_honor" min="-100" max="100" value="{{data.step18.heritage_add_honor}}" data-dtype="Number" placeholder="0" />
+                        </td>
+                        <td>
+                            {{localize 'l5r5e.twenty_questions.increase_skill1'}}
+                            <select name="step18.skill" class="skill-select">
+                                {{#select data.step18.skill}}
+                                <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
+                                {{#each skillsList as |skills catId|}}
+                                <optgroup label="{{localizeSkill catId 'title'}}">
+                                    {{#each skills as |obj|}}
+                                    <option value="{{obj.id}}">{{obj.label}}</option>
+                                    {{/each}}
+                                </optgroup>
+                                {{/each}}
+                                {{/select}}
+                            </select>
+                            {{localize 'l5r5e.twenty_questions.part6.d10r2_drop_items'}}
+                            {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step18.heritage_item stepName='step18.heritage_item' itemType='items' hideDndAt=1 }}
+                        </td>
+                    </tr>
+                </table>
+                <h3>{{localize 'l5r5e.twenty_questions.part6.q19'}}</h3>
+                <textarea name="step19.firstname">{{data.step19.firstname}}</textarea>
+                <button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>
             </article>
             <article class="tab parts part7" data-group="primary" data-tab="part7">
                 <h2>{{localize 'l5r5e.twenty_questions.part7.title'}}</h2>
@@ -642,7 +525,6 @@
                         </td>
                     </tr>
                 </table>
-                <hr />
                 {{#if summary.errors}}
                     {{localize 'l5r5e.twenty_questions.part7.generchar_errors'}}
                 {{else}}
@@ -650,7 +532,6 @@
                     <div id="generchar_disclaimer">
                         {{localize 'l5r5e.twenty_questions.part7.generchar_disclaimer'}}
                     </div>
-
                     <button name="generate" id="generate" type="button">
                         {{localize 'l5r5e.twenty_questions.part7.generchar'}} <i class='fas fa-arrow-circle-right'></i>
                     </button>

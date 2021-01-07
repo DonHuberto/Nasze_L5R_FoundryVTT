@@ -20,7 +20,7 @@
     "homepage": "https://gitlab.com/teaml5r/l5r5e#readme",
     "devDependencies": {
         "babel-eslint": "^10.1.0",
-        "browser-sync": "^2.26.13",
+        "browser-sync": "^2.23.7",
         "eslint": "^7.15.0",
         "eslint-config-prettier": "^6.15.0",
         "eslint-plugin-prettier": "^3.1.4",

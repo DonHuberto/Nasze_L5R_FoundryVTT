@@ -12,8 +12,10 @@
         border-bottom: 0 none;
     }
     h3 {
-        font-size: 1rem;
+        font-size: 1.25rem;
         color: $l5r5e-label;
+        text-shadow: 0 0 $l5r5e-black-light;
+        margin: 2rem 0 0.5rem 1rem;
     }
     nav {
         .item {
@@ -39,28 +41,80 @@
         }
     }
     article {
-        padding: 2% 2% 0 18%;
+        padding: 2% 2% 2% 18%;
         label {
+            font-size: 0.85rem;
+            line-height: 2rem;
             &.full {
                 display: block;
                 width: 100%;
-                line-height: 2rem;
+                text-align: right;
+                font-size: 1rem;
                 input {
                     display: inline;
-                    width: 70%;
+                    width: 80%;
                     float: right;
+                    text-align: left;
+                    margin-left: 0.5rem;
                 }
             }
         }
+        > label {
+            font-size: 1rem;
+            padding: 0 0 0 1rem;
+        }
         table {
             width: 100%;
+            tr {
+                th {
+                    color: $l5r5e-label;
+                    font-weight: normal;
+                }
+                td {
+                    vertical-align: middle;
+                    line-height: 2rem;
+                    border: 1px solid $l5r5e-title;
+                    font-size: 0.85rem;
+                    padding: 0.25rem;
+                }
+            }
         }
-        table tr td {
-            vertical-align: middle;
-            line-height: 2rem;
-            border: 1px solid $l5r5e-title;
-            font-size: 0.85rem;
-            padding: 0.25rem;
+        select {
+            height: 2rem;
+            color: $l5r5e-bold;
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 0.25rem;
+            padding: 0 0.25rem;
+            margin: 0.25rem;
+            width: calc(100% - 0.5rem);
+        }
+        textarea {
+            color: $l5r5e-bold;
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            margin: 0 0.25rem 1rem;
+        }
+        > ul {
+            li {
+                line-height: 2rem;
+            }
+        }
+        hr {
+            border-top: 1px solid $l5r5e-black-light;
+        }
+        a.entity-link,
+        a.inline-roll {
+            color: $l5r5e-label;
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid $l5r5e-black-light;
+            i {
+                color: $l5r5e-label;
+            }
+        }
+        .tq-drag-n-drop {
+            border: 0 none;
+            padding: 0;
         }
         .third {
             width: 230px;
@@ -86,20 +140,44 @@
             border-radius: 1rem;
             text-align: center;
         }
-        .checklist label {
-            font-size: 0.85rem;
-            flex: 0 0 auto;
-            margin: 0 0.25rem 0.25rem;
-            padding: 0 0.5rem;
-            color: #5a6e5a;
-            background: rgba(255, 255, 255, 0.5);
-            border: 1px solid #5a6e5a;
-            border-radius: 1rem;
+        .checklist {
+            margin: 0.25rem 0.25rem 1rem;
+            strong {
+                display: block;
+                width: 100%;
+                color: $l5r5e-bold;
+            }
+            label {
+                font-size: 0.85rem;
+                flex: 0 0 auto;
+                margin: 0 0.25rem 0.25rem;
+                padding: 0 0.5rem;
+                color: #5a6e5a;
+                background: rgba(255, 255, 255, 0.5);
+                border: 1px solid #5a6e5a;
+                border-radius: 1rem;
+                &.technique {
+                    padding: 0.25rem;
+                    margin: 0.25rem;
+                    border-radius: 0;
+                }
+            }
+            input {
+                margin: 0.25rem 0 0 0;
+                height: 0.65rem;
+                width: 0.65rem;
+            }
         }
-        .checklist input {
-            margin: 0.25rem 0 0 0;
-            height: 0.65rem;
-            width: 0.65rem;
+        #generchar_disclaimer {
+            color: $l5r5e-red;
+            font-weight: bold;
+            font-size: 1.25rem;
+            text-align: center;
+            flex: 100%;
+            padding: 1rem 0;
+        }
+        .next {
+            margin: 2rem 0 4rem;
         }
     }
 }
