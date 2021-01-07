@@ -94,10 +94,12 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
      * Update Actor and Object to the current choice
      * @private
      */
-    _updateChoice(oldChoice, newChoice) {
+    async _updateChoice(oldChoice, newChoice) {
         let skillCatId = null;
         const actor = duplicate(this.actor.data.data);
         let xp_used = this.object.data.data.xp_used;
+        let name = this.object.data.name;
+        let img = this.object.data.img;
 
         // Old choices
         if (oldChoice.ring) {
@@ -112,20 +114,32 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
         if (newChoice.ring) {
             actor.rings[newChoice.ring] = actor.rings[newChoice.ring] + 1;
             xp_used = actor.rings[newChoice.ring] * CONFIG.l5r5e.xp.ringCostMultiplier;
+            name =
+                game.i18n.localize(`l5r5e.rings.${newChoice.ring}`) +
+                ` +1 (${actor.rings[newChoice.ring] - 1} -> ${actor.rings[newChoice.ring]})`;
+            img = `systems/l5r5e/assets/icons/rings/${newChoice.ring}.svg`;
         }
         if (newChoice.skill) {
             skillCatId = CONFIG.l5r5e.skills.get(newChoice.skill);
             actor.skills[skillCatId][newChoice.skill] = actor.skills[skillCatId][newChoice.skill] + 1;
             xp_used = actor.skills[skillCatId][newChoice.skill] * CONFIG.l5r5e.xp.skillCostMultiplier;
+            name =
+                game.i18n.localize(`l5r5e.skills.${skillCatId}.${newChoice.skill}`) +
+                ` +1 (${actor.skills[skillCatId][newChoice.skill] - 1} -> ${
+                    actor.skills[skillCatId][newChoice.skill]
+                })`;
+            img = `systems/l5r5e/assets/dices/default/skill_blank.svg`;
         }
 
         // Update Actor
-        this.actor.update({
+        await this.actor.update({
             data: diffObject(this.actor.data.data, actor),
         });
 
         // Update object
-        this.object.update({
+        await this.object.update({
+            name: name,
+            img: img,
             data: {
                 xp_used: xp_used,
             },
