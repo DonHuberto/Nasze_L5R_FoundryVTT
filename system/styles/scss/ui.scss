@@ -405,10 +405,7 @@ button {
     height: 80px;
     width: 88px;
     margin-left: 0.5rem;
-    opacity: 0.5;
-    &:hover {
-        opacity: 0.75;
-    }
+    opacity: 0;
 }
 
 // navigation
@@ -420,7 +417,9 @@ button {
         background-size: cover;
         height: 80px;
         width: 88px;
-        opacity: 0.5;
+        opacity: 0.65;
+        position: absolute;
+        left: -6.45rem;
         &:hover {
             opacity: 0.75;
         }
