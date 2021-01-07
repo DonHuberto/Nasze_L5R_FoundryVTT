@@ -1,16 +1,16 @@
 <label class="value">
     {{ localize 'l5r5e.quantity' }}
-    <input type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
+    <input class="select-on-focus" type="number" name="data.quantity" value="{{data.quantity}}" data-dtype="Number" min="0" placeholder="0"/>
 </label>
 <label class="value">
     {{ localize 'l5r5e.weight' }}
-    <input type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
+    <input class="select-on-focus" type="number" name="data.weight" value="{{data.weight}}" data-dtype="Number" min="0" placeholder="0"/>
 </label>
 <label class="value">
     {{ localize 'l5r5e.rarity' }}
-    <input type="text" name="data.rarity" value="{{data.rarity}}" data-dtype="Number"/>
+    <input class="select-on-focus" type="number" name="data.rarity" value="{{data.rarity}}" data-dtype="Number" min="0" placeholder="0"/>
 </label>
 <label class="value">
-        {{ localize 'l5r5e.money.zeni' }}
-    <input type="text" name="data.zeni" value="{{data.zeni}}" data-dtype="Number"/>
+    {{ localize 'l5r5e.money.zeni' }}
+    <input class="select-on-focus" type="text" name="data.zeni" value="{{data.zeni}}" data-dtype="String" min="0" placeholder="0"/>
 </label>

@@ -227,7 +227,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         const item = this.actor.getOwnedItem(created._id);
 
         // assign current school rank to the new adv/tech
-        if (["advancement", "technique"].includes(item.data.type)) {
+        if (this.actor.data.data.identity?.school_rank && ["advancement", "technique"].includes(item.data.type)) {
             item.data.data.rank = this.actor.data.data.identity.school_rank;
             item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
         }

@@ -143,7 +143,8 @@
                 margin: 0;
                 text-align: right;
             }
-            input[type="text"] {
+            input[type="text"],
+            input[type="number"] {
                 width: 2rem;
                 &.grip {
                     width: 12rem;
@@ -155,7 +156,8 @@
                 float: right;
             }
             fieldset {
-                input[type="text"] {
+                input[type="text"],
+                input[type="number"] {
                     float: right;
                 }
             }

@@ -34,15 +34,15 @@
                 <legend class="text-block-header">{{ localize  'l5r5e.weapons.stats' }}</legend>
                 <label>
                     {{ localize 'l5r5e.weapons.range' }}
-                    <input type="text" name="data.range" value="{{data.range}}" data-dtype="text" placeholder="0"/>
+                    <input class="select-on-focus" type="text" name="data.range" value="{{data.range}}" data-dtype="String" placeholder="0"/>
                 </label>
                 <label>
                     {{ localize 'l5r5e.weapons.damage' }}
-                    <input type="text" name="data.damage" value="{{data.damage}}" data-dtype="Number" placeholder="0"/>
+                    <input class="select-on-focus" type="number" name="data.damage" value="{{data.damage}}" data-dtype="Number" min="0" placeholder="0"/>
                 </label>
                 <label>
                     {{ localize 'l5r5e.weapons.deadliness' }}
-                    <input type="text" name="data.deadliness" value="{{data.deadliness}}" data-dtype="Number" placeholder="0"/>
+                    <input class="select-on-focus" type="number" name="data.deadliness" value="{{data.deadliness}}" data-dtype="Number" min="0" placeholder="0"/>
                 </label>
                 <label>
                     {{ localize 'l5r5e.weapons.grips' }}

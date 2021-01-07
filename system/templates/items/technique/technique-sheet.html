@@ -27,19 +27,19 @@
             </label>
             <label class="attribute">
                 {{ localize 'l5r5e.advancements.cost' }}
-                <input type="text" name="data.xp_cost" value="{{item.data.xp_cost}}" data-dtype="Number" placeholder="0"/>
+                <input class="select-on-focus" type="number" name="data.xp_cost" value="{{item.data.xp_cost}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
                 {{ localize 'l5r5e.advancements.spent' }}
-                <input type="text" name="data.xp_used" value="{{item.data.xp_used}}" data-dtype="Number" placeholder="0"/>
+                <input class="select-on-focus" type="number" name="data.xp_used" value="{{item.data.xp_used}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
                 {{ localize 'l5r5e.rank' }}
-                <input type="text" name="data.rank" value="{{item.data.rank}}" data-dtype="Number" placeholder="0"/>
+                <input class="select-on-focus" type="number" name="data.rank" value="{{item.data.rank}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
                 {{ localize 'l5r5e.bought_at_rank' }}
-                <input type="text" name="data.bought_at_rank" value="{{item.data.bought_at_rank}}" data-dtype="Number" placeholder="0"/>
+                <input class="select-on-focus" type="number" name="data.bought_at_rank" value="{{item.data.bought_at_rank}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
         </article>
         {{> 'systems/l5r5e/templates/items/item/item-infos.html' }}
