@@ -207,10 +207,10 @@ button {
         background: transparent url("../assets/ui/chat-texture.webp") no-repeat;
     }
     .header-search input[name="search"] {
-        background-color: $l5r5e-chat-color-mid;
+        background-color: $l5r5e-chat-color;
         color: $l5r5e-black;
         &:focus {
-            background-color: $l5r5e-chat-color;
+            background-color: $l5r5e-chat-color-roll;
         }
     }
 
@@ -226,11 +226,11 @@ button {
 
     #chat-log {
         margin: 0 0 0.5rem;
+        font-size: 1rem;
         .message.whisper,
         .message.blind,
         .message.roll {
             position: relative;
-            font-style: italic;
             .message-header {
                 .message-metadata:before {
                     position: absolute;
@@ -243,6 +243,7 @@ button {
             }
         }
         .message.whisper {
+            font-style: italic;
             .message-header {
                 .message-metadata:before {
                     content: "(Private)";
@@ -257,6 +258,7 @@ button {
             }
         }
         .message.blind {
+            font-style: italic;
             .message-header {
                 .message-metadata:before {
                     content: "(Blind)";
@@ -283,19 +285,32 @@ button {
         text-shadow: 1px 1px 0px $l5r5e-black-light;
     }
     .message {
-        background-color: $l5r5e-chat-color-light;
-        color: $l5r5e-black;
+        background-color: $l5r5e-chat-color;
+        color: $black-light;
+        ul {
+            li {
+                padding: 0.25rem;
+                border: 1px solid rgba(0, 0, 0, 0.05);
+                border-bottom: 0 none;
+                &:nth-child(odd) {
+                    background: $l5r5e-odd;
+                }
+                &:nth-child(even) {
+                    background: $l5r5e-even;
+                }
+                &:last-child {
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                }
+            }
+        }
         &.roll {
-            background-color: $l5r5e-chat-color-mid;
+            background-color: $l5r5e-chat-color-roll;
         }
         &.blind {
-            background-color: $l5r5e-chat-color-light;
+            background-color: $l5r5e-chat-color-blind;
         }
         &.whisper {
-            background-color: $l5r5e-white;
-            &.roll {
-                background-color: $l5r5e-chat-color;
-            }
+            background-color: $l5r5e-chat-color-whisper;
         }
     }
 }

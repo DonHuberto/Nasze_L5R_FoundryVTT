@@ -15,7 +15,6 @@ body {
         position: relative;
         background: rgb(255, 250, 230) url("../assets/imgs/bg-l5r.webp") no-repeat;
         background-size: cover;
-        overflow-y: scroll;
         scrollbar-width: thin;
         padding: 0;
         > form,
@@ -62,6 +61,19 @@ body {
                     );
                 }
             }
+        }
+    }
+    &.sheet,
+    &.npc,
+    &.advancement,
+    &.armor,
+    &.item,
+    &.peculiarity,
+    &.property,
+    &.technique,
+    &.weapon {
+        .window-content {
+            overflow-y: scroll;
         }
     }
     .window-resizable-handle {
