@@ -17,6 +17,52 @@ body {
         background-size: cover;
         overflow-y: scroll;
         scrollbar-width: thin;
+        padding: 0;
+        > form,
+        > div {
+            padding: 0.5rem;
+        }
+        .compendium,
+        .help-dialog {
+            background-position: top;
+            background-size: 100%;
+            background: url("../assets/ui/bgSidebar.webp") no-repeat;
+            border: 1px solid rgb(195, 165, 130);
+            border-radius: 0;
+            color: $white;
+            ol {
+                padding-right: 0.25rem;
+                li {
+                    border-bottom: 1px solid $l5r5e-white-light;
+                }
+            }
+            .directory-header {
+                padding: 0.25rem 0;
+            }
+        }
+        .help-dialog {
+            padding: 0.5rem 1.5rem;
+            button {
+                cursor: default;
+                color: $white;
+                background: linear-gradient(
+                    $l5r5e-linear-gradient-third,
+                    $l5r5e-linear-gradient-third-dark,
+                    $l5r5e-linear-gradient-third
+                );
+                background-origin: padding-box;
+                border-image: url("../assets/ui/macro-button.webp") 10 repeat;
+                border-image-width: 0.5rem;
+                border-image-outset: 0px;
+                &:hover {
+                    background: linear-gradient(
+                        $l5r5e-linear-gradient-first-dark,
+                        $l5r5e-linear-gradient-first,
+                        $l5r5e-linear-gradient-first-dark
+                    );
+                }
+            }
+        }
     }
     .window-resizable-handle {
         z-index: 2;
