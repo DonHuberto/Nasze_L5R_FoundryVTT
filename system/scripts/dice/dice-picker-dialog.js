@@ -358,7 +358,7 @@ export class DicePickerDialog extends FormApplication {
             // actorData.stance = approach;
 
             // If hidden add 1 void pt
-            if (this.object.difficulty.hidden) {
+            if (this.object.difficulty.add_void_point) {
                 actorData.void_points.value = Math.min(actorData.void_points.value + 1, actorData.void_points.max);
             }
 
