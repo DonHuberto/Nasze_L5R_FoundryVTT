@@ -106,8 +106,8 @@
             width: 150px;
             margin-right: 0;
             object-fit: contain;
-            background: $l5r5e-white;
-            border: 1px solid $l5r5e-title;
+            background: $l5r5e-white-light;
+            border: 1px solid rgba(186, 187, 177, 0.25);
             --notchSize: 0.5rem;
             clip-path: polygon(
                 0% var(--notchSize),

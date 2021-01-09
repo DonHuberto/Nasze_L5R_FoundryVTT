@@ -6,7 +6,7 @@
             <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
             {{> 'systems/l5r5e/templates/actors/npc/identity.html' }}
         </div>
-        <fieldset>
+        <fieldset class="npc-note">
             <legend class="text-block-header">{{ localize 'l5r5e.notes' }}</legend>
             {{ editor content=data.notes.value target="data.notes.value" button=true editable=editable }}
         </fieldset>
