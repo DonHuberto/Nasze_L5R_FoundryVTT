@@ -179,7 +179,11 @@
             "titles": "Titres",
             "attitude": "attitude :",
             "advantages": "Aptitudes et Passions",
-            "disadvantages": "Coups du sort et défaillances"
+            "disadvantages": "Coups du sort et défaillances",
+            "npc": {
+                "advantages": "Avantages",
+                "disadvantages": "Désavantages"
+            }
         },
         "skills": {
             "title": "Compétences",

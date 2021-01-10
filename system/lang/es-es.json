@@ -177,9 +177,13 @@
             "ninjo": "Ninjo",
             "giri": "Giri",
             "titles": "Títulos",
-            "attitude": "attitude:",
-            "advantages": "Advantages",
-            "disadvantages": "Disadvantages"
+            "attitude": "Actitud:",
+            "advantages": "Distinciones y pasiones",
+            "disadvantages": "Adversidades y ansiedades",
+            "npc": {
+                "advantages": "Ventajas",
+                "disadvantages": "Desventajas"
+            }
         },
         "skills": {
             "title": "Habilidades",

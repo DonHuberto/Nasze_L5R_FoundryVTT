@@ -9,6 +9,10 @@
     &.actor {
         .sheet-header {
             height: 27rem;
+            h1 {
+                flex: auto;
+                margin: 0 0 0.25rem 0.5rem;
+            }
         }
         .sheet-body {
             height: calc(100% - 27rem);
@@ -48,10 +52,6 @@
             height: 2rem;
             line-height: 2rem;
             font-size: 1rem;
-        }
-        h1 {
-            flex: auto;
-            margin: 0 0 0.25rem 0.5rem;
         }
     }
     form {

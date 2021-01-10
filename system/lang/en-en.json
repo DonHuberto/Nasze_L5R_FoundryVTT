@@ -178,8 +178,12 @@
             "giri": "Giri",
             "titles": "Titles",
             "attitude": "attitude:",
-            "advantages": "Distinctions et Passions",
-            "disadvantages": "Adversities et Anxieties"
+            "advantages": "Distinctions and Passions",
+            "disadvantages": "Adversities and Anxieties",
+            "npc": {
+                "advantages": "Advantages",
+                "disadvantages": "Disadvantages"
+            }
         },
         "skills": {
             "title": "Skills",
