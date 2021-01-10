@@ -11,6 +11,18 @@
         padding: 0.25rem;
         border-bottom: 0 none;
     }
+    .errors {
+        position: sticky;
+        top: 0px;
+        left: 0px;
+        z-index: 999;
+        display: block;
+        width: 100%;
+        background-color: $l5r5e-red;
+        border: 1px solid $dark-red;
+        border-radius: 1rem;
+        text-align: center;
+    }
     h3 {
         font-size: 1.25rem;
         color: $l5r5e-label;
@@ -127,18 +139,6 @@
         }
         .dropbox {
             min-height: 75px;
-        }
-        .errors {
-            position: sticky;
-            top: 0px;
-            left: 0px;
-            z-index: 999;
-            display: block;
-            width: 100%;
-            background-color: $l5r5e-red;
-            border: 1px solid $dark-red;
-            border-radius: 1rem;
-            text-align: center;
         }
         .checklist {
             margin: 0.25rem 0.25rem 1rem;

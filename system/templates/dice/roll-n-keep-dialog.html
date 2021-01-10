@@ -1,0 +1,90 @@
+<form class="l5r5e roll-n-keep-dialog" autocomplete="off">
+
+    {{!-- Profil --}}
+    <div class="l5r5e profil">
+        <header class="part-header flexrow chat-profil">
+            <span class="chat-profil-element">
+                <img class="profile-img"
+                     src="{{#if l5r5e.actor.img}}{{l5r5e.actor.img}}{{else}}icons/svg/mystery-man.svg{{/if}}"
+                     data-edit="img"
+                     height="40"
+                     width="40"
+                     alt="{{#if l5r5e.actor.name}}{{l5r5e.actor.name}}{{else}}mystery-man{{/if}}"
+                >
+            </span>
+
+            <span class="chat-profil-element">
+                <i class="chat-profil-stance {{l5r5e.stance}} i_{{l5r5e.stance}}" title="{{localizeRing l5r5e.stance}}"></i>
+            </span>
+
+            <span class="chat-profil-element-skill">
+                {{#if l5r5e.skillId}}
+                    {{localizeSkillId l5r5e.skillId}}
+                {{else}}
+                    {{#if l5r5e.skillCatId}}{{localizeSkill l5r5e.skillCatId 'title'}}{{/if}}
+                {{/if}}
+            </span>
+
+            <span class="chat-profil-element">
+                {{#if l5r5e.summary.difficultyHidden}}
+                    {{localize 'l5r5e.chatdices.difficulty_hidden'}}
+                {{else}}
+                    {{localize 'l5r5e.chatdices.difficulty'}} {{l5r5e.summary.difficulty}}
+                {{/if}}
+                {{#if l5r5e.summary.voidPointUsed}}
+                    <br><i class="i_void" title="{{localize 'l5r5e.chatdices.void_point_used'}}"></i>
+                {{/if}}
+            </span>
+        </header>
+    </div>
+
+    {{!-- Discard & ReRoll --}}
+    <table>
+        <tr>
+            <td>
+                <fieldset class="dropbox discards" data-type="discard">
+                    <legend class="section-header"><i class="fa fa-arrow-down" aria-hidden="true"></i> {{ localize 'l5r5e.roll_n_keep.discard_drop_here' }}</legend>
+                </fieldset>
+            </td>
+            <td>
+                &nbsp;
+            </td>
+            <td>
+                <fieldset class="dropbox rerolls" data-type="reroll">
+                    <legend class="section-header"><i class="fa fa-arrow-down" aria-hidden="true"></i> {{ localize 'l5r5e.roll_n_keep.reroll_drop_here' }}</legend>
+                </fieldset>
+            </td>
+        </tr>
+    </table>
+
+    {{!-- DiceList history --}}
+    <table>
+        {{#each data.dicesList as |item idxStep|}}
+        <tr>
+            {{#each item as |dice idxDie|}}
+            <td>
+                <div class="dice {{this.choice}} {{#ifCond (lookup ../../draggableList idxDie) '==' idxStep }}draggable{{/ifCond}}" data-step="{{idxStep}}" data-die="{{idxDie}}">
+                    {{#if this.img}}
+                    <img src="{{this.img}}" alt="{{idxStep}}_{{idxDie}}" />
+                    {{/if}}
+                </div>
+            </td>
+            {{/each}}
+        </tr>
+        {{/each}}
+    </table>
+
+    {{!-- Keep --}}
+    <table>
+        <tr>
+            <td>
+                <fieldset class="dropbox keeps" data-type="keep">
+                    <legend class="section-header"><i class="fa fa-arrow-down" aria-hidden="true"></i> {{ localize 'l5r5e.roll_n_keep.keep_drop_here' }}</legend>
+                </fieldset>
+            </td>
+        </tr>
+    </table>
+
+    <button id="finalize" name="finalize" type="button">{{ localize 'l5r5e.roll_n_keep.bt_validate' }} <i class='fas fa-arrow-circle-right'></i></button>
+
+</form>

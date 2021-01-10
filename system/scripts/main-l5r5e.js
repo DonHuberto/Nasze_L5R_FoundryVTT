@@ -1,6 +1,7 @@
 // Import Commons Modules
 import { L5R5E } from "./config.js";
 import { HelpersL5r5e } from "./helpers.js";
+import { SocketHandlerL5r5e } from "./socket-handler.js";
 import { RegisterSettings } from "./settings.js";
 import { PreloadTemplates } from "./preloadTemplates.js";
 import { HelpDialog } from "./help/help-dialog.js";
@@ -13,6 +14,7 @@ import { AbilityDie } from "./dice/dietype/ability-die.js";
 import { RingDie } from "./dice/dietype/ring-die.js";
 import { RollL5r5e } from "./dice/roll.js";
 import { DicePickerDialog } from "./dice/dice-picker-dialog.js";
+import { RollnKeepDialog } from "./dice/roll-n-keep-dialog.js";
 // Items
 import { ItemL5r5e } from "./item.js";
 import { ItemSheetL5r5e } from "./items/item-sheet.js";
@@ -59,12 +61,14 @@ Hooks.once("init", async function () {
     CONFIG.Dice.terms["s"] = AbilityDie;
     CONFIG.Dice.terms["r"] = RingDie;
 
-    // Add some helper classes in game
+    // Add some classes in game
     game.l5r5e = {
         HelpersL5r5e,
         RollL5r5e,
         DicePickerDialog,
+        RollnKeepDialog,
         HelpDialog,
+        sockets: new SocketHandlerL5r5e(),
     };
 
     // Register custom system settings
@@ -223,6 +227,7 @@ Hooks.on("renderChatMessage", (message, html, data) => {
     // Add a extra CSS class to roll
     if (message.isRoll) {
         html.addClass("roll");
+        html.on("click", ".chat-dice-rnk", RollnKeepDialog.onChatAction.bind(this));
     }
 });
 

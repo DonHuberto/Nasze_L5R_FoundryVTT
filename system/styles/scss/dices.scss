@@ -143,3 +143,44 @@
         }
     }
 }
+
+.roll-n-keep-dialog {
+    img {
+        border: 0;
+    }
+
+    .profil {
+        border-bottom: 1px solid #782e22;
+    }
+
+    .dropbox {
+        min-height: 100px;
+
+        &.discards {
+            border: 1px solid gray;
+        }
+        &.rerolls {
+            border: 1px solid orangered;
+        }
+        &.keeps {
+            border: 1px solid green;
+        }
+    }
+
+    .dice {
+        height: 40px;
+        width: 40px;
+    }
+
+    .discard {
+        filter: opacity(0.5);
+        border: 3px solid gray;
+    }
+    .reroll {
+        filter: opacity(0.5);
+        border: 3px solid orangered;
+    }
+    .keep {
+        border: 3px solid green;
+    }
+}

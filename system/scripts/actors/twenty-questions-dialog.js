@@ -48,24 +48,10 @@ export class TwentyQuestionsDialog extends FormApplication {
     }
 
     /**
-     * Add a refresh button on top of sheet
-     * Allow a GM or player to see the change made by another player without closing the dialog
-     * @override
+     * Define a unique and dynamic element ID for the rendered ActorSheet application
      */
-    _getHeaderButtons() {
-        let buttons = super._getHeaderButtons();
-
-        buttons.unshift({
-            label: game.i18n.localize("l5r5e.twenty_questions.bt_refresh"),
-            class: "twenty-questions",
-            icon: "fas fa-sync-alt",
-            onclick: async () => {
-                this._initialize(game.actors.get(this.actor._id));
-                await this._constructCache();
-                this.render(false);
-            },
-        });
-        return buttons;
+    get id() {
+        return `l5r5e-twenty-questions-dialog-${this.actor._id}`;
     }
 
     /**
@@ -74,6 +60,18 @@ export class TwentyQuestionsDialog extends FormApplication {
     constructor(actor = null, options = {}) {
         super({}, options);
         this._initialize(actor);
+    }
+
+    /**
+     * Refresh data (used from socket)
+     */
+    async refresh() {
+        if (!this.actor) {
+            return;
+        }
+        this._initialize(game.actors.get(this.actor._id));
+        await this._constructCache();
+        this.render(false);
     }
 
     /**
@@ -342,6 +340,9 @@ export class TwentyQuestionsDialog extends FormApplication {
                 twenty_questions: this.object.data,
             },
         });
+
+        // Notify the change to other players
+        game.l5r5e.sockets.refreshAppId(this.id);
 
         this.render(false);
     }

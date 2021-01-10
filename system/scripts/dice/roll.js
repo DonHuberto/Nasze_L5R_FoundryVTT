@@ -1,4 +1,5 @@
 import { L5rBaseDie } from "./dietype/l5r-base-die.js";
+import { ActorL5r5e } from "../actor.js";
 
 /**
  * Roll for L5R5e
@@ -20,14 +21,15 @@ export class RollL5r5e extends Roll {
                 l5r: false,
             },
             summary: {
-                difficulty: 0,
+                difficulty: 2,
                 difficultyHidden: false,
+                voidPointUsed: false,
                 success: 0,
                 explosive: 0,
                 opportunity: 0,
                 strife: 0,
-                voidPointUsed: false,
             },
+            history: null,
         };
 
         // Parse flavor for stance and skillId
@@ -198,9 +200,15 @@ export class RollL5r5e extends Roll {
             this.roll();
         }
 
+        const canRnK = false; // TODO TMP dev in progress
+        // const canRnK = !this.l5r5e.dicesTypes.std
+        //     && this.l5r5e.dicesTypes.l5r
+        //     && this.dice.length > 1
+        //     && this.l5r5e.actor // pb with dice with no actor
+        //     && this.l5r5e.actor.owner;
+
         // Define chat data
         const chatData = {
-            // borderColor: game.user.color, // don't work :/
             formula: isPrivate ? "???" : this._formula,
             flavor: isPrivate ? null : chatOptions.flavor,
             user: chatOptions.user,
@@ -212,6 +220,7 @@ export class RollL5r5e extends Roll {
                 ? {}
                 : {
                       ...this.l5r5e,
+                      canRnK: canRnK,
                       dices: this.dice.map((d) => {
                           return {
                               diceTypeL5r: d instanceof L5rBaseDie,
@@ -277,8 +286,16 @@ export class RollL5r5e extends Roll {
     static fromData(data) {
         const roll = super.fromData(data);
 
-        roll.data = data.data;
-        roll.l5r5e = data.l5r5e;
+        roll.data = duplicate(data.data);
+        roll.l5r5e = duplicate(data.l5r5e);
+
+        // get real Actor object
+        if (data.l5r5e.actor && !(data.l5r5e.actor instanceof ActorL5r5e)) {
+            const actor = game.actors.get(data.l5r5e.actor.id);
+            if (actor) {
+                roll.l5r5e.actor = actor;
+            }
+        }
 
         return roll;
     }
@@ -290,8 +307,15 @@ export class RollL5r5e extends Roll {
     toJSON() {
         const json = super.toJSON();
 
-        json.data = this.data;
-        json.l5r5e = this.l5r5e;
+        json.data = duplicate(this.data);
+        json.l5r5e = duplicate(this.l5r5e);
+
+        // lightweight the Actor
+        if (json.l5r5e.actor) {
+            json.l5r5e.actor = {
+                id: json.l5r5e.actor._id,
+            };
+        }
 
         return json;
     }

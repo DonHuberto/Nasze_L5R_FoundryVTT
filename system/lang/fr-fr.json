@@ -90,7 +90,8 @@
             "difficulty": "ND",
             "difficulty_hidden": "ND ???",
             "dicepicker": "Dice Picker",
-            "void_point_used": "Point de vide utilisé"
+            "void_point_used": "Point de vide utilisé",
+            "roll_n_keep": "Roll & Keep"
         },
         "dicepicker": {
             "difficulty_title": "Difficulté",
@@ -99,6 +100,15 @@
             "void_point_tooltip": "Point de Vide",
             "roll_label": "Lancer",
             "bt_add_macro": "Ajouter une macro"
+        },
+        "roll_n_keep": {
+            "title": "L5R Roll & Keep",
+            "discard_drop_here": "Discard",
+            "reroll_drop_here": "Re-roll",
+            "reroll_chat": "Re-rolled dice",
+            "keep_drop_here": "Keep",
+            "keep_chat": "New roll from a exploding dice",
+            "bt_validate": "Finalize"
         },
         "max": "Max",
         "current": "Actuel",

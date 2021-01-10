@@ -43,7 +43,6 @@
     <div class="l5r5e dice-formula">{{formula}}</div>
 
     <div class="l5r5e dice-result">
-
         {{#if l5r5e.dicesTypes.l5r}}
         <div class="l5r5e item-display dices-l5r">
             {{#each l5r5e.dices}}
@@ -54,7 +53,10 @@
             {{/if}}
             {{/each}}
 
-            <!-- TODO add Button for Roll & Keep dialog -->
+            {{!-- Roll & Keep Button --}}
+            {{#if l5r5e.canRnK}}
+            <button class="l5r5e chat-dice-rnk">{{localize "l5r5e.chatdices.roll_n_keep"}}</button>
+            {{/if}}
 
             {{#l5r5e.summary}}
             <ul>
@@ -77,7 +79,6 @@
         {{/if}}
 
         {{#if l5r5e.dicesTypes.std}}
-
         <div class="l5r5e dices-std">
             {{#each results}}
             {{#each this.rolls}}

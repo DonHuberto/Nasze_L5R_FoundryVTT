@@ -90,7 +90,8 @@
             "difficulty": "TN",
             "difficulty_hidden": "TN ???",
             "dicepicker": "Dice Picker",
-            "void_point_used": "Void point used"
+            "void_point_used": "Void point used",
+            "roll_n_keep": "Roll & Keep"
         },
         "dicepicker": {
             "difficulty_title": "Difficulty",
@@ -99,6 +100,15 @@
             "void_point_tooltip": "Void point",
             "roll_label": "Roll",
             "bt_add_macro": "Add a macro"
+        },
+        "roll_n_keep": {
+            "title": "L5R Roll & Keep",
+            "discard_drop_here": "Discard",
+            "reroll_drop_here": "Re-roll",
+            "reroll_chat": "Re-rolled dice",
+            "keep_drop_here": "Keep",
+            "keep_chat": "New roll from a exploding dice",
+            "bt_validate": "Finalize"
         },
         "max": "Max",
         "current": "Actuales",

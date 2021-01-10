@@ -23,11 +23,18 @@ export class L5rBaseDie extends DiceTerm {
     }
 
     /**
-     * Return a string used as the label for each rolled result
+     * Return the full img string used as the label for each rolled result
      * @override
      */
     static getResultLabel(result) {
         return `<img src="${CONFIG.l5r5e.paths.assets}dices/default/${this.FACES[result].image}.svg" alt="${result}" />`;
+    }
+
+    /**
+     * Return the url of the result face
+     */
+    static getResultSrc(result) {
+        return `${CONFIG.l5r5e.paths.assets}dices/default/${this.FACES[result].image}.svg`;
     }
 
     /**
