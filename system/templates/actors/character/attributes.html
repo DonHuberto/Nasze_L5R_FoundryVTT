@@ -28,7 +28,7 @@
         </label>
         <p class="item-description"> {{ localize 'l5r5e.attributes.focustip' }}</p>
     </li>
-    <li class="vigilance-content">
+    <li class="vigilance-content {{#ifCond data.strife.value '>' data.strife.max}}compromised{{/ifCond}}">
         <label class="attribute-label">
             <strong>{{ localize 'l5r5e.attributes.vigilance' }}</strong>
             <input class="centered-input" type="text" name="data.vigilance" value="{{data.vigilance}}" data-dtype="Number" disabled/>
