@@ -13,15 +13,16 @@
     }
     .errors {
         position: sticky;
-        top: 0px;
-        left: 0px;
+        top: 1rem;
+        left: 1rem;
         z-index: 999;
-        display: block;
-        width: 100%;
+        width: calc(100% - 1rem);
         background-color: $l5r5e-red;
         border: 1px solid $dark-red;
+        color: $white;
         border-radius: 1rem;
         text-align: center;
+        line-height: 2rem;
     }
     h3 {
         font-size: 1.25rem;
@@ -31,9 +32,13 @@
     }
     nav {
         .item {
+            color: $black;
+            font-size: 2rem;
+            font-weight: bold;
             background-color: $l5r5e-white-light;
             &.active,
             &:hover {
+                color: $white;
                 background-color: rgba(73, 12, 11, 0.85);
                 --notchSize: 0.5rem;
                 clip-path: polygon(
@@ -88,6 +93,10 @@
                     border: 1px solid $l5r5e-title;
                     font-size: 0.85rem;
                     padding: 0.25rem;
+                    &.done {
+                        border: 1px solid $l5r5e-earth;
+                        box-shadow: 0 1px 5px $l5r5e-earth;
+                    }
                 }
             }
         }

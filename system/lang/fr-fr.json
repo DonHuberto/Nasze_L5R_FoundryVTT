@@ -327,12 +327,13 @@
             "choose_one_skill": "En choisir une",
             "or": "OU",
             "and": "ET",
+            "error": "Oops il semble qu'il y est erreur : ",
             "part0": {
                 "intro": "Renseignez vos réponses au jeu des vingt questions sur ce formulaire et notez-y des éléments à utiliser ultérieurement !",
                 "section": "Livre de Règles de La Légende des Cinq Anneaux, Chapitre 2 : Création de personnage, p. 41-95"
             },
             "part1": {
-                "title": "Partie I: Identité (clan et famille)",
+                "title": "Partie I : Identité (clan et famille)",
                 "q1": "1. A quel clan appartient votre personnage ? (p. 41)",
                 "status": "Statut",
                 "q2": "2. A quelle famille appartient votre personnage ? (p. 49)",
@@ -340,7 +341,7 @@
                 "glory": "Gloire"
             },
             "part2": {
-                "title": "Partie II: Rôle et École",
+                "title": "Partie II : Rôle et École",
                 "q3": "3. Quelle est l'École votre personnage, et quel rôle remplit-elle ? (p. 56)",
                 "school": "École",
                 "role": "Rôles",
@@ -352,7 +353,7 @@
                 "q4": "4. De quelle manière votre personnage se démarque-t-il au sein de son école ? (p. 88)"
             },
             "part3": {
-                "title": "Partie III: Honneur et Gloire",
+                "title": "Partie III : Honneur et Gloire",
                 "q5": "5. Qui est le seigneur de votre personnage et quel est le devoir de votre personnage envers lui ? (p. 88)",
                 "choose_giri": "Choisissez un giri",
                 "q6": "6. Que désire votre personnage, et en quoi ce désir risque-t-il de l’empêcher d’accomplir son devoir ? (p. 90)",
@@ -363,7 +364,7 @@
                 "increase_honor": "Augmentation de l'honneur (+10)"
             },
             "part4": {
-                "title": "Partie IV: Forces et Faiblesses",
+                "title": "Partie IV : Forces et Faiblesses",
                 "q9": "9. Quelle est à ce jour la plus belle réussite de votre personnage ? (p. 92)",
                 "distinction": "Aptitude (1)",
                 "q10": "10. Quel est le frein principal dans la vie de votre personnage ? (p. 92)",
@@ -377,7 +378,7 @@
                 "advantage": "Avantage (1)"
             },
             "part5": {
-                "title": "Partie V: Personnalité et Comportement",
+                "title": "Partie V : Personnalité et Comportement",
                 "q14": "14. Que remarque-t-on en premier chez votre personnage ? (p. 93)",
                 "accoutrement": "Vêtement ou objet distinctif",
                 "q15": "15. Comment votre personnage réagit-il aux situations stressantes ? (p. 94)",
@@ -385,7 +386,7 @@
                 "object": "Objet (Rareté inférieur ou égale à 7)"
             },
             "part6": {
-                "title": "Partie VI: Lignée et Famille",
+                "title": "Partie VI : Lignée et Famille",
                 "q17": "17. Comment les parents de votre personnage le décriraient-ils ? (p. 95)",
                 "q18": "18. En l’honneur de qui votre personnage a-t-il été prénommé ? (p. 95)",
                 "d10r1": "Résultat du 1er D10",
@@ -396,7 +397,7 @@
                 "q19": "19. Quel est le prénom de votre personnage ? (p. 95)"
             },
             "part7": {
-                "title": "Partie VII: Mort",
+                "title": "Partie VII : Mort",
                 "q20": "20. Comment envisagez-vous la mort de votre personnage ? (p. 95)",
                 "summary": "Résumé",
                 "generchar": "Générer le personnage",

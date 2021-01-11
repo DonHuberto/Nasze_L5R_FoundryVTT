@@ -71,7 +71,8 @@ body {
     &.peculiarity,
     &.property,
     &.technique,
-    &.weapon {
+    &.weapon,
+    &.twenty-questions-dialog {
         .window-content {
             overflow-y: scroll;
         }

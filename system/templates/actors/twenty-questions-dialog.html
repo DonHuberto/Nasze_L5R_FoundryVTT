@@ -1,20 +1,19 @@
 <form class="l5r5e twenty-questions-dialog" autocomplete="off">
-    {{#if summary.errors}}
-    <div id="errors" class="errors">{{summary.errors}}</div>
-    {{/if}}
-
     <div class="content">
         <nav class="sheet-tabs tabs" data-group="primary">
             <a class="item" data-tab="part0">?</a>
-            <a class="item" data-tab="part1">I</a>
-            <a class="item" data-tab="part2">II</a>
-            <a class="item" data-tab="part3">III</a>
-            <a class="item" data-tab="part4">IV</a>
-            <a class="item" data-tab="part5">V</a>
-            <a class="item" data-tab="part6">VI</a>
-            <a class="item" data-tab="part7">VII</a>
+            <a class="item" data-tab="part1">一 </a>
+            <a class="item" data-tab="part2">二 </a>
+            <a class="item" data-tab="part3">三</a>
+            <a class="item" data-tab="part4">四</a>
+            <a class="item" data-tab="part5">五</a>
+            <a class="item" data-tab="part6">六 </a>
+            <a class="item" data-tab="part7">七 </a>
         </nav>
         <section class="sheet-body">
+            {{#if summary.errors}}
+                <p id="errors" class="errors">{{localize 'l5r5e.twenty_questions.error'}}{{summary.errors}}</p>
+            {{/if}}
             <article class="tab parts part0" data-group="primary" data-tab="part0">
                 <h1>{{localize 'l5r5e.twenty_questions.title'}}</h1>
                 {{localize 'l5r5e.twenty_questions.part0.intro'}}
