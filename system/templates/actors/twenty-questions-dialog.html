@@ -276,7 +276,7 @@
                             <select name="step7.skill" class="skill-select">
                                 {{#select data.step7.skill}}
                                 <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
-                                {{#each skillsList as |skills catId|}}
+                                {{#each skillsListStep7 as |skills catId|}}
                                 <optgroup label="{{localizeSkill catId 'title'}}">
                                     {{#each skills as |obj|}}
                                     <option value="{{obj.id}}">{{obj.label}}</option>
@@ -413,7 +413,7 @@
                     <select name="step17.skill" class="skill-select">
                         {{#select data.step17.skill}}
                         <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
-                        {{#each skillsList as |skills catId|}}
+                        {{#each skillsListStep17 as |skills catId|}}
                         <optgroup label="{{localizeSkill catId 'title'}}">
                             {{#each skills as |obj|}}
                             <option value="{{obj.id}}">{{obj.label}}</option>

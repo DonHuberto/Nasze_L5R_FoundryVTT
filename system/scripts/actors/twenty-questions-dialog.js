@@ -131,10 +131,16 @@ export class TwentyQuestionsDialog extends FormApplication {
      * @return {Object}
      */
     async getData(options = null) {
+        const skillsPoints = this.object.summariesRingsOrSkills("skillList");
+        const skillsList = game.l5r5e.HelpersL5r5e.getSkillsList(true);
+        const skillsListStep7 = this._getSkillZero(skillsList, skillsPoints, "step7.skill");
+        const skillsListStep17 = this._getSkillZero(skillsList, skillsPoints, "step17.skill");
         return {
             ...super.getData(options),
             ringsList: game.l5r5e.HelpersL5r5e.getRingsList(),
-            skillsList: game.l5r5e.HelpersL5r5e.getSkillsList(true),
+            skillsList,
+            skillsListStep7,
+            skillsListStep17,
             noHonorSkillsList: ["commerce", "skulduggery", "medicine", "seafaring", "survival", "labor"],
             techniquesList: CONFIG.l5r5e.techniques,
             data: this.object.data,
@@ -427,5 +433,20 @@ export class TwentyQuestionsDialog extends FormApplication {
         let cache = getProperty(this.cache, stepName);
         cache = cache.filter((e) => !!e && e.id !== itemId);
         setProperty(this.cache, stepName, cache);
+    }
+
+    /**
+     * Return the list of skill with only zero point (or 1 in this step)
+     * @private
+     */
+    _getSkillZero(skillsList, skillsPoints, stepName) {
+        const stepSkillId = getProperty(this.object.data, stepName);
+        const out = {};
+        Object.entries(skillsList).forEach(([cat, val]) => {
+            out[cat] = val.filter(
+                (skill) => stepSkillId === skill.id || !skillsPoints[skill.id] || skillsPoints[skill.id] < 1
+            );
+        });
+        return out;
     }
 }

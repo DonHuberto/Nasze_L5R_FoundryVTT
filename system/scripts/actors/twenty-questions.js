@@ -320,7 +320,7 @@ export class TwentyQuestions {
         };
 
         // Rings & Skills, 3pt max for each
-        const rings = this._summariesRingsOrSkills("ringList");
+        const rings = this.summariesRingsOrSkills("ringList");
         for (const key in rings) {
             // ring start at 1
             rings[key] = rings[key] + 1;
@@ -331,13 +331,13 @@ export class TwentyQuestions {
             out.summary.rings.push(label);
         }
 
-        const skills = this._summariesRingsOrSkills("skillList");
+        const skills = this.summariesRingsOrSkills("skillList");
         for (const key in skills) {
             // skill start at 0
             const label = `${game.i18n.localize("l5r5e.skills." + CONFIG.l5r5e.skills.get(key) + "." + key)} (${
                 skills[key]
             })`;
-            if (rings[key] > 3) {
+            if (skills[key] > 3) {
                 out.errors.push(label);
             }
             out.summary.skills.push(label);
@@ -368,7 +368,7 @@ export class TwentyQuestions {
     /**
      * Return a list of ring/skill
      */
-    _summariesRingsOrSkills(listName) {
+    summariesRingsOrSkills(listName) {
         const store = {};
         TwentyQuestions[listName].forEach((formName) => {
             const id = getProperty(this.data, formName);
