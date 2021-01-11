@@ -16,8 +16,8 @@ This version is authorized by Edge Studio, all texts, images and copyrights are 
 - Search Anywhere : https://gitlab.com/riccisi/foundryvtt-search-anywhere (don't spent too much time searching the right technique)
 
 ## Current L5R team (alphabetical order)
-- Carter (compendiums)
-- Hrunh (compendiums)
+- Carter (compendiums, adventure adaptation)
+- Hrunh (compendiums, pre-gen characters adaptation)
 - Mandar (development)
 - Sasmira (contributor)
 - Vlyan (development)
@@ -25,7 +25,7 @@ This version is authorized by Edge Studio, all texts, images and copyrights are 
 ## Remerciements, vielen danke & Many thanks to :
 1. José Ladislao Lainez Ortega, aka "L4D15", for his first version
 2. Sasmira and LeRatierBretonnien for their work on the [Francophone community of Foundry](https://discord.gg/pPSDNJk)
-3. The entire L5R Team for its work.
+3. Flex for his advice
 
 ## Contribute
 You are free to contribute and propose corrections, modifications after fork. Try to respect 3 rules:
@@ -60,8 +60,8 @@ La traduction du système fonctionne directement, cependant les compendiums néc
 2. Lien vers [Discord Francophone](https://discord.gg/pPSDNJk)
 
 ## L'équipe L5R actuelle (par ordre alphabétique)
-- Carter (compendiums)
-- Hrunh (compendiums)
+- Carter (compendiums, adaptation de scénario)
+- Hrunh (compendiums, adaptation des pré-tirés)
 - Mandar (développement)
 - Sasmira (contributeur)
 - Vlyan (développement)
@@ -69,7 +69,7 @@ La traduction du système fonctionne directement, cependant les compendiums néc
 ## Remerciements, vielen danke & Many thanks to :
 1. José Ladislao Lainez Ortega, aka "L4D15", pour sa première version
 2. Sasmira et LeRatierBretonnien pour leur travail sur la [communauté Francophone de Foundry](https://discord.gg/pPSDNJk)
-3. L'ensemble de la Team L5R pour son travail.
+3. Flex pour ses conseils
 
 ## Contribuer
 Vous êtes libre de contribuer et proposer après fork des corrections, modifications. Essayez de respecter 3 règles :
