@@ -15,6 +15,7 @@ import { RingDie } from "./dice/dietype/ring-die.js";
 import { RollL5r5e } from "./dice/roll.js";
 import { DicePickerDialog } from "./dice/dice-picker-dialog.js";
 import { RollnKeepDialog } from "./dice/roll-n-keep-dialog.js";
+import { _sortCombatants, rollInitiative } from "./combat.js";
 // Items
 import { ItemL5r5e } from "./item.js";
 import { ItemSheetL5r5e } from "./items/item-sheet.js";
@@ -77,6 +78,11 @@ Hooks.once("init", async function () {
     // Preload Handlebars templates
     await PreloadTemplates();
 
+    // ***** Combat *****
+    Combat.prototype.rollInitiative = rollInitiative;
+    Combat.prototype._sortCombatants = _sortCombatants;
+    // game.combat.settings.resource = "fatigue.value"; // nope :/
+
     // ***** Register custom sheets *****
     // Actors
     Actors.unregisterSheet("core", ActorSheet);
@@ -134,7 +140,7 @@ Hooks.once("init", async function () {
 
     // Utility conditional, usable in nested expression
     // {{#ifCond (ifCond advancement.type '==' 'technique') '||' (ifCond item.data.technique_type '==' 'kata')}}
-    // {#ifCond '["distinction","passion"]' 'includes' item.data.peculiarity_type}}
+    // {{#ifCond '["distinction","passion"]' 'includes' item.data.peculiarity_type}}
     Handlebars.registerHelper("ifCond", function (a, operator, b, options) {
         let result = false;
         switch (operator) {

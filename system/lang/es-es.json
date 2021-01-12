@@ -82,7 +82,8 @@
             "difficulty_hidden": "TN ???",
             "dicepicker": "Recogedor de dados",
             "void_point_used": "Punto de vacío utilizado",
-            "roll_n_keep": "Roll & Keep"
+            "roll_n_keep": "Roll & Keep",
+            "initiative_roll": "Iniciativa rollo"
         },
         "dicepicker": {
             "difficulty_title": "Dificultad",

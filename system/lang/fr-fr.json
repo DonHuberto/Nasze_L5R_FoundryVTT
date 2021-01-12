@@ -82,7 +82,8 @@
             "difficulty_hidden": "ND ???",
             "dicepicker": "Dice Picker",
             "void_point_used": "Point de vide utilisé",
-            "roll_n_keep": "Roll & Keep"
+            "roll_n_keep": "Roll & Keep",
+            "initiative_roll": "Jet d'initiative"
         },
         "dicepicker": {
             "difficulty_title": "Difficulté",
