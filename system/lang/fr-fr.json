@@ -1,22 +1,24 @@
 {
-    "i18N.Language": "Français",
-    "i18N.Maintainers": ["Team L5R"],
-    "SETTINGS.Simplemacroshorthandn": "Macro syntaxe abrégée",
-    "SETTINGS.Simplemacroshorthandl": "Activer une syntaxe de macro raccourcie qui permet de référencer directement les attributs, par exemple @str au lieu de @attributes.str.value. Désactivez ce paramètre si vous avez besoin de pouvoir référencer le modèle d'attribut complet, par exemple @attributes.str.label",
-    "SETTINGS.Simpleinitformulan": "Formule d'initiative",
-    "SETTINGS.Simpleinitformulal": "Entrez une formule d'initiative, telle que d20+@dex",
-    "SETTINGS.None": "Aucune option",
-    "SIMPLE.Notifyinitformulaupdated": "La formule de l'initiative a été mise à jour pour :",
-    "SIMPLE.Notifyinitformulainvalid": "La formule d'initiative suivante n'est pas valable :",
-    "ACTOR.TypeCharacter": "Personnage Joueur",
-    "ACTOR.TypeNpc": "Personnage non Joueur",
-    "ITEM.TypeItem": "Objet",
-    "ITEM.TypeArmor": "Armure",
-    "ITEM.TypeWeapon": "Arme",
-    "ITEM.TypeTechnique": "Technique",
-    "ITEM.TypeProperty": "Propriété",
-    "ITEM.TypePeculiarity": "Particularité",
-    "ITEM.TypeAdvancement": "Progression",
+    "i18n": {
+        "Language": "Français",
+        "Maintainers": ["Team L5R"]
+    },
+    "SETTINGS": {
+        "None": "Aucune option"
+    },
+    "ACTOR": {
+        "TypeCharacter": "Personnage Joueur",
+        "TypeNpc": "Personnage non Joueur"
+    },
+    "ITEM": {
+        "TypeItem": "Objet",
+        "TypeArmor": "Armure",
+        "TypeWeapon": "Arme",
+        "TypeTechnique": "Technique",
+        "TypeProperty": "Propriété",
+        "TypePeculiarity": "Particularité",
+        "TypeAdvancement": "Progression"
+    },
     "l5r5e": {
         "global": {
             "ok": "OK",
@@ -305,7 +307,6 @@
         "twenty_questions": {
             "title": "Le jeu des Vingt questions",
             "bt_abrev": "20Q",
-            "bt_refresh": "Actualiser",
             "bt_next": "Suivant",
             "increase_ring1": "Augmentation d'anneau (1)",
             "increase_ring2": "Augmentations d'anneau (2)",

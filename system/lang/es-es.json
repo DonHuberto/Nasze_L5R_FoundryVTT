@@ -1,29 +1,31 @@
 {
-    "i18N.Language": "Español",
-    "i18N.Maintainers": ["Team L5R"],
-    "SETTINGS.Simplemacroshorthandn": "Macro sintaxis acortada",
-    "SETTINGS.Simplemacroshorthandl": "Habilitar una sintaxis de macro abreviada que permita referenciar directamente los atributos, por ejemplo @str en lugar de @attributes.str.value. Deshabilitar esta configuración si se necesita la capacidad de referenciar el modelo de atributos completo, por ejemplo @attributes.str.label",
-    "SETTINGS.Simpleinitformulan": "Fórmula de iniciativa",
-    "SETTINGS.Simpleinitformulal": "Introduzca una fórmula de iniciativa, como d20+@dex",
-    "SETTINGS.None": "No option",
-    "SIMPLE.Notifyinitformulaupdated": "La fórmula de la iniciativa fue actualizada a:",
-    "SIMPLE.Notifyinitformulainvalid": "La fórmula de la iniciativa fue inválida:",
-    "ACTOR.TypeCharacter": "Personaje de Jugador",
-    "ACTOR.TypeNpc": "Personaje no jugador",
-    "ITEM.TypeItem": "Ítem",
-    "ITEM.TypeArmor": "Armadura",
-    "ITEM.TypeWeapon": "Arma",
-    "ITEM.TypeTechnique": "Técnica",
-    "ITEM.TypeProperty": "Propiedad",
-    "ITEM.TypePeculiarity": "Peculiaridad",
-    "ITEM.TypeAdvancement": "Avance",
+    "i18n": {
+        "Language": "Español",
+        "Maintainers": ["Team L5R"]
+    },
+    "SETTINGS": {
+        "None": "Sin opción"
+    },
+    "ACTOR": {
+        "TypeCharacter": "Carácter de Jugador",
+        "TypeNpc": "Personaje no jugador"
+    },
+    "ITEM": {
+        "TypeItem": "Artículo",
+        "TypeArmor": "Armadura",
+        "TypeWeapon": "Arma",
+        "TypeTechnique": "Técnica",
+        "TypeProperty": "Propiedad",
+        "TypePeculiarity": "Peculiaridad",
+        "TypeAdvancement": "Avance"
+    },
     "l5r5e": {
         "global": {
             "ok": "OK",
             "add": "Añadir",
             "edit": "Editar",
             "delete": "Borrar",
-            "drop_here": "Déjese caer aquí."
+            "drop_here": "Caída aquí"
         },
         "logo": {
             "títle": "¿Necesitas ayuda?",
@@ -106,38 +108,38 @@
         "properties": "Propiedades",
         "weapons": {
             "title": "Armas",
-            "title_new": "New Weapon",
+            "title_new": "Arma nueva",
             "damage": "Daño",
             "range": "Rango",
-            "stats": "Stats",
-            "sheathed": "Equipped / Sheathed",
-            "readied": "Readied",
-            "category": "Category",
-            "deadliness": "Deadliness",
-            "grips": "Grips"
+            "stats": "Estadísticas",
+            "sheathed": "Equipado / Envainado",
+            "readied": "Preparado",
+            "category": "Categoría",
+            "deadliness": "Mortalidad",
+            "grips": "Agarres"
         },
         "armors": {
-            "title": "Armors",
-            "title_new": "New Armor",
+            "title": "Armaduras",
+            "title_new": "Nueva Armadura",
             "type": "Defensa",
-            "physical": "physical",
-            "supernatural": "supernatural",
-            "equipped": "Equipped"
+            "physical": "físico",
+            "supernatural": "sobrenatural",
+            "equipped": "Equipado"
         },
         "items": {
-            "title": "Equipo",
-            "title_new": "New Item"
+            "title": "Artículos",
+            "title_new": "nuevo artículo"
         },
-        "feats": "Feats",
+        "feats": "Hechos",
         "techniques": {
-            "title": "Techniques",
+            "title": "Técnicas",
             "type": "Tipo accesible",
-            "not_allowed": "Your character does not use this type of technique.",
-            "only_one": "Your character can possess only one of theses technique.",
-            "title_new": "Nuevo Rasgo",
+            "not_allowed": "Tu personaje no utiliza este tipo de técnica.",
+            "only_one": "Tu personaje sólo puede poseer una de estas técnicas.",
+            "title_new": "Nueva Técnica",
             "kata": "Kata",
             "kiho": "Kihõ",
-            "invocation": "Invocation",
+            "invocation": "Invocación",
             "ritual": "Ritual",
             "shuji": "Shuji",
             "maho": "Mahõ",
@@ -146,12 +148,12 @@
             "mastery_ability": "Habilidad de maestría"
         },
         "peculiarities": {
-            "title_new": "New peculiarity",
+            "title_new": "Nueva peculiaridad",
             "types": {
-                "distinction": "Distinction",
-                "passion": "Passion",
-                "adversity": "Adversity",
-                "anxiety": "Anxiety"
+                "distinction": "Distinción",
+                "passion": "Pasión",
+                "adversity": "Adversidad",
+                "anxiety": "Ansiedad"
             }
         },
         "skill": "Habilidad",
@@ -160,7 +162,7 @@
         "notes": "Notas",
         "inventory": "Inventario",
         "money": {
-            "title": "Personal money",
+            "title": "Dinero personal",
             "koku": "Koku",
             "bu": "Bu",
             "zeni": "Zeni"
@@ -280,18 +282,18 @@
                 "intrigue": "Intriga",
                 "duel": "Duelo",
                 "skirmish": "Escaramuza",
-                "mass_battle": "Batalla de masas"
+                "mass_battle": "Batalla en masas"
             }
         },
         "advancements": {
             "title": "Avances",
             "title_new": "Nuevo avance",
             "school_rank": "Rango de la escuela",
-            "school_rank_0": "ant.",
+            "school_rank_0": "Bg",
             "total": "Total",
             "cost": "Costo",
             "spent": "Usada",
-            "saved": "Restante",
+            "saved": "Salvado",
             "total_xp_rank": "Xp gastado",
             "curriculum": "En curriculum",
             "curriculum_validate": "Completar este rango"
@@ -304,8 +306,7 @@
         },
         "twenty_questions": {
             "title": "Veinte preguntas",
-            "bt_abrev": "20P",
-            "bt_refresh": "Refrescar",
+            "bt_abrev": "20Q",
             "bt_next": "Siguiente",
             "increase_ring1": "Aumento del anillo (1)",
             "increase_ring2": "Aumento del anillo (2)",
@@ -316,10 +317,10 @@
             "choose_one_skill": "Elige uno",
             "or": "O",
             "and": "Y",
-            "error": "Uy, parece que hay error:",
+            "error": "Uy, parece que hay un error:",
             "part0": {
                 "intro": "Puedes usar esta hoja para rellenar tus respuestas al Juego de las 20 Preguntas, y para tomar notas para más tarde!",
-                "section": "Legend of the Five Rings Core Rulebook, Chapter 2 : Creación de un personaje, p. 41-95"
+                "section": "Leyenda de los Cinco Anillos, capítulo 2: Creación de un personaje, p. 41-95"
             },
             "part1": {
                 "title": "Parte I: Identidad básica (Clan y Familia)",
@@ -336,7 +337,7 @@
                 "role": "Roles",
                 "honor": "Honor",
                 "access": "Tipos de técnicas disponibles",
-                "school_ability": "Habilidad de la escuela",
+                "school_ability": "Habilidad escolar",
                 "starting_techniques": "Técnicas de arranque (2-5)",
                 "outfit": "Equipo para empezar",
                 "q4": "4. ¿Cómo se destaca tu personaje dentro de su escuela? (p. 88)"
@@ -344,9 +345,9 @@
             "part3": {
                 "title": "Parte III: Honor y Gloria",
                 "q5": "5. ¿Quién es su señor y cuál es su deber de carácter con ellos? (p. 88)",
-                "choose_giri": "Seleccione giri:",
-                "q6": "6. What does your character long for, and how might this impede their duty ? (p. 90)",
-                "choose_ninjo": "Seleccione ninjō:",
+                "choose_giri": "Elija una giri:",
+                "q6": "6. ¿Qué anhela su personaje y cómo podría esto impedir su deber? (p. 90)",
+                "choose_ninjo": "Elija una ninjō:",
                 "q7": "7. ¿Cuál es la relación de tu personaje con su clan? (p. 91)",
                 "increase_glory": "Aumento de la gloria",
                 "q8": "8. ¿Qué piensa tu personaje de Bushidō? (p. 91)",
@@ -362,7 +363,7 @@
                 "passion": "Pasión (1)",
                 "q12": "12. ¿Qué preocupación, miedo o falta de sensibilidad le preocupa más a su carácter? (p. 93)",
                 "anxiety": "Ansiedad (1)",
-                "q13": "13. ¿De quién ha aprendido más tu personaje durante su vida? (p. 93)",
+                "q13": "13. De quién ha aprendido más tu personaje durante su vida (p. 93)",
                 "disadvantage": "Desventaja (1)",
                 "advantage": "Ventaja (1)"
             },
@@ -370,7 +371,7 @@
                 "title": "Parte V: Personalidad y Comportamiento",
                 "q14": "14. ¿Qué es lo primero que la gente nota al encontrarse con su personaje? (p. 93)",
                 "accoutrement": "Acumulación personal",
-                "q15": "15. ¿Cómo reacciona tu personaje ante situaciones estresantes?(p. 94)",
+                "q15": "15. ¿Cómo reacciona tu personaje ante situaciones estresantes? (p. 94)",
                 "q16": "16. ¿Cuáles son las relaciones preexistentes de tu personaje con otros clanes, familias, organizaciones y tradiciones? (p. 94)",
                 "object": "Objeto (Rareza 7 o inferior)"
             },
@@ -378,9 +379,9 @@
                 "title": "Parte VI: Ascendencia y familia",
                 "q17": "17. ¿Cómo los describirían los padres de tu personaje? (p. 95)",
                 "q18": "18. ¿A quién se le nombró para honrar a tu personaje? (p. 95)",
-                "d10r1": "D10 (1/2)",
+                "d10r1": "Resultado D10 (1/2)",
                 "d10r1_choice": "Primer efecto de D10",
-                "d10r2": "D10 Resultado (2/2)",
+                "d10r2": "Resultado D10 (2/2)",
                 "d10r2_choice": "Segundo efecto de D10",
                 "d10r2_drop_items": "O una técnica, una ventaja, un objeto...",
                 "q19": "19. ¿Cuál es el nombre personal de tu personaje? (p. 95)"

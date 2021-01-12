@@ -186,9 +186,12 @@ Hooks.once("init", async function () {
 /* ------------------------------------ */
 Hooks.once("setup", function () {
     // Do anything after initialization but before ready
-    // Babele
+    // Embed Babele compendiums
     /* eslint-disable no-undef */
-    if (typeof Babele !== "undefined" && Babele.get().modules.every((module) => module.lang !== "fr")) {
+    if (
+        typeof Babele !== "undefined" &&
+        Babele.get().modules.every((module) => module.lang !== "fr" || module.module !== "l5r5e-dev")
+    ) {
         Babele.get().register({
             module: "../systems/l5r5e", // babele only accept modules, so... well :D
             lang: "fr",
