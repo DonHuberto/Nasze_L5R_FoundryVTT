@@ -1,7 +1,126 @@
 # Changelog
 
-## 0.6.0 - First public release
+## 1.0.0 - First public release
+- Removed the 0ds if no skill point
+- Added initiative roll (only tactics for the moment)
+- Change color of keikogi and add on compendium
+- Machine translation for ES
+- Update Translation for 1.0.0 Release
+- 20Q added step 7 and 17 no point rule 
+- Add price icon
+- Set vigilance to 1 if compromised
+- Seamless update for 20Q (deleted refresh button) 
+- Update translation for npc + fix h1
+- Update compendium : Remove accent on uppercase 1st letter
 
+## 0.9.0 - Helper & Firefox Update
+- Fix for npc note
+- Chat texture and status
+- Fix add void point on hidden -> only if added is check
+- Add icons keikogi + 4 status for equipment
+- Change background Compendium and padding on windows + Svg adjustements
+- Updated weapons images
+- Add new svg for weapon
+- Ajustement css marging/padding and float
+- Update item style for flex stretch css
+- Pass for number and focus on click
+- Xp, added some parseInt
+- Fix for babele and properties
+- Add type percularity in item entry
+- Fix for cross-loaded French compendium
+- 20Q : Scroll on top on next button
+- V-Align for Vlyan pleasure !
+
+## 0.8.0 - 20Q Polish
+- 20Q better refresh, stay in same tab
+- Advancement: Change the name and img according to the selection
+- Fix for logo on Firefox
+- Visual fix for Firefox and end 20Q edit
+- Fix for no actor dice picker
+- Added "add a void point" checkbox, and some fixes
+- Added code fr module translation on README.md
+- Babele is better in setup hook ?
+- Added babele french translation into system
+- Removed DicePiker bulk macro as it was unnecessary now
+- Fix for Q13: "skill and disadv" OR "adv"
+- Added some text for 20Q 2dn dice 
+- Stop some missing propagation
+- Fix adv tooltip
+- Fix 20Q wrong var for summary
+- Added a real app fo helper/info button (dialog before)
+- Added next bt in 20Q
+- Fix nav 20Q for all screen
+- Fix marge on sheet + fix nav on 20Q + clean imgs
+- 20Q added step18 status, honor and glory for modifier
+- Add BG and first style for 20Q
+- Added class "roll" for roll in chat
+- Some styles
+- Add style for skill types checkboxes
+- Add roll to global game var
+- Change file to md
+- Added a icon for "void point used" in chat log
+- Fix for 20Q: constructCache only once
+- Fix EN vigilante -> vigilance
+- Update actor for using/get a void point
+- Fix for rounded vigilance (now ceil instead of floor)
+- 20Q added a summary
+- Update Compendiums
+- Fix for 20Q and some warn console for debug
+- Fix img for drag n drop on compendium
+- Added translation for Item and Actor combobox
+- Add ronin svg + font <i> for ring and skill
+
+## 0.7.0 - Compendiums Update
+- Added (ring) and (skill) symbols
+- Specific case for school_ability and mastery_ability on drop
+- Added convertSymbol for item's desc and actor's notes
+- Fix for "search anywhere" draggable icon
+- Add ul li style for editor + Adjuste stance + marge on sheets and img
+- Remove effects from template.json for tech
+- Update css for item attribute
+- added pack for "school_ability" and "mastery_ability" techniques
+- Added school_ability and mastery_ability types for techniques
+- Update on compendiums
+- Fix properties description
+- More text for effects in techs
+- Fix for Compendium when player do not have the right to create a item
+- Added some check on 20Q, and now rolls fill the form
+- some fix for types and effects
+- Translation for peculiarities types in sheet
+- Last entries of peculiarities
+- Added a img for new item
+- advancements now with tabs
+- Money ! it's a crime
+
+## 0.6.0 - Item Enhancement
+- fix on 20q
+- tab on 20q and Hide rank 0 (initial) on progession
+- Some checks on 20Q
+- Added a check if this macro id is already in player hotbar
+- Added shortcut for initiative rolls on conflict Tab (character only)
+- Add a macro creator for dice roller
+- Font modif for symbols in text
+- pointer error
+- Added symbols converter
+- Exp with img and cap have now it s own row
+- 20q again, added a refresh bt and fix css
+- added check adv on drop
+- Basic 20Q display
+- Advancements better table display
+- Some automatisations on advancements
+- Some progression work, and fixed start rank level to 1
+- Update Sidebar UI compendium and Letter spacing
+- Fix Img width
+- Quantities update, add and subtract on drop same object, or delete and qty > 1
+- Make compendium droppable
+- Fix for babele and props
+- updated packs name (plural)
+- Vlyan authored 2 weeks ago
+- updated packs fix ranged weapons
+- updated packs
+- Fix fixed word 'Nope!' to a localized word for techniques
+- status -> statut
+- Added translation for npc subtype
 
 ## 0.5.0 - Testbed
 - Fix last bug on items and update json for 0.5.0 Pre-Release

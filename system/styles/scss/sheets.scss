@@ -53,6 +53,12 @@
             line-height: 2rem;
             font-size: 1rem;
         }
+        .compromised {
+            input {
+                border: 1px solid $l5r5e-red;
+                box-shadow: 0 1px 5px $l5r5e-red;
+            }
+        }
     }
     form {
         display: flex;
