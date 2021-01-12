@@ -18,13 +18,18 @@ export async function rollInitiative(ids, { formula = null, updateTurn = true, m
             return;
         }
         const data = combatant.actor.data.data;
+        const formula = [`${data.rings[data.stance]}dr`];
         const skillValue =
             combatant.actor.data.type === "npc" ? data.skills["martial"] : data.skills["martial"]["tactics"];
+        if (skillValue > 0) {
+            formula.push(`${skillValue}ds`);
+        }
 
-        const roll = new game.l5r5e.RollL5r5e(
-            `${data.rings[data.stance]}dr[${data.stance}] + ${skillValue}ds[tactics]`
-        );
+        const roll = new game.l5r5e.RollL5r5e(formula.join("+"));
+
         roll.actor = combatant.actor;
+        roll.l5r5e.stance = data.stance;
+        roll.l5r5e.skillId = "tactics";
         roll.l5r5e.summary.difficulty = 1;
 
         roll.roll();
