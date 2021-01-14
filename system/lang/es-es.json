@@ -7,17 +7,17 @@
         "None": "Sin opción"
     },
     "ACTOR": {
-        "TypeCharacter": "Carácter de Jugador",
+        "TypeCharacter": "Personaje jugador",
         "TypeNpc": "Personaje no jugador"
     },
     "ITEM": {
-        "TypeItem": "Artículo",
+        "TypeItem": "Objeto",
         "TypeArmor": "Armadura",
         "TypeWeapon": "Arma",
         "TypeTechnique": "Técnica",
         "TypeProperty": "Propiedad",
         "TypePeculiarity": "Peculiaridad",
-        "TypeAdvancement": "Avance"
+        "TypeAdvancement": "Mejora"
     },
     "l5r5e": {
         "global": {
@@ -25,21 +25,21 @@
             "add": "Añadir",
             "edit": "Editar",
             "delete": "Borrar",
-            "drop_here": "Caída aquí"
+            "drop_here": "Dejar caer aquí"
         },
         "logo": {
             "títle": "¿Necesitas ayuda?",
             "content": "Sigue la guía :",
             "edge": "Ir a la página web de Edge-Studio",
             "drivethrurpg": "¿Comprar un PDF del juego?",
-            "discord": "Discordia oficial de FoundryVTT",
+            "discord": "Discord oficial de FoundryVTT",
             "src": "systems/l5r5e/assets/l5r-logo.webp",
             "alt": "Ayuda en línea",
             "edge-info": "Tu navegador abrirá la página web de EDGE STUDIO",
             "edge-link": "https://edge-studio.net/",
             "drivethrurpg-info": "tu navegador abrirá el sitio DriveThruRpg de Edge Studio",
             "drivethrurpg-link": "https://www.drivethrurpg.com/browse/pub/17946/EDGE-Studio",
-            "discord-info": "Su navegador se abrirá a la discordia oficial de la Fundición",
+            "discord-info": "Su navegador se abrirá el discord oficial de Foundry",
             "discord-link": "https://discordapp.com/invite/DDBZUDf"
         },
         "rings": {
@@ -67,75 +67,75 @@
         "passionstip": "Después de efectuar una tirada relacionada con tu pasión, descarta tres puntos de Conflicto.",
         "personality": "Personalidad",
         "description": "Descripción",
-        "bought_at_rank": "Comprado en rango",
+        "bought_at_rank": "Adquirido en rango",
         "effects": "Efectos",
         "types": "Tipos",
         "book_reference": "Referencia",
         "value": "Valor",
         "rarity": "Rareza",
         "chatdices": {
-            "successes": "Sucesos",
-            "explosives": "Explosivos",
+            "successes": "Éxitos",
+            "explosives": "Relanzables",
             "opportunities": "Oportunidades",
-            "strives": "Esfuerzos",
-            "difficulty": "TN",
-            "difficulty_hidden": "TN ???",
-            "dicepicker": "Recogedor de dados",
+            "strives": "Conflictos",
+            "difficulty": "NO",
+            "difficulty_hidden": "NO ???",
+            "dicepicker": "Dice Picker",
             "void_point_used": "Punto de vacío utilizado",
-            "roll_n_keep": "Roll & Keep",
-            "initiative_roll": "Iniciativa rollo"
+            "roll_n_keep": "Tirar y guardar",
+            "initiative_roll": "Tirada de Iniciativa"
         },
         "dicepicker": {
             "difficulty_title": "Dificultad",
-            "difficulty_hidden_label": "Ocultar TN",
+            "difficulty_hidden_label": "Ocultar NO",
             "use_void_point_label": "Gasta un",
-            "void_point_tooltip": "Punto vacío",
-            "roll_label": "Roll",
-            "bt_add_macro": "Añadir un macro"
+            "void_point_tooltip": "Punto de vacío",
+            "roll_label": "Tirar",
+            "bt_add_macro": "Añadir una macro"
         },
         "roll_n_keep": {
             "title": "L5R Roll & Keep",
-            "discard_drop_here": "Descarte",
-            "reroll_drop_here": "Re-roll",
-            "reroll_chat": "Dados relaminados",
-            "keep_drop_here": "Mantener",
-            "keep_chat": "Nueva tirada de un dado explosivo",
+            "discard_drop_here": "Descartar",
+            "reroll_drop_here": "Relanzar",
+            "reroll_chat": "Dados relanzados",
+            "keep_drop_here": "Guardar",
+            "keep_chat": "Nueva tirada de un dado relanzable",
             "bt_validate": "Finalizar"
         },
-        "max": "Max",
+        "max": "Máx",
         "current": "Actuales",
         "quantity": "Cantidad",
         "weight": "Peso",
         "properties": "Propiedades",
         "weapons": {
             "title": "Armas",
-            "title_new": "Arma nueva",
+            "title_new": "Nueva arma",
             "damage": "Daño",
-            "range": "Rango",
+            "range": "Alcance",
             "stats": "Estadísticas",
-            "sheathed": "Equipado / Envainado",
+            "sheathed": "Equipado / Envainada",
             "readied": "Preparado",
             "category": "Categoría",
-            "deadliness": "Mortalidad",
+            "deadliness": "Letalidad",
             "grips": "Agarres"
         },
         "armors": {
             "title": "Armaduras",
             "title_new": "Nueva Armadura",
             "type": "Defensa",
-            "physical": "físico",
+            "physical": "física",
             "supernatural": "sobrenatural",
             "equipped": "Equipado"
         },
         "items": {
-            "title": "Artículos",
-            "title_new": "nuevo artículo"
+            "title": "Objetos",
+            "title_new": "Nuevo objeto"
         },
-        "feats": "Hechos",
+        "feats": "Logros",
         "techniques": {
             "title": "Técnicas",
-            "type": "Tipo accesible",
-            "not_allowed": "Tu personaje no utiliza este tipo de técnica.",
+            "type": "Técnicas permitidas",
+            "not_allowed": "Tu personaje no puede utilizar este tipo de técnica.",
             "only_one": "Tu personaje sólo puede poseer una de estas técnicas.",
             "title_new": "Nueva Técnica",
             "kata": "Kata",
@@ -208,7 +208,7 @@
                 "ranged": "A distancia",
                 "unarmed": "Sin armas",
                 "meditation": "Meditación",
-                "tactics": "Tácticas",
+                "tactics": "Estrategia",
                 "air": "Amagar",
                 "earth": "Resistir",
                 "fire": "Abrumar",
@@ -255,7 +255,7 @@
             }
         },
         "attributes": {
-            "title": "Attributes",
+            "title": "Atributos",
             "endurance": "Aguante",
             "endurancetip": "(Tierra + Fuego) x2",
             "composure": "Compostura",
@@ -283,7 +283,7 @@
                 "intrigue": "Intriga",
                 "duel": "Duelo",
                 "skirmish": "Escaramuza",
-                "mass_battle": "Batalla en masas"
+                "mass_battle": "Batalla a gran escala"
             }
         },
         "advancements": {
@@ -292,94 +292,94 @@
             "school_rank": "Rango de la escuela",
             "school_rank_0": "Bg",
             "total": "Total",
-            "cost": "Costo",
-            "spent": "Usada",
-            "saved": "Salvado",
-            "total_xp_rank": "Xp gastado",
-            "curriculum": "En curriculum",
+            "cost": "Coste",
+            "spent": "Gastado",
+            "saved": "Guardado",
+            "total_xp_rank": "PE gastados",
+            "curriculum": "En programa de estudio",
             "curriculum_validate": "Completar este rango"
         },
         "npc": {
             "types": {
                 "adversary": "Adversario",
-                "minion": "Adlátere"
+                "minion": "Esbirro"
             }
         },
         "twenty_questions": {
             "title": "Veinte preguntas",
-            "bt_abrev": "20Q",
+            "bt_abrev": "20P",
             "bt_next": "Siguiente",
-            "increase_ring1": "Aumento del anillo (1)",
-            "increase_ring2": "Aumento del anillo (2)",
-            "increase_skill1": "Aumenta la habilidad (1)",
-            "increase_skill2": "Aumenta la habilidad (2)",
-            "increase_skill3": "Aumenta la habilidad (3-5)",
+            "increase_ring1": "Incremento de anillo (1)",
+            "increase_ring2": "Incremento de anillo (2)",
+            "increase_skill1": "Incremento de habilidad (1)",
+            "increase_skill2": "Incremento de habilidad (2)",
+            "increase_skill3": "Incremento de habilidad (3-5)",
             "choose_one_ring": "Elige uno",
-            "choose_one_skill": "Elige uno",
+            "choose_one_skill": "Elige una",
             "or": "O",
             "and": "Y",
             "error": "Uy, parece que hay un error:",
             "part0": {
                 "intro": "Puedes usar esta hoja para rellenar tus respuestas al Juego de las 20 Preguntas, y para tomar notas para más tarde!",
-                "section": "Leyenda de los Cinco Anillos, capítulo 2: Creación de un personaje, p. 41-95"
+                "section": "Leyenda de los Cinco Anillos, capítulo 2: Creación de personajes, p. 41-95"
             },
             "part1": {
                 "title": "Parte I: Identidad básica (Clan y Familia)",
                 "q1": "1. ¿A qué clan pertenece tu personaje? (p. 41)",
-                "status": "Estado",
+                "status": "Estatus",
                 "q2": "2. ¿A qué familia pertenece tu personaje? (p. 49)",
-                "money": "Iniciar la riqueza en Koku",
+                "money": "Riqueza inicial en Koku",
                 "glory": "Gloria"
             },
             "part2": {
-                "title": "Parte II: Papel y escuela",
-                "q3": "3. ¿Cuál es la escuela de tu personaje, y en qué roles se encuentra esa escuela? (p. 56)",
+                "title": "Parte II: Función y escuela",
+                "q3": "3. ¿Cuál es la escuela de tu personaje, y en qué funciones cumple esa escuela? (p. 56)",
                 "school": "Escuela",
-                "role": "Roles",
+                "role": "Funciones",
                 "honor": "Honor",
                 "access": "Tipos de técnicas disponibles",
-                "school_ability": "Habilidad escolar",
-                "starting_techniques": "Técnicas de arranque (2-5)",
-                "outfit": "Equipo para empezar",
-                "q4": "4. ¿Cómo se destaca tu personaje dentro de su escuela? (p. 88)"
+                "school_ability": "Capacidad de escuela",
+                "starting_techniques": "Técnicas iniciales (2-5)",
+                "outfit": "Equipo inicial",
+                "q4": "4. ¿De qué manera destaca tu personaje dentro de su escuela? (p. 88)"
             },
             "part3": {
                 "title": "Parte III: Honor y Gloria",
-                "q5": "5. ¿Quién es su señor y cuál es su deber de carácter con ellos? (p. 88)",
-                "choose_giri": "Elija una giri:",
-                "q6": "6. ¿Qué anhela su personaje y cómo podría esto impedir su deber? (p. 90)",
-                "choose_ninjo": "Elija una ninjō:",
-                "q7": "7. ¿Cuál es la relación de tu personaje con su clan? (p. 91)",
+                "q5": "5. ¿Quién es tu señor y cuál es el deber de tu personaje hacia él? (p. 88)",
+                "choose_giri": "Elige un giri:",
+                "q6": "6. ¿Qué es lo que anhela tu personaje, y cómo podría esto interferir con su deber? (p. 90)",
+                "choose_ninjo": "Elige un ninjō:",
+                "q7": "7. ¿Cuál es la relación de tu personaje con tu clan? (p. 91)",
                 "increase_glory": "Aumento de la gloria",
-                "q8": "8. ¿Qué piensa tu personaje de Bushidō? (p. 91)",
+                "q8": "8. ¿Qué piensa tu personaje acerca del Bushidō? (p. 91)",
                 "increase_honor": "Aumento del honor"
             },
             "part4": {
                 "title": "Parte IV: Fortalezas y Debilidades",
-                "q9": "9. ¿Cuál es el mayor logro de su personaje hasta ahora? (p. 92)",
+                "q9": "9. ¿Cuál es el mayor logro de tu personaje hasta ahora? (p. 92)",
                 "distinction": "Distinción (1)",
-                "q10": "10. ¿Qué es lo que más te frena en la vida? (p. 92)",
+                "q10": "10. ¿Qué es lo que más frena a tu personaje en la vida? (p. 92)",
                 "adversity": "Adversidad (1)",
                 "q11": "11. ¿Qué actividad hace que tu personaje se sienta más en paz? (p. 93)",
                 "passion": "Pasión (1)",
-                "q12": "12. ¿Qué preocupación, miedo o falta de sensibilidad le preocupa más a su carácter? (p. 93)",
+                "q12": "12. ¿Qué preocupación, miedo o debilidad perturba más a tu personaje? (p. 93)",
                 "anxiety": "Ansiedad (1)",
-                "q13": "13. De quién ha aprendido más tu personaje durante su vida (p. 93)",
+                "q13": "13. ¿Quién ha sido la persona de la que más ha aprendido tu personaje en el transcurso de su vida? (p. 93)",
                 "disadvantage": "Desventaja (1)",
                 "advantage": "Ventaja (1)"
             },
             "part5": {
                 "title": "Parte V: Personalidad y Comportamiento",
-                "q14": "14. ¿Qué es lo primero que la gente nota al encontrarse con su personaje? (p. 93)",
-                "accoutrement": "Acumulación personal",
-                "q15": "15. ¿Cómo reacciona tu personaje ante situaciones estresantes? (p. 94)",
-                "q16": "16. ¿Cuáles son las relaciones preexistentes de tu personaje con otros clanes, familias, organizaciones y tradiciones? (p. 94)",
+                "q14": "14. ¿Qué es lo que advierte primero la gente al encontrarse con tu personaje? (p. 93)",
+                "accoutrement": "Accesorio estético distintivo",
+                "q15": "15. ¿Cómo reacciona tu personaje ante situaciones de tensión? (p. 94)",
+                "q16": "16. ¿Cuáles son las relaciones previas de tu personaje con otros clanes, familias, organizaciones y tradiciones? (p. 94)",
                 "object": "Objeto (Rareza 7 o inferior)"
             },
             "part6": {
-                "title": "Parte VI: Ascendencia y familia",
-                "q17": "17. ¿Cómo los describirían los padres de tu personaje? (p. 95)",
-                "q18": "18. ¿A quién se le nombró para honrar a tu personaje? (p. 95)",
+                "title": "Parte VI: Ascestros y familia",
+                "q17": "17. ¿Cómo describirían sus padres a tu personaje? (p. 95)",
+                "q18": "18. ¿En honor de quién se eligio el nombre de tu personaje? (p. 95)",
                 "d10r1": "Resultado D10 (1/2)",
                 "d10r1_choice": "Primer efecto de D10",
                 "d10r2": "Resultado D10 (2/2)",
@@ -389,7 +389,7 @@
             },
             "part7": {
                 "title": "Parte VII: Muerte",
-                "q20": "20. ¿Cómo debe morir tu personaje? (p. 95)",
+                "q20": "20. ¿Cómo debería morir tu personaje? (p. 95)",
                 "summary": "Resumen",
                 "generchar": "Generar el personaje",
                 "generchar_disclaimer": "Advertencia, esto borrará los datos actuales del personaje!",
