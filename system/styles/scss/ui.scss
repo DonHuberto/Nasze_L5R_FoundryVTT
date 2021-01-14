@@ -568,30 +568,22 @@ button {
             h3 {
                 font-size: 0.85rem;
             }
-        }
-    }
-}
 
-// Dialog
-.dialo {
-    .logo-dialog {
-        height: 125px;
-        .dialog-buttons {
-            button {
-                line-height: 1rem;
-            }
-        }
-        .dialog-content {
-            height: 1rem;
-            p {
-                margin: 0;
+            .encounter {
+                i {
+                    font-size: 23px;
+                    vertical-align: middle;
+                }
+
+                .active {
+                    box-shadow: 0 1px 5px $l5r5e-red;
+                }
             }
         }
     }
 }
 
 // Pause
-
 #pause {
     img {
         content: url("../assets/icons/pause.svg");

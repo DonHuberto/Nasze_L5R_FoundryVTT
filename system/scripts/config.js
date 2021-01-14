@@ -5,16 +5,24 @@ L5R5E.paths = {
     templates: `systems/l5r5e/templates/`,
 };
 
+L5R5E.money = [50, 10];
 L5R5E.stances = ["earth", "air", "water", "fire", "void"];
 L5R5E.techniques = ["kata", "kiho", "invocation", "ritual", "shuji", "maho", "ninjutsu"];
 L5R5E.techniques_school = ["school_ability", "mastery_ability"];
+
 L5R5E.xp = {
     costPerRank: [0, 20, 24, 32, 44, 60],
     ringCostMultiplier: 3,
     skillCostMultiplier: 2,
     techniqueCost: 3,
 };
-L5R5E.money = [50, 10];
+
+L5R5E.initiativeSkills = {
+    intrigue: "sentiment",
+    duel: "meditation",
+    skirmish: "tactics",
+    mass_battle: "command",
+};
 
 // Map SkillId - CategoryId
 L5R5E.skills = new Map();

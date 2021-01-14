@@ -1,4 +1,3 @@
-import { L5R5E } from "../config.js";
 import { ItemSheetL5r5e } from "./item-sheet.js";
 
 /**
@@ -20,7 +19,7 @@ export class WeaponSheetL5r5e extends ItemSheetL5r5e {
         const sheetData = await super.getData();
 
         // Martial skills only
-        sheetData.data.skills = Array.from(L5R5E.skills)
+        sheetData.data.skills = Array.from(CONFIG.l5r5e.skills)
             .filter(([id, cat]) => cat === "martial")
             .map(([id, cat]) => id);
 

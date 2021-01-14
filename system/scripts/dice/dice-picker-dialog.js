@@ -121,12 +121,25 @@ export class DicePickerDialog extends FormApplication {
         // Difficulty
         if (options?.difficulty) {
             this.difficulty = options.difficulty;
+        } else {
+            this.difficulty = game.settings.get("l5r5e", "initiative.difficulty.value");
         }
 
         // difficultyHidden
         if (options?.difficultyHidden) {
             this.difficultyHidden = options.difficultyHidden;
+        } else {
+            this.difficultyHidden = game.settings.get("l5r5e", "initiative.difficulty.hidden");
         }
+    }
+
+    /**
+     * Refresh data (used from socket)
+     */
+    async refresh() {
+        this.difficulty = game.settings.get("l5r5e", "initiative.difficulty.value");
+        this.difficultyHidden = game.settings.get("l5r5e", "initiative.difficulty.hidden");
+        this.render(false);
     }
 
     /**

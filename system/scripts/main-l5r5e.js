@@ -5,6 +5,7 @@ import { SocketHandlerL5r5e } from "./socket-handler.js";
 import { RegisterSettings } from "./settings.js";
 import { PreloadTemplates } from "./preloadTemplates.js";
 import { HelpDialog } from "./help/help-dialog.js";
+import HooksL5r5e from "./hooks.js";
 // Actors
 import { ActorL5r5e } from "./actor.js";
 import { CharacterSheetL5r5e } from "./actors/character-sheet.js";
@@ -15,7 +16,8 @@ import { RingDie } from "./dice/dietype/ring-die.js";
 import { RollL5r5e } from "./dice/roll.js";
 import { DicePickerDialog } from "./dice/dice-picker-dialog.js";
 import { RollnKeepDialog } from "./dice/roll-n-keep-dialog.js";
-import { _sortCombatants, rollInitiative } from "./combat.js";
+import { CombatL5r5e } from "./combat.js";
+import { GmToolsDialog } from "./dice/gm-tools-dialog.js";
 // Items
 import { ItemL5r5e } from "./item.js";
 import { ItemSheetL5r5e } from "./items/item-sheet.js";
@@ -48,6 +50,7 @@ Hooks.once("init", async function () {
     CONFIG.l5r5e = L5R5E;
 
     // Assign custom classes and constants here
+    CONFIG.Combat.entityClass = CombatL5r5e;
     CONFIG.Actor.entityClass = ActorL5r5e;
     CONFIG.Actor.sheetClasses = CharacterSheetL5r5e;
     CONFIG.Item.entityClass = ItemL5r5e;
@@ -64,10 +67,13 @@ Hooks.once("init", async function () {
 
     // Add some classes in game
     game.l5r5e = {
+        RingDie,
+        AbilityDie,
         HelpersL5r5e,
         RollL5r5e,
         DicePickerDialog,
         RollnKeepDialog,
+        GmToolsDialog,
         HelpDialog,
         sockets: new SocketHandlerL5r5e(),
     };
@@ -77,11 +83,6 @@ Hooks.once("init", async function () {
 
     // Preload Handlebars templates
     await PreloadTemplates();
-
-    // ***** Combat *****
-    Combat.prototype.rollInitiative = rollInitiative;
-    Combat.prototype._sortCombatants = _sortCombatants;
-    // game.combat.settings.resource = "fatigue.value"; // nope :/
 
     // ***** Register custom sheets *****
     // Actors
@@ -188,100 +189,16 @@ Hooks.once("init", async function () {
 });
 
 /* ------------------------------------ */
-/* Setup system                         */
+/* Hooks Once                           */
 /* ------------------------------------ */
-Hooks.once("setup", function () {
-    // Do anything after initialization but before ready
-    // Embed Babele compendiums
-    /* eslint-disable no-undef */
-    if (
-        typeof Babele !== "undefined" &&
-        Babele.get().modules.every((module) => module.lang !== "fr" || module.module !== "l5r5e-dev")
-    ) {
-        Babele.get().register({
-            module: "../systems/l5r5e", // babele only accept modules, so... well :D
-            lang: "fr",
-            dir: "babele/fr-fr",
-        });
-    }
-});
+Hooks.once("setup", HooksL5r5e.setup);
+Hooks.once("ready", HooksL5r5e.ready);
+Hooks.once("diceSoNiceReady", (dice3d) => HooksL5r5e.diceSoNiceReady(dice3d));
 
 /* ------------------------------------ */
-/* Do anything once the system is ready */
+/* Hooks On                             */
 /* ------------------------------------ */
-Hooks.once("ready", function () {
-    // Add title on button dice icon
-    $(".chat-control-icon")[0].title = game.i18n.localize("l5r5e.chatdices.dicepicker");
-
-    // Open Help dialog on clic on logo
-    $("#logo")
-        .on("click", () => new game.l5r5e.HelpDialog().render(true))
-        .prop("title", game.i18n.localize("l5r5e.logo.alt"));
-});
-
-/* ------------------------------------ */
-/* SidebarTab                           */
-/* ------------------------------------ */
-Hooks.on("renderSidebarTab", (app, html, data) => {
-    // Add button on dice icon
-    html.find(".chat-control-icon").click(async () => {
-        new game.l5r5e.DicePickerDialog().render();
-    });
-});
-
-/* ------------------------------------ */
-/* Chat Message                         */
-/* ------------------------------------ */
-Hooks.on("renderChatMessage", (message, html, data) => {
-    // Add a extra CSS class to roll
-    if (message.isRoll) {
-        html.addClass("roll");
-        html.on("click", ".chat-dice-rnk", RollnKeepDialog.onChatAction.bind(this));
-    }
-});
-
-/* ------------------------------------ */
-/* DiceSoNice Hook                      */
-/* ------------------------------------ */
-Hooks.once("diceSoNiceReady", (dice3d) => {
-    const texturePath = `${CONFIG.l5r5e.paths.assets}dices/default/3d/`;
-
-    // dice3d.addSystem({
-    //     id: "l5r5e",
-    //     name: "Legend of the Five Rings 5E"
-    // }, "force");
-
-    // Rings
-    dice3d.addDicePreset(
-        {
-            name: "L5R Ring Dice",
-            type: "ddr", // don't known why the "dd" prefix is required, term is "r"
-            labels: Object.keys(RingDie.FACES).map(
-                (e) => `${texturePath}${RingDie.FACES[e].image.replace("ring_", "")}.png`
-            ),
-            bumpMaps: Object.keys(RingDie.FACES).map(
-                (e) => `${texturePath}${RingDie.FACES[e].image.replace("ring_", "")}_bm.png`
-            ),
-            colorset: "black",
-            system: "standard",
-        },
-        "d6"
-    );
-
-    // Skills
-    dice3d.addDicePreset(
-        {
-            name: "L5R Skill Dice",
-            type: "dds",
-            labels: Object.keys(AbilityDie.FACES).map(
-                (e) => `${texturePath}${AbilityDie.FACES[e].image.replace("skill_", "")}.png`
-            ),
-            bumpMaps: Object.keys(AbilityDie.FACES).map(
-                (e) => `${texturePath}${AbilityDie.FACES[e].image.replace("skill_", "")}_bm.png`
-            ),
-            colorset: "white",
-            system: "standard",
-        },
-        "d12"
-    );
-});
+Hooks.on("renderSidebarTab", (app, html, data) => HooksL5r5e.renderSidebarTab(app, html, data));
+Hooks.on("renderChatMessage", (message, html, data) => HooksL5r5e.renderChatMessage(message, html, data));
+Hooks.on("renderCombatTracker", (app, html, data) => HooksL5r5e.renderCombatTracker(app, html, data));
+Hooks.on("renderCompendium", async (app, html, data) => HooksL5r5e.renderCompendium(app, html, data));

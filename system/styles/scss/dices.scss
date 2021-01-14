@@ -184,3 +184,39 @@
         border: 3px solid green;
     }
 }
+
+.gm-tools-dialog {
+    bottom: 10px;
+    right: 5px;
+    display: flex;
+
+    .window-content {
+        text-align: center;
+        vertical-align: middle;
+
+        .gm-tools-container {
+            flex: 1;
+            display: flex;
+            flex-flow: wrap;
+
+            div {
+                flex: 1;
+                cursor: url("../assets/cursors/pointer.webp"), pointer;
+            }
+
+            .difficulty {
+                font-size: 60px;
+            }
+
+            i {
+                font-size: 60px;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    // hide "search anywhere" draggable icon
+    .window-draggable-handle {
+        display: none;
+    }
+}

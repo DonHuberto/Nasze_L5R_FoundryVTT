@@ -175,7 +175,6 @@ export class BaseSheetL5r5e extends ActorSheet {
             new game.l5r5e.DicePickerDialog({
                 skillId: li.data("skill") || null,
                 skillCatId: li.data("skillcat") || null,
-                difficulty: li.data("diff") || 2,
                 actor: this.actor,
             }).render(true);
         });

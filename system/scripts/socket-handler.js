@@ -48,7 +48,7 @@ export class SocketHandlerL5r5e {
     }
 
     /**
-     * Refresh a app by it's id, not windowsId (ex "l5r5e-twenty-questions-dialog-kZHczAFghMNYFRWe", not "65")
+     * Refresh a app by it's htmlId, not windowsId (ex "l5r5e-twenty-questions-dialog-kZHczAFghMNYFRWe", not "65")
      * usage : game.l5r5e.sockets.refreshAppId(appId);
      * @param appId
      */
@@ -60,10 +60,7 @@ export class SocketHandlerL5r5e {
     }
     _onRefreshAppId(data) {
         const app = Object.values(ui.windows).find((e) => e.id === data.appId);
-        if (!app) {
-            return;
-        }
-        if (typeof app.refresh !== "function") {
+        if (!app || typeof app.refresh !== "function") {
             return;
         }
         app.refresh();
