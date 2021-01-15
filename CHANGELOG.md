@@ -1,15 +1,25 @@
 # Changelog
 
+## 1.0.1 - Initiative first !
+- Added initiative system :
+  - Now use the score rule (the real one if you prefer)
+  - Added global modifiers for Characters, Adversary and Minons in the combat tracker : Confrontation types, Prepared
+  - Added sheet modifiers for Characters and Adversary: Prepared
+  - Initiative buttons in character sheet now display the DicePicker and do the initiative roll
+- Spanish real translation by Alejabar (thanks !)
+- Added a GM Dialog Tool for setting global difficulty (TN) value / hidden (with DicePicker live refresh)
+- Compendium now display Ring and Rank if any in list view
+
 ## 1.0.0 - First public release
 - Removed the 0ds if no skill point
 - Added initiative roll (only tactics for the moment)
 - Change color of keikogi and add on compendium
 - Machine translation for ES
 - Update Translation for 1.0.0 Release
-- 20Q added step 7 and 17 no point rule 
+- 20Q added step 7 and 17 no point rule
 - Add price icon
 - Set vigilance to 1 if compromised
-- Seamless update for 20Q (deleted refresh button) 
+- Seamless update for 20Q (deleted refresh button)
 - Update translation for npc + fix h1
 - Update compendium : Remove accent on uppercase 1st letter
 
@@ -43,7 +53,7 @@
 - Added babele french translation into system
 - Removed DicePiker bulk macro as it was unnecessary now
 - Fix for Q13: "skill and disadv" OR "adv"
-- Added some text for 20Q 2dn dice 
+- Added some text for 20Q 2dn dice
 - Stop some missing propagation
 - Fix adv tooltip
 - Fix 20Q wrong var for summary

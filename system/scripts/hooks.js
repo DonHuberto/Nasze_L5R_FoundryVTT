@@ -61,63 +61,80 @@ export default class HooksL5r5e {
      * Combat tracker
      */
     static async renderCombatTracker(app, html, data) {
-        // TODO do this in partial
-        let bar = "";
+        // Display Combat bar (only for GMs)
+        await this._gmCombatBar(app, html, data);
+    }
 
-        // *** Encounter Type ***
-        const encounterIcons = {
-            intrigue: "i_courtier",
-            duel: "fas fa-tint", // fa-tint / fa-blind
-            skirmish: "i_bushi",
-            mass_battle: "fa fa-users",
-        };
-        const encounterType = game.settings.get("l5r5e", "initiative.encounter");
-        Object.entries(CONFIG.l5r5e.initiativeSkills).forEach(([id, skill]) => {
-            bar =
-                bar +
-                `<a class="encounter encounter-control" data-id="${id}">` +
-                `<i class="${encounterIcons[id]}${id === encounterType ? " active" : ""}" title="${game.i18n.localize(
-                    "l5r5e.conflict.initiative." + id
-                )}"></i>` +
-                `</a>`;
-        });
-
-        // *** Prepared ***
-        // TODO
-        // const encounterType = game.settings.get("l5r5e", "initiative.prepared");
-        bar =
-            bar +
-            `<a class="encounter prepared-control" data-id="tmp">` +
-            `<i class="fa fa-low-vision" title="npc prepared or not (WIP)"></i>` +
-            `</a>`;
-
-        const elmt = html.find("#l5r5e_encounter");
-        if (elmt.length > 0) {
-            elmt.html(bar);
-        } else {
-            html.find("#combat-round").append(`<nav class="encounters flexrow" id="l5r5e_encounter">${bar}</nav>`);
+    /**
+     * Display a GM bar for Combat/Initiative
+     * @private
+     */
+    static async _gmCombatBar(app, html, data) {
+        // Only for GMs
+        if (!game.user.isGM) {
+            return;
         }
 
-        // Buttons Listener
+        // *** Conf ***
+        const encounterTypeList = Object.keys(CONFIG.l5r5e.initiativeSkills);
+        const prepared = {
+            character: game.settings.get("l5r5e", "initiative.prepared.character"),
+            adversary: game.settings.get("l5r5e", "initiative.prepared.adversary"),
+            minion: game.settings.get("l5r5e", "initiative.prepared.minion"),
+        };
+
+        // *** Template ***
+        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/combat-tracker-bar.html`, {
+            encounterType: game.settings.get("l5r5e", "initiative.encounter"),
+            encounterTypeList,
+            prepared,
+        });
+
+        // Add/replace in bar
+        const elmt = html.find("#l5r5e_gm_combat_tracker_bar");
+        if (elmt.length > 0) {
+            elmt.replaceWith(tpl);
+        } else {
+            html.find("#combat-round").append(tpl);
+        }
+
+        // Buttons Listeners
+        // TODO event for multiple GM
         html.find(".encounter-control").on("click", (event) => {
             event.preventDefault();
             event.stopPropagation();
             const encounter = $(event.currentTarget).data("id");
+            if (!encounterTypeList.includes(encounter)) {
+                return;
+            }
             game.settings
                 .set("l5r5e", "initiative.encounter", encounter)
-                .then(() => HooksL5r5e.renderCombatTracker(app, html, data));
+                .then(() => HooksL5r5e._gmCombatBar(app, html, data));
         });
 
-        // html.find(".prepared-control").on("click", (event) => {
-        //     event.preventDefault();
-        //     event.stopPropagation();
-        //     let prepared = $(event.currentTarget).data('id');
-        //     // if same, unset it
-        //     if (prepared === encounterType) {
-        //         prepared = "";
-        //     }
-        //     game.settings.set("l5r5e", "initiative.prepared", prepared).then(() => HooksL5r5e.renderCombatTracker(app, html, data));
-        // });
+        html.find(".prepared-control").on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            let preparedId = $(event.currentTarget).data("id");
+            if (!Object.hasOwnProperty.call(prepared, preparedId)) {
+                return;
+            }
+            let value = prepared[preparedId];
+            switch (value) {
+                case "false":
+                    value = "true";
+                    break;
+                case "true":
+                    value = preparedId === "minion" ? "false" : "null";
+                    break;
+                case "null":
+                    value = "false";
+                    break;
+            }
+            game.settings
+                .set("l5r5e", `initiative.prepared.${preparedId}`, value)
+                .then(() => HooksL5r5e._gmCombatBar(app, html, data));
+        });
     }
 
     /**

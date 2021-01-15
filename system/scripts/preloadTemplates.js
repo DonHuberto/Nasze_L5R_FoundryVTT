@@ -21,6 +21,7 @@ export const PreloadTemplates = async function () {
         "systems/l5r5e/templates/actors/npc/social.html",
         "systems/l5r5e/templates/actors/npc/rings.html",
         "systems/l5r5e/templates/actors/npc/attributes.html",
+        "systems/l5r5e/templates/actors/npc/conflict.html",
         "systems/l5r5e/templates/actors/npc/skill.html",
         "systems/l5r5e/templates/actors/npc/techniques.html",
         // items

@@ -175,6 +175,7 @@ export class BaseSheetL5r5e extends ActorSheet {
             new game.l5r5e.DicePickerDialog({
                 skillId: li.data("skill") || null,
                 skillCatId: li.data("skillcat") || null,
+                isInitiativeRoll: li.data("initiative") || false,
                 actor: this.actor,
             }).render(true);
         });
@@ -184,6 +185,16 @@ export class BaseSheetL5r5e extends ActorSheet {
             event.preventDefault();
             event.stopPropagation();
             event.target.select();
+        });
+
+        // Prepared (Initiative)
+        html.find(".prepared-control").on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            const preparedId = $(event.currentTarget).data("id");
+            if (["adversary", "character"].includes(preparedId)) {
+                this._switchPrepared();
+            }
         });
 
         // *** Items : add, edit, delete ***
@@ -202,6 +213,20 @@ export class BaseSheetL5r5e extends ActorSheet {
             event.stopPropagation();
             this._deleteSubItem(event);
         });
+    }
+
+    /**
+     * Switch the state "prepared" (initiative)
+     * @private
+     */
+    _switchPrepared() {
+        this.actor.data.data.prepared = !this.actor.data.data.prepared;
+        this.actor.update({
+            data: {
+                prepared: this.actor.data.data.prepared,
+            },
+        });
+        this.render(false);
     }
 
     /**

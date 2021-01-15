@@ -5,8 +5,27 @@
     "version": "1.0.0",
     "minimumCoreVersion": "0.7.9",
     "compatibleCoreVersion": "0.7.9",
+    "manifestPlusVersion": "1.0.0",
     "socket": true,
     "author": "Team L5R",
+    "authors": [
+        {
+            "name": "Vlyan",
+            "discord": "Vlyan#6771"
+        },
+        {
+            "name": "Mandar"
+        },
+        {
+            "name": "Carter"
+        },
+        {
+            "name": "Hrunh"
+        },
+        {
+            "name": "Sasmira"
+        }
+    ],
     "background": "L5R-Header.webp",
     "scripts": [],
     "esmodules": ["./scripts/main-l5r5e.js"],

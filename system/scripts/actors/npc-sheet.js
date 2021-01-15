@@ -21,7 +21,7 @@ export class NpcSheetL5r5e extends BaseSheetL5r5e {
 
         sheetData.data.types = NpcSheetL5r5e.types.map((e) => ({
             id: e,
-            label: game.i18n.localize("l5r5e.npc.types." + e),
+            label: game.i18n.localize("l5r5e.character_types." + e),
         }));
 
         return sheetData;

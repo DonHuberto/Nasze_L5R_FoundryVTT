@@ -5,6 +5,8 @@
 export class DicePickerDialog extends FormApplication {
     /**
      * Current Actor
+     * @type {Actor}
+     * @private
      */
     _actor = null;
 
@@ -29,6 +31,7 @@ export class DicePickerDialog extends FormApplication {
             add_void_point: true,
         },
         useVoidPoint: false,
+        isInitiativeRoll: false,
     };
 
     /**
@@ -84,8 +87,9 @@ export class DicePickerDialog extends FormApplication {
      *   skillCatId        string (artisan)
      *   difficulty        number (0-9)
      *   difficultyHidden  boolean
+     *   isInitiativeRoll  boolean
      *
-     * @param options actor, actorId, ringId, actorName, skillId, skillCatId, difficulty, difficultyHidden
+     * @param options actor, actorId, ringId, actorName, skillId, skillCatId, difficulty, difficultyHidden, isInitiativeRoll
      */
     constructor(options = {}) {
         super({}, options);
@@ -104,32 +108,37 @@ export class DicePickerDialog extends FormApplication {
         });
 
         // Ring
-        if (options?.ringId) {
+        if (options.ringId) {
             this.ringId = options.ringId;
         }
 
         // Skill / SkillCategory
-        if (options?.skillId) {
+        if (options.skillId) {
             this.skillId = options.skillId;
         }
 
         // SkillCategory skillCatId
-        if (options?.skillCatId) {
+        if (options.skillCatId) {
             this.skillCatId = options.skillCatId;
         }
 
         // Difficulty
-        if (options?.difficulty) {
+        if (options.difficulty) {
             this.difficulty = options.difficulty;
         } else {
             this.difficulty = game.settings.get("l5r5e", "initiative.difficulty.value");
         }
 
-        // difficultyHidden
-        if (options?.difficultyHidden) {
+        // DifficultyHidden
+        if (options.difficultyHidden) {
             this.difficultyHidden = options.difficultyHidden;
         } else {
             this.difficultyHidden = game.settings.get("l5r5e", "initiative.difficulty.hidden");
+        }
+
+        // InitiativeRoll
+        if (options.isInitiativeRoll) {
+            this.object.isInitiativeRoll = !!options.isInitiativeRoll;
         }
     }
 
@@ -355,12 +364,13 @@ export class DicePickerDialog extends FormApplication {
             return false;
         }
 
-        let formula = [];
-        if (this.object.ring.value > 0) {
-            formula.push(`${this.object.ring.value}dr`);
-        }
-        if (this.object.skill.value > 0) {
-            formula.push(`${this.object.skill.value}ds`);
+        // If initiative roll, check if player already have
+        if (this.object.isInitiativeRoll) {
+            const combatant = game.combat.combatants.find((c) => c.actor._id === this._actor._id && c.initiative > 0);
+            if (combatant) {
+                ui.notifications.error(game.i18n.localize("l5r5e.conflict.initiative.already_set"));
+                return this.close();
+            }
         }
 
         // Update Actor
@@ -381,24 +391,50 @@ export class DicePickerDialog extends FormApplication {
             }
 
             // Update actor
-            this._actor.update({
+            await this._actor.update({
                 data: diffObject(this._actor.data.data, actorData),
             });
         }
 
-        // Let's roll !
-        const roll = await new game.l5r5e.RollL5r5e(formula.join("+"));
+        // Build the formula
+        let formula = [];
+        if (this.object.ring.value > 0) {
+            formula.push(`${this.object.ring.value}dr`);
+        }
+        if (this.object.skill.value > 0) {
+            formula.push(`${this.object.skill.value}ds`);
+        }
 
-        roll.actor = this._actor;
-        roll.l5r5e.stance = this.object.ring.id;
-        roll.l5r5e.skillId = this.object.skill.id;
-        roll.l5r5e.skillCatId = this.object.skill.cat;
-        roll.l5r5e.summary.difficulty = this.object.difficulty.value;
-        roll.l5r5e.summary.difficultyHidden = this.object.difficulty.hidden;
-        roll.l5r5e.summary.voidPointUsed = this.object.useVoidPoint;
+        if (this.object.isInitiativeRoll) {
+            // Initiative roll
+            this._actor.rollInitiative({
+                initiativeOptions: {
+                    formula: formula.join("+"),
+                    // updateTurn: true,
+                    messageOptions: {
+                        skillId: this.object.skill.id,
+                        difficulty: this.object.difficulty.value,
+                        difficultyHidden: this.object.difficulty.hidden,
+                        useVoidPoint: this.object.useVoidPoint,
+                    },
+                },
+            });
+        } else {
+            // Regular roll, so let's roll !
+            const roll = await new game.l5r5e.RollL5r5e(formula.join("+"));
 
-        await roll.roll();
-        await roll.toMessage();
+            roll.actor = this._actor;
+            roll.l5r5e.stance = this.object.ring.id;
+            roll.l5r5e.skillId = this.object.skill.id;
+            roll.l5r5e.skillCatId = this.object.skill.cat;
+            roll.l5r5e.summary.difficulty = this.object.difficulty.value;
+            roll.l5r5e.summary.difficultyHidden = this.object.difficulty.hidden;
+            roll.l5r5e.summary.voidPointUsed = this.object.useVoidPoint;
+
+            await roll.roll();
+            await roll.toMessage();
+        }
+
         return this.close();
     }
 

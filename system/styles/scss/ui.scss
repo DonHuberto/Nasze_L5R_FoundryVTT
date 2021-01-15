@@ -568,7 +568,6 @@ button {
             h3 {
                 font-size: 0.85rem;
             }
-
             .encounter {
                 i {
                     font-size: 23px;
@@ -576,7 +575,35 @@ button {
                 }
 
                 .active {
-                    box-shadow: 0 1px 5px $l5r5e-red;
+                    color: $l5r5e-maho;
+                }
+
+                &-icon {
+                    font-weight: 900;
+                    font-family: "Font Awesome 5 Free";
+                    -moz-osx-font-smoothing: grayscale;
+                    -webkit-font-smoothing: antialiased;
+                    display: inline-block;
+                    font-style: normal;
+                    font-variant: normal;
+                    text-rendering: auto;
+                    line-height: 1;
+
+                    &-intrigue:before {
+                        content: "\f21b";
+                    }
+
+                    &-duel:before {
+                        content: "\f506";
+                    }
+
+                    &-skirmish:before {
+                        content: "\f505";
+                    }
+
+                    &-mass_battle:before {
+                        content: "\f447";
+                    }
                 }
             }
         }

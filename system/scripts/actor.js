@@ -96,6 +96,12 @@ export class ActorL5r5e extends Actor {
             if (data.void_points.value > data.void_points.max) {
                 data.void_points.value = data.void_points.max;
             }
+
+            // *** Migration stuff ***
+            // TODO remove in patch 1.1+
+            if (data.prepared === undefined) {
+                data.prepared = true;
+            }
         }
     }
 }

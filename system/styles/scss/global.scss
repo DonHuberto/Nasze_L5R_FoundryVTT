@@ -264,6 +264,38 @@ sup {
     }
 }
 
+.prepared {
+    &-character {
+        color: $l5r5e-earth;
+    }
+    &-adversary {
+        color: $l5r5e-fire;
+    }
+    &-minion {
+        color: $l5r5e-water;
+    }
+    &-icon {
+        font-weight: 900;
+        font-family: "Font Awesome 5 Free";
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+        &-true:before {
+            content: "\f06e";
+        }
+        &-false:before {
+            content: "\f070";
+        }
+        &-null:before {
+            content: "\f2a8";
+        }
+    }
+}
+
 // Fix for "search anywhere" draggable icon
 .window-draggable-handle {
     z-index: 2;

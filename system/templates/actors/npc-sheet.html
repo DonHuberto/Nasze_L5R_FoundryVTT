@@ -20,7 +20,12 @@
     </header>
     {{!-- Sheet Body --}}
     <section class="sheet-body">
+        <article>
         {{> 'systems/l5r5e/templates/actors/npc/skill.html' }}
+        {{#ifCond data.type '==' 'adversary'}}
+            {{> 'systems/l5r5e/templates/actors/npc/conflict.html' }}
+        {{/ifCond}}
+        </article>
         <article>
             {{> 'systems/l5r5e/templates/actors/npc/narrative.html' }}
         </article>

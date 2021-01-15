@@ -283,7 +283,11 @@
                 "intrigue": "Intriga",
                 "duel": "Duelo",
                 "skirmish": "Escaramuza",
-                "mass_battle": "Batalla a gran escala"
+                "mass_battle": "Batalla a gran escala",
+                "prepared_true": "Prepared",
+                "prepared_false": "Surprised",
+                "prepared_null": "Defined in the character sheet (default)",
+                "already_set": "Your initiative has already been drawn"
             }
         },
         "advancements": {
@@ -299,11 +303,10 @@
             "curriculum": "En programa de estudio",
             "curriculum_validate": "Completar este rango"
         },
-        "npc": {
-            "types": {
-                "adversary": "Adversario",
-                "minion": "Esbirro"
-            }
+        "character_types": {
+            "character": "Personaje jugador",
+            "adversary": "Adversario",
+            "minion": "Esbirro"
         },
         "twenty_questions": {
             "title": "Veinte preguntas",

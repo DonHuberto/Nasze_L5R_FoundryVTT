@@ -283,7 +283,11 @@
                 "intrigue": "Intrigue",
                 "duel": "Duel",
                 "skirmish": "Escarmouche",
-                "mass_battle": "Bataille rangée"
+                "mass_battle": "Bataille rangée",
+                "prepared_true": "Prêt(e)",
+                "prepared_false": "Surpris(e)",
+                "prepared_null": "Défini par la fiche de personnage (défaut)",
+                "already_set": "Votre initiative a déjà été tirée"
             }
         },
         "advancements": {
@@ -299,11 +303,10 @@
             "curriculum": "Inclus dans le cursus",
             "curriculum_validate": "Valider la progression"
         },
-        "npc": {
-            "types": {
-                "adversary": "Antagoniste",
-                "minion": "Sous-fifre"
-            }
+        "character_types": {
+            "character": "Personnage Joueur",
+            "adversary": "Antagoniste",
+            "minion": "Sous-fifre"
         },
         "twenty_questions": {
             "title": "Le jeu des Vingt questions",

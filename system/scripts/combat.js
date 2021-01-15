@@ -22,57 +22,90 @@ export class CombatL5r5e extends Combat {
             ids = [ids];
         }
 
-        // Make combatants array
-        const combatants = [];
-        ids.forEach((combatantId) => {
-            const combatant = game.combat.combatants.find((c) => c._id === combatantId);
-            if (combatant && combatant.actor) {
-                combatants.push(combatant);
-            }
-        });
+        // Get global modifiers
+        const cfg = {
+            difficulty: game.settings.get("l5r5e", "initiative.difficulty.value"),
+            difficultyHidden: game.settings.get("l5r5e", "initiative.difficulty.hidden"),
+            prepared: {
+                character: game.settings.get("l5r5e", "initiative.prepared.character"),
+                adversary: game.settings.get("l5r5e", "initiative.prepared.adversary"),
+                minion: game.settings.get("l5r5e", "initiative.prepared.minion"),
+            },
+        };
 
-        // Get modifiers
-        const difficulty = game.settings.get("l5r5e", "initiative.difficulty.value");
-        const difficultyHidden = game.settings.get("l5r5e", "initiative.difficulty.hidden");
-        const skillId = CONFIG.l5r5e.initiativeSkills[game.settings.get("l5r5e", "initiative.encounter")];
+        // SkillId from DicePicker or global
+        const skillId = messageOptions.skillId
+            ? messageOptions.skillId
+            : CONFIG.l5r5e.initiativeSkills[game.settings.get("l5r5e", "initiative.encounter")];
         const skillCat = CONFIG.l5r5e.skills.get(skillId);
 
         // Get score for each combatant
         const updatedCombatants = [];
-        combatants.forEach((combatant) => {
+        ids.forEach((combatantId) => {
+            const combatant = game.combat.combatants.find((c) => c._id === combatantId);
+            if (!combatant || !combatant.actor) {
+                return;
+            }
+
+            // shortcut to data
             const data = combatant.actor.data.data;
 
             // A character’s initiative value is based on their state of preparedness when the conflict began.
             // If the character was ready for the conflict, their base initiative value is their focus attribute.
             // If the character was unprepared (such as when surprised), their base initiative value is their vigilance attribute.
-            const isPrepared = true; // TODO in actor ? (pc and npc)
-            let initiative = isPrepared ? data.focus : data.vigilance;
+            let initiative = 0;
 
-            // PC and Adversary
-            // (minion NPCs can generate initiative value without a check, using their focus or vigilance attribute)
-            if (combatant.actor.data.type !== "npc" || combatant.actor.data.data.type === "minion") {
-                const formula = [`${data.rings[data.stance]}dr`];
-                const skillValue =
-                    combatant.actor.data.type === "npc" ? data.skills[skillCat] : data.skills[skillCat][skillId];
-                if (skillValue > 0) {
-                    formula.push(`${skillValue}ds`);
+            if (combatant.actor.data.type === "npc" && combatant.actor.data.data.type === "minion") {
+                // Minion NPCs can generate initiative value without a check, using their focus or vigilance attribute
+                initiative = cfg.prepared.minion ? data.focus : data.vigilance;
+            } else {
+                // PC and Adversary
+                const isPc = combatant.actor.data.type === "character";
+
+                // prepared is a boolean or if null we get the info in the actor sheet
+                let isPrepared = isPc ? cfg.prepared.character : cfg.prepared.adversary;
+                if (isPrepared === "null") {
+                    isPrepared = data.prepared;
+                }
+                initiative = isPrepared ? data.focus : data.vigilance;
+
+                // Roll formula
+                if (!formula) {
+                    const createFormula = [`${data.rings[data.stance]}dr`];
+                    const skillValue = isPc ? data.skills[skillCat][skillId] : data.skills[skillCat];
+                    if (skillValue > 0) {
+                        createFormula.push(`${skillValue}ds`);
+                    }
+                    formula = createFormula.join("+");
                 }
 
-                const roll = new game.l5r5e.RollL5r5e(formula.join("+"));
-
+                const roll = new game.l5r5e.RollL5r5e(formula);
                 roll.actor = combatant.actor;
                 roll.l5r5e.stance = data.stance;
                 roll.l5r5e.skillId = skillId;
-                roll.l5r5e.summary.difficulty = difficulty;
-                roll.l5r5e.summary.difficultyHidden = difficultyHidden;
+                roll.l5r5e.skillCatId = skillCat;
+                roll.l5r5e.summary.difficulty =
+                    messageOptions.difficulty !== undefined ? messageOptions.difficulty : cfg.difficulty;
+                roll.l5r5e.summary.difficultyHidden =
+                    messageOptions.difficultyHidden !== undefined
+                        ? messageOptions.difficultyHidden
+                        : cfg.difficultyHidden;
+                roll.l5r5e.summary.voidPointUsed = !!messageOptions.useVoidPoint;
 
                 roll.roll();
-                roll.toMessage({ flavor: game.i18n.localize("l5r5e.chatdices.initiative_roll") });
+                roll.toMessage({
+                    flavor:
+                        game.i18n.localize("l5r5e.chatdices.initiative_roll") +
+                        " (" +
+                        game.i18n.localize(`l5r5e.conflict.initiative.prepared_${isPrepared}`) +
+                        ")",
+                });
 
                 // if the character succeeded on their Initiative check, they add 1 to their base initiative value,
                 // plus an additional amount equal to their bonus successes.
-                if (roll.l5r5e.summary.success >= difficulty) {
-                    initiative = initiative + 1 + Math.max(roll.l5r5e.summary.success - difficulty, 0);
+                if (roll.l5r5e.summary.success >= roll.l5r5e.summary.difficulty) {
+                    initiative =
+                        initiative + 1 + Math.max(roll.l5r5e.summary.success - roll.l5r5e.summary.difficulty, 0);
                 }
             }
 

@@ -283,7 +283,11 @@
                 "intrigue": "Intrigue",
                 "duel": "Duel",
                 "skirmish": "Skirmish",
-                "mass_battle": "Mass Battle"
+                "mass_battle": "Mass Battle",
+                "prepared_true": "Prepared",
+                "prepared_false": "Surprised",
+                "prepared_null": "Defined in the character sheet (default)",
+                "already_set": "Your initiative has already been drawn"
             }
         },
         "advancements": {
@@ -299,11 +303,10 @@
             "curriculum": "In curriculum",
             "curriculum_validate": "Complete this rank"
         },
-        "npc": {
-            "types": {
-                "adversary": "Adversary",
-                "minion": "Minion"
-            }
+        "character_types": {
+            "character": "Player Character",
+            "adversary": "Adversary",
+            "minion": "Minion"
         },
         "twenty_questions": {
             "title": "Twenty questions",

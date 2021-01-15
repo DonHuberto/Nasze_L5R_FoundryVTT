@@ -85,7 +85,8 @@
                     "max": 1,
                     "value": 0
                 },
-                "stance": "void"
+                "stance": "void",
+                "prepared": true
             },
             "advancement": {
                 "xp_total": 0,

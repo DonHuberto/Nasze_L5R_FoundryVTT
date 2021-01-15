@@ -26,11 +26,25 @@ export const RegisterSettings = function () {
         type: String,
         default: "skirmish",
     });
-    game.settings.register("l5r5e", "initiative.prepared", {
-        name: "Initiative NPC prepared or not",
+    game.settings.register("l5r5e", "initiative.prepared.character", {
+        name: "Initiative PC prepared or not",
         scope: "world",
         config: false,
-        type: Boolean,
-        default: true,
+        type: String,
+        default: "null",
+    });
+    game.settings.register("l5r5e", "initiative.prepared.adversary", {
+        name: "Initiative NPC adversary are prepared or not",
+        scope: "world",
+        config: false,
+        type: String,
+        default: "null",
+    });
+    game.settings.register("l5r5e", "initiative.prepared.minion", {
+        name: "Initiative NPC minion are prepared or not",
+        scope: "world",
+        config: false,
+        type: String,
+        default: "true",
     });
 };

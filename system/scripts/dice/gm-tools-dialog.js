@@ -109,7 +109,7 @@ export class GmToolsDialog extends FormApplication {
                     break;
                 case 3:
                     // right clic - minus 1
-                    this.object.difficulty = Math.max(1, this.object.difficulty - 1);
+                    this.object.difficulty = Math.max(0, this.object.difficulty - 1);
                     break;
             }
             game.settings.set("l5r5e", "initiative.difficulty.value", this.object.difficulty).then(() => this.submit());
