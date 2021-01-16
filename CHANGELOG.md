@@ -6,9 +6,12 @@
   - Added global modifiers for Characters, Adversary and Minons in the combat tracker : Confrontation types, Prepared
   - Added sheet modifiers for Characters and Adversary: Prepared
   - Initiative buttons in character sheet now display the DicePicker and do the initiative roll
+  - Change the actor stance on initiative roll in DicePicker
+  - Note : Due to the lack of the Roll & Keep system, the score is computed with the full success score.
 - Spanish real translation by Alejabar (thanks !)
 - Added a GM Dialog Tool for setting global difficulty (TN) value / hidden (with DicePicker live refresh)
 - Compendium now display Ring and Rank if any in list view
+- DicePicker : Fixed the initial display of "use a void point"
 
 ## 1.0.0 - First public release
 - Removed the 0ds if no skill point

@@ -28,7 +28,7 @@ export class DicePickerDialog extends FormApplication {
         difficulty: {
             value: 2,
             hidden: false,
-            add_void_point: true,
+            add_void_point: false,
         },
         useVoidPoint: false,
         isInitiativeRoll: false,
@@ -244,6 +244,8 @@ export class DicePickerDialog extends FormApplication {
      */
     set difficultyHidden(isHidden) {
         this.object.difficulty.hidden = !!isHidden;
+        this.object.difficulty.add_void_point = this.object.difficulty.hidden;
+        this._updateVoidPointUsage();
     }
 
     /**
@@ -377,8 +379,10 @@ export class DicePickerDialog extends FormApplication {
         if (this._actor) {
             const actorData = duplicate(this._actor.data.data);
 
-            // TODO update actor stance ? good idea or not, choice-able ?
-            // actorData.stance = approach;
+            // Update the actor stance on initiative only
+            if (this.object.isInitiativeRoll) {
+                actorData.stance = this.object.ring.id;
+            }
 
             // If hidden add 1 void pt
             if (this.object.difficulty.add_void_point) {

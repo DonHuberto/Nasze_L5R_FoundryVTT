@@ -43,17 +43,19 @@ export class CombatL5r5e extends Combat {
         const updatedCombatants = [];
         ids.forEach((combatantId) => {
             const combatant = game.combat.combatants.find((c) => c._id === combatantId);
-            if (!combatant || !combatant.actor) {
+
+            // Skip if combatant already have a initiative value
+            if (!messageOptions.rerollInitiative && (!combatant || !combatant.actor)) {
                 return;
             }
 
-            // shortcut to data
+            // Shortcut to data
             const data = combatant.actor.data.data;
 
             // A character’s initiative value is based on their state of preparedness when the conflict began.
             // If the character was ready for the conflict, their base initiative value is their focus attribute.
             // If the character was unprepared (such as when surprised), their base initiative value is their vigilance attribute.
-            let initiative = 0;
+            let initiative;
 
             if (combatant.actor.data.type === "npc" && combatant.actor.data.data.type === "minion") {
                 // Minion NPCs can generate initiative value without a check, using their focus or vigilance attribute
