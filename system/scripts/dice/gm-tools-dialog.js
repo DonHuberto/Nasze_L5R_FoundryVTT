@@ -44,6 +44,14 @@ export class GmToolsDialog extends FormApplication {
     }
 
     /**
+     * Do not close this dialog
+     * @override
+     */
+    close() {
+        // nothing !
+    }
+
+    /**
      * Prevent non GM to render this windows
      * @override
      */
