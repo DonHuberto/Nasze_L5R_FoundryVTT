@@ -145,21 +145,14 @@ export default class HooksL5r5e {
         if (app.entity === "Item") {
             const content = await app.getContent();
             content.forEach((item) => {
-                const tags = [];
-                if (!item.data.data.ring) {
-                    tags.push(`<i>`);
-                }
-                if (item.data.data.ring) {
-                    tags.push(`<i class="i_${item.data.data.ring}">`);
-                }
-                if (!item.data.data.rank) {
-                    tags.push(`</i>`);
-                }
-                if (item.data.data.rank) {
-                    tags.push(game.i18n.localize("l5r5e.rank") + " " + item.data.data.rank + "</i>");
-                }
-                if (tags.length > 0) {
-                    html.find(`[data-entry-id="${item._id}"]`).append(tags.join(" "));
+                if (!!item.data.data.ring || !!item.data.data.rank) {
+                    html.find(`[data-entry-id="${item._id}"]`).append(
+                        `<i` +
+                            (item.data.data.ring ? ` class="i_${item.data.data.ring}"` : ``) +
+                            `>` +
+                            (item.data.data.rank ? game.i18n.localize("l5r5e.rank") + " " + item.data.data.rank : "") +
+                            `</i>`
+                    );
                 }
             });
             return false;
