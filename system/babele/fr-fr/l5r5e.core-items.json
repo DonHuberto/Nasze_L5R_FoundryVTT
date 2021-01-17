@@ -184,6 +184,24 @@
             "name": "Tente (Yourte)",
             "description": "",
             "book_reference": "LdR p.245"
+        },
+        {
+            "id": "Scroll satchel",
+            "name": "Sacoche à rouleaux",
+            "description": "",
+            "book_reference": "LdR"
+        },
+        {
+            "id": "Traveling pack",
+            "name": "Sac de Voyage",
+            "description": "",
+            "book_reference": "LdR"
+        },
+        {
+            "id": "Journal of observations",
+            "name": "Journal d'observations",
+            "description": "",
+            "book_reference": "LdR"
         }
     ]
 }
