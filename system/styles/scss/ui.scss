@@ -568,14 +568,31 @@ button {
             h3 {
                 font-size: 0.85rem;
             }
+            ul {
+                display: flex;
+                color: $l5r5e-white;
+                &.encounter {
+                    border-right: 1px solid $l5r5e-white-light;
+                }
+                li {
+                    flex: 1;
+                    cursor: url("../assets/cursors/pointer.webp"), pointer;
+                }
+            }
             .encounter {
                 i {
                     font-size: 23px;
                     vertical-align: middle;
+                    &:hover {
+                        text-shadow: 0 0 8px $red;
+                    }
                 }
 
                 .active {
                     color: $l5r5e-maho;
+                    &:hover {
+                        text-shadow: none;
+                    }
                 }
 
                 &-icon {

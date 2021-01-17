@@ -62,6 +62,29 @@ body {
                 }
             }
         }
+        // Compendium
+        .compendium {
+            .item {
+                position: relative;
+                i {
+                    float: right;
+                    line-height: 1rem;
+                    text-align: right;
+                    margin-right: 2rem;
+                    font-size: 0.75rem;
+                    color: rgba(240, 240, 225, 0.75);
+                    font-style: italic;
+                    flex: 0 0 auto;
+                    position: absolute;
+                    right: 0;
+                    text-shadow: 0 0 0 rgba(255, 255, 255, 0.1);
+                    &:before {
+                        margin: 0 0.25rem 0 0;
+                        font-style: normal;
+                    }
+                }
+            }
+        }
     }
     &.sheet,
     &.npc,
@@ -284,6 +307,7 @@ sup {
         font-variant: normal;
         text-rendering: auto;
         line-height: 1;
+        width: 1.5rem;
         &-true:before {
             content: "\f06e";
         }

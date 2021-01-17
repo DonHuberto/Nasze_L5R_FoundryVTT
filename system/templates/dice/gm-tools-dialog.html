@@ -1,11 +1,6 @@
 <form class="l5r5e gm-tools-dialog" autocomplete="off">
-    <div class="gm-tools-container">
-        <div class="difficulty_hidden">
-            <i class="fa fa-eye{{#if data.difficultyHidden}}-slash{{/if}}"></i>
-        </div>
-
-        <div class="difficulty">
-            {{data.difficulty}}
-        </div>
-    </div>
+    <p class="gm-tools-container">
+        <a class="difficulty_hidden"><i class="fa fa-eye{{#if data.difficultyHidden}}-slash{{/if}}"></i></a>
+        <strong class="difficulty">{{data.difficulty}}</strong>
+    </p>
 </form>

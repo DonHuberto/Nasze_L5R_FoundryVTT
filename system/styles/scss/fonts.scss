@@ -279,3 +279,15 @@ i.i_skill {
     height: 1rem;
     width: 1rem;
 }
+
+// Compendium
+.compendium {
+    .item {
+        i {
+            font-family: $font-primary;
+            &:before {
+                font-family: $font-logoType;
+            }
+        }
+    }
+}
