@@ -197,6 +197,13 @@ export class BaseSheetL5r5e extends ActorSheet {
             }
         });
 
+        // Equipped / Readied
+        html.find(".equip-readied-control").on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            this._switchEquipReadied(event);
+        });
+
         // *** Items : add, edit, delete ***
         html.find(".item-add").on("click", (event) => {
             event.preventDefault();
@@ -338,5 +345,33 @@ export class BaseSheetL5r5e extends ActorSheet {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Switch Readied state on a weapon
+     * @private
+     */
+    _switchEquipReadied(event) {
+        const type = $(event.currentTarget).data("type");
+        if (!["equipped", "readied"].includes(type)) {
+            return;
+        }
+
+        const itemId = $(event.currentTarget).data("item-id");
+        const tmpItem = this.actor.getOwnedItem(itemId);
+        if (!tmpItem || tmpItem.data.data[type] === undefined) {
+            return;
+        }
+
+        tmpItem.data.data[type] = !tmpItem.data.data[type];
+        const data = {
+            equipped: tmpItem.data.data.equipped,
+        };
+        // Only weapons
+        if (tmpItem.data.data.readied !== undefined) {
+            data.readied = tmpItem.data.data.readied;
+        }
+
+        tmpItem.update({ data });
     }
 }

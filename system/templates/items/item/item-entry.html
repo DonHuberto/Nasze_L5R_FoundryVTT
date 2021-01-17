@@ -3,8 +3,9 @@
         <li class="item-img"><img src="{{item.img}}" title="{{item.name}}" width="32px" height="32px"/></li>
         <li class="item-name">{{ item.name }} <sub>x{{ item.data.quantity }}</sub></li>
         {{#if editable}}
-        <li data-item-id="{{item._id}}" class="item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
-        <li data-item-id="{{item._id}}" class="item-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
+            <li data-item-id="{{item._id}}" data-type="equipped" class="item-equip equip-readied-control" title="{{localize 'l5r5e.armors.equipped'}}"><i class="fas {{#if item.data.equipped}}fa-tshirt{{else}}fa-suitcase{{/if}}"></i></li>
+            <li data-item-id="{{item._id}}" class="item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
+            <li data-item-id="{{item._id}}" class="item-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
         {{/if}}
     </ul>
     <ul class="item-properties">
@@ -13,6 +14,6 @@
         {{/each}}
     </ul>
     {{#if item.data.description}}
-    <div class="item-description item-description-{{item._id}}">{{{ item.data.description }}}</div>
+        <div class="item-description item-description-{{item._id}}">{{{ item.data.description }}}</div>
     {{/if}}
 </li>
