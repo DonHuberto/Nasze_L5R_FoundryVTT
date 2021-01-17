@@ -11,6 +11,7 @@ import { ActorL5r5e } from "./actor.js";
 import { CharacterSheetL5r5e } from "./actors/character-sheet.js";
 import { NpcSheetL5r5e } from "./actors/npc-sheet.js";
 // Dice and rolls
+import { L5rBaseDie } from "./dice/dietype/l5r-base-die.js";
 import { AbilityDie } from "./dice/dietype/ability-die.js";
 import { RingDie } from "./dice/dietype/ring-die.js";
 import { RollL5r5e } from "./dice/roll.js";
@@ -67,6 +68,7 @@ Hooks.once("init", async function () {
 
     // Add some classes in game
     game.l5r5e = {
+        L5rBaseDie,
         RingDie,
         AbilityDie,
         HelpersL5r5e,
@@ -74,6 +76,7 @@ Hooks.once("init", async function () {
         DicePickerDialog,
         RollnKeepDialog,
         GmToolsDialog,
+        ActorL5r5e,
         HelpDialog,
         sockets: new SocketHandlerL5r5e(),
     };

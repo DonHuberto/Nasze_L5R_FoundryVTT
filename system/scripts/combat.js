@@ -105,9 +105,9 @@ export class CombatL5r5e extends Combat {
 
                 // if the character succeeded on their Initiative check, they add 1 to their base initiative value,
                 // plus an additional amount equal to their bonus successes.
-                if (roll.l5r5e.summary.success >= roll.l5r5e.summary.difficulty) {
-                    initiative =
-                        initiative + 1 + Math.max(roll.l5r5e.summary.success - roll.l5r5e.summary.difficulty, 0);
+                const successes = Math.min(roll.l5r5e.summary.ringsUsed, roll.l5r5e.summary.success);
+                if (successes >= roll.l5r5e.summary.difficulty) {
+                    initiative = initiative + 1 + Math.max(successes - roll.l5r5e.summary.difficulty, 0);
                 }
             }
 

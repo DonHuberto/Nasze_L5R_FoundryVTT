@@ -1,6 +1,3 @@
-import { L5rBaseDie } from "./dietype/l5r-base-die.js";
-import { ActorL5r5e } from "../actor.js";
-
 /**
  * Roll for L5R5e
  */
@@ -24,6 +21,7 @@ export class RollL5r5e extends Roll {
                 difficulty: 2,
                 difficultyHidden: false,
                 voidPointUsed: false,
+                ringsUsed: 0,
                 success: 0,
                 explosive: 0,
                 opportunity: 0,
@@ -79,8 +77,14 @@ export class RollL5r5e extends Roll {
 
         // Store final outputs
         this._rolled = true;
-        this.l5r5e.dicesTypes.std = this.dice.some((term) => term instanceof DiceTerm && !(term instanceof L5rBaseDie)); // ignore math symbols
-        this.l5r5e.dicesTypes.l5r = this.dice.some((term) => term instanceof L5rBaseDie);
+        this.l5r5e.dicesTypes.std = this.dice.some(
+            (term) => term instanceof DiceTerm && !(term instanceof game.l5r5e.L5rBaseDie)
+        ); // ignore math symbols
+        this.l5r5e.dicesTypes.l5r = this.dice.some((term) => term instanceof game.l5r5e.L5rBaseDie);
+        this.l5r5e.summary.ringsUsed = this.dice.reduce(
+            (acc, term) => (term instanceof game.l5r5e.RingDie ? acc + term.number : acc),
+            0
+        );
 
         return this;
     }
@@ -92,7 +96,7 @@ export class RollL5r5e extends Roll {
      * @private
      */
     _l5rSummary(term) {
-        if (!(term instanceof L5rBaseDie)) {
+        if (!(term instanceof game.l5r5e.L5rBaseDie)) {
             return;
         }
 
@@ -140,7 +144,7 @@ export class RollL5r5e extends Roll {
     getTooltip(contexte = null) {
         const parts = this.dice.map((term) => {
             const cls = term.constructor;
-            const isL5rDie = term instanceof L5rBaseDie;
+            const isL5rDie = term instanceof game.l5r5e.L5rBaseDie;
 
             return {
                 formula: term.formula,
@@ -223,7 +227,7 @@ export class RollL5r5e extends Roll {
                       canRnK: canRnK,
                       dices: this.dice.map((d) => {
                           return {
-                              diceTypeL5r: d instanceof L5rBaseDie,
+                              diceTypeL5r: d instanceof game.l5r5e.L5rBaseDie,
                               rolls: d.results.map((r) => {
                                   return {
                                       result: d.constructor.getResultLabel(r.result),
@@ -290,7 +294,7 @@ export class RollL5r5e extends Roll {
         roll.l5r5e = duplicate(data.l5r5e);
 
         // get real Actor object
-        if (data.l5r5e.actor && !(data.l5r5e.actor instanceof ActorL5r5e)) {
+        if (data.l5r5e.actor && !(data.l5r5e.actor instanceof game.l5r5e.ActorL5r5e)) {
             const actor = game.actors.get(data.l5r5e.actor.id);
             if (actor) {
                 roll.l5r5e.actor = actor;
