@@ -48,7 +48,15 @@ export class GmToolsDialog extends FormApplication {
      * @override
      */
     close() {
-        // nothing !
+        // TODO better implementation needed : see KeyboardManager._onEscape(event, up, modifiers)
+        // This windows is always open, so esc key si stuck at step 2 : Object.keys(ui.windows).length > 0
+        // Case 3 (GM) - release controlled objects
+        if (canvas?.ready && game.user.isGM && Object.keys(canvas.activeLayer._controlled).length) {
+            canvas.activeLayer.releaseAll();
+        } else {
+            // Case 4 - toggle the main menu
+            ui.menu.toggle();
+        }
     }
 
     /**

@@ -16,6 +16,8 @@
   - Added a visual indicator for equipped / readied
   - Now only equipped armor / weapon will show in conflict tab, and all armors/weapons now show in inventory tab
   - Xp not in curriculum are now rounded up (down before)
+  - No more automation in stats for Npc (these cheaters !)
+- 20Q Pushed the step3 item's limit to 20 (10 previous)
 
 ## 1.0.0 - First public release
 - Removed the 0ds if no skill point

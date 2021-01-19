@@ -76,21 +76,21 @@ export class ActorL5r5e extends Actor {
         if (["character", "npc"].includes(this.data.type)) {
             const data = this.data.data;
 
-            data.endurance = (Number(data.rings.earth) + Number(data.rings.fire)) * 2;
-            data.composure = (Number(data.rings.earth) + Number(data.rings.water)) * 2;
-            data.focus = Number(data.rings.air) + Number(data.rings.fire);
-
-            // Attributes bars
-            data.void_points.max = data.rings.void;
-            data.fatigue.max = data.endurance;
-            data.strife.max = data.composure;
-
-            // if compromise, vigilance = 1
-            if (data.strife.value > data.strife.max) {
-                data.vigilance = 1;
-            } else {
+            // No automation for npc as they cheat in stats
+            if (this.data.type === "character") {
+                data.endurance = (Number(data.rings.earth) + Number(data.rings.fire)) * 2;
+                data.composure = (Number(data.rings.earth) + Number(data.rings.water)) * 2;
+                data.focus = Number(data.rings.air) + Number(data.rings.fire);
                 data.vigilance = Math.ceil((Number(data.rings.air) + Number(data.rings.water)) / 2);
             }
+
+            // Attributes bars
+            data.fatigue.max = data.endurance;
+            data.strife.max = data.composure;
+            data.void_points.max = data.rings.void;
+
+            // if compromise, vigilance = 1
+            data.is_compromised = data.strife.value > data.strife.max;
 
             // Make sure void points are never greater than max
             if (data.void_points.value > data.void_points.max) {
