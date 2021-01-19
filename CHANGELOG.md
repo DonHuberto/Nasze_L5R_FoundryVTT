@@ -11,7 +11,9 @@
 - Spanish real translation by Alejabar (thanks !)
 - Added a GM Dialog Tool for setting global difficulty (TN) value / hidden (with DicePicker live refresh)
 - Compendium now display Ring and Rank if any in list view
-- DicePicker : Fixed the initial display of "use a void point"
+- DicePicker :
+  - Fixed the initial display of "use a void point"
+  - No free void point anymore
 - PC/NPC Sheet :
   - Added a visual indicator for equipped / readied
   - Now only equipped armor / weapon will show in conflict tab, and all armors/weapons now show in inventory tab

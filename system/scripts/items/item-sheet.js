@@ -89,7 +89,7 @@ export class ItemSheetL5r5e extends ItemSheet {
             event.stopPropagation();
             const elmt = $(event.currentTarget).data("toggle");
             const tgt = html.find("." + elmt);
-            tgt.hasClass("toggle-active") ? tgt.removeClass("toggle-active") : tgt.addClass("toggle-active");
+            tgt.toggleClass("toggle-active");
         });
 
         // Everything below here is only needed if the sheet is editable
