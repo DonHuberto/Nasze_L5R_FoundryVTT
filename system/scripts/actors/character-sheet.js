@@ -116,7 +116,7 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
 
             // if not in curriculum, xp spent /2 for this item
             if (!item.data.in_curriculum && xp > 0) {
-                xp = Math.floor(xp / 2);
+                xp = Math.ceil(xp / 2);
             }
 
             const rank = Math.max(0, item.data.bought_at_rank);

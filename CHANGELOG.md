@@ -15,6 +15,7 @@
 - PC/NPC Sheet :
   - Added a visual indicator for equipped / readied
   - Now only equipped armor / weapon will show in conflict tab, and all armors/weapons now show in inventory tab
+  - Xp not in curriculum are now rounded up (down before)
 
 ## 1.0.0 - First public release
 - Removed the 0ds if no skill point
@@ -42,7 +43,7 @@
 - Pass for number and focus on click
 - Xp, added some parseInt
 - Fix for babele and properties
-- Add type percularity in item entry
+- Add type peculiarity in item entry
 - Fix for cross-loaded French compendium
 - 20Q : Scroll on top on next button
 - V-Align for Vlyan pleasure !
