@@ -1,7 +1,7 @@
 {
     "name": "l5r5e",
     "title": "Legend of the Five Rings (5th Edition)",
-    "description": "This is a game system, multilingual in En/FR/ES, for Legend of the Five Rings (5th Edition) by <a href='https://edge-studio.net/'>Edge Studio</a> <p> - Join the official Discord server: <a href='https://discord.gg/foundryvtt'> Official Discord</a></p><p> - Rejoignez la communauté Francophone: <a href='https://discord.gg/pPSDNJk'>Francophone Discord</a></p>",
+    "description": "This is an authorised multilingual game system En|Fr|Es, for Legend of the Five Rings (5th Edition) by <a href='https://edge-studio.net/'>Edge Studio</a> <p> - Join the official Discord server: <a href='https://discord.gg/foundryvtt'> Official Discord</a></p><p> - Rejoignez la communauté Francophone: <a href='https://discord.gg/pPSDNJk'>Francophone Discord</a></p>",
     "version": "1.1.0",
     "minimumCoreVersion": "0.7.9",
     "compatibleCoreVersion": "0.7.9",
@@ -14,7 +14,8 @@
             "discord": "Vlyan#6771"
         },
         {
-            "name": "Mandar"
+            "name": "Mandar",
+            "discord": "Mandar#3440"
         },
         {
             "name": "Carter"
