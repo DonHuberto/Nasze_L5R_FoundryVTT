@@ -163,7 +163,7 @@
         "notes": "Notes",
         "inventory": "Inventaire",
         "money": {
-            "title": "Fortune personnelle",
+            "title": "Fortune",
             "koku": "Koku",
             "bu": "Bu",
             "zeni": "Zeni"

@@ -34,12 +34,6 @@
             line-height: 2rem;
             font-size: 1rem;
         }
-        .compromised {
-            input {
-                border: 1px solid $l5r5e-red;
-                box-shadow: 0 1px 5px $l5r5e-red;
-            }
-        }
     }
     form {
         display: flex;
@@ -106,6 +100,12 @@
                 var(--notchSize) 100%,
                 0% calc(100% - var(--notchSize))
             );
+        }
+        .compromised {
+            input {
+                border: 1px solid $l5r5e-red;
+                box-shadow: 0 1px 5px $l5r5e-red;
+            }
         }
         .header-fields {
             position: relative;
@@ -293,23 +293,20 @@
             }
             label {
                 flex-direction: row;
+                width: 100%;
                 strong {
                     text-align: right;
                 }
                 &:nth-child(2) {
-                    position: relative;
-                    flex: 50%;
-                    right: 1.5rem;
                     strong {
                         position: absolute;
                         top: 0;
                         left: 0;
                         font-size: 0.65rem;
                         width: 3rem;
-                        color: $l5r5e-black;
+                        color: $l5r5e-black-light;
                     }
                     input {
-                        border-top: 0 none;
                         font-size: 1.25rem;
                         padding-top: 0.75rem;
                     }
@@ -317,11 +314,19 @@
             }
             .endurance-content,
             .composure-content {
-                input {
-                    &[disabled] {
-                        flex: 0 0 5rem;
+                label:nth-child(1) {
+                    strong {
+                        flex: 0 0 calc(100% - 6rem);
+                    }
+                    input {
+                        flex: 0 0 5.5rem;
                         padding-right: 3rem;
                     }
+                }
+                label:nth-child(2) {
+                    position: absolute;
+                    right: 0;
+                    width: 3.5rem;
                 }
             }
             .void-content {
@@ -396,6 +401,66 @@
                 }
             }
         }
+        .attribute-label {
+            position: relative;
+            &:before {
+                z-index: -1;
+                content: "";
+                position: absolute;
+                height: calc(100% - 0.85rem);
+                width: 3.1rem;
+                border: 1px solid $l5r5e-title;
+                border-radius: 0;
+                top: 0.15rem;
+                left: 0.15rem;
+            }
+        }
+        .identity-content {
+            .attribute-label {
+                &:before {
+                    height: calc(100% - 0.6rem);
+                    width: calc(100% - 0.65rem);
+                    left: auto;
+                    top: 0.15rem;
+                    right: 0.85rem;
+                }
+            }
+            li:nth-child(3),
+            li:nth-child(5) {
+                .attribute-label {
+                    &:before {
+                        height: calc(100% - 0.6rem);
+                        width: calc(100% + 0.25rem);
+                        left: auto;
+                        top: 0.15rem;
+                        right: -0.15rem;
+                    }
+                }
+            }
+        }
+        .attributes-wrapper {
+            .attribute-label {
+                &:nth-child(2) {
+                    &:before {
+                        left: auto;
+                        right: 2.65rem;
+                    }
+                }
+                &:before {
+                    left: auto;
+                    right: 0.15rem;
+                }
+            }
+        }
+        .void-content {
+            .attribute-label {
+                &:before {
+                    left: auto;
+                    right: 1.85rem;
+                    width: 2.9rem;
+                }
+            }
+        }
     }
     article {
         background: $l5r5e-white;
@@ -457,7 +522,9 @@
             }
         }
         .stances-content {
-            flex: 0 0 100%;
+            flex: 100%;
+            height: 100%;
+            align-self: flex-start;
             .item-list {
                 position: relative;
                 padding-top: 2rem;
@@ -510,7 +577,7 @@
     }
     .xp,
     .money-wrapper {
-        flex: 0 0 5rem;
+        flex: 0 0 6rem;
         flex-direction: column;
         color: $black-light;
         label {
@@ -575,9 +642,11 @@
     &.npc {
         .initiative {
             &-wrapper {
-                display: block;
                 flex: 100%;
+                height: 100%;
+                align-self: flex-start;
                 text-align: center;
+                display: block;
             }
             button {
                 width: 22%;

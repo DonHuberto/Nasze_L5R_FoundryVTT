@@ -19,6 +19,7 @@
             }
             .item-edit,
             .item-delete,
+            .item-equip,
             .technique-edit,
             .technique-delete,
             .peculiarity-edit,
@@ -29,6 +30,7 @@
                 font-size: 0.75rem;
                 flex: 0 0 1rem;
                 padding: 0 0.1rem;
+                color: $black-light;
             }
             .icon-stat-container {
                 line-height: 1rem;
@@ -38,6 +40,7 @@
             }
             .item-edit,
             .item-delete,
+            .item-equip,
             .technique-edit,
             .technique-delete,
             .peculiarity-edit,
@@ -46,6 +49,7 @@
             .property-delete {
                 &:hover {
                     text-shadow: 0 0 3px $red;
+                    color: $black;
                 }
             }
         }
@@ -66,6 +70,12 @@
                 }
                 &:last-child {
                     margin-right: 0;
+                }
+            }
+            .equip-readied-control {
+                &:hover {
+                    color: $l5r5e-red;
+                    background: $white;
                 }
             }
         }

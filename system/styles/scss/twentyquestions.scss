@@ -60,8 +60,6 @@
     article {
         padding: 2% 2% 2% 18%;
         label {
-            font-size: 0.85rem;
-            line-height: 2rem;
             &.full {
                 display: block;
                 width: 100%;
@@ -79,6 +77,10 @@
         > label {
             font-size: 1rem;
             padding: 0 0 0 1rem;
+            line-height: 2rem;
+            > * {
+                line-height: 1rem;
+            }
         }
         table {
             width: 100%;

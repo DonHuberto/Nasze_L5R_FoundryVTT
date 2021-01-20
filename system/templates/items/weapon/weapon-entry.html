@@ -14,7 +14,7 @@
     </ul>
     <ul class="item-properties">
         <li class="equip-readied-control" data-item-id="{{item._id}}" data-type="readied">
-            <i class="i_readied fa{{^if item.data.readied}}r{{/if}} fa-hand-rock" title="{{#if item.data.readied}}{{localize 'l5r5e.weapons.readied'}}{{else}}{{localize 'l5r5e.weapons.sheathed'}}{{/if}}"></i>
+            <i class="i_readied fa{{^if item.data.readied}}r{{/if}} fa-check-circle" title="{{#if item.data.readied}}{{localize 'l5r5e.weapons.readied'}}{{else}}{{localize 'l5r5e.weapons.sheathed'}}{{/if}}"></i>
         </li>
         {{#each item.data.properties as |property id|}}
             <li>{{{ property.name }}}</li>
