@@ -184,7 +184,7 @@ export class TwentyQuestions {
         const actorDatas = actor.data.data;
 
         // already 20q struct ?
-        if (actorDatas.twenty_questions?.step1?.clan) {
+        if (!isObjectEmpty(actorDatas.twenty_questions)) {
             this.data = {
                 ...this.data,
                 ...actorDatas.twenty_questions,
@@ -215,6 +215,8 @@ export class TwentyQuestions {
     async toActor(actor, itemsCache) {
         const actorDatas = actor.data.data;
         const formData = this.data;
+
+        this.data.generated = true;
 
         const status = parseInt(formData.step1.social_status) + parseInt(formData.step18.heritage_add_status);
 

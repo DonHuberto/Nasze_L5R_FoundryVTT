@@ -2,9 +2,20 @@
  * Custom system settings register
  */
 export const RegisterSettings = function () {
-    /**
-     * Settings set by Initiative Roll Dialog (GM only)
-     */
+    /* ------------------------------------ */
+    /* Update                               */
+    /* ------------------------------------ */
+    game.settings.register("l5r5e", "systemMigrationVersion", {
+        name: "System Migration Version",
+        scope: "world",
+        config: false,
+        type: String,
+        default: 0,
+    });
+
+    /* ------------------------------------ */
+    /* Initiative Roll Dialog (GM only)     */
+    /* ------------------------------------ */
     game.settings.register("l5r5e", "initiative.difficulty.hidden", {
         name: "Initiative difficulty is hidden",
         scope: "world",

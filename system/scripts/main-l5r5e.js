@@ -4,6 +4,7 @@ import { HelpersL5r5e } from "./helpers.js";
 import { SocketHandlerL5r5e } from "./socket-handler.js";
 import { RegisterSettings } from "./settings.js";
 import { PreloadTemplates } from "./preloadTemplates.js";
+import { RegisterHandlebars } from "./handlebars.js";
 import { HelpDialog } from "./help/help-dialog.js";
 import HooksL5r5e from "./hooks.js";
 // Actors
@@ -31,11 +32,13 @@ import { PeculiaritySheetL5r5e } from "./items/peculiarity-sheet.js";
 // JournalEntry
 import { JournalL5r5e } from "./journal.js";
 import { BaseJournalSheetL5r5e } from "./journals/base-journal-sheet.js";
+// Specific
+import { MigrationL5r5e } from "./migration.js";
 
 /* ------------------------------------ */
 /* Initialize system                    */
 /* ------------------------------------ */
-Hooks.once("init", async function () {
+Hooks.once("init", async () => {
     // ***** Initializing l5r5e *****
     // Ascii art :p
     console.log(
@@ -79,10 +82,14 @@ Hooks.once("init", async function () {
         ActorL5r5e,
         HelpDialog,
         sockets: new SocketHandlerL5r5e(),
+        migrations: MigrationL5r5e,
     };
 
     // Register custom system settings
     RegisterSettings();
+
+    // Register custom Handlebars Helpers
+    RegisterHandlebars();
 
     // Preload Handlebars templates
     await PreloadTemplates();
@@ -106,89 +113,6 @@ Hooks.once("init", async function () {
     // Journal
     Items.unregisterSheet("core", JournalSheet);
     Items.registerSheet("l5r5e", BaseJournalSheetL5r5e, { makeDefault: true });
-
-    // ***** Handlebars *****
-    // for debug
-    Handlebars.registerHelper("json", function (...objects) {
-        objects.pop(); // remove this function call
-        return new Handlebars.SafeString(objects.map((e) => `<textarea>${JSON.stringify(e)}</textarea>`));
-    });
-
-    // Add props "checked" if a and b are equal ({{radioChecked a b}}
-    Handlebars.registerHelper("radioChecked", function (a, b) {
-        return a === b ? new Handlebars.SafeString('checked="checked"') : "";
-    });
-
-    Handlebars.registerHelper("localizeSkill", function (categoryId, skillId) {
-        const key = "l5r5e.skills." + categoryId.toLowerCase() + "." + skillId.toLowerCase();
-        return game.i18n.localize(key);
-    });
-    Handlebars.registerHelper("localizeSkillId", function (skillId) {
-        const key = "l5r5e.skills." + L5R5E.skills.get(skillId.toLowerCase()) + "." + skillId.toLowerCase();
-        return game.i18n.localize(key);
-    });
-
-    Handlebars.registerHelper("localizeRing", function (ringId) {
-        const key = "l5r5e.rings." + ringId.toLowerCase();
-        return game.i18n.localize(key);
-    });
-
-    Handlebars.registerHelper("localizeStanceTip", function (ringId) {
-        const key = "l5r5e.conflict.stances." + ringId.toLowerCase() + "tip";
-        return game.i18n.localize(key);
-    });
-
-    Handlebars.registerHelper("localizeTechnique", function (techniqueName) {
-        return game.i18n.localize("l5r5e.techniques." + techniqueName.toLowerCase());
-    });
-
-    // Utility conditional, usable in nested expression
-    // {{#ifCond (ifCond advancement.type '==' 'technique') '||' (ifCond item.data.technique_type '==' 'kata')}}
-    // {{#ifCond '["distinction","passion"]' 'includes' item.data.peculiarity_type}}
-    Handlebars.registerHelper("ifCond", function (a, operator, b, options) {
-        let result = false;
-        switch (operator) {
-            case "==":
-                result = a == b;
-                break;
-            case "===":
-                result = a === b;
-                break;
-            case "!=":
-                result = a != b;
-                break;
-            case "!==":
-                result = a !== b;
-                break;
-            case "<":
-                result = a < b;
-                break;
-            case "<=":
-                result = a <= b;
-                break;
-            case ">":
-                result = a > b;
-                break;
-            case ">=":
-                result = a >= b;
-                break;
-            case "&&":
-                result = a && b;
-                break;
-            case "||":
-                result = a || b;
-                break;
-            case "includes":
-                result = a && b && a.includes(b);
-                break;
-            default:
-                break;
-        }
-        if (typeof options.fn === "function") {
-            return result ? options.fn(this) : options.inverse(this);
-        }
-        return result;
-    });
 });
 
 /* ------------------------------------ */

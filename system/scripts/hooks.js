@@ -21,6 +21,11 @@ export default class HooksL5r5e {
      * Do anything once the system is ready
      */
     static ready() {
+        // Migration stuff
+        if (game.l5r5e.migrations.needUpdate()) {
+            game.l5r5e.migrations.migrateWorld();
+        }
+
         // Settings TN and EncounterType
         if (game.user.isGM) {
             new game.l5r5e.GmToolsDialog().render(true);

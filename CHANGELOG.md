@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.1 - Initiative first !
+## 1.1.0 - Initiative first !
 - Added initiative system :
   - Now use the score rule (the real one if you prefer)
   - Added global modifiers for Characters, Adversary and Minons in the combat tracker : Confrontation types, Prepared
@@ -20,6 +20,7 @@
   - Xp not in curriculum are now rounded up (down before)
   - No more automation in stats for Npc (these cheaters !)
 - 20Q Pushed the step3 item's limit to 20 (10 previous)
+- Added System migration stuff
 
 ## 1.0.0 - First public release
 - Removed the 0ds if no skill point
