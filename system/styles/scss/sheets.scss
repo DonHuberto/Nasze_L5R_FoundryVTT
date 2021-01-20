@@ -8,7 +8,7 @@
     }
     &.actor {
         .sheet-header {
-            height: 27rem;
+            height: 26rem;
             h1 {
                 flex: auto;
                 margin: 0 0 0.25rem 0.5rem;
@@ -216,14 +216,14 @@
             width: 40%;
             padding: 0;
             position: relative;
-            top: -2.5rem;
+            top: -1.5rem;
         }
         .social-content,
         .attributes-wrapper {
             flex: none;
             float: left;
             width: 30%;
-            flex-direction: column;
+            flex-wrap: wrap;
             display: flex;
             padding: 0.5rem 0 0 0.25rem;
             border-left: 2px solid $l5r5e-title;
@@ -270,9 +270,30 @@
                     margin: 0 0.25rem;
                     height: 2rem;
                     &[disabled] {
-                        flex: 0 0 3rem;
                         background: $l5r5e-white-light;
                     }
+                }
+            }
+        }
+        .focus-content,
+        .vigilance-content {
+            flex: 0 0 50%;
+            padding-bottom: 0.5rem;
+            .attribute-label {
+                flex-wrap: wrap;
+                height: auto;
+                strong {
+                    flex: 100%;
+                    text-align: center;
+                }
+                input {
+                    flex: 1 0 3rem;
+                }
+                &:before {
+                    top: auto;
+                    bottom: 0.1rem;
+                    height: calc(100% - 1.45rem);
+                    width: calc(100% - 0.4rem);
                 }
             }
         }
@@ -285,9 +306,19 @@
                     left: auto;
                     right: -0.25rem;
                 }
-                &.void-content {
+                &.focus-content {
                     &:before {
                         width: 0;
+                    }
+                }
+                &.vigilance-content {
+                    &:before {
+                        width: 160%;
+                    }
+                }
+                &.void-content {
+                    &:before {
+                        width: 90%;
                     }
                 }
             }
@@ -330,11 +361,8 @@
                 }
             }
             .void-content {
-                display: flex;
-                position: absolute;
-                bottom: 0.25rem;
-                right: 35%;
-                width: 10rem;
+                width: 100%;
+                padding-top: 0.25rem;
                 label {
                     margin: 0;
                     strong {
@@ -343,7 +371,7 @@
                         &:after {
                             content: "/";
                             position: absolute;
-                            right: 2.9rem;
+                            right: 1.25rem;
                             font-size: 1rem;
                             bottom: 0.6rem;
                             color: $l5r5e-bold;
@@ -361,8 +389,9 @@
                             text-align: right;
                             padding-left: 0.25rem;
                             padding-top: 0.75rem;
-                            position: relative;
-                            right: 2rem;
+                            position: absolute;
+                            right: 0.25rem;
+                            width: 1rem;
                         }
                     }
                 }
@@ -398,6 +427,12 @@
                         display: block;
                         height: auto;
                     }
+                }
+            }
+            .focus-content,
+            .vigilance-content {
+                p {
+                    bottom: -3.75rem;
                 }
             }
         }
@@ -443,7 +478,8 @@
                 &:nth-child(2) {
                     &:before {
                         left: auto;
-                        right: 2.65rem;
+                        right: 3.15rem;
+                        width: 2.6rem;
                     }
                 }
                 &:before {
@@ -455,9 +491,7 @@
         .void-content {
             .attribute-label {
                 &:before {
-                    left: auto;
-                    right: 1.85rem;
-                    width: 2.9rem;
+                    width: 3.85rem;
                 }
             }
         }
