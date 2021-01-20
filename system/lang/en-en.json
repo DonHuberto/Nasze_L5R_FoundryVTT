@@ -25,7 +25,8 @@
             "add": "Add",
             "edit": "Edit",
             "delete": "Delete",
-            "drop_here": "Drop here"
+            "drop_here": "Drop here",
+            "edge_translation_disclaimer": ""
         },
         "logo": {
             "title": "Need help?",

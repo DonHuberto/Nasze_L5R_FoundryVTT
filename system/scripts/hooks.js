@@ -39,6 +39,11 @@ export default class HooksL5r5e {
         $("#logo")
             .on("click", () => new game.l5r5e.HelpDialog().render(true))
             .prop("title", game.i18n.localize("l5r5e.logo.alt"));
+
+        // Spanish specific - Disclaimer "not translated by Edge"
+        if (game.i18n.lang === "es") {
+            ui.notifications.info(game.i18n.localize("l5r5e.global.edge_translation_disclaimer"));
+        }
     }
 
     /**

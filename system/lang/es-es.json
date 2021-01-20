@@ -25,7 +25,8 @@
             "add": "Añadir",
             "edit": "Editar",
             "delete": "Borrar",
-            "drop_here": "Dejar caer aquí"
+            "drop_here": "Dejar caer aquí",
+            "edge_translation_disclaimer": "Edge Studio nos da su permiso para ofrecer este módulo a la comunidad, pero tanto los textos así como los códigos que lo constituyen no tienen su aprobación explícita."
         },
         "logo": {
             "títle": "¿Necesitas ayuda?",

@@ -25,7 +25,8 @@
             "add": "Ajouter",
             "edit": "Modifier",
             "delete": "Supprimer",
-            "drop_here": "Déposez ici"
+            "drop_here": "Déposez ici",
+            "edge_translation_disclaimer": ""
         },
         "logo": {
             "title": "Besoin d'aide ?",
