@@ -95,6 +95,17 @@
                     border: 1px solid $l5r5e-title;
                     font-size: 0.85rem;
                     padding: 0.25rem;
+                    > * {
+                        line-height: 1rem;
+                    }
+                    > ul {
+                        li {
+                            line-height: 2rem;
+                            > * {
+                                line-height: 1rem;
+                            }
+                        }
+                    }
                     &.done {
                         border: 1px solid $l5r5e-earth;
                         box-shadow: 0 1px 5px $l5r5e-earth;
@@ -117,11 +128,6 @@
             background: rgba(255, 255, 255, 0.25);
             border: 1px solid rgba(255, 255, 255, 0.5);
             margin: 0 0.25rem 1rem;
-        }
-        > ul {
-            li {
-                line-height: 2rem;
-            }
         }
         hr {
             border-top: 1px solid $l5r5e-black-light;
