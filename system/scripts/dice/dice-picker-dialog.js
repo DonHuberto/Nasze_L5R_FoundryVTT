@@ -11,6 +11,12 @@ export class DicePickerDialog extends FormApplication {
     _actor = null;
 
     /**
+     * If GM as set to hidden, lock the player choice so he cannot look the TN
+     * @type {boolean}
+     */
+    _difficultyHiddenIsLock = false;
+
+    /**
      * Payload Object
      */
     object = {
@@ -130,16 +136,10 @@ export class DicePickerDialog extends FormApplication {
         }
 
         // DifficultyHidden
-        if (options.difficultyHidden) {
-            this.difficultyHidden = options.difficultyHidden;
-        } else {
-            this.difficultyHidden = game.settings.get("l5r5e", "initiative.difficulty.hidden");
-        }
+        this.difficultyHidden = !!options.difficultyHidden;
 
         // InitiativeRoll
-        if (options.isInitiativeRoll) {
-            this.object.isInitiativeRoll = !!options.isInitiativeRoll;
-        }
+        this.object.isInitiativeRoll = !!options.isInitiativeRoll;
     }
 
     /**
@@ -147,7 +147,7 @@ export class DicePickerDialog extends FormApplication {
      */
     async refresh() {
         this.difficulty = game.settings.get("l5r5e", "initiative.difficulty.value");
-        this.difficultyHidden = game.settings.get("l5r5e", "initiative.difficulty.hidden");
+        this.difficultyHidden = false;
         this.render(false);
     }
 
@@ -243,6 +243,11 @@ export class DicePickerDialog extends FormApplication {
      * @param isHidden
      */
     set difficultyHidden(isHidden) {
+        // If GM hide, then player choice don't matter
+        this._difficultyHiddenIsLock = game.settings.get("l5r5e", "initiative.difficulty.hidden");
+        if (this._difficultyHiddenIsLock) {
+            isHidden = true;
+        }
         this.object.difficulty.hidden = !!isHidden;
         this.object.difficulty.add_void_point = this.object.difficulty.hidden;
         this._updateVoidPointUsage();
@@ -271,6 +276,7 @@ export class DicePickerDialog extends FormApplication {
             canUseVoidPoint:
                 this.object.difficulty.add_void_point || !this._actor || this._actor.data.data.void_points.value > 0,
             disableSubmit: this.object.skill.value < 1 && this.object.ring.value < 1,
+            difficultyHiddenIsLock: this._difficultyHiddenIsLock,
         };
     }
 

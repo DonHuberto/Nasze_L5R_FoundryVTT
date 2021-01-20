@@ -148,10 +148,12 @@
         {{!-- Fourth line--}}
         <tr>
             <td>
+                {{^if difficultyHiddenIsLock}}
                 <label>
                     <input type="checkbox" id="diff_hidden" name="difficulty.hidden" value="1" {{checked data.difficulty.hidden}}>
                     {{localize 'l5r5e.dicepicker.difficulty_hidden_label'}}
                 </label>
+                {{/if}}
             </td>
             <td>
                 {{#if canUseVoidPoint}}
