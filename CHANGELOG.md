@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.1 - The Huns War
+- Fix Minion initiative
+- Fix textarea ninjo/giri
+
+
 ## 1.1.0 - Initiative first !
 - Added initiative system :
   - Now use the score rule (the real one if you prefer)
