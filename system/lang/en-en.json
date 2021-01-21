@@ -141,6 +141,7 @@
             "type": "Allowed Techniques",
             "kata": "Kata",
             "kiho": "Kihõ",
+            "inversion": "Inversion",
             "invocation": "Invocation",
             "ritual": "Ritual",
             "shuji": "Shuji",

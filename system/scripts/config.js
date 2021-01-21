@@ -7,7 +7,7 @@ L5R5E.paths = {
 
 L5R5E.money = [50, 10];
 L5R5E.stances = ["earth", "air", "water", "fire", "void"];
-L5R5E.techniques = ["kata", "kiho", "invocation", "ritual", "shuji", "maho", "ninjutsu"];
+L5R5E.techniques = ["kata", "kiho", "inversion", "invocation", "ritual", "shuji", "maho", "ninjutsu"];
 L5R5E.techniques_school = ["school_ability", "mastery_ability"];
 
 L5R5E.xp = {
@@ -75,6 +75,7 @@ L5R5E.symbols.set("(maho)", { class: "i_maho", label: "l5r5e.techniques.maho" })
 L5R5E.symbols.set("(ninjitsu)", { class: "i_ninjitsu", label: "l5r5e.techniques.ninjutsu" });
 L5R5E.symbols.set("(ritual)", { class: "i_rituals", label: "l5r5e.techniques.ritual" });
 L5R5E.symbols.set("(shuji)", { class: "i_shuji", label: "l5r5e.techniques.shuji" });
+L5R5E.symbols.set("(inversion)", { class: "i_inversion", label: "l5r5e.techniques.inversion" });
 L5R5E.symbols.set("(invocation)", { class: "i_invocations", label: "l5r5e.techniques.invocation" });
 L5R5E.symbols.set("(kata)", { class: "i_kata", label: "l5r5e.techniques.kata" });
 L5R5E.symbols.set("(prereq)", { class: "i_prerequisite_exemption", label: "l5r5e.advancements.curriculum" });

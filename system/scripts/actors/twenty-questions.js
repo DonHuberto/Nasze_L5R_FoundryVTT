@@ -76,6 +76,7 @@ export class TwentyQuestions {
             allowed_techniques: {
                 kata: false,
                 kiho: false,
+                inversion: false,
                 invocation: false,
                 ritual: false,
                 shuji: false,
@@ -199,6 +200,7 @@ export class TwentyQuestions {
         this.data.step3.roles = actorDatas.identity.roles;
         this.data.step3.allowed_techniques.kata = actorDatas.techniques.kata;
         this.data.step3.allowed_techniques.kiho = actorDatas.techniques.kiho;
+        this.data.step3.allowed_techniques.inversion = actorDatas.techniques.inversion;
         this.data.step3.allowed_techniques.invocation = actorDatas.techniques.invocation;
         this.data.step3.allowed_techniques.ritual = actorDatas.techniques.ritual;
         this.data.step3.allowed_techniques.shuji = actorDatas.techniques.shuji;
@@ -253,6 +255,7 @@ export class TwentyQuestions {
             ...actorDatas.techniques,
             kata: !!formData.step3.allowed_techniques.kata,
             kiho: !!formData.step3.allowed_techniques.kiho,
+            inversion: !!formData.step3.allowed_techniques.inversion,
             invocation: !!formData.step3.allowed_techniques.invocation,
             ritual: !!formData.step3.allowed_techniques.ritual,
             shuji: !!formData.step3.allowed_techniques.shuji,
