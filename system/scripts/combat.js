@@ -59,7 +59,7 @@ export class CombatL5r5e extends Combat {
 
             if (combatant.actor.data.type === "npc" && combatant.actor.data.data.type === "minion") {
                 // Minion NPCs can generate initiative value without a check, using their focus or vigilance attribute
-                initiative = cfg.prepared.minion ? data.focus : data.is_compromised ? 1 : data.vigilance;
+                initiative = cfg.prepared.minion === "true" ? data.focus : data.is_compromised ? 1 : data.vigilance;
             } else {
                 // PC and Adversary
                 const isPc = combatant.actor.data.type === "character";
@@ -67,9 +67,9 @@ export class CombatL5r5e extends Combat {
                 // prepared is a boolean or if null we get the info in the actor sheet
                 let isPrepared = isPc ? cfg.prepared.character : cfg.prepared.adversary;
                 if (isPrepared === "null") {
-                    isPrepared = data.prepared;
+                    isPrepared = data.prepared ? "true" : "false";
                 }
-                initiative = isPrepared ? data.focus : data.is_compromised ? 1 : data.vigilance;
+                initiative = isPrepared === "true" ? data.focus : data.is_compromised ? 1 : data.vigilance;
 
                 // Roll formula
                 if (!formula) {
