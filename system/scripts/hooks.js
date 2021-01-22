@@ -151,15 +151,19 @@ export default class HooksL5r5e {
      * Compendium display
      */
     static async renderCompendium(app, html, data) {
-        // Add Rank & Ring in the compendium
+        // templates "item" : add Rarity
+        // Techniques / Peculiarities : add Ring / Rank
         if (app.entity === "Item") {
             const content = await app.getContent();
             content.forEach((item) => {
-                if (!!item.data.data.ring || !!item.data.data.rank) {
+                if (["weapon", "armor", "item", "peculiarity", "technique", "peculiarity"].includes(item.type)) {
                     html.find(`[data-entry-id="${item._id}"]`).append(
                         `<i` +
                             (item.data.data.ring ? ` class="i_${item.data.data.ring}"` : ``) +
                             `>` +
+                            (item.data.data.rarity
+                                ? `${game.i18n.localize("l5r5e.rarity")} ${item.data.data.rarity}`
+                                : "") +
                             (item.data.data.rank ? game.i18n.localize("l5r5e.rank") + " " + item.data.data.rank : "") +
                             `</i>`
                     );
