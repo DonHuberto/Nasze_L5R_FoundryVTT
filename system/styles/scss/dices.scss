@@ -45,6 +45,11 @@
     }
 }
 
+// If DicePicker add a pointer
+.dice-picker {
+    cursor: url("../assets/cursors/pointer.webp"), pointer;
+}
+
 // Dice Picker
 .dice-picker-dialog {
     // Utility

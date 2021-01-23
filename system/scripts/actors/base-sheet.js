@@ -172,8 +172,15 @@ export class BaseSheetL5r5e extends ActorSheet {
             event.preventDefault();
             event.stopPropagation();
             const li = $(event.currentTarget);
+            let skillId = li.data("skill") || null;
+
+            const weaponId = li.data("weapon-id") || null;
+            if (weaponId) {
+                skillId = this._getWeaponSkillId(weaponId);
+            }
+
             new game.l5r5e.DicePickerDialog({
-                skillId: li.data("skill") || null,
+                skillId: skillId,
                 skillCatId: li.data("skillcat") || null,
                 isInitiativeRoll: li.data("initiative") || false,
                 actor: this.actor,
@@ -373,5 +380,17 @@ export class BaseSheetL5r5e extends ActorSheet {
         }
 
         tmpItem.update({ data });
+    }
+
+    /**
+     * Get the skillId for this weaponId
+     * @private
+     */
+    _getWeaponSkillId(weaponId) {
+        const item = this.actor.getOwnedItem(weaponId);
+        if (!!item && item.type === "weapon") {
+            return item.data.data.skill;
+        }
+        return null;
     }
 }
