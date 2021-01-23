@@ -76,9 +76,9 @@
         "rarity": "Rarity",
         "chatdices": {
             "successes": "Successes",
-            "explosives": "Explosives",
+            "explosives": "Explosions",
             "opportunities": "Opportunities",
-            "strives": "Strives",
+            "strives": "Strife",
             "difficulty": "TN",
             "difficulty_hidden": "TN ???",
             "dicepicker": "Dice Picker",
@@ -100,7 +100,7 @@
             "reroll_drop_here": "Re-roll",
             "reroll_chat": "Re-rolled dice",
             "keep_drop_here": "Keep",
-            "keep_chat": "New roll from a exploding dice",
+            "keep_chat": "New roll from an exploding die",
             "bt_validate": "Finalize"
         },
         "max": "Max",
@@ -123,7 +123,7 @@
         "armors": {
             "title": "Armors",
             "title_new": "New Armor",
-            "type": "Defence",
+            "type": "Resistances",
             "physical": "physical",
             "supernatural": "supernatural",
             "equipped": "Equipped"
@@ -180,7 +180,7 @@
             "ninjo": "Ninjo",
             "giri": "Giri",
             "titles": "Titles",
-            "attitude": "attitude:",
+            "attitude": "Demeanor:",
             "advantages": "Distinctions and Passions",
             "disadvantages": "Adversities and Anxieties",
             "npc": {
@@ -274,9 +274,9 @@
             "stance": "Stance",
             "stances": {
                 "airtip": "+1 to TN of Attack and Scheme checks targeting you (+2 at rank 4+).",
-                "earthtip": "Others cannot spend Opportunity to inflict critical strikes or conditions on you.",
-                "firetip": "If you succeed, +1 bonus success per Strife symbol.",
-                "watertip": "Perform a second action on your turn that does not require a check or share a type with first action.",
+                "earthtip": "Others cannot spend Opportunity to inflict critical hits or conditions on you.",
+                "firetip": "If you succeed, +1 bonus success per Strife symbol on kept dice.",
+                "watertip": "Perform a second action on your turn that does not require a check or share a type with the first action.",
                 "voidtip": "You do not receive strife from Strife symbols on checks."
             },
             "initiative": {
@@ -288,7 +288,7 @@
                 "prepared_true": "Prepared",
                 "prepared_false": "Surprised",
                 "prepared_null": "Defined in the character sheet (default)",
-                "already_set": "Your initiative has already been drawn"
+                "already_set": "Your initiative has already been determined"
             }
         },
         "advancements": {
@@ -324,20 +324,20 @@
             "and": "AND",
             "error": "Oops it looks like there's an error:",
             "part0": {
-                "intro": "You can use this sheet to fill in your answers to The Game of Twenty Questions, and to take notes for later !",
-                "section": "Legend of the Five Rings Core Rulebook, Chapter 2 : Creating a character, p. 41-95"
+                "intro": "You can use this sheet to fill in your answers to The Game of Twenty Questions, and to take notes for later!",
+                "section": "Legend of the Five Rings Core Rulebook, Chapter 2: Creating a character, p. 41-95"
             },
             "part1": {
                 "title": "Part I: Core Identity (Clan and Family)",
-                "q1": "1. What clan does your character belong to ? (p. 41)",
+                "q1": "1. What clan does your character belong to? (p. 41)",
                 "status": "Status",
-                "q2": "2. What family does your character belong to ? (p. 49)",
+                "q2": "2. What family does your character belong to? (p. 49)",
                 "money": "Starting wealth in Koku",
                 "glory": "Glory"
             },
             "part2": {
                 "title": "Part II: Role and School",
-                "q3": "3. What is your character’s school, and what roles does that school fall into ? (p. 56)",
+                "q3": "3. What is your character’s school, and what roles does that school fall into? (p. 56)",
                 "school": "School",
                 "role": "Roles",
                 "honor": "Honor",
@@ -345,30 +345,30 @@
                 "school_ability": "School ability",
                 "starting_techniques": "Starting techniques (2-5)",
                 "outfit": "Starting outfit",
-                "q4": "4. How does your character stand out within their school ? (p. 88)"
+                "q4": "4. How does your character stand out within their school? (p. 88)"
             },
             "part3": {
                 "title": "Part III: Honor and Glory",
-                "q5": "5. Who is your lord and what is your character’s duty to them ? (p. 88)",
+                "q5": "5. Who is your lord and what is your character’s duty to them? (p. 88)",
                 "choose_giri": "Select giri:",
-                "q6": "6. What does your character long for, and how might this impede their duty ? (p. 90)",
+                "q6": "6. What does your character long for, and how might this impede their duty? (p. 90)",
                 "choose_ninjo": "Select ninjō:",
-                "q7": "7. What is your character’s relationship with their clan ? (p. 91)",
+                "q7": "7. What is your character’s relationship with their clan? (p. 91)",
                 "increase_glory": "Glory increase",
-                "q8": "8. What does your character think of Bushidō ? (p. 91)",
+                "q8": "8. What does your character think of Bushidō? (p. 91)",
                 "increase_honor": "Honor increase"
             },
             "part4": {
                 "title": "Part IV: Strengths and Weaknesses",
-                "q9": "9. What is your character’s greatest accomplishment so far ? (p. 92)",
+                "q9": "9. What is your character’s greatest accomplishment so far? (p. 92)",
                 "distinction": "Distinction (1)",
-                "q10": "10. What holds your character back the most in life ? (p. 92)",
+                "q10": "10. What holds your character back the most in life? (p. 92)",
                 "adversity": "Adversity (1)",
-                "q11": "11. What activity Most makes your character feel at peace ? (p. 93)",
+                "q11": "11. What activity Most makes your character feel at peace? (p. 93)",
                 "passion": "Passion (1)",
-                "q12": "12. What concern, fear, or foible troubles your character the most ? (p. 93)",
+                "q12": "12. What concern, fear, or foible troubles your character the most? (p. 93)",
                 "anxiety": "Anxiety (1)",
-                "q13": "13. Who has your character learned the most from during their life (p. 93)",
+                "q13": "13. Who has your character learned the most from during their life? (p. 93)",
                 "disadvantage": "Disadvantage (1)",
                 "advantage": "Advantage (1)"
             },
@@ -376,28 +376,28 @@
                 "title": "Part V: Personality and Behavior",
                 "q14": "14. What do people notice first upon encountering your character? (p. 93)",
                 "accoutrement": "Personal accoutrement",
-                "q15": "15. How does your character react to stressful situations ? (p. 94)",
-                "q16": "16. What are your character’s preexisting relationships with other clans, families, organizations, and traditions ? (p. 94)",
+                "q15": "15. How does your character react to stressful situations? (p. 94)",
+                "q16": "16. What are your character’s preexisting relationships with other clans, families, organizations, and traditions? (p. 94)",
                 "object": "Item (Rarity 7 or lower)"
             },
             "part6": {
                 "title": "Part VI: Ancestry and Family",
-                "q17": "17. How would your character’s parents describe them ? (p. 95)",
-                "q18": "18. Who was your character named to honor ? (p. 95)",
+                "q17": "17. How would your character’s parents describe them? (p. 95)",
+                "q18": "18. Who was your character named to honor? (p. 95)",
                 "d10r1": "D10 Result (1/2)",
                 "d10r1_choice": "1st D10 Effect",
                 "d10r2": "D10 Result (2/2)",
                 "d10r2_choice": "2nd D10 Effect",
                 "d10r2_drop_items": "Or a technique, a advantage, a object...",
-                "q19": "19. What is your character’s personal name ? (p. 95)"
+                "q19": "19. What is your character’s personal name? (p. 95)"
             },
             "part7": {
                 "title": "Part VII: Death",
-                "q20": "20. How should your character die ? (p. 95)",
+                "q20": "20. How should your character die? (p. 95)",
                 "summary": "Summary",
                 "generchar": "Generate the character",
-                "generchar_disclaimer": "Warning, this will erase character's current datas !",
-                "generchar_errors": "Clear errors before continuing !"
+                "generchar_disclaimer": "Warning, this will erase character's current data!",
+                "generchar_errors": "Clear errors before continuing!"
             }
         }
     }
