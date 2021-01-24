@@ -1,5 +1,5 @@
 {
-    "i18n": {
+    "I18N": {
         "Language": "Español",
         "Maintainers": ["Team L5R"]
     },
@@ -78,7 +78,7 @@
             "successes": "Éxitos",
             "explosives": "Relanzables",
             "opportunities": "Oportunidades",
-            "strives": "Conflictos",
+            "strife": "Conflictos",
             "difficulty": "NO",
             "difficulty_hidden": "NO ???",
             "dicepicker": "Dice Picker",
@@ -141,6 +141,7 @@
             "title_new": "Nueva Técnica",
             "kata": "Kata",
             "kiho": "Kihõ",
+            "inversion": "Inversion",
             "invocation": "Invocación",
             "ritual": "Ritual",
             "shuji": "Shuji",

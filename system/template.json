@@ -97,6 +97,7 @@
                 "techniques": {
                     "kata": false,
                     "kiho": false,
+                    "inversion": false,
                     "invocation": false,
                     "ritual": false,
                     "shuji": false,

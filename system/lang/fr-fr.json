@@ -1,5 +1,5 @@
 {
-    "i18n": {
+    "I18N": {
         "Language": "Français",
         "Maintainers": ["Team L5R"]
     },
@@ -78,7 +78,7 @@
             "successes": "Succès",
             "explosives": "Explosifs",
             "opportunities": "Aubaines",
-            "strives": "Conflits",
+            "strife": "Conflits",
             "difficulty": "ND",
             "difficulty_hidden": "ND ???",
             "dicepicker": "Dice Picker",
@@ -141,6 +141,7 @@
             "type": "Type accessible",
             "kata": "Kata",
             "kiho": "Kihõ",
+            "inversion": "Inversion",
             "invocation": "Invocation",
             "ritual": "Rituel",
             "shuji": "Shuji",

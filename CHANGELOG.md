@@ -1,9 +1,20 @@
 # Changelog
 
+## 1.1.2 - Compendiums Update
+- Added compendiums (Thanks to Stéfano Fara for the English version !) Partial for French as PoW and CR are not translated yet
+  - Shadowlands
+  - Emerald Empire
+  - Courts of Stone
+  - Path of Waves
+  - Celestial Realms
+- Fix js error when Advancement is not embed in a actor
+- Click on a weapon show the DicePicker with the weapon skill selected
+- Display Rarity in Compendiums for Items, Armors and Weapons
+- Other minors fix
+
 ## 1.1.1 - The Huns War
 - Fix Minion initiative
 - Fix textarea ninjo/giri
-
 
 ## 1.1.0 - Initiative first !
 - Added initiative system :
@@ -22,7 +33,7 @@
 - PC/NPC Sheet :
   - Added a visual indicator for equipped / readied
   - Now only equipped armor / weapon will show in conflict tab, and all armors/weapons now show in inventory tab
-  - Xp not in curriculum are now rounded up (down before)
+  - Xp not in curriculum are now rounded up (down before, due to a translation error)
   - No more automation in stats for Npc (these cheaters !)
 - 20Q Pushed the step3 item's limit to 20 (10 previous)
 - Added System migration stuff

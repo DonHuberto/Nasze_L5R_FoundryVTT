@@ -2,7 +2,7 @@
     "name": "l5r5e",
     "title": "Legend of the Five Rings (5th Edition)",
     "description": "This is an authorised multilingual game system En|Fr|Es, for Legend of the Five Rings (5th Edition) by <a href='https://edge-studio.net/'>Edge Studio</a> <p> - Join the official Discord server: <a href='https://discord.gg/foundryvtt'> Official Discord</a></p><p> - Rejoignez la communauté Francophone: <a href='https://discord.gg/pPSDNJk'>Francophone Discord</a></p>",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "minimumCoreVersion": "0.7.9",
     "compatibleCoreVersion": "0.7.9",
     "manifestPlusVersion": "1.0.0",
@@ -36,109 +36,134 @@
             "name": "core-properties",
             "label": "Properties",
             "path": "packs/core-properties.db",
-            "entity": "Item"
+            "entity": "Item",
+            "system": "l5r5e"
         },
         {
             "name": "core-techniques-kata",
             "label": "Techniques Kata",
             "path": "packs/core-techniques-kata.db",
-            "entity": "Item"
+            "entity": "Item",
+            "system": "l5r5e"
         },
         {
             "name": "core-techniques-kiho",
             "label": "Techniques Kihõ",
             "path": "packs/core-techniques-kiho.db",
-            "entity": "Item"
+            "entity": "Item",
+            "system": "l5r5e"
+        },
+        {
+            "name": "core-techniques-inversion",
+            "label": "Techniques Inversions",
+            "path": "packs/core-techniques-inversion.db",
+            "entity": "Item",
+            "system": "l5r5e"
         },
         {
             "name": "core-techniques-invocations",
             "label": "Techniques Invocations",
             "path": "packs/core-techniques-invocations.db",
-            "entity": "Item"
+            "entity": "Item",
+            "system": "l5r5e"
         },
         {
             "name": "core-techniques-rituals",
             "label": "Techniques Rituals",
             "path": "packs/core-techniques-rituals.db",
-            "entity": "Item"
+            "entity": "Item",
+            "system": "l5r5e"
         },
         {
             "name": "core-techniques-shuji",
             "label": "Techniques Shuji",
             "path": "packs/core-techniques-shuji.db",
-            "entity": "Item"
+            "entity": "Item",
+            "system": "l5r5e"
         },
         {
             "name": "core-techniques-maho",
             "label": "Techniques Mahõ",
             "path": "packs/core-techniques-maho.db",
-            "entity": "Item"
+            "entity": "Item",
+            "system": "l5r5e"
         },
         {
             "name": "core-techniques-ninjutsu",
             "label": "Techniques Ninjutsu",
             "path": "packs/core-techniques-ninjutsu.db",
-            "entity": "Item"
+            "entity": "Item",
+            "system": "l5r5e"
         },
         {
             "name": "core-techniques-school",
             "label": "School Abilities",
             "path": "packs/core-techniques-school.db",
-            "entity": "Item"
+            "entity": "Item",
+            "system": "l5r5e"
         },
         {
             "name": "core-techniques-mastery",
             "label": "Mastery Abilities",
             "path": "packs/core-techniques-mastery.db",
-            "entity": "Item"
+            "entity": "Item",
+            "system": "l5r5e"
         },
         {
             "name": "core-items",
             "label": "Items",
             "path": "packs/core-items.db",
-            "entity": "Item"
+            "entity": "Item",
+            "system": "l5r5e"
         },
         {
             "name": "core-armors",
             "label": "Armors",
             "path": "packs/core-armors.db",
-            "entity": "Item"
+            "entity": "Item",
+            "system": "l5r5e"
         },
         {
             "name": "core-weapons",
             "label": "Weapons",
             "path": "packs/core-weapons.db",
-            "entity": "Item"
+            "entity": "Item",
+            "system": "l5r5e"
         },
         {
             "name": "core-peculiarities-distinctions",
             "label": "Distinctions",
             "path": "packs/core-peculiarities-distinctions.db",
-            "entity": "Item"
+            "entity": "Item",
+            "system": "l5r5e"
         },
         {
             "name": "core-peculiarities-passions",
             "label": "Passions",
             "path": "packs/core-peculiarities-passions.db",
-            "entity": "Item"
+            "entity": "Item",
+            "system": "l5r5e"
         },
         {
             "name": "core-peculiarities-adversities",
             "label": "Adversities",
             "path": "packs/core-peculiarities-adversities.db",
-            "entity": "Item"
+            "entity": "Item",
+            "system": "l5r5e"
         },
         {
             "name": "core-peculiarities-anxieties",
             "label": "Anxieties",
             "path": "packs/core-peculiarities-anxieties.db",
-            "entity": "Item"
+            "entity": "Item",
+            "system": "l5r5e"
         },
         {
             "name": "great-clans-presentation",
             "label": "Great Clans Presentation",
             "path": "packs/great-clans-presentation.db",
-            "entity": "JournalEntry"
+            "entity": "JournalEntry",
+            "system": "l5r5e"
         }
     ],
     "languages": [

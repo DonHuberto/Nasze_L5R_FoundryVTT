@@ -9,345 +9,562 @@
         {
             "id": "Benten’s Curse",
             "name": "Malédiction de Benten",
-            "types": "relations, spirituel",
+            "types": "Relations, Spirituel",
             "description": "",
-            "book_reference": "LdR p.122"
+            "book_reference": "Livre de Règles p.122"
         },
         {
             "id": "Bishamon’s Curse",
             "name": "Malédiction de Bishamon",
-            "types": "physique, spirituel",
+            "types": "Physique, Spirituel",
             "description": "",
-            "book_reference": "LdR p.123"
+            "book_reference": "Livre de Règles p.123"
         },
         {
             "id": "Bitter Betrothal",
             "name": "Amères fiançailles",
-            "types": "relations",
+            "types": "Relations",
             "description": "",
-            "book_reference": "LdR p.117"
+            "book_reference": "Livre de Règles p.117"
         },
         {
             "id": "Blackmailed by [Character’s Name]",
             "name": "Chantage exercé par [Nom de personnage]",
-            "types": "relations",
+            "types": "Relations",
             "description": "",
-            "book_reference": "LdR p.118"
+            "book_reference": "Livre de Règles p.118"
         },
         {
             "id": "Blindness",
             "name": "Cécité",
-            "types": "physique, séquelle",
+            "types": "Physique, Séquelle",
             "description": "",
-            "book_reference": "LdR p.118"
+            "book_reference": "Livre de Règles p.118"
         },
         {
             "id": "Bluntness",
             "name": "Franc-parler",
-            "types": "relations",
+            "types": "Relations",
             "description": "",
-            "book_reference": "LdR p.120"
+            "book_reference": "Livre de Règles p.120"
         },
         {
             "id": "Clumsiness",
             "name": "Maladresse",
-            "types": "physique",
+            "types": "Physique",
             "description": "",
-            "book_reference": "LdR p.122"
+            "book_reference": "Livre de Règles p.122"
         },
         {
             "id": "Cognitive Lapses",
             "name": "Absences",
-            "types": "mental, séquelle",
+            "types": "Mental, Séquelle",
             "description": "",
-            "book_reference": "LdR p.116"
+            "book_reference": "Livre de Règles p.116"
         },
         {
             "id": "Daikoku’s Curse",
             "name": "Malédiction de Daikoku",
-            "types": "relations, spiritualité",
+            "types": "Relations, Spiritualité",
             "description": "",
-            "book_reference": "LdR p.123"
+            "book_reference": "Livre de Règles p.123"
         },
         {
             "id": "Damaged Heart or Organ",
             "name": "Cœur ou organe défaillant",
-            "types": "physique, séquelle",
+            "types": "Physique, Séquelle",
             "description": "",
-            "book_reference": "LdR p.119"
+            "book_reference": "Livre de Règles p.119"
         },
         {
             "id": "Deafness",
             "name": "Surdité",
-            "types": "physique, séquelle",
+            "types": "Physique, Séquelle",
             "description": "",
-            "book_reference": "LdR p.130"
+            "book_reference": "Livre de Règles p.130"
         },
         {
             "id": "Discomfiting Countenance",
             "name": "Aspect déconcertant",
-            "types": "relations, physique",
+            "types": "Physique, Relations",
             "description": "",
-            "book_reference": "LdR p.117"
+            "book_reference": "Livre de Règles p.117"
         },
         {
             "id": "Disdain for Compassion",
             "name": "Mépris pour la Compassion",
-            "types": "défaut, mental",
+            "types": "Défaut, Mental",
             "description": "",
-            "book_reference": "LdR p.125"
+            "book_reference": "Livre de Règles p.125"
         },
         {
             "id": "Disdain for Courage",
             "name": "Mépris pour le Courage",
-            "types": "défaut, mental",
+            "types": "Défaut, Mental",
             "description": "",
-            "book_reference": "LdR p.125"
+            "book_reference": "Livre de Règles p.125"
         },
         {
             "id": "Disdain for Courtesy",
             "name": "Mépris pour la Courtoisie",
-            "types": "défaut, mental",
+            "types": "Défaut, Mental",
             "description": "",
-            "book_reference": "LdR p.125"
+            "book_reference": "Livre de Règles p.125"
         },
         {
             "id": "Disdain for Duty and Loyalty",
             "name": "Mépris pour le Devoir et loyauté",
-            "types": "défaut, mental",
+            "types": "Défaut, Mental",
             "description": "",
-            "book_reference": "LdR p.125"
+            "book_reference": "Livre de Règles p.125"
         },
         {
             "id": "Disdain for Honor",
             "name": "Mépris pour l'Honneur",
-            "types": "défaut, mental",
+            "types": "Défaut, Mental",
             "description": "",
-            "book_reference": "LdR p.125"
+            "book_reference": "Livre de Règles p.125"
         },
         {
             "id": "Disdain for Righteousness",
             "name": "Mépris pour la Droiture",
-            "types": "défaut, mental",
+            "types": "Défaut, Mental",
             "description": "",
-            "book_reference": "LdR p.125"
+            "book_reference": "Livre de Règles p.125"
         },
         {
             "id": "Disdain for Sincerity",
             "name": "Mépris pour la Sincérité",
-            "types": "défaut, mental",
+            "types": "Défaut, Mental",
             "description": "",
-            "book_reference": "LdR p.125"
+            "book_reference": "Livre de Règles p.125"
         },
         {
             "id": "Ebisu’s Curse",
             "name": "Malédiction d’Ebisu",
-            "types": "physique, spirituel",
+            "types": "Physique, Spirituel",
             "description": "",
-            "book_reference": "LdR p.123"
+            "book_reference": "Livre de Règles p.123"
         },
         {
             "id": "Fractured Spine",
             "name": "Colonne vertébrale fracturée",
-            "types": "physique, séquelle",
+            "types": "Physique, Séquelle",
             "description": "",
-            "book_reference": "LdR p.119"
+            "book_reference": "Livre de Règles p.119"
         },
         {
             "id": "Fukurokujin’s Curse",
             "name": "Malédiction de Fukurokujin",
-            "types": "mental, spirituel",
+            "types": "Mental, Spirituel",
             "description": "",
-            "book_reference": "LdR p.124"
+            "book_reference": "Livre de Règles p.124"
         },
         {
             "id": "Gaijin Name, Culture, or Appearance",
             "name": "Nom, culture ou apparence gaijin",
-            "types": "relations (Nom), mental et relations (Culture) ou<br>physique (Apparence)",
+            "types": "Mental et relations (Culture) ou<br>physique (Apparence), Relations (Nom)",
             "description": "",
-            "book_reference": "LdR p.126"
+            "book_reference": "Livre de Règles p.126"
         },
         {
             "id": "Haunting",
             "name": "Hanté",
-            "types": "relations, spirituel",
+            "types": "Relations, Spirituel",
             "description": "",
-            "book_reference": "LdR p.120"
+            "book_reference": "Livre de Règles p.120"
         },
         {
             "id": "Incurable Illness",
             "name": "Maladie incurable",
-            "types": "physique",
+            "types": "Physique",
             "description": "",
-            "book_reference": "LdR p.122"
+            "book_reference": "Livre de Règles p.122"
         },
         {
             "id": "Jurōjin’s Curse",
             "name": "Malédiction de Jurōjin",
-            "types": "physique, spirituel",
+            "types": "Physique, Spirituel",
             "description": "",
-            "book_reference": "LdR p.124"
+            "book_reference": "Livre de Règles p.124"
         },
         {
             "id": "Kisshōten’s Curse",
             "name": "Malédiction de Kisshōten",
-            "types": "physique, spirituel",
+            "types": "Physique, Spirituel",
             "description": "",
-            "book_reference": "LdR p.124"
+            "book_reference": "Livre de Règles p.124"
         },
         {
             "id": "Lost Arm or Lost Hand",
             "name": "Manchot",
-            "types": "physique, séquelle",
+            "types": "Physique, Séquelle",
             "description": "",
-            "book_reference": "LdR p.124"
+            "book_reference": "Livre de Règles p.124"
         },
         {
             "id": "Lost Eye",
             "name": "Borgne",
-            "types": "physique, séquelle",
+            "types": "Physique, Séquelle",
             "description": "",
-            "book_reference": "LdR p.118"
+            "book_reference": "Livre de Règles p.118"
         },
         {
             "id": "Lost Fingers",
             "name": "Doigts manquants",
-            "types": "physique, séquelle",
+            "types": "Physique, Séquelle",
             "description": "",
-            "book_reference": "LdR p.120"
+            "book_reference": "Livre de Règles p.120"
         },
         {
             "id": "Lost Leg",
             "name": "Unijambiste",
-            "types": "physique, séquelle",
+            "types": "Physique, Séquelle",
             "description": "",
-            "book_reference": "LdR p.130"
+            "book_reference": "Livre de Règles p.130"
         },
         {
             "id": "Lost Memories",
             "name": "Amnésie",
-            "types": "mental, séquelle",
+            "types": "Mental, Séquelle",
             "description": "",
-            "book_reference": "LdR p.117"
+            "book_reference": "Livre de Règles p.117"
         },
         {
             "id": "Maimed Arm",
             "name": "Bras mutilé",
-            "types": "physique, séquelle",
+            "types": "Physique, Séquelle",
             "description": "",
-            "book_reference": "LdR p.118"
+            "book_reference": "Livre de Règles p.118"
         },
         {
             "id": "Maimed Visage",
             "name": "Défiguré",
-            "types": "physique, relations, séquelle",
+            "types": "Physique, Relations, Séquelle",
             "description": "",
-            "book_reference": "LdR p.119"
+            "book_reference": "Livre de Règles p.119"
         },
         {
             "id": "Momoku",
             "name": "Momoku",
-            "types": "spirituel",
+            "types": "Spirituel",
             "description": "",
-            "book_reference": "LdR p.125"
+            "book_reference": "Livre de Règles p.125"
         },
         {
             "id": "Muteness",
             "name": "Mutisme",
-            "types": "relations, physique ou mental, séquelle",
+            "types": "Physique ou mental, Relations, Séquelle",
             "description": "",
-            "book_reference": "LdR p.126"
+            "book_reference": "Livre de Règles p.126"
         },
         {
             "id": "Nerve Damage",
             "name": "Lésions nerveuses",
-            "types": "physique, séquelle",
+            "types": "Physique, Séquelle",
             "description": "",
-            "book_reference": "LdR p.121"
+            "book_reference": "Livre de Règles p.121"
         },
         {
             "id": "Scorn of [One Group]",
             "name": "Méprisé par [un groupe]",
-            "types": "relations",
+            "types": "Relations",
             "description": "",
-            "book_reference": "LdR p.125"
+            "book_reference": "Livre de Règles p.125"
         },
         {
             "id": "Shadowlands Taint (Air)",
             "name": "Souillure de l’Outremonde (Air)",
-            "types": "malédiction, relations, spirituel",
+            "types": "Malédiction, Relations, Spirituel",
             "description": "",
-            "book_reference": "LdR p.128"
+            "book_reference": "Livre de Règles p.128"
         },
         {
             "id": "Shadowlands Taint (Earth)",
             "name": "Souillure de l’Outremonde (Terre)",
-            "types": "malédiction, physique, spirituel",
+            "types": "Malédiction, Physique, Spirituel",
             "description": "",
-            "book_reference": "LdR p.129"
+            "book_reference": "Livre de Règles p.129"
         },
         {
             "id": "Shadowlands Taint (Fire)",
             "name": "Souillure de l’Outremonde (Feu)",
-            "types": "malédiction, mental, spirituel",
+            "types": "Malédiction, Mental, Spirituel",
             "description": "",
-            "book_reference": "LdR p.129"
+            "book_reference": "Livre de Règles p.129"
         },
         {
             "id": "Shadowlands Taint (Void)",
             "name": "Souillure de l’Outremonde (Vide)",
-            "types": "malédiction, spirituel",
+            "types": "Malédiction, Spirituel",
             "description": "",
-            "book_reference": "LdR p.129"
+            "book_reference": "Livre de Règles p.129"
         },
         {
             "id": "Shadowlands Taint (Water)",
             "name": "Souillure de l’Outremonde (Eau)",
-            "types": "malédiction, physique, spirituel",
+            "types": "Malédiction, Physique, Spirituel",
             "description": "",
-            "book_reference": "LdR p.128"
+            "book_reference": "Livre de Règles p.128"
         },
         {
             "id": "Sworn Enemy",
             "name": "Ennemi juré",
-            "types": "relations",
+            "types": "Relations",
             "description": "",
-            "book_reference": "LdR p.120"
+            "book_reference": "Livre de Règles p.120"
         },
         {
             "id": "Whispers of Cruelty",
             "name": "Réputation de cruauté",
-            "types": "relations, infamie",
+            "types": "Infamie, Relations",
             "description": "",
-            "book_reference": "LdR p.126"
+            "book_reference": "Livre de Règles p.126"
         },
         {
             "id": "Whispers of Doom",
             "name": "Réputation de tragédie",
-            "types": "relations, infamie",
+            "types": "Infamie, Relations",
             "description": "",
-            "book_reference": "LdR p.127"
+            "book_reference": "Livre de Règles p.127"
         },
         {
             "id": "Whispers of Failure",
             "name": "Réputation d’échec",
-            "types": "relations, infamie",
+            "types": "Infamie, Relations",
             "description": "",
-            "book_reference": "LdR p.127"
+            "book_reference": "Livre de Règles p.127"
         },
         {
             "id": "Whispers of Poverty",
             "name": "Réputation d’indigence",
-            "types": "relations, infamie",
+            "types": "Infamie, Relations",
             "description": "",
-            "book_reference": "LdR p.127"
+            "book_reference": "Livre de Règles p.127"
         },
         {
             "id": "Whispers of Treachery",
             "name": "Réputation de traîtrise",
-            "types": "relations, infamie",
+            "types": "Infamie, Relations",
             "description": "",
-            "book_reference": "LdR p.127"
+            "book_reference": "Livre de Règles p.127"
+        },
+        {
+            "id": "Elemental Deficiency (Air)",
+            "name": "Elemental Deficiency (Air) (WIP)",
+            "types": "Mental, Physique, Spirituel",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Elemental Deficiency (Earth)",
+            "name": "Elemental Deficiency (Earth) (WIP)",
+            "types": "Mental, Physique, Spirituel",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Elemental Deficiency (Fire)",
+            "name": "Elemental Deficiency (Fire) (WIP)",
+            "types": "Mental, Physique, Spirituel",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Elemental Deficiency (Water)",
+            "name": "Elemental Deficiency (Water) (WIP)",
+            "types": "Mental, Physique, Spirituel",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Lackluster",
+            "name": "Terne",
+            "types": "Relations",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.102"
+        },
+        {
+            "id": "Overconfidence in Creativity",
+            "name": "Confiance excessive en Créativité",
+            "types": "Mental",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.101"
+        },
+        {
+            "id": "Overconfidence in Spiritual Sensitivity",
+            "name": "Confiance excessive en  Sensibilité spirituelle",
+            "types": "Spirituel",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.101"
+        },
+        {
+            "id": "Overconfidence in Charm",
+            "name": "Confiance excessive en Charme",
+            "types": "Relations",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.101"
+        },
+        {
+            "id": "Overconfidence in Subtlety",
+            "name": "Confiance excessive en Subtilité",
+            "types": "Relations",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.101"
+        },
+        {
+            "id": "Overconfidence in Toughness",
+            "name": "Confiance excessive en Tenacité",
+            "types": "Physique",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.101"
+        },
+        {
+            "id": "Unsavory Past",
+            "name": "Passé honteux",
+            "types": "Relations",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.101"
+        },
+        {
+            "id": "Allergy",
+            "name": "Allergy (WIP)",
+            "types": "Physique",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude"
+        },
+        {
+            "id": "Cursed Lineage",
+            "name": "Cursed Lineage (WIP)",
+            "types": "Relations, Spirituel",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude"
+        },
+        {
+            "id": "Adopted Peasant",
+            "name": "Adopted Peasant (WIP)",
+            "types": "Relations",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude"
+        },
+        {
+            "id": "Despise in [City]",
+            "name": "Despise in [City] (WIP)",
+            "types": "Relations, Renommée",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude"
+        },
+        {
+            "id": "Hunted by Chikusho-Do",
+            "name": "Hunted by Chikusho-Do (WIP)",
+            "types": "Spirituel",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude"
+        },
+        {
+            "id": "Skepticism",
+            "name": "Skepticism (WIP)",
+            "types": "Mental, Spirituel",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude"
+        },
+        {
+            "id": "Debt to [Person or Organization]",
+            "name": "Debt to [Person or Organization] (WIP)",
+            "types": "Relations",
+            "description": "",
+            "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Bullheaded",
+            "name": "Bullheaded (WIP)",
+            "types": "Mental",
+            "description": "",
+            "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Many Mouths",
+            "name": "Many Mouths (WIP)",
+            "types": "Mental, Relations",
+            "description": "",
+            "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Horrible Scar",
+            "name": "Horrible Scar (WIP)",
+            "types": "Mental, Relations",
+            "description": "",
+            "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Pursued by [Individual or Group]",
+            "name": "Pursued by [Individual or Group] (WIP)",
+            "types": "Mental, Relations",
+            "description": "",
+            "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Encompassing Duty",
+            "name": "Encompassing Duty (WIP)",
+            "types": "Mental",
+            "description": "",
+            "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Stained Lineage",
+            "name": "Stained Lineage (WIP)",
+            "types": "Mental, Relations",
+            "description": "",
+            "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Shadowlands Taint [One with the Darkness]",
+            "name": "Souillure de l’Outremonde (Disciple des ténèbres)",
+            "types": "Malédiction, Physique, Spirituel",
+            "description": "",
+            "book_reference": "L’Outremonde p.100"
+        },
+        {
+            "id": "Shadowlands Taint [Unnatural Skin]",
+            "name": "Souillure de l’Outremonde (Mutation de la peau)",
+            "types": "Malédiction, Physique",
+            "description": "",
+            "book_reference": "L’Outremonde p.100"
+        },
+        {
+            "id": "Shadowlands Taint [Blasphemous Appetites]",
+            "name": "Souillure de l’Outremonde (Voracité infâme)",
+            "types": "Malédiction, Mental, Spirituel",
+            "description": "",
+            "book_reference": "L’Outremonde p.100"
+        },
+        {
+            "id": "Lost Name",
+            "name": "Nom dérobé",
+            "types": "Spirituel",
+            "description": "",
+            "book_reference": "L’Outremonde p.97"
+        },
+        {
+            "id": "Demon Wound",
+            "name": "Blessure de démon",
+            "types": "Spirituel, Séquelle",
+            "description": "",
+            "book_reference": "L’Outremonde p.97"
+        },
+        {
+            "id": "Shadowlands Taint [Kansen Whispers]",
+            "name": "Souillure de l’Outremonde (Murmures des kAnsen)",
+            "types": "Malédiction, Mentale",
+            "description": "",
+            "book_reference": "L’Outremonde p.99"
+        },
+        {
+            "id": "Shadowlands Taint [Distorted Limbs]",
+            "name": "Souillure de l’Outremonde (Membres déformés)",
+            "types": "Malédiction, Physique",
+            "description": "",
+            "book_reference": "L’Outremonde p.99"
         }
     ]
 }
