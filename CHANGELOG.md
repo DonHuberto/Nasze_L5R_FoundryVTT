@@ -8,6 +8,7 @@
   - Path of Waves
   - Celestial Realms
 - Fix js error when Advancement is not embed in a actor
+- Click on a weapon show the DicePicker with the weapon skill selected
 - Display Rarity in Compendiums for Items, Armors and Weapons
 - Other minors fix
 

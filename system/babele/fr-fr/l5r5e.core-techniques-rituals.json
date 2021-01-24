@@ -9,31 +9,127 @@
             "id": "Tea Ceremony",
             "name": "Cérémonie du thé",
             "description": "",
-            "book_reference": "LdR p.212"
+            "book_reference": "Livre de Règles p.212"
         },
         {
             "id": "Commune with the Spirits",
             "name": "Communier avec les esprits",
             "description": "",
-            "book_reference": "LdR p.212"
+            "book_reference": "Livre de Règles p.212"
         },
         {
             "id": "Divination",
             "name": "Divination",
             "description": "",
-            "book_reference": "LdR p.213"
+            "book_reference": "Livre de Règles p.213"
         },
         {
             "id": "Cleansing Rite",
             "name": "Rite de purification",
             "description": "",
-            "book_reference": "LdR p.213"
+            "book_reference": "Livre de Règles p.213"
         },
         {
             "id": "Threshold Barrier",
             "name": "Seuil infranchissable",
             "description": "",
-            "book_reference": "LdR p.213"
+            "book_reference": "Livre de Règles p.213"
+        },
+        {
+            "id": "Blessed Union",
+            "name": "Blessed Union (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Blessing of the Dance",
+            "name": "Blessing of the Dance (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Prayer of Protection",
+            "name": "Prayer of Protection (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Rite of the Wheel",
+            "name": "Rite of the Wheel (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Whispers to the Moon (Moon Cultist)",
+            "name": "Whispers to the Moon (Moon Cultist) (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Formal Tea Ceremony",
+            "name": "Cérémonie du thé protocolaire",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.116"
+        },
+        {
+            "id": "Treaty Signing",
+            "name": "Signature de traité",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.117"
+        },
+        {
+            "id": "The Ties that Bind",
+            "name": "Les liens qui nous unissent",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.116"
+        },
+        {
+            "id": "Balancing Salve (Qamarist Region)",
+            "name": "Balancing Salve (Qamarist Region) (WIP)",
+            "description": "",
+            "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Elixir of Recovery (Qamarist Region)",
+            "name": "Elixir of Recovery (Qamarist Region) (WIP)",
+            "description": "",
+            "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Fortitude Draught (Qamarist Region)",
+            "name": "Fortitude Draught (Qamarist Region) (WIP)",
+            "description": "",
+            "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Restorative Transmutation (Qamarist Region)",
+            "name": "Restorative Transmutation (Qamarist Region) (WIP)",
+            "description": "",
+            "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Cleansing of Coral and Gold (Ivory Kingdoms Region)",
+            "name": "Cleansing of Coral and Gold (Ivory Kingdoms Region) (WIP)",
+            "description": "",
+            "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Wayfarer's Path",
+            "name": "Wayfarer's Path (WIP)",
+            "description": "",
+            "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Blessing of Steel (Artisan)",
+            "name": "Bénédiction d’acier (Artisan)",
+            "description": "",
+            "book_reference": "L’Outremonde p.114"
+        },
+        {
+            "id": "Craft Shikigami (Shugenja)",
+            "name": "Fabrication des shikigami (Shugenja)",
+            "description": "",
+            "book_reference": "L’Outremonde p.114"
         }
     ]
 }

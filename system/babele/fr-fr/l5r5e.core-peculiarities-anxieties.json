@@ -9,135 +9,261 @@
         {
             "id": "Addiction",
             "name": "Addiction",
-            "types": "mental, physique",
+            "types": "Mental, Physique",
             "description": "",
-            "book_reference": "LdR p.130"
+            "book_reference": "Livre de Règles p.130"
         },
         {
             "id": "Battle Trauma",
             "name": "Traumatisme de guerre",
-            "types": "mental, physique",
+            "types": "Mental, Physique",
             "description": "",
-            "book_reference": "LdR p.136"
+            "book_reference": "Livre de Règles p.136"
         },
         {
             "id": "Cynicism",
             "name": "Cynisme",
-            "types": "relations, mental",
+            "types": "Mental, Relations",
             "description": "",
-            "book_reference": "LdR p.131"
+            "book_reference": "Livre de Règles p.131"
         },
         {
             "id": "Dark Secret",
             "name": "Sombre secret",
-            "types": "relations",
+            "types": "Relations",
             "description": "",
-            "book_reference": "LdR p.135"
+            "book_reference": "Livre de Règles p.135"
         },
         {
             "id": "Delusions of Grandeur",
             "name": "Mégalomanie",
-            "types": "mental, relations",
+            "types": "Mental, Relations",
             "description": "",
-            "book_reference": "LdR p.134"
+            "book_reference": "Livre de Règles p.134"
         },
         {
             "id": "Fear of Death",
             "name": "Peur de la mort",
-            "types": "mental, physique",
+            "types": "Mental, Physique",
             "description": "",
-            "book_reference": "LdR p.135"
+            "book_reference": "Livre de Règles p.135"
         },
         {
             "id": "Ferocity",
             "name": "Férocité",
-            "types": "physique, mental",
+            "types": "Mental, Physique",
             "description": "",
-            "book_reference": "LdR p.132"
+            "book_reference": "Livre de Règles p.132"
         },
         {
             "id": "Impatience",
             "name": "Impatience",
-            "types": "mental",
+            "types": "Mental",
             "description": "",
-            "book_reference": "LdR p.132"
+            "book_reference": "Livre de Règles p.132"
         },
         {
             "id": "Intolerance",
             "name": "Intolérance",
-            "types": "relations",
+            "types": "Relations",
             "description": "",
-            "book_reference": "LdR p.132"
+            "book_reference": "Livre de Règles p.132"
         },
         {
             "id": "Irrepressible Flirtation",
             "name": "Joli cœur",
-            "types": "relations",
+            "types": "Relations",
             "description": "",
-            "book_reference": "LdR p.133"
+            "book_reference": "Livre de Règles p.133"
         },
         {
             "id": "Jealousy",
             "name": "Jalousie",
-            "types": "physique, mental",
+            "types": "Mental, Physique",
             "description": "",
-            "book_reference": "LdR p.133"
+            "book_reference": "Livre de Règles p.133"
         },
         {
             "id": "Materialism",
             "name": "Matérialisme",
-            "types": "mental",
+            "types": "Mental",
             "description": "",
-            "book_reference": "LdR p.134"
+            "book_reference": "Livre de Règles p.134"
         },
         {
             "id": "Meekness",
             "name": "Timidité",
-            "types": "relations",
+            "types": "Relations",
             "description": "",
-            "book_reference": "LdR p.136"
+            "book_reference": "Livre de Règles p.136"
         },
         {
             "id": "Painful Honesty",
             "name": "Douloureuse honnêteté",
-            "types": "relations",
+            "types": "Relations",
             "description": "",
-            "book_reference": "LdR p.132"
+            "book_reference": "Livre de Règles p.132"
         },
         {
             "id": "Paranoia",
             "name": "Paranoïa",
-            "types": "physique, mental",
+            "types": "Mental, Physique",
             "description": "",
-            "book_reference": "LdR p.134"
+            "book_reference": "Livre de Règles p.134"
         },
         {
             "id": "Perfectionism",
             "name": "Perfectionnisme",
-            "types": "physique, mental",
+            "types": "Mental, Physique",
             "description": "",
-            "book_reference": "LdR p.134"
+            "book_reference": "Livre de Règles p.134"
         },
         {
             "id": "Phobia",
             "name": "Phobie",
-            "types": "physique, mental",
+            "types": "Mental, Physique",
             "description": "",
-            "book_reference": "LdR p.135"
+            "book_reference": "Livre de Règles p.135"
         },
         {
             "id": "Softheartedness",
             "name": "Cœur tendre",
-            "types": "relations, mental",
+            "types": "Mental, Relations",
             "description": "",
-            "book_reference": "LdR p.131"
+            "book_reference": "Livre de Règles p.131"
         },
         {
             "id": "Superstition",
             "name": "Superstition",
-            "types": "mental, spirituel",
+            "types": "Mental, Spirituel",
             "description": "",
-            "book_reference": "LdR p.136"
+            "book_reference": "Livre de Règles p.136"
+        },
+        {
+            "id": "Conspiracy",
+            "name": "Conspiracy (WIP)",
+            "types": "Mental, Relations",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Omen of Bad Luck",
+            "name": "Omen of Bad Luck (WIP)",
+            "types": "Mental, Relations",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Uncleanliness",
+            "name": "Uncleanliness (WIP)",
+            "types": "Mental",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Vanity",
+            "name": "Vanity (WIP)",
+            "types": "Mental, Relations",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Isolation",
+            "name": "Isolement",
+            "types": "Mental, Relations",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.103"
+        },
+        {
+            "id": "Web of Lies",
+            "name": "Tissu de mensonges",
+            "types": "Relations",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.103"
+        },
+        {
+            "id": "Accustomed to Luxury",
+            "name": "Accustomed to Luxury (WIP)",
+            "types": "Mental",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude"
+        },
+        {
+            "id": "Claustrophobia",
+            "name": "Claustrophobia (WIP)",
+            "types": "Mental",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude"
+        },
+        {
+            "id": "False Identity",
+            "name": "False Identity (WIP)",
+            "types": "Relations",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude"
+        },
+        {
+            "id": "Loathing for Peasants",
+            "name": "Loathing for Peasants (WIP)",
+            "types": "Mental, Relations",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude"
+        },
+        {
+            "id": "Loneliness",
+            "name": "Loneliness (WIP)",
+            "types": "Mental, Relations",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude"
+        },
+        {
+            "id": "Eyes of Many",
+            "name": "Eyes of Many (WIP)",
+            "types": "Mental",
+            "description": "",
+            "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Coming Storm",
+            "name": "Coming Storm (WIP)",
+            "types": "Mental",
+            "description": "",
+            "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Fear of Stagnation",
+            "name": "Fear of Stagnation (WIP)",
+            "types": "Mental",
+            "description": "",
+            "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Failure",
+            "name": "Failure (WIP)",
+            "types": "Mental",
+            "description": "",
+            "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Fallen Ancestor",
+            "name": "Ancêtre déchu",
+            "types": "Relations, Spirituel",
+            "description": "",
+            "book_reference": "L’Outremonde p.98"
+        },
+        {
+            "id": "Obtuse",
+            "name": "Obtus",
+            "types": "Mental",
+            "description": "",
+            "book_reference": "L’Outremonde p.99"
+        },
+        {
+            "id": "Reformed Maho-Tsukai",
+            "name": "MAhō-tsukAi repenti",
+            "types": "Relations",
+            "description": "",
+            "book_reference": "L’Outremonde p.98"
         }
     ]
 }

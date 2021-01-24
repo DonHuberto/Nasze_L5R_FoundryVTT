@@ -9,31 +9,97 @@
             "id": "Incite Haunting",
             "name": "Emprise maléfique",
             "description": "",
-            "book_reference": "LdR p.224"
+            "book_reference": "Livre de Règles p.224"
         },
         {
             "id": "Grip of Anguish",
             "name": "Etreinte de l’angoisse",
             "description": "",
-            "book_reference": "LdR p.224"
+            "book_reference": "Livre de Règles p.224"
         },
         {
             "id": "Unholy Fervor",
             "name": "Ferveur impie",
             "description": "",
-            "book_reference": "LdR p.225"
+            "book_reference": "Livre de Règles p.225"
         },
         {
             "id": "Mark of Desecration",
             "name": "Marque de profanation",
             "description": "",
-            "book_reference": "LdR p.225"
+            "book_reference": "Livre de Règles p.225"
         },
         {
             "id": "Sinful Whispers",
             "name": "Murmures déviants",
             "description": "",
-            "book_reference": "LdR p.225"
+            "book_reference": "Livre de Règles p.225"
+        },
+        {
+            "id": "Accursed Summoning",
+            "name": "Conjuration maudite",
+            "description": "",
+            "book_reference": "L’Outremonde p.118"
+        },
+        {
+            "id": "Bind the Undead",
+            "name": "Lier les non-morts",
+            "description": "",
+            "book_reference": "L’Outremonde p.119"
+        },
+        {
+            "id": "Commune with Evil",
+            "name": "Communier avec le mal",
+            "description": "",
+            "book_reference": "L’Outremonde p.118"
+        },
+        {
+            "id": "Dark Reflection",
+            "name": "Sombre reflet",
+            "description": "",
+            "book_reference": "L’Outremonde p.121"
+        },
+        {
+            "id": "Entreat the Shadow Steed",
+            "name": "Implorer le destrier d’ombres",
+            "description": "",
+            "book_reference": "L’Outremonde p.119"
+        },
+        {
+            "id": "Fiend's Retreat",
+            "name": "La retraite du démon",
+            "description": "",
+            "book_reference": "L’Outremonde p.119"
+        },
+        {
+            "id": "Shape the Flesh",
+            "name": "Modeler la chair",
+            "description": "",
+            "book_reference": "L’Outremonde p.120"
+        },
+        {
+            "id": "Spiritual Shackles",
+            "name": "Chaînes spirituelles",
+            "description": "",
+            "book_reference": "L’Outremonde p.118"
+        },
+        {
+            "id": "Spread Corruption",
+            "name": "Répandre la corruption",
+            "description": "",
+            "book_reference": "L’Outremonde p.120"
+        },
+        {
+            "id": "Sword of Blood",
+            "name": "Sabre de sang",
+            "description": "",
+            "book_reference": "L’Outremonde p.121"
+        },
+        {
+            "id": "Twisted Summons",
+            "name": "Convocation de la difformité",
+            "description": "",
+            "book_reference": "L’Outremonde p.119"
         }
     ]
 }

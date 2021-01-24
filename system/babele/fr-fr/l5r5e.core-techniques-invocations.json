@@ -9,373 +9,451 @@
             "id": "Rise, Air",
             "name": "Air, incarne-toi",
             "description": "",
-            "book_reference": "LdR p.192"
+            "book_reference": "Livre de Règles p.192"
         },
         {
             "id": "Nature’s Touch",
             "name": "Caresse de la nature",
             "description": "",
-            "book_reference": "LdR p.192"
+            "book_reference": "Livre de Règles p.192"
         },
         {
             "id": "Wrath of Kaze-no-Kami",
             "name": "Courroux de Kaze no kami",
             "description": "",
-            "book_reference": "LdR p.192"
+            "book_reference": "Livre de Règles p.192"
         },
         {
             "id": "Secrets on the Wind",
             "name": "Des secrets dans le vent",
             "description": "",
-            "book_reference": "LdR p.193"
+            "book_reference": "Livre de Règles p.193"
         },
         {
             "id": "Vapor of Nightmares",
-            "name": "Émanation de cauchemar",
+            "name": "Emanation de cauchemar",
             "description": "",
-            "book_reference": "LdR p.193"
+            "book_reference": "Livre de Règles p.193"
         },
         {
             "id": "Grasp of the Air Dragon",
-            "name": "Étreinte du Dragon de l’Air",
+            "name": "Etreinte du Dragon de l’Air",
             "description": "",
-            "book_reference": "LdR p.193"
+            "book_reference": "Livre de Règles p.193"
         },
         {
             "id": "Blessed Wind",
             "name": "Vent béni",
             "description": "",
-            "book_reference": "LdR p.196"
+            "book_reference": "Livre de Règles p.196"
         },
         {
             "id": "By the Light of the Lord Moon",
             "name": "Par la lumière de Sire Lune",
             "description": "",
-            "book_reference": "LdR p.195"
+            "book_reference": "Livre de Règles p.195"
         },
         {
             "id": "Call Upon the Wind",
             "name": "L’appel du vent",
             "description": "",
-            "book_reference": "LdR p.194"
+            "book_reference": "Livre de Règles p.194"
         },
         {
             "id": "Cloak of Night",
             "name": "Manteau de nuit",
             "description": "",
-            "book_reference": "LdR p.194"
+            "book_reference": "Livre de Règles p.194"
         },
         {
             "id": "False Realm of the Fox Spirits",
             "name": "Royaume factice des esprits renards",
             "description": "",
-            "book_reference": "LdR p.195"
+            "book_reference": "Livre de Règles p.195"
         },
         {
             "id": "Mask of Wind",
             "name": "Masque du vent",
             "description": "",
-            "book_reference": "LdR p.194"
+            "book_reference": "Livre de Règles p.194"
         },
         {
             "id": "Summon Fog",
             "name": "Nappe de brouillard",
             "description": "",
-            "book_reference": "LdR p.195"
+            "book_reference": "Livre de Règles p.195"
         },
         {
             "id": "Tempest of Air",
             "name": "Tornade",
             "description": "",
-            "book_reference": "LdR p.196"
+            "book_reference": "Livre de Règles p.196"
         },
         {
             "id": "Token of Memory",
             "name": "Fragment de souvenir",
             "description": "",
-            "book_reference": "LdR p.194"
+            "book_reference": "Livre de Règles p.194"
         },
         {
             "id": "Yari of Air",
             "name": "Yari de l’Air",
             "description": "",
-            "book_reference": "LdR p.196"
+            "book_reference": "Livre de Règles p.196"
         },
         {
             "id": "Armor of Earth",
             "name": "Armure de la Terre",
             "description": "",
-            "book_reference": "LdR p.197"
+            "book_reference": "Livre de Règles p.197"
         },
         {
             "id": "Bind the Shadow",
             "name": "Enchaîner les ténèbres",
             "description": "",
-            "book_reference": "LdR p.198"
+            "book_reference": "Livre de Règles p.198"
         },
         {
             "id": "Caress of Earth",
             "name": "Caresse de la Terre",
             "description": "",
-            "book_reference": "LdR p.197"
+            "book_reference": "Livre de Règles p.197"
         },
         {
             "id": "Courage of Seven Thunders",
             "name": "Courage des Sept Tonnerres",
             "description": "",
-            "book_reference": "LdR p.198"
+            "book_reference": "Livre de Règles p.198"
         },
         {
             "id": "Earthquake",
             "name": "Séisme",
             "description": "",
-            "book_reference": "LdR p.200"
+            "book_reference": "Livre de Règles p.200"
         },
         {
             "id": "Earth Becomes Sky",
             "name": "La terre devient le ciel",
             "description": "",
-            "book_reference": "LdR p.199"
+            "book_reference": "Livre de Règles p.199"
         },
         {
             "id": "Embrace of Kenro-Ji-Jin",
-            "name": "Étreinte de Kenro-ji-jin",
+            "name": "Etreinte de Kenro-ji-jin",
             "description": "",
-            "book_reference": "LdR p.198"
+            "book_reference": "Livre de Règles p.198"
         },
         {
             "id": "Grasp of Earth",
-            "name": "Étreinte de la Terre",
+            "name": "Etreinte de la Terre",
             "description": "",
-            "book_reference": "LdR p.199"
+            "book_reference": "Livre de Règles p.199"
         },
         {
             "id": "Jade Strike",
             "name": "Assaut de jade",
             "description": "",
-            "book_reference": "LdR p.197"
+            "book_reference": "Livre de Règles p.197"
         },
         {
             "id": "Jurōjin’s Balm",
             "name": "Baume de Jurōjin",
             "description": "",
-            "book_reference": "LdR p.197"
+            "book_reference": "Livre de Règles p.197"
         },
         {
             "id": "Power of the Earth Dragon",
             "name": "Puissance du Dragon de la Terre",
             "description": "",
-            "book_reference": "LdR p.200"
+            "book_reference": "Livre de Règles p.200"
         },
         {
             "id": "Rise, Earth",
             "name": "Terre, incarne-toi",
             "description": "",
-            "book_reference": "LdR p.200"
+            "book_reference": "Livre de Règles p.200"
         },
         {
             "id": "Symbol of Earth",
             "name": "Symbole de la Terre",
             "description": "",
-            "book_reference": "LdR p.200"
+            "book_reference": "Livre de Règles p.200"
         },
         {
             "id": "Tetsubō of Earth",
             "name": "Tetsubō de la Terre",
             "description": "",
-            "book_reference": "LdR p.201"
+            "book_reference": "Livre de Règles p.201"
         },
         {
             "id": "Tomb of Jade",
             "name": "Tombe de jade",
             "description": "",
-            "book_reference": "LdR p.201"
+            "book_reference": "Livre de Règles p.201"
         },
         {
             "id": "Wall of Earth",
             "name": "Muraille de terre",
             "description": "",
-            "book_reference": "LdR p.199"
+            "book_reference": "Livre de Règles p.199"
         },
         {
             "id": "Armor of Radiance",
             "name": "Armure rayonnante",
             "description": "",
-            "book_reference": "LdR p.202"
+            "book_reference": "Livre de Règles p.202"
         },
         {
             "id": "Biting Steel",
             "name": "Morsure de l’acier",
             "description": "",
-            "book_reference": "LdR p.205"
+            "book_reference": "Livre de Règles p.205"
         },
         {
             "id": "Breath of the Fire Dragon",
             "name": "Souffle du Dragon du Feu",
             "description": "",
-            "book_reference": "LdR p.206"
+            "book_reference": "Livre de Règles p.206"
         },
         {
             "id": "Extinguish",
             "name": "Extinction",
             "description": "",
-            "book_reference": "LdR p.203"
+            "book_reference": "Livre de Règles p.203"
         },
         {
             "id": "Fukurokujin’s Wit",
             "name": "Esprit de Fukurokujin",
             "description": "",
-            "book_reference": "LdR p.202"
+            "book_reference": "Livre de Règles p.202"
         },
         {
             "id": "Fury of Osano-wo",
             "name": "Fureur d’Osano-wo",
             "description": "",
-            "book_reference": "LdR p.204"
+            "book_reference": "Livre de Règles p.204"
         },
         {
             "id": "Katana of Fire",
             "name": "Katana du Feu",
             "description": "",
-            "book_reference": "LdR p.204"
+            "book_reference": "Livre de Règles p.204"
         },
         {
             "id": "Matsu's Battlecry",
             "name": "Cri de guerre de Matsu",
             "description": "",
-            "book_reference": "LdR p.202"
+            "book_reference": "Livre de Règles p.202"
         },
         {
             "id": "Ravenous Swarms",
             "name": "Nuée vorace",
             "description": "",
-            "book_reference": "LdR p.205"
+            "book_reference": "Livre de Règles p.205"
         },
         {
             "id": "Rise, Flame",
             "name": "Feu, incarne-toi",
             "description": "",
-            "book_reference": "LdR p.203"
+            "book_reference": "Livre de Règles p.203"
         },
         {
             "id": "The Cleansing Fire",
             "name": "Le feu purificateur",
             "description": "",
-            "book_reference": "LdR p.205"
+            "book_reference": "Livre de Règles p.205"
         },
         {
             "id": "The Fires from Within",
             "name": "Feu intérieur",
             "description": "",
-            "book_reference": "LdR p.203"
+            "book_reference": "Livre de Règles p.203"
         },
         {
             "id": "The Soul’s Blade",
             "name": "Lame spirituelle",
             "description": "",
-            "book_reference": "LdR p.204"
+            "book_reference": "Livre de Règles p.204"
         },
         {
             "id": "Wall of Fire",
             "name": "Muraille de flammes",
             "description": "",
-            "book_reference": "LdR p.205"
+            "book_reference": "Livre de Règles p.205"
         },
         {
             "id": "Wings of the Phoenix",
             "name": "Ailes du phénix",
             "description": "",
-            "book_reference": "LdR p.202"
+            "book_reference": "Livre de Règles p.202"
         },
         {
             "id": "Bō of Water",
             "name": "Bō de l’Eau",
             "description": "",
-            "book_reference": "LdR p.207"
+            "book_reference": "Livre de Règles p.207"
         },
         {
             "id": "Dance of Seasons",
             "name": "La danse des saisons",
             "description": "",
-            "book_reference": "LdR p.209"
+            "book_reference": "Livre de Règles p.209"
         },
         {
             "id": "Dominion of Suijin",
             "name": "Le domaine de Suijin",
             "description": "",
-            "book_reference": "LdR p.209"
+            "book_reference": "Livre de Règles p.209"
         },
         {
             "id": "Ever-Changing Waves",
             "name": "L’impermanence du ressac",
             "description": "",
-            "book_reference": "LdR p.208"
+            "book_reference": "Livre de Règles p.208"
         },
         {
             "id": "Hands of the Tides",
             "name": "Mains des marées",
             "description": "",
-            "book_reference": "LdR p.210"
+            "book_reference": "Livre de Règles p.210"
         },
         {
             "id": "Heart of the Water Dragon",
             "name": "Cœur du Dragon de l’eau",
             "description": "",
-            "book_reference": "LdR p.207"
+            "book_reference": "Livre de Règles p.207"
         },
         {
             "id": "Inari’s Blessing",
             "name": "Bénédiction d’Inari",
             "description": "",
-            "book_reference": "LdR p.207"
+            "book_reference": "Livre de Règles p.207"
         },
         {
             "id": "Path to Inner Peace",
             "name": "Voie de la sérénité",
             "description": "",
-            "book_reference": "LdR p.211"
+            "book_reference": "Livre de Règles p.211"
         },
         {
             "id": "Reflections of P’an Ku",
             "name": "Reflets de P’an Ku",
             "description": "",
-            "book_reference": "LdR p.211"
+            "book_reference": "Livre de Règles p.211"
         },
         {
             "id": "Rise, Water",
             "name": "Eau, incarne-toi",
             "description": "",
-            "book_reference": "LdR p.208"
+            "book_reference": "Livre de Règles p.208"
         },
         {
             "id": "Stride the Waves",
             "name": "Marcher sur les vagues",
             "description": "",
-            "book_reference": "LdR p.211"
+            "book_reference": "Livre de Règles p.211"
         },
         {
             "id": "Strike the Tsunami",
             "name": "Impact du tsunami",
             "description": "",
-            "book_reference": "LdR p.208"
+            "book_reference": "Livre de Règles p.208"
         },
         {
             "id": "Suijin’s Embrace",
-            "name": "Étreinte de Suijin",
+            "name": "Etreinte de Suijin",
             "description": "",
-            "book_reference": "LdR p.208"
+            "book_reference": "Livre de Règles p.208"
         },
         {
             "id": "Sympathetic Energies",
             "name": "Transfert d’énergie",
             "description": "",
-            "book_reference": "LdR p.211"
+            "book_reference": "Livre de Règles p.211"
         },
         {
             "id": "The Rushing Wave",
             "name": "La déferlante",
             "description": "",
-            "book_reference": "LdR p.209"
+            "book_reference": "Livre de Règles p.209"
+        },
+        {
+            "id": "Dream Painter",
+            "name": "Dream Painter (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Messenger of Chikusho-do",
+            "name": "Messenger of Chikusho-do (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "The Fading Dream",
+            "name": "The Fading Dream (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Bond of the Realms",
+            "name": "Bond of the Realms (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Guardian of the Secret Gate",
+            "name": "Guardian of the Secret Gate (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Emboldened Steed",
+            "name": "Emboldened Steed (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Fluid Shadows",
+            "name": "Fluid Shadows (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Heart of the Lady Sun",
+            "name": "Heart of the Lady Sun (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Fires of Purity",
+            "name": "Fires of Purity (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Amaterasu's Gaze",
+            "name": "Amaterasu's Gaze (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Rain of Ten Thousand Lotuses",
+            "name": "Rain of Ten Thousand Lotuses (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Path of Beasts",
+            "name": "Path of Beasts (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Essence of Jade",
+            "name": "Essence de jade",
+            "description": "",
+            "book_reference": "L’Outremonde p.114"
         }
     ]
 }

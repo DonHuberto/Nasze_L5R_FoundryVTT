@@ -9,61 +9,97 @@
             "id": "Ashigaru Armor",
             "name": "Armure d'Ashigaru",
             "description": "",
-            "book_reference": "LdR p.239"
+            "book_reference": "Livre de Règles p.239"
         },
         {
             "id": "Plated Armor",
             "name": "Armure de plates",
             "description": "",
-            "book_reference": "LdR p.239"
+            "book_reference": "Livre de Règles p.239"
         },
         {
             "id": "Concealed Armor",
             "name": "Armure dissimulée",
             "description": "",
-            "book_reference": "LdR p.239"
+            "book_reference": "Livre de Règles p.239"
         },
         {
             "id": "Lacquered Armor",
             "name": "Armure laquée",
             "description": "",
-            "book_reference": "LdR p.239"
+            "book_reference": "Livre de Règles p.239"
         },
         {
             "id": "Ceremonial Clothes",
             "name": "Tenue de cérémonie",
             "description": "",
-            "book_reference": "LdR p.239"
+            "book_reference": "Livre de Règles p.239"
         },
         {
             "id": "Traveling Clothes",
             "name": "Vêtements de voyage",
             "description": "",
-            "book_reference": "LdR p.239"
+            "book_reference": "Livre de Règles p.239"
         },
         {
             "id": "Sanctified Robes",
             "name": "Tunique sanctifiée",
             "description": "",
-            "book_reference": "LdR p.239"
+            "book_reference": "Livre de Règles p.239"
         },
         {
             "id": "Sleeping Garb",
             "name": "Vêtements de nuit",
             "description": "",
-            "book_reference": "LdR p.239"
+            "book_reference": "Livre de Règles p.239"
         },
         {
             "id": "Common Clothes",
             "name": "Vêtements ordinaires",
             "description": "",
-            "book_reference": "LdR p.239"
+            "book_reference": "Livre de Règles p.239"
         },
         {
             "id": "Inconspicuous garb",
             "name": "Tenue discrète",
             "description": "",
-            "book_reference": "LdR"
+            "book_reference": "Livre de Règles"
+        },
+        {
+            "id": "Robes of Judgment",
+            "name": "Robes of Judgment (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes p.97"
+        },
+        {
+            "id": "Firefighter's Coat",
+            "name": "Manteau de pompier",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.112"
+        },
+        {
+            "id": "Stealth Clothing",
+            "name": "Tenue de camouflage",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.112"
+        },
+        {
+            "id": "O-yoroi",
+            "name": "O-yoroi",
+            "description": "",
+            "book_reference": "L’Outremonde p.105"
+        },
+        {
+            "id": "Tatami Gusoku",
+            "name": "Tatami Gusoku",
+            "description": "",
+            "book_reference": "L’Outremonde p.106"
+        },
+        {
+            "id": "Tosei-Gusoku",
+            "name": "Tosei-Gusoku",
+            "description": "",
+            "book_reference": "L’Outremonde p.106"
         }
     ]
 }
