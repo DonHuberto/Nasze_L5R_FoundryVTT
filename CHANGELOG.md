@@ -11,6 +11,7 @@
 - Fix js error when Advancement is not embed in a actor
 - Click on a weapon show the DicePicker with the weapon skill selected
 - Display Rarity in Compendiums for Items, Armors and Weapons
+- Minion can now choose a stance and if they are prepared
 - Other minors fix
 
 ## 1.1.1 - The Huns War

@@ -52,25 +52,21 @@ export class CombatL5r5e extends Combat {
             // Shortcut to data
             const data = combatant.actor.data.data;
 
+            // Prepared is a boolean or if null we get the info in the actor sheet
+            const isPc = combatant.actor.data.type === "character";
+            let isPrepared = isPc ? cfg.prepared.character : cfg.prepared[data.type];
+            if (isPrepared === "null") {
+                isPrepared = data.prepared ? "true" : "false";
+            }
+
             // A character’s initiative value is based on their state of preparedness when the conflict began.
             // If the character was ready for the conflict, their base initiative value is their focus attribute.
             // If the character was unprepared (such as when surprised), their base initiative value is their vigilance attribute.
-            let initiative;
+            // Minion NPCs can generate initiative value without a check, using their focus or vigilance attribute
+            let initiative = isPrepared === "true" ? data.focus : data.is_compromised ? 1 : data.vigilance;
 
-            if (combatant.actor.data.type === "npc" && combatant.actor.data.data.type === "minion") {
-                // Minion NPCs can generate initiative value without a check, using their focus or vigilance attribute
-                initiative = cfg.prepared.minion === "true" ? data.focus : data.is_compromised ? 1 : data.vigilance;
-            } else {
-                // PC and Adversary
-                const isPc = combatant.actor.data.type === "character";
-
-                // prepared is a boolean or if null we get the info in the actor sheet
-                let isPrepared = isPc ? cfg.prepared.character : cfg.prepared.adversary;
-                if (isPrepared === "null") {
-                    isPrepared = data.prepared ? "true" : "false";
-                }
-                initiative = isPrepared === "true" ? data.focus : data.is_compromised ? 1 : data.vigilance;
-
+            // Roll only for PC and Adversary
+            if (isPc || data.type === "adversary") {
                 // Roll formula
                 if (!formula) {
                     const createFormula = [`${data.rings[data.stance]}dr`];
@@ -131,8 +127,22 @@ export class CombatL5r5e extends Combat {
     _sortCombatants(a, b) {
         // if tie, sort by honor, less honorable first
         if (a.initiative === b.initiative) {
+            // if tie, Character > Adversary > Minion
+            if (a.actor.data.data.social.honor === b.actor.data.data.social.honor) {
+                return (
+                    CombatL5r5e._getWeightByActorType(a.actor.data) - CombatL5r5e._getWeightByActorType(b.actor.data)
+                );
+            }
             return a.actor.data.data.social.honor - b.actor.data.data.social.honor;
         }
         return b.initiative - a.initiative;
+    }
+
+    /**
+     * Basic weight system for sorting Character > Adversary > Minion
+     * @private
+     */
+    static _getWeightByActorType(data) {
+        return data.type === "npc" ? (data.data.type === "minion" ? 3 : 2) : 1;
     }
 }

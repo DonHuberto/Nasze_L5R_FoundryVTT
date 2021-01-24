@@ -135,7 +135,7 @@ export default class HooksL5r5e {
                     value = "true";
                     break;
                 case "true":
-                    value = preparedId === "minion" ? "false" : "null";
+                    value = "null";
                     break;
                 case "null":
                     value = "false";

@@ -56,6 +56,6 @@ export const RegisterSettings = function () {
         scope: "world",
         config: false,
         type: String,
-        default: "true",
+        default: "null",
     });
 };
