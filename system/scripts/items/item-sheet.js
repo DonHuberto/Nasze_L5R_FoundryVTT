@@ -133,6 +133,11 @@ export class ItemSheetL5r5e extends ItemSheet {
      * Also a property canot be on another property
      */
     async _onDrop(event) {
+        // Everything below here is only needed if the sheet is editable
+        if (!this.options.editable) {
+            return;
+        }
+
         // Check item type and subtype
         const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
         if (!item || item.entity !== "Item" || item.data.type !== "property" || this.item.type === "property") {

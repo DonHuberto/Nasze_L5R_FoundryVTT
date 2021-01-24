@@ -217,6 +217,11 @@ export class TwentyQuestionsDialog extends FormApplication {
      * Handle dropped items
      */
     async _onDropItem(type, event) {
+        // *** Everything below here is only needed if the sheet is editable ***
+        if (!this.options.editable) {
+            return;
+        }
+
         if (!["item", "technique", "peculiarity"].includes(type)) {
             return;
         }

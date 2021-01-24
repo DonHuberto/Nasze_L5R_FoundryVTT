@@ -73,6 +73,11 @@ export class BaseSheetL5r5e extends ActorSheet {
      * Handle dropped data on the Actor sheet
      */
     async _onDrop(event) {
+        // *** Everything below here is only needed if the sheet is editable ***
+        if (!this.options.editable) {
+            return;
+        }
+
         // Check item type and subtype
         const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
         if (

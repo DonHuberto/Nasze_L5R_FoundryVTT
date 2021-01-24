@@ -7,6 +7,7 @@
   - Courts of Stone
   - Path of Waves
   - Celestial Realms
+- English cleanup, thanks to Mark Zeman !
 - Fix js error when Advancement is not embed in a actor
 - Click on a weapon show the DicePicker with the weapon skill selected
 - Display Rarity in Compendiums for Items, Armors and Weapons
