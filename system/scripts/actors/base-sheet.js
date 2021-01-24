@@ -203,10 +203,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         html.find(".prepared-control").on("click", (event) => {
             event.preventDefault();
             event.stopPropagation();
-            const preparedId = $(event.currentTarget).data("id");
-            if (["adversary", "character"].includes(preparedId)) {
-                this._switchPrepared();
-            }
+            this._switchPrepared();
         });
 
         // Equipped / Readied
