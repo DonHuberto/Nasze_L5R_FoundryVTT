@@ -330,59 +330,59 @@
         },
         {
             "id": "Animal Trainer",
-            "name": "Animal Trainer (WIP)",
+            "name": "Dresseur",
             "types": "Mental, Relations",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.242"
         },
         {
             "id": "Expert Tracker",
-            "name": "Expert Tracker (WIP)",
+            "name": "Pisteur expert",
             "types": "Mental, Physique",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.242"
         },
         {
             "id": "Criminal Connections",
-            "name": "Criminal Connections (WIP)",
+            "name": "Liens avec la pègre",
             "types": "Relations",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.242"
         },
         {
             "id": "Friend of the brotherhood",
-            "name": "Friend of the brotherhood (WIP)",
+            "name": "Ami de la confrérie",
             "types": "Relations",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.242"
         },
         {
             "id": "Well Connected",
-            "name": "Well Connected (WIP)",
+            "name": "Relations influentes",
             "types": "Relations",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.243"
         },
         {
             "id": "Kuge Lineage",
-            "name": "Kuge Lineage (WIP)",
+            "name": "Lignée Kuge",
             "types": "Relations",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.243"
         },
         {
             "id": "Hero of [Village]",
-            "name": "Hero of [Village] (WIP)",
+            "name": "Héros de [Village]",
             "types": "Relations, Renommée",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.243"
         },
         {
             "id": "Spiritual Protector",
-            "name": "Spiritual Protector (WIP)",
+            "name": "Protecteur spirituel",
             "types": "Spirituel",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.243"
         },
         {
             "id": "Ardent Leader",

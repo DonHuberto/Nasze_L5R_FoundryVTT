@@ -183,38 +183,38 @@
         },
         {
             "id": "Accustomed to Luxury",
-            "name": "Accustomed to Luxury (WIP)",
+            "name": "Habitué au luxe",
             "types": "Mental",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.247"
         },
         {
             "id": "Claustrophobia",
-            "name": "Claustrophobia (WIP)",
+            "name": "Claustrophobie",
             "types": "Mental",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.248"
         },
         {
             "id": "False Identity",
-            "name": "False Identity (WIP)",
+            "name": "Fausse identité",
             "types": "Relations",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.248"
         },
         {
             "id": "Loathing for Peasants",
-            "name": "Loathing for Peasants (WIP)",
+            "name": "Aversion pour les paysans",
             "types": "Mental, Relations",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.248"
         },
         {
             "id": "Loneliness",
-            "name": "Loneliness (WIP)",
+            "name": "Autophobie",
             "types": "Mental, Relations",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.249"
         },
         {
             "id": "Eyes of Many",
@@ -260,7 +260,7 @@
         },
         {
             "id": "Reformed Maho-Tsukai",
-            "name": "MAhō-tsukAi repenti",
+            "name": "Mahō-tsukai repenti",
             "types": "Relations",
             "description": "",
             "book_reference": "L’Outremonde p.98"

@@ -428,45 +428,45 @@
         },
         {
             "id": "Allergy",
-            "name": "Allergy (WIP)",
+            "name": "Allergie [au choix]",
             "types": "Physique",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.246"
         },
         {
             "id": "Cursed Lineage",
-            "name": "Cursed Lineage (WIP)",
+            "name": "Lignée maudite",
             "types": "Relations, Spirituel",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.246"
         },
         {
             "id": "Adopted Peasant",
-            "name": "Adopted Peasant (WIP)",
+            "name": "Paysan adopté",
             "types": "Relations",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.246"
         },
         {
             "id": "Despise in [City]",
-            "name": "Despise in [City] (WIP)",
+            "name": "Méprisé à [une ville]",
             "types": "Relations, Renommée",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.247"
         },
         {
             "id": "Hunted by Chikusho-Do",
-            "name": "Hunted by Chikusho-Do (WIP)",
+            "name": "Traqué par le Chikushō-dō",
             "types": "Spirituel",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.247"
         },
         {
             "id": "Skepticism",
-            "name": "Skepticism (WIP)",
+            "name": "Scepticisme",
             "types": "Mental, Spirituel",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.247"
         },
         {
             "id": "Debt to [Person or Organization]",

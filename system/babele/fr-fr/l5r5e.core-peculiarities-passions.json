@@ -204,52 +204,52 @@
         },
         {
             "id": "City [Choose One]",
-            "name": "City [Choose One] (WIP)",
+            "name": "Cité [au choix]",
             "types": "Mental, Relations",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.244"
         },
         {
             "id": "Bonsai",
-            "name": "Bonsai (WIP)",
+            "name": "Bonsai",
             "types": "Mental",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.244"
         },
         {
             "id": "Gourmet",
-            "name": "Gourmet (WIP)",
+            "name": "Gourmet",
             "types": "Mental, Relations",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.244"
         },
         {
             "id": "Rock Gardening",
-            "name": "Rock Gardening (WIP)",
+            "name": "Jardins de rocaille",
             "types": "Mental",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.245"
         },
         {
             "id": "Military History",
-            "name": "Military History (WIP)",
+            "name": "Histoire militaire",
             "types": "Mental",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.245"
         },
         {
             "id": "Navigator",
-            "name": "Navigator (WIP)",
+            "name": "Navigateur",
             "types": "Mental",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.245"
         },
         {
             "id": "Researcher",
-            "name": "Researcher (WIP)",
+            "name": "Chercheur",
             "types": "Mental",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude"
+            "book_reference": "L’Empire d’Émeraude p.245"
         },
         {
             "id": "Honest Work",
