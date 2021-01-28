@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.1.2 - Compendiums Update
+## 1.1.2 - One Compendium to bring them all
 - Added compendiums (Thanks to Stéfano Fara for the English version !) Partial for French as PoW and CR are not translated yet
   - Shadowlands
   - Emerald Empire
@@ -8,6 +8,7 @@
   - Path of Waves
   - Celestial Realms
 - English cleanup, thanks to Mark Zeman !
+- Fix css for Spanish
 - Fix js error when Advancement is not embed in a actor
 - Click on a weapon show the DicePicker with the weapon skill selected
 - Display Rarity in Compendiums for Items, Armors and Weapons
