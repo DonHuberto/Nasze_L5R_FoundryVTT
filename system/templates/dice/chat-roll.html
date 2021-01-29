@@ -1,5 +1,5 @@
 <div class="l5r5e dice-roll">
-    {{#if isPublicRoll }}
+    {{#if isPublicRoll}}
 
     {{#if l5r5e.stance}}
     <div class="l5r5e profil">
@@ -45,6 +45,7 @@
     <div class="l5r5e dice-result">
         {{#if l5r5e.dicesTypes.l5r}}
         <div class="l5r5e item-display dices-l5r">
+            {{!-- Dices list --}}
             {{#each l5r5e.dices}}
             {{#if this.diceTypeL5r}}
             {{#each this.rolls}}
@@ -54,30 +55,41 @@
             {{/each}}
 
             {{!-- Roll & Keep Button --}}
-            {{#if l5r5e.canRnK}}
             <button class="l5r5e chat-dice-rnk">{{localize "l5r5e.chatdices.roll_n_keep"}}</button>
-            {{/if}}
 
             {{#l5r5e.summary}}
-            <ul>
-                <li>{{localize "l5r5e.chatdices.successes"}}: {{this.success}}</li>
+            {{!-- summary symbols --}}
+            <div>
+                {{#if success}}
+                    <i class="i_success" title="{{localize "l5r5e.chatdices.successes"}}"></i> {{success}}
+                {{/if}}
 
                 {{#if explosive}}
-                <li>{{localize "l5r5e.chatdices.explosives"}}: {{this.explosive}}</li>
+                    <i class="i_explosive" title="{{localize "l5r5e.chatdices.explosives"}}"></i> {{explosive}}
                 {{/if}}
 
                 {{#if opportunity}}
-                <li>{{localize "l5r5e.chatdices.opportunities"}}: {{this.opportunity}}</li>
+                    <i class="i_opportunity" title="{{localize "l5r5e.chatdices.opportunities"}}"></i> {{opportunity}}
                 {{/if}}
 
                 {{#if strife}}
-                <li>{{localize "l5r5e.chatdices.strife"}}: {{this.strife}}</li>
+                    <i class="i_strife" title="{{localize "l5r5e.chatdices.strife"}}"></i> {{strife}}
                 {{/if}}
-            </ul>
+            </div>
+
+            {{!-- Result text --}}
+            <div>
+                {{#ifCond totalSuccess '>=' difficulty}}
+                    {{localize "l5r5e.chatdices.success_text"}} ({{totalBonus}} {{localize "l5r5e.chatdices.bonus_text"}})
+                {{else}}
+                    {{localize "l5r5e.chatdices.fail_text"}}
+                {{/ifCond}}
+            </div>
             {{/l5r5e.summary}}
         </div>
         {{/if}}
 
+        {{!-- Regular dices --}}
         {{#if l5r5e.dicesTypes.std}}
         <div class="l5r5e dices-std">
             {{#each results}}
@@ -90,7 +102,6 @@
         {{{tooltip}}}
         <h4 class="l5r5e dice-total dice-total-std">{{total}}</h4>
         {{/if}}
-
     </div>
 
     {{/if}}

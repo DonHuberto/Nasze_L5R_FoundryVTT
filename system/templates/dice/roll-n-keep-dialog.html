@@ -1,5 +1,4 @@
 <form class="l5r5e roll-n-keep-dialog" autocomplete="off">
-
     {{!-- Profil --}}
     <div class="l5r5e profil">
         <header class="part-header flexrow chat-profil">
@@ -38,53 +37,116 @@
         </header>
     </div>
 
-    {{!-- Discard & ReRoll --}}
-    <table>
-        <tr>
-            <td>
-                <fieldset class="dropbox discards" data-type="discard">
-                    <legend class="section-header"><i class="fa fa-arrow-down" aria-hidden="true"></i> {{ localize 'l5r5e.roll_n_keep.discard_drop_here' }}</legend>
-                </fieldset>
-            </td>
-            <td>
-                &nbsp;
-            </td>
-            <td>
-                <fieldset class="dropbox rerolls" data-type="reroll">
-                    <legend class="section-header"><i class="fa fa-arrow-down" aria-hidden="true"></i> {{ localize 'l5r5e.roll_n_keep.reroll_drop_here' }}</legend>
-                </fieldset>
-            </td>
-        </tr>
-    </table>
+    {{!-- Body --}}
+    {{#if options.editable}}
+        <table>
+            <tr>
+                {{!-- Face Rings --}}
+                <td>
+                    <legend class="section-header">
+                        <i class="fa fa-arrow-down" aria-hidden="true"></i> {{ localize 'l5r5e.roll_n_keep.swap_drop_here' }}
+                    </legend>
 
-    {{!-- DiceList history --}}
-    <table>
-        {{#each data.dicesList as |item idxStep|}}
-        <tr>
-            {{#each item as |dice idxDie|}}
-            <td>
-                <div class="dice {{this.choice}} {{#ifCond (lookup ../../draggableList idxDie) '==' idxStep }}draggable{{/ifCond}}" data-step="{{idxStep}}" data-die="{{idxDie}}">
-                    {{#if this.img}}
-                    <img src="{{this.img}}" alt="{{idxStep}}_{{idxDie}}" />
-                    {{/if}}
-                </div>
-            </td>
+                    {{#each data.swapDiceFaces.rings}}
+                        <div class="dice dropbox faces-change" data-type="swap" data-face="{{id}}" data-die="RingDie">
+                            <img src="{{img}}" alt="{{id}}" />
+                        </div>
+                    {{/each}}
+                </td>
+
+                {{!-- Center --}}
+                <td>
+                    {{!-- Discard & ReRoll --}}
+                    <table>
+                        <tr>
+                            <td>
+                                <fieldset class="dropbox discards" data-type="discard">
+                                    <legend class="section-header">
+                                        <i class="fa fa-arrow-down" aria-hidden="true"></i> {{ localize 'l5r5e.roll_n_keep.discard_drop_here' }}
+                                    </legend>
+                                </fieldset>
+                            </td>
+                            <td>&nbsp;</td>
+                            <td>
+                                <fieldset class="dropbox rerolls" data-type="reroll">
+                                    <legend class="section-header">
+                                        <i class="fa fa-arrow-down" aria-hidden="true"></i> {{ localize 'l5r5e.roll_n_keep.reroll_drop_here' }}
+                                    </legend>
+                                </fieldset>
+                            </td>
+                        </tr>
+                    </table>
+
+                    {{!-- DiceList history --}}
+                    <table>
+                        {{#each data.dicesList as |item idxStep|}}
+                        <tr>
+                            {{#each item as |dice idxDie|}}
+                            <td>
+                                <div
+                                    class="dice {{this.choice}} {{#ifCond ../../data.currentStep '==' idxStep }}draggable{{/ifCond}}"
+                                    data-step="{{idxStep}}"
+                                    data-die="{{idxDie}}"
+                                >
+                                    {{#if this.img}}
+                                    <img src="{{this.img}}" alt="{{idxStep}}_{{idxDie}}" />
+                                    {{/if}}
+                                </div>
+                            </td>
+                            {{/each}}
+                        </tr>
+                        {{/each}}
+                    </table>
+
+                    {{!-- Keep --}}
+                    <table>
+                        <tr>
+                            <td>
+                                <fieldset class="dropbox keeps" data-type="keep">
+                                    <legend class="section-header">
+                                        <i class="fa fa-arrow-down" aria-hidden="true"></i> {{ localize 'l5r5e.roll_n_keep.keep_drop_here' }}
+                                    </legend>
+                                </fieldset>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+                {{!-- Face Skills --}}
+                <td>
+                    <legend class="section-header">
+                        <i class="fa fa-arrow-down" aria-hidden="true"></i> {{ localize 'l5r5e.roll_n_keep.swap_drop_here' }}
+                    </legend>
+
+                    {{#each data.swapDiceFaces.skills}}
+                        <div class="dice dropbox faces-change" data-type="swap" data-face="{{id}}" data-die="AbilityDie">
+                            <img src="{{img}}" alt="{{id}}" />
+                        </div>
+                    {{/each}}
+                </td>
+            </tr>
+        </table>
+
+        <button id="finalize" name="finalize" type="button" {{#if data.submitDisabled}}disabled{{/if}}>
+            {{ localize 'l5r5e.roll_n_keep.bt_validate' }} <i class="fas fa-arrow-circle-right"></i>
+        </button>
+
+    {{else}}
+        {{!-- Non editable DiceList history (view for others players) --}}
+        <table>
+            {{#each data.dicesList as |item idxStep|}}
+                <tr>
+                    {{#each item as |dice idxDie|}}
+                        <td>
+                            <div class="dice {{this.choice}}">
+                                {{#if this.img}}
+                                    <img src="{{this.img}}" alt="{{idxStep}}_{{idxDie}}" />
+                                {{/if}}
+                            </div>
+                        </td>
+                    {{/each}}
+                </tr>
             {{/each}}
-        </tr>
-        {{/each}}
-    </table>
-
-    {{!-- Keep --}}
-    <table>
-        <tr>
-            <td>
-                <fieldset class="dropbox keeps" data-type="keep">
-                    <legend class="section-header"><i class="fa fa-arrow-down" aria-hidden="true"></i> {{ localize 'l5r5e.roll_n_keep.keep_drop_here' }}</legend>
-                </fieldset>
-            </td>
-        </tr>
-    </table>
-
-    <button id="finalize" name="finalize" type="button">{{ localize 'l5r5e.roll_n_keep.bt_validate' }} <i class='fas fa-arrow-circle-right'></i></button>
-
+        </table>
+    {{/if}}
 </form>

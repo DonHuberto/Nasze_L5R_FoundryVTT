@@ -162,6 +162,10 @@
     .dropbox {
         min-height: 100px;
 
+        &.faces-change {
+            min-height: 40px;
+            margin: auto;
+        }
         &.discards {
             border: 1px solid gray;
         }
@@ -188,6 +192,9 @@
     }
     .keep {
         border: 3px solid green;
+    }
+    .swap {
+        border: 3px solid fuchsia;
     }
 }
 

@@ -8,11 +8,11 @@ export class RollnKeepDialog extends FormApplication {
      */
     static CHOICES = {
         discard: "discard",
-        face_change: "face-change",
         keep: "keep",
         nothing: null,
         reroll: "reroll",
-        reserve: "reserve",
+        // reserve: "reserve",
+        swap: "swap",
     };
 
     /**
@@ -22,9 +22,21 @@ export class RollnKeepDialog extends FormApplication {
     message = null;
 
     /**
+     * The current Roll
+     * @param {Roll} roll
+     */
+    roll = null;
+
+    /**
      * Payload Object
      */
     object = {
+        currentStep: 0,
+        submitDisabled: true,
+        swapDiceFaces: {
+            rings: [],
+            skills: [],
+        },
         dicesList: [[]],
     };
 
@@ -39,7 +51,7 @@ export class RollnKeepDialog extends FormApplication {
             template: CONFIG.l5r5e.paths.templates + "dice/roll-n-keep-dialog.html",
             title: game.i18n.localize("l5r5e.roll_n_keep.title"),
             width: 660,
-            height: 660,
+            height: 454,
         });
     }
 
@@ -52,13 +64,19 @@ export class RollnKeepDialog extends FormApplication {
 
     /**
      * Create the Roll n Keep dialog
-     * @param {ChatMessage} message
+     * @param {number} messageId
      * @param {FormApplicationOptions} options
      */
-    constructor(message, options = {}) {
+    constructor(messageId, options = {}) {
+        console.clear(); // TODO TMP
+
         super({}, options);
-        this.message = message;
+        this.message = game.messages.get(messageId);
+        this.options.editable = this.message?._roll.l5r5e.actor.owner || false;
+        this._initializeDiceFaces();
         this._initialize();
+
+        console.log(this.object); // TODO TMP
     }
 
     /**
@@ -73,24 +91,40 @@ export class RollnKeepDialog extends FormApplication {
     }
 
     /**
+     * Render
+     * @param {boolean} force
+     * @param  {RenderOptions} options
+     * @returns {Application}
+     * @override
+     */
+    render(force = null, options = {}) {
+        if (!this.message) {
+            return;
+        }
+        return super.render(force, options);
+    }
+
+    /**
      * Initialize the dialog with the message
      * @private
      */
     _initialize() {
-        // Get the roll
-        const roll = game.l5r5e.RollL5r5e.fromData(this.message.roll);
+        if (!this.message) {
+            return;
+        }
 
-        console.clear();
-        console.log(roll); // TODO TMP
+        // Get the roll
+        this.roll = game.l5r5e.RollL5r5e.fromData(this.message.roll);
 
         // Already history
-        if (Array.isArray(roll.l5r5e.history)) {
-            this.object.dicesList = roll.l5r5e.history;
+        if (Array.isArray(this.roll.l5r5e.history)) {
+            this.object.currentStep = this.roll.l5r5e.history.length;
+            this.object.dicesList = this.roll.l5r5e.history;
             return;
         }
 
         // New
-        roll.terms.forEach((term) => {
+        this.roll.terms.forEach((term) => {
             if (typeof term !== "object") {
                 return;
             }
@@ -98,11 +132,26 @@ export class RollnKeepDialog extends FormApplication {
                 this.object.dicesList[0].push({
                     type: term.constructor.name,
                     face: res.result,
-                    explosive: term.constructor.FACES[res.result].explosive,
                     img: term.constructor.getResultSrc(res.result),
                     choice: RollnKeepDialog.CHOICES.nothing,
                 });
             });
+        });
+    }
+
+    /**
+     * Fill the dices faces
+     * @private
+     */
+    _initializeDiceFaces() {
+        // All faces are unique for rings
+        this.object.swapDiceFaces.rings = Object.keys(game.l5r5e.RingDie.FACES).map((id) => {
+            return { id, img: game.l5r5e.RingDie.getResultSrc(id) };
+        });
+
+        // Only unique for Skills
+        this.object.swapDiceFaces.skills = [1, 3, 6, 8, 10, 11, 12].map((id) => {
+            return { id, img: game.l5r5e.AbilityDie.getResultSrc(id) };
         });
     }
 
@@ -142,19 +191,13 @@ export class RollnKeepDialog extends FormApplication {
      * @return {Object}
      */
     getData(options = null) {
-        const draggableList = [];
-        this.object.dicesList.forEach((step, idx) => {
-            step.forEach((die, dieNum) => {
-                if (die) {
-                    draggableList[dieNum] = idx;
-                }
-            });
-        });
+        // Check only on 1st step
+        const kept = this.object.currentStep === 0 ? this._getKeepCount() : 1;
+        this.object.submitDisabled = kept < 1 || kept > this.roll.l5r5e.summary.ringsUsed;
 
         return {
             ...super.getData(options),
             data: this.object,
-            draggableList: draggableList,
             l5r5e: this.message._roll.l5r5e,
         };
     }
@@ -166,11 +209,16 @@ export class RollnKeepDialog extends FormApplication {
     activateListeners(html) {
         super.activateListeners(html);
 
+        // *** Everything below here is only needed if the sheet is editable ***
+        if (!this.options.editable) {
+            return;
+        }
+
         // Finalize Button
         html.find("#finalize").on("click", (event) => {
             event.preventDefault();
             event.stopPropagation();
-            if (this._getKeepCount() > 0) {
+            if (!this.object.submitDisabled) {
                 this.submit();
             }
         });
@@ -180,6 +228,11 @@ export class RollnKeepDialog extends FormApplication {
      * Handle dropped items
      */
     async _onDropItem(event) {
+        // *** Everything below here is only needed if the sheet is editable ***
+        if (!this.options.editable) {
+            return;
+        }
+
         const type = $(event.currentTarget).data("type");
         const json = event.dataTransfer.getData("text/plain");
         if (!json || !Object.values(RollnKeepDialog.CHOICES).some((e) => !!e && e === type)) {
@@ -191,30 +244,26 @@ export class RollnKeepDialog extends FormApplication {
             return;
         }
 
-        let addNewRoll = false;
         const current = this.object.dicesList[data.step][data.die];
-        current.choice = type;
+        delete current.newFace;
 
-        // Actions p 26 : change, ignore/discard, reroll, reserve, change face
-        switch (type) {
-            case RollnKeepDialog.CHOICES.keep:
-                if (current.explosive) {
-                    addNewRoll = true;
-                }
-                break;
+        // FaceSwap
+        if (type === RollnKeepDialog.CHOICES.swap) {
+            // Dice Type Ring/Skill
+            const diceType = $(event.currentTarget).data("die");
+            const diceNewFace = $(event.currentTarget).data("face");
 
-            case RollnKeepDialog.CHOICES.reroll:
-                addNewRoll = true;
-                break;
-        }
-
-        // New roll
-        if (addNewRoll) {
-            if (!this.object.dicesList[data.step + 1]) {
-                this.object.dicesList[data.step + 1] = Array(this.object.dicesList[0].length).fill(null);
+            if (current.type !== diceType || current.face === diceNewFace) {
+                current.choice = RollnKeepDialog.CHOICES.nothing;
+                this.render(false);
+                return false;
             }
-            this.object.dicesList[data.step + 1][data.die] = await this._newRoll(current.type, type);
+
+            current.newFace = diceNewFace;
         }
+
+        current.choice = type;
+        current.img = game.l5r5e[current.type].getResultSrc(current.newFace ?? current.face);
 
         this.render(false);
         return false;
@@ -242,7 +291,6 @@ export class RollnKeepDialog extends FormApplication {
         return {
             type: dieType,
             face: result,
-            explosive: dice.constructor.FACES[result].explosive,
             img: dice.constructor.getResultSrc(result),
             choice: RollnKeepDialog.CHOICES.nothing,
         };
@@ -257,7 +305,14 @@ export class RollnKeepDialog extends FormApplication {
             return (
                 acc +
                 step.reduce((acc2, die) => {
-                    if (!!die && die.choice === RollnKeepDialog.CHOICES.keep) {
+                    if (
+                        !!die &&
+                        [
+                            RollnKeepDialog.CHOICES.keep,
+                            RollnKeepDialog.CHOICES.reroll,
+                            RollnKeepDialog.CHOICES.swap,
+                        ].includes(die.choice)
+                    ) {
                         acc2 = acc2 + 1;
                     }
                     return acc2;
@@ -274,7 +329,54 @@ export class RollnKeepDialog extends FormApplication {
      * @override
      */
     async _updateObject(event, formData) {
+        // *** Everything below here is only needed if the sheet is editable ***
+        if (!this.options.editable) {
+            return;
+        }
+
         console.log("**** _updateObject");
+
+        console.log(this.object.dicesList);
+
+        // Actions p 26 : change, ignore/discard, reroll, reserve, change face
+        // let addNewRoll = false;
+        // switch (type) {
+        //     case RollnKeepDialog.CHOICES.keep:
+        //         // current.explosive = term.constructor.FACES[current.face / newFace].explosive
+        //         if (current.explosive) {
+        //             addNewRoll = true;
+        //         }
+        //         break;
+        //
+        //     case RollnKeepDialog.CHOICES.reroll:
+        //         addNewRoll = true;
+        //         break;
+        // }
+        //
+        // // New roll
+        // if (addNewRoll) {
+        //     if (!this.object.dicesList[data.step + 1]) {
+        //         this.object.dicesList[data.step + 1] = Array(this.object.dicesList[0].length).fill(null);
+        //     }
+        //     this.object.dicesList[data.step + 1][data.die] = await this._newRoll(current.type, type);
+        // }
+
+        // if (isInitiativeRoll) {
+        //     // Initiative roll
+        //     this._actor.rollInitiative({
+        //         initiativeOptions: {
+        //             formula: formula.join("+"),
+        //             // updateTurn: true,
+        //             messageOptions: {
+        //                 skillId: this.object.skill.id,
+        //                 difficulty: this.object.difficulty.value,
+        //                 difficultyHidden: this.object.difficulty.hidden,
+        //                 useVoidPoint: this.object.useVoidPoint,
+        //                 rerollInitiative: true,
+        //             },
+        //         },
+        //     });
+        // } else {}
 
         // Notify the change to other players
         // game.l5r5e.sockets.refreshAppId(this.id);
@@ -315,14 +417,8 @@ export class RollnKeepDialog extends FormApplication {
         button.attr("disabled", true);
         const card = button.parents(".l5r5e.item-display.dices-l5r");
         const messageId = card.parents(".chat-message").data("message-id");
-        const message = game.messages.get(messageId);
 
-        // Validate permission to proceed with the roll n keep
-        if (!message || !message._roll.l5r5e.actor.owner) {
-            return;
-        }
-
-        new RollnKeepDialog(message).render(true);
+        new RollnKeepDialog(messageId).render(true);
 
         // Re-enable the button
         button.attr("disabled", false);

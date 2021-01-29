@@ -22,6 +22,8 @@ export class RollL5r5e extends Roll {
                 difficultyHidden: false,
                 voidPointUsed: false,
                 ringsUsed: 0,
+                totalSuccess: 0,
+                totalBonus: 0,
                 success: 0,
                 explosive: 0,
                 opportunity: 0,
@@ -40,8 +42,6 @@ export class RollL5r5e extends Roll {
                 this.l5r5e.skillId = res[2];
             }
         });
-
-        // TODO parse difficulty stance skillId from cmd line ?
     }
 
     set actor(actor) {
@@ -81,6 +81,7 @@ export class RollL5r5e extends Roll {
             (term) => term instanceof DiceTerm && !(term instanceof game.l5r5e.L5rBaseDie)
         ); // ignore math symbols
         this.l5r5e.dicesTypes.l5r = this.dice.some((term) => term instanceof game.l5r5e.L5rBaseDie);
+        this.l5r5e.summary.totalBonus = Math.max(0, this.l5r5e.summary.totalSuccess - this.l5r5e.summary.difficulty);
         this.l5r5e.summary.ringsUsed = this.dice.reduce(
             (acc, term) => (term instanceof game.l5r5e.RingDie ? acc + term.number : acc),
             0
@@ -103,6 +104,8 @@ export class RollL5r5e extends Roll {
         ["success", "explosive", "opportunity", "strife"].forEach((props) => {
             this.l5r5e.summary[props] += parseInt(term.l5r5e[props]);
         });
+        this.l5r5e.summary.totalSuccess += term.totalSuccess;
+
         // TODO Others advantage/disadvantage
     }
 
@@ -204,13 +207,6 @@ export class RollL5r5e extends Roll {
             this.roll();
         }
 
-        const canRnK = false; // TODO TMP dev in progress
-        // const canRnK = !this.l5r5e.dicesTypes.std
-        //     && this.l5r5e.dicesTypes.l5r
-        //     && this.dice.length > 1
-        //     && this.l5r5e.actor // pb with dice with no actor
-        //     && this.l5r5e.actor.owner;
-
         // Define chat data
         const chatData = {
             formula: isPrivate ? "???" : this._formula,
@@ -224,7 +220,6 @@ export class RollL5r5e extends Roll {
                 ? {}
                 : {
                       ...this.l5r5e,
-                      canRnK: canRnK,
                       dices: this.dice.map((d) => {
                           return {
                               diceTypeL5r: d instanceof game.l5r5e.L5rBaseDie,

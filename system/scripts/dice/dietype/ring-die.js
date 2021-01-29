@@ -13,7 +13,7 @@ export class RingDie extends L5rBaseDie {
         3: { success: 0, explosive: 0, opportunity: 1, strife: 0, image: "ring_o" },
         4: { success: 1, explosive: 0, opportunity: 0, strife: 1, image: "ring_st" },
         5: { success: 1, explosive: 0, opportunity: 0, strife: 0, image: "ring_s" },
-        6: { success: 1, explosive: 1, opportunity: 0, strife: 1, image: "ring_et" },
+        6: { success: 0, explosive: 1, opportunity: 0, strife: 1, image: "ring_et" },
     };
 
     /** @override */

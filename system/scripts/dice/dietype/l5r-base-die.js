@@ -15,6 +15,14 @@ export class L5rBaseDie extends DiceTerm {
     }
 
     /**
+     * Return the total number of success + explosives
+     * @returns {number}
+     */
+    get totalSuccess() {
+        return this.l5r5e.success + this.l5r5e.explosive;
+    }
+
+    /**
      * Return a standardized representation for the displayed formula associated with this DiceTerm
      * @override
      */

@@ -84,7 +84,10 @@
             "dicepicker": "Dice Picker",
             "void_point_used": "Void point used",
             "roll_n_keep": "Roll & Keep",
-            "initiative_roll": "Initiative roll"
+            "initiative_roll": "Initiative roll",
+            "success_text": "Success!",
+            "bonus_text": "bonus successes",
+            "fail_text": "Fail!"
         },
         "dicepicker": {
             "difficulty_title": "Difficulty",
@@ -99,6 +102,7 @@
             "discard_drop_here": "Discard",
             "reroll_drop_here": "Re-roll",
             "reroll_chat": "Re-rolled dice",
+            "swap_drop_here": "Swap",
             "keep_drop_here": "Keep",
             "keep_chat": "New roll from an exploding die",
             "bt_validate": "Finalize"

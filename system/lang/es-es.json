@@ -84,7 +84,10 @@
             "dicepicker": "Dice Picker",
             "void_point_used": "Punto de vacío utilizado",
             "roll_n_keep": "Tirar y guardar",
-            "initiative_roll": "Tirada de Iniciativa"
+            "initiative_roll": "Tirada de Iniciativa",
+            "success_text": "Éxitos!",
+            "bonus_text": "bonus successes",
+            "fail_text": "Fail!"
         },
         "dicepicker": {
             "difficulty_title": "Dificultad",
@@ -99,6 +102,7 @@
             "discard_drop_here": "Descartar",
             "reroll_drop_here": "Relanzar",
             "reroll_chat": "Dados relanzados",
+            "swap_drop_here": "Swap",
             "keep_drop_here": "Guardar",
             "keep_chat": "Nueva tirada de un dado relanzable",
             "bt_validate": "Finalizar"
