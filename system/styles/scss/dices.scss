@@ -5,6 +5,60 @@
     .dice-total {
         background: rgba(255, 255, 255, 0.1);
         border: rgba(255, 255, 255, 0.75);
+        text-align: center;
+        margin: 0.5rem 0;
+        padding: 0.25rem 0.5rem 0.25rem 0.25rem;
+        &-rnk {
+            line-height: 2rem;
+            i {
+                margin-left: 0.5rem;
+            }
+        }
+    }
+    button {
+        &.chat-dice-rnk {
+            cursor: default;
+            color: $white;
+            background: linear-gradient(
+                $l5r5e-linear-gradient-third,
+                $l5r5e-linear-gradient-third-dark,
+                $l5r5e-linear-gradient-third
+            );
+            background-origin: padding-box;
+            border-image: url("../assets/ui/macro-button.webp") 10 repeat;
+            border-image-width: 0.5rem;
+            border-image-outset: 0px;
+            margin: 0;
+            &:hover {
+                background: linear-gradient(
+                    $l5r5e-linear-gradient-first-dark,
+                    $l5r5e-linear-gradient-first,
+                    $l5r5e-linear-gradient-first-dark
+                );
+            }
+        }
+    }
+    .dice-result-rnk {
+        background: rgba(0, 0, 255, 0.1);
+        border: 1px solid rgba(55, 55, 155, 0.75);
+        padding: 0.25rem;
+        color: rgba(55, 55, 155, 0.75);
+        text-align: center;
+        font-weight: bold;
+        text-shadow: 0 0 0 $black;
+        &.success {
+            background: rgba(0, 255, 0, 0.1);
+            border-color: rgba(55, 155, 55, 0.75);
+            color: rgba(55, 155, 55, 0.75);
+            i.i_success {
+                font-size: 1rem;
+            }
+        }
+        &.fail {
+            background: rgba(255, 0, 0, 0.1);
+            border-color: rgba(155, 55, 55, 0.75);
+            color: rgba(155, 55, 55, 0.75);
+        }
     }
 }
 
@@ -18,20 +72,11 @@
         border-bottom: 3px solid fuchsia;
     }
 
-    img {
+    > img {
         border: 1px solid transparent;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 100%;
-        height: 44px;
-        width: 44px;
-        //cursor: pointer;
-        //-webkit-appearance: none;
-        //appearance: none;
-        outline: none;
-        margin: 0;
-        flex: 0 0 20px;
-        display: inline-block;
+        height: auto;
+        width: calc(100% / 6 - 0.255rem);
+        margin: auto;
     }
 }
 

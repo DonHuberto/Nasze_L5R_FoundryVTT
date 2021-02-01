@@ -5,13 +5,7 @@
     <div class="l5r5e profil">
         <header class="part-header flexrow chat-profil">
             <span class="chat-profil-element">
-                <img class="profile-img"
-                     src="{{#if l5r5e.actor.img}}{{l5r5e.actor.img}}{{else}}icons/svg/mystery-man.svg{{/if}}"
-                     data-edit="img"
-                     height="40"
-                     width="40"
-                     alt="{{#if l5r5e.actor.name}}{{l5r5e.actor.name}}{{else}}mystery-man{{/if}}"
-                >
+                <img class="profile-img" src="{{#if l5r5e.actor.img}}{{l5r5e.actor.img}}{{else}}icons/svg/mystery-man.svg{{/if}}" data-edit="img" height="40" width="40" alt="{{#if l5r5e.actor.name}}{{l5r5e.actor.name}}{{else}}mystery-man{{/if}}" />
             </span>
 
             <span class="chat-profil-element">
@@ -59,29 +53,29 @@
 
             {{#l5r5e.summary}}
             {{!-- summary symbols --}}
-            <div>
+            <div class="l5r5e dice-total dice-total-rnk">
                 {{#if success}}
-                    <i class="i_success" title="{{localize "l5r5e.chatdices.successes"}}"></i> {{success}}
+                    <i class="i_success" title="{{localize 'l5r5e.chatdices.successes'}}"></i>x{{success}} 
                 {{/if}}
 
                 {{#if explosive}}
-                    <i class="i_explosive" title="{{localize "l5r5e.chatdices.explosives"}}"></i> {{explosive}}
+                    <i class="i_explosive" title="{{localize 'l5r5e.chatdices.explosives'}}"></i>x{{explosive}} 
                 {{/if}}
 
                 {{#if opportunity}}
-                    <i class="i_opportunity" title="{{localize "l5r5e.chatdices.opportunities"}}"></i> {{opportunity}}
+                    <i class="i_opportunity" title="{{localize 'l5r5e.chatdices.opportunities'}}"></i>x{{opportunity}} 
                 {{/if}}
 
                 {{#if strife}}
-                    <i class="i_strife" title="{{localize "l5r5e.chatdices.strife"}}"></i> {{strife}}
+                    <i class="i_strife" title="{{localize 'l5r5e.chatdices.strife'}}"></i>x{{strife}} 
                 {{/if}}
             </div>
 
             {{!-- Result text --}}
             {{^if ../l5r5e.difficultyHidden}}
-            <div>
+            <div class="l5r5e dice-result-rnk {{#ifCond totalSuccess '>=' difficulty}}success{{else}}fail{{/ifCond}}">
                 {{#ifCond totalSuccess '>=' ../l5r5e.difficulty}}
-                    {{localize "l5r5e.chatdices.success_text"}} ({{totalBonus}} {{localize "l5r5e.chatdices.bonus_text"}})
+                    {{localize "l5r5e.chatdices.success_text"}} + <i title="{{totalBonus}} {{localize 'l5r5e.chatdices.successes'}}">({{totalBonus}} {{localize "l5r5e.chatdices.bonus_text"}})</i>
                 {{else}}
                     {{localize "l5r5e.chatdices.fail_text"}}
                 {{/ifCond}}
