@@ -12,7 +12,9 @@ export class ActorL5r5e extends Actor {
         // }
 
         // Replace default image
-        data.img = `${CONFIG.l5r5e.paths.assets}icons/actors/${data.type}.svg`;
+        if (data.img === undefined) {
+            data.img = `${CONFIG.l5r5e.paths.assets}icons/actors/${data.type}.svg`;
+        }
 
         // Some tweak on actors token
         data.token = data.token || {};

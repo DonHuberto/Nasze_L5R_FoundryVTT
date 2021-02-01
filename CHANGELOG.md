@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0 - Roll n Keep
+- Added Roll n Keep 1st iteration
+- Fix image's behavior on create for all items sub classes
+
 ## 1.1.2 - One Compendium to bring them all
 - Added compendiums (Thanks to Stéfano Fara for the English version !) Partial for French as PoW and CR are not translated yet
   - Shadowlands
