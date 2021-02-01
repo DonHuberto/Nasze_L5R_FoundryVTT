@@ -25,6 +25,10 @@ export class SocketHandlerL5r5e {
                     this._onRefreshAppId(data);
                     break;
 
+                case "updateMessageIdAndRefresh":
+                    this._onUpdateMessageIdAndRefresh(data);
+                    break;
+
                 default:
                     console.warn(new Error("This socket event is not supported"), data);
                     break;
@@ -40,9 +44,13 @@ export class SocketHandlerL5r5e {
         });
     }
     _onDeleteChatMessage(data) {
+        // Only delete the message if the user is a GM (otherwise it have no real effect)
+        // Currently only used in RnK
+        if (!game.user.isGM || !game.settings.get("l5r5e", "rnk.deleteOldMessage")) {
+            return;
+        }
         const message = game.messages.get(data.messageId);
-        // only delete the message if the user is a GM and the event emitter is one of the recipients
-        if (game.user.isGM && message.data["whisper"].includes(data.userId)) {
+        if (message) {
             message.delete();
         }
     }
@@ -63,6 +71,27 @@ export class SocketHandlerL5r5e {
         if (!app || typeof app.refresh !== "function") {
             return;
         }
+        app.refresh();
+    }
+
+    /**
+     * Change in app message and refresh (used in RnK)
+     * @param appId
+     * @param msgId
+     */
+    updateMessageIdAndRefresh(appId, msgId) {
+        game.socket.emit(SocketHandlerL5r5e.SOCKET_NAME, {
+            type: "updateMessageIdAndRefresh",
+            appId,
+            msgId,
+        });
+    }
+    _onUpdateMessageIdAndRefresh(data) {
+        const app = Object.values(ui.windows).find((e) => e.id === data.appId);
+        if (!app || !app.message || typeof app.refresh !== "function") {
+            return;
+        }
+        app.message = game.messages.get(data.msgId);
         app.refresh();
     }
 }

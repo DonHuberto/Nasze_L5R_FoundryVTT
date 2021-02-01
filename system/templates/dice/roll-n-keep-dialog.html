@@ -48,8 +48,8 @@
                     </legend>
 
                     {{#each data.swapDiceFaces.rings}}
-                        <div class="dice dropbox faces-change" data-type="swap" data-face="{{id}}" data-die="RingDie">
-                            <img src="{{img}}" alt="{{id}}" />
+                        <div class="dice dropbox faces-change" data-type="swap" data-face="{{this}}" data-die="RingDie">
+                            <img src="{{getDiceFaceUrl 'RingDie' this}}" alt="{{this}}" />
                         </div>
                     {{/each}}
                 </td>
@@ -83,15 +83,20 @@
                         <tr>
                             {{#each item as |dice idxDie|}}
                             <td>
-                                <div
-                                    class="dice {{this.choice}} {{#ifCond ../../data.currentStep '==' idxStep }}draggable{{/ifCond}}"
-                                    data-step="{{idxStep}}"
-                                    data-die="{{idxDie}}"
-                                >
-                                    {{#if this.img}}
-                                    <img src="{{this.img}}" alt="{{idxStep}}_{{idxDie}}" />
-                                    {{/if}}
-                                </div>
+                                {{#if face}}
+                                    <div
+                                        class="dice {{choice}}{{#ifCond face '&&' (ifCond ../../data.currentStep '==' idxStep) }} draggable{{/ifCond}}"
+                                        data-step="{{idxStep}}"
+                                        data-die="{{idxDie}}"
+                                    >
+
+                                        {{#if newFace}}
+                                            <img src="{{getDiceFaceUrl type newFace}}" alt="{{idxStep}}_{{idxDie}}" />
+                                        {{else}}
+                                            <img src="{{getDiceFaceUrl type face}}" alt="{{idxStep}}_{{idxDie}}" />
+                                        {{/if}}
+                                    </div>
+                                {{/if}}
                             </td>
                             {{/each}}
                         </tr>
@@ -119,8 +124,8 @@
                     </legend>
 
                     {{#each data.swapDiceFaces.skills}}
-                        <div class="dice dropbox faces-change" data-type="swap" data-face="{{id}}" data-die="AbilityDie">
-                            <img src="{{img}}" alt="{{id}}" />
+                        <div class="dice dropbox faces-change" data-type="swap" data-face="{{this}}" data-die="AbilityDie">
+                            <img src="{{getDiceFaceUrl 'AbilityDie' this}}" alt="{{this}}" />
                         </div>
                     {{/each}}
                 </td>
@@ -132,20 +137,24 @@
         </button>
 
     {{else}}
-        {{!-- Non editable DiceList history (view for others players) --}}
+        {{!-- Non editable DiceList history --}}
         <table>
             {{#each data.dicesList as |item idxStep|}}
-                <tr>
-                    {{#each item as |dice idxDie|}}
-                        <td>
-                            <div class="dice {{this.choice}}">
-                                {{#if this.img}}
-                                    <img src="{{this.img}}" alt="{{idxStep}}_{{idxDie}}" />
-                                {{/if}}
-                            </div>
-                        </td>
-                    {{/each}}
-                </tr>
+            <tr>
+                {{#each item as |dice idxDie|}}
+                <td>
+                    {{#if face}}
+                        <div class="dice {{choice}}">
+                            {{#if newFace}}
+                                <img src="{{getDiceFaceUrl type newFace}}" alt="{{idxStep}}_{{idxDie}}" />
+                            {{else}}
+                                <img src="{{getDiceFaceUrl type face}}" alt="{{idxStep}}_{{idxDie}}" />
+                            {{/if}}
+                        </div>
+                    {{/if}}
+                </td>
+                {{/each}}
+            </tr>
             {{/each}}
         </table>
     {{/if}}

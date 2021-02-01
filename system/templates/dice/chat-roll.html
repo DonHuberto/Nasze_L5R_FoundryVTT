@@ -47,11 +47,11 @@
         <div class="l5r5e item-display dices-l5r">
             {{!-- Dices list --}}
             {{#each l5r5e.dices}}
-            {{#if this.diceTypeL5r}}
-            {{#each this.rolls}}
-            <span class="l5r5e chat-dice">{{{this.result}}}</span>
-            {{/each}}
-            {{/if}}
+                {{#if this.diceTypeL5r}}
+                    {{#each this.rolls}}
+                        <span class="l5r5e chat-dice">{{{this.result}}}</span>
+                    {{/each}}
+                {{/if}}
             {{/each}}
 
             {{!-- Roll & Keep Button --}}

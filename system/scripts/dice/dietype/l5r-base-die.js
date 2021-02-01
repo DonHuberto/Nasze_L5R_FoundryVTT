@@ -72,13 +72,7 @@ export class L5rBaseDie extends DiceTerm {
         this._evaluateModifiers();
 
         // Combine all results
-        this.l5r5e = { success: 0, explosive: 0, opportunity: 0, strife: 0 };
-        this.results.forEach((term) => {
-            const face = this.constructor.FACES[term.result];
-            ["success", "explosive", "opportunity", "strife"].forEach((props) => {
-                this.l5r5e[props] += parseInt(face[props]);
-            });
-        });
+        this.l5rSummary();
 
         // Return the evaluated term
         this._evaluated = true;
@@ -88,23 +82,32 @@ export class L5rBaseDie extends DiceTerm {
     }
 
     /**
+     * Summarise the total of success, strife... for L5R dices for the current Die
+     */
+    l5rSummary() {
+        this.l5r5e = { success: 0, explosive: 0, opportunity: 0, strife: 0 };
+        this.results.forEach((term) => {
+            const face = this.constructor.FACES[term.result];
+            ["success", "explosive", "opportunity", "strife"].forEach((props) => {
+                this.l5r5e[props] += parseInt(face[props]);
+            });
+        });
+    }
+
+    /**
      * Roll the DiceTerm by mapping a random uniform draw against the faces of the dice term
      * @override
      */
     roll(options) {
         const roll = super.roll(options);
-
         //roll.l5r5e = this.l5r5e;
-
         return roll;
     }
 
     /** @override */
     static fromData(data) {
         const roll = super.fromData(data);
-
         roll.l5r5e = data.l5r5e;
-
         return roll;
     }
 
@@ -114,9 +117,7 @@ export class L5rBaseDie extends DiceTerm {
      */
     toJSON() {
         const json = super.toJSON();
-
         json.l5r5e = this.l5r5e;
-
         return json;
     }
 }

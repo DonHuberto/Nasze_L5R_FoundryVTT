@@ -21,7 +21,7 @@ export class RollL5r5e extends Roll {
                 difficulty: 2,
                 difficultyHidden: false,
                 voidPointUsed: false,
-                ringsUsed: 0,
+                ringsUsed: null,
                 totalSuccess: 0,
                 totalBonus: 0,
                 success: 0,
@@ -30,6 +30,7 @@ export class RollL5r5e extends Roll {
                 strife: 0,
             },
             history: null,
+            isInitiativeRoll: false,
         };
 
         // Parse flavor for stance and skillId
@@ -68,24 +69,10 @@ export class RollL5r5e extends Roll {
 
         // Roll
         super.evaluate({ minimize, maximize });
-
-        // Current terms - L5R Summary
-        this.terms.forEach((term) => this._l5rSummary(term));
-
-        // Check inner L5R rolls - L5R Summary
-        this._dice.forEach((term) => this._l5rSummary(term));
-
-        // Store final outputs
         this._rolled = true;
-        this.l5r5e.dicesTypes.std = this.dice.some(
-            (term) => term instanceof DiceTerm && !(term instanceof game.l5r5e.L5rBaseDie)
-        ); // ignore math symbols
-        this.l5r5e.dicesTypes.l5r = this.dice.some((term) => term instanceof game.l5r5e.L5rBaseDie);
-        this.l5r5e.summary.totalBonus = Math.max(0, this.l5r5e.summary.totalSuccess - this.l5r5e.summary.difficulty);
-        this.l5r5e.summary.ringsUsed = this.dice.reduce(
-            (acc, term) => (term instanceof game.l5r5e.RingDie ? acc + term.number : acc),
-            0
-        );
+
+        // Compute summary
+        this.l5rSummary();
 
         return this;
     }
@@ -93,10 +80,43 @@ export class RollL5r5e extends Roll {
     /**
      * Summarise the total of success, strife... for L5R dices for the current roll
      *
+     * @private
+     */
+    l5rSummary() {
+        const summary = this.l5r5e.summary;
+
+        // Reset totals
+        summary.success = 0;
+        summary.explosive = 0;
+        summary.opportunity = 0;
+        summary.strife = 0;
+        summary.totalSuccess = 0;
+
+        // Current terms - L5R Summary
+        this.terms.forEach((term) => this._l5rTermSummary(term));
+
+        // Check inner L5R rolls - L5R Summary
+        this._dice.forEach((term) => this._l5rTermSummary(term));
+
+        // Store final outputs
+        this.l5r5e.dicesTypes.std = this.dice.some(
+            (term) => term instanceof DiceTerm && !(term instanceof game.l5r5e.L5rBaseDie)
+        ); // ignore math symbols
+        this.l5r5e.dicesTypes.l5r = this.dice.some((term) => term instanceof game.l5r5e.L5rBaseDie);
+        summary.totalBonus = Math.max(0, summary.totalSuccess - summary.difficulty);
+        summary.ringsUsed = this.dice.reduce(
+            (acc, term) => (term instanceof game.l5r5e.RingDie ? acc + term.number : acc),
+            0
+        );
+    }
+
+    /**
+     * Summarise the total of success, strife... for L5R dices for the current term
+     *
      * @param term
      * @private
      */
-    _l5rSummary(term) {
+    _l5rTermSummary(term) {
         if (!(term instanceof game.l5r5e.L5rBaseDie)) {
             return;
         }

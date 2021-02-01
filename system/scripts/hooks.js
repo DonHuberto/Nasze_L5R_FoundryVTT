@@ -174,7 +174,7 @@ export default class HooksL5r5e {
     }
 
     /**
-     * DiceSoNice Hook
+     * DiceSoNice - Add L5R DicePresets
      */
     static diceSoNiceReady(dice3d) {
         const texturePath = `${CONFIG.l5r5e.paths.assets}dices/default/3d/`;
@@ -217,5 +217,17 @@ export default class HooksL5r5e {
             },
             "d12"
         );
+    }
+
+    /**
+     * DiceSoNice - Do not show 3D roll for the Roll n Keep series
+     *
+     * @param {string} messageId
+     * @param {object} context
+     */
+    static diceSoNiceRollStart(messageId, context) {
+        if (context.roll.l5r5e?.history) {
+            context.blind = true;
+        }
     }
 }

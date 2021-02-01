@@ -4,7 +4,11 @@
         "Maintainers": ["Team L5R"]
     },
     "SETTINGS": {
-        "None": "Sin opción"
+        "None": "Sin opción",
+        "RollNKeep": {
+            "DeleteOldMessage": "RnK Delete previous chat message",
+            "DeleteOldMessageHint": "Choose to keep or delete the previous message for a RnK series"
+        }
     },
     "ACTOR": {
         "TypeCharacter": "Personaje jugador",

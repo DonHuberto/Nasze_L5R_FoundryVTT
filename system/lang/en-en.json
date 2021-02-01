@@ -4,7 +4,11 @@
         "Maintainers": ["Team L5R"]
     },
     "SETTINGS": {
-        "None": "No option"
+        "None": "No option",
+        "RollNKeep": {
+            "DeleteOldMessage": "RnK Delete previous chat message",
+            "DeleteOldMessageHint": "Choose to keep or delete the previous message for a RnK series"
+        }
     },
     "ACTOR": {
         "TypeCharacter": "Player Character",
@@ -105,7 +109,7 @@
             "swap_drop_here": "Swap",
             "keep_drop_here": "Keep",
             "keep_chat": "New roll from an exploding die",
-            "bt_validate": "Finalize"
+            "bt_validate": "Finalize this step"
         },
         "max": "Max",
         "current": "Current",

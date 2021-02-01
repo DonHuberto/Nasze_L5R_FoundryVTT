@@ -3,6 +3,18 @@
  */
 export const RegisterSettings = function () {
     /* ------------------------------------ */
+    /* User settings                        */
+    /* ------------------------------------ */
+    game.settings.register("l5r5e", "rnk.deleteOldMessage", {
+        name: "SETTINGS.RollNKeep.DeleteOldMessage",
+        hint: "SETTINGS.RollNKeep.DeleteOldMessageHint",
+        scope: "world",
+        config: true,
+        default: true,
+        type: Boolean,
+    });
+
+    /* ------------------------------------ */
     /* Update                               */
     /* ------------------------------------ */
     game.settings.register("l5r5e", "systemMigrationVersion", {

@@ -41,7 +41,7 @@ export class CombatL5r5e extends Combat {
 
         // Get score for each combatant
         const updatedCombatants = [];
-        ids.forEach((combatantId) => {
+        for (const combatantId of ids) {
             const combatant = game.combat.combatants.find((c) => c._id === combatantId);
 
             // Skip if combatant already have a initiative value
@@ -77,31 +77,41 @@ export class CombatL5r5e extends Combat {
                     formula = createFormula.join("+");
                 }
 
-                const roll = new game.l5r5e.RollL5r5e(formula);
-                roll.actor = combatant.actor;
-                roll.l5r5e.stance = data.stance;
-                roll.l5r5e.skillId = skillId;
-                roll.l5r5e.skillCatId = skillCat;
-                roll.l5r5e.summary.difficulty =
-                    messageOptions.difficulty !== undefined ? messageOptions.difficulty : cfg.difficulty;
-                roll.l5r5e.summary.difficultyHidden =
-                    messageOptions.difficultyHidden !== undefined
-                        ? messageOptions.difficultyHidden
-                        : cfg.difficultyHidden;
-                roll.l5r5e.summary.voidPointUsed = !!messageOptions.useVoidPoint;
+                let roll;
+                const flavor =
+                    game.i18n.localize("l5r5e.chatdices.initiative_roll") +
+                    " (" +
+                    game.i18n.localize(`l5r5e.conflict.initiative.prepared_${isPrepared}`) +
+                    ")";
 
-                roll.roll();
-                roll.toMessage({
-                    flavor:
-                        game.i18n.localize("l5r5e.chatdices.initiative_roll") +
-                        " (" +
-                        game.i18n.localize(`l5r5e.conflict.initiative.prepared_${isPrepared}`) +
-                        ")",
-                });
+                if (messageOptions.rnkRoll instanceof game.l5r5e.RollL5r5e && ids.length === 1) {
+                    // Specific RnK
+                    roll = messageOptions.rnkRoll;
+                    // Ugly but work... i need the new messageId
+                    combatant.actor.rnkMessage = await roll.toMessage({ flavor });
+                } else {
+                    // Regular
+                    roll = new game.l5r5e.RollL5r5e(formula);
+                    roll.actor = combatant.actor;
+                    roll.l5r5e.isInitiativeRoll = true;
+                    roll.l5r5e.stance = data.stance;
+                    roll.l5r5e.skillId = skillId;
+                    roll.l5r5e.skillCatId = skillCat;
+                    roll.l5r5e.summary.difficulty =
+                        messageOptions.difficulty !== undefined ? messageOptions.difficulty : cfg.difficulty;
+                    roll.l5r5e.summary.difficultyHidden =
+                        messageOptions.difficultyHidden !== undefined
+                            ? messageOptions.difficultyHidden
+                            : cfg.difficultyHidden;
+                    roll.l5r5e.summary.voidPointUsed = !!messageOptions.useVoidPoint;
+
+                    roll.roll();
+                    roll.toMessage({ flavor });
+                }
 
                 // if the character succeeded on their Initiative check, they add 1 to their base initiative value,
                 // plus an additional amount equal to their bonus successes.
-                const successes = Math.min(roll.l5r5e.summary.ringsUsed, roll.l5r5e.summary.totalSuccess);
+                const successes = roll.l5r5e.summary.totalSuccess;
                 if (successes >= roll.l5r5e.summary.difficulty) {
                     initiative = initiative + 1 + Math.max(successes - roll.l5r5e.summary.difficulty, 0);
                 }
@@ -111,7 +121,7 @@ export class CombatL5r5e extends Combat {
                 _id: combatant._id,
                 initiative: initiative,
             });
-        });
+        }
 
         // Update all combatants at once
         await this.updateEmbeddedEntity("Combatant", updatedCombatants);

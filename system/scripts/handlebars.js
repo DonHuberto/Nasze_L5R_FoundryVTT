@@ -30,6 +30,13 @@ export const RegisterHandlebars = function () {
     });
 
     /* ------------------------------------ */
+    /* Dice                                 */
+    /* ------------------------------------ */
+    Handlebars.registerHelper("getDiceFaceUrl", function (diceClass, faceId) {
+        return game.l5r5e[diceClass].getResultSrc(faceId);
+    });
+
+    /* ------------------------------------ */
     /* Utility                              */
     /* ------------------------------------ */
     /**
