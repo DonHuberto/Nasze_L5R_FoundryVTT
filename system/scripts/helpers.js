@@ -69,7 +69,7 @@ export class HelpersL5r5e {
     static async getObjectGameOrPack(id, type, pack = null) {
         try {
             // If no pack passed, but it's a core item, we know the pack to get it
-            if (!pack) {
+            if (!pack && id.substr(0, 7) === "L5RCore") {
                 pack = HelpersL5r5e.getPackNameForCoreItem(id);
             }
 
