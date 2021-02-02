@@ -48,7 +48,7 @@
                 <div id="skill_default_value" class="dice-container pointer-choice">
                     <img src="systems/l5r5e/assets/dices/default/skill_blank.svg" alt="1">
                     <div class="dice-value">
-                        <span class="dice-skill" type="text" name="skill_{{data.skill.name}}">{{data.skill.default_value}}</span>
+                        <span class="dice-skill" type="text" name="skill_{{data.skill.name}}">{{data.skill.defaultValue}}</span>
                     </div>
                 </div>
                 {{else}}
@@ -81,7 +81,7 @@
             <td>
                 {{#if data.difficulty.hidden}}
                 <label>
-                    <input type="checkbox" id="diff_add_void_point" name="difficulty.add_void_point" value="1" {{checked data.difficulty.add_void_point}}>
+                    <input type="checkbox" id="diff_add_void_point" name="difficulty.addVoidPoint" value="1" {{checked data.difficulty.addVoidPoint}}>
                     +1 <i class="i_void" title="{{localize 'l5r5e.dicepicker.void_point_tooltip'}}"></i>
                 </label>
                 {{else}}

@@ -27,14 +27,14 @@ export class DicePickerDialog extends FormApplication {
         skill: {
             id: "",
             value: 0,
-            default_value: 0,
+            defaultValue: 0,
             cat: "",
             name: "",
         },
         difficulty: {
             value: 2,
             hidden: false,
-            add_void_point: false,
+            addVoidPoint: false,
         },
         useVoidPoint: false,
         isInitiativeRoll: false,
@@ -215,13 +215,13 @@ export class DicePickerDialog extends FormApplication {
         switch (this._actor.data.type) {
             case "character":
                 this.object.skill.value = this._actor.data.data.skills[skillCatId]?.[this.object.skill.id] || 0;
-                this.object.skill.default_value = this.object.skill.value;
+                this.object.skill.defaultValue = this.object.skill.value;
                 break;
 
             case "npc":
                 // Skill value is in categories for npc
                 this.object.skill.value = this._actor.data.data.skills[skillCatId] || 0;
-                this.object.skill.default_value = this.object.skill.value;
+                this.object.skill.defaultValue = this.object.skill.value;
                 break;
         }
     }
@@ -249,7 +249,7 @@ export class DicePickerDialog extends FormApplication {
             isHidden = true;
         }
         this.object.difficulty.hidden = !!isHidden;
-        this.object.difficulty.add_void_point = this.object.difficulty.hidden;
+        this.object.difficulty.addVoidPoint = this.object.difficulty.hidden;
         this._updateVoidPointUsage();
     }
 
@@ -274,7 +274,7 @@ export class DicePickerDialog extends FormApplication {
             actor: this._actor,
             actorIsPc: !this._actor || this._actor.data?.type === "character",
             canUseVoidPoint:
-                this.object.difficulty.add_void_point || !this._actor || this._actor.data.data.void_points.value > 0,
+                this.object.difficulty.addVoidPoint || !this._actor || this._actor.data.data.void_points.value > 0,
             disableSubmit: this.object.skill.value < 1 && this.object.ring.value < 1,
             difficultyHiddenIsLock: this._difficultyHiddenIsLock,
         };
@@ -327,7 +327,7 @@ export class DicePickerDialog extends FormApplication {
         html.find("#skill_default_value").on("click", async (event) => {
             event.preventDefault();
             event.stopPropagation();
-            this.object.skill.value = this.object.skill.default_value;
+            this.object.skill.value = this.object.skill.defaultValue;
             this.render(false);
         });
 
@@ -345,7 +345,7 @@ export class DicePickerDialog extends FormApplication {
             event.preventDefault();
             event.stopPropagation();
             this.object.difficulty.hidden = !this.object.difficulty.hidden;
-            this.object.difficulty.add_void_point = this.object.difficulty.hidden;
+            this.object.difficulty.addVoidPoint = this.object.difficulty.hidden;
             this._updateVoidPointUsage();
             this.render(false);
         });
@@ -354,7 +354,7 @@ export class DicePickerDialog extends FormApplication {
         html.find("#diff_add_void_point").on("click", async (event) => {
             event.preventDefault();
             event.stopPropagation();
-            this.object.difficulty.add_void_point = !this.object.difficulty.add_void_point;
+            this.object.difficulty.addVoidPoint = !this.object.difficulty.addVoidPoint;
             this._updateVoidPointUsage();
             this.render(false);
         });
@@ -391,7 +391,7 @@ export class DicePickerDialog extends FormApplication {
             }
 
             // If hidden add 1 void pt
-            if (this.object.difficulty.add_void_point) {
+            if (this.object.difficulty.addVoidPoint) {
                 actorData.void_points.value = Math.min(actorData.void_points.value + 1, actorData.void_points.max);
             }
 
@@ -471,7 +471,7 @@ export class DicePickerDialog extends FormApplication {
     _updateVoidPointUsage() {
         if (
             this.object.useVoidPoint &&
-            !this.object.difficulty.add_void_point &&
+            !this.object.difficulty.addVoidPoint &&
             !!this._actor &&
             this._actor.data.data.void_points.value < 1
         ) {
