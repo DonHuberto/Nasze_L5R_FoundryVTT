@@ -185,6 +185,7 @@ export class BaseSheetL5r5e extends ActorSheet {
             }
 
             new game.l5r5e.DicePickerDialog({
+                ringId: li.data("ring") || null,
                 skillId: skillId,
                 skillCatId: li.data("skillcat") || null,
                 isInitiativeRoll: li.data("initiative") || false,
