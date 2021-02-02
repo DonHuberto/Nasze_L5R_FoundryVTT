@@ -208,6 +208,7 @@ export class TwentyQuestionsDialog extends FormApplication {
         html.find("#generate").on("click", async (event) => {
             event.preventDefault();
             event.stopPropagation();
+            $(event.currentTarget).prop("disabled", true);
             await this.object.toActor(this.actor, flattenObject(this.cache));
             await this.close({ submit: true, force: true });
         });
