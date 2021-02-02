@@ -105,10 +105,8 @@
             "title": "L5R Roll & Keep",
             "discard_drop_here": "Descartar",
             "reroll_drop_here": "Relanzar",
-            "reroll_chat": "Dados relanzados",
             "swap_drop_here": "Swap",
             "keep_drop_here": "Guardar",
-            "keep_chat": "Nueva tirada de un dado relanzable",
             "bt_validate": "Finalizar"
         },
         "max": "Máx",

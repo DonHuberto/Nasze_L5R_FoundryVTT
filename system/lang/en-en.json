@@ -105,10 +105,8 @@
             "title": "L5R Roll & Keep",
             "discard_drop_here": "Discard",
             "reroll_drop_here": "Re-roll",
-            "reroll_chat": "Re-rolled dice",
             "swap_drop_here": "Swap",
             "keep_drop_here": "Keep",
-            "keep_chat": "New roll from an exploding die",
             "bt_validate": "Finalize this step"
         },
         "max": "Max",

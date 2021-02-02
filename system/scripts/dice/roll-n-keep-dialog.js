@@ -444,11 +444,6 @@ export class RollnKeepDialog extends FormApplication {
         };
 
         const roll = await new game.l5r5e.RollL5r5e(this._arrayToFormula(newRolls));
-        roll.l5r5e = {
-            ...this.message._roll.l5r5e,
-            summary: roll.l5r5e.summary,
-        };
-
         await roll.roll();
 
         // Show DsN dice for the new roll

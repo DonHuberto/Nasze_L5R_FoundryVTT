@@ -83,17 +83,16 @@
                         <tr>
                             {{#each item as |dice idxDie|}}
                             <td>
-                                {{#if face}}
+                                {{#if dice.face}}
                                     <div
-                                        class="dice {{choice}}{{#ifCond face '&&' (ifCond ../../data.currentStep '==' idxStep) }} draggable{{/ifCond}}"
+                                        class="dice {{dice.choice}}{{#ifCond ../../data.currentStep '==' idxStep}} draggable{{/ifCond}}"
                                         data-step="{{idxStep}}"
                                         data-die="{{idxDie}}"
                                     >
-
-                                        {{#if newFace}}
-                                            <img src="{{getDiceFaceUrl type newFace}}" alt="{{idxStep}}_{{idxDie}}" />
+                                        {{#if dice.newFace}}
+                                            <img src="{{getDiceFaceUrl dice.type dice.newFace}}" alt="{{idxStep}}_{{idxDie}}" />
                                         {{else}}
-                                            <img src="{{getDiceFaceUrl type face}}" alt="{{idxStep}}_{{idxDie}}" />
+                                            <img src="{{getDiceFaceUrl dice.type dice.face}}" alt="{{idxStep}}_{{idxDie}}" />
                                         {{/if}}
                                     </div>
                                 {{/if}}
@@ -143,12 +142,12 @@
             <tr>
                 {{#each item as |dice idxDie|}}
                 <td>
-                    {{#if face}}
-                        <div class="dice {{choice}}">
-                            {{#if newFace}}
-                                <img src="{{getDiceFaceUrl type newFace}}" alt="{{idxStep}}_{{idxDie}}" />
+                    {{#if dice.face}}
+                        <div class="dice {{dice.choice}}">
+                            {{#if dice.newFace}}
+                                <img src="{{getDiceFaceUrl dice.type dice.newFace}}" alt="{{idxStep}}_{{idxDie}}" />
                             {{else}}
-                                <img src="{{getDiceFaceUrl type face}}" alt="{{idxStep}}_{{idxDie}}" />
+                                <img src="{{getDiceFaceUrl dice.type dice.face}}" alt="{{idxStep}}_{{idxDie}}" />
                             {{/if}}
                         </div>
                     {{/if}}
