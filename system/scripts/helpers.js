@@ -68,6 +68,11 @@ export class HelpersL5r5e {
      */
     static async getObjectGameOrPack(id, type, pack = null) {
         try {
+            // If no pack passed, but it's a core item, we know the pack to get it
+            if (!pack) {
+                pack = HelpersL5r5e.getPackNameForCoreItem(id);
+            }
+
             // Named pack
             if (pack) {
                 const data = await game.packs.get(pack).getEntity(id);
@@ -183,5 +188,31 @@ export class HelpersL5r5e {
      */
     static escapeRegExp(str) {
         return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    /**
+     * Get the associated pack for a core item (time saving)
+     */
+    static getPackNameForCoreItem(itemId) {
+        const core = new Map();
+        core.set("Pro", "l5r5e.core-properties");
+        core.set("Kat", "l5r5e.core-techniques-kata");
+        core.set("Kih", "l5r5e.core-techniques-kiho");
+        core.set("Ins", "l5r5e.core-techniques-inversion");
+        core.set("Inv", "l5r5e.core-techniques-invocations");
+        core.set("Rit", "l5r5e.core-techniques-rituals");
+        core.set("Shu", "l5r5e.core-techniques-shuji");
+        core.set("Mah", "l5r5e.core-techniques-maho");
+        core.set("Nin", "l5r5e.core-techniques-ninjutsu");
+        core.set("Sch", "l5r5e.core-techniques-school");
+        core.set("Mas", "l5r5e.core-techniques-mastery");
+        core.set("Ite", "l5r5e.core-items");
+        core.set("Arm", "l5r5e.core-armors");
+        core.set("Wea", "l5r5e.core-weapons");
+        core.set("Dis", "l5r5e.core-peculiarities-distinctions");
+        core.set("Pas", "l5r5e.core-peculiarities-passions");
+        core.set("Adv", "l5r5e.core-peculiarities-adversities");
+        core.set("Anx", "l5r5e.core-peculiarities-anxieties");
+        return core.get(itemId.replace(/L5RCore(\w{3})\d+/gi, "$1"));
     }
 }
