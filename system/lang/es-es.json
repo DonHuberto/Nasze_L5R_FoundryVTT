@@ -109,6 +109,15 @@
             "keep_drop_here": "Guardar",
             "bt_validate": "Finalizar"
         },
+        "gm_toolbox": {
+            "title": "GM ToolBox",
+            "difficulty_hidden": "Change difficulty visibility",
+            "difficulty": "Change difficulty (right: add, left: subtract, middle: TN 2)",
+            "clear_conflict": "Clear all conflict on Characters",
+            "clear_conflict_info": "All conflict on Characters was reset",
+            "starting_void_point": "Reset void points on Characters (half max value)",
+            "starting_void_point_info": "All void points on Characters was reset"
+        },
         "max": "Máx",
         "current": "Actuales",
         "quantity": "Cantidad",

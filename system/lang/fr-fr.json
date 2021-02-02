@@ -109,6 +109,15 @@
             "keep_drop_here": "Garder",
             "bt_validate": "Finaliser cette étape"
         },
+        "gm_toolbox": {
+            "title": "GM ToolBox",
+            "difficulty_hidden": "Modifier la visibilité de la difficulté",
+            "difficulty": "Modifier la difficulté (droite: ajout, gauche: soustraction, milieu: ND 2)",
+            "clear_conflict": "Enlever tous les points de conflit des personnages",
+            "clear_conflict_info": "Les personnages sont maintenant plus serins",
+            "starting_void_point": "Réinitialiser les points du vide à leurs moitié",
+            "starting_void_point_info": "Tous les points du vide ont été réinitialisés"
+        },
         "max": "Max",
         "current": "Actuel",
         "quantity": "Quantité",

@@ -19,11 +19,8 @@ export class GmToolsDialog extends FormApplication {
             id: "l5r5e-gm-tools-dialog",
             classes: ["l5r5e", "gm-tools-dialog"],
             template: CONFIG.l5r5e.paths.templates + "dice/gm-tools-dialog.html",
-            title: game.i18n.localize("l5r5e.dicepicker.difficulty_title"),
-            width: 200, // ignored under 200px
-            height: 130, // ignored under 50px
-            scale: 0.5, // so scale /2 :D
-            left: x - 470,
+            title: game.i18n.localize("l5r5e.gm_toolbox.title"),
+            left: x - 540,
             top: y - 94,
             closeOnSubmit: false,
             submitOnClose: false,
@@ -67,6 +64,8 @@ export class GmToolsDialog extends FormApplication {
         if (!game.user.isGM) {
             return false;
         }
+        this.position.width = "auto";
+        this.position.height = "auto";
         return super.render(force, options);
     }
 
@@ -104,6 +103,8 @@ export class GmToolsDialog extends FormApplication {
 
         // Modify difficulty hidden
         html.find(`.difficulty_hidden`).on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
             this.object.difficultyHidden = !this.object.difficultyHidden;
             game.settings
                 .set("l5r5e", "initiative.difficulty.hidden", this.object.difficultyHidden)
@@ -130,6 +131,13 @@ export class GmToolsDialog extends FormApplication {
             }
             game.settings.set("l5r5e", "initiative.difficulty.value", this.object.difficulty).then(() => this.submit());
         });
+
+        // Halve max void points & Clear conflict
+        html.find(`.gm_actor_updates`).on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            this._updatesActors($(event.currentTarget).data("type"));
+        });
     }
 
     /**
@@ -150,5 +158,42 @@ export class GmToolsDialog extends FormApplication {
         }
 
         this.render(false);
+    }
+
+    /**
+     * Update all actors
+     * @param {string} type
+     * @private
+     */
+    _updatesActors(type) {
+        if (!game.user.isGM) {
+            return;
+        }
+
+        game.actors.entities.forEach((actor) => {
+            switch (type) {
+                case "starting_void_point":
+                    // Starting void points : Max Void point / 2 rounded up for all actors
+                    actor.data.data.void_points.value = Math.ceil(actor.data.data.void_points.max / 2);
+                    break;
+
+                case "clear_conflict":
+                    // Clear all actor conflict
+                    actor.data.data.strife.value = 0;
+                    break;
+            }
+            actor.update({
+                data: {
+                    void_points: {
+                        value: actor.data.data.void_points.value,
+                    },
+                    strife: {
+                        value: actor.data.data.strife.value,
+                    },
+                },
+            });
+        });
+
+        ui.notifications.info(game.i18n.localize(`l5r5e.gm_toolbox.${type}_info`));
     }
 }

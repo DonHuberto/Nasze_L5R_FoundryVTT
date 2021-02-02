@@ -1,6 +1,8 @@
 <form class="l5r5e gm-tools-dialog" autocomplete="off">
     <p class="gm-tools-container">
-        <a class="difficulty_hidden"><i class="fa fa-eye{{#if data.difficultyHidden}}-slash{{/if}}"></i></a>
-        <strong class="difficulty">{{data.difficulty}}</strong>
+        <a class="difficulty_hidden" title="{{localize 'l5r5e.gm_toolbox.difficulty_hidden'}}"><i class="fa fa-eye{{#if data.difficultyHidden}}-slash{{/if}}"></i></a>
+        <strong class="difficulty" title="{{localize 'l5r5e.gm_toolbox.difficulty'}}">{{data.difficulty}}</strong>
+        <a class="gm_actor_updates clear_conflict" data-type="clear_conflict" title="{{localize 'l5r5e.gm_toolbox.clear_conflict'}}"><i class="fa fa-bed"></i></a>
+        <a class="gm_actor_updates starting_void_point" data-type="starting_void_point" title="{{localize 'l5r5e.gm_toolbox.starting_void_point'}}"><i class="fas fa-star-half-alt"></i></a>
     </p>
 </form>

@@ -50,8 +50,6 @@ export class RollnKeepDialog extends FormApplication {
             classes: ["l5r5e", "roll-n-keep-dialog"],
             template: CONFIG.l5r5e.paths.templates + "dice/roll-n-keep-dialog.html",
             title: game.i18n.localize("l5r5e.roll_n_keep.title"),
-            width: 660,
-            height: 454,
             closeOnSubmit: false,
         });
     }
@@ -104,6 +102,8 @@ export class RollnKeepDialog extends FormApplication {
         if (!this.message) {
             return;
         }
+        this.position.width = "auto";
+        this.position.height = "auto";
         return super.render(force, options);
     }
 
