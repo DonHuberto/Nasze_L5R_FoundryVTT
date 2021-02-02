@@ -25,12 +25,12 @@
             </span>
 
             <span class="chat-profil-element">
-                {{#if l5r5e.summary.difficultyHidden}}
+                {{#if l5r5e.difficultyHidden}}
                     {{localize 'l5r5e.chatdices.difficulty_hidden'}}
                 {{else}}
-                    {{localize 'l5r5e.chatdices.difficulty'}} {{l5r5e.summary.difficulty}}
+                    {{localize 'l5r5e.chatdices.difficulty'}} {{l5r5e.difficulty}}
                 {{/if}}
-                {{#if l5r5e.summary.voidPointUsed}}
+                {{#if l5r5e.voidPointUsed}}
                     <br><i class="i_void" title="{{localize 'l5r5e.chatdices.void_point_used'}}"></i>
                 {{/if}}
             </span>

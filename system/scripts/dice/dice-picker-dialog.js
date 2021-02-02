@@ -415,9 +415,10 @@ export class DicePickerDialog extends FormApplication {
             formula.push(`${this.object.skill.value}ds`);
         }
 
+        let message;
         if (this.object.isInitiativeRoll) {
             // Initiative roll
-            this._actor.rollInitiative({
+            await this._actor.rollInitiative({
                 initiativeOptions: {
                     formula: formula.join("+"),
                     // updateTurn: true,
@@ -429,6 +430,9 @@ export class DicePickerDialog extends FormApplication {
                     },
                 },
             });
+            // Adhesive tape to get the messageId :/
+            message = this._actor.rnkMessage;
+            delete this._actor.rnkMessage;
         } else {
             // Regular roll, so let's roll !
             const roll = await new game.l5r5e.RollL5r5e(formula.join("+"));
@@ -437,12 +441,16 @@ export class DicePickerDialog extends FormApplication {
             roll.l5r5e.stance = this.object.ring.id;
             roll.l5r5e.skillId = this.object.skill.id;
             roll.l5r5e.skillCatId = this.object.skill.cat;
-            roll.l5r5e.summary.difficulty = this.object.difficulty.value;
-            roll.l5r5e.summary.difficultyHidden = this.object.difficulty.hidden;
-            roll.l5r5e.summary.voidPointUsed = this.object.useVoidPoint;
+            roll.l5r5e.difficulty = this.object.difficulty.value;
+            roll.l5r5e.difficultyHidden = this.object.difficulty.hidden;
+            roll.l5r5e.voidPointUsed = this.object.useVoidPoint;
 
             await roll.roll();
-            await roll.toMessage();
+            message = await roll.toMessage();
+        }
+
+        if (message) {
+            new game.l5r5e.RollnKeepDialog(message._id).render(true);
         }
 
         return this.close();

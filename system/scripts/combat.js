@@ -78,6 +78,7 @@ export class CombatL5r5e extends Combat {
                 }
 
                 let roll;
+                let rnkMessage;
                 const flavor =
                     game.i18n.localize("l5r5e.chatdices.initiative_roll") +
                     " (" +
@@ -87,8 +88,7 @@ export class CombatL5r5e extends Combat {
                 if (messageOptions.rnkRoll instanceof game.l5r5e.RollL5r5e && ids.length === 1) {
                     // Specific RnK
                     roll = messageOptions.rnkRoll;
-                    // Ugly but work... i need the new messageId
-                    combatant.actor.rnkMessage = await roll.toMessage({ flavor });
+                    rnkMessage = await roll.toMessage({ flavor });
                 } else {
                     // Regular
                     roll = new game.l5r5e.RollL5r5e(formula);
@@ -97,23 +97,28 @@ export class CombatL5r5e extends Combat {
                     roll.l5r5e.stance = data.stance;
                     roll.l5r5e.skillId = skillId;
                     roll.l5r5e.skillCatId = skillCat;
-                    roll.l5r5e.summary.difficulty =
+                    roll.l5r5e.difficulty =
                         messageOptions.difficulty !== undefined ? messageOptions.difficulty : cfg.difficulty;
-                    roll.l5r5e.summary.difficultyHidden =
+                    roll.l5r5e.difficultyHidden =
                         messageOptions.difficultyHidden !== undefined
                             ? messageOptions.difficultyHidden
                             : cfg.difficultyHidden;
-                    roll.l5r5e.summary.voidPointUsed = !!messageOptions.useVoidPoint;
+                    roll.l5r5e.voidPointUsed = !!messageOptions.useVoidPoint;
 
                     roll.roll();
-                    roll.toMessage({ flavor });
+                    rnkMessage = await roll.toMessage({ flavor });
+                }
+
+                // Ugly but work... i need the new messageId
+                if (ids.length === 1) {
+                    combatant.actor.rnkMessage = rnkMessage;
                 }
 
                 // if the character succeeded on their Initiative check, they add 1 to their base initiative value,
                 // plus an additional amount equal to their bonus successes.
                 const successes = roll.l5r5e.summary.totalSuccess;
-                if (successes >= roll.l5r5e.summary.difficulty) {
-                    initiative = initiative + 1 + Math.max(successes - roll.l5r5e.summary.difficulty, 0);
+                if (successes >= roll.l5r5e.difficulty) {
+                    initiative = initiative + 1 + Math.max(successes - roll.l5r5e.difficulty, 0);
                 }
             }
 

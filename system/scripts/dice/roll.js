@@ -13,15 +13,16 @@ export class RollL5r5e extends Roll {
             skillId: "",
             skillCatId: "",
             actor: null,
+            difficulty: 2,
+            difficultyHidden: false,
+            voidPointUsed: false,
+            ringsUsed: null,
+            isInitiativeRoll: false,
             dicesTypes: {
                 std: false,
                 l5r: false,
             },
             summary: {
-                difficulty: 2,
-                difficultyHidden: false,
-                voidPointUsed: false,
-                ringsUsed: null,
                 totalSuccess: 0,
                 totalBonus: 0,
                 success: 0,
@@ -30,7 +31,6 @@ export class RollL5r5e extends Roll {
                 strife: 0,
             },
             history: null,
-            isInitiativeRoll: false,
         };
 
         // Parse flavor for stance and skillId
@@ -103,8 +103,8 @@ export class RollL5r5e extends Roll {
             (term) => term instanceof DiceTerm && !(term instanceof game.l5r5e.L5rBaseDie)
         ); // ignore math symbols
         this.l5r5e.dicesTypes.l5r = this.dice.some((term) => term instanceof game.l5r5e.L5rBaseDie);
-        summary.totalBonus = Math.max(0, summary.totalSuccess - summary.difficulty);
-        summary.ringsUsed = this.dice.reduce(
+        summary.totalBonus = Math.max(0, summary.totalSuccess - this.l5r5e.difficulty);
+        this.l5r5e.ringsUsed = this.dice.reduce(
             (acc, term) => (term instanceof game.l5r5e.RingDie ? acc + term.number : acc),
             0
         );

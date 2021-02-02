@@ -117,7 +117,7 @@ export class RollnKeepDialog extends FormApplication {
         }
 
         // Get the roll
-        this.roll = game.l5r5e.RollL5r5e.fromData(this.message.roll);
+        this.roll = game.l5r5e.RollL5r5e.fromData(this.message._roll);
 
         // Already history
         if (Array.isArray(this.roll.l5r5e.history)) {
@@ -207,7 +207,7 @@ export class RollnKeepDialog extends FormApplication {
         // Check only on 1st step
         if (this.object.currentStep === 0) {
             const kept = this._getKeepCount();
-            this.object.submitDisabled = kept < 1 || kept > this.roll.l5r5e.summary.ringsUsed;
+            this.object.submitDisabled = kept < 1 || kept > this.roll.l5r5e.ringsUsed;
         } else if (!this.object.dicesList[this.object.currentStep]) {
             this.options.editable = false;
         }
@@ -282,7 +282,7 @@ export class RollnKeepDialog extends FormApplication {
         current.choice = type;
 
         // Little time saving : on 1st step, if we reach the max kept dices, discard all dices without a choice
-        if (this.object.currentStep === 0 && this._getKeepCount() === this.roll.l5r5e.summary.ringsUsed) {
+        if (this.object.currentStep === 0 && this._getKeepCount() === this.roll.l5r5e.ringsUsed) {
             this._discardDiceWithoutChoice();
         }
 
@@ -445,7 +445,7 @@ export class RollnKeepDialog extends FormApplication {
 
         const roll = await new game.l5r5e.RollL5r5e(this._arrayToFormula(newRolls));
         roll.l5r5e = {
-            ...this.message.roll.l5r5e,
+            ...this.message._roll.l5r5e,
             summary: roll.l5r5e.summary,
         };
 
@@ -480,7 +480,7 @@ export class RollnKeepDialog extends FormApplication {
         // Get all kept dices + new (choice null)
         const diceList = this.object.dicesList.reduce((acc, step) => {
             step.forEach((die) => {
-                if (!!die && die.choice !== RollnKeepDialog.CHOICES.discard) {
+                if (!!die && [RollnKeepDialog.CHOICES.keep, RollnKeepDialog.CHOICES.nothing].includes(die.choice)) {
                     if (!acc[die.type]) {
                         acc[die.type] = [];
                     }
@@ -493,7 +493,7 @@ export class RollnKeepDialog extends FormApplication {
         // Re create a new roll
         const roll = await new game.l5r5e.RollL5r5e(this._arrayToFormula(diceList));
         roll.l5r5e = {
-            ...this.message.roll.l5r5e,
+            ...this.message._roll.l5r5e,
             summary: roll.l5r5e.summary,
         };
 
