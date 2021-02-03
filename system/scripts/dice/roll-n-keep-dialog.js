@@ -124,7 +124,7 @@ export class RollnKeepDialog extends FormApplication {
             this.object.dicesList = this.roll.l5r5e.history;
 
             let currentStep = this.roll.l5r5e.history.length - 1;
-            if (!this._haveChoice(currentStep)) {
+            if (!this._haveChoice(currentStep, RollnKeepDialog.CHOICES.nothing)) {
                 currentStep += 1;
             }
             this.object.currentStep = currentStep;
@@ -204,10 +204,11 @@ export class RollnKeepDialog extends FormApplication {
      * @return {Object}
      */
     getData(options = null) {
-        // Check only on 1st step
-        if (this.object.currentStep === 0) {
-            const kept = this._getKeepCount();
-            this.object.submitDisabled = kept < 1 || kept > this.roll.l5r5e.ringsUsed;
+        // Disable submit / edition
+        this.object.submitDisabled = false;
+        if (this._checkKeepCount(this.object.currentStep)) {
+            const kept = this._getKeepCount(this.object.currentStep);
+            this.object.submitDisabled = kept < 1 || kept > this.roll.l5r5e.keepLimit;
         } else if (!this.object.dicesList[this.object.currentStep]) {
             this.options.editable = false;
         }
@@ -264,26 +265,36 @@ export class RollnKeepDialog extends FormApplication {
         const current = this.object.dicesList[data.step][data.die];
         delete current.newFace;
 
-        // FaceSwap
-        if (type === RollnKeepDialog.CHOICES.swap) {
-            // Dice Type Ring/Skill
-            const diceType = $(event.currentTarget).data("die");
-            const diceNewFace = $(event.currentTarget).data("face");
+        switch (type) {
+            case RollnKeepDialog.CHOICES.swap: {
+                // Dice Type Ring/Skill
+                const diceType = $(event.currentTarget).data("die");
+                const diceNewFace = $(event.currentTarget).data("face");
 
-            if (current.type !== diceType || current.face === diceNewFace) {
-                current.choice = RollnKeepDialog.CHOICES.nothing;
-                this.render(false);
-                return false;
+                if (current.type !== diceType || current.face === diceNewFace) {
+                    current.choice = RollnKeepDialog.CHOICES.nothing;
+                    this.render(false);
+                    return false;
+                }
+
+                current.newFace = diceNewFace;
+                break;
             }
 
-            current.newFace = diceNewFace;
+            case RollnKeepDialog.CHOICES.reroll:
+                // If reroll, we need to keep all the line by default
+                this._forceChoiceForDiceWithoutOne(RollnKeepDialog.CHOICES.keep);
+                break;
         }
 
         current.choice = type;
 
-        // Little time saving : on 1st step, if we reach the max kept dices, discard all dices without a choice
-        if (this.object.currentStep === 0 && this._getKeepCount() === this.roll.l5r5e.ringsUsed) {
-            this._discardDiceWithoutChoice();
+        // Little time saving : if we reach the max kept dices, discard all dices without a choice
+        if (
+            this._checkKeepCount(this.object.currentStep) &&
+            this._getKeepCount(this.object.currentStep) === this.roll.l5r5e.keepLimit
+        ) {
+            this._forceChoiceForDiceWithoutOne(RollnKeepDialog.CHOICES.discard);
         }
 
         this.render(false);
@@ -294,51 +305,69 @@ export class RollnKeepDialog extends FormApplication {
      * Return the current number of dices kept
      * @private
      */
-    _getKeepCount() {
-        return this.object.dicesList.reduce((acc, step) => {
-            return (
-                acc +
-                step.reduce((acc2, die) => {
-                    if (
-                        !!die &&
-                        [
-                            RollnKeepDialog.CHOICES.keep,
-                            RollnKeepDialog.CHOICES.reroll,
-                            RollnKeepDialog.CHOICES.swap,
-                        ].includes(die.choice)
-                    ) {
-                        acc2 = acc2 + 1;
-                    }
-                    return acc2;
-                }, 0)
-            );
+    _getKeepCount(step) {
+        return this.object.dicesList[step].reduce((acc, die) => {
+            if (
+                !!die &&
+                [RollnKeepDialog.CHOICES.keep, RollnKeepDialog.CHOICES.reroll, RollnKeepDialog.CHOICES.swap].includes(
+                    die.choice
+                )
+            ) {
+                acc = acc + 1;
+            }
+            return acc;
         }, 0);
     }
 
     /**
-     * Return true if the player can make a choice for the current step
+     * Return true if a "_getKeepCount" is needed
+     * @param {number} step
+     * @returns {boolean}
      * @private
      */
-    _haveChoice(currentStep) {
+    _checkKeepCount(step) {
+        return (
+            !this._haveChoice(step, RollnKeepDialog.CHOICES.reroll) &&
+            (step === 0 || this._haveChoice(step - 1, RollnKeepDialog.CHOICES.reroll))
+        );
+    }
+
+    /**
+     * Return true if this choice exist in the current step
+     * @private
+     */
+    _haveChoice(currentStep, choice) {
         return (
             this.object.dicesList[currentStep] &&
-            this.object.dicesList[currentStep].some((e) => !!e && e.choice === RollnKeepDialog.CHOICES.nothing)
+            this.object.dicesList[currentStep].some((e) => !!e && e.choice === choice)
         );
     }
 
     /**
      * Discard all dices without a choice for the current step
+     * @param {string} newChoice
      * @private
      */
-    _discardDiceWithoutChoice() {
+    _forceChoiceForDiceWithoutOne(newChoice) {
         this.object.dicesList[this.object.currentStep]
             .filter((e) => !!e)
             .map((e) => {
                 if (e.choice === RollnKeepDialog.CHOICES.nothing) {
-                    e.choice = RollnKeepDialog.CHOICES.discard;
+                    e.choice = newChoice;
                 }
                 return e;
             });
+    }
+
+    /**
+     * Initialize dice array for "step" if needed
+     * @param {number} step
+     * @private
+     */
+    _initializeDicesListStep(step) {
+        if (!this.object.dicesList[step]) {
+            this.object.dicesList[step] = Array(this.object.dicesList[0].length).fill(null);
+        }
     }
 
     /**
@@ -348,6 +377,7 @@ export class RollnKeepDialog extends FormApplication {
      */
     async _applyChoices() {
         const nextStep = this.object.currentStep + 1;
+        const haveReroll = this._haveChoice(this.object.currentStep, RollnKeepDialog.CHOICES.reroll);
 
         // Foreach kept dices, apply choices
         const newRolls = {};
@@ -357,8 +387,16 @@ export class RollnKeepDialog extends FormApplication {
             }
             switch (die.choice) {
                 case RollnKeepDialog.CHOICES.keep:
-                    // Exploding dice : add a new dice in the next step
-                    if (game.l5r5e[die.type].FACES[die.face].explosive) {
+                    if (haveReroll) {
+                        // Reroll line add all kept into a new line
+                        this._initializeDicesListStep(nextStep);
+                        this.object.dicesList[nextStep][idx] = duplicate(
+                            this.object.dicesList[this.object.currentStep][idx]
+                        );
+                        this.object.dicesList[nextStep][idx].choice = RollnKeepDialog.CHOICES.nothing;
+                        this.object.dicesList[this.object.currentStep][idx].choice = RollnKeepDialog.CHOICES.discard;
+                    } else if (game.l5r5e[die.type].FACES[die.face].explosive) {
+                        // Exploding dice : add a new dice in the next step
                         if (!newRolls[die.type]) {
                             newRolls[die.type] = 0;
                         }
@@ -376,9 +414,7 @@ export class RollnKeepDialog extends FormApplication {
 
                 case RollnKeepDialog.CHOICES.swap:
                     // FaceSwap : add a new dice with selected face in next step
-                    if (!this.object.dicesList[nextStep]) {
-                        this.object.dicesList[nextStep] = Array(this.object.dicesList[0].length).fill(null);
-                    }
+                    this._initializeDicesListStep(nextStep);
                     this.object.dicesList[nextStep][idx] = {
                         type: this.object.dicesList[this.object.currentStep][idx].type,
                         face: this.object.dicesList[this.object.currentStep][idx].newFace,
@@ -392,18 +428,16 @@ export class RollnKeepDialog extends FormApplication {
         // If new rolls, roll and add them
         if (Object.keys(newRolls).length > 0) {
             const newRollsResults = await this._newRoll(newRolls);
-
-            if (!this.object.dicesList[nextStep]) {
-                this.object.dicesList[nextStep] = Array(this.object.dicesList[0].length).fill(null);
-            }
-
+            this._initializeDicesListStep(nextStep);
             this.object.dicesList[this.object.currentStep].forEach((die, idx) => {
                 if (!die) {
                     return;
                 }
                 if (
                     die.choice === RollnKeepDialog.CHOICES.reroll ||
-                    (die.choice === RollnKeepDialog.CHOICES.keep && game.l5r5e[die.type].FACES[die.face].explosive)
+                    (!haveReroll &&
+                        die.choice === RollnKeepDialog.CHOICES.keep &&
+                        game.l5r5e[die.type].FACES[die.face].explosive)
                 ) {
                     this.object.dicesList[nextStep][idx] = newRollsResults[die.type].shift();
                 }
@@ -573,7 +607,7 @@ export class RollnKeepDialog extends FormApplication {
         }
 
         // Discard all dices without a choice for the current step
-        this._discardDiceWithoutChoice();
+        this._forceChoiceForDiceWithoutOne(RollnKeepDialog.CHOICES.discard);
 
         // Apply all choices to build the next step
         await this._applyChoices();

@@ -16,7 +16,7 @@ export class RollL5r5e extends Roll {
             difficulty: 2,
             difficultyHidden: false,
             voidPointUsed: false,
-            ringsUsed: null,
+            keepLimit: null,
             isInitiativeRoll: false,
             dicesTypes: {
                 std: false,
@@ -104,7 +104,7 @@ export class RollL5r5e extends Roll {
         ); // ignore math symbols
         this.l5r5e.dicesTypes.l5r = this.dice.some((term) => term instanceof game.l5r5e.L5rBaseDie);
         summary.totalBonus = Math.max(0, summary.totalSuccess - this.l5r5e.difficulty);
-        this.l5r5e.ringsUsed = this.dice.reduce(
+        this.l5r5e.keepLimit = this.dice.reduce(
             (acc, term) => (term instanceof game.l5r5e.RingDie ? acc + term.number : acc),
             0
         );
