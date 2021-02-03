@@ -112,10 +112,10 @@
             "title": "GM ToolBox",
             "difficulty_hidden": "Modifier la visibilité de la difficulté",
             "difficulty": "Modifier la difficulté (droite: ajout, gauche: soustraction, milieu: ND 2)",
-            "clear_conflict": "Enlever tous les points de conflit des personnages",
-            "clear_conflict_info": "Les personnages sont maintenant plus serins",
-            "starting_void_point": "Réinitialiser les points du vide à leurs moitié",
-            "starting_void_point_info": "Tous les points du vide ont été réinitialisés"
+            "sleep": "Repos confortable pour tous les personnages (Enlève Eau x2 de fatigue)",
+            "sleep_info": "Les personnages ont passé une bonne nuit de sommeil.",
+            "scene_end": "Fin de scène (Conflit et Fatigue reset à moitié pour tous les personnages)",
+            "scene_end_info": "La tension de la scène retombe enfin"
         },
         "max": "Max",
         "current": "Actuel",

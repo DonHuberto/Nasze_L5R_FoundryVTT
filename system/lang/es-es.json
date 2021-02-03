@@ -112,10 +112,10 @@
             "title": "GM ToolBox",
             "difficulty_hidden": "Change difficulty visibility",
             "difficulty": "Change difficulty (right: add, left: subtract, middle: TN 2)",
-            "clear_conflict": "Clear all conflict on Characters",
-            "clear_conflict_info": "All conflict on Characters was reset",
-            "starting_void_point": "Reset void points on Characters (half max value)",
-            "starting_void_point_info": "All void points on Characters was reset"
+            "sleep": "Comfortable rest for all characters (Remove Water x2 fatigue)",
+            "sleep_info": "The characters had a good night's sleep.",
+            "scene_end": "End of scene (Conflict and Fatigue half reset for all characters)",
+            "scene_end_info": "The tension of the scene finally drops."
         },
         "max": "Máx",
         "current": "Actuales",

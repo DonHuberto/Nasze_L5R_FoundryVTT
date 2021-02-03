@@ -132,7 +132,7 @@ export class GmToolsDialog extends FormApplication {
             game.settings.set("l5r5e", "initiative.difficulty.value", this.object.difficulty).then(() => this.submit());
         });
 
-        // Halve max void points & Clear conflict
+        // Scene End & Sleep
         html.find(`.gm_actor_updates`).on("click", (event) => {
             event.preventDefault();
             event.stopPropagation();
@@ -172,20 +172,31 @@ export class GmToolsDialog extends FormApplication {
 
         game.actors.entities.forEach((actor) => {
             switch (type) {
-                case "starting_void_point":
-                    // Starting void points : Max Void point / 2 rounded up for all actors
-                    actor.data.data.void_points.value = Math.ceil(actor.data.data.void_points.max / 2);
+                case "sleep":
+                    // Remove 'water x2' fatigue points
+                    actor.data.data.fatigue.value = Math.max(
+                        0,
+                        actor.data.data.fatigue.value - Math.ceil(actor.data.data.rings.water * 2)
+                    );
                     break;
 
-                case "clear_conflict":
-                    // Clear all actor conflict
-                    actor.data.data.strife.value = 0;
+                case "scene_end":
+                    // If more than half the value => roundup half conflit & fatigue
+                    actor.data.data.fatigue.value = Math.min(
+                        actor.data.data.fatigue.value,
+                        Math.ceil(actor.data.data.fatigue.max / 2)
+                    );
+                    actor.data.data.strife.value = Math.min(
+                        actor.data.data.strife.value,
+                        Math.ceil(actor.data.data.strife.max / 2)
+                    );
                     break;
             }
+
             actor.update({
                 data: {
-                    void_points: {
-                        value: actor.data.data.void_points.value,
+                    fatigue: {
+                        value: actor.data.data.fatigue.value,
                     },
                     strife: {
                         value: actor.data.data.strife.value,
