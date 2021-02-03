@@ -4,8 +4,9 @@
 - Added Roll n Keep 1st iteration !
 - Fix image's behavior on create for all items sub classes
 - Click on rings in the PC/PNC sheet now open the DicePicker with the selected ring
-- Added a booster for loading compendium's core items (speed up 20q)
-- Added confirm dialog on item deletion (Hold "ctrl" if you want to bypass it)
+- Added a booster for loading compendium's core items (speed up 20Q)
+- Added confirm dialog on item's deletion (Hold "ctrl" on the click, if you want to bypass it)
+- Added "Sleep" & "Scene End" buttons in "GM ToolBox" (old "difficulty" box)
 
 ## 1.1.2 - One Compendium to bring them all
 - Added compendiums (Thanks to Stéfano Fara for the English version !) Partial for French as PoW and CR are not translated yet
