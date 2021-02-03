@@ -25,10 +25,9 @@
     },
     "l5r5e": {
         "global": {
-            "ok": "OK",
             "add": "Añadir",
             "edit": "Editar",
-            "delete": "Borrar",
+            "delete_confirm": "Are you sure you want to delete '{name}' ?",
             "drop_here": "Dejar caer aquí",
             "edge_translation_disclaimer": "Edge Studio nos da su permiso para ofrecer este módulo a la comunidad, pero tanto los textos así como los códigos que lo constituyen no tienen su aprobación explícita."
         },

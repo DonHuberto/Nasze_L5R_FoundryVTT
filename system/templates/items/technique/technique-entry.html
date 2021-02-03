@@ -4,7 +4,7 @@
         <li class="item-name">{{ technique.name }}</li>
         {{#if editable}}
             <li data-item-id="{{technique._id}}" class="item-control item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
-            <li data-item-id="{{technique._id}}" class="item-control item-delete" title="{{localize 'l5r5e.global.delete'}}"><i class="fas fa-trash"></i></li>
+            <li data-item-id="{{technique._id}}" class="item-control item-delete" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></li>
         {{/if}}
     </ul>
     {{#if technique.data.description}}

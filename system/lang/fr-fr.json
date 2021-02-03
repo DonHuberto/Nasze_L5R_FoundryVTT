@@ -25,10 +25,9 @@
     },
     "l5r5e": {
         "global": {
-            "ok": "OK",
             "add": "Ajouter",
             "edit": "Modifier",
-            "delete": "Supprimer",
+            "delete_confirm": "Etes-vous sûr de vouloir supprimer '{name}' ?",
             "drop_here": "Déposez ici",
             "edge_translation_disclaimer": ""
         },

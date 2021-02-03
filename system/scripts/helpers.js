@@ -215,4 +215,27 @@ export class HelpersL5r5e {
         core.set("Anx", "l5r5e.core-peculiarities-anxieties");
         return core.get(itemId.replace(/L5RCore(\w{3})\d+/gi, "$1"));
     }
+
+    /**
+     * Show a confirm dialog before a deletion
+     * @param {string} content
+     * @param {function} callback The callback function for confirmed action
+     */
+    static confirmDeleteDialog(content, callback) {
+        new Dialog({
+            title: game.i18n.localize("Delete"),
+            content,
+            buttons: {
+                confirm: {
+                    icon: '<i class="fas fa-trash"></i>',
+                    label: game.i18n.localize("Yes"),
+                    callback,
+                },
+                cancel: {
+                    icon: '<i class="fas fa-times"></i>',
+                    label: game.i18n.localize("No"),
+                },
+            },
+        }).render(true);
+    }
 }

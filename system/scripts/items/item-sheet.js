@@ -105,12 +105,7 @@ export class ItemSheetL5r5e extends ItemSheet {
         });
 
         // Delete a property
-        html.find(`.property-delete`).on("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            const li = $(event.currentTarget).parents(".property");
-            this._deleteProperty(li.data("propertyId"));
-        });
+        html.find(`.property-delete`).on("click", this._deleteProperty.bind(this));
     }
 
     /**
@@ -174,20 +169,37 @@ export class ItemSheetL5r5e extends ItemSheet {
      * Delete a property from the current item
      * @private
      */
-    _deleteProperty(id) {
-        if (
-            !Array.isArray(this.entity.data.data.properties) ||
-            this.entity.data.data.properties.findIndex((p) => p.id === id) === -1
-        ) {
+    _deleteProperty(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (!Array.isArray(this.entity.data.data.properties)) {
             return;
         }
 
-        this.entity.data.data.properties = this.entity.data.data.properties.filter((p) => p.id !== id);
+        const id = $(event.currentTarget).parents(".property").data("propertyId");
+        const tmpProps = this.entity.data.data.properties.find((p) => p.id === id);
+        if (!tmpProps) {
+            return;
+        }
 
-        this.entity.update({
-            data: {
-                properties: this.entity.data.data.properties,
-            },
-        });
+        const callback = async () => {
+            this.entity.data.data.properties = this.entity.data.data.properties.filter((p) => p.id !== id);
+            this.entity.update({
+                data: {
+                    properties: this.entity.data.data.properties,
+                },
+            });
+        };
+
+        // Holing Ctrl = without confirm
+        if (event.ctrlKey) {
+            return callback();
+        }
+
+        game.l5r5e.HelpersL5r5e.confirmDeleteDialog(
+            game.i18n.format("l5r5e.global.delete_confirm", { name: tmpProps.name }),
+            callback
+        );
     }
 }

@@ -71,6 +71,7 @@ export class BaseSheetL5r5e extends ActorSheet {
 
     /**
      * Handle dropped data on the Actor sheet
+     * @param {Event} event
      */
     async _onDrop(event) {
         // *** Everything below here is only needed if the sheet is editable ***
@@ -208,28 +209,12 @@ export class BaseSheetL5r5e extends ActorSheet {
         });
 
         // Equipped / Readied
-        html.find(".equip-readied-control").on("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            this._switchEquipReadied(event);
-        });
+        html.find(".equip-readied-control").on("click", this._switchEquipReadied.bind(this));
 
         // *** Items : add, edit, delete ***
-        html.find(".item-add").on("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            this._addSubItem(event);
-        });
-        html.find(`.item-edit`).on("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            this._editSubItem(event);
-        });
-        html.find(`.item-delete`).on("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            this._deleteSubItem(event);
-        });
+        html.find(".item-add").on("click", this._addSubItem.bind(this));
+        html.find(`.item-edit`).on("click", this._editSubItem.bind(this));
+        html.find(`.item-delete`).on("click", this._deleteSubItem.bind(this));
     }
 
     /**
@@ -248,9 +233,13 @@ export class BaseSheetL5r5e extends ActorSheet {
 
     /**
      * Add a generic item with sub type
+     * @param {Event} event
      * @private
      */
     async _addSubItem(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
         const type = $(event.currentTarget).data("item-type");
         const titles = {
             item: "l5r5e.items.title_new",
@@ -278,9 +267,13 @@ export class BaseSheetL5r5e extends ActorSheet {
 
     /**
      * Edit a generic item with sub type
+     * @param {Event} event
      * @private
      */
     _editSubItem(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
         const itemId = $(event.currentTarget).data("item-id");
         const item = this.actor.getOwnedItem(itemId);
         item.sheet.render(true);
@@ -288,9 +281,13 @@ export class BaseSheetL5r5e extends ActorSheet {
 
     /**
      * Delete a generic item with sub type
+     * @param {Event} event
      * @private
      */
     _deleteSubItem(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
         const itemId = $(event.currentTarget).data("item-id");
 
         // Remove 1 qty if possible
@@ -299,32 +296,48 @@ export class BaseSheetL5r5e extends ActorSheet {
             return;
         }
 
-        // Specific advancements, remove 1 to selected ring/skill
-        if (tmpItem.type === "advancement") {
-            const actor = duplicate(this.actor.data.data);
-            const itmData = tmpItem.data.data;
-            if (itmData.advancement_type === "ring") {
-                // Ring
-                actor.rings[itmData.ring] = Math.max(1, actor.rings[itmData.ring] - 1);
-            } else {
-                // Skill
-                const skillCatId = CONFIG.l5r5e.skills.get(itmData.skill);
-                if (skillCatId) {
-                    actor.skills[skillCatId][itmData.skill] = Math.max(0, actor.skills[skillCatId][itmData.skill] - 1);
+        const callback = async () => {
+            // Specific advancements, remove 1 to selected ring/skill
+            if (tmpItem.type === "advancement") {
+                const actor = duplicate(this.actor.data.data);
+                const itmData = tmpItem.data.data;
+                if (itmData.advancement_type === "ring") {
+                    // Ring
+                    actor.rings[itmData.ring] = Math.max(1, actor.rings[itmData.ring] - 1);
+                } else {
+                    // Skill
+                    const skillCatId = CONFIG.l5r5e.skills.get(itmData.skill);
+                    if (skillCatId) {
+                        actor.skills[skillCatId][itmData.skill] = Math.max(
+                            0,
+                            actor.skills[skillCatId][itmData.skill] - 1
+                        );
+                    }
                 }
+
+                // Update Actor
+                this.actor.update({
+                    data: diffObject(this.actor.data.data, actor),
+                });
             }
 
-            // Update Actor
-            this.actor.update({
-                data: diffObject(this.actor.data.data, actor),
-            });
+            return this.actor.deleteOwnedItem(itemId);
+        };
+
+        // Holing Ctrl = without confirm
+        if (event.ctrlKey) {
+            return callback();
         }
 
-        return this.actor.deleteOwnedItem(itemId);
+        game.l5r5e.HelpersL5r5e.confirmDeleteDialog(
+            game.i18n.format("l5r5e.global.delete_confirm", { name: tmpItem.name }),
+            callback
+        );
     }
 
     /**
      * Switch "in_curriculum"
+     * @param {Event} event
      * @private
      */
     _switchSubItemCurriculum(event) {
@@ -359,9 +372,13 @@ export class BaseSheetL5r5e extends ActorSheet {
 
     /**
      * Switch Readied state on a weapon
+     * @param {Event} event
      * @private
      */
     _switchEquipReadied(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
         const type = $(event.currentTarget).data("type");
         if (!["equipped", "readied"].includes(type)) {
             return;
