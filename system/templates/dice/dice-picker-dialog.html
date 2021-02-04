@@ -164,6 +164,23 @@
                 {{/if}}
             </td>
             <td>
+                <div class="third">
+                    <i class="assistance pointer-choice fa fa-minus-square" data-item="assistance" data-value="-1"></i>
+                </div>
+
+                <div class="third">
+                    <i class="i_skill"></i> {{localize 'l5r5e.dicepicker.skill_assistance_label'}}
+                    <div class="dice-container">
+                        <img src="systems/l5r5e/assets/dices/default/3d/blank.png" alt="1">
+                        <div class="dice-value">
+                            <input class="input-dice" type="text" name="skill.assistance" value="{{data.skill.assistance}}" readonly="readonly">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="third">
+                    <i class="assistance pointer-choice fa fa-plus-square" data-item="assistance" data-value="1"></i>
+                </div>
             </td>
         </tr>
 

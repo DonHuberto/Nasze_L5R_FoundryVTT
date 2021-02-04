@@ -97,6 +97,7 @@
             "difficulty_hidden_label": "Ocultar NO",
             "use_void_point_label": "Gasta un",
             "void_point_tooltip": "Punto de vacío",
+            "skill_assistance_label": "Assistance",
             "roll_label": "Tirar",
             "bt_add_macro": "Añadir una macro"
         },

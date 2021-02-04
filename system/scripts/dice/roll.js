@@ -18,6 +18,7 @@ export class RollL5r5e extends Roll {
             voidPointUsed: false,
             keepLimit: null,
             isInitiativeRoll: false,
+            skillAssistance: 0,
             dicesTypes: {
                 std: false,
                 l5r: false,
@@ -106,10 +107,9 @@ export class RollL5r5e extends Roll {
         summary.totalBonus = Math.max(0, summary.totalSuccess - this.l5r5e.difficulty);
 
         if (!this.l5r5e.keepLimit) {
-            this.l5r5e.keepLimit = this.dice.reduce(
-                (acc, term) => (term instanceof game.l5r5e.RingDie ? acc + term.number : acc),
-                0
-            );
+            this.l5r5e.keepLimit =
+                this.dice.reduce((acc, term) => (term instanceof game.l5r5e.RingDie ? acc + term.number : acc), 0) +
+                Math.max(0, this.l5r5e.skillAssistance);
         }
     }
 

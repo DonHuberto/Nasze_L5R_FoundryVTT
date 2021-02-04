@@ -97,6 +97,7 @@
             "difficulty_hidden_label": "Hide TN",
             "use_void_point_label": "Spend a",
             "void_point_tooltip": "Void point",
+            "skill_assistance_label": "Assistance",
             "roll_label": "Roll",
             "bt_add_macro": "Add a macro"
         },

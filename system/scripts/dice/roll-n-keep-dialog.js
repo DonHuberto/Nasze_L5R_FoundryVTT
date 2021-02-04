@@ -659,7 +659,13 @@ export class RollnKeepDialog extends FormApplication {
         const card = button.parents(".l5r5e.item-display.dices-l5r");
         const messageId = card.parents(".chat-message").data("message-id");
 
-        new RollnKeepDialog(messageId).render(true);
+        // Already open ? close it
+        const app = Object.values(ui.windows).find((e) => e.id === `l5r5e-roll-n-keep-dialog-${messageId}`);
+        if (app) {
+            app.close();
+        } else {
+            new RollnKeepDialog(messageId).render(true);
+        }
 
         // Re-enable the button
         button.attr("disabled", false);

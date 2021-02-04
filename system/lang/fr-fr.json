@@ -97,6 +97,7 @@
             "difficulty_hidden_label": "ND Caché",
             "use_void_point_label": "Dépenser un",
             "void_point_tooltip": "Point de Vide",
+            "skill_assistance_label": "Assistance",
             "roll_label": "Lancer",
             "bt_add_macro": "Ajouter une macro"
         },

@@ -30,6 +30,7 @@ export class DicePickerDialog extends FormApplication {
             defaultValue: 0,
             cat: "",
             name: "",
+            assistance: 0,
         },
         difficulty: {
             value: 2,
@@ -184,6 +185,7 @@ export class DicePickerDialog extends FormApplication {
         }
 
         this.object.skill = {
+            ...this.object.skill,
             id: skillId.toLowerCase().trim(),
             value: 0,
             cat: "",
@@ -323,11 +325,27 @@ export class DicePickerDialog extends FormApplication {
             this.render(false);
         });
 
+        // Skill assistance
+        html.find(".assistance").on("click", async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            const assistanceAdd = $(event.currentTarget).data("value");
+            if (this.object.skill.assistance > 0 || assistanceAdd > 0) {
+                this._quantityChange("skill", assistanceAdd);
+            }
+            this.object.skill.assistance = Math.max(
+                Math.min(parseInt(this.object.skill.assistance) + assistanceAdd, 9),
+                0
+            );
+            this.render(false);
+        });
+
         // Click on the Default Skill Dice
         html.find("#skill_default_value").on("click", async (event) => {
             event.preventDefault();
             event.stopPropagation();
             this.object.skill.value = this.object.skill.defaultValue;
+            this.object.skill.assistance = 0;
             this.render(false);
         });
 
@@ -427,6 +445,7 @@ export class DicePickerDialog extends FormApplication {
                         difficulty: this.object.difficulty.value,
                         difficultyHidden: this.object.difficulty.hidden,
                         useVoidPoint: this.object.useVoidPoint,
+                        skillAssistance: this.object.skill.assistance,
                     },
                 },
             });
@@ -444,6 +463,7 @@ export class DicePickerDialog extends FormApplication {
             roll.l5r5e.difficulty = this.object.difficulty.value;
             roll.l5r5e.difficultyHidden = this.object.difficulty.hidden;
             roll.l5r5e.voidPointUsed = this.object.useVoidPoint;
+            roll.l5r5e.skillAssistance = this.object.skill.assistance;
 
             await roll.roll();
             message = await roll.toMessage();

@@ -104,12 +104,13 @@ export class CombatL5r5e extends Combat {
                             ? messageOptions.difficultyHidden
                             : cfg.difficultyHidden;
                     roll.l5r5e.voidPointUsed = !!messageOptions.useVoidPoint;
+                    roll.l5r5e.skillAssistance = messageOptions.skillAssistance;
 
                     roll.roll();
                     rnkMessage = await roll.toMessage({ flavor });
                 }
 
-                // Ugly but work... i need the new messageId
+                // Ugly but work... i need the new message
                 if (ids.length === 1) {
                     combatant.actor.rnkMessage = rnkMessage;
                 }
