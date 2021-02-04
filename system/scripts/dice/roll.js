@@ -104,10 +104,13 @@ export class RollL5r5e extends Roll {
         ); // ignore math symbols
         this.l5r5e.dicesTypes.l5r = this.dice.some((term) => term instanceof game.l5r5e.L5rBaseDie);
         summary.totalBonus = Math.max(0, summary.totalSuccess - this.l5r5e.difficulty);
-        this.l5r5e.keepLimit = this.dice.reduce(
-            (acc, term) => (term instanceof game.l5r5e.RingDie ? acc + term.number : acc),
-            0
-        );
+
+        if (!this.l5r5e.keepLimit) {
+            this.l5r5e.keepLimit = this.dice.reduce(
+                (acc, term) => (term instanceof game.l5r5e.RingDie ? acc + term.number : acc),
+                0
+            );
+        }
     }
 
     /**
@@ -183,8 +186,9 @@ export class RollL5r5e extends Roll {
                         classes: [
                             cls.name.toLowerCase(),
                             "d" + term.faces,
-                            !isL5rDie && r.rerolled ? "rerolled" : null,
-                            !isL5rDie && r.exploded ? "exploded" : null,
+                            isL5rDie && r.swapped ? "swapped" : null,
+                            r.rerolled ? "rerolled" : null,
+                            r.exploded ? "exploded" : null,
                             !isL5rDie && r.discarded ? "discarded" : null,
                             !isL5rDie && r.result === 1 ? "min" : null,
                             !isL5rDie && r.result === term.faces ? "max" : null,
@@ -240,12 +244,20 @@ export class RollL5r5e extends Roll {
                 ? {}
                 : {
                       ...this.l5r5e,
-                      dices: this.dice.map((d) => {
+                      dices: this.dice.map((term) => {
+                          const isL5rDie = term instanceof game.l5r5e.L5rBaseDie;
                           return {
-                              diceTypeL5r: d instanceof game.l5r5e.L5rBaseDie,
-                              rolls: d.results.map((r) => {
+                              diceTypeL5r: isL5rDie,
+                              rolls: term.results.map((r) => {
                                   return {
-                                      result: d.constructor.getResultLabel(r.result),
+                                      result: term.constructor.getResultLabel(r.result),
+                                      classes: [
+                                          isL5rDie && r.swapped ? "swapped" : null,
+                                          r.rerolled ? "rerolled" : null,
+                                          r.exploded ? "exploded" : null,
+                                      ]
+                                          .filter((c) => !!c)
+                                          .join(" "),
                                   };
                               }),
                           };

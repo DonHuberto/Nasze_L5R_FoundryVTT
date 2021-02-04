@@ -91,6 +91,9 @@ export class L5rBaseDie extends DiceTerm {
             ["success", "explosive", "opportunity", "strife"].forEach((props) => {
                 this.l5r5e[props] += parseInt(face[props]);
             });
+            if (face.explosive) {
+                term.exploded = true;
+            }
         });
     }
 

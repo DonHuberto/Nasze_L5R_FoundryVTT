@@ -507,11 +507,22 @@ export class RollnKeepDialog extends FormApplication {
      */
     async _rebuildRoll() {
         // Get all kept dices + new (choice null)
-        const diceList = this.object.dicesList.reduce((acc, step) => {
-            step.forEach((die) => {
+        const diceList = this.object.dicesList.reduce((acc, step, stepIdx) => {
+            step.forEach((die, idx) => {
                 if (!!die && [RollnKeepDialog.CHOICES.keep, RollnKeepDialog.CHOICES.nothing].includes(die.choice)) {
                     if (!acc[die.type]) {
                         acc[die.type] = [];
+                    }
+                    // Check previous dice, to add html classes in chat
+                    if (stepIdx > 0 && this.object.dicesList[stepIdx - 1][idx]) {
+                        switch (this.object.dicesList[stepIdx - 1][idx].choice) {
+                            case RollnKeepDialog.CHOICES.reroll:
+                                die.class = "rerolled";
+                                break;
+                            case RollnKeepDialog.CHOICES.swap:
+                                die.class = "swapped";
+                                break;
+                        }
                     }
                     acc[die.type].push(die);
                 }
@@ -535,6 +546,11 @@ export class RollnKeepDialog extends FormApplication {
                 term.results.map((res) => {
                     const die = diceList[term.constructor.name].shift();
                     res.result = die.face;
+
+                    // add class to term result
+                    if (die.class) {
+                        res[die.class] = true;
+                    }
                     return res;
                 });
                 term.l5rSummary();
