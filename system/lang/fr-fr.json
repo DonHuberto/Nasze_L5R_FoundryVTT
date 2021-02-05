@@ -5,6 +5,7 @@
     },
     "SETTINGS": {
         "None": "Aucune option",
+        "ReverseFatigueBar": "Inverser la barre de fatigue des token",
         "RollNKeep": {
             "DeleteOldMessage": "RnK Delete previous chat message",
             "DeleteOldMessageHint": "Choose to keep or delete the previous message for a RnK series"

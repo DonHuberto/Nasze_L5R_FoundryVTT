@@ -70,4 +70,15 @@ export const RegisterSettings = function () {
         type: String,
         default: "null",
     });
+
+    /* ------------------------------------ */
+    /* Token bars                           */
+    /* ------------------------------------ */    
+    game.settings.register("l5r5e", "token.reversefatiguebar", {
+        name: game.i18n.localize("SETTINGS.ReverseFatigueBar"),
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: false,
+    });
 };
