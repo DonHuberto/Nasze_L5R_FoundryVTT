@@ -55,27 +55,27 @@
             {{!-- summary symbols --}}
             <div class="l5r5e dice-total dice-total-rnk">
                 {{#if success}}
-                    <i class="i_success" title="{{localize 'l5r5e.chatdices.successes'}}"></i>x{{success}} 
+                    <i class="i_success" title="{{localize 'l5r5e.chatdices.successes'}}"></i>x{{success}}
                 {{/if}}
 
                 {{#if explosive}}
-                    <i class="i_explosive" title="{{localize 'l5r5e.chatdices.explosives'}}"></i>x{{explosive}} 
+                    <i class="i_explosive" title="{{localize 'l5r5e.chatdices.explosives'}}"></i>x{{explosive}}
                 {{/if}}
 
                 {{#if opportunity}}
-                    <i class="i_opportunity" title="{{localize 'l5r5e.chatdices.opportunities'}}"></i>x{{opportunity}} 
+                    <i class="i_opportunity" title="{{localize 'l5r5e.chatdices.opportunities'}}"></i>x{{opportunity}}
                 {{/if}}
 
                 {{#if strife}}
-                    <i class="i_strife" title="{{localize 'l5r5e.chatdices.strife'}}"></i>x{{strife}} 
+                    <i class="i_strife" title="{{localize 'l5r5e.chatdices.strife'}}"></i>x{{strife}}
                 {{/if}}
             </div>
 
             {{!-- Result text --}}
             {{^if ../l5r5e.difficultyHidden}}
-            <div class="l5r5e dice-result-rnk {{#ifCond totalSuccess '>=' difficulty}}success{{else}}fail{{/ifCond}}">
+            <div class="l5r5e dice-result-rnk {{#ifCond totalSuccess '>=' ../l5r5e.difficulty}}success{{else}}fail{{/ifCond}}">
                 {{#ifCond totalSuccess '>=' ../l5r5e.difficulty}}
-                    {{localize "l5r5e.chatdices.success_text"}} + <i title="{{totalBonus}} {{localize 'l5r5e.chatdices.successes'}}">({{totalBonus}} {{localize "l5r5e.chatdices.bonus_text"}})</i>
+                    {{localize "l5r5e.chatdices.success_text"}} <i title="{{totalBonus}} {{localize 'l5r5e.chatdices.successes'}}">({{totalBonus}} {{localize "l5r5e.chatdices.bonus_text"}})</i>
                 {{else}}
                     {{localize "l5r5e.chatdices.fail_text"}}
                 {{/ifCond}}
