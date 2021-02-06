@@ -73,8 +73,8 @@ export const RegisterSettings = function () {
 
     /* ------------------------------------ */
     /* Token bars                           */
-    /* ------------------------------------ */    
-    game.settings.register("l5r5e", "token.reversefatiguebar", {
+    /* ------------------------------------ */
+    game.settings.register("l5r5e", "token.reverseFatigueBar", {
         name: game.i18n.localize("SETTINGS.ReverseFatigueBar"),
         scope: "world",
         config: true,

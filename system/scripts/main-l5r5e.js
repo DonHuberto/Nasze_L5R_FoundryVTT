@@ -116,30 +116,36 @@ Hooks.once("init", async () => {
 
     // Override the default Token _drawBar function to allow fatigue bar reversing.
     Token.prototype._drawBar = function (number, bar, data) {
-        let val = Number(data.value);
-        const reverseFatigue = game.settings.get("l5r5e", "token.reversefatiguebar");
-        
-        // Bar value reversing.
-        if (data.attribute === "fatigue" && reverseFatigue) {
-        val = Number(data.max - data.value);
+        const reverseBar = data.attribute === "fatigue" && game.settings.get("l5r5e", "token.reverseFatigueBar");
+
+        // Bar value
+        const pct = Math.clamped(Number(data.value), 0, data.max) / data.max;
+
+        // Modify color
+        let color = number === 0 ? [pct / 1.2, 1 - pct, 0] : [0.5 * pct, 0.7 * pct, 0.5 + pct / 2];
+
+        // Red if compromised
+        if (data.attribute === "strife" && data.value > data.max) {
+            color = [1, 0.1, 0.1];
         }
 
-        const pct = Math.clamped(val, 0, data.max) / data.max;
+        // Enlarge the bar for large tokens
         let h = Math.max(canvas.dimensions.size / 12, 8);
-        if (this.data.height >= 2) h *= 1.6; // Enlarge the bar for large tokens
+        if (this.data.height >= 2) {
+            h *= 1.6;
+        }
+
         // Draw the bar
-        let color = number === 0 ? [1 - pct / 2, pct, 0] : [0.5 * pct, 0.7 * pct, 0.5 + pct / 2];
-        bar
-        .clear()
-        .beginFill(0x000000, 0.5)
-        .lineStyle(2, 0x000000, 0.9)
-        .drawRoundedRect(0, 0, this.w, h, 3)
-        .beginFill(PIXI.utils.rgb2hex(color), 0.8)
-        .lineStyle(1, 0x000000, 0.8)
-        .drawRoundedRect(1, 1, pct * (this.w - 2), h - 2, 2);
+        bar.clear()
+            .beginFill(0x000000, 0.5)
+            .lineStyle(2, 0x000000, 0.9)
+            .drawRoundedRect(0, 0, this.w, h, 3)
+            .beginFill(PIXI.utils.rgb2hex(color), 0.8)
+            .lineStyle(1, 0x000000, 0.8)
+            .drawRoundedRect(1, 1, (reverseBar ? 1 - pct : pct) * (this.w - 2), h - 2, 2);
+
         // Set position
-        let posY = number === 0 ? this.h - h : 0;
-        bar.position.set(0, posY);
+        bar.position.set(0, number === 0 ? this.h - h : 0);
     };
 });
 
