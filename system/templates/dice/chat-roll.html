@@ -34,7 +34,7 @@
     </div>
     {{/if}}
 
-    <div class="l5r5e dice-formula">{{formula}}</div>
+    <div class="l5r5e dice-formula">{{#if l5r5e.initialFormula}}{{l5r5e.initialFormula}}{{else}}{{formula}}{{/if}}</div>
 
     <div class="l5r5e dice-result">
         {{#if l5r5e.dicesTypes.l5r}}

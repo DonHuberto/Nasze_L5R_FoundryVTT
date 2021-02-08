@@ -19,6 +19,7 @@ export class RollL5r5e extends Roll {
             keepLimit: null,
             isInitiativeRoll: false,
             skillAssistance: 0,
+            initialFormula: null,
             dicesTypes: {
                 std: false,
                 l5r: false,
@@ -71,6 +72,11 @@ export class RollL5r5e extends Roll {
         // Roll
         super.evaluate({ minimize, maximize });
         this._rolled = true;
+
+        // Save initial formula
+        if (!this.l5r5e.initialFormula) {
+            this.l5r5e.initialFormula = this.formula;
+        }
 
         // Compute summary
         this.l5rSummary();
