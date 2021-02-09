@@ -211,10 +211,12 @@ export class RollnKeepDialog extends FormApplication {
             this.object.submitDisabled = kept < 1 || kept > this.roll.l5r5e.keepLimit;
         } else if (!this.object.dicesList[this.object.currentStep]) {
             this.options.editable = false;
+            this.options.classes.push("finalized");
         }
 
         return {
             ...super.getData(options),
+            cssClass: this.options.classes.join(" "),
             data: this.object,
             l5r5e: this.message._roll.l5r5e,
         };
@@ -508,8 +510,13 @@ export class RollnKeepDialog extends FormApplication {
     async _rebuildRoll() {
         // Get all kept dices + new (choice null)
         const diceList = this.object.dicesList.reduce((acc, step, stepIdx) => {
+            const haveReroll = stepIdx > 0 && this._haveChoice(stepIdx - 1, RollnKeepDialog.CHOICES.reroll);
             step.forEach((die, idx) => {
-                if (!!die && [RollnKeepDialog.CHOICES.keep, RollnKeepDialog.CHOICES.nothing].includes(die.choice)) {
+                if (
+                    !!die &&
+                    (die.choice === RollnKeepDialog.CHOICES.keep ||
+                        (haveReroll && die.choice === RollnKeepDialog.CHOICES.nothing))
+                ) {
                     if (!acc[die.type]) {
                         acc[die.type] = [];
                     }

@@ -87,6 +87,7 @@
             "difficulty_hidden": "TN ???",
             "dicepicker": "Dice Picker",
             "void_point_used": "Void point used",
+            "assistance_used": "Skill assistance used",
             "roll_n_keep": "Roll & Keep",
             "initiative_roll": "Initiative roll",
             "success_text": "Success!",

@@ -1,4 +1,4 @@
-<form class="l5r5e roll-n-keep-dialog" autocomplete="off">
+<form class="{{cssClass}}" autocomplete="off">
     {{!-- Profil --}}
     <div class="l5r5e profil">
         <header class="part-header flexrow chat-profil">
@@ -30,8 +30,12 @@
                 {{else}}
                     {{localize 'l5r5e.chatdices.difficulty'}} {{l5r5e.difficulty}}
                 {{/if}}
+                <br>
                 {{#if l5r5e.voidPointUsed}}
-                    <br><i class="i_void" title="{{localize 'l5r5e.chatdices.void_point_used'}}"></i>
+                    <i class="i_void" title="{{localize 'l5r5e.chatdices.void_point_used'}}"></i>
+                {{/if}}
+                {{#if l5r5e.skillAssistance}}
+                    <i class="i_skill" title="{{l5r5e.skillAssistance}}x {{localize 'l5r5e.chatdices.assistance_used'}}"></i>
                 {{/if}}
             </span>
         </header>
