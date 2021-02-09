@@ -3,28 +3,16 @@
         {{!-- First line--}}
         <tr>
             <td class="profil center">
-                <img class="profile-img"
-                     src="{{#if actor.img}}{{actor.img}}{{else}}icons/svg/mystery-man.svg{{/if}}"
-                     data-edit="img"
-                     height="200"
-                     width="200"
-                     alt="{{#if actor.name}}{{actor.name}}{{else}}mystery-man{{/if}}"
-                >
+                <img class="profile-img" src="{{#if actor.img}}{{actor.img}}{{else}}icons/svg/mystery-man.svg{{/if}}" data-edit="img" alt="{{#if actor.name}}{{actor.name}}{{else}}mystery-man{{/if}}" />
             </td>
-            <td class="rings center">
+            <td class="center">
                 <ul class="rings">
                     {{#each ringsList}}
                     <li id="{{this.id}}">
                         <label class="attribute-label {{this.id}} centered-input ring-selection pointer-choice {{#ifCond ../data.ring.id '==' this.id}}ring-selected{{/ifCond}}">
                             <i class="i_{{this.id}}"></i>
                             <strong>{{this.label}}</strong>
-                            <input class="centered-input approach_{{this.id}}"
-                                   type="text"
-                                   name="approach"
-                                   data-ringid="{{this.id}}"
-                                   value="{{this.value}}"
-                                   readonly="readonly"
-                            />
+                            <input class="centered-input approach_{{this.id}}" type="text" name="approach" data-ringid="{{this.id}}" value="{{this.value}}" readonly="readonly" />
                         </label>
                     </li>
                     {{/each}}
@@ -32,33 +20,19 @@
             </td>
             <td class="skill">
                 {{#if data.skill.name}}
-                <div>
                     <label>{{localizeSkill data.skill.cat 'title'}}</label>
-                </div>
-
                 {{#if actorIsPc}}
-                <div>
                     <label>{{data.skill.name}}</label>
-                </div>
                 {{/if}}
-
-                <div>
-                    <label id="stance_label">{{localizeSkill data.skill.cat data.ring.id}}</label>
-                </div>
-                <div id="skill_default_value" class="dice-container pointer-choice">
-                    <img src="systems/l5r5e/assets/dices/default/skill_blank.svg" alt="1">
-                    <div class="dice-value">
-                        <span class="dice-skill" type="text" name="skill_{{data.skill.name}}">{{data.skill.defaultValue}}</span>
-                    </div>
-                </div>
+                        <label id="stance_label">{{localizeSkill data.skill.cat data.ring.id}}</label>
+                        <div id="skill_default_value" class="dice-container pointer-choice">
+                            <img src="systems/l5r5e/assets/dices/default/skill_blank.svg" alt="1">
+                            <div class="dice-value">
+                                <span class="dice-skill" type="text" name="skill_{{data.skill.name}}">{{data.skill.defaultValue}}</span>
+                            </div>
+                        </div>
                 {{else}}
-                <img class="profile-img"
-                     src="systems/l5r5e/assets/imgs/noskill.webp"
-                     data-edit="img"
-                     height="200"
-                     width="200"
-                     alt="no skill selected"
-                >
+                    <img class="profile-img" src="systems/l5r5e/assets/imgs/noskill.webp" data-edit="img" alt="no skill selected" />
                 {{/if}}
             </td>
         </tr>
@@ -81,7 +55,7 @@
             <td>
                 {{#if data.difficulty.hidden}}
                 <label>
-                    <input type="checkbox" id="diff_add_void_point" name="difficulty.addVoidPoint" value="1" {{checked data.difficulty.addVoidPoint}}>
+                    <input type="checkbox" id="diff_add_void_point" name="difficulty.addVoidPoint" value="1" {{checked data.difficulty.addVoidPoint}} />
                     +1 <i class="i_void" title="{{localize 'l5r5e.dicepicker.void_point_tooltip'}}"></i>
                 </label>
                 {{else}}
@@ -92,9 +66,9 @@
 
                     <div class="third">
                         <div class="dice-container">
-                            <img src="systems/l5r5e/assets/dices/default/3d/blank.png" alt="1">
+                            <img src="systems/l5r5e/assets/dices/default/3d/blank.png" alt="1" />
                             <div class="dice-value">
-                                <input class="input-dice" type="text" name="difficulty.value" value="{{data.difficulty.value}}" readonly="readonly">
+                                <input class="input-dice" type="text" name="difficulty.value" value="{{data.difficulty.value}}" readonly="readonly" />
                             </div>
                         </div>
                     </div>
@@ -113,9 +87,9 @@
 
                 <div class="third">
                     <div class="dice-container">
-                        <img src="systems/l5r5e/assets/dices/default/ring_blank.svg" alt="1">
+                        <img src="systems/l5r5e/assets/dices/default/ring_blank.svg" alt="1" />
                         <div class="dice-value">
-                            <input class="input-dice input-dice-ring" type="text" name="ring.value" value="{{data.ring.value}}" readonly="readonly">
+                            <input class="input-dice input-dice-ring" type="text" name="ring.value" value="{{data.ring.value}}" readonly="readonly" />
                         </div>
                     </div>
                 </div>
@@ -132,9 +106,9 @@
 
                 <div class="third">
                     <div class="dice-container">
-                        <img src="systems/l5r5e/assets/dices/default/skill_blank.svg" alt="1">
+                        <img src="systems/l5r5e/assets/dices/default/skill_blank.svg" alt="1" />
                         <div class="dice-value">
-                            <input class="input-dice input-dice-skill" type="text" name="skill.value" value="{{data.skill.value}}" readonly="readonly">
+                            <input class="input-dice input-dice-skill" type="text" name="skill.value" value="{{data.skill.value}}" readonly="readonly" />
                         </div>
                     </div>
                 </div>
@@ -150,7 +124,7 @@
             <td>
                 {{^if difficultyHiddenIsLock}}
                 <label>
-                    <input type="checkbox" id="diff_hidden" name="difficulty.hidden" value="1" {{checked data.difficulty.hidden}}>
+                    <input type="checkbox" id="diff_hidden" name="difficulty.hidden" value="1" {{checked data.difficulty.hidden}} />
                     {{localize 'l5r5e.dicepicker.difficulty_hidden_label'}}
                 </label>
                 {{/if}}
@@ -158,7 +132,7 @@
             <td>
                 {{#if canUseVoidPoint}}
                     <label>
-                        <input type="checkbox" id="use_void_point" name="useVoidPoint" value="1" {{checked data.useVoidPoint}}>
+                        <input type="checkbox" id="use_void_point" name="useVoidPoint" value="1" {{checked data.useVoidPoint}} />
                         {{localize 'l5r5e.dicepicker.use_void_point_label'}} <i class="i_void" title="{{localize 'l5r5e.dicepicker.void_point_tooltip'}}"></i>
                     </label>
                 {{/if}}
@@ -171,9 +145,9 @@
                 <div class="third">
                     <i class="i_skill"></i> {{localize 'l5r5e.dicepicker.skill_assistance_label'}}
                     <div class="dice-container">
-                        <img src="systems/l5r5e/assets/dices/default/3d/blank.png" alt="1">
+                        <img src="systems/l5r5e/assets/dices/default/3d/blank.png" alt="1" />
                         <div class="dice-value">
-                            <input class="input-dice" type="text" name="skill.assistance" value="{{data.skill.assistance}}" readonly="readonly">
+                            <input class="input-dice" type="text" name="skill.assistance" value="{{data.skill.assistance}}" readonly="readonly" />
                         </div>
                     </div>
                 </div>
@@ -183,10 +157,10 @@
                 </div>
             </td>
         </tr>
-
+        <tr>
+            <td colspan="3">
+                <button name="roll" type="submit" {{#if disableSubmit}}disabled{{/if}}>{{localize 'l5r5e.dicepicker.roll_label'}} <i class='fas fa-arrow-circle-right'></i></button>
+            </td>
+        </tr>
     </table>
-
-    <div class="form-group">
-        <button name="roll" type="submit" {{#if disableSubmit}}disabled{{/if}}>{{localize 'l5r5e.dicepicker.roll_label'}} <i class='fas fa-arrow-circle-right'></i></button>
-    </div>
 </form>

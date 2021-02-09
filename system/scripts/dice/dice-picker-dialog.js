@@ -51,8 +51,6 @@ export class DicePickerDialog extends FormApplication {
             classes: ["l5r5e", "dice-picker-dialog"],
             template: CONFIG.l5r5e.paths.templates + "dice/dice-picker-dialog.html",
             title: "L5R Dice Roller",
-            width: 660,
-            height: 460,
             actor: null,
             ringId: null,
             skillId: "",

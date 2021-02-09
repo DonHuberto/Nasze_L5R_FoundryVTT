@@ -1,8 +1,14 @@
 <form class="l5r5e gm-tools-dialog" autocomplete="off">
-    <p class="gm-tools-container">
-        <a class="difficulty_hidden" title="{{localize 'l5r5e.gm_toolbox.difficulty_hidden'}}"><i class="fa fa-eye{{#if data.difficultyHidden}}-slash{{/if}}"></i></a>
-        <strong class="difficulty" title="{{localize 'l5r5e.gm_toolbox.difficulty'}}">{{data.difficulty}}</strong>
-        <a class="gm_actor_updates sleep" data-type="sleep" title="{{localize 'l5r5e.gm_toolbox.sleep'}}"><i class="fa fa-bed"></i></a>
-        <a class="gm_actor_updates scene_end" data-type="scene_end" title="{{localize 'l5r5e.gm_toolbox.scene_end'}}"><i class="fas fa-star-half-alt"></i></a>
-    </p>
+    <ul class="gm-tools-container">
+        <li class="difficulty_hidden" title="{{localize 'l5r5e.gm_toolbox.difficulty_hidden'}}">
+            <i class="fa fa-eye{{#if data.difficultyHidden}}-slash{{/if}}"></i>
+            <strong class="difficulty" title="{{localize 'l5r5e.gm_toolbox.difficulty'}}">{{data.difficulty}}</strong>
+        </li>
+        <li class="gm_actor_updates sleep" data-type="sleep" title="{{localize 'l5r5e.gm_toolbox.sleep'}}">
+            <i class="fa fa-bed"></i>
+        </li>
+        <li class="gm_actor_updates scene_end" data-type="scene_end" title="{{localize 'l5r5e.gm_toolbox.scene_end'}}">
+            <i class="fas fa-star-half-alt"></i>
+        </li>
+    </ul>
 </form>

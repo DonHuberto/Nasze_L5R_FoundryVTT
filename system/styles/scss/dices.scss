@@ -62,44 +62,6 @@
     }
 }
 
-// Dice in chat
-.chat-dice {
-    &.rerolled > img {
-        border-bottom: 3px solid orangered;
-    }
-
-    &.swapped > img {
-        border-bottom: 3px solid fuchsia;
-    }
-
-    > img {
-        border: 1px solid transparent;
-        height: auto;
-        width: calc(100% / 6 - 0.255rem);
-        margin: auto;
-    }
-}
-
-.chat-profil {
-    text-align: center;
-    vertical-align: middle;
-
-    &-stance {
-        font-size: 40px;
-        position: relative;
-        top: 8px;
-        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-    }
-    &-element {
-        flex-wrap: wrap;
-        flex-grow: 1;
-
-        &-skill {
-            flex-grow: 3;
-        }
-    }
-}
-
 // If DicePicker add a pointer
 .dice-picker {
     cursor: url("../assets/cursors/pointer.webp"), pointer;
@@ -107,6 +69,8 @@
 
 // Dice Picker
 .dice-picker-dialog {
+    min-width: 600px;
+    min-height: auto;
     // Utility
     * {
         transition: none;
@@ -127,18 +91,24 @@
         text-align: center;
         background: none;
         border: none;
-        height: calc(100% - 3rem);
-
-        td:first-child {
-            width: 200px;
-        }
-
-        td {
-            width: 240px;
-        }
-
-        td:last-child {
-            width: 200px;
+        margin: 0;
+        tbody {
+            tr {
+                td {
+                    width: 250px;
+                    padding: 0 0.5rem;
+                    &:first-child,
+                    &:last-child {
+                        width: 150px;
+                    }
+                }
+                &:last-child {
+                    td {
+                        width: 100%;
+                        padding: 0.5rem;
+                    }
+                }
+            }
         }
     }
 
@@ -206,8 +176,25 @@
 }
 
 .roll-n-keep-dialog {
+    min-width: 600px;
+    &.finalized {
+        min-width: 400px;
+    }
     img {
         border: 0;
+    }
+
+    table {
+        margin: 0.75rem 0 0;
+        table {
+            border: 0 none;
+            tr {
+                background: transparent;
+            }
+        }
+        .button {
+            columns: 3;
+        }
     }
 
     .profil {
@@ -251,6 +238,11 @@
     .swap {
         border: 3px solid fuchsia;
     }
+
+    #finalize {
+        width: calc(100% - 1rem);
+        margin: 0.5rem;
+    }
 }
 
 #l5r5e-gm-tools-dialog {
@@ -270,6 +262,8 @@
     border-image: url("../assets/ui/macro-button.webp") 10 repeat;
     border-image-width: 0.5rem;
     border-image-outset: 0px;
+    padding: 0;
+    margin: 0.5rem;
     .window-header {
         text-align: center;
         border-bottom: 1px solid rgb(195, 165, 130);
@@ -285,21 +279,27 @@
         background: transparent;
         color: $white-light;
         .gm-tools-container {
-            flex: 1;
             display: flex;
-            flex-flow: wrap;
-            a {
+            font-size: 2rem;
+            line-height: 2rem;
+            min-height: 2rem;
+            margin: 0.5rem 0;
+            li {
                 flex: 1;
+                display: flex;
+                margin: 0 0.5rem;
                 cursor: url("../assets/cursors/pointer.webp"), pointer;
-                i {
-                    font-size: 3rem;
-                    line-height: 4rem;
-                    vertical-align: middle;
+                strong {
+                    font-size: 1.5rem;
+                    margin: 0 0.25rem;
+                }
+                :hover {
+                    text-shadow: 0 0 $red;
                 }
             }
             .difficulty {
                 flex: 1;
-                font-size: 3rem;
+                font-size: 2rem;
             }
         }
     }

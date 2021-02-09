@@ -138,7 +138,8 @@
         }
         min-height: auto;
         display: flex;
-        fieldset {
+        fieldset,
+        .checklist {
             flex: 0 0 calc(100% - 0.5rem);
         }
         .items-content {
@@ -150,6 +151,14 @@
         }
         &:last-child {
             padding-bottom: 1rem;
+        }
+        .techniques-wrapper {
+            padding-left: 0.5rem;
+            fieldset,
+            .checklist {
+                flex: 100%;
+                margin: 0;
+            }
         }
     }
     .npc-note {
