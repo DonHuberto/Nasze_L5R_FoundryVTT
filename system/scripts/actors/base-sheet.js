@@ -27,7 +27,44 @@ export class BaseSheetL5r5e extends ActorSheet {
         sheetData.data.stances = CONFIG.l5r5e.stances;
         sheetData.data.techniquesList = CONFIG.l5r5e.techniques;
 
+        // Sort Items by name
+        sheetData.items.sort((a, b) => {
+            return a.name.localeCompare(b.name);
+        });
+
+        // Split techniques by types
+        sheetData.data.splitTechniquesList = this._splitTechniques(sheetData);
+
         return sheetData;
+    }
+
+    /**
+     * Split techniques by types for better readability
+     * @private
+     */
+    _splitTechniques(sheetData) {
+        const out = {};
+
+        // Build the list order
+        [...CONFIG.l5r5e.techniques, ...CONFIG.l5r5e.techniques_school].forEach((tech) => {
+            out[tech] = [];
+        });
+
+        // Add tech the character knows
+        sheetData.items.forEach((item) => {
+            if (item.type === "technique") {
+                out[item.data.technique_type].push(item);
+            }
+        });
+
+        // Remove unused techs
+        Object.keys(out).forEach((tech) => {
+            if (out[tech].length < 1 && !sheetData.data.techniques[tech]) {
+                delete out[tech];
+            }
+        });
+
+        return out;
     }
 
     /**
@@ -252,7 +289,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         const created = await this.actor.createEmbeddedEntity("OwnedItem", {
             name: game.i18n.localize(titles[type]),
             type: type,
-            img: "icons/svg/mystery-man.svg",
+            img: `${CONFIG.l5r5e.paths.assets}icons/items/${type}.svg`,
         });
         const item = this.actor.getOwnedItem(created._id);
 
@@ -260,6 +297,15 @@ export class BaseSheetL5r5e extends ActorSheet {
         if (this.actor.data.data.identity?.school_rank && ["advancement", "technique"].includes(item.data.type)) {
             item.data.data.rank = this.actor.data.data.identity.school_rank;
             item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
+        }
+
+        // If technique, select the current type
+        if (item.data.type === "technique") {
+            const techType = $(event.currentTarget).data("tech-type");
+            if (CONFIG.l5r5e.techniques.includes(techType)) {
+                item.data.data.technique_type = techType;
+                item.data.img = `${CONFIG.l5r5e.paths.assets}/icons/techs/${techType}.svg`;
+            }
         }
 
         item.sheet.render(true);

@@ -8,6 +8,7 @@
 - Added confirm dialog on item's deletion (Hold "ctrl" on the click, if you want to bypass it)
 - Added "Sleep" & "Scene End" buttons in "GM ToolBox" (old "difficulty" box)
 - Added an option to reverse the token's bar on fatigue (thanks to Jzrzmy), and colorize in red the strife bar if compromise
+- Split techniques in actor sheet for better readability
 
 ## 1.1.2 - One Compendium to bring them all
 - Added compendiums (Thanks to Stéfano Fara for the English version !) Partial for French as PoW and CR are not translated yet

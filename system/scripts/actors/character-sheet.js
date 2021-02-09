@@ -49,11 +49,6 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
         // Split Money
         sheetData.data.money = this._zeniToMoney(this.actor.data.data.zeni);
 
-        // Sort Items by name
-        sheetData.items.sort((a, b) => {
-            return a.name.localeCompare(b.name);
-        });
-
         // split advancements list by rank, and calculate xp spent
         this._prepareAdvancement(sheetData);
         sheetData.data.xp_saved = Math.floor(parseInt(sheetData.data.xp_total) - parseInt(sheetData.data.xp_spent));
