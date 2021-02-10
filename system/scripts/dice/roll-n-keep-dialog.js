@@ -19,7 +19,7 @@ export class RollnKeepDialog extends FormApplication {
      * The current ChatMessage where we come from
      * @param {ChatMessage} message
      */
-    message = null;
+    _message = null;
 
     /**
      * The current Roll
@@ -55,14 +55,26 @@ export class RollnKeepDialog extends FormApplication {
     }
 
     /**
-     * Define a unique and dynamic element ID for the rendered ActorSheet application
+     * Define a unique and dynamic element ID for the rendered application
      */
     get id() {
-        return `l5r5e-roll-n-keep-dialog-${this.message._id}`;
+        return `l5r5e-roll-n-keep-dialog-${this._message._id}`;
     }
 
+    /**
+     * ChatMessage
+     * @param {ChatMessage} msg
+     */
     set message(msg) {
-        this.message = msg instanceof ChatMessage ? duplicate(msg) : null;
+        this._message = msg instanceof ChatMessage ? msg : null;
+    }
+
+    /**
+     * ChatMessage
+     * @returns {ChatMessage}
+     */
+    get message() {
+        return this._message;
     }
 
     /**
@@ -74,7 +86,7 @@ export class RollnKeepDialog extends FormApplication {
         super({}, options);
         this.message = game.messages.get(messageId);
         this.options.editable =
-            this.message?.isAuthor || this.message?._roll.l5r5e.actor?.owner || this.message?.owner || false;
+            this._message?.isAuthor || this._message?._roll.l5r5e.actor?.owner || this._message?.owner || false;
 
         this._initializeDiceFaces();
         this._initializeHistory();
@@ -84,7 +96,7 @@ export class RollnKeepDialog extends FormApplication {
      * Refresh data (used from socket)
      */
     async refresh() {
-        if (!this.message) {
+        if (!this._message) {
             return;
         }
         this._initializeHistory();
@@ -99,7 +111,7 @@ export class RollnKeepDialog extends FormApplication {
      * @override
      */
     render(force = null, options = {}) {
-        if (!this.message) {
+        if (!this._message) {
             return;
         }
         this.position.width = "auto";
@@ -112,12 +124,12 @@ export class RollnKeepDialog extends FormApplication {
      * @private
      */
     _initializeHistory() {
-        if (!this.message) {
+        if (!this._message) {
             return;
         }
 
         // Get the roll
-        this.roll = game.l5r5e.RollL5r5e.fromData(this.message._roll);
+        this.roll = game.l5r5e.RollL5r5e.fromData(this._message._roll);
 
         // Already history
         if (Array.isArray(this.roll.l5r5e.history)) {
@@ -218,7 +230,7 @@ export class RollnKeepDialog extends FormApplication {
             ...super.getData(options),
             cssClass: this.options.classes.join(" "),
             data: this.object,
-            l5r5e: this.message._roll.l5r5e,
+            l5r5e: this.roll.l5r5e,
         };
     }
 
@@ -540,7 +552,7 @@ export class RollnKeepDialog extends FormApplication {
         // Re create a new roll
         const roll = await new game.l5r5e.RollL5r5e(this._arrayToFormula(diceList));
         roll.l5r5e = {
-            ...this.message._roll.l5r5e,
+            ...this.roll.l5r5e,
             summary: roll.l5r5e.summary,
         };
 
@@ -569,8 +581,8 @@ export class RollnKeepDialog extends FormApplication {
         roll.l5rSummary();
 
         // Add roll & history to message
-        this.message._roll = roll;
-        this.message._roll.l5r5e.history = this.object.dicesList;
+        this.roll = roll;
+        this.roll.l5r5e.history = this.object.dicesList;
     }
 
     /**
@@ -580,38 +592,38 @@ export class RollnKeepDialog extends FormApplication {
      */
     async _toChatMessage() {
         // Keep old Ids
-        const appId = this.id;
-        const msgId = this.message._id;
+        const appOldId = this.id;
+        const msgOldId = this._message._id;
 
-        if (this.message._roll.l5r5e.isInitiativeRoll) {
-            await this.message._roll.l5r5e.actor.rollInitiative({
+        if (this.roll.l5r5e.isInitiativeRoll) {
+            await this.roll.l5r5e.actor.rollInitiative({
                 rerollInitiative: true,
                 initiativeOptions: {
                     messageOptions: {
-                        rnkRoll: this.message._roll,
+                        rnkRoll: this.roll,
                     },
                 },
             });
-            // Adhesive tape to get the messageId :/
-            this.message = this.message._roll.l5r5e.actor.rnkMessage;
-            delete this.message._roll.l5r5e.actor.rnkMessage;
+            // Adhesive tape to get the message :/
+            this.message = this.roll.l5r5e.actor.rnkMessage;
+            delete this.roll.l5r5e.actor.rnkMessage;
         } else {
             // Send it to chat, switch to new message
-            this.message = await this.message._roll.toMessage();
+            this.message = await this.roll.toMessage();
         }
 
         // Refresh viewers
-        game.l5r5e.sockets.updateMessageIdAndRefresh(appId, this.message._id);
+        game.l5r5e.sockets.updateMessageIdAndRefresh(appOldId, this._message._id);
 
         // Delete old chat message related to this series
         if (game.settings.get("l5r5e", "rnk.deleteOldMessage")) {
             if (game.user.isGM) {
-                const message = game.messages.get(msgId);
+                const message = game.messages.get(msgOldId);
                 if (message) {
                     message.delete();
                 }
             } else {
-                game.l5r5e.sockets.deleteChatMessage(msgId);
+                game.l5r5e.sockets.deleteChatMessage(msgOldId);
             }
         }
     }
