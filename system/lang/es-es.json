@@ -109,7 +109,8 @@
             "reroll_drop_here": "Relanzar",
             "swap_drop_here": "Swap",
             "keep_drop_here": "Guardar",
-            "bt_validate": "Finalizar"
+            "bt_validate": "Finalizar",
+            "undo": "[GM] Undo the last step choices"
         },
         "gm_toolbox": {
             "title": "GM ToolBox",

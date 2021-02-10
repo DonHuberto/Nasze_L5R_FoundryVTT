@@ -217,7 +217,9 @@ export class RollnKeepDialog extends FormApplication {
      */
     getData(options = null) {
         // Disable submit / edition
+        this.options.classes = this.options.classes.filter((e) => e !== "finalized");
         this.object.submitDisabled = false;
+
         if (this._checkKeepCount(this.object.currentStep)) {
             const kept = this._getKeepCount(this.object.currentStep);
             this.object.submitDisabled = kept < 1 || kept > this.roll.l5r5e.keepLimit;
@@ -240,6 +242,18 @@ export class RollnKeepDialog extends FormApplication {
      */
     activateListeners(html) {
         super.activateListeners(html);
+
+        // GM Only, need to be before the editable check
+        if (game.user.isGM && this.object.currentStep > 0) {
+            // Add Context menu to rollback choices
+            new ContextMenu(html, ".l5r5e.profil", [
+                {
+                    name: game.i18n.localize("l5r5e.roll_n_keep.undo"),
+                    icon: '<i class="fas fa-undo"></i>',
+                    callback: () => this._undoLastStepChoices(),
+                },
+            ]);
+        }
 
         // *** Everything below here is only needed if the sheet is editable ***
         if (!this.options.editable) {
@@ -517,16 +531,19 @@ export class RollnKeepDialog extends FormApplication {
 
     /**
      * Rebuild the message roll
+     * @param {boolean} forceKeep If true keep all dice regardless their choice
+     * @returns {Promise<void>}
      * @private
      */
-    async _rebuildRoll() {
+    async _rebuildRoll(forceKeep = false) {
         // Get all kept dices + new (choice null)
         const diceList = this.object.dicesList.reduce((acc, step, stepIdx) => {
             const haveReroll = stepIdx > 0 && this._haveChoice(stepIdx - 1, RollnKeepDialog.CHOICES.reroll);
             step.forEach((die, idx) => {
                 if (
                     !!die &&
-                    (die.choice === RollnKeepDialog.CHOICES.keep ||
+                    (forceKeep ||
+                        die.choice === RollnKeepDialog.CHOICES.keep ||
                         (haveReroll && die.choice === RollnKeepDialog.CHOICES.nothing))
                 ) {
                     if (!acc[die.type]) {
@@ -648,19 +665,54 @@ export class RollnKeepDialog extends FormApplication {
         await this._applyChoices();
 
         // *** Below this the current step become the next step ***
-        this.object.currentStep += 1;
+        this.object.currentStep++;
 
         // Rebuild the roll
-        await this._rebuildRoll();
+        await this._rebuildRoll(false);
 
         // Send the new roll in chat and delete the old message
         await this._toChatMessage();
 
         // If a next step exist, rerender, else close
         if (this.object.dicesList[this.object.currentStep]) {
-            return this.render();
+            return this.render(false);
         }
         return this.close();
+    }
+
+    /**
+     * Undo the last step choice
+     * @returns {Promise<Application|any>}
+     * @private
+     */
+    async _undoLastStepChoices() {
+        // Find the step to work to
+        this.object.currentStep = this.object.dicesList[this.object.currentStep]
+            ? this.object.currentStep
+            : Math.max(0, this.object.currentStep - 1);
+
+        // If all clear, delete this step
+        if (this._haveChoice(this.object.currentStep, RollnKeepDialog.CHOICES.nothing)) {
+            if (this.object.currentStep === 0) {
+                return;
+            }
+            this.object.dicesList.pop();
+            this.object.dicesList = this.object.dicesList.filter((e) => !!e);
+            this.object.currentStep--;
+        }
+
+        // Clear choices
+        this.object.dicesList[this.object.currentStep]
+            .filter((e) => !!e)
+            .map((e) => {
+                e.choice = RollnKeepDialog.CHOICES.nothing;
+                return e;
+            });
+
+        this.options.editable = true;
+        await this._rebuildRoll(true);
+        await this._toChatMessage();
+        return this.render(false);
     }
 
     /**

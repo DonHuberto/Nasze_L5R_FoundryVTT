@@ -109,7 +109,8 @@
             "reroll_drop_here": "Relancer",
             "swap_drop_here": "Modifier",
             "keep_drop_here": "Garder",
-            "bt_validate": "Finaliser cette étape"
+            "bt_validate": "Finaliser cette étape",
+            "undo": "[GM] Annuler les choix de la dernière étape"
         },
         "gm_toolbox": {
             "title": "GM ToolBox",
@@ -117,7 +118,7 @@
             "difficulty": "Modifier la difficulté (droite: ajout, gauche: soustraction, milieu: ND 2)",
             "sleep": "Repos confortable pour tous les personnages (Enlève Eau x2 de fatigue)",
             "sleep_info": "Les personnages ont passé une bonne nuit de sommeil.",
-            "scene_end": "Fin de scène (Conflit et Fatigue reset à moitié pour tous les personnages)",
+            "scene_end": "Fin de scène (Conflit et Fatigue à moitié pour tous les personnages dont la valeur dépasse ce seuil)",
             "scene_end_info": "La tension de la scène retombe enfin"
         },
         "max": "Max",
