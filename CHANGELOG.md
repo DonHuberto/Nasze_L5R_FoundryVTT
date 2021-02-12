@@ -2,6 +2,17 @@
 
 ## 1.2.0 - Roll n Keep
 - Added Roll n Keep 1st iteration !
+  - Ability to Keep, Discard, Re-roll and Swap:
+    - Keep: Keep the die for the next step, if it's an explosive one, automatically roll a new die
+    - Discard: Self explain, do not keep this die for the next step.
+    - Re-roll: Replace this die by a new roll (Usually Advantage & Disadvantage stuff). When a reroll is selected, all the dice in the current step will be tag as keep by default.
+    - Swap (Face): Set a desired face for this die (Some weird techniques stuff)
+  - Usage:
+    - All these actions are done by drag a die result and drop into a target action
+    - A colored border symbolize the choice made on the dice
+    - You can always change choices for the current step until you clic next.
+    - Please note all dice without choice will be discarded for the next step
+  - The GM has the ability to undo choices by left-clicking in the status headers
 - Fix image's behavior on create for all items sub classes
 - Click on rings in the PC/PNC sheet now open the DicePicker with the selected ring
 - Added a booster for loading compendium's core items (speed up 20Q)

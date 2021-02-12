@@ -76,14 +76,18 @@
             </div>
 
             {{!-- Result text --}}
-            {{^if ../l5r5e.difficultyHidden}}
-            <div class="l5r5e dice-result-rnk {{#ifCond totalSuccess '>=' ../l5r5e.difficulty}}success{{else}}fail{{/ifCond}}">
-                {{#ifCond totalSuccess '>=' ../l5r5e.difficulty}}
-                    {{localize "l5r5e.chatdices.success_text"}} <i title="{{totalBonus}} {{localize 'l5r5e.chatdices.successes'}}">({{totalBonus}} {{localize "l5r5e.chatdices.bonus_text"}})</i>
-                {{else}}
-                    {{localize "l5r5e.chatdices.fail_text"}}
-                {{/ifCond}}
-            </div>
+            {{#if ../l5r5e.difficultyHidden}}
+                <div class="l5r5e dice-result-rnk unknown">
+                    {{totalSuccess}} {{localize 'l5r5e.chatdices.successes'}}
+                </div>
+            {{else}}
+                <div class="l5r5e dice-result-rnk {{#ifCond totalSuccess '>=' ../l5r5e.difficulty}}success{{else}}fail{{/ifCond}}">
+                    {{#ifCond totalSuccess '>=' ../l5r5e.difficulty}}
+                        {{localize "l5r5e.chatdices.success_text"}} <i title="{{totalBonus}} {{localize 'l5r5e.chatdices.successes'}}">({{totalBonus}} {{localize "l5r5e.chatdices.bonus_text"}})</i>
+                    {{else}}
+                        {{localize "l5r5e.chatdices.fail_text"}}
+                    {{/ifCond}}
+                </div>
             {{/if}}
             {{/l5r5e.summary}}
         </div>
