@@ -59,11 +59,23 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         // Remove unused techs
         Object.keys(out).forEach((tech) => {
-            if (out[tech].length < 1 && !sheetData.data.techniques[tech]) {
+            if (
+                out[tech].length < 1 &&
+                !sheetData.data.techniques[tech] &&
+                !CONFIG.l5r5e.techniques_school.includes(tech)
+            ) {
                 delete out[tech];
             }
         });
 
+        // Manage school add button
+        sheetData.data.techniques["school_ability"] = out["school_ability"].length === 0;
+        sheetData.data.techniques["mastery_ability"] = out["mastery_ability"].length === 0;
+
+        // Always display "school_ability", but display "mastery_ability" only if rank >= 5
+        if (sheetData.data.identity.school_rank < 5 && out["mastery_ability"].length === 0) {
+            delete out["mastery_ability"];
+        }
         return out;
     }
 
@@ -302,7 +314,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         // If technique, select the current type
         if (item.data.type === "technique") {
             const techType = $(event.currentTarget).data("tech-type");
-            if (CONFIG.l5r5e.techniques.includes(techType)) {
+            if ([...CONFIG.l5r5e.techniques, ...CONFIG.l5r5e.techniques_school].includes(techType)) {
                 item.data.data.technique_type = techType;
                 item.data.img = `${CONFIG.l5r5e.paths.assets}/icons/techs/${techType}.svg`;
             }
