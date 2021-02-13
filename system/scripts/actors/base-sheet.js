@@ -32,14 +32,17 @@ export class BaseSheetL5r5e extends ActorSheet {
             return a.name.localeCompare(b.name);
         });
 
-        // Split techniques by types
+        // Split Techniques by types
         sheetData.data.splitTechniquesList = this._splitTechniques(sheetData);
+
+        // Split Items by types
+        sheetData.data.splitItemsList = this._splitItems(sheetData);
 
         return sheetData;
     }
 
     /**
-     * Split techniques by types for better readability
+     * Split Techniques by types for better readability
      * @private
      */
     _splitTechniques(sheetData) {
@@ -73,9 +76,29 @@ export class BaseSheetL5r5e extends ActorSheet {
         sheetData.data.techniques["mastery_ability"] = out["mastery_ability"].length === 0;
 
         // Always display "school_ability", but display "mastery_ability" only if rank >= 5
-        if (sheetData.data.identity.school_rank < 5 && out["mastery_ability"].length === 0) {
+        if (sheetData.data.identity?.school_rank < 5 && out["mastery_ability"].length === 0) {
             delete out["mastery_ability"];
         }
+        return out;
+    }
+
+    /**
+     * Split Items by types for better readability
+     * @private
+     */
+    _splitItems(sheetData) {
+        const out = {
+            weapon: [],
+            armor: [],
+            item: [],
+        };
+
+        sheetData.items.forEach((item) => {
+            if (["item", "armor", "weapon"].includes(item.type)) {
+                out[item.type].push(item);
+            }
+        });
+
         return out;
     }
 
@@ -311,12 +334,22 @@ export class BaseSheetL5r5e extends ActorSheet {
             item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
         }
 
-        // If technique, select the current type
-        if (item.data.type === "technique") {
-            const techType = $(event.currentTarget).data("tech-type");
-            if ([...CONFIG.l5r5e.techniques, ...CONFIG.l5r5e.techniques_school].includes(techType)) {
-                item.data.data.technique_type = techType;
-                item.data.img = `${CONFIG.l5r5e.paths.assets}/icons/techs/${techType}.svg`;
+        switch (item.data.type) {
+            case "armor": // no break
+            case "weapon":
+                if ($(event.currentTarget).data("item-eqquiped")) {
+                    item.data.data.equipped = true;
+                }
+                break;
+
+            case "technique": {
+                // If technique, select the current type
+                const techType = $(event.currentTarget).data("tech-type");
+                if ([...CONFIG.l5r5e.techniques, ...CONFIG.l5r5e.techniques_school].includes(techType)) {
+                    item.data.data.technique_type = techType;
+                    item.data.img = `${CONFIG.l5r5e.paths.assets}/icons/techs/${techType}.svg`;
+                }
+                break;
             }
         }
 

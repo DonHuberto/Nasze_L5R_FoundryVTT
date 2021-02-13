@@ -1,15 +1,15 @@
-<fieldset class="items-content">
-    <legend>
-        {{ localize 'l5r5e.equipment' }}
-        {{#if editable}}
-        <a data-item-type="item" class="item-control item-add" title="{{ localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a>
-        {{/if}}
-    </legend>
-    <ul class="item-list">
-        {{#each actor.items as |item id|}}
-            {{#ifCond '["item", "armor", "weapon"]' 'includes' item.type}}
-                {{> 'systems/l5r5e/templates/items/item/item-entry.html' item=item id=id editable=../editable }}
-            {{/ifCond}}
-        {{/each}}
-    </ul>
-</fieldset>
+{{#each data.splitItemsList as |cat type|}}
+    <fieldset class="items-content">
+        <legend>
+            {{localize (localize 'l5r5e.{type}s.title' type=type) }}
+            {{#if ../editable}}
+            <a data-item-type="{{type}}" class="item-control item-add" title="{{ localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a>
+            {{/if}}
+        </legend>
+        <ul class="item-list">
+            {{#each cat as |item id|}}
+                {{> 'systems/l5r5e/templates/items/item/item-entry.html' item=item id=id editable=../../editable }}
+            {{/each}}
+        </ul>
+    </fieldset>
+{{/each}}

@@ -28,9 +28,15 @@
             {{> 'systems/l5r5e/templates/actors/npc/narrative.html' }}
         </article>
         <article>
-            {{> 'systems/l5r5e/templates/items/weapon/weapons.html' }}
-            {{> 'systems/l5r5e/templates/items/armor/armors.html' }}
-            {{> 'systems/l5r5e/templates/items/item/items.html' }}
+            <fieldset class="items-wrapper">
+                <legend>{{localize 'l5r5e.armors.equipped' }}</legend>
+                {{> 'systems/l5r5e/templates/items/weapon/weapons.html' }}
+                {{> 'systems/l5r5e/templates/items/armor/armors.html' }}
+            </fieldset>
+            <fieldset class="items-wrapper">
+                <legend>{{localize 'l5r5e.equipment' }}</legend>
+                {{> 'systems/l5r5e/templates/items/item/items.html' }}
+            </fieldset>
         </article>
         <article>
             {{> 'systems/l5r5e/templates/actors/npc/techniques.html' }}

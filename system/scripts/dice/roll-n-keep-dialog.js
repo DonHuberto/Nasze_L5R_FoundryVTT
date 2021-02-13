@@ -23,7 +23,7 @@ export class RollnKeepDialog extends FormApplication {
 
     /**
      * The current Roll
-     * @param {Roll} roll
+     * @param {RollL5r5e} roll
      */
     roll = null;
 

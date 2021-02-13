@@ -336,10 +336,16 @@ export class RollL5r5e extends Roll {
         roll.l5r5e = duplicate(data.l5r5e);
 
         // get real Actor object
-        if (data.l5r5e.actor && !(data.l5r5e.actor instanceof game.l5r5e.ActorL5r5e)) {
-            const actor = game.actors.get(data.l5r5e.actor.id);
-            if (actor) {
-                roll.l5r5e.actor = actor;
+        if (data.l5r5e.actor) {
+            if (data.l5r5e.actor instanceof game.l5r5e.ActorL5r5e) {
+                // duplicate break the object, relink it
+                roll.l5r5e.actor = data.l5r5e.actor;
+            } else {
+                // only id, get the object
+                const actor = game.actors.get(data.l5r5e.actor.id);
+                if (actor) {
+                    roll.l5r5e.actor = actor;
+                }
             }
         }
 
