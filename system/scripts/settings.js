@@ -13,6 +13,21 @@ export const RegisterSettings = function () {
         default: true,
         type: Boolean,
     });
+    game.settings.register("l5r5e", "initiative.setTn1OnTypeChange", {
+        name: "SETTINGS.Initiative.SetTn1OnTypeChange",
+        hint: "SETTINGS.Initiative.SetTn1OnTypeChangeHint",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: true,
+    });
+    game.settings.register("l5r5e", "token.reverseFatigueBar", {
+        name: "SETTINGS.ReverseFatigueBar",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: false,
+    });
 
     /* ------------------------------------ */
     /* Update                               */
@@ -34,6 +49,7 @@ export const RegisterSettings = function () {
         config: false,
         type: Boolean,
         default: false,
+        onChange: () => game.l5r5e.HelpersL5r5e.notifyDifficultyChange(),
     });
     game.settings.register("l5r5e", "initiative.difficulty.value", {
         name: "Initiative difficulty value",
@@ -41,6 +57,7 @@ export const RegisterSettings = function () {
         config: false,
         type: Number,
         default: 2,
+        onChange: () => game.l5r5e.HelpersL5r5e.notifyDifficultyChange(),
     });
     game.settings.register("l5r5e", "initiative.encounter", {
         name: "Initiative encounter type",
@@ -48,6 +65,11 @@ export const RegisterSettings = function () {
         config: false,
         type: String,
         default: "skirmish",
+        onChange: () => {
+            if (game.settings.get("l5r5e", "initiative.setTn1OnTypeChange")) {
+                game.settings.set("l5r5e", "initiative.difficulty.value", 1);
+            }
+        },
     });
     game.settings.register("l5r5e", "initiative.prepared.character", {
         name: "Initiative PC prepared or not",
@@ -69,16 +91,5 @@ export const RegisterSettings = function () {
         config: false,
         type: String,
         default: "null",
-    });
-
-    /* ------------------------------------ */
-    /* Token bars                           */
-    /* ------------------------------------ */
-    game.settings.register("l5r5e", "token.reverseFatigueBar", {
-        name: game.i18n.localize("SETTINGS.ReverseFatigueBar"),
-        scope: "world",
-        config: true,
-        type: Boolean,
-        default: false,
     });
 };

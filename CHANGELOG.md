@@ -18,9 +18,12 @@
 - Added a booster for loading compendium's core items (speed up 20Q)
 - Added confirm dialog on item's deletion (Hold "ctrl" on the click, if you want to bypass it)
 - Added "Sleep" & "Scene End" buttons in "GM ToolBox" (old "difficulty" box)
-- Added an option to reverse the token's bar on fatigue (thanks to Jzrzmy), and colorize in red the strife bar if compromise
+- Token's bar:
+  - The strife bar is now displayed in red if the actor is compromised
+  - Added an option, off by default, to reverse the fatigue's token bar (thanks to Jzrzmy).
+- Added an option, on by default, to set the TN to 1 when the encounter type is selected (Intrigue, Duel, Skirmish or Mass battle)
 - Split Techniques & Items by category in actor sheet (pc & npc) for better readability
-- Armor & Weapon added in the conflict tab now set the "eqquiped" props by default
+- Armor & Weapon added in the conflict tab now set the "eqquiped" property by default
 
 ## 1.1.2 - One Compendium to bring them all
 - Added compendiums (Thanks to Stéfano Fara for the English version !) Partial for French as PoW and CR are not translated yet

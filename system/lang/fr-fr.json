@@ -9,6 +9,10 @@
         "RollNKeep": {
             "DeleteOldMessage": "RnK Supprime le précédent message du chat",
             "DeleteOldMessageHint": "Si coché, on supprime le message précédent pour la série de jets via le RnK"
+        },
+        "Initiative": {
+            "SetTn1OnTypeChange": "ND 1 à la sélection du type de rencontre",
+            "SetTn1OnTypeChangeHint": "Met le ND à 1 lorsqu'on modifie le type de rencontre (Intrigue, Duel, Escarmouche ou Bataille rangée)"
         }
     },
     "ACTOR": {

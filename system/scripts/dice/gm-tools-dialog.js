@@ -34,6 +34,25 @@ export class GmToolsDialog extends FormApplication {
      */
     constructor(options = {}) {
         super(options);
+        this._initialize();
+    }
+
+    /**
+     * Refresh data (used from socket)
+     */
+    async refresh() {
+        if (!game.user.isGM) {
+            return;
+        }
+        this._initialize();
+        this.render(false);
+    }
+
+    /**
+     * Initialize the values
+     * @private
+     */
+    _initialize() {
         this.object = {
             difficulty: game.settings.get("l5r5e", "initiative.difficulty.value"),
             difficultyHidden: game.settings.get("l5r5e", "initiative.difficulty.hidden"),
@@ -148,15 +167,6 @@ export class GmToolsDialog extends FormApplication {
      * @override
      */
     async _updateObject(event, formData) {
-        // Notify the change to other players if they already have opened the DicePicker
-        game.l5r5e.sockets.refreshAppId("l5r5e-dice-picker-dialog");
-
-        // If the current GM also have the DP open
-        const app = Object.values(ui.windows).find((e) => e.id === "l5r5e-dice-picker-dialog");
-        if (app && typeof app.refresh === "function") {
-            app.refresh();
-        }
-
         this.render(false);
     }
 
