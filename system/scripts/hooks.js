@@ -122,17 +122,18 @@ export default class HooksL5r5e {
                 .then(() => HooksL5r5e._gmCombatBar(app, html, data));
         });
 
-        html.find(".prepared-control").on("click", (event) => {
+        html.find(".prepared-control").on("mousedown", (event) => {
             event.preventDefault();
             event.stopPropagation();
             const preparedId = $(event.currentTarget).data("id");
             if (!Object.hasOwnProperty.call(prepared, preparedId)) {
                 return;
             }
+            const rev = event.which === 3;
             const nextValue = {
-                false: "true",
-                true: "null",
-                null: "false",
+                false: rev ? "true" : "null",
+                true: rev ? "null" : "false",
+                null: rev ? "false" : "true",
             };
             game.settings
                 .set("l5r5e", `initiative.prepared.${preparedId}`, nextValue[prepared[preparedId]])
