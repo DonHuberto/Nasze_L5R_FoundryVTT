@@ -104,7 +104,7 @@ export class CombatL5r5e extends Combat {
                             ? messageOptions.difficultyHidden
                             : cfg.difficultyHidden;
                     roll.l5r5e.voidPointUsed = !!messageOptions.useVoidPoint;
-                    roll.l5r5e.skillAssistance = messageOptions.skillAssistance;
+                    roll.l5r5e.skillAssistance = messageOptions.skillAssistance || 0;
 
                     roll.roll();
                     rnkMessage = await roll.toMessage({ flavor });

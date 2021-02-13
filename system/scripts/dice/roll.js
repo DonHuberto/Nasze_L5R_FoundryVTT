@@ -116,7 +116,7 @@ export class RollL5r5e extends Roll {
             // count ring die + skill assistance
             this.l5r5e.keepLimit =
                 this.dice.reduce((acc, term) => (term instanceof game.l5r5e.RingDie ? acc + term.number : acc), 0) +
-                Math.max(0, this.l5r5e.skillAssistance);
+                Math.max(0, this.l5r5e.skillAssistance || 0);
 
             // if only bulk skill dice, count the skill dice
             if (!this.l5r5e.keepLimit) {
