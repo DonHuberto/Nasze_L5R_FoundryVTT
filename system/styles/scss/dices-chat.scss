@@ -1,11 +1,40 @@
 // Dice in chat
 .chat-dice {
-    &.rerolled > img {
-        border-bottom: 3px solid orangered;
+    display: inline;
+    position: relative;
+    padding: 0.25rem;
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        border-radius: 0.15rem;
+        padding: 0 0.1rem 0 0.15rem;
+        font-size: 0.65rem;
+        line-height: 1rem;
+        width: 0.75rem;
+        text-align: center;
+        color: white;
+        background: transparent;
+    }
+    &.rerolled {
+        > img {
+            border-bottom: 0 none;
+        }
+        &:after {
+            content: "\f2f9";
+            background: orangered;
+        }
     }
 
-    &.swapped > img {
-        border-bottom: 3px solid fuchsia;
+    &.swapped {
+        > img {
+            border-bottom: 0 none;
+        }
+        &:after {
+            content: "\f337";
+            background: fuchsia;
+        }
     }
 
     > img {
@@ -25,7 +54,7 @@
     }
 
     &-stance {
-        font-size: 2rem;
+        font-size: 2.5rem;
         line-height: 2.5rem;
         margin: 0.25rem;
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);

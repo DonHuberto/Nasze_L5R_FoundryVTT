@@ -28,7 +28,7 @@
             border-image: url("../assets/ui/macro-button.webp") 10 repeat;
             border-image-width: 0.5rem;
             border-image-outset: 0px;
-            margin: 0;
+            margin: 0.5rem 0 0;
             &:hover {
                 background: linear-gradient(
                     $l5r5e-linear-gradient-first-dark,
@@ -96,7 +96,9 @@
         text-align: center;
         background: none;
         border: none;
+        border: 0 none;
         margin: 0;
+        padding: 0;
         tbody {
             tr {
                 td {
@@ -182,23 +184,43 @@
 
 .roll-n-keep-dialog {
     min-width: 600px;
+    max-width: 800px;
     &.finalized {
+        width: auto;
         min-width: 400px;
     }
     img {
         border: 0;
     }
-
     table {
+        border: 0 none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .rnk-ct {
         margin: 0.75rem 0 0;
-        table {
-            border: 0 none;
-            tr {
-                background: transparent;
+        display: flex;
+        flex-wrap: wrap;
+        background: rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(186, 187, 177, 0.5);
+        .rnk-center {
+            flex: 350px;
+            flex-wrap: wrap;
+            display: flex;
+            table {
+                display: table;
+                min-height: 9rem;
+                tbody {
+                    tr {
+                        background: transparent;
+                        td {
+                            margin: 0;
+                            padding: 0;
+                        }
+                    }
+                }
             }
-        }
-        .button {
-            columns: 3;
         }
     }
 
@@ -207,11 +229,20 @@
     }
 
     .dropbox {
-        min-height: 100px;
+        position: relative;
+        min-height: 7rem;
+
+        legend {
+            i:last-child {
+                position: absolute;
+                top: 1rem;
+                right: 0;
+            }
+        }
 
         &.faces-change {
             min-height: 40px;
-            margin: auto;
+            margin: 0.5rem auto;
         }
         &.discards {
             border: 1px solid gray;
@@ -220,33 +251,96 @@
             border: 1px solid orangered;
         }
         &.keeps {
+            flex: 100%;
             border: 1px solid green;
+        }
+        &.swap {
+            flex: 0 0 calc(100px + 1rem);
+            border: 1px solid fuchsia;
+        }
+        &.discards,
+        &.rerolls {
+            flex: 0 0 calc(50% - 0.5rem);
+            margin-bottom: 0.5rem;
+        }
+    }
+    /* Dice Marker */
+    .dice-ct {
+        position: relative;
+        padding: 0.25rem;
+        &:after {
+            content: "\f128";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border-radius: 0.15rem;
+            padding: 0 0.1rem 0 0.15rem;
+            font-size: 0.65rem;
+            line-height: 1rem;
+            width: 0.65rem;
+            text-align: center;
+            color: white;
+            background: gray;
+        }
+        &.discard {
+            filter: opacity(0.5);
+            &:after {
+                content: "\f00d";
+                background: gray;
+            }
+        }
+        &.reroll {
+            filter: opacity(0.5);
+            &:after {
+                content: "\f2f9";
+                background: orangered;
+            }
+        }
+        &.keep {
+            &:after {
+                content: "\f00c";
+                background: green;
+            }
+        }
+        &.swap {
+            &:after {
+                content: "\f337";
+                background: fuchsia;
+            }
         }
     }
 
     .dice {
         height: 40px;
         width: 40px;
-    }
-
-    .discard {
-        filter: opacity(0.5);
-        border: 3px solid gray;
-    }
-    .reroll {
-        filter: opacity(0.5);
-        border: 3px solid orangered;
-    }
-    .keep {
-        border: 3px solid green;
-    }
-    .swap {
-        border: 3px solid fuchsia;
+        &.discard {
+            filter: opacity(0.5);
+            border: 0 none;
+        }
+        &.reroll {
+            filter: opacity(0.5);
+            border: 0 none;
+        }
+        &.keep {
+            border: 0 none;
+        }
+        &.swap {
+            border: 0 none;
+        }
     }
 
     #finalize {
-        width: calc(100% - 1rem);
-        margin: 0.5rem;
+        width: 100%;
+        margin: 0.5rem 0.25rem 0.25rem;
+    }
+    .section-header {
+        i {
+            font-size: 0.75rem;
+            margin: 0 0.25rem;
+        }
+    }
+    .fa-sign-in-alt {
+        transform: rotate(90deg);
     }
 }
 
