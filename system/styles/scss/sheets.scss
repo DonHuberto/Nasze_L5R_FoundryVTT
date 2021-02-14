@@ -494,6 +494,31 @@
         padding: 0.5rem;
         flex-wrap: wrap;
         min-height: calc(100% - 3.25rem);
+        fieldset {
+            h3 {
+                font-size: 1.25rem;
+                width: 100%;
+                text-align: left;
+                line-height: 2rem;
+                color: $l5r5e-bold;
+                border-bottom: 1px solid;
+                .item-control {
+                    &.item-add {
+                        float: right;
+                        font-size: 0.75rem;
+                        line-height: 0.75rem;
+                        border: 1px solid;
+                        padding: 0.25rem;
+                        margin: 0.25rem;
+                        color: $white;
+                        background: $l5r5e-bold;
+                        &:hover {
+                            opacity: 0.75;
+                        }
+                    }
+                }
+            }
+        }
         &.tab[data-tab] {
             &.active {
                 display: flex;
