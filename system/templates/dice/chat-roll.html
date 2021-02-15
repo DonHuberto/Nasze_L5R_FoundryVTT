@@ -53,7 +53,9 @@
             {{/each}}
 
             {{!-- Roll & Keep Button --}}
+            {{^if l5r5e.dicesTypes.std}}
             <button class="l5r5e chat-dice-rnk">{{localize "l5r5e.chatdices.roll_n_keep"}}</button>
+            {{/if}}
 
             {{#l5r5e.summary}}
             {{!-- summary symbols --}}

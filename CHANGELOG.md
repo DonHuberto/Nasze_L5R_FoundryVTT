@@ -8,11 +8,12 @@
     - Re-roll: Replace this die by a new roll (Usually Advantage & Disadvantage stuff). When a reroll is selected, all the dice in the current step will be tag as keep by default.
     - Swap (Face): Set a desired face for this die (Some weird techniques stuff)
   - Usage:
-    - All these actions are done by drag a die result and drop into a target action
-    - A colored border symbolize the choice made on the dice
-    - You can always change choices for the current step until you clic next.
+    - All these actions are done by drag and drop a die result into a target action
+    - A colored icon symbolize the choice made on the dice
+    - You can always change choices for the current step until you clic next
     - Please note all dice without choice will be discarded for the next step
   - The GM has the ability to undo choices by left-clicking in the status headers
+  - Limitation: The roll need to only have L5R dice in it (no mixed regular + L5R)
 - Fix image's behavior on create for all items sub classes
 - Click on rings in the PC/PNC sheet now open the DicePicker with the selected ring
 - Added a booster for loading compendium's core items (speed up 20Q)
@@ -20,10 +21,10 @@
 - Added "Sleep" & "Scene End" buttons in "GM ToolBox" (old "difficulty" box)
 - Token's bar:
   - The strife bar is now displayed in red if the actor is compromised
-  - Added an option, off by default, to reverse the fatigue's token bar (thanks to Jzrzmy).
+  - Added an option, off by default, to reverse the fatigue's token bar (thanks to Jzrzmy)
 - Added an option, on by default, to set the TN to 1 when the encounter type is selected (Intrigue, Duel, Skirmish or Mass battle)
 - Split Techniques & Items by category in actor sheet (pc & npc) for better readability
-- Armor & Weapon added in the conflict tab now set the "eqquiped" property by default
+- Armor & Weapon added in the conflict tab now set the "equipped" property by default
 
 ## 1.1.2 - One Compendium to bring them all
 - Added compendiums (Thanks to Stéfano Fara for the English version !) Partial for French as PoW and CR are not translated yet
