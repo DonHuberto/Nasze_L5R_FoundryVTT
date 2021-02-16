@@ -350,16 +350,16 @@
             li {
                 &:nth-child(1),
                 &:nth-child(2) {
-                    flex: 0 0 60px;
+                    flex: 0 0 4rem;
                     padding: 0 0.25rem 0.25rem;
                 }
                 &:nth-child(4) {
-                    flex: 0 0 10%;
+                    flex: 0 0 4rem;
                     padding: 0 0.25rem 0.25rem;
                 }
             }
             .profile-img {
-                width: 100%;
+                width: 4rem;
             }
             .chat-profil-stance {
                 font-size: 3.5rem;
