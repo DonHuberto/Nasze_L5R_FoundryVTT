@@ -429,3 +429,34 @@
         display: none;
     }
 }
+
+.dice-picker-dialog,
+.roll-n-keep-dialog {
+    button {
+        cursor: default;
+        color: $white;
+        background: linear-gradient(
+            $l5r5e-linear-gradient-third,
+            $l5r5e-linear-gradient-third-dark,
+            $l5r5e-linear-gradient-third
+        );
+        background-origin: padding-box;
+        border-image: url("../assets/ui/macro-button.webp") 10 repeat;
+        border-image-width: 0.5rem;
+        border-image-outset: 0px;
+        margin: 0.5rem 0 0;
+        &:hover {
+            background: linear-gradient(
+                $l5r5e-linear-gradient-first-dark,
+                $l5r5e-linear-gradient-first,
+                $l5r5e-linear-gradient-first-dark
+            );
+        }
+        &[disabled] {
+            opacity: 0.25;
+            &:hover {
+                box-shadow: none;
+            }
+        }
+    }
+}

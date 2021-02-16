@@ -133,11 +133,7 @@
         }
     }
     article {
-        .weapons-content {
-            flex: 1;
-        }
         min-height: auto;
-        display: flex;
         fieldset,
         .checklist {
             flex: 0 0 calc(100% - 0.5rem);
@@ -145,6 +141,9 @@
         .items-content {
             flex: 0 0 calc(100% - 0.5rem);
             margin: 1rem 0.25rem 0;
+        }
+        .weapons-content {
+            flex: 1;
         }
         .initiative-wrapper {
             margin-bottom: 0.5rem;
