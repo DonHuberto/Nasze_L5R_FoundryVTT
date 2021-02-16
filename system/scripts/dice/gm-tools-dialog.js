@@ -1,5 +1,5 @@
 /**
- * L5R Initiative Roll dialog
+ * L5R GM Toolbox dialog
  * @extends {FormApplication}
  */
 export class GmToolsDialog extends FormApplication {
