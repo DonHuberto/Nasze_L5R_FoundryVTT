@@ -1,42 +1,35 @@
 <form class="{{cssClass}}" autocomplete="off">
     {{!-- Profil --}}
     <header class="l5r5e profil part-header flexrow chat-profil">
-        <span class="chat-profil-element">
-            <img class="profile-img"
-                 src="{{#if l5r5e.actor.img}}{{l5r5e.actor.img}}{{else}}icons/svg/mystery-man.svg{{/if}}"
-                 data-edit="img"
-                 height="40"
-                 width="40"
-                 alt="{{#if l5r5e.actor.name}}{{l5r5e.actor.name}}{{else}}mystery-man{{/if}}"
-            >
-        </span>
-
-        <span class="chat-profil-element">
-            <i class="chat-profil-stance {{l5r5e.stance}} i_{{l5r5e.stance}}" title="{{localizeRing l5r5e.stance}}"></i>
-        </span>
-
-        <span class="chat-profil-element-skill">
-            {{#if l5r5e.skillId}}
-                {{localizeSkillId l5r5e.skillId}}
-            {{else}}
-                {{#if l5r5e.skillCatId}}{{localizeSkill l5r5e.skillCatId 'title'}}{{/if}}
-            {{/if}}
-        </span>
-
-        <span class="chat-profil-element">
-            {{#if l5r5e.difficultyHidden}}
-                {{localize 'l5r5e.chatdices.difficulty_hidden'}}
-            {{else}}
-                {{localize 'l5r5e.chatdices.difficulty'}} {{l5r5e.difficulty}}
-            {{/if}}
-            <br>
-            {{#if l5r5e.voidPointUsed}}
-                <i class="i_void" title="{{localize 'l5r5e.chatdices.void_point_used'}}"></i>
-            {{/if}}
-            {{#if l5r5e.skillAssistance}}
-                <i class="i_skill" title="{{l5r5e.skillAssistance}}x {{localize 'l5r5e.chatdices.assistance_used'}}"></i>
-            {{/if}}
-        </span>
+        <ul>
+            <li class="chat-profil-element">
+                <img class="profile-img" src="{{#if l5r5e.actor.img}}{{l5r5e.actor.img}}{{else}}icons/svg/mystery-man.svg{{/if}}" data-edit="img" alt="{{#if l5r5e.actor.name}}{{l5r5e.actor.name}}{{else}}mystery-man{{/if}}" />
+            </li>
+            <li class="chat-profil-element">
+                <i class="chat-profil-stance {{l5r5e.stance}} i_{{l5r5e.stance}}" title="{{localizeRing l5r5e.stance}}"></i>
+            </li>
+            <li class="chat-profil-element-skill">
+                {{#if l5r5e.skillId}}
+                    {{localizeSkillId l5r5e.skillId}}
+                {{else}}
+                    {{#if l5r5e.skillCatId}}{{localizeSkill l5r5e.skillCatId 'title'}}{{/if}}
+                {{/if}}
+            </li>
+            <li class="chat-profil-element">
+                {{#if l5r5e.difficultyHidden}}
+                    {{localize 'l5r5e.chatdices.difficulty_hidden'}}
+                {{else}}
+                    {{localize 'l5r5e.chatdices.difficulty'}} {{l5r5e.difficulty}}
+                {{/if}}
+                <br />
+                {{#if l5r5e.voidPointUsed}}
+                    <i class="i_void" title="{{localize 'l5r5e.chatdices.void_point_used'}}"></i>
+                {{/if}}
+                {{#if l5r5e.skillAssistance}}
+                    <i class="i_skill" title="{{l5r5e.skillAssistance}}x {{localize 'l5r5e.chatdices.assistance_used'}}"></i>
+                {{/if}}
+            </li>
+        </ul>
     </header>
     <section class="rnk-ct">
         {{!-- Body --}}
