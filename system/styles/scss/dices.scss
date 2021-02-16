@@ -345,7 +345,6 @@
     .chat-profil {
         ul {
             display: flex;
-            flex-wrap: wrap;
             flex-direction: row;
             li {
                 &:nth-child(1),
