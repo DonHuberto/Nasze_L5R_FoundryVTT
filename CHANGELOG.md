@@ -25,6 +25,8 @@
 - Added an option, on by default, to set the TN to 1 when the encounter type is selected (Intrigue, Duel, Skirmish or Mass battle)
 - Split Techniques & Items by category in actor sheet (pc & npc) for better readability
 - Armor & Weapon added in the conflict tab now set the "equipped" property by default
+- Added Tabs on NPC sheets
+- New styles for dice results
 
 ## 1.1.2 - One Compendium to bring them all
 - Added compendiums (Thanks to Stéfano Fara for the English version !) Partial for French as PoW and CR are not translated yet
