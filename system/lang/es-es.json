@@ -7,12 +7,12 @@
         "None": "Sin opción",
         "ReverseFatigueBar": "Invertir la barra de fatiga de los token",
         "RollNKeep": {
-            "DeleteOldMessage": "RnK Delete previous chat message",
-            "DeleteOldMessageHint": "Choose to keep or delete the previous message for a RnK series"
+            "DeleteOldMessage": "TyG Eliminar el mensaje anterior del chat",
+            "DeleteOldMessageHint": "Elige si mantener o borrar el mensaje anterior de la serie TyG"
         },
         "Initiative": {
-            "SetTn1OnTypeChange": "Set TN to 1 on encounter change",
-            "SetTn1OnTypeChangeHint": "Set the TN to 1 when the encounter type is selected (Intrigue, Duel, Skirmish or Mass battle)"
+            "SetTn1OnTypeChange": "Poner el NO a 1 al seleccionar el tipo de encuentro",
+            "SetTn1OnTypeChangeHint": "Poner el NO a 1 cuando se elige el tipo de encuentro (Intriga, Duelo, Escaramuza o Batalla a gran escala)"
         }
     },
     "ACTOR": {
@@ -32,7 +32,7 @@
         "global": {
             "add": "Añadir",
             "edit": "Editar",
-            "delete_confirm": "Are you sure you want to delete '{name}' ?",
+            "delete_confirm": "¿Estás seguro de que quieres borrar '{name}' ?",
             "drop_here": "Dejar caer aquí",
             "edge_translation_disclaimer": "Edge Studio nos da su permiso para ofrecer este módulo a la comunidad, pero tanto los textos así como los códigos que lo constituyen no tienen su aprobación explícita."
         },
@@ -91,39 +91,39 @@
             "difficulty_hidden": "NO ???",
             "dicepicker": "Dice Picker",
             "void_point_used": "Punto de vacío utilizado",
-            "assistance_used": "Skill assistance used",
+            "assistance_used": "Asistencia de habilidad utilizada",
             "roll_n_keep": "Tirar y guardar",
             "initiative_roll": "Tirada de Iniciativa",
-            "success_text": "Éxitos!",
-            "bonus_text": "bonus successes",
-            "fail_text": "Fail!"
+            "success_text": "¡Éxito!",
+            "bonus_text": "Éxitos adicionales",
+            "fail_text": "¡Fallo!"
         },
         "dicepicker": {
             "difficulty_title": "Dificultad",
             "difficulty_hidden_label": "Ocultar NO",
             "use_void_point_label": "Gasta un",
             "void_point_tooltip": "Punto de vacío",
-            "skill_assistance_label": "Assistance",
+            "skill_assistance_label": "Asistencia",
             "roll_label": "Tirar",
             "bt_add_macro": "Añadir una macro"
         },
         "roll_n_keep": {
-            "title": "L5R Roll & Keep",
+            "title": "L5A Tirar y guardar",
             "discard_drop_here": "Descartar",
             "reroll_drop_here": "Relanzar",
-            "swap_drop_here": "Swap",
+            "swap_drop_here": "Cambiar cara",
             "keep_drop_here": "Guardar",
-            "bt_validate": "Finalizar",
-            "undo": "[GM] Undo the last step choices"
+            "bt_validate": "Terminar este paso",
+            "undo": "[GM] Deshacer los últimos cambios"
         },
         "gm_toolbox": {
             "title": "GM ToolBox",
-            "difficulty_hidden": "Change difficulty visibility",
-            "difficulty": "Change difficulty (right: add, left: subtract, middle: TN 2)",
-            "sleep": "Comfortable rest for all characters (Remove Water x2 fatigue)",
-            "sleep_info": "The characters had a good night's sleep.",
-            "scene_end": "End of scene (Conflict and Fatigue half reset for all characters)",
-            "scene_end_info": "The tension of the scene finally drops."
+            "difficulty_hidden": "Cambiar la dificultad visible",
+            "difficulty": "Cambiar dificultad (derecha: añadir, izquierda: sustraer, central: NO 2)",
+            "sleep": "Descanso confortable para todos los personajes (Eliminar fatiga = Agua x2)",
+            "sleep_info": "Los personajes han dormido bien.",
+            "scene_end": "Final de la escena (El Conflicto y la Fatiga de los personajes se reduce hasta la mitad del máximo del valor)",
+            "scene_end_info": "La tensión de la escena por fin disminuye."
         },
         "max": "Máx",
         "current": "Actuales",
@@ -169,7 +169,7 @@
             "shuji": "Shuji",
             "maho": "Mahõ",
             "ninjutsu": "Ninjutsu",
-            "school_ability": "Habilidad de la escuela",
+            "school_ability": "Capacidad de escuela",
             "mastery_ability": "Habilidad de maestría"
         },
         "peculiarities": {
@@ -308,10 +308,10 @@
                 "duel": "Duelo",
                 "skirmish": "Escaramuza",
                 "mass_battle": "Batalla a gran escala",
-                "prepared_true": "Prepared",
-                "prepared_false": "Surprised",
-                "prepared_null": "Defined in the character sheet (default)",
-                "already_set": "Your initiative has already been drawn"
+                "prepared_true": "Preparado",
+                "prepared_false": "Sorprendido",
+                "prepared_null": "Definido en la hoja de personaje (por defecto)",
+                "already_set": "Tu iniciativa ya ha sido establecida."
             }
         },
         "advancements": {
