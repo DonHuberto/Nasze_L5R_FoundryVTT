@@ -186,6 +186,7 @@ li {
 // Fieldset
 fieldset {
     flex: 1;
+    flex-wrap: wrap;
     display: flex;
     margin: 0 0.25rem;
     padding: 0.5rem;
