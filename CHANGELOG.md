@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1 - Praised be Firefox
+- Fix dice swap on firefox that overflowed on the top and bottom of the RnK dialog
+- Fix new items list on firefox who deformed the sheets
+
 ## 1.2.0 - Roll n Keep
 - Added Roll n Keep 1st iteration !
   - Ability to Keep, Discard, Re-roll and Swap:
