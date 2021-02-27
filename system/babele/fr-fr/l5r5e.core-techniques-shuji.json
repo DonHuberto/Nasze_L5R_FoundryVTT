@@ -424,6 +424,12 @@
             "name": "Roar of Encouragement (WIP)",
             "description": "",
             "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Osano-wo’s Boast (Mantis)",
+            "name": "Vantardise d'Osano-wo (Mante)",
+            "description": "",
+            "book_reference": "Le Clan de la Mante"
         }
     ]
 }

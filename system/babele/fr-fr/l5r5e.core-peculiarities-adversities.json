@@ -565,6 +565,13 @@
             "types": "Malédiction, Physique",
             "description": "",
             "book_reference": "L’Outremonde p.99"
+        },
+        {
+            "id": "Sailor’s Tongue",
+            "name": "Parler du marin",
+            "types": "Mental, Relations",
+            "description": "",
+            "book_reference": "Le Clan de la Mante"
         }
     ]
 }

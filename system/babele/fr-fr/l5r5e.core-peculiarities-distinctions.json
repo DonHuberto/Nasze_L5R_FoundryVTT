@@ -446,6 +446,20 @@
             "types": "Relations",
             "description": "",
             "book_reference": "L’Outremonde p.96"
+        },
+        {
+            "id": "Blood of Osano-Wo",
+            "name": "Sang d’Osano-wo",
+            "types": "Mental, Spirituel",
+            "description": "",
+            "book_reference": "Le Clan de la Mante"
+        },
+        {
+            "id": "Sea Legs",
+            "name": "Pied marin",
+            "types": "Physique",
+            "description": "",
+            "book_reference": "Le Clan de la Mante"
         }
     ]
 }

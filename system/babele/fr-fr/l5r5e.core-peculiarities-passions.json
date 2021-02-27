@@ -278,6 +278,13 @@
             "types": "Mental",
             "description": "",
             "book_reference": "L’Outremonde p.97"
+        },
+        {
+            "id": "KnotWork",
+            "name": "Noeuds",
+            "types": "Mental",
+            "description": "",
+            "book_reference": "Le Clan de la Mante"
         }
     ]
 }

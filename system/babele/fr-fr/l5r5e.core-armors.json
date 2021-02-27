@@ -100,6 +100,18 @@
             "name": "Tosei-Gusoku",
             "description": "",
             "book_reference": "L’Outremonde p.106"
+        },
+        {
+            "id": "Sailor's clothes",
+            "name": "Vêtements de marin",
+            "description": "",
+            "book_reference": "Le Clan de la Mante"
+        },
+        {
+            "id": "Shark leather armor",
+            "name": "Armure en peau de requin",
+            "description": "",
+            "book_reference": "Le Clan de la Mante"
         }
     ]
 }

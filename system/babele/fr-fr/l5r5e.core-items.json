@@ -484,6 +484,24 @@
             "name": "Flèches fumigènes",
             "description": "",
             "book_reference": "L’Outremonde p.106"
+        },
+        {
+            "id": "Astrolabe",
+            "name": "Astrolabe",
+            "description": "",
+            "book_reference": "Le Clan de la Mante"
+        },
+        {
+            "id": "Fishing Rod and Line",
+            "name": "Canne à pêche et ligne",
+            "description": "",
+            "book_reference": "Le Clan de la Mante"
+        },
+        {
+            "id": "TaraiBune",
+            "name": "TaraiBune",
+            "description": "",
+            "book_reference": "Le Clan de la Mante"
         }
     ]
 }

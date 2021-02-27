@@ -736,6 +736,60 @@
             "grip_2": "",
             "description": "",
             "book_reference": "L’Outremonde p.103"
+        },
+        {
+            "id": "Butterfly sword",
+            "name": "Epée papillon",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Le Clan de la Mante"
+        },
+        {
+            "id": "Eku",
+            "name": "Eku",
+            "category": "Armes d'Hast",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Le Clan de la Mante"
+        },
+        {
+            "id": "Tinbe-Rochin",
+            "name": "Rochin",
+            "category": "Armes d'Hast",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Le Clan de la Mante"
+        },
+        {
+            "id": "Sai",
+            "name": "Sai",
+            "category": "Armes de Poing",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Le Clan de la Mante"
+        },
+        {
+            "id": "Tonfa",
+            "name": "Tonfa",
+            "category": "Armes de Poing",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Le Clan de la Mante"
+        },
+        {
+            "id": "Tinbe",
+            "name": "Timbe",
+            "category": "Boucliers",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Le Clan de la Mante"
         }
     ]
 }
