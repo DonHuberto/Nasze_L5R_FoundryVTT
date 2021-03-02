@@ -291,7 +291,7 @@
             bottom: 0;
             right: 0;
             border-radius: 0.15rem;
-            padding: 0 0.1rem 0 0.15rem;
+            padding: 0 0.15rem;
             font-size: 0.65rem;
             line-height: 1rem;
             width: 0.65rem;
@@ -326,6 +326,7 @@
             }
         }
     }
+
     tr:first-child .dice-ct {
         &:before {
             display: none;
@@ -505,5 +506,8 @@
                 box-shadow: none;
             }
         }
+    }
+    #context-menu {
+        max-width: none;
     }
 }

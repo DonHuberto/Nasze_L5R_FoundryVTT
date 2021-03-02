@@ -2,20 +2,29 @@
 .chat-dice {
     display: inline;
     position: relative;
-    padding: 0.25rem;
+    padding: 0;
+    margin: 0;
     &:after {
         content: "";
         position: absolute;
         bottom: 0;
         right: 0;
         border-radius: 0.15rem;
-        padding: 0 0.1rem 0 0.15rem;
-        font-size: 0.65rem;
+        padding: 0 0.225rem 0 0.15rem;
+        font-size: 0.75em;
         line-height: 1rem;
-        width: 0.75rem;
+        width: 1em;
         text-align: center;
         color: white;
         background: transparent;
+    }
+    &:last-of-type,
+    &:nth-child(6),
+    &:nth-child(12),
+    &:nth-child(18) {
+        &:after {
+            padding: 0 0.175rem 0 0.15rem;
+        }
     }
     &.rerolled {
         > img {
@@ -42,6 +51,10 @@
         height: auto;
         width: calc(100% / 6 - 0.255rem);
         margin: auto;
+    }
+}
+td {
+    .chat-dice {
     }
 }
 
