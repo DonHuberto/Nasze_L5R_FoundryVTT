@@ -102,16 +102,16 @@
             "book_reference": "L’Outremonde p.106"
         },
         {
-            "id": "Sailor's clothes",
+            "id": "Sailor's garb",
             "name": "Vêtements de marin",
             "description": "",
-            "book_reference": "Le Clan de la Mante"
+            "book_reference": "Le Clan de la Mante p.9"
         },
         {
             "id": "Shark leather armor",
             "name": "Armure en peau de requin",
             "description": "",
-            "book_reference": "Le Clan de la Mante"
+            "book_reference": "Le Clan de la Mante p.9"
         }
     ]
 }

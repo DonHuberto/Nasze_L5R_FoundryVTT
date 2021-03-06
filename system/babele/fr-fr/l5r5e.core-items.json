@@ -489,19 +489,19 @@
             "id": "Astrolabe",
             "name": "Astrolabe",
             "description": "",
-            "book_reference": "Le Clan de la Mante"
+            "book_reference": "Le Clan de la Mante p.9"
         },
         {
             "id": "Fishing Rod and Line",
             "name": "Canne à pêche et ligne",
             "description": "",
-            "book_reference": "Le Clan de la Mante"
+            "book_reference": "Le Clan de la Mante p.9"
         },
         {
             "id": "TaraiBune",
             "name": "TaraiBune",
             "description": "",
-            "book_reference": "Le Clan de la Mante"
+            "book_reference": "Le Clan de la Mante p.9"
         }
     ]
 }

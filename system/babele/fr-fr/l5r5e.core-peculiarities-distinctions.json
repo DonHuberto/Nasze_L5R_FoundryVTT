@@ -452,14 +452,14 @@
             "name": "Sang d’Osano-wo",
             "types": "Mental, Spirituel",
             "description": "",
-            "book_reference": "Le Clan de la Mante"
+            "book_reference": "Le Clan de la Mante p.7"
         },
         {
             "id": "Sea Legs",
             "name": "Pied marin",
             "types": "Physique",
             "description": "",
-            "book_reference": "Le Clan de la Mante"
+            "book_reference": "Le Clan de la Mante p.7"
         }
     ]
 }

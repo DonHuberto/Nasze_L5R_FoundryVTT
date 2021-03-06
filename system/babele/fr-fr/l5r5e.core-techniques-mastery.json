@@ -198,8 +198,8 @@
             "book_reference": "Les Royaumes Célestes"
         },
         {
-            "id": "Favored ounselor",
-            "name": "Favored ounselor (WIP)",
+            "id": "Favored Counselor",
+            "name": "Favored Counselor (WIP)",
             "description": "",
             "book_reference": "Les Royaumes Célestes"
         },
@@ -478,6 +478,12 @@
             "name": "Royaume d’encre et de papier",
             "description": "",
             "book_reference": "L’Outremonde p.95"
+        },
+        {
+            "id": "Storm Lord’s Gambit",
+            "name": "La manoeuvre de Sire Tempête",
+            "description": "",
+            "book_reference": "Le Clan de la Mante p.5"
         }
     ]
 }
