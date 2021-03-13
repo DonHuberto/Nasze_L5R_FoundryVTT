@@ -18,10 +18,10 @@
     src: url("../fonts/PatrickHand.ttf") format("truetype");
 }
 
-// Font ManoNegra
+// Font Caballar
 @font-face {
-    font-family: "ManoNegra";
-    src: url("../fonts/ManoNegra.ttf") format("truetype");
+    font-family: "Caballar";
+    src: url("../fonts/Caballar.ttf") format("truetype");
 }
 
 // Font ArchitectsDaughter
@@ -32,7 +32,7 @@
 
 $font-primary: "PatrickHand", sans-serif;
 $font-secondary: "BrushtipTexe", sans-serif;
-$font-tertiary: "BrushtipTexe", sans-serif;
+$font-tertiary: "Caballar", sans-serif;
 $font-quaternary: "ArchitectsDaughter", sans-serif;
 $font-logoType: "LogotypeL5r", sans-serif;
 

@@ -199,6 +199,9 @@ button {
     }
 
     // Chat
+    #chat-form textarea {
+        color: $black;
+    }
     #chat-form textarea,
     .chat-message,
     .blind,
@@ -206,6 +209,9 @@ button {
     #chat-controls .roll-type-select,
     .header-search input {
         background: transparent url("../assets/ui/chat-texture.webp") no-repeat;
+        &:focus {
+            background: #f0f0e0 url("../assets/ui/chat-texture.webp") no-repeat;
+        }
     }
     .header-search input[name="search"] {
         background-color: $l5r5e-chat-color;
