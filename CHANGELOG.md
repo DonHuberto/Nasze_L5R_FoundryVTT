@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.2 - Before the Change
+- Added some custom technique's types by request: Link & Specificity
+- Added Mantis Clan compendium entries
+- Fixed the "Crescent Moon Style" technique rank from 4 to 2
+
 ## 1.2.1 - Praised be Firefox
 - Fix dice swap on firefox that overflowed on the top and bottom of the RnK dialog
 - Fix new items list on firefox who deformed the sheets
