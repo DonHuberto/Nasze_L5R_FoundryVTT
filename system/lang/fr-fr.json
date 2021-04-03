@@ -170,7 +170,9 @@
             "maho": "Mahõ",
             "ninjutsu": "Ninjutsu",
             "school_ability": "Capacité d'école",
-            "mastery_ability": "Capacité de maîtrise"
+            "mastery_ability": "Capacité de maîtrise",
+            "link": "Liens",
+            "specificity": "Particularités"
         },
         "peculiarities": {
             "title_new": "Nouvelle particularité",
