@@ -613,24 +613,28 @@ export class RollnKeepDialog extends FormApplication {
         const msgOldId = this._message._id;
 
         if (this.roll.l5r5e.isInitiativeRoll) {
+            let msgOptions = {
+                rnkRoll: this.roll,
+            };
+
             await this.roll.l5r5e.actor.rollInitiative({
                 rerollInitiative: true,
                 initiativeOptions: {
-                    messageOptions: {
-                        rnkRoll: this.roll,
-                    },
+                    messageOptions: msgOptions,
                 },
             });
             // Adhesive tape to get the message :/
-            this.message = this.roll.l5r5e.actor.rnkMessage;
-            delete this.roll.l5r5e.actor.rnkMessage;
+            this.message = msgOptions.rnkMessage;
+            delete msgOptions.rnkMessage;
         } else {
             // Send it to chat, switch to new message
             this.message = await this.roll.toMessage();
         }
 
         // Refresh viewers
-        game.l5r5e.sockets.updateMessageIdAndRefresh(appOldId, this._message._id);
+        if (this._message) {
+            game.l5r5e.sockets.updateMessageIdAndRefresh(appOldId, this._message._id);
+        }
 
         // Delete old chat message related to this series
         if (game.settings.get("l5r5e", "rnk.deleteOldMessage")) {
