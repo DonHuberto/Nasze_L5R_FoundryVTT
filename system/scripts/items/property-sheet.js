@@ -14,5 +14,11 @@ export class PropertySheetL5r5e extends ItemSheetL5r5e {
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
         });
     }
-    // TODO certain propriétés en annule d'autres : aiguisé <-> abimé. voir comment faire.
+    // TODO Some properties cancel others :
+    // Concealable and Cumbersome
+    // Ceremonial and Mundane
+    // Damaged and Durable
+    // Resplendent and Subtle
+    // Subtle and Wargear
+    // Sacred and Unholy
 }

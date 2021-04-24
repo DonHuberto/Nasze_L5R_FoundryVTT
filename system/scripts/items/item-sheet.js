@@ -35,16 +35,16 @@ export class ItemSheetL5r5e extends ItemSheet {
     async _prepareProperties(sheetData) {
         sheetData.data.propertiesList = [];
 
-        if (Array.isArray(sheetData.data.properties)) {
+        if (Array.isArray(sheetData.data.data.properties)) {
             const props = [];
-            for (const property of sheetData.data.properties) {
+            for (const property of sheetData.data.data.properties) {
                 const gameProp = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack(property.id, "Item");
                 if (gameProp) {
                     sheetData.data.propertiesList.push(gameProp);
-                    props.push({ id: gameProp._id, name: gameProp.name });
+                    props.push({ id: gameProp.id, name: gameProp.name });
                 }
             }
-            sheetData.data.properties = props;
+            sheetData.data.data.properties = props;
         }
     }
 
@@ -135,7 +135,7 @@ export class ItemSheetL5r5e extends ItemSheet {
 
         // Check item type and subtype
         const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
-        if (!item || item.entity !== "Item" || item.data.type !== "property" || this.item.type === "property") {
+        if (!item || item.documentName !== "Item" || item.data.type !== "property" || this.item.type === "property") {
             return;
         }
 
@@ -148,19 +148,19 @@ export class ItemSheetL5r5e extends ItemSheet {
      * @private
      */
     _addProperty(item) {
-        if (!Array.isArray(this.entity.data.data.properties)) {
-            this.entity.data.data.properties = [];
+        if (!Array.isArray(this.document.data.data.properties)) {
+            this.document.data.data.properties = [];
         }
 
-        if (this.entity.data.data.properties.findIndex((p) => p.id === item.id) !== -1) {
+        if (this.document.data.data.properties.findIndex((p) => p.id === item.id) !== -1) {
             return;
         }
 
-        this.entity.data.data.properties.push({ id: item.id, name: item.name });
+        this.document.data.data.properties.push({ id: item.id, name: item.name });
 
-        this.entity.update({
+        this.document.update({
             data: {
-                properties: this.entity.data.data.properties,
+                properties: this.document.data.data.properties,
             },
         });
     }
@@ -173,21 +173,21 @@ export class ItemSheetL5r5e extends ItemSheet {
         event.preventDefault();
         event.stopPropagation();
 
-        if (!Array.isArray(this.entity.data.data.properties)) {
+        if (!Array.isArray(this.document.data.data.properties)) {
             return;
         }
 
         const id = $(event.currentTarget).parents(".property").data("propertyId");
-        const tmpProps = this.entity.data.data.properties.find((p) => p.id === id);
+        const tmpProps = this.document.data.data.properties.find((p) => p.id === id);
         if (!tmpProps) {
             return;
         }
 
         const callback = async () => {
-            this.entity.data.data.properties = this.entity.data.data.properties.filter((p) => p.id !== id);
-            this.entity.update({
+            this.document.data.data.properties = this.document.data.data.properties.filter((p) => p.id !== id);
+            this.document.update({
                 data: {
-                    properties: this.entity.data.data.properties,
+                    properties: this.document.data.data.properties,
                 },
             });
         };

@@ -1,5 +1,5 @@
-<ul class="npc-skill">{{!-- Skills --}}
-    {{#each data.skills as |skillValue skillCatId|}}
+<ul class="npc-skill">
+    {{#each data.data.skills as |skillValue skillCatId|}}
         <li class="skill skill-wrapper">
             <label class="dice-picker" data-skillcat="{{skillCatId}}">
                 {{localizeSkill skillCatId "title"}}

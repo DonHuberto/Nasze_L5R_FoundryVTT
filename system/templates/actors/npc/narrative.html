@@ -1,29 +1,29 @@
 <fieldset class="narrative-content">
     <legend class="text-block-header">
-        {{ localize 'l5r5e.social.npc.advantages' }}
-        {{#if editable}}
-        <a data-item-type="peculiarity" class="peculiarity-control item-add" title="{{ localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a>
+        {{localize 'l5r5e.social.npc.advantages'}}
+        {{#if options.editable}}
+        <a data-item-type="peculiarity" class="peculiarity-control item-add" title="{{localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a>
         {{/if}}
     </legend>
     <ul class="item-list">
         {{#each actor.items as |item id|}}
-            {{#ifCond '["distinction","passion"]' 'includes' item.data.peculiarity_type}}
-                {{> 'systems/l5r5e/templates/items/peculiarity/peculiarity-entry.html' peculiarity=item id=id editable=../editable }}
+            {{#ifCond '["distinction","passion"]' 'includes' item.data.data.peculiarity_type}}
+                {{> 'systems/l5r5e/templates/items/peculiarity/peculiarity-entry.html' peculiarity=item id=id editable=../options.editable}}
             {{/ifCond}}
         {{/each}}
     </ul>
 </fieldset>
 <fieldset class="narrative-content">
     <legend class="text-block-header">
-        {{ localize 'l5r5e.social.npc.disadvantages' }}
-        {{#if editable}}
-        <a data-item-type="peculiarity" class="peculiarity-control item-add" title="{{ localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a>
+        {{localize 'l5r5e.social.npc.disadvantages'}}
+        {{#if options.editable}}
+        <a data-item-type="peculiarity" class="peculiarity-control item-add" title="{{localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a>
         {{/if}}
     </legend>
     <ul class="item-list">
         {{#each actor.items as |item id|}}
-            {{#ifCond '["adversity","anxiety"]' 'includes' item.data.peculiarity_type}}
-                {{> 'systems/l5r5e/templates/items/peculiarity/peculiarity-entry.html' peculiarity=item id=id editable=../editable }}
+            {{#ifCond '["adversity","anxiety"]' 'includes' item.data.data.peculiarity_type}}
+                {{> 'systems/l5r5e/templates/items/peculiarity/peculiarity-entry.html' peculiarity=item id=id editable=../options.editable}}
             {{/ifCond}}
         {{/each}}
     </ul>

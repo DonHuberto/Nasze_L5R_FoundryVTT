@@ -1,48 +1,48 @@
 <div class="narrative-content">
     <fieldset>
-        <legend class="text-block-header">{{ localize 'l5r5e.social.title' }}</legend>
-        <label class="attribute-label">{{ localize 'l5r5e.social.ninjo' }}
-            <textarea type="text" name="data.social.ninjo">{{data.social.ninjo}}</textarea>
+        <legend class="text-block-header">{{localize 'l5r5e.social.title'}}</legend>
+        <label class="attribute-label">{{localize 'l5r5e.social.ninjo'}}
+            <textarea type="text" name="data.social.ninjo">{{data.data.social.ninjo}}</textarea>
         </label>
-        <label class="attribute-label">{{ localize 'l5r5e.social.giri' }}
-            <textarea type="text" name="data.social.giri">{{data.social.giri}}</textarea>
+        <label class="attribute-label">{{localize 'l5r5e.social.giri'}}
+            <textarea type="text" name="data.social.giri">{{data.data.social.giri}}</textarea>
         </label>
-        <label class="attribute-label">{{ localize 'l5r5e.social.titles' }}
-            <input type="text" name="data.social.titles" value="{{data.social.titles}}" />
+        <label class="attribute-label">{{localize 'l5r5e.social.titles'}}
+            <input type="text" name="data.social.titles" value="{{data.data.social.titles}}" />
         </label>
     </fieldset>
     <fieldset>
         <legend class="text-block-header">
-            {{ localize 'l5r5e.social.advantages' }}
-            {{#if editable}}
-            <a data-item-type="peculiarity" class="peculiarity-control item-add" title="{{ localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a>
+            {{localize 'l5r5e.social.advantages'}}
+            {{#if options.editable}}
+            <a data-item-type="peculiarity" class="peculiarity-control item-add" title="{{localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a>
             {{/if}}
         </legend>
         <ul class="item-list">
             {{#each actor.items as |item id|}}
-                {{#ifCond '["distinction","passion"]' 'includes' item.data.peculiarity_type}}
-                    {{> 'systems/l5r5e/templates/items/peculiarity/peculiarity-entry.html' peculiarity=item id=id editable=../editable }}
+                {{#ifCond '["distinction","passion"]' 'includes' item.data.data.peculiarity_type}}
+                    {{> 'systems/l5r5e/templates/items/peculiarity/peculiarity-entry.html' peculiarity=item id=id editable=../options.editable}}
                 {{/ifCond}}
             {{/each}}
         </ul>
     </fieldset>
     <fieldset>
         <legend class="text-block-header">
-            {{ localize 'l5r5e.social.disadvantages' }}
-            {{#if editable}}
-            <a data-item-type="peculiarity" class="peculiarity-control item-add" title="{{ localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a>
+            {{localize 'l5r5e.social.disadvantages' }}
+            {{#if options.editable}}
+            <a data-item-type="peculiarity" class="peculiarity-control item-add" title="{{localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a>
             {{/if}}
         </legend>
         <ul class="item-list">
             {{#each actor.items as |item id|}}
-            {{#ifCond '["adversity","anxiety"]' 'includes' item.data.peculiarity_type}}
-                    {{> 'systems/l5r5e/templates/items/peculiarity/peculiarity-entry.html' peculiarity=item id=id editable=../editable }}
+            {{#ifCond '["adversity","anxiety"]' 'includes' item.data.data.peculiarity_type}}
+                    {{> 'systems/l5r5e/templates/items/peculiarity/peculiarity-entry.html' peculiarity=item id=id editable=../options.editable}}
                 {{/ifCond}}
             {{/each}}
         </ul>
     </fieldset>
 </div>
 <fieldset class="narrative-note">
-    <legend class="text-block-header">{{ localize 'l5r5e.notes' }}</legend>
-    {{ editor content=data.notes.value target="data.notes.value" button=true editable=editable }}
+    <legend class="text-block-header">{{localize 'l5r5e.notes' }}</legend>
+    {{editor content=data.data.notes.value target="data.notes.value" button=true editable=options.editable}}
 </fieldset>

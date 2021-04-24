@@ -102,7 +102,9 @@
                     "ritual": false,
                     "shuji": false,
                     "maho": false,
-                    "ninjutsu": false
+                    "ninjutsu": false,
+                    "link": false,
+                    "specificity": false
                 }
             }
         },

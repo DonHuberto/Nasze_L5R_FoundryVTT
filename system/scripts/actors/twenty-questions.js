@@ -82,6 +82,8 @@ export class TwentyQuestions {
                 shuji: false,
                 maho: false,
                 ninjutsu: false,
+                link: false,
+                specificity: false,
             },
             techniques: [],
             school_ability: [],
@@ -285,8 +287,8 @@ export class TwentyQuestions {
         });
 
         // Clear and add items to actor
-        const deleteIds = actor.data.items.map((e) => e._id);
-        await actor.deleteEmbeddedEntity("OwnedItem", deleteIds);
+        const deleteIds = actor.data.items.map((e) => e.id);
+        await actor.deleteEmbeddedDocuments("Item", deleteIds);
 
         // Add items in 20Q to actor
         for (const types of Object.values(itemsCache)) {
@@ -298,7 +300,7 @@ export class TwentyQuestions {
                 if (itemData.data?.xp_spent) {
                     itemData.data.xp_spent = 0;
                 }
-                await actor.createEmbeddedEntity("OwnedItem", itemData);
+                await actor.createEmbeddedDocuments("Item", [itemData]);
             }
         }
 

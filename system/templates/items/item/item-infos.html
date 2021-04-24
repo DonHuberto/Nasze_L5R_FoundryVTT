@@ -1,11 +1,11 @@
 {{!-- infos --}}
 <article class="infos" data-group="primary" data-tab="description">
     <fieldset>
-        <legend class="text-block-header">{{ localize  'l5r5e.description' }}</legend>
-        {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+        <legend class="text-block-header">{{localize 'l5r5e.description'}}</legend>
+        {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
     </fieldset>
     <label class="reference">
-        {{ localize 'l5r5e.book_reference' }}
-        <input type="text" name="data.book_reference" value="{{data.book_reference}}" />
+        {{localize 'l5r5e.book_reference'}}
+        <input type="text" name="data.book_reference" value="{{data.data.book_reference}}" />
     </label>
 </article>

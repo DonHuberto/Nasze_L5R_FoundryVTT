@@ -1,8 +1,8 @@
 <tr data-group="advancements" data-tab="advancement_rank_{{rank}}" class="flexrow row advancement tab">
     <td class="curriculum" name="curriculum">{{#if advancement.data.in_curriculum}}<i class="fas fa-graduation-cap"></i> {{/if}}</td>
-    <td class="name" name="advancement.name"><img src="{{ advancement.img }}" title="{{ advancement.name }}"> {{ advancement.name }}</td>
-    <td class="xp" name="advancement.xp">{{ advancement.data.xp_used }}</td>
-    <td class="rank" name="advancement.rank">{{ advancement.data.rank }}</td>
+    <td class="name" name="advancement.name"><img src="{{ advancement.img }}" title="{{advancement.name}}"> {{advancement.name}}</td>
+    <td class="xp" name="advancement.xp">{{advancement.data.xp_used}}</td>
+    <td class="rank" name="advancement.rank">{{advancement.data.rank}}</td>
     {{#if editable}}
     <td class="actions">
         <ul>

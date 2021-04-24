@@ -64,7 +64,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         Object.keys(out).forEach((tech) => {
             if (
                 out[tech].length < 1 &&
-                !sheetData.data.techniques[tech] &&
+                !sheetData.data.data.techniques[tech] &&
                 !CONFIG.l5r5e.techniques_school.includes(tech)
             ) {
                 delete out[tech];
@@ -72,11 +72,11 @@ export class BaseSheetL5r5e extends ActorSheet {
         });
 
         // Manage school add button
-        sheetData.data.techniques["school_ability"] = out["school_ability"].length === 0;
-        sheetData.data.techniques["mastery_ability"] = out["mastery_ability"].length === 0;
+        sheetData.data.data.techniques["school_ability"] = out["school_ability"].length === 0;
+        sheetData.data.data.techniques["mastery_ability"] = out["mastery_ability"].length === 0;
 
         // Always display "school_ability", but display "mastery_ability" only if rank >= 5
-        if (sheetData.data.identity?.school_rank < 5 && out["mastery_ability"].length === 0) {
+        if (sheetData.data.data.identity?.school_rank < 5 && out["mastery_ability"].length === 0) {
             delete out["mastery_ability"];
         }
         return out;
@@ -155,7 +155,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
         if (
             !item ||
-            item.entity !== "Item" ||
+            item.documentName !== "Item" ||
             !["item", "armor", "weapon", "technique", "peculiarity", "advancement"].includes(item.data.type)
         ) {
             return;
@@ -221,7 +221,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         if (allowed === false) {
             return;
         }
-        return this._onDropItem(event, item);
+        return this._onDropItemCreate(item.toJSON());
     }
 
     /**
@@ -321,12 +321,14 @@ export class BaseSheetL5r5e extends ActorSheet {
             peculiarity: "l5r5e.peculiarities.title_new",
             advancement: "l5r5e.advancements.title_new",
         };
-        const created = await this.actor.createEmbeddedEntity("OwnedItem", {
-            name: game.i18n.localize(titles[type]),
-            type: type,
-            img: `${CONFIG.l5r5e.paths.assets}icons/items/${type}.svg`,
-        });
-        const item = this.actor.getOwnedItem(created._id);
+        const created = await this.actor.createEmbeddedDocuments("Item", [
+            {
+                name: game.i18n.localize(titles[type]),
+                type: type,
+                img: `${CONFIG.l5r5e.paths.assets}icons/items/${type}.svg`,
+            },
+        ]);
+        const item = this.actor.items.get(created[0].id);
 
         // assign current school rank to the new adv/tech
         if (this.actor.data.data.identity?.school_rank && ["advancement", "technique"].includes(item.data.type)) {
@@ -347,7 +349,7 @@ export class BaseSheetL5r5e extends ActorSheet {
                 const techType = $(event.currentTarget).data("tech-type");
                 if ([...CONFIG.l5r5e.techniques, ...CONFIG.l5r5e.techniques_school].includes(techType)) {
                     item.data.data.technique_type = techType;
-                    item.data.img = `${CONFIG.l5r5e.paths.assets}/icons/techs/${techType}.svg`;
+                    item.data.img = `${CONFIG.l5r5e.paths.assets}icons/techs/${techType}.svg`;
                 }
                 break;
             }
@@ -366,7 +368,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         event.stopPropagation();
 
         const itemId = $(event.currentTarget).data("item-id");
-        const item = this.actor.getOwnedItem(itemId);
+        const item = this.actor.items.get(itemId);
         item.sheet.render(true);
     }
 
@@ -382,7 +384,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         const itemId = $(event.currentTarget).data("item-id");
 
         // Remove 1 qty if possible
-        const tmpItem = this.actor.getOwnedItem(itemId);
+        const tmpItem = this.actor.items.get(itemId);
         if (tmpItem && tmpItem.data.data.quantity > 1 && this._modifyQuantity(tmpItem._id, -1)) {
             return;
         }
@@ -411,8 +413,7 @@ export class BaseSheetL5r5e extends ActorSheet {
                     data: diffObject(this.actor.data.data, actor),
                 });
             }
-
-            return this.actor.deleteOwnedItem(itemId);
+            return this.actor.deleteEmbeddedDocuments("Item", [itemId]);
         };
 
         // Holing Ctrl = without confirm
@@ -433,7 +434,7 @@ export class BaseSheetL5r5e extends ActorSheet {
      */
     _switchSubItemCurriculum(event) {
         const itemId = $(event.currentTarget).data("item-id");
-        const item = this.actor.getOwnedItem(itemId);
+        const item = this.actor.items.get(itemId);
         if (item.type !== "item") {
             item.update({
                 data: {
@@ -448,7 +449,7 @@ export class BaseSheetL5r5e extends ActorSheet {
      * @private
      */
     _modifyQuantity(itemId, add) {
-        const tmpItem = this.actor.getOwnedItem(itemId);
+        const tmpItem = this.actor.items.get(itemId);
         if (tmpItem) {
             tmpItem.data.data.quantity = Math.max(1, tmpItem.data.data.quantity + add);
             tmpItem.update({
@@ -476,7 +477,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         }
 
         const itemId = $(event.currentTarget).data("item-id");
-        const tmpItem = this.actor.getOwnedItem(itemId);
+        const tmpItem = this.actor.items.get(itemId);
         if (!tmpItem || tmpItem.data.data[type] === undefined) {
             return;
         }
@@ -498,7 +499,7 @@ export class BaseSheetL5r5e extends ActorSheet {
      * @private
      */
     _getWeaponSkillId(weaponId) {
-        const item = this.actor.getOwnedItem(weaponId);
+        const item = this.actor.items.get(weaponId);
         if (!!item && item.type === "weapon") {
             return item.data.data.skill;
         }

@@ -47,11 +47,13 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
         this.actor.data.data.identity.school_rank = Math.max(1, this.actor.data.data.identity.school_rank);
 
         // Split Money
-        sheetData.data.money = this._zeniToMoney(this.actor.data.data.zeni);
+        sheetData.data.data.money = this._zeniToMoney(this.actor.data.data.zeni);
 
         // split advancements list by rank, and calculate xp spent
         this._prepareAdvancement(sheetData);
-        sheetData.data.xp_saved = Math.floor(parseInt(sheetData.data.xp_total) - parseInt(sheetData.data.xp_spent));
+        sheetData.data.data.xp_saved = Math.floor(
+            parseInt(sheetData.data.data.xp_total) - parseInt(sheetData.data.data.xp_spent)
+        );
 
         return sheetData;
     }
@@ -100,14 +102,14 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
      */
     _prepareAdvancement(sheetData) {
         const adv = [];
-        sheetData.data.xp_spent = 0;
+        sheetData.data.data.xp_spent = 0;
         sheetData.items.forEach((item) => {
             if (!["peculiarity", "technique", "advancement"].includes(item.type)) {
                 return;
             }
 
             let xp = parseInt(item.data.xp_used) || 0;
-            sheetData.data.xp_spent = parseInt(sheetData.data.xp_spent) + xp;
+            sheetData.data.data.xp_spent = parseInt(sheetData.data.data.xp_spent) + xp;
 
             // if not in curriculum, xp spent /2 for this item
             if (!item.data.in_curriculum && xp > 0) {
@@ -126,7 +128,7 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
             adv[rank].list.push(item);
             adv[rank].spent = adv[rank].spent + xp;
         });
-        sheetData.advancementsListByRank = adv;
+        sheetData.data.advancementsListByRank = adv;
     }
 
     /**

@@ -1,10 +1,10 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
-        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
-        <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+        <img class="profile-img" src="{{document.img}}" data-edit="img" title="{{document.name}}"/>
+        <h1 class="charname"><input name="name" type="text" value="{{document.name}}" placeholder="Name"/></h1>
     </header>
     {{!-- Sheet Body --}}
     <section class="sheet-body">
-        {{> 'systems/l5r5e/templates/items/item/item-infos.html' }}
+        {{> 'systems/l5r5e/templates/items/item/item-infos.html'}}
     </section>
 </form>

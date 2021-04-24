@@ -1,27 +1,27 @@
 <fieldset class="techniques-wrapper section-header flexrow">
     <legend class="technique-controls">
-        {{ localize 'l5r5e.techniques.title' }}
+        {{localize 'l5r5e.techniques.title'}}
     </legend>
     <div class="checklist">
-        <i>{{ localize 'l5r5e.techniques.type'}}</i>
-        {{#each actor.data.techniquesList as |technique|}}
+        <i>{{localize 'l5r5e.techniques.type'}}</i>
+        {{#each data.techniquesList as |technique|}}
             <label>
-                <input type="checkbox" name="data.techniques.{{technique}}" {{checked (lookup ../actor.data.techniques technique)}} />
+                <input type="checkbox" name="data.techniques.{{technique}}" {{checked (lookup ../data.data.techniques technique)}} />
                 {{localizeTechnique technique}}
             </label>
         {{/each}}
     </div>
-    {{#each actor.data.splitTechniquesList as |list technique|}}
+    {{#each data.splitTechniquesList as |list technique|}}
         <fieldset class="section-header flexrow">
             <legend class="technique-controls">
-                {{localize (localize 'l5r5e.techniques.{technique}' technique=technique) }}
-                {{#ifCond ../editable '&&' (lookup ../actor.data.techniques technique)}}
-                    <a data-item-type="technique" class="technique-control item-add" data-tech-type="{{technique}}" title="{{ localize 'l5r5e.global.add' }}"><i class="fas fa-plus"></i></a>
+                {{localize (localize 'l5r5e.techniques.{technique}' technique=technique)}}
+                {{#ifCond ../options.editable '&&' (lookup ../data.data.techniques technique)}}
+                    <a data-item-type="technique" class="technique-control item-add" data-tech-type="{{technique}}" title="{{localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a>
                 {{/ifCond}}
             </legend>
             <ul class="item-list">
                 {{#each list as |item id|}}
-                    {{> 'systems/l5r5e/templates/items/technique/technique-entry.html' technique=item editable=../../editable }}
+                    {{> 'systems/l5r5e/templates/items/technique/technique-entry.html' technique=item editable=../../options.editable}}
                 {{/each}}
             </ul>
         </fieldset>

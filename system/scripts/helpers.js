@@ -75,7 +75,7 @@ export class HelpersL5r5e {
 
             // Named pack
             if (pack) {
-                const data = await game.packs.get(pack).getEntity(id);
+                const data = await game.packs.get(pack).getDocument(id);
                 if (data) {
                     return HelpersL5r5e.createItemFromCompendium(data);
                 }
@@ -107,13 +107,13 @@ export class HelpersL5r5e {
 
             // Unknown pack object, iterate all packs
             for (const comp of game.packs) {
-                // TODO Bug with babele if "comp.getEntity(id)" return null...
-                const babeleFix = (await comp.getIndex()).some((e) => e._id === id);
+                // TODO Bug with babele if "comp.getDocument(id)" return null...
+                const babeleFix = (await comp.getIndex()).some((e) => e.id === id);
                 if (!babeleFix) {
                     continue;
                 }
 
-                const data = await comp.getEntity(id);
+                const data = await comp.getDocument(id);
                 if (data) {
                     return HelpersL5r5e.createItemFromCompendium(data);
                 }
@@ -140,7 +140,7 @@ export class HelpersL5r5e {
             item = await ItemL5r5e.create(data, { temporary: true });
 
             // reinject compendium id (required for properties)
-            item.data._id = data._id;
+            item.data.id = data.id;
         } else {
             // Quick object
             item = new ItemL5r5e(data);
@@ -158,7 +158,7 @@ export class HelpersL5r5e {
                 item.data.data.properties.map(async (property) => {
                     const gameProp = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack(property.id, "Item");
                     if (gameProp) {
-                        return { id: gameProp._id, name: gameProp.name };
+                        return { id: gameProp.id, name: gameProp.name };
                     }
                     return property;
                 })

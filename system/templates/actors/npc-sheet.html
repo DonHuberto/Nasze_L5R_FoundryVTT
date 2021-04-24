@@ -4,46 +4,46 @@
         <div class="header-fields identity-wrapper">
             <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
             <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
-            {{> 'systems/l5r5e/templates/actors/npc/identity.html' }}
+            {{> 'systems/l5r5e/templates/actors/npc/identity.html'}}
         </div>
         <fieldset class="npc-note">
-            <legend class="text-block-header">{{ localize 'l5r5e.notes' }}</legend>
-            {{ editor content=data.notes.value target="data.notes.value" button=true editable=editable }}
+            <legend class="text-block-header">{{localize 'l5r5e.notes'}}</legend>
+            {{editor content=data.data.notes.value target="data.notes.value" button=true editable=options.editable}}
         </fieldset>
         <div class="header-fields">
-            <h2>{{ localize 'l5r5e.social.title' }}</h2>
-            <h2 class="right">{{ localize 'l5r5e.attributes.title' }}</h2>
-            {{> 'systems/l5r5e/templates/actors/npc/social.html' }}
-            {{> 'systems/l5r5e/templates/actors/npc/rings.html' }}
-            {{> 'systems/l5r5e/templates/actors/npc/attributes.html' }}
+            <h2>{{localize 'l5r5e.social.title'}}</h2>
+            <h2 class="right">{{localize 'l5r5e.attributes.title'}}</h2>
+            {{> 'systems/l5r5e/templates/actors/npc/social.html'}}
+            {{> 'systems/l5r5e/templates/actors/npc/rings.html'}}
+            {{> 'systems/l5r5e/templates/actors/npc/attributes.html'}}
         </div>
     </header>
     {{!-- Sheet Body --}}
     <section class="sheet-body">
         {{!-- Skills No Tab --}}
-        {{> 'systems/l5r5e/templates/actors/npc/skill.html' }}
+        {{> 'systems/l5r5e/templates/actors/npc/skill.html'}}
         {{!-- Sheet Tab Navigation --}}
         <nav class="sheet-tabs tabs" data-group="primary">
-            <a class="item" data-tab="skills">{{ localize 'l5r5e.skills.title' }}</a>
-            <a class="item" data-tab="conflict">{{ localize 'l5r5e.conflict.title' }}</a>
-            <a class="item" data-tab="inventory">{{ localize 'l5r5e.inventory' }}</a>
+            <a class="item" data-tab="skills">{{localize 'l5r5e.skills.title'}}</a>
+            <a class="item" data-tab="conflict">{{localize 'l5r5e.conflict.title'}}</a>
+            <a class="item" data-tab="inventory">{{localize 'l5r5e.inventory'}}</a>
         </nav>
         {{!-- Techniques Tab --}}
         <article class="tab skills" data-group="primary" data-tab="skills">
-            {{> 'systems/l5r5e/templates/actors/npc/narrative.html' }}
-            {{> 'systems/l5r5e/templates/actors/npc/techniques.html' }}
+            {{> 'systems/l5r5e/templates/actors/npc/narrative.html'}}
+            {{> 'systems/l5r5e/templates/actors/npc/techniques.html'}}
         </article>
         {{!-- Conflict Tab --}}
         <article class="tab conflict" data-group="primary" data-tab="conflict">
-            {{> 'systems/l5r5e/templates/actors/npc/conflict.html' }}
-            {{> 'systems/l5r5e/templates/items/weapon/weapons.html' }}
-            {{> 'systems/l5r5e/templates/items/armor/armors.html' }}
+            {{> 'systems/l5r5e/templates/actors/npc/conflict.html'}}
+            {{> 'systems/l5r5e/templates/items/weapon/weapons.html'}}
+            {{> 'systems/l5r5e/templates/items/armor/armors.html'}}
         </article>
         {{!-- Inventory Tab --}}
         <article class="tab inventory" data-group="primary" data-tab="inventory">
             <fieldset class="items-wrapper">
-                <legend>{{localize 'l5r5e.equipment' }}</legend>
-                {{> 'systems/l5r5e/templates/items/item/items.html' }}
+                <legend>{{localize 'l5r5e.equipment'}}</legend>
+                {{> 'systems/l5r5e/templates/items/item/items.html'}}
             </fieldset>
         </article>
     </section>

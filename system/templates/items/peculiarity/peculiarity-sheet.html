@@ -1,47 +1,47 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
-        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
-        <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+        <img class="profile-img" src="{{document.img}}" data-edit="img" title="{{document.name}}" />
+        <h1 class="charname"><input name="name" type="text" value="{{document.name}}" placeholder="Name" /></h1>
     </header>
     {{!-- Sheet Body --}}
     <section class="sheet-body">
         {{!-- Attributes Tab --}}
         <article class="tab attributes" data-group="primary" data-tab="attributes">
             <select name="data.ring">
-                {{#select item.data.ring}}
-                    {{#each item.data.ringsList as |obj|}}
+                {{#select document.data.data.ring}}
+                    {{#each data.ringsList as |obj|}}
                         <option value="{{obj.id}}">{{obj.label}}</option>
                     {{/each}}
                 {{/select}}
             </select>
             <select class="attribute" name="data.peculiarity_type">
-                {{#select item.data.peculiarity_type}}
-                    {{#each item.data.subTypesList as |type|}}
+                {{#select document.data.data.peculiarity_type}}
+                    {{#each data.subTypesList as |type|}}
                         <option value="{{type.id}}">{{type.label}}</option>
                     {{/each}}
                 {{/select}}
             </select>
             <label class="cursus attribute-value checkbox">
-                <input type="checkbox" name="data.in_curriculum" {{checked item.data.in_curriculum}} />
-                {{ localize 'l5r5e.advancements.curriculum' }}
+                <input type="checkbox" name="data.in_curriculum" {{checked document.data.data.in_curriculum}} />
+                {{localize 'l5r5e.advancements.curriculum'}}
             </label>
             <label class="attribute">
-                {{ localize 'l5r5e.advancements.spent' }}
-                <input class="select-on-focus" type="number" name="data.xp_used" value="{{item.data.xp_used}}" data-dtype="Number" min="0" placeholder="0" />
+                {{localize 'l5r5e.advancements.spent'}}
+                <input class="select-on-focus" type="number" name="data.xp_used" value="{{document.data.data.xp_used}}" data-dtype="Number" min="0" placeholder="0" />
             </label>
             <label class="attribute">
-                {{ localize 'l5r5e.rank' }}
-                <input class="select-on-focus" type="number" name="data.rank" value="{{data.rank}}" data-dtype="Number" min="0" placeholder="0" />
+                {{localize 'l5r5e.rank' }}
+                <input class="select-on-focus" type="number" name="data.rank" value="{{document.data.data.rank}}" data-dtype="Number" min="0" placeholder="0" />
             </label>
             <label class="attribute">
-                {{ localize 'l5r5e.bought_at_rank' }}
-                <input class="select-on-focus" type="number" name="data.bought_at_rank" value="{{data.bought_at_rank}}" data-dtype="Number" min="0" placeholder="0" />
+                {{localize 'l5r5e.bought_at_rank'}}
+                <input class="select-on-focus" type="number" name="data.bought_at_rank" value="{{document.data.data.bought_at_rank}}" data-dtype="Number" min="0" placeholder="0" />
             </label>
             <label class="attribute full">
-                {{ localize 'l5r5e.types' }}
-                <input type="text" name="data.types" value="{{item.data.types}}" />
+                {{localize 'l5r5e.types' }}
+                <input type="text" name="data.types" value="{{document.data.data.types}}" />
             </label>
         </article>
-        {{> 'systems/l5r5e/templates/items/item/item-infos.html' }}
+        {{> 'systems/l5r5e/templates/items/item/item-infos.html'}}
     </section>
 </form>

@@ -54,11 +54,11 @@ Hooks.once("init", async () => {
     CONFIG.l5r5e = L5R5E;
 
     // Assign custom classes and constants here
-    CONFIG.Combat.entityClass = CombatL5r5e;
-    CONFIG.Actor.entityClass = ActorL5r5e;
+    CONFIG.Combat.documentClass = CombatL5r5e;
+    CONFIG.Actor.documentClass = ActorL5r5e;
     CONFIG.Actor.sheetClasses = CharacterSheetL5r5e;
-    CONFIG.Item.entityClass = ItemL5r5e;
-    CONFIG.JournalEntry.entityClass = JournalL5r5e;
+    CONFIG.Item.documentClass = ItemL5r5e;
+    CONFIG.JournalEntry.documentClass = JournalL5r5e;
     CONFIG.JournalEntry.sheetClass = BaseJournalSheetL5r5e;
 
     // Define custom Roll class

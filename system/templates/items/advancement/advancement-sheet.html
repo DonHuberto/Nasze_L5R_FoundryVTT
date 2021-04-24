@@ -1,35 +1,35 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
-        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
-        <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+        <img class="profile-img" src="{{document.img}}" data-edit="img" title="{{document.name}}"/>
+        <h1 class="charname"><input name="name" type="text" value="{{document.name}}" placeholder="Name"/></h1>
     </header>
     {{!-- Sheet Body --}}
     <section class="sheet-body">
         {{!-- Attributes Tab --}}
         <article class="attributes" data-group="primary" data-tab="attributes">
             <select name="data.advancement_type" id="advancement_type">
-                {{#select item.data.advancement_type}}
-                    {{#each item.data.subTypesList as |type|}}
+                {{#select document.data.data.advancement_type}}
+                    {{#each data.subTypesList as |type|}}
                         <option value="{{type}}">{{type}}</option>
                     {{/each}}
                 {{/select}}
             </select>
 
-            {{#ifCond item.data.advancement_type '==' 'ring' }}
+            {{#ifCond document.data.data.advancement_type '==' 'ring' }}
             <select name="data.ring" id="advancement_ring">
-                {{#select item.data.ring}}
-                    {{#each item.data.ringsList as |obj|}}
+                {{#select document.data.data.ring}}
+                    {{#each data.ringsList as |obj|}}
                         <option value="{{obj.id}}">{{obj.label}}</option>
                     {{/each}}
                 {{/select}}
             </select>
             {{/ifCond}}
 
-            {{#ifCond item.data.advancement_type '==' 'skill' }}
+            {{#ifCond document.data.data.advancement_type '==' 'skill' }}
                 <select name="data.skill" id="advancement_skill">
                     <option value="">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
-                    {{#select item.data.skill}}
-                        {{#each item.data.skillsList as |skills catId|}}
+                    {{#select document.data.data.skill}}
+                        {{#each data.skillsList as |skills catId|}}
                         <optgroup label="{{localizeSkill catId 'title'}}">
                             {{#each skills as |obj|}}
                             <option value="{{obj.id}}">{{obj.label}}</option>
@@ -40,22 +40,22 @@
                 </select>
             {{/ifCond}}
             <label class="cursus attribute-value checkbox">
-                <input type="checkbox" name="data.in_curriculum" {{checked item.data.in_curriculum}} />
+                <input type="checkbox" name="data.in_curriculum" {{checked document.data.data.in_curriculum}} />
                 {{ localize 'l5r5e.advancements.curriculum' }}
             </label>
             <label class="attribute">
                 {{ localize 'l5r5e.advancements.spent' }}
-                <input class="select-on-focus" type="number" name="data.xp_used" value="{{data.xp_used}}" data-dtype="Number" min="0" placeholder="0"/>
+                <input class="select-on-focus" type="number" name="data.xp_used" value="{{data.data.xp_used}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
                 {{ localize 'l5r5e.rank' }}
-                <input class="select-on-focus" type="number" name="data.rank" value="{{data.rank}}" data-dtype="Number" min="0" placeholder="0"/>
+                <input class="select-on-focus" type="number" name="data.rank" value="{{data.data.rank}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
                 {{ localize 'l5r5e.bought_at_rank' }}
-                <input class="select-on-focus" type="number" name="data.bought_at_rank" value="{{data.bought_at_rank}}" data-dtype="Number" min="0" placeholder="0"/>
+                <input class="select-on-focus" type="number" name="data.bought_at_rank" value="{{data.data.bought_at_rank}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
         </article>
-        {{> 'systems/l5r5e/templates/items/item/item-infos.html' }}
+        {{> 'systems/l5r5e/templates/items/item/item-infos.html'}}
     </section>
 </form>

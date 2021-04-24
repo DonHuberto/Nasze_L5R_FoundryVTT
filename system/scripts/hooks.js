@@ -147,18 +147,20 @@ export default class HooksL5r5e {
     static async renderCompendium(app, html, data) {
         // templates "item" : add Rarity
         // Techniques / Peculiarities : add Ring / Rank
-        if (app.entity === "Item") {
-            const content = await app.getContent();
-            content.forEach((item) => {
-                if (["weapon", "armor", "item", "peculiarity", "technique", "peculiarity"].includes(item.type)) {
-                    html.find(`[data-entry-id="${item._id}"]`).append(
+        if (app.collection.documentName === "Item") {
+            const content = await app.collection.getDocuments();
+            content.forEach((document) => {
+                if (["weapon", "armor", "item", "peculiarity", "technique", "peculiarity"].includes(document.type)) {
+                    html.find(`[data-document-id="${document.id}"]`).append(
                         `<i` +
-                            (item.data.data.ring ? ` class="i_${item.data.data.ring}"` : ``) +
+                            (document.data.data.ring ? ` class="i_${document.data.data.ring}"` : ``) +
                             `>` +
-                            (item.data.data.rarity
-                                ? `${game.i18n.localize("l5r5e.rarity")} ${item.data.data.rarity}`
+                            (document.data.data.rarity
+                                ? `${game.i18n.localize("l5r5e.rarity")} ${document.data.data.rarity}`
                                 : "") +
-                            (item.data.data.rank ? game.i18n.localize("l5r5e.rank") + " " + item.data.data.rank : "") +
+                            (document.data.data.rank
+                                ? game.i18n.localize("l5r5e.rank") + " " + document.data.data.rank
+                                : "") +
                             `</i>`
                     );
                 }

@@ -1,22 +1,22 @@
-<li class="item armor flexcol toggle-on-click" data-toggle="item-description-{{item._id}}">
+<li class="item armor flexcol toggle-on-click" data-toggle="item-description-{{armor.id}}">
     <ul class="item-header item-control">
-        <li class="item-img"><img src="{{item.img}}" title="{{item.name}}" width="32px" height="32px"/></li>
-        <li class="item-name">{{ item.name }}</li>
+        <li class="item-img"><img src="{{armor.img}}" title="{{armor.name}}" width="32px" height="32px"/></li>
+        <li class="item-name">{{armor.name}}</li>
         <li class="icon-stat-container">
-            <i class="fas fa-tint" title="{{ localize 'l5r5e.armors.type' }} {{ localize 'l5r5e.armors.physical' }}"> {{item.data.armor.physical}}</i>
-            <i class="fas fa-bolt" title="{{ localize 'l5r5e.armors.type' }} {{ localize 'l5r5e.armors.supernatural' }}"> {{item.data.armor.supernatural}}</i>
+            <i class="fas fa-tint" title="{{localize 'l5r5e.armors.type'}} {{localize 'l5r5e.armors.physical'}}"> {{armor.data.data.armor.physical}}</i>
+            <i class="fas fa-bolt" title="{{ localize 'l5r5e.armors.type'}} {{localize 'l5r5e.armors.supernatural'}}"> {{armor.data.data.armor.supernatural}}</i>
         </li>
         {{#if editable}}
-        <li data-item-id="{{item._id}}" class="item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
-        <li data-item-id="{{item._id}}" class="item-delete" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></li>
+        <li data-item-id="{{armor.id}}" class="item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
+        <li data-item-id="{{armor.id}}" class="item-delete" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></li>
         {{/if}}
     </ul>
     <ul class="item-properties">
-        {{#each item.data.properties as |property id|}}
+        {{#each armor.data.data.properties as |property id|}}
             <li>{{{ property.name }}}</li>
         {{/each}}
     </ul>
-    {{#if item.data.description}}
-    <div class="item-description item-description-{{item._id}}">{{{ item.data.description }}}</div>
+    {{#if armor.data.data.description}}
+    <div class="item-description item-description-{{armor.id}}">{{{ armor.data.data.description }}}</div>
     {{/if}}
 </li>

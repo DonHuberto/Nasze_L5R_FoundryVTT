@@ -51,7 +51,7 @@ export class TwentyQuestionsDialog extends FormApplication {
      * Define a unique and dynamic element ID for the rendered ActorSheet application
      */
     get id() {
-        return `l5r5e-twenty-questions-dialog-${this.actor._id}`;
+        return `l5r5e-twenty-questions-dialog-${this.actor.id}`;
     }
 
     /**
@@ -69,7 +69,7 @@ export class TwentyQuestionsDialog extends FormApplication {
         if (!this.actor) {
             return;
         }
-        this._initialize(game.actors.get(this.actor._id));
+        this._initialize(game.actors.get(this.actor.id));
         await this._constructCache();
         this.render(false);
     }
@@ -234,7 +234,7 @@ export class TwentyQuestionsDialog extends FormApplication {
         try {
             // Get item
             const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
-            if (item.entity !== "Item" || !item) {
+            if (item.documentName !== "Item" || !item) {
                 console.warn("forbidden item for this drop zone", type, item.data.type);
                 return;
             }

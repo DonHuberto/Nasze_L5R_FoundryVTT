@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.0 - Foundry 0.8.x compatibility
+- Updated the System to the new version of Foundry VTT (a lot of things broke)
+
 ## 1.2.2 - Before the Change
 - Added some custom technique's types by request: Link & Specificity
 - Added Mantis Clan compendium entries
