@@ -434,22 +434,24 @@ export class DicePickerDialog extends FormApplication {
         let message;
         if (this.object.isInitiativeRoll) {
             // Initiative roll
+            let msgOptions = {
+                skillId: this.object.skill.id,
+                difficulty: this.object.difficulty.value,
+                difficultyHidden: this.object.difficulty.hidden,
+                useVoidPoint: this.object.useVoidPoint,
+                skillAssistance: this.object.skill.assistance,
+            };
+
             await this._actor.rollInitiative({
                 initiativeOptions: {
                     formula: formula.join("+"),
                     // updateTurn: true,
-                    messageOptions: {
-                        skillId: this.object.skill.id,
-                        difficulty: this.object.difficulty.value,
-                        difficultyHidden: this.object.difficulty.hidden,
-                        useVoidPoint: this.object.useVoidPoint,
-                        skillAssistance: this.object.skill.assistance,
-                    },
+                    messageOptions: msgOptions,
                 },
             });
             // Adhesive tape to get the messageId :/
-            message = this._actor.rnkMessage;
-            delete this._actor.rnkMessage;
+            message = msgOptions.rnkMessage;
+            delete msgOptions.rnkMessage;
         } else {
             // Regular roll, so let's roll !
             const roll = await new game.l5r5e.RollL5r5e(formula.join("+"));
