@@ -155,7 +155,7 @@ export class DicePickerDialog extends FormApplication {
      * @param actor
      */
     set actor(actor) {
-        if (!actor || !(actor instanceof Actor) || !actor.owner) {
+        if (!actor || !(actor instanceof Actor) || !actor.isOwner) {
             return;
         }
         this._actor = actor;

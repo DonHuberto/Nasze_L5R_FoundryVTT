@@ -48,7 +48,7 @@ export class RollL5r5e extends Roll {
     }
 
     set actor(actor) {
-        this.l5r5e.actor = actor instanceof Actor && actor.owner ? actor : null;
+        this.l5r5e.actor = actor instanceof Actor && actor.isOwner ? actor : null;
     }
 
     /**

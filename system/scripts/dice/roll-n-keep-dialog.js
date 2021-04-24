@@ -86,7 +86,7 @@ export class RollnKeepDialog extends FormApplication {
         super({}, options);
         this.message = game.messages.get(messageId);
         this.options.editable =
-            this._message?.isAuthor || this._message?._roll.l5r5e.actor?.owner || this._message?.owner || false;
+            this._message?.isAuthor || this._message?._roll.l5r5e.actor?.isOwner || this._message?.isOwner || false;
 
         this._initializeDiceFaces();
         this._initializeHistory();
