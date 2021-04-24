@@ -112,7 +112,7 @@ export class CombatL5r5e extends Combat {
 
                 // Ugly but work... i need the new message
                 if (ids.length === 1) {
-                    combatant.actor.rnkMessage = rnkMessage;
+                    messageOptions.rnkMessage = rnkMessage;
                 }
 
                 // if the character succeeded on their Initiative check, they add 1 to their base initiative value,
