@@ -55,8 +55,8 @@ export class RollL5r5e extends Roll {
      * Execute the Roll, replacing dice and evaluating the total result
      * @override
      **/
-    evaluate({ minimize = false, maximize = false } = {}) {
-        if (this._rolled) {
+    evaluate({ minimize = false, maximize = false, async = false } = {}) {
+        if (this._evaluated) {
             throw new Error("This Roll object has already been rolled.");
         }
         if (this.terms.length < 1) {
@@ -64,14 +64,14 @@ export class RollL5r5e extends Roll {
         }
 
         // Clean terms (trim symbols)
-        this.terms = this._identifyTerms(this.constructor.cleanFormula(this.terms));
+        this.terms = this.constructor.simplifyTerms(this.terms);
 
         // Roll dices and inner dices
         this._total = 0;
 
         // Roll
-        super.evaluate({ minimize, maximize });
-        this._rolled = true;
+        super.evaluate({ minimize, maximize, async });
+        this._evaluated = true;
 
         // Save initial formula
         if (!this.l5r5e.initialFormula) {
@@ -152,7 +152,7 @@ export class RollL5r5e extends Roll {
      * @override
      */
     get total() {
-        if (!this._rolled) {
+        if (!this._evaluated) {
             return null;
         }
 
@@ -230,9 +230,9 @@ export class RollL5r5e extends Roll {
      * @override
      */
     async render(chatOptions = {}) {
-        chatOptions = mergeObject(
+        chatOptions = foundry.utils.mergeObject(
             {
-                user: game.user._id,
+                user: game.user.id,
                 flavor: null,
                 template: CONFIG.l5r5e.paths.templates + this.constructor.CHAT_TEMPLATE,
                 blind: false,
@@ -242,7 +242,7 @@ export class RollL5r5e extends Roll {
         const isPrivate = chatOptions.isPrivate;
 
         // Execute the roll, if needed
-        if (!this._rolled) {
+        if (!this._evaluated) {
             this.roll();
         }
 
@@ -289,30 +289,32 @@ export class RollL5r5e extends Roll {
      * This function can either create the ChatMessage directly, or return the data object that will be used to create.
      * @override
      */
-    toMessage(messageData = {}, { rollMode = null, create = true } = {}) {
+    async toMessage(messageData = {}, { rollMode = null, create = true } = {}) {
         // Perform the roll, if it has not yet been rolled
-        if (!this._rolled) {
+        if (!this._evaluated) {
             this.evaluate();
         }
 
         const rMode = rollMode || messageData.rollMode || game.settings.get("core", "rollMode");
-
-        let template = CONST.CHAT_MESSAGE_TYPES.ROLL;
         if (["gmroll", "blindroll"].includes(rMode)) {
             messageData.whisper = ChatMessage.getWhisperRecipients("GM");
         }
-        if (rMode === "blindroll") messageData.blind = true;
-        if (rMode === "selfroll") messageData.whisper = [game.user.id];
+        if (rMode === "blindroll") {
+            messageData.blind = true;
+        }
+        if (rMode === "selfroll") {
+            messageData.whisper = [game.user.id];
+        }
 
         // Prepare chat data
-        messageData = mergeObject(
+        messageData = foundry.utils.mergeObject(
             {
-                user: game.user._id,
-                type: template,
+                user: game.user.id,
+                type: CONST.CHAT_MESSAGE_TYPES.ROLL,
                 content: this._total,
                 sound: CONFIG.sounds.dice,
                 speaker: {
-                    actor: this.l5r5e.actor?._id || null,
+                    actor: this.l5r5e.actor?.id || null,
                     token: this.l5r5e.actor?.token || null,
                     alias: this.l5r5e.actor?.name || null,
                 },
@@ -321,11 +323,11 @@ export class RollL5r5e extends Roll {
         );
         messageData.roll = this;
 
-        // Prepare message options
-        const messageOptions = { rollMode: rMode };
+        // TODO Bug on non link pnj : infinity deepClone recursion
 
         // Either create the message or just return the chat data
-        return create ? CONFIG.ChatMessage.entityClass.create(messageData, messageOptions) : messageData;
+        const message = await ChatMessage.implementation.create(messageData, { rollMode: rMode, temporary: !create });
+        return create ? message : message.data;
     }
 
     /** @override */
@@ -365,7 +367,7 @@ export class RollL5r5e extends Roll {
         // lightweight the Actor
         if (json.l5r5e.actor) {
             json.l5r5e.actor = {
-                id: json.l5r5e.actor._id,
+                id: json.l5r5e.actor._id, // method "id" not exist in json, need to use "_id" here
             };
         }
 

@@ -46,7 +46,7 @@ export class SocketHandlerL5r5e {
     _onDeleteChatMessage(data) {
         // Only delete the message if the user is a GM (otherwise it have no real effect)
         // Currently only used in RnK
-        if (!game.user.isGM || !game.settings.get("l5r5e", "rnk.deleteOldMessage")) {
+        if (!game.user.isGM || !game.settings.get("l5r5e", "rnk-deleteOldMessage")) {
             return;
         }
         const message = game.messages.get(data.messageId);

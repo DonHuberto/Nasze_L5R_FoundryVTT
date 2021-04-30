@@ -20,7 +20,7 @@ export class ActorL5r5e extends Actor {
         data.token = data.token || {};
         switch (data.type) {
             case "character":
-                mergeObject(
+                foundry.utils.mergeObject(
                     data.token,
                     {
                         // vision: true,
@@ -40,7 +40,7 @@ export class ActorL5r5e extends Actor {
                 break;
 
             case "npc":
-                mergeObject(
+                foundry.utils.mergeObject(
                     data.token,
                     {
                         actorLink: false,

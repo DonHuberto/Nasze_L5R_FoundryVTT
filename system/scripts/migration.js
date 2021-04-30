@@ -166,7 +166,7 @@ export class MigrationL5r5e {
                     t.actorData = {};
                 } else if (!t.actorLink) {
                     const updateData = MigrationL5r5e._migrateActorData(token.data.actorData);
-                    t.actorData = mergeObject(token.data.actorData, updateData);
+                    t.actorData = foundry.utils.mergeObject(token.data.actorData, updateData);
                 }
                 return t;
             }),

@@ -28,6 +28,7 @@ module.exports = {
         "no-plusplus": "off",
     },
     globals: {
+        foundry: "readonly",
         AudioHelper: "readonly",
         Collection: "readonly",
         Hooks: "readonly",

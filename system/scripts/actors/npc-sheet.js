@@ -10,7 +10,7 @@ export class NpcSheetL5r5e extends BaseSheetL5r5e {
     static types = ["adversary", "minion"];
 
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["l5r5e", "sheet", "npc"],
             template: CONFIG.l5r5e.paths.templates + "actors/npc-sheet.html",
         });

@@ -32,7 +32,7 @@ export class TwentyQuestionsDialog extends FormApplication {
      * @override
      */
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             id: "l5r5e-twenty-questions-dialog",
             classes: ["l5r5e", "twenty-questions-dialog"],
             template: CONFIG.l5r5e.paths.templates + "actors/twenty-questions-dialog.html",
@@ -142,7 +142,7 @@ export class TwentyQuestionsDialog extends FormApplication {
             skillsListStep7,
             skillsListStep17,
             noHonorSkillsList: ["commerce", "skulduggery", "medicine", "seafaring", "survival", "labor"],
-            techniquesList: CONFIG.l5r5e.techniques,
+            techniquesList: game.l5r5e.HelpersL5r5e.getTechniquesList(),
             data: this.object.data,
             cache: this.cache,
             summary: {

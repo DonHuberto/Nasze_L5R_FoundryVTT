@@ -3,8 +3,8 @@
         <i>{{localize 'l5r5e.techniques.type'}}</i>
         {{#each data.techniquesList as |technique|}}
             <label>
-                <input type="checkbox" name="data.techniques.{{technique}}" {{checked (lookup ../data.data.techniques technique)}} />
-                {{localizeTechnique technique}}
+                <input type="checkbox" name="data.techniques.{{technique.id}}" {{checked (lookup ../data.data.techniques technique.id)}} />
+                {{technique.label}}
             </label>
         {{/each}}
     </div>

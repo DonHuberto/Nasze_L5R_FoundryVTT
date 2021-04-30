@@ -15,7 +15,7 @@ export class GmToolsDialog extends FormApplication {
     static get defaultOptions() {
         const x = $(window).width();
         const y = $(window).height();
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             id: "l5r5e-gm-tools-dialog",
             classes: ["l5r5e", "gm-tools-dialog"],
             template: CONFIG.l5r5e.paths.templates + "dice/gm-tools-dialog.html",
@@ -54,8 +54,8 @@ export class GmToolsDialog extends FormApplication {
      */
     _initialize() {
         this.object = {
-            difficulty: game.settings.get("l5r5e", "initiative.difficulty.value"),
-            difficultyHidden: game.settings.get("l5r5e", "initiative.difficulty.hidden"),
+            difficulty: game.settings.get("l5r5e", "initiative-difficulty-value"),
+            difficultyHidden: game.settings.get("l5r5e", "initiative-difficulty-hidden"),
         };
     }
 
@@ -126,7 +126,7 @@ export class GmToolsDialog extends FormApplication {
             event.stopPropagation();
             this.object.difficultyHidden = !this.object.difficultyHidden;
             game.settings
-                .set("l5r5e", "initiative.difficulty.hidden", this.object.difficultyHidden)
+                .set("l5r5e", "initiative-difficulty-hidden", this.object.difficultyHidden)
                 .then(() => this.submit());
         });
 
@@ -148,7 +148,7 @@ export class GmToolsDialog extends FormApplication {
                     this.object.difficulty = Math.max(0, this.object.difficulty - 1);
                     break;
             }
-            game.settings.set("l5r5e", "initiative.difficulty.value", this.object.difficulty).then(() => this.submit());
+            game.settings.set("l5r5e", "initiative-difficulty-value", this.object.difficulty).then(() => this.submit());
         });
 
         // Scene End & Sleep

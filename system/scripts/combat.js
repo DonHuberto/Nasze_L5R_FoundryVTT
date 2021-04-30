@@ -24,19 +24,19 @@ export class CombatL5r5e extends Combat {
 
         // Get global modifiers
         const cfg = {
-            difficulty: game.settings.get("l5r5e", "initiative.difficulty.value"),
-            difficultyHidden: game.settings.get("l5r5e", "initiative.difficulty.hidden"),
+            difficulty: game.settings.get("l5r5e", "initiative-difficulty-value"),
+            difficultyHidden: game.settings.get("l5r5e", "initiative-difficulty-hidden"),
             prepared: {
-                character: game.settings.get("l5r5e", "initiative.prepared.character"),
-                adversary: game.settings.get("l5r5e", "initiative.prepared.adversary"),
-                minion: game.settings.get("l5r5e", "initiative.prepared.minion"),
+                character: game.settings.get("l5r5e", "initiative-prepared-character"),
+                adversary: game.settings.get("l5r5e", "initiative-prepared-adversary"),
+                minion: game.settings.get("l5r5e", "initiative-prepared-minion"),
             },
         };
 
         // SkillId from DicePicker or global
         const skillId = messageOptions.skillId
             ? messageOptions.skillId
-            : CONFIG.l5r5e.initiativeSkills[game.settings.get("l5r5e", "initiative.encounter")];
+            : CONFIG.l5r5e.initiativeSkills[game.settings.get("l5r5e", "initiative-encounter")];
         const skillCat = CONFIG.l5r5e.skills.get(skillId);
 
         // Get score for each combatant

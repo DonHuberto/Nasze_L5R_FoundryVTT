@@ -6,7 +6,7 @@ import { TwentyQuestionsDialog } from "./twenty-questions-dialog.js";
  */
 export class CharacterSheetL5r5e extends BaseSheetL5r5e {
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["l5r5e", "sheet", "actor"],
             template: CONFIG.l5r5e.paths.templates + "actors/character-sheet.html",
             tabs: [

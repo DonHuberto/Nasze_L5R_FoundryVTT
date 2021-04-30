@@ -177,7 +177,7 @@ export class TwentyQuestions {
      * Update object with form data
      */
     updateFromForm(formData) {
-        this.data = mergeObject(this.data, expandObject(formData));
+        this.data = foundry.utils.mergeObject(this.data, foundry.utils.expandObject(formData));
     }
 
     /**

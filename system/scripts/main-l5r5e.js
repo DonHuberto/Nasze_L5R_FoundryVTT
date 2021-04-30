@@ -116,7 +116,7 @@ Hooks.once("init", async () => {
 
     // Override the default Token _drawBar function to allow fatigue bar reversing.
     Token.prototype._drawBar = function (number, bar, data) {
-        const reverseBar = data.attribute === "fatigue" && game.settings.get("l5r5e", "token.reverseFatigueBar");
+        const reverseBar = data.attribute === "fatigue" && game.settings.get("l5r5e", "token-reverseFatigueBar");
 
         // Bar value
         const pct = Math.clamped(Number(data.value), 0, data.max) / data.max;

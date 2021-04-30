@@ -88,14 +88,14 @@ export default class HooksL5r5e {
         // *** Conf ***
         const encounterTypeList = Object.keys(CONFIG.l5r5e.initiativeSkills);
         const prepared = {
-            character: game.settings.get("l5r5e", "initiative.prepared.character"),
-            adversary: game.settings.get("l5r5e", "initiative.prepared.adversary"),
-            minion: game.settings.get("l5r5e", "initiative.prepared.minion"),
+            character: game.settings.get("l5r5e", "initiative-prepared-character"),
+            adversary: game.settings.get("l5r5e", "initiative-prepared-adversary"),
+            minion: game.settings.get("l5r5e", "initiative-prepared-minion"),
         };
 
         // *** Template ***
         const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/combat-tracker-bar.html`, {
-            encounterType: game.settings.get("l5r5e", "initiative.encounter"),
+            encounterType: game.settings.get("l5r5e", "initiative-encounter"),
             encounterTypeList,
             prepared,
         });
@@ -118,7 +118,7 @@ export default class HooksL5r5e {
                 return;
             }
             game.settings
-                .set("l5r5e", "initiative.encounter", encounter)
+                .set("l5r5e", "initiative-encounter", encounter)
                 .then(() => HooksL5r5e._gmCombatBar(app, html, data));
         });
 
@@ -136,7 +136,7 @@ export default class HooksL5r5e {
                 null: rev ? "false" : "true",
             };
             game.settings
-                .set("l5r5e", `initiative.prepared.${preparedId}`, nextValue[prepared[preparedId]])
+                .set("l5r5e", `initiative-prepared-${preparedId}`, nextValue[prepared[preparedId]])
                 .then(() => HooksL5r5e._gmCombatBar(app, html, data));
         });
     }

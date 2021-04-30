@@ -221,8 +221,8 @@
                             <strong>{{localize 'l5r5e.twenty_questions.part2.access'}}</strong>
                             {{#each techniquesList as |technique|}}
                                 <label class="technique">
-                                    <input type="checkbox" name="step3.allowed_techniques.{{technique}}" {{checked (lookup ../data.step3.allowed_techniques technique)}} />
-                                    {{localizeTechnique technique}}
+                                    <input type="checkbox" name="step3.allowed_techniques.{{technique.id}}" {{checked (lookup ../data.step3.allowed_techniques technique.id)}} />
+                                    {{technique.label}}
                                 </label>
                             {{/each}}
                         </td>

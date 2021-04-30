@@ -13,7 +13,7 @@ export class HelpDialog extends FormApplication {
      * @override
      */
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             id: "l5r5e-help-dialog",
             classes: ["l5r5e", "help-dialog"],
             template: CONFIG.l5r5e.paths.templates + "help/help-dialog.html",

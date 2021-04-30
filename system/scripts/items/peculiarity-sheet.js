@@ -12,7 +12,7 @@ export class PeculiaritySheetL5r5e extends ItemSheetL5r5e {
 
     /** @override */
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["l5r5e", "sheet", "peculiarity"],
             template: CONFIG.l5r5e.paths.templates + "items/peculiarity/peculiarity-sheet.html",
             width: 520,

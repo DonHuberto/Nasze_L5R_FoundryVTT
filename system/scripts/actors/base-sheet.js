@@ -25,7 +25,7 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         sheetData.data.dtypes = ["String", "Number", "Boolean"];
         sheetData.data.stances = CONFIG.l5r5e.stances;
-        sheetData.data.techniquesList = CONFIG.l5r5e.techniques;
+        sheetData.data.techniquesList = game.l5r5e.HelpersL5r5e.getTechniquesList();
 
         // Sort Items by name
         sheetData.items.sort((a, b) => {
@@ -49,9 +49,11 @@ export class BaseSheetL5r5e extends ActorSheet {
         const out = {};
 
         // Build the list order
-        [...CONFIG.l5r5e.techniques, ...CONFIG.l5r5e.techniques_school].forEach((tech) => {
-            out[tech] = [];
-        });
+        [...CONFIG.l5r5e.techniques, ...CONFIG.l5r5e.techniques_custom, ...CONFIG.l5r5e.techniques_school].forEach(
+            (tech) => {
+                out[tech] = [];
+            }
+        );
 
         // Add tech the character knows
         sheetData.items.forEach((item) => {

@@ -46,7 +46,7 @@ export class DicePickerDialog extends FormApplication {
      * @override
      */
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             id: "l5r5e-dice-picker-dialog",
             classes: ["l5r5e", "dice-picker-dialog"],
             template: CONFIG.l5r5e.paths.templates + "dice/dice-picker-dialog.html",
@@ -131,7 +131,7 @@ export class DicePickerDialog extends FormApplication {
         if (options.difficulty) {
             this.difficulty = options.difficulty;
         } else {
-            this.difficulty = game.settings.get("l5r5e", "initiative.difficulty.value");
+            this.difficulty = game.settings.get("l5r5e", "initiative-difficulty-value");
         }
 
         // DifficultyHidden
@@ -145,7 +145,7 @@ export class DicePickerDialog extends FormApplication {
      * Refresh data (used from socket)
      */
     async refresh() {
-        this.difficulty = game.settings.get("l5r5e", "initiative.difficulty.value");
+        this.difficulty = game.settings.get("l5r5e", "initiative-difficulty-value");
         this.difficultyHidden = false;
         this.render(false);
     }
@@ -244,7 +244,7 @@ export class DicePickerDialog extends FormApplication {
      */
     set difficultyHidden(isHidden) {
         // If GM hide, then player choice don't matter
-        this._difficultyHiddenIsLock = game.settings.get("l5r5e", "initiative.difficulty.hidden");
+        this._difficultyHiddenIsLock = game.settings.get("l5r5e", "initiative-difficulty-hidden");
         if (this._difficultyHiddenIsLock) {
             isHidden = true;
         }
@@ -390,7 +390,7 @@ export class DicePickerDialog extends FormApplication {
 
         // If initiative roll, check if player already have
         if (this.object.isInitiativeRoll) {
-            const combatant = game.combat.combatants.find((c) => c.actor._id === this._actor._id && c.initiative > 0);
+            const combatant = game.combat.combatants.find((c) => c.actor.id === this._actor.id && c.initiative > 0);
             if (combatant) {
                 ui.notifications.error(game.i18n.localize("l5r5e.conflict.initiative.already_set"));
                 return this.close();
@@ -470,7 +470,7 @@ export class DicePickerDialog extends FormApplication {
         }
 
         if (message) {
-            new game.l5r5e.RollnKeepDialog(message._id).render(true);
+            new game.l5r5e.RollnKeepDialog(message.id).render(true);
         }
 
         return this.close();
@@ -508,8 +508,8 @@ export class DicePickerDialog extends FormApplication {
         const params = {};
         let name = "DicePicker";
 
-        if (this._actor?._id) {
-            params.actorId = this._actor._id;
+        if (this._actor?.id) {
+            params.actorId = this._actor.id;
             name = this._actor.name;
         }
 
@@ -536,7 +536,7 @@ export class DicePickerDialog extends FormApplication {
         }
 
         // Search if already in player hotbar
-        if (Object.values(game.user.data.hotbar).includes(macro._id)) {
+        if (Object.values(game.user.data.hotbar).includes(macro.id)) {
             return;
         }
 

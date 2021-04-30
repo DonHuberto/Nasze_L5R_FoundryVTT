@@ -45,7 +45,7 @@ export class RollnKeepDialog extends FormApplication {
      * @override
      */
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             id: "l5r5e-roll-n-keep-dialog",
             classes: ["l5r5e", "roll-n-keep-dialog"],
             template: CONFIG.l5r5e.paths.templates + "dice/roll-n-keep-dialog.html",
@@ -58,7 +58,7 @@ export class RollnKeepDialog extends FormApplication {
      * Define a unique and dynamic element ID for the rendered application
      */
     get id() {
-        return `l5r5e-roll-n-keep-dialog-${this._message._id}`;
+        return `l5r5e-roll-n-keep-dialog-${this._message.id}`;
     }
 
     /**
@@ -85,6 +85,7 @@ export class RollnKeepDialog extends FormApplication {
     constructor(messageId, options = {}) {
         super({}, options);
         this.message = game.messages.get(messageId);
+
         this.options.editable =
             this._message?.isAuthor || this._message?._roll.l5r5e.actor?.isOwner || this._message?.isOwner || false;
 
@@ -146,7 +147,7 @@ export class RollnKeepDialog extends FormApplication {
         // New
         this.object.dicesList = [[]];
         this.roll.terms.forEach((term) => {
-            if (typeof term !== "object") {
+            if (!(term instanceof game.l5r5e.L5rBaseDie)) {
                 return;
             }
             term.results.forEach((res) => {
@@ -514,7 +515,7 @@ export class RollnKeepDialog extends FormApplication {
         }
 
         roll.terms.forEach((term) => {
-            if (typeof term !== "object") {
+            if (!(term instanceof game.l5r5e.L5rBaseDie)) {
                 return;
             }
             term.results.forEach((res) => {
@@ -610,7 +611,7 @@ export class RollnKeepDialog extends FormApplication {
     async _toChatMessage() {
         // Keep old Ids
         const appOldId = this.id;
-        const msgOldId = this._message._id;
+        const msgOldId = this._message.id;
 
         if (this.roll.l5r5e.isInitiativeRoll) {
             let msgOptions = {
@@ -633,11 +634,11 @@ export class RollnKeepDialog extends FormApplication {
 
         // Refresh viewers
         if (this._message) {
-            game.l5r5e.sockets.updateMessageIdAndRefresh(appOldId, this._message._id);
+            game.l5r5e.sockets.updateMessageIdAndRefresh(appOldId, this._message.id);
         }
 
         // Delete old chat message related to this series
-        if (game.settings.get("l5r5e", "rnk.deleteOldMessage")) {
+        if (game.settings.get("l5r5e", "rnk-deleteOldMessage")) {
             if (game.user.isGM) {
                 const message = game.messages.get(msgOldId);
                 if (message) {

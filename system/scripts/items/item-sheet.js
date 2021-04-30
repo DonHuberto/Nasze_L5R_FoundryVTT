@@ -5,7 +5,7 @@
 export class ItemSheetL5r5e extends ItemSheet {
     /** @override */
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["l5r5e", "sheet", "item"],
             template: CONFIG.l5r5e.paths.templates + "items/item/item-sheet.html",
             width: 520,
@@ -15,7 +15,7 @@ export class ItemSheetL5r5e extends ItemSheet {
     }
 
     /** @override */
-    async getData() {
+    async getData(options = {}) {
         const sheetData = super.getData();
 
         sheetData.data.dtypes = ["String", "Number", "Boolean"];
