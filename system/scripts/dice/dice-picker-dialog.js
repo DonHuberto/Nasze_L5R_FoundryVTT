@@ -524,7 +524,7 @@ export class DicePickerDialog extends FormApplication {
 
         let command = `new game.l5r5e.DicePickerDialog(${JSON.stringify(params)}).render(true);`;
 
-        let macro = game.macros.entities.find((m) => m.data.name === name && m.data.command === command);
+        let macro = game.macros.contents.find((m) => m.data.name === name && m.data.command === command);
         if (!macro) {
             macro = await Macro.create({
                 name: name,
@@ -540,18 +540,6 @@ export class DicePickerDialog extends FormApplication {
             return;
         }
 
-        // Search for slot (Fix for FVTT, will be fixed)
-        // slot = false will normally do the 1st available, but always return 0
-        // TODO see when issue is closed to remove these lines and use "assignHotbarMacro(macro, false)"
-        // https://gitlab.com/foundrynet/foundryvtt/-/issues/4382
-        const slot = Array.fromRange(50).find((i) => {
-            if (i < 1) {
-                return false;
-            }
-            return !(i in game.user.data.hotbar);
-        });
-
-        // return game.user.assignHotbarMacro(macro, false); // 1st available
-        return game.user.assignHotbarMacro(macro, slot);
+        return game.user.assignHotbarMacro(macro, "auto"); // 1st available
     }
 }

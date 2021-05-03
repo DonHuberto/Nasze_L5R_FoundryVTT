@@ -2,6 +2,7 @@
 
 ## 1.3.0 - Foundry 0.8.x compatibility
 - Updated the System to the new version of Foundry VTT (a lot of things broke)
+- RnK button is now black in chat if no actions left in roll.
 
 ## 1.2.2 - Before the Change
 - Added some custom technique's types by request: Link & Specificity

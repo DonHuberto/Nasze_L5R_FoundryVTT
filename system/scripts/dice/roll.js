@@ -33,6 +33,7 @@ export class RollL5r5e extends Roll {
                 strife: 0,
             },
             history: null,
+            rnkEnded: false,
         };
 
         // Parse flavor for stance and skillId
@@ -125,6 +126,13 @@ export class RollL5r5e extends Roll {
                     0
                 );
             }
+        }
+
+        // RnK Can do some action ?
+        if (this.l5r5e.history) {
+            this.l5r5e.rnkEnded = !this.l5r5e.history[this.l5r5e.history.length - 1].some(
+                (e) => !!e && e.choice === null
+            );
         }
     }
 
@@ -322,8 +330,6 @@ export class RollL5r5e extends Roll {
             messageData
         );
         messageData.roll = this;
-
-        // TODO Bug on non link pnj : infinity deepClone recursion
 
         // Either create the message or just return the chat data
         const message = await ChatMessage.implementation.create(messageData, { rollMode: rMode, temporary: !create });

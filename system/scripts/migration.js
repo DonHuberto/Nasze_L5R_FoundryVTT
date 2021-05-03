@@ -33,7 +33,7 @@ export class MigrationL5r5e {
         );
 
         // Migrate World Actors
-        for (let a of game.actors.entities) {
+        for (let a of game.actors.contents) {
             try {
                 const updateData = MigrationL5r5e._migrateActorData(a.data);
                 if (!isObjectEmpty(updateData)) {
@@ -47,7 +47,7 @@ export class MigrationL5r5e {
         }
 
         // Migrate World Items
-        for (let i of game.items.entities) {
+        for (let i of game.items.contents) {
             try {
                 const updateData = MigrationL5r5e._migrateItemData(i.data);
                 if (!isObjectEmpty(updateData)) {
@@ -61,7 +61,7 @@ export class MigrationL5r5e {
         }
 
         // Migrate Actor Override Tokens
-        for (let s of game.scenes.entities) {
+        for (let s of game.scenes.contents) {
             try {
                 const updateData = MigrationL5r5e._migrateSceneData(s.data);
                 if (!isObjectEmpty(updateData)) {
@@ -143,7 +143,7 @@ export class MigrationL5r5e {
 
         // Apply the original locked status for the pack
         pack.configure({ locked: wasLocked });
-        console.log(`Migrated all ${entity} entities from Compendium ${pack.collection}`);
+        console.log(`Migrated all ${entity} contents from Compendium ${pack.collection}`);
     }
 
     /**

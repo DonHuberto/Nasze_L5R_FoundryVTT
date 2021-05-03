@@ -21,7 +21,7 @@
         {{!-- Strength --}}
         <select class="attribute-dtype" name="data.rings_affinities.strength.ring">
             {{#select data.data.rings_affinities.strength.ring}}
-                {{#each data.data.stances as |stance|}}
+                {{#each data.stances as |stance|}}
                     <option value="{{stance}}">{{localizeRing stance}}</option>
                 {{/each}}
             {{/select}}
@@ -30,7 +30,7 @@
         {{!-- Weakness --}}
         <select class="attribute-dtype" name="data.rings_affinities.weakness.ring">
             {{#select data.data.rings_affinities.weakness.ring}}
-                {{#each data.data.stances as |stance|}}
+                {{#each data.stances as |stance|}}
                     <option value="{{stance}}">{{localizeRing stance}}</option>
                 {{/each}}
             {{/select}}

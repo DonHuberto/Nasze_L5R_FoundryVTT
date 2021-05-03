@@ -42,7 +42,7 @@ export class CombatL5r5e extends Combat {
         // Get score for each combatant
         const updatedCombatants = [];
         for (const combatantId of ids) {
-            const combatant = game.combat.combatants.find((c) => c._id === combatantId);
+            const combatant = game.combat.combatants.find((c) => c.id === combatantId);
 
             // Skip if combatant already have a initiative value
             if (!messageOptions.rerollInitiative && (!combatant || !combatant.actor)) {
@@ -124,13 +124,13 @@ export class CombatL5r5e extends Combat {
             }
 
             updatedCombatants.push({
-                _id: combatant._id,
+                _id: combatant.id,
                 initiative: initiative,
             });
         }
 
         // Update all combatants at once
-        await this.updateEmbeddedEntity("Combatant", updatedCombatants);
+        await this.updateEmbeddedDocuments("Combatant", updatedCombatants);
         return this;
     }
 

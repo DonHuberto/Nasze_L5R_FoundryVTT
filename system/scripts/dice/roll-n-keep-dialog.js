@@ -107,11 +107,11 @@ export class RollnKeepDialog extends FormApplication {
     /**
      * Render
      * @param {boolean} force
-     * @param  {RenderOptions} options
+     * @param  {{left?: number, top?: number, width?: number, height?: number, scale?: number, focus?: boolean, renderContext?: string, renderData?: Object}} options
      * @returns {Application}
      * @override
      */
-    render(force = null, options = {}) {
+    render(force = false, options = {}) {
         if (!this._message) {
             return;
         }
@@ -572,6 +572,7 @@ export class RollnKeepDialog extends FormApplication {
         roll.l5r5e = {
             ...this.roll.l5r5e,
             summary: roll.l5r5e.summary,
+            history: this.object.dicesList,
         };
 
         // Fill the data
@@ -600,7 +601,6 @@ export class RollnKeepDialog extends FormApplication {
 
         // Add roll & history to message
         this.roll = roll;
-        this.roll.l5r5e.history = this.object.dicesList;
     }
 
     /**

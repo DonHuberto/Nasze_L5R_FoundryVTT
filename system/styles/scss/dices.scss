@@ -16,7 +16,7 @@
     }
     button {
         &.chat-dice-rnk {
-            cursor: default;
+            cursor: url("../assets/cursors/pointer.webp"), pointer;
             color: $white;
             background: linear-gradient(
                 $l5r5e-linear-gradient-third,
@@ -35,6 +35,13 @@
                     $l5r5e-linear-gradient-first-dark
                 );
             }
+        }
+        &.chat-dice-rnk-ended {
+            background: linear-gradient(
+                $l5r5e-linear-gradient-second,
+                $l5r5e-linear-gradient-second-dark,
+                $l5r5e-linear-gradient-second
+            );
         }
     }
     .dice-result-rnk {

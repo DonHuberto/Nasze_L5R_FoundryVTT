@@ -63,7 +63,7 @@ export class GmToolsDialog extends FormApplication {
      * Do not close this dialog
      * @override
      */
-    close() {
+    async close(options = {}) {
         // TODO better implementation needed : see KeyboardManager._onEscape(event, up, modifiers)
         // This windows is always open, so esc key si stuck at step 2 : Object.keys(ui.windows).length > 0
         // Case 3 (GM) - release controlled objects
@@ -180,7 +180,7 @@ export class GmToolsDialog extends FormApplication {
             return;
         }
 
-        game.actors.entities.forEach((actor) => {
+        game.actors.contents.forEach((actor) => {
             switch (type) {
                 case "sleep":
                     // Remove 'water x2' fatigue points
