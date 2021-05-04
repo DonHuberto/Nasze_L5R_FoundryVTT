@@ -16,7 +16,7 @@
         },
         "CustomTechniques": {
             "Title": "Use custom techniques",
-            "Hint": "Add 'Link' and 'Specificity' techniques types."
+            "Hint": "Add 'Specificity' technique type to serve as a catch-all."
         }
     },
     "ACTOR": {

@@ -8,7 +8,7 @@ L5R5E.paths = {
 L5R5E.money = [50, 10];
 L5R5E.stances = ["earth", "air", "water", "fire", "void"];
 L5R5E.techniques = ["kata", "kiho", "inversion", "invocation", "ritual", "shuji", "maho", "ninjutsu"];
-L5R5E.techniques_custom = ["link", "specificity"];
+L5R5E.techniques_custom = ["specificity"];
 L5R5E.techniques_school = ["school_ability", "mastery_ability"];
 
 L5R5E.xp = {

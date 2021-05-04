@@ -1,11 +1,11 @@
 # Changelog
 
 ## 1.3.0 - Foundry 0.8.x compatibility
-- Updated the System to the new version of Foundry VTT (a lot of things broke)
+- Updated the System to the new version of Foundry VTT (a lot of things broke).
 - RnK button is now black in chat if no actions left in roll.
-
-## 1.2.2 - Before the Change
-- Added some custom technique's types by request: Link & Specificity
+- NPC can now have strengths/weaknesses with all rings.
+- Added an optional "Specificity" technique type to serve as a catch-all (by request).
+- Fix rnkMessage not passing on actor object for NPCs (thanks to Bragma).
 - Added Mantis Clan compendium entries
 - Fixed the "Crescent Moon Style" technique rank from 4 to 2
 

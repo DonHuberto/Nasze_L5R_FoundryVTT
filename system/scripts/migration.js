@@ -183,6 +183,8 @@ export class MigrationL5r5e {
         const updateData = {};
         const actorData = actor.data;
 
+        console.log(actorData); // TODO TMP data.data ? à vérifier
+
         // ***** Start of 1.1.0 *****
         // Add "Prepared" in actor
         if (actorData.prepared === undefined) {
@@ -201,6 +203,16 @@ export class MigrationL5r5e {
             }
         }
         // ***** End of 1.1.0 *****
+
+        // ***** Start of 1.3.0 *****
+        // NPC have now more thant a Strength and a Weakness
+        if (actor.type === "npc" && actorData.rings_affinities) {
+            updateData["data.rings_affinities." + actorData.rings_affinities.strength.ring] =
+                actorData.rings_affinities.strength.value;
+            updateData["data.rings_affinities." + actorData.rings_affinities.weakness.ring] =
+                actorData.rings_affinities.weakness.value;
+        }
+        // ***** End of 1.3.0 *****
 
         return updateData;
     }

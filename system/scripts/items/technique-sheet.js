@@ -19,8 +19,11 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
     async getData() {
         const sheetData = await super.getData();
 
-        // Add "school ability" and "mastery ability"
-        CONFIG.l5r5e.techniques_school.forEach((e) => {
+        // Add "school ability", "mastery ability" and customs if active
+        [
+            ...CONFIG.l5r5e.techniques_school,
+            ...(game.settings.get("l5r5e", "techniques-customs") ? CONFIG.l5r5e.techniques_custom : []),
+        ].forEach((e) => {
             sheetData.data.techniquesList.push({
                 id: e,
                 label: game.i18n.localize(`l5r5e.techniques.${e}`),

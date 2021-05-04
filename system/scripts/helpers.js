@@ -45,10 +45,7 @@ export class HelpersL5r5e {
      * Get Techniques for List / Select
      */
     static getTechniquesList() {
-        return [
-            ...CONFIG.l5r5e.techniques,
-            ...(game.settings.get("l5r5e", "techniques-customs") ? CONFIG.l5r5e.techniques_custom : []),
-        ].map((e) => ({
+        return CONFIG.l5r5e.techniques.map((e) => ({
             id: e,
             label: game.i18n.localize(`l5r5e.techniques.${e}`),
         }));

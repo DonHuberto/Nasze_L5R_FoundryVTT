@@ -103,8 +103,7 @@
                     "shuji": false,
                     "maho": false,
                     "ninjutsu": false,
-                    "link": false,
-                    "specificity": false
+                    "specificity": true
                 }
             }
         },
@@ -124,14 +123,11 @@
                 "social": 0
             },
             "rings_affinities": {
-                "strength": {
-                    "ring": "fire",
-                    "value": 2
-                },
-                "weakness": {
-                    "ring": "water",
-                    "value": -2
-                }
+                "earth": 0,
+                "air": 0,
+                "water": 0,
+                "fire": 0,
+                "void": 0
             },
             "skills": {
                 "artisan": 0,

@@ -349,7 +349,13 @@ export class BaseSheetL5r5e extends ActorSheet {
             case "technique": {
                 // If technique, select the current type
                 const techType = $(event.currentTarget).data("tech-type");
-                if ([...CONFIG.l5r5e.techniques, ...CONFIG.l5r5e.techniques_school].includes(techType)) {
+                if (
+                    [
+                        ...CONFIG.l5r5e.techniques,
+                        ...CONFIG.l5r5e.techniques_school,
+                        ...CONFIG.l5r5e.techniques_custom,
+                    ].includes(techType)
+                ) {
                     item.data.data.technique_type = techType;
                     item.data.img = `${CONFIG.l5r5e.paths.assets}icons/techs/${techType}.svg`;
                 }

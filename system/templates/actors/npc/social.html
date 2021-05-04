@@ -18,24 +18,11 @@
         </label>
     </li>
     <li class="affinities">
-        {{!-- Strength --}}
-        <select class="attribute-dtype" name="data.rings_affinities.strength.ring">
-            {{#select data.data.rings_affinities.strength.ring}}
-                {{#each data.stances as |stance|}}
-                    <option value="{{stance}}">{{localizeRing stance}}</option>
-                {{/each}}
-            {{/select}}
-        </select>
-        <input class="centered-input select-on-focus" type="number" name="data.rings_affinities.strength.value" value="{{data.data.rings_affinities.strength.value}}" data-dtype="Number" min="1" max="9" placeholder="0"/>
-        {{!-- Weakness --}}
-        <select class="attribute-dtype" name="data.rings_affinities.weakness.ring">
-            {{#select data.data.rings_affinities.weakness.ring}}
-                {{#each data.stances as |stance|}}
-                    <option value="{{stance}}">{{localizeRing stance}}</option>
-                {{/each}}
-            {{/select}}
-        </select>
-        <input class="centered-input select-on-focus" type="number" name="data.rings_affinities.weakness.value" value="{{data.data.rings_affinities.weakness.value}}" data-dtype="Number" min="-9" max="-1" placeholder="0"/>
+        {{!-- Strength & Weakness --}}
+        {{#each data.stances as |stance|}}
+            <i class="i_{{stance}}" title="{{localizeRing stance}}"></i>
+            <input class="centered-input select-on-focus" type="number" name="data.rings_affinities.{{stance}}" value="{{lookup ../data.data.rings_affinities stance}}" data-dtype="Number" min="-9" max="9" placeholder="0"/>
+        {{/each}}
         {{!-- Attitude --}}
         <label class="attitude">
             <input type="text" name="data.attitude" value="{{data.data.attitude}}" data-dtype="String" placeholder=""/>

@@ -16,7 +16,7 @@
         },
         "CustomTechniques": {
             "Title": "Utiliser les techniques personnalisées",
-            "Hint": "Ajoute les types de technique 'Lien' et 'Particularités'."
+            "Hint": "Ajoute un type de technique 'Particularités' pour servir de fourre-tout."
         }
     },
     "ACTOR": {
@@ -175,7 +175,6 @@
             "ninjutsu": "Ninjutsu",
             "school_ability": "Capacité d'école",
             "mastery_ability": "Capacité de maîtrise",
-            "link": "Liens",
             "specificity": "Particularités"
         },
         "peculiarities": {
