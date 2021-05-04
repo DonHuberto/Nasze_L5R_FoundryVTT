@@ -440,9 +440,11 @@ export class DicePickerDialog extends FormApplication {
                 difficultyHidden: this.object.difficulty.hidden,
                 useVoidPoint: this.object.useVoidPoint,
                 skillAssistance: this.object.skill.assistance,
+                rnkMessage: null,
             };
 
             await this._actor.rollInitiative({
+                rerollInitiative: true,
                 initiativeOptions: {
                     formula: formula.join("+"),
                     // updateTurn: true,
