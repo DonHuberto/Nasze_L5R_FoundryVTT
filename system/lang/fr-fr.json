@@ -30,7 +30,11 @@
         "TypeTechnique": "Technique",
         "TypeProperty": "Propriété",
         "TypePeculiarity": "Particularité",
-        "TypeAdvancement": "Progression"
+        "TypeAdvancement": "Progression",
+        "TypeTitle": "Titre",
+        "TypeBond": "Lien",
+        "TypeSignature_scroll": "Rouleau de marque",
+        "TypeItem_pattern": "Procédé de fabrication"
     },
     "l5r5e": {
         "global": {
@@ -136,7 +140,6 @@
         "properties": "Propriétés",
         "weapons": {
             "title": "Armement",
-            "title_new": "Nouvelle Arme",
             "damage": "Dégâts de base (DDB)",
             "range": "Portée (PRT)",
             "stats": "Attributs",
@@ -148,20 +151,17 @@
         },
         "armors": {
             "title": "Armures",
-            "title_new": "Nouvelle Armure",
             "type": "Défense",
             "physical": "Physique",
             "supernatural": "Spirituelle",
             "equipped": "Équipé"
         },
         "items": {
-            "title": "Objets",
-            "title_new": "Nouvel Objet"
+            "title": "Objets"
         },
         "feats": "Prouesses",
         "techniques": {
             "title": "Techniques",
-            "title_new": "Nouvelle Technique",
             "not_allowed": "Votre personnage n'utilise pas ce type de technique.",
             "only_one": "Votre personnage ne peut avoir qu'une seule de ces technique.",
             "type": "Type accessible",
@@ -175,10 +175,10 @@
             "ninjutsu": "Ninjutsu",
             "school_ability": "Capacité d'école",
             "mastery_ability": "Capacité de maîtrise",
+            "title_ability": "Capacité de Titre",
             "specificity": "Particularités"
         },
         "peculiarities": {
-            "title_new": "Nouvelle particularité",
             "types": {
                 "distinction": "Aptitude",
                 "passion": "Passion",
@@ -211,6 +211,7 @@
             "attitude": "attitude :",
             "advantages": "Aptitudes et Passions",
             "disadvantages": "Coups du sort et défaillances",
+            "bonds": "Liens",
             "npc": {
                 "advantages": "Avantages",
                 "disadvantages": "Désavantages"
@@ -321,7 +322,6 @@
         },
         "advancements": {
             "title": "Progressions",
-            "title_new": "Nouvelle progression",
             "school_rank": "Rang d'école",
             "school_rank_0": "Bg",
             "total": "Totale",
@@ -330,7 +330,10 @@
             "saved": "Restante",
             "total_xp_rank": "Xp dépensée",
             "curriculum": "Inclus dans le cursus",
-            "curriculum_validate": "Valider la progression"
+            "curriculum_validate": "Valider la progression",
+            "rarity_modifier": "Modificateur de rareté",
+            "item_pattern": "Procédés de fabrication",
+            "signature_scroll": "Rouleaux de marque"
         },
         "character_types": {
             "character": "Personnage Joueur",

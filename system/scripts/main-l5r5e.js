@@ -29,6 +29,10 @@ import { TechniqueSheetL5r5e } from "./items/technique-sheet.js";
 import { PropertySheetL5r5e } from "./items/property-sheet.js";
 import { AdvancementSheetL5r5e } from "./items/advancement-sheet.js";
 import { PeculiaritySheetL5r5e } from "./items/peculiarity-sheet.js";
+import { TitleSheetL5r5e } from "./items/title-sheet.js";
+import { BondSheetL5r5e } from "./items/bond-sheet.js";
+import { SignatureScrollSheetL5r5e } from "./items/signature-scroll-sheet.js";
+import { ItemPatternSheetL5r5e } from "./items/item-pattern-sheet.js";
 // JournalEntry
 import { JournalL5r5e } from "./journal.js";
 import { BaseJournalSheetL5r5e } from "./journals/base-journal-sheet.js";
@@ -62,12 +66,11 @@ Hooks.once("init", async () => {
     CONFIG.JournalEntry.sheetClass = BaseJournalSheetL5r5e;
 
     // Define custom Roll class
-    CONFIG.Dice.rolls.push(CONFIG.Dice.rolls[0]);
-    CONFIG.Dice.rolls[0] = RollL5r5e;
+    CONFIG.Dice.rolls.unshift(RollL5r5e);
 
     // Define DiceTerms
-    CONFIG.Dice.terms["s"] = AbilityDie;
-    CONFIG.Dice.terms["r"] = RingDie;
+    CONFIG.Dice.terms[AbilityDie.DENOMINATION] = AbilityDie;
+    CONFIG.Dice.terms[RingDie.DENOMINATION] = RingDie;
 
     // Add some classes in game
     game.l5r5e = {
@@ -109,6 +112,10 @@ Hooks.once("init", async () => {
     Items.registerSheet("l5r5e", PropertySheetL5r5e, { types: ["property"], makeDefault: true });
     Items.registerSheet("l5r5e", PeculiaritySheetL5r5e, { types: ["peculiarity"], makeDefault: true });
     Items.registerSheet("l5r5e", AdvancementSheetL5r5e, { types: ["advancement"], makeDefault: true });
+    Items.registerSheet("l5r5e", TitleSheetL5r5e, { types: ["title"], makeDefault: true });
+    Items.registerSheet("l5r5e", BondSheetL5r5e, { types: ["bond"], makeDefault: true });
+    Items.registerSheet("l5r5e", SignatureScrollSheetL5r5e, { types: ["signature_scroll"], makeDefault: true });
+    Items.registerSheet("l5r5e", ItemPatternSheetL5r5e, { types: ["item_pattern"], makeDefault: true });
 
     // Journal
     Items.unregisterSheet("core", JournalSheet);

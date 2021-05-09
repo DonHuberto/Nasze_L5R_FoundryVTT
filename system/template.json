@@ -139,7 +139,19 @@
         }
     },
     "Item": {
-        "types": ["item", "armor", "weapon", "technique", "property", "peculiarity", "advancement"],
+        "types": [
+            "item",
+            "armor",
+            "weapon",
+            "technique",
+            "property",
+            "peculiarity",
+            "advancement",
+            "title",
+            "bond",
+            "signature_scroll",
+            "item_pattern"
+        ],
         "templates": {
             "basics": {
                 "book_reference": "",
@@ -199,6 +211,24 @@
             "templates": ["basics", "advancement"],
             "advancement_type": "skill",
             "skill": ""
+        },
+        "title": {
+            "templates": ["basics", "advancement"],
+            "xp_cost": 3
+        },
+        "bond": {
+            "templates": ["basics", "advancement"],
+            "bond_type": "",
+            "xp_cost": 3
+        },
+        "item_pattern": {
+            "templates": ["basics", "advancement"],
+            "rarity_modifier": "",
+            "xp_cost": 3
+        },
+        "signature_scroll": {
+            "templates": ["basics", "advancement"],
+            "xp_cost": 3
         }
     }
 }

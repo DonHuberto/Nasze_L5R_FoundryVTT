@@ -1,0 +1,39 @@
+{
+    "label": "Procédés de fabrication",
+    "mapping": {
+        "description": "data.description",
+        "book_reference": "data.book_reference"
+    },
+    "entries": [
+        {
+            "id": "Kakita Pattern",
+            "name": "Procédé Kakita",
+            "description": "",
+            "book_reference": "L’Outremonde p.109"
+        },
+        {
+            "id": "Kenzō Blade",
+            "name": "Lame Kenzō",
+            "description": "",
+            "book_reference": "L’Outremonde p.109"
+        },
+        {
+            "id": "Shirogane Jade Inlay",
+            "name": "Incrustation de Jade de Shirogane",
+            "description": "",
+            "book_reference": "L’Outremonde p.109"
+        },
+        {
+            "id": "Uchema’s Technique",
+            "name": "Technique d’Uchema",
+            "description": "",
+            "book_reference": "L’Outremonde p.109"
+        },
+        {
+            "id": "Yasunori Steel",
+            "name": "Acier de Yasunori",
+            "description": "",
+            "book_reference": "L’Outremonde p.109"
+        }
+    ]
+}

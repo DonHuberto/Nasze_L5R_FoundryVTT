@@ -7,12 +7,29 @@ L5R5E.paths = {
 
 L5R5E.money = [50, 10];
 L5R5E.stances = ["earth", "air", "water", "fire", "void"];
-L5R5E.techniques = ["kata", "kiho", "inversion", "invocation", "ritual", "shuji", "maho", "ninjutsu"];
-L5R5E.techniques_custom = ["specificity"];
-L5R5E.techniques_school = ["school_ability", "mastery_ability"];
+
+// *** Techniques ***
+L5R5E.techniques = new Map();
+// Core
+L5R5E.techniques.set("kata", { type: "core", displayInTypes: true });
+L5R5E.techniques.set("kiho", { type: "core", displayInTypes: true });
+L5R5E.techniques.set("inversion", { type: "core", displayInTypes: true });
+L5R5E.techniques.set("invocation", { type: "core", displayInTypes: true });
+L5R5E.techniques.set("ritual", { type: "core", displayInTypes: true });
+L5R5E.techniques.set("shuji", { type: "core", displayInTypes: true });
+L5R5E.techniques.set("maho", { type: "core", displayInTypes: true });
+L5R5E.techniques.set("ninjutsu", { type: "core", displayInTypes: true });
+// School
+L5R5E.techniques.set("school_ability", { type: "school", displayInTypes: false });
+L5R5E.techniques.set("mastery_ability", { type: "school", displayInTypes: false });
+// Title
+L5R5E.techniques.set("title_ability", { type: "title", displayInTypes: false });
+// Custom
+L5R5E.techniques.set("specificity", { type: "custom", displayInTypes: false });
 
 L5R5E.xp = {
     costPerRank: [0, 20, 24, 32, 44, 60],
+    bondCostPerRank: [0, 3, 4, 6, 8, 10],
     ringCostMultiplier: 3,
     skillCostMultiplier: 2,
     techniqueCost: 3,

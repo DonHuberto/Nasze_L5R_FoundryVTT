@@ -20,8 +20,8 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
         });
     }
 
-    async getData() {
-        const sheetData = await super.getData();
+    async getData(options = {}) {
+        const sheetData = await super.getData(options);
 
         sheetData.data.subTypesList = AdvancementSheetL5r5e.types;
         sheetData.data.skillsList = game.l5r5e.HelpersL5r5e.getSkillsList(true);
@@ -47,46 +47,18 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
 
         html.find("#advancement_type").on("change", (event) => {
             if ($(event.target).val() === "skill") {
-                this._updateChoice(
-                    {
-                        ring: currentRing,
-                    },
-                    {
-                        skill: currentSkill,
-                    }
-                );
+                this._updateChoice({ ring: currentRing }, { skill: currentSkill });
             } else {
-                this._updateChoice(
-                    {
-                        skill: currentSkill,
-                    },
-                    {
-                        ring: currentRing,
-                    }
-                );
+                this._updateChoice({ skill: currentSkill }, { ring: currentRing });
             }
         });
 
         html.find("#advancement_ring").on("change", (event) => {
-            this._updateChoice(
-                {
-                    ring: currentRing,
-                },
-                {
-                    ring: $(event.target).val(),
-                }
-            );
+            this._updateChoice({ ring: currentRing }, { ring: $(event.target).val() });
         });
 
         html.find("#advancement_skill").on("change", (event) => {
-            this._updateChoice(
-                {
-                    skill: currentSkill,
-                },
-                {
-                    skill: $(event.target).val(),
-                }
-            );
+            this._updateChoice({ skill: currentSkill }, { skill: $(event.target).val() });
         });
     }
 

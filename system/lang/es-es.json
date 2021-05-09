@@ -30,7 +30,11 @@
         "TypeTechnique": "Técnica",
         "TypeProperty": "Propiedad",
         "TypePeculiarity": "Peculiaridad",
-        "TypeAdvancement": "Mejora"
+        "TypeAdvancement": "Mejora",
+        "TypeTitle": "Title",
+        "TypeBond": "Bond",
+        "TypeSignatureScroll": "Signature Scroll",
+        "TypeItemPattern": "Item Pattern"
     },
     "l5r5e": {
         "global": {
@@ -136,7 +140,6 @@
         "properties": "Propiedades",
         "weapons": {
             "title": "Armas",
-            "title_new": "Nueva arma",
             "damage": "Daño",
             "range": "Alcance",
             "stats": "Estadísticas",
@@ -148,15 +151,13 @@
         },
         "armors": {
             "title": "Armaduras",
-            "title_new": "Nueva Armadura",
             "type": "Defensa",
             "physical": "física",
             "supernatural": "sobrenatural",
             "equipped": "Equipado"
         },
         "items": {
-            "title": "Objetos",
-            "title_new": "Nuevo objeto"
+            "title": "Objetos"
         },
         "feats": "Logros",
         "techniques": {
@@ -164,7 +165,6 @@
             "type": "Técnicas permitidas",
             "not_allowed": "Tu personaje no puede utilizar este tipo de técnica.",
             "only_one": "Tu personaje sólo puede poseer una de estas técnicas.",
-            "title_new": "Nueva Técnica",
             "kata": "Kata",
             "kiho": "Kihõ",
             "inversion": "Inversion",
@@ -175,11 +175,10 @@
             "ninjutsu": "Ninjutsu",
             "school_ability": "Capacidad de escuela",
             "mastery_ability": "Habilidad de maestría",
-            "link": "Links",
+            "title_ability": "Title Ability",
             "specificity": "Specificities"
         },
         "peculiarities": {
-            "title_new": "Nueva peculiaridad",
             "types": {
                 "distinction": "Distinción",
                 "passion": "Pasión",
@@ -212,6 +211,7 @@
             "attitude": "Actitud:",
             "advantages": "Distinciones y pasiones",
             "disadvantages": "Adversidades y ansiedades",
+            "bonds": "Bonds",
             "npc": {
                 "advantages": "Ventajas",
                 "disadvantages": "Desventajas"
@@ -322,7 +322,6 @@
         },
         "advancements": {
             "title": "Avances",
-            "title_new": "Nuevo avance",
             "school_rank": "Rango de la escuela",
             "school_rank_0": "Bg",
             "total": "Total",
@@ -331,7 +330,10 @@
             "saved": "Guardado",
             "total_xp_rank": "PE gastados",
             "curriculum": "En programa de estudio",
-            "curriculum_validate": "Completar este rango"
+            "curriculum_validate": "Completar este rango",
+            "rarity_modifier": "Rarity modifier",
+            "item_pattern": "Item patterns",
+            "signature_scroll": "Signature scrolls"
         },
         "character_types": {
             "character": "Personaje jugador",

@@ -1,0 +1,73 @@
+{
+    "label": "Liens",
+    "mapping": {
+        "description": "data.description",
+        "book_reference": "data.book_reference",
+        "bond_type": "data.bond_type"
+    },
+    "entries": [
+        {
+            "id": "Family",
+            "name": "Familial",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.136",
+            "bond_type": "Familial"
+        },
+        {
+            "id": "Comrade",
+            "name": "Amitié",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.137",
+            "bond_type": "Amitié"
+        },
+        {
+            "id": "Lover",
+            "name": "Amoureux",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.137",
+            "bond_type": "Amoureux"
+        },
+        {
+            "id": "Rival",
+            "name": "Rivalité",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.138",
+            "bond_type": "Rivalité"
+        },
+        {
+            "id": "Nemesis",
+            "name": "Haine",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.138",
+            "bond_type": "Haine"
+        },
+        {
+            "id": "Old Flame",
+            "name": "Ancien amour",
+            "description": "",
+            "book_reference": "La Voie des Vagues",
+            "bond_type": "Ancien amour"
+        },
+        {
+            "id": "Partner",
+            "name": "Partenaire",
+            "description": "",
+            "book_reference": "La Voie des Vagues",
+            "bond_type": "Partenaire"
+        },
+        {
+            "id": "Protector and Ward",
+            "name": "Protecteur et Gardien",
+            "description": "",
+            "book_reference": "La Voie des Vagues",
+            "bond_type": "Protecteur et Gardien"
+        },
+        {
+            "id": "Wanderers Fellowship",
+            "name": "Fraternité des vagabonds",
+            "description": "",
+            "book_reference": "La Voie des Vagues",
+            "bond_type": "Fraternité des vagabonds"
+        }
+    ]
+}

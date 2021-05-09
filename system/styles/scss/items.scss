@@ -96,10 +96,14 @@
 // Advancement Sheet, Armor Sheet, Item Sheet, Peculiarity Sheet, Property Sheet, Technique Sheet, Weapon Sheet
 &.advancement,
 &.armor,
+&.bond,
 &.item,
+&.item-pattern,
 &.peculiarity,
 &.property,
+&.signature-scroll,
 &.technique,
+&.title,
 &.weapon {
     .sheet-header {
         margin-bottom: 0.5rem;

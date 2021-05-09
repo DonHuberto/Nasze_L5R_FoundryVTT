@@ -162,6 +162,34 @@
             "system": "l5r5e"
         },
         {
+            "name": "core-bonds",
+            "label": "Bonds",
+            "path": "packs/core-bonds.db",
+            "entity": "Item",
+            "system": "l5r5e"
+        },
+        {
+            "name": "core-titles",
+            "label": "Titles",
+            "path": "packs/core-titles.db",
+            "entity": "Item",
+            "system": "l5r5e"
+        },
+        {
+            "name": "core-item-patterns",
+            "label": "Item Patterns",
+            "path": "packs/core-item-patterns.db",
+            "entity": "Item",
+            "system": "l5r5e"
+        },
+        {
+            "name": "core-signature-scrolls",
+            "label": "Signature Scrolls",
+            "path": "packs/core-signature-scrolls.db",
+            "entity": "Item",
+            "system": "l5r5e"
+        },
+        {
             "name": "great-clans-presentation",
             "label": "Great Clans Presentation",
             "path": "packs/great-clans-presentation.db",

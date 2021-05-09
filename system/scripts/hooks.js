@@ -20,11 +20,14 @@ export default class HooksL5r5e {
     /**
      * Do anything once the system is ready
      */
-    static ready() {
+    static async ready() {
         // Migration stuff
         if (game.l5r5e.migrations.needUpdate()) {
             game.l5r5e.migrations.migrateWorld();
         }
+
+        // For some reasons, not always really ready, so wait a little
+        await new Promise((r) => setTimeout(r, 500));
 
         // Settings TN and EncounterType
         if (game.user.isGM) {
@@ -40,9 +43,10 @@ export default class HooksL5r5e {
             .on("click", () => new game.l5r5e.HelpDialog().render(true))
             .prop("title", game.i18n.localize("l5r5e.logo.alt"));
 
-        // Spanish specific - Disclaimer "not translated by Edge"
-        if (game.i18n.lang === "es") {
-            ui.notifications.info(game.i18n.localize("l5r5e.global.edge_translation_disclaimer"));
+        // If any disclaimer "not translated by Edge"
+        const disclaimer = game.i18n.localize("l5r5e.global.edge_translation_disclaimer");
+        if (disclaimer !== "l5r5e.global.edge_translation_disclaimer") {
+            ui.notifications.info(disclaimer);
         }
     }
 

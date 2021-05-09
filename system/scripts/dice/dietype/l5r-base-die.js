@@ -23,19 +23,32 @@ export class L5rBaseDie extends DiceTerm {
     }
 
     /**
+     * A string representation of the formula expression for this RollTerm, prior to evaluation.
+     * @type {string}
+     * @override
+     */
+    get expression() {
+        return `${this.number}d${this.constructor.DENOMINATION}${this.modifiers.join("")}`;
+    }
+
+    /**
      * Return a standardized representation for the displayed formula associated with this DiceTerm
      * @override
      */
     get formula() {
-        return `${this.number}${this.constructor.DENOMINATION}${this.modifiers.join("")}`;
+        // No flavor
+        return this.expression;
     }
 
     /**
-     * Return the full img string used as the label for each rolled result
-     * @override
+     * Return a string used as the label for each rolled result
+     * @param {DiceTermResult} result     The rolled result
+     * @return {string}                   The result label
      */
-    static getResultLabel(result) {
-        return `<img src="${CONFIG.l5r5e.paths.assets}dices/default/${this.FACES[result].image}.svg" alt="${result}" />`;
+    getResultLabel(result) {
+        return `<img src="${CONFIG.l5r5e.paths.assets}dices/default/${
+            this.constructor.FACES[result.result].image
+        }.svg" alt="${result.result}" />`;
     }
 
     /**

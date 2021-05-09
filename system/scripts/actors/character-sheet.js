@@ -49,8 +49,16 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
         // Split Money
         sheetData.data.data.money = this._zeniToMoney(this.actor.data.data.zeni);
 
-        // split advancements list by rank, and calculate xp spent
-        this._prepareAdvancement(sheetData);
+        // Split school advancements by rank, and calculate xp spent
+        this._prepareSchoolAdvancement(sheetData);
+
+        // Titles
+        this._prepareTitles(sheetData);
+
+        // Others
+        this._prepareOthersAdvancement(sheetData);
+
+        // Total
         sheetData.data.data.xp_saved = Math.floor(
             parseInt(sheetData.data.data.xp_total) - parseInt(sheetData.data.data.xp_spent)
         );
@@ -98,37 +106,54 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
     }
 
     /**
-     * Return the total xp spent and the current total xp spent for this rank
+     * Prepare Titles, and get xp spend
      */
-    _prepareAdvancement(sheetData) {
+    _prepareTitles(sheetData) {
+        // TODO
+    }
+
+    /**
+     * Split the school advancement, calculate the total xp spent and the current total xp spent by rank
+     */
+    _prepareSchoolAdvancement(sheetData) {
         const adv = [];
         sheetData.data.data.xp_spent = 0;
-        sheetData.items.forEach((item) => {
-            if (!["peculiarity", "technique", "advancement"].includes(item.type)) {
-                return;
-            }
+        sheetData.items
+            .filter((item) => ["peculiarity", "technique", "advancement"].includes(item.type))
+            .forEach((item) => {
+                let xp = parseInt(item.data.xp_used) || 0;
+                sheetData.data.data.xp_spent = parseInt(sheetData.data.data.xp_spent) + xp;
 
-            let xp = parseInt(item.data.xp_used) || 0;
-            sheetData.data.data.xp_spent = parseInt(sheetData.data.data.xp_spent) + xp;
+                // if not in curriculum, xp spent /2 for this item
+                if (!item.data.in_curriculum && xp > 0) {
+                    xp = Math.ceil(xp / 2);
+                }
 
-            // if not in curriculum, xp spent /2 for this item
-            if (!item.data.in_curriculum && xp > 0) {
-                xp = Math.ceil(xp / 2);
-            }
-
-            const rank = Math.max(0, item.data.bought_at_rank);
-            if (!adv[rank]) {
-                adv[rank] = {
-                    rank: rank,
-                    spent: 0,
-                    goal: CONFIG.l5r5e.xp.costPerRank[rank] || null,
-                    list: [],
-                };
-            }
-            adv[rank].list.push(item);
-            adv[rank].spent = adv[rank].spent + xp;
-        });
+                const rank = Math.max(0, item.data.bought_at_rank);
+                if (!adv[rank]) {
+                    adv[rank] = {
+                        rank: rank,
+                        spent: 0,
+                        goal: CONFIG.l5r5e.xp.costPerRank[rank] || null,
+                        list: [],
+                    };
+                }
+                adv[rank].list.push(item);
+                adv[rank].spent = adv[rank].spent + xp;
+            });
         sheetData.data.advancementsListByRank = adv;
+    }
+
+    /**
+     * Prepare Bonds, Item Pattern, Signature Scroll and get xp spend
+     */
+    _prepareOthersAdvancement(sheetData) {
+        sheetData.data.advancementsOthers = sheetData.items.filter((item) =>
+            ["bond", "item_pattern", "title", "signature_scroll"].includes(item.type)
+        );
+
+        // Sort by rank desc
+        // sheetData.data.bondsList.sort((a, b) => (b.data.rank || 0) - (a.data.rank || 0));
     }
 
     /**

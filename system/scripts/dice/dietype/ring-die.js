@@ -5,7 +5,7 @@ import { L5rBaseDie } from "./l5r-base-die.js";
  */
 export class RingDie extends L5rBaseDie {
     /** @override */
-    static DENOMINATION = "dr";
+    static DENOMINATION = "r";
 
     static FACES = {
         1: { success: 0, explosive: 0, opportunity: 0, strife: 0, image: "ring_blank" },

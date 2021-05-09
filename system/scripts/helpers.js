@@ -43,12 +43,23 @@ export class HelpersL5r5e {
 
     /**
      * Get Techniques for List / Select
+     * @param types           core|school|title|custom
+     * @param displayInTypes  null|true|false
+     * @returns {{displayInTypes: boolean|*, id: any, label: *, type: *}[]}
      */
-    static getTechniquesList() {
-        return CONFIG.l5r5e.techniques.map((e) => ({
-            id: e,
-            label: game.i18n.localize(`l5r5e.techniques.${e}`),
-        }));
+    static getTechniquesList({ types = [], displayInTypes = null }) {
+        return Array.from(CONFIG.l5r5e.techniques)
+            .filter(
+                ([id, cfg]) =>
+                    (types.length === 0 || types.includes(cfg.type)) &&
+                    (displayInTypes === null || cfg.displayInTypes === displayInTypes)
+            )
+            .map(([id, cfg]) => ({
+                id,
+                label: game.i18n.localize(`l5r5e.techniques.${id}`),
+                type: cfg.type,
+                displayInTypes: cfg.displayInTypes,
+            }));
     }
 
     /**
@@ -128,7 +139,20 @@ export class HelpersL5r5e {
      * Make a temporary item for compendium drag n drop
      */
     static async createItemFromCompendium(data) {
-        if (!["item", "armor", "weapon", "technique", "peculiarity", "property"].includes(data.type)) {
+        if (
+            ![
+                "item",
+                "armor",
+                "weapon",
+                "technique",
+                "peculiarity",
+                "property",
+                "title",
+                "bond",
+                "signature_scroll",
+                "item_pattern",
+            ].includes(data.type)
+        ) {
             return data;
         }
 
@@ -177,7 +201,7 @@ export class HelpersL5r5e {
                     `<i class="${cfg.class}" title="${game.i18n.localize(cfg.label)}"></i>`
                 );
             } else {
-                text = text.replace(new RegExp(`<i class="${cfg.class}" title="[^"]*"></i>`, "gi"), tag);
+                text = text.replace(new RegExp(`<i class="${cfg.class}" title(="[^"]*")?></i>`, "gi"), tag);
             }
         });
         return text;
@@ -209,6 +233,10 @@ export class HelpersL5r5e {
         core.set("Ite", "l5r5e.core-items");
         core.set("Arm", "l5r5e.core-armors");
         core.set("Wea", "l5r5e.core-weapons");
+        core.set("Bon", "l5r5e.core-bonds");
+        core.set("Tit", "l5r5e.core-titles");
+        core.set("Itp", "l5r5e.core-item-patterns");
+        core.set("Sig", "l5r5e.core-signature-scrolls");
         core.set("Dis", "l5r5e.core-peculiarities-distinctions");
         core.set("Pas", "l5r5e.core-peculiarities-passions");
         core.set("Adv", "l5r5e.core-peculiarities-adversities");

@@ -30,7 +30,11 @@
         "TypeTechnique": "Technique",
         "TypeProperty": "Property",
         "TypePeculiarity": "Peculiarity",
-        "TypeAdvancement": "Advancement"
+        "TypeAdvancement": "Advancement",
+        "TypeTitle": "Title",
+        "TypeBond": "Bond",
+        "TypeSignature_scroll": "Signature Scroll",
+        "TypeItem_pattern": "Item Pattern"
     },
     "l5r5e": {
         "global": {
@@ -136,7 +140,6 @@
         "properties": "Properties",
         "weapons": {
             "title": "Weapons",
-            "title_new": "New Weapon",
             "damage": "Damage",
             "range": "Range",
             "stats": "Stats",
@@ -148,20 +151,17 @@
         },
         "armors": {
             "title": "Armors",
-            "title_new": "New Armor",
             "type": "Resistances",
             "physical": "physical",
             "supernatural": "supernatural",
             "equipped": "Equipped"
         },
         "items": {
-            "title": "Items",
-            "title_new": "New Item"
+            "title": "Items"
         },
         "feats": "Feats",
         "techniques": {
             "title": "Techniques",
-            "title_new": "New Technique",
             "not_allowed": "Your character does not use this type of technique.",
             "only_one": "Your character can possess only one of theses technique.",
             "type": "Allowed Techniques",
@@ -175,11 +175,10 @@
             "ninjutsu": "Ninjutsu",
             "school_ability": "School Ability",
             "mastery_ability": "Mastery Ability",
-            "link": "Links",
+            "title_ability": "Title Ability",
             "specificity": "Specificities"
         },
         "peculiarities": {
-            "title_new": "New peculiarity",
             "types": {
                 "distinction": "Distinction",
                 "passion": "Passion",
@@ -212,6 +211,7 @@
             "attitude": "Demeanor:",
             "advantages": "Distinctions and Passions",
             "disadvantages": "Adversities and Anxieties",
+            "bonds": "Bonds",
             "npc": {
                 "advantages": "Advantages",
                 "disadvantages": "Disadvantages"
@@ -322,7 +322,6 @@
         },
         "advancements": {
             "title": "Advancements",
-            "title_new": "New advancement",
             "school_rank": "School rank",
             "school_rank_0": "Bg",
             "total": "Total",
@@ -331,7 +330,10 @@
             "saved": "Saved",
             "total_xp_rank": "Xp spent",
             "curriculum": "In curriculum",
-            "curriculum_validate": "Complete this rank"
+            "curriculum_validate": "Complete this rank",
+            "rarity_modifier": "Rarity modifier",
+            "item_pattern": "Item Patterns",
+            "signature_scroll": "Signature Scrolls"
         },
         "character_types": {
             "character": "Player Character",

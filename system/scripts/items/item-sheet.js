@@ -14,13 +14,14 @@ export class ItemSheetL5r5e extends ItemSheet {
         });
     }
 
-    /** @override */
+    /**
+     * @return {Object|Promise}
+     */
     async getData(options = {}) {
-        const sheetData = super.getData();
+        const sheetData = await super.getData(options);
 
         sheetData.data.dtypes = ["String", "Number", "Boolean"];
         sheetData.data.ringsList = game.l5r5e.HelpersL5r5e.getRingsList();
-        sheetData.data.techniquesList = game.l5r5e.HelpersL5r5e.getTechniquesList();
 
         // Prepare Properties (id/name => object)
         await this._prepareProperties(sheetData);

@@ -20,12 +20,12 @@ export class BaseSheetL5r5e extends ActorSheet {
      * Commons datas
      * @override
      */
-    getData() {
-        const sheetData = super.getData();
+    getData(options) {
+        const sheetData = super.getData(options);
 
         sheetData.data.dtypes = ["String", "Number", "Boolean"];
         sheetData.data.stances = CONFIG.l5r5e.stances;
-        sheetData.data.techniquesList = game.l5r5e.HelpersL5r5e.getTechniquesList();
+        sheetData.data.techniquesList = game.l5r5e.HelpersL5r5e.getTechniquesList({ displayInTypes: true });
 
         // Sort Items by name
         sheetData.items.sort((a, b) => {
@@ -47,13 +47,14 @@ export class BaseSheetL5r5e extends ActorSheet {
      */
     _splitTechniques(sheetData) {
         const out = {};
+        const schoolTechniques = Array.from(CONFIG.l5r5e.techniques)
+            .filter(([id, cfg]) => cfg.type === "school")
+            .map(([id, cfg]) => id);
 
         // Build the list order
-        [...CONFIG.l5r5e.techniques, ...CONFIG.l5r5e.techniques_custom, ...CONFIG.l5r5e.techniques_school].forEach(
-            (tech) => {
-                out[tech] = [];
-            }
-        );
+        Array.from(CONFIG.l5r5e.techniques).forEach(([id, cfg]) => {
+            out[id] = [];
+        });
 
         // Add tech the character knows
         sheetData.items.forEach((item) => {
@@ -64,11 +65,7 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         // Remove unused techs
         Object.keys(out).forEach((tech) => {
-            if (
-                out[tech].length < 1 &&
-                !sheetData.data.data.techniques[tech] &&
-                !CONFIG.l5r5e.techniques_school.includes(tech)
-            ) {
+            if (out[tech].length < 1 && !sheetData.data.data.techniques[tech] && !schoolTechniques.includes(tech)) {
                 delete out[tech];
             }
         });
@@ -145,7 +142,7 @@ export class BaseSheetL5r5e extends ActorSheet {
 
     /**
      * Handle dropped data on the Actor sheet
-     * @param {Event} event
+     * @param {DragEvent} event
      */
     async _onDrop(event) {
         // *** Everything below here is only needed if the sheet is editable ***
@@ -158,7 +155,18 @@ export class BaseSheetL5r5e extends ActorSheet {
         if (
             !item ||
             item.documentName !== "Item" ||
-            !["item", "armor", "weapon", "technique", "peculiarity", "advancement"].includes(item.data.type)
+            ![
+                "item",
+                "armor",
+                "weapon",
+                "technique",
+                "peculiarity",
+                "advancement",
+                "title",
+                "bond",
+                "signature_scroll",
+                "item_pattern",
+            ].includes(item.data.type)
         ) {
             return;
         }
@@ -166,7 +174,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         // Dropped a item with same "id" as one owned, add qte instead
         if (item.data.data.quantity && this.actor.data.items) {
             const tmpItem = this.actor.data.items.find((e) => e.name === item.name && e.type === item.type);
-            if (tmpItem && this._modifyQuantity(tmpItem._id, 1)) {
+            if (tmpItem && this._modifyQuantity(tmpItem.id, 1)) {
                 return;
             }
         }
@@ -174,6 +182,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         // Item subtype specific
         switch (item.data.type) {
             case "advancement": // no break
+            case "bond": // no break
             case "peculiarity":
                 // Modify the bought at rank to the current actor rank
                 if (this.actor.data.data.identity?.school_rank) {
@@ -183,7 +192,7 @@ export class BaseSheetL5r5e extends ActorSheet {
 
             case "technique":
                 // School_ability and mastery_ability, allow only 1 per type
-                if (CONFIG.l5r5e.techniques_school.includes(item.data.data.technique_type)) {
+                if (CONFIG.l5r5e.techniques.get(item.data.data.technique_type)?.type === "school") {
                     if (
                         Array.from(this.actor.items).some(
                             (e) =>
@@ -316,12 +325,16 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         const type = $(event.currentTarget).data("item-type");
         const titles = {
-            item: "l5r5e.items.title_new",
-            armor: "l5r5e.armors.title_new",
-            weapon: "l5r5e.weapons.title_new",
-            technique: "l5r5e.techniques.title_new",
-            peculiarity: "l5r5e.peculiarities.title_new",
-            advancement: "l5r5e.advancements.title_new",
+            item: "ITEM.TypeItem",
+            armor: "ITEM.TypeArmor",
+            weapon: "ITEM.TypeWeapon",
+            technique: "ITEM.TypeTechnique",
+            peculiarity: "ITEM.TypePeculiarity",
+            advancement: "ITEM.TypeAdvancement",
+            title: "ITEM.TypeTitle",
+            bond: "ITEM.TypeBond",
+            item_pattern: "ITEM.TypeItem_pattern",
+            signature_scroll: "ITEM.TypeSignature_scroll",
         };
         const created = await this.actor.createEmbeddedDocuments("Item", [
             {
@@ -333,9 +346,11 @@ export class BaseSheetL5r5e extends ActorSheet {
         const item = this.actor.items.get(created[0].id);
 
         // assign current school rank to the new adv/tech
-        if (this.actor.data.data.identity?.school_rank && ["advancement", "technique"].includes(item.data.type)) {
-            item.data.data.rank = this.actor.data.data.identity.school_rank;
+        if (this.actor.data.data.identity?.school_rank) {
             item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
+            if (["advancement", "technique"].includes(item.data.type)) {
+                item.data.data.rank = this.actor.data.data.identity.school_rank;
+            }
         }
 
         switch (item.data.type) {
@@ -349,13 +364,7 @@ export class BaseSheetL5r5e extends ActorSheet {
             case "technique": {
                 // If technique, select the current type
                 const techType = $(event.currentTarget).data("tech-type");
-                if (
-                    [
-                        ...CONFIG.l5r5e.techniques,
-                        ...CONFIG.l5r5e.techniques_school,
-                        ...CONFIG.l5r5e.techniques_custom,
-                    ].includes(techType)
-                ) {
+                if (CONFIG.l5r5e.techniques.get(techType)) {
                     item.data.data.technique_type = techType;
                     item.data.img = `${CONFIG.l5r5e.paths.assets}icons/techs/${techType}.svg`;
                 }
@@ -393,7 +402,7 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         // Remove 1 qty if possible
         const tmpItem = this.actor.items.get(itemId);
-        if (tmpItem && tmpItem.data.data.quantity > 1 && this._modifyQuantity(tmpItem._id, -1)) {
+        if (tmpItem && tmpItem.data.data.quantity > 1 && this._modifyQuantity(tmpItem.id, -1)) {
             return;
         }
 

@@ -21,8 +21,8 @@ export class PeculiaritySheetL5r5e extends ItemSheetL5r5e {
         });
     }
 
-    async getData() {
-        const sheetData = await super.getData();
+    async getData(options = {}) {
+        const sheetData = await super.getData(options);
 
         sheetData.data.subTypesList = PeculiaritySheetL5r5e.types.map((e) => ({
             id: e,

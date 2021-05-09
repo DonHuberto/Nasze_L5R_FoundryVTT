@@ -1,0 +1,69 @@
+{
+    "label": "Titres",
+    "mapping": {
+        "description": "data.description",
+        "book_reference": "data.book_reference"
+    },
+    "entries": [
+        {
+            "id": "Emerald Magistrate",
+            "name": "Magistrat d’Émeraude",
+            "description": "",
+            "book_reference": "Livre de Règles p.305"
+        },
+        {
+            "id": "Castellan",
+            "name": "Châtelain",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.128"
+        },
+        {
+            "id": "Covert Agent",
+            "name": "Agent infiltré",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.128"
+        },
+        {
+            "id": "Dreaded Enforcer",
+            "name": "Homme de main redouté",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.129"
+        },
+        {
+            "id": "Esteemed Negotiator",
+            "name": "Négociateur estimé",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.129"
+        },
+        {
+            "id": "Kenshinzen",
+            "name": "Kenshinzen",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.130"
+        },
+        {
+            "id": "Kyuden Asako Shieldbearer",
+            "name": "Porteur de bouclier de Kyūden Asako",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.130"
+        },
+        {
+            "id": "Master Artisan",
+            "name": "Maître artisan",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.130"
+        },
+        {
+            "id": "Winter Court Champion",
+            "name": "Champion de la Cour d'Hiver",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.131"
+        },
+        {
+            "id": "Seven fold Palace Acolyte",
+            "name": "Etudiant au palais des Sept Plis",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.131"
+        }
+    ]
+}

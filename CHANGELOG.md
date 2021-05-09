@@ -2,12 +2,17 @@
 
 ## 1.3.0 - Foundry 0.8.x compatibility
 - Updated the System to the new version of Foundry VTT (a lot of things broke).
-- RnK button is now black in chat if no actions left in roll.
 - NPC can now have strengths/weaknesses with all rings.
+- Added "Title, Bond, Signature Scroll and Item Pattern":
+  - The item types.
+  - Theirs compendiums entries.
+  - A new list in experience tab to not mess with school cursus.
 - Added an optional "Specificity" technique type to serve as a catch-all (by request).
-- Fix rnkMessage not passing on actor object for NPCs (thanks to Bragma).
 - Added Mantis Clan compendium entries
-- Fixed the "Crescent Moon Style" technique rank from 4 to 2
+- Fix : rnkMessage not passing on actor object for NPCs (thanks to Bragma).
+- Fix : The "Crescent Moon Style" technique rank from 4 to 2
+- QoL : RnK button is now black in chat if no actions are left in roll.
+- QoL : Added "(x Max)" display in RnK picker for max number of dice to keep (thanks to Bragma).
 
 ## 1.2.1 - Praised be Firefox
 - Fix dice swap on firefox that overflowed on the top and bottom of the RnK dialog

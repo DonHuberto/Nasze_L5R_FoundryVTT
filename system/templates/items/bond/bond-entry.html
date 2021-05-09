@@ -1,0 +1,18 @@
+<li class="item bond flexcol toggle-on-click" data-toggle="item-description-{{bond.id}}">
+    <ul class="item-header bond-controls">
+        <li class="item-img"><img src="{{bond.img}}" title="{{bond.name}}" width="32px" height="32px"/></li>
+        <li class="item-name">{{bond.name}}</li>
+        {{#if editable}}
+            <li data-item-id="{{bond.id}}" class="item-control item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
+            <li data-item-id="{{bond.id}}" class="item-control item-delete" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></li>
+        {{/if}}
+    </ul>
+    {{#if bond.data.data.bond_type}}
+        <ul class="item-properties">
+            <li>{{bond.data.data.bond_type}} {{bond.data.data.rank}}</li>
+        </ul>
+    {{/if}}
+    {{#if bond.data.data.description}}
+    <div class="item-description item-description-{{bond.id}}">{{{bond.data.data.description}}}</div>
+    {{/if}}
+</li>

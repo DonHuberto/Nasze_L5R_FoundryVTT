@@ -5,8 +5,8 @@ export class RollL5r5e extends Roll {
     static CHAT_TEMPLATE = "dice/chat-roll.html";
     static TOOLTIP_TEMPLATE = "dice/tooltip.html";
 
-    constructor(...args) {
-        super(...args);
+    constructor(formula, data = {}, options = {}) {
+        super(formula, data, options);
 
         this.l5r5e = {
             stance: "",
@@ -37,7 +37,7 @@ export class RollL5r5e extends Roll {
         };
 
         // Parse flavor for stance and skillId
-        const flavors = Array.from(args[0].matchAll(/\d+d(s|r)\[([^\]]+)\]/gmu));
+        const flavors = Array.from(formula.matchAll(/\d+d(s|r)\[([^\]]+)\]/gmu));
         flavors.forEach((res) => {
             if (res[1] === "r" && !!res[2] && this.l5r5e.stance === "") {
                 this.l5r5e.stance = res[2];
@@ -160,6 +160,8 @@ export class RollL5r5e extends Roll {
      * @override
      */
     get total() {
+        //return 0; // todo Bug : Si 0 tout le temps -> pas de pb pour le chat. mais plus d'inline :'(
+
         if (!this._evaluated) {
             return null;
         }
@@ -205,7 +207,7 @@ export class RollL5r5e extends Roll {
                 display: !isL5rDie || contexte?.from !== "render",
                 rolls: term.results.map((r) => {
                     return {
-                        result: cls.getResultLabel(r.result),
+                        result: term.getResultLabel(r),
                         classes: [
                             cls.name.toLowerCase(),
                             "d" + term.faces,
@@ -273,7 +275,7 @@ export class RollL5r5e extends Roll {
                               diceTypeL5r: isL5rDie,
                               rolls: term.results.map((r) => {
                                   return {
-                                      result: term.constructor.getResultLabel(r.result),
+                                      result: term.getResultLabel(r),
                                       classes: [
                                           isL5rDie && r.swapped ? "swapped" : null,
                                           r.rerolled ? "rerolled" : null,
@@ -290,6 +292,14 @@ export class RollL5r5e extends Roll {
 
         // Render the roll display template
         return renderTemplate(chatOptions.template, chatData);
+    }
+
+    /**
+     * Render the HTML for the ChatMessage which should be added to the log
+     * @return {Promise<jQuery>}
+     */
+    async getHTML() {
+        console.log(" --------- getHTML");
     }
 
     /**
