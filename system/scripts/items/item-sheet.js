@@ -39,7 +39,7 @@ export class ItemSheetL5r5e extends ItemSheet {
         if (Array.isArray(sheetData.data.data.properties)) {
             const props = [];
             for (const property of sheetData.data.data.properties) {
-                const gameProp = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack(property.id, "Item");
+                const gameProp = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack({ id: property.id, type: "Item" });
                 if (gameProp) {
                     sheetData.data.propertiesList.push(gameProp);
                     props.push({ id: gameProp.id, name: gameProp.name });
@@ -72,6 +72,9 @@ export class ItemSheetL5r5e extends ItemSheet {
      */
     async _updateObject(event, formData) {
         if (formData["data.description"]) {
+            // Base links (Journal, compendiums...)
+            formData["data.description"] = TextEditor.enrichHTML(formData["data.description"]);
+            // L5R Symbols
             formData["data.description"] = game.l5r5e.HelpersL5r5e.convertSymbols(formData["data.description"], true);
         }
         return super._updateObject(event, formData);
@@ -86,8 +89,6 @@ export class ItemSheetL5r5e extends ItemSheet {
 
         // Toggle
         html.find(".toggle-on-click").on("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
             const elmt = $(event.currentTarget).data("toggle");
             const tgt = html.find("." + elmt);
             tgt.toggleClass("toggle-active");
@@ -135,8 +136,18 @@ export class ItemSheetL5r5e extends ItemSheet {
         }
 
         // Check item type and subtype
-        const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
-        if (!item || item.documentName !== "Item" || item.data.type !== "property" || this.item.type === "property") {
+        let item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
+        if (!item || item.documentName !== "Item" || this.item.type === "property") {
+            return;
+        }
+
+        // Specific ItemPattern's drop, get the associated props instead
+        if (item.data.type === "item_pattern" && item.data.flags.l5r5e?.linkedPropertyId) {
+            item = await game.packs.get("l5r5e.core-properties").getDocument(item.data.flags.l5r5e.linkedPropertyId);
+        }
+
+        // Final object has to be a property
+        if (item.data.type !== "property") {
             return;
         }
 

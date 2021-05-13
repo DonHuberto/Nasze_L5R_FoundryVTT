@@ -47,25 +47,7 @@
 
         {{!-- Inventory Tab --}}
         <article class="tab inventory" data-group="primary" data-tab="inventory">
-            <fieldset class="money money-wrapper">
-                <legend class="section-header">{{localize 'l5r5e.money.title'}}</legend>
-                <label>
-                    {{localize 'l5r5e.money.koku'}}
-                    <input name="data.money.koku" type="number" value="{{data.data.money.koku}}" data-dtype="Number" min="0" placeholder="0"/>
-                </label>
-                <label>
-                    {{localize 'l5r5e.money.bu'}}
-                    <input name="data.money.bu" type="number" value="{{data.data.money.bu}}" data-dtype="Number" min="0" placeholder="0"/>
-                </label>
-                <label>
-                    {{localize 'l5r5e.money.zeni'}}
-                    <input name="data.money.zeni" type="number" value="{{data.data.money.zeni}}" data-dtype="Number" min="0" placeholder="0"/>
-                </label>
-            </fieldset>
-            <fieldset class="items-wrapper">
-                <legend>{{localize 'l5r5e.equipment'}}</legend>
-                {{> 'systems/l5r5e/templates/items/item/items.html'}}
-            </fieldset>
+            {{> 'systems/l5r5e/templates/actors/character/inventory.html'}}
         </article>
 
         {{!-- Experience Tab --}}

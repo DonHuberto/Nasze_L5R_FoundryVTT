@@ -63,12 +63,20 @@ export class ActorL5r5e extends Actor {
      * Entity-specific actions that should occur when the Entity is updated
      * @override
      */
-    update(data, options = {}) {
+    async update(data = {}, context = {}) {
+        // Need a _id
+        if (!data["_id"]) {
+            data["_id"] = this.id;
+        }
+
         // Fix for token image unliked from character... dunno why
         if (data.img) {
             data["token.img"] = data.img;
         }
-        return super.update(data, options);
+
+        // Now using updateDocuments
+        data = data instanceof Array ? data : [data];
+        return Actor.updateDocuments(data, context);
     }
 
     /** @override */

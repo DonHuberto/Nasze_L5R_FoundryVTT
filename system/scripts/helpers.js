@@ -71,74 +71,80 @@ export class HelpersL5r5e {
             return null;
         }
         const data = JSON.parse(json);
-        return await HelpersL5r5e.getObjectGameOrPack(data.id, data.type, data.pack);
+        return await HelpersL5r5e.getObjectGameOrPack(data);
     }
 
     /**
      * Return the object from Game or Pack by his ID, or null if not found
      */
-    static async getObjectGameOrPack(id, type, pack = null) {
+    static async getObjectGameOrPack({ id, type, data = null, pack = null }) {
+        let document = null;
+
         try {
-            // If no pack passed, but it's a core item, we know the pack to get it
-            if (!pack && id.substr(0, 7) === "L5RCore") {
-                pack = HelpersL5r5e.getPackNameForCoreItem(id);
+            // Direct Object
+            if (data?._id) {
+                document = HelpersL5r5e.createItemFromCompendium(data);
+            } else if (!id || !type) {
+                return null;
             }
 
             // Named pack
-            if (pack) {
-                const data = await game.packs.get(pack).getDocument(id);
-                if (data) {
-                    return HelpersL5r5e.createItemFromCompendium(data);
+            if (!document) {
+                // If no pack passed, but it's a core item, we know the pack to get it
+                if (!pack && id.substr(0, 7) === "L5RCore") {
+                    pack = HelpersL5r5e.getPackNameForCoreItem(id);
+                }
+
+                if (pack) {
+                    const data = await game.packs.get(pack).getDocument(id);
+                    if (data) {
+                        document = HelpersL5r5e.createItemFromCompendium(data);
+                    }
                 }
             }
 
             // Game object
-            let item = null;
-            switch (type) {
-                case "Actor":
-                    item = game.actors.get(id);
-                    break;
-
-                case "Item":
-                    item = game.items.get(id);
-                    break;
-
-                case "JournalEntry":
-                    item = game.journal.get(id);
-                    break;
-
-                case "Macro":
-                    item = game.macros.get(id);
-                    break;
-            }
-            if (item) {
-                await HelpersL5r5e.refreshItemProperties(item);
-                return item;
+            if (!document) {
+                document = CONFIG[type].collection.instance.get(id);
             }
 
             // Unknown pack object, iterate all packs
-            for (const comp of game.packs) {
-                // TODO Bug with babele if "comp.getDocument(id)" return null...
-                const babeleFix = (await comp.getIndex()).some((e) => e.id === id);
-                if (!babeleFix) {
-                    continue;
+            if (!document) {
+                for (const comp of game.packs) {
+                    // TODO Bug with babele if "comp.getDocument(id)" return null...
+                    const babeleFix = (await comp.getIndex()).some((e) => e.id === id);
+                    if (!babeleFix) {
+                        continue;
+                    }
+
+                    const data = await comp.getDocument(id);
+                    if (data) {
+                        document = HelpersL5r5e.createItemFromCompendium(data);
+                    }
+                }
+            }
+
+            // Final
+            if (document) {
+                // Flag the source GUID
+                if (document.uuid && !document.getFlag("core", "sourceId")) {
+                    document.data.update({ "flags.core.sourceId": document.uuid });
                 }
 
-                const data = await comp.getDocument(id);
-                if (data) {
-                    return HelpersL5r5e.createItemFromCompendium(data);
-                }
+                await HelpersL5r5e.refreshItemProperties(document);
+                document.prepareData();
             }
         } catch (err) {
             console.warn(err);
         }
-        return null;
+        console.log(" ***** getObjectGameOrPack", document);
+        return document;
     }
 
     /**
      * Make a temporary item for compendium drag n drop
      */
-    static async createItemFromCompendium(data) {
+    static createItemFromCompendium(data) {
         if (
             ![
                 "item",
@@ -156,31 +162,24 @@ export class HelpersL5r5e {
             return data;
         }
 
-        let item;
+        let document;
         if (data instanceof ItemL5r5e) {
-            item = data;
-        } else if (game.user.hasPermission("ACTOR_CREATE")) {
-            // Fail if a player do not have the right to create object (even if this is a temporary)
-            item = await ItemL5r5e.create(data, { temporary: true });
-
-            // reinject compendium id (required for properties)
-            item.data.id = data.id;
+            document = data;
         } else {
             // Quick object
-            item = new ItemL5r5e(data);
+            document = new ItemL5r5e(data);
         }
-        await HelpersL5r5e.refreshItemProperties(item);
-        return item;
+        return document;
     }
 
     /**
      * Babele and properties specific
      */
-    static async refreshItemProperties(item) {
-        if (item.data.data.properties && typeof Babele !== "undefined") {
-            item.data.data.properties = await Promise.all(
-                item.data.data.properties.map(async (property) => {
-                    const gameProp = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack(property.id, "Item");
+    static async refreshItemProperties(document) {
+        if (document.data.data.properties && typeof Babele !== "undefined") {
+            document.data.data.properties = await Promise.all(
+                document.data.data.properties.map(async (property) => {
+                    const gameProp = await HelpersL5r5e.getObjectGameOrPack({ id: property.id, type: "Item" });
                     if (gameProp) {
                         return { id: gameProp.id, name: gameProp.name };
                     }
@@ -217,7 +216,7 @@ export class HelpersL5r5e {
     /**
      * Get the associated pack for a core item (time saving)
      */
-    static getPackNameForCoreItem(itemId) {
+    static getPackNameForCoreItem(documentId) {
         const core = new Map();
         core.set("Pro", "l5r5e.core-properties");
         core.set("Kat", "l5r5e.core-techniques-kata");
@@ -241,7 +240,7 @@ export class HelpersL5r5e {
         core.set("Pas", "l5r5e.core-peculiarities-passions");
         core.set("Adv", "l5r5e.core-peculiarities-adversities");
         core.set("Anx", "l5r5e.core-peculiarities-anxieties");
-        return core.get(itemId.replace(/L5RCore(\w{3})\d+/gi, "$1"));
+        return core.get(documentId.replace(/L5RCore(\w{3})\d+/gi, "$1"));
     }
 
     /**

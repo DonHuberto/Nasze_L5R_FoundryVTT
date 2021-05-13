@@ -78,6 +78,7 @@ Hooks.once("init", async () => {
         RingDie,
         AbilityDie,
         HelpersL5r5e,
+        ItemL5r5e,
         RollL5r5e,
         DicePickerDialog,
         RollnKeepDialog,

@@ -151,7 +151,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         }
 
         // Check item type and subtype
-        const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
+        let item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
         if (
             !item ||
             item.documentName !== "Item" ||
@@ -170,9 +170,10 @@ export class BaseSheetL5r5e extends ActorSheet {
         ) {
             return;
         }
+        item = item.toJSON();
 
         // Dropped a item with same "id" as one owned, add qte instead
-        if (item.data.data.quantity && this.actor.data.items) {
+        if (item.data.quantity && this.actor.data.items) {
             const tmpItem = this.actor.data.items.find((e) => e.name === item.name && e.type === item.type);
             if (tmpItem && this._modifyQuantity(tmpItem.id, 1)) {
                 return;
@@ -180,23 +181,24 @@ export class BaseSheetL5r5e extends ActorSheet {
         }
 
         // Item subtype specific
-        switch (item.data.type) {
-            case "advancement": // no break
+        switch (item.type) {
             case "bond": // no break
-            case "peculiarity":
+            case "advancement": // no break
+            case "peculiarity": // no break
+            case "item_pattern": // no break
+            case "signature_scroll":
                 // Modify the bought at rank to the current actor rank
                 if (this.actor.data.data.identity?.school_rank) {
-                    item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
+                    item.data.bought_at_rank = this.actor.data.data.identity.school_rank;
                 }
                 break;
 
             case "technique":
                 // School_ability and mastery_ability, allow only 1 per type
-                if (CONFIG.l5r5e.techniques.get(item.data.data.technique_type)?.type === "school") {
+                if (CONFIG.l5r5e.techniques.get(item.data.technique_type)?.type === "school") {
                     if (
                         Array.from(this.actor.items).some(
-                            (e) =>
-                                e.type === "technique" && e.data.data.technique_type === item.data.data.technique_type
+                            (e) => e.type === "technique" && e.data.data.technique_type === item.data.technique_type
                         )
                     ) {
                         ui.notifications.info(game.i18n.localize("l5r5e.techniques.only_one"));
@@ -204,25 +206,24 @@ export class BaseSheetL5r5e extends ActorSheet {
                     }
 
                     // No cost for schools
-                    item.data.data.xp_cost = 0;
-                    item.data.data.xp_used = 0;
-                    item.data.data.in_curriculum = true;
+                    item.data.xp_cost = 0;
+                    item.data.xp_used = 0;
+                    item.data.in_curriculum = true;
                 } else {
                     // Check if technique is allowed for this character
-                    if (!game.user.isGM && !this.actor.data.data.techniques[item.data.data.technique_type]) {
+                    if (!game.user.isGM && !this.actor.data.data.techniques[item.data.technique_type]) {
                         ui.notifications.info(game.i18n.localize("l5r5e.techniques.not_allowed"));
                         return;
                     }
 
                     // Verify cost
-                    item.data.data.xp_cost =
-                        item.data.data.xp_cost > 0 ? item.data.data.xp_cost : CONFIG.l5r5e.xp.techniqueCost;
-                    item.data.data.xp_used = item.data.data.xp_cost;
+                    item.data.xp_cost = item.data.xp_cost > 0 ? item.data.xp_cost : CONFIG.l5r5e.xp.techniqueCost;
+                    item.data.xp_used = item.data.xp_cost;
                 }
 
                 // Modify the bought at rank to the current actor rank
                 if (this.actor.data.data.identity?.school_rank) {
-                    item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
+                    item.data.bought_at_rank = this.actor.data.data.identity.school_rank;
                 }
                 break;
         }
@@ -232,7 +233,8 @@ export class BaseSheetL5r5e extends ActorSheet {
         if (allowed === false) {
             return;
         }
-        return this._onDropItemCreate(item.toJSON());
+
+        return this._onDropItemCreate(item);
     }
 
     /**
@@ -244,8 +246,6 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         // Toggle
         html.find(".toggle-on-click").on("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
             const elmt = $(event.currentTarget).data("toggle");
             const tgt = html.find("." + elmt);
             tgt.toggleClass("toggle-active");

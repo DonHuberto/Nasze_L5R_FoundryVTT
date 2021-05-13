@@ -3,10 +3,15 @@
         <img class="profile-img" src="{{document.img}}" data-edit="img" title="{{document.name}}"/>
         <h1 class="charname"><input name="name" type="text" value="{{document.name}}" placeholder="Name"/></h1>
     </header>
+    {{!-- Sheet Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item active" data-tab="attributes">{{ localize "l5r5e.description" }}</a>
+        <a class="item" data-tab="experience">{{ localize "l5r5e.advancements.title" }}</a>
+    </nav>
     {{!-- Sheet Body --}}
     <section class="sheet-body">
         {{!-- Attributes Tab --}}
-        <article class="attributes" data-group="primary" data-tab="attributes">
+        <article class="tab attributes" data-group="primary" data-tab="attributes">
             <label class="attribute">
                 {{ localize 'l5r5e.advancements.cost' }}
                 <input class="select-on-focus" type="number" name="data.xp_cost" value="{{document.data.data.xp_cost}}" data-dtype="Number" min="0" placeholder="0"/>
@@ -26,7 +31,30 @@
         </article>
 
         {{!-- Embbed advancements --}}
-        {{!-- TODO --}}
+        <article class="tab experience" data-group="primary" data-tab="experience">
+            {{!-- TODO --}}
+            {{!-- Others progession (does not count in school xp) --}}
+            <fieldset class="xp-spent xp-spent-body">
+                <legend class="tools">{{localize 'l5r5e.advancements.title'}} <a data-item-type="advancement-others" class="advancement-others-control item-add" title="{{localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a></legend>
+                <table>
+                    <thead class="flex">
+                    <tr class="flexrow row">
+                        <th class="name">{{localize 'l5r5e.name'}}</th>
+                        <th class="xp">{{localize 'l5r5e.advancements.spent'}}</th>
+                        <th class="rank">{{localize 'l5r5e.rank'}}</th>
+                        {{#if editable}}
+                            <th class="actions"></th>
+                        {{/if}}
+                    </tr>
+                    </thead>
+                    <tbody class="flex">
+                    {{#each data.advancementsOthers as |advancement advancementId|}}
+                        {{> 'systems/l5r5e/templates/actors/character/advancement-others.html' advancement=advancement editable=../options.editable}}
+                    {{/each}}
+                    </tbody>
+                </table>
+            </fieldset>
+        </article>
 
         {{!-- Descr + Page ref --}}
         {{> 'systems/l5r5e/templates/items/item/item-infos.html'}}

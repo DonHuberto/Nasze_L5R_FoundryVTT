@@ -160,31 +160,31 @@ export class RollL5r5e extends Roll {
      * @override
      */
     get total() {
-        //return 0; // todo Bug : Si 0 tout le temps -> pas de pb pour le chat. mais plus d'inline :'(
+        return null; // TODO Bug 0.8.x : If not returning a null/0 value the chat ignore the template. If i do this, no inline but "/r 1dr" work fine :'(
 
-        if (!this._evaluated) {
-            return null;
-        }
-
-        let total = "";
-
-        // Regular dices total (eg 6)
-        if (this.l5r5e.dicesTypes.std) {
-            total = this._total;
-        }
-
-        // Add L5R summary
-        if (this.l5r5e.dicesTypes.l5r) {
-            const summary = this.l5r5e.summary;
-            total +=
-                (this.l5r5e.dicesTypes.std ? " | " : "") +
-                ["success", "explosive", "opportunity", "strife"]
-                    .map((props) => (summary[props] > 0 ? `<i class="i_${props}"></i> ${summary[props]}` : null))
-                    .filter((c) => !!c)
-                    .join(" | ");
-        }
-
-        return total;
+        // if (!this._evaluated) {
+        //     return null;
+        // }
+        //
+        // let total = "";
+        //
+        // // Regular dices total (eg 6)
+        // if (this.l5r5e.dicesTypes.std) {
+        //     total = this._total;
+        // }
+        //
+        // // Add L5R summary
+        // if (this.l5r5e.dicesTypes.l5r) {
+        //     const summary = this.l5r5e.summary;
+        //     total +=
+        //         (this.l5r5e.dicesTypes.std ? " | " : "") +
+        //         ["success", "explosive", "opportunity", "strife"]
+        //             .map((props) => (summary[props] > 0 ? `<i class="i_${props}"></i> ${summary[props]}` : null))
+        //             .filter((c) => !!c)
+        //             .join(" | ");
+        // }
+        //
+        // return total;
     }
 
     /**

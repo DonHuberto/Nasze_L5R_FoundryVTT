@@ -161,8 +161,6 @@ export class TwentyQuestionsDialog extends FormApplication {
 
         // Toggle
         html.find(".toggle-on-click").on("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
             const elmt = $(event.currentTarget).data("toggle");
             const tgt = html.find("." + elmt);
             tgt.toggleClass("toggle-active");
@@ -382,7 +380,7 @@ export class TwentyQuestionsDialog extends FormApplication {
                 if (!id) {
                     continue;
                 }
-                const item = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack(id, "Item");
+                const item = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack({ id: id, type: "Item" });
                 if (!item) {
                     continue;
                 }
