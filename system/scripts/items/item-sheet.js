@@ -142,8 +142,11 @@ export class ItemSheetL5r5e extends ItemSheet {
         }
 
         // Specific ItemPattern's drop, get the associated props instead
-        if (item.data.type === "item_pattern" && item.data.flags.l5r5e?.linkedPropertyId) {
-            item = await game.packs.get("l5r5e.core-properties").getDocument(item.data.flags.l5r5e.linkedPropertyId);
+        if (item.data.type === "item_pattern" && item.data.data.linked_property_id) {
+            item = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack({
+                id: item.data.data.linked_property_id,
+                type: "Item",
+            });
         }
 
         // Final object has to be a property
@@ -179,6 +182,8 @@ export class ItemSheetL5r5e extends ItemSheet {
 
     /**
      * Delete a property from the current item
+     * @param {Event} event
+     * @return {Promise<void>}
      * @private
      */
     _deleteProperty(event) {
@@ -213,5 +218,44 @@ export class ItemSheetL5r5e extends ItemSheet {
             game.i18n.format("l5r5e.global.delete_confirm", { name: tmpProps.name }),
             callback
         );
+    }
+
+    /**
+     * Add a embed item
+     * @param event
+     * @private
+     */
+    _addSubItem(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        const itemId = $(event.currentTarget).data("item-id");
+        console.log("TODO _addSubItem", itemId); // TODO _addSubItem
+    }
+
+    /**
+     * Add a embed item
+     * @param event
+     * @private
+     */
+    _editSubItem(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        const itemId = $(event.currentTarget).data("item-id");
+        const item = this.document.items.get(itemId);
+        if (item) {
+            item.sheet.render(true);
+        }
+    }
+
+    /**
+     * Delete a embed item
+     * @param event
+     * @private
+     */
+    _deleteSubItem(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        const itemId = $(event.currentTarget).data("item-id");
+        this.document.deleteEmbedItem(itemId);
     }
 }

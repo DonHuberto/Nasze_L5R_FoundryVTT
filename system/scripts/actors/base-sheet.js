@@ -324,6 +324,10 @@ export class BaseSheetL5r5e extends ActorSheet {
         event.stopPropagation();
 
         const type = $(event.currentTarget).data("item-type");
+        if (!type) {
+            return;
+        }
+
         const titles = {
             item: "ITEM.TypeItem",
             armor: "ITEM.TypeArmor",
@@ -336,6 +340,10 @@ export class BaseSheetL5r5e extends ActorSheet {
             item_pattern: "ITEM.TypeItem_pattern",
             signature_scroll: "ITEM.TypeSignature_scroll",
         };
+        if (!titles[type]) {
+            return;
+        }
+
         const created = await this.actor.createEmbeddedDocuments("Item", [
             {
                 name: game.i18n.localize(titles[type]),
@@ -343,6 +351,9 @@ export class BaseSheetL5r5e extends ActorSheet {
                 img: `${CONFIG.l5r5e.paths.assets}icons/items/${type}.svg`,
             },
         ]);
+        if (created?.length > 0) {
+            return;
+        }
         const item = this.actor.items.get(created[0].id);
 
         // assign current school rank to the new adv/tech
@@ -385,7 +396,14 @@ export class BaseSheetL5r5e extends ActorSheet {
         event.stopPropagation();
 
         const itemId = $(event.currentTarget).data("item-id");
+        if (!itemId) {
+            return;
+        }
+
         const item = this.actor.items.get(itemId);
+        if (!item) {
+            return;
+        }
         item.sheet.render(true);
     }
 
@@ -399,6 +417,9 @@ export class BaseSheetL5r5e extends ActorSheet {
         event.stopPropagation();
 
         const itemId = $(event.currentTarget).data("item-id");
+        if (!itemId) {
+            return;
+        }
 
         // Remove 1 qty if possible
         const tmpItem = this.actor.items.get(itemId);

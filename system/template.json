@@ -155,7 +155,9 @@
         "templates": {
             "basics": {
                 "book_reference": "",
-                "description": ""
+                "description": "",
+                "parent_id": null,
+                "items": []
             },
             "advancement": {
                 "in_curriculum": false,
@@ -214,7 +216,8 @@
         },
         "title": {
             "templates": ["basics", "advancement"],
-            "xp_cost": 3
+            "xp_cost": 3,
+            "advancements": []
         },
         "bond": {
             "templates": ["basics", "advancement"],
@@ -223,6 +226,7 @@
         },
         "item_pattern": {
             "templates": ["basics", "advancement"],
+            "linked_property_id": null,
             "rarity_modifier": "",
             "xp_cost": 3
         },

@@ -334,7 +334,7 @@ export class TwentyQuestionsDialog extends FormApplication {
 
         if (this.object.data.step13.advantage.length > 0) {
             formData["step13.skill"] = "none";
-            setProperty(this.object.data, "step13.disadvantage", []);
+            foundry.utils.setProperty(this.object.data, "step13.disadvantage", []);
         }
 
         // Update 20Q object data
@@ -364,14 +364,14 @@ export class TwentyQuestionsDialog extends FormApplication {
         this.cache = {};
         for (const stepName of TwentyQuestions.itemsList) {
             // Check if current step value is a array
-            let step = getProperty(this.object.data, stepName);
+            let step = foundry.utils.getProperty(this.object.data, stepName);
             if (!step || !Array.isArray(step)) {
                 step = [];
             }
 
             // Init cache if not exist
-            if (!hasProperty(this.cache, stepName)) {
-                setProperty(this.cache, stepName, []);
+            if (!foundry.utils.hasProperty(this.cache, stepName)) {
+                foundry.utils.setProperty(this.cache, stepName, []);
             }
 
             // Get linked Item, and store it in cache (delete null value and old items)
@@ -385,9 +385,9 @@ export class TwentyQuestionsDialog extends FormApplication {
                     continue;
                 }
                 newStep.push(id);
-                getProperty(this.cache, stepName).push(item);
+                foundry.utils.getProperty(this.cache, stepName).push(item);
             }
-            setProperty(this.object.data, stepName, newStep);
+            foundry.utils.setProperty(this.object.data, stepName, newStep);
         }
     }
 
@@ -400,7 +400,7 @@ export class TwentyQuestionsDialog extends FormApplication {
         roll.actor = this._actor;
 
         await roll.roll();
-        setProperty(this.object.data, stepName, roll.result);
+        foundry.utils.setProperty(this.object.data, stepName, roll.result);
         return roll.toMessage({ flavor: flavor });
     }
 
@@ -410,7 +410,7 @@ export class TwentyQuestionsDialog extends FormApplication {
      */
     _addOwnedItem(item, stepName) {
         // Add to Step (uniq id only)
-        let step = getProperty(this.object.data, stepName);
+        let step = foundry.utils.getProperty(this.object.data, stepName);
         if (!step) {
             step = [];
         }
@@ -420,7 +420,7 @@ export class TwentyQuestionsDialog extends FormApplication {
         step.push(item.id);
 
         // Add to cache
-        getProperty(this.cache, stepName).push(item);
+        foundry.utils.getProperty(this.cache, stepName).push(item);
     }
 
     /**
@@ -429,14 +429,14 @@ export class TwentyQuestionsDialog extends FormApplication {
      */
     _deleteOwnedItem(stepName, itemId) {
         // Delete from current step
-        let step = getProperty(this.object.data, stepName);
+        let step = foundry.utils.getProperty(this.object.data, stepName);
         step = step.filter((e) => !!e && e !== itemId);
-        setProperty(this.object.data, stepName, step);
+        foundry.utils.setProperty(this.object.data, stepName, step);
 
         // Delete from cache
-        let cache = getProperty(this.cache, stepName);
+        let cache = foundry.utils.getProperty(this.cache, stepName);
         cache = cache.filter((e) => !!e && e.id !== itemId);
-        setProperty(this.cache, stepName, cache);
+        foundry.utils.setProperty(this.cache, stepName, cache);
     }
 
     /**
@@ -444,7 +444,7 @@ export class TwentyQuestionsDialog extends FormApplication {
      * @private
      */
     _getSkillZero(skillsList, skillsPoints, stepName) {
-        const stepSkillId = getProperty(this.object.data, stepName);
+        const stepSkillId = foundry.utils.getProperty(this.object.data, stepName);
         const out = {};
         Object.entries(skillsList).forEach(([cat, val]) => {
             out[cat] = val.filter(

@@ -137,7 +137,6 @@ export class HelpersL5r5e {
         } catch (err) {
             console.warn(err);
         }
-        console.log(" ***** getObjectGameOrPack", document);
         return document;
     }
 
@@ -151,8 +150,9 @@ export class HelpersL5r5e {
                 "armor",
                 "weapon",
                 "technique",
-                "peculiarity",
                 "property",
+                "peculiarity",
+                "advancement",
                 "title",
                 "bond",
                 "signature_scroll",

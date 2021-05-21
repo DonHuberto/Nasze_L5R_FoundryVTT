@@ -1,19 +1,22 @@
 # Changelog
 
 ## 1.3.0 - Foundry 0.8.x compatibility
-_! Be certain to carefully back up any critical user data before installing this update. !_
+__! Be certain to carefully back up any critical user data before installing this update !__
 - Updated the System to the new version of Foundry VTT (a lot of things broke).
 - NPC can now have strengths/weaknesses with all rings.
-- Added "Title, Bond, Signature Scroll and Item Pattern":
+- Added "Title", "Bond", "Signature Scroll" and "Item Pattern":
   - The item types.
   - Theirs compendiums entries.
   - A new list in experience tab to not mess with school cursus.
-  - Item pattern can be dropped on another item to add the associated property.
+  - Item patterns :
+    - Can be dropped on another item to add the associated property.
+    - To change the linked property, drop any property on the item pattern sheet.
 - Added an optional "Specificity" technique type to serve as a catch-all (by request).
 - Added Mantis Clan compendium entries
 - Fix : rnkMessage not passing on actor object for NPCs (thanks to Bragma).
 - Fix : The "Crescent Moon Style" technique rank from 4 to 2
 - QoL : RnK button is now black in chat if no actions are left in roll.
+- QoL : Added symbols legend in RnK dialog as reminder.
 - QoL : Added "(x Max)" display in RnK picker for max number of dice to keep (thanks to Bragma).
 
 ## 1.2.1 - Praised be Firefox

@@ -138,6 +138,7 @@
         "quantity": "Quantity",
         "weight": "Weight",
         "properties": "Properties",
+        "linked_property": "linked Property",
         "weapons": {
             "title": "Weapons",
             "damage": "Damage",

@@ -27,6 +27,17 @@
                 {{ localize 'l5r5e.bought_at_rank' }}
                 <input class="select-on-focus" type="number" name="data.bought_at_rank" value="{{document.data.data.bought_at_rank}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
+            <label class="attribute">
+                {{ localize 'l5r5e.linked_property' }}
+                {{#if data.linkedProperty}}
+                <ul class="item-properties">
+                    <li>{{{ data.linkedProperty.name }}}</li>
+                    <li data-item-id="{{data.linkedProperty.id}}" class="item-control linked-property-delete" title="{{localize 'Delete'}}"> <i class="fas fa-trash"></i></li>
+                </ul>
+                {{else}}
+                    -
+                {{/if}}
+            </label>
         </article>
         {{> 'systems/l5r5e/templates/items/item/item-infos.html'}}
     </section>

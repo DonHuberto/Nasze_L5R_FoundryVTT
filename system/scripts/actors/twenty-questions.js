@@ -267,7 +267,7 @@ export class TwentyQuestions {
         // Rings - Reset to 1, and apply modifiers
         CONFIG.l5r5e.stances.forEach((ring) => (actorDatas.rings[ring] = 1));
         TwentyQuestions.ringList.forEach((formName) => {
-            const ring = getProperty(this.data, formName);
+            const ring = foundry.utils.getProperty(this.data, formName);
             if (ring !== "none") {
                 actorDatas.rings[ring] = actorDatas.rings[ring] + 1;
             }
@@ -278,7 +278,7 @@ export class TwentyQuestions {
             actorDatas.skills[skillCat][skillId] = 0;
         });
         TwentyQuestions.skillList.forEach((formName) => {
-            const skillId = getProperty(this.data, formName);
+            const skillId = foundry.utils.getProperty(this.data, formName);
             const skillCat = CONFIG.l5r5e.skills.get(skillId);
             if (skillId !== "none") {
                 actorDatas.skills[skillCat][skillId] = actorDatas.skills[skillCat][skillId] + 1;
@@ -292,7 +292,7 @@ export class TwentyQuestions {
         // Add items in 20Q to actor
         for (const types of Object.values(itemsCache)) {
             for (const item of types) {
-                const itemData = duplicate(item.data);
+                const itemData = foundry.utils.duplicate(item.data);
                 if (itemData.data?.bought_at_rank) {
                     itemData.data.bought_at_rank = 0;
                 }
@@ -377,7 +377,7 @@ export class TwentyQuestions {
     summariesRingsOrSkills(listName) {
         const store = {};
         TwentyQuestions[listName].forEach((formName) => {
-            const id = getProperty(this.data, formName);
+            const id = foundry.utils.getProperty(this.data, formName);
             if (!id || id === "none") {
                 return;
             }

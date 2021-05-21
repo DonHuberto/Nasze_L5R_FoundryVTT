@@ -399,7 +399,7 @@ export class DicePickerDialog extends FormApplication {
 
         // Update Actor
         if (this._actor) {
-            const actorData = duplicate(this._actor.data.data);
+            const actorData = foundry.utils.duplicate(this._actor.data.data);
 
             // Update the actor stance on initiative only
             if (this.object.isInitiativeRoll) {
@@ -416,10 +416,13 @@ export class DicePickerDialog extends FormApplication {
                 actorData.void_points.value = Math.max(actorData.void_points.value - 1, 0);
             }
 
-            // Update actor
-            await this._actor.update({
-                data: diffObject(this._actor.data.data, actorData),
-            });
+            // Update actor if needed
+            const updateDiff = foundry.utils.diffObject(this._actor.data.data, actorData);
+            if (Object.keys(updateDiff).length > 0) {
+                await this._actor.update({
+                    data: foundry.utils.diffObject(this._actor.data.data, actorData),
+                });
+            }
         }
 
         // Build the formula

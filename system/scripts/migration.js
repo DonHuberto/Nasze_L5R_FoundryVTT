@@ -38,7 +38,7 @@ export class MigrationL5r5e {
                 const updateData = MigrationL5r5e._migrateActorData(a.data);
                 if (!isObjectEmpty(updateData)) {
                     console.log(`Migrating Actor entity ${a.name}`);
-                    await a.update(updateData, { enforceTypes: false });
+                    await a.update(updateData, { enforceTypes: false }); // TODO use Actor.updateDocuments(data, context) for multiple actors
                 }
             } catch (err) {
                 err.message = `Failed L5R5e system migration for Actor ${a.name}: ${err.message}`;
@@ -52,7 +52,7 @@ export class MigrationL5r5e {
                 const updateData = MigrationL5r5e._migrateItemData(i.data);
                 if (!isObjectEmpty(updateData)) {
                     console.log(`Migrating Item entity ${i.name}`);
-                    await i.update(updateData, { enforceTypes: false });
+                    await i.update(updateData, { enforceTypes: false }); // TODO use Item.updateDocuments(data, context) for multiple actors
                 }
             } catch (err) {
                 err.message = `Failed L5R5e system migration for Item ${i.name}: ${err.message}`;
@@ -66,7 +66,7 @@ export class MigrationL5r5e {
                 const updateData = MigrationL5r5e._migrateSceneData(s.data);
                 if (!isObjectEmpty(updateData)) {
                     console.log(`Migrating Scene entity ${s.name}`);
-                    await s.update(updateData, { enforceTypes: false });
+                    await s.update(updateData, { enforceTypes: false }); // TODO use Scene.updateDocuments(data, context) for multiple actors
                 }
             } catch (err) {
                 err.message = `Failed L5R5e system migration for Scene ${s.name}: ${err.message}`;
@@ -132,7 +132,7 @@ export class MigrationL5r5e {
 
                 // Save the entry, if data was changed
                 updateData["_id"] = ent._id;
-                await pack.updateEntity(updateData);
+                await pack.updateEntity(updateData); // TODO use Item/Actor.updateDocuments(data, context) for multiple actors
                 console.log(`Migrated ${entity} entity ${ent.name} in Compendium ${pack.collection}`);
             } catch (err) {
                 // Handle migration failures

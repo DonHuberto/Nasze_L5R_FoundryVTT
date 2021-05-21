@@ -138,6 +138,7 @@
         "quantity": "Quantité",
         "weight": "Poids",
         "properties": "Propriétés",
+        "linked_property": "Propriété liée",
         "weapons": {
             "title": "Armement",
             "damage": "Dégâts de base (DDB)",
