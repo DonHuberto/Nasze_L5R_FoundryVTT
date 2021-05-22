@@ -300,6 +300,7 @@ export class DicePickerDialog extends FormApplication {
 
     /**
      * Listen to html elements
+     * @param {jQuery} html HTML content of the sheet.
      * @override
      */
     activateListeners(html) {

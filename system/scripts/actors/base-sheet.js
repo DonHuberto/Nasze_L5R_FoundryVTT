@@ -259,7 +259,7 @@ export class BaseSheetL5r5e extends ActorSheet {
 
     /**
      * Subscribe to events from the sheet.
-     * @param html HTML content of the sheet.
+     * @param {jQuery} html HTML content of the sheet.
      */
     activateListeners(html) {
         super.activateListeners(html);
@@ -318,6 +318,9 @@ export class BaseSheetL5r5e extends ActorSheet {
         html.find(".item-add").on("click", this._addSubItem.bind(this));
         html.find(`.item-edit`).on("click", this._editSubItem.bind(this));
         html.find(`.item-delete`).on("click", this._deleteSubItem.bind(this));
+
+        // Others Advancements
+        html.find(".item-advancement-choose").on("click", this._showDialogAddSubItem.bind(this));
     }
 
     /**
@@ -336,37 +339,20 @@ export class BaseSheetL5r5e extends ActorSheet {
 
     /**
      * Add a generic item with sub type
-     * @param {Event} event
+     * @param {string}      type           Item sub type (armor, weapon, bond...)
+     * @param {boolean}     isEquipped     For item with prop "Equipped" set the value
+     * @param {string|null} techniqueType  Technique subtype (kata, shuji...)
+     * @return {Promise<void>}
      * @private
      */
-    async _addSubItem(event) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        const type = $(event.currentTarget).data("item-type");
+    async _createSubItem({ type, isEquipped = false, techniqueType = null }) {
         if (!type) {
-            return;
-        }
-
-        const titles = {
-            item: "ITEM.TypeItem",
-            armor: "ITEM.TypeArmor",
-            weapon: "ITEM.TypeWeapon",
-            technique: "ITEM.TypeTechnique",
-            peculiarity: "ITEM.TypePeculiarity",
-            advancement: "ITEM.TypeAdvancement",
-            title: "ITEM.TypeTitle",
-            bond: "ITEM.TypeBond",
-            item_pattern: "ITEM.TypeItem_pattern",
-            signature_scroll: "ITEM.TypeSignature_scroll",
-        };
-        if (!titles[type]) {
             return;
         }
 
         const created = await this.actor.createEmbeddedDocuments("Item", [
             {
-                name: game.i18n.localize(titles[type]),
+                name: game.i18n.localize(`ITEM.Type${type.capitalize()}`),
                 type: type,
                 img: `${CONFIG.l5r5e.paths.assets}icons/items/${type}.svg`,
             },
@@ -385,25 +371,57 @@ export class BaseSheetL5r5e extends ActorSheet {
         }
 
         switch (item.data.type) {
+            case "item": // no break
             case "armor": // no break
             case "weapon":
-                if ($(event.currentTarget).data("item-eqquiped")) {
-                    item.data.data.equipped = true;
-                }
+                item.data.data.equipped = isEquipped;
                 break;
 
             case "technique": {
                 // If technique, select the current type
-                const techType = $(event.currentTarget).data("tech-type");
-                if (CONFIG.l5r5e.techniques.get(techType)) {
-                    item.data.data.technique_type = techType;
-                    item.data.img = `${CONFIG.l5r5e.paths.assets}icons/techs/${techType}.svg`;
+                if (CONFIG.l5r5e.techniques.get(techniqueType)) {
+                    item.data.data.technique_type = techniqueType;
+                    item.data.img = `${CONFIG.l5r5e.paths.assets}icons/techs/${techniqueType}.svg`;
                 }
                 break;
             }
         }
 
         item.sheet.render(true);
+    }
+
+    /**
+     * Display a dialog to choose what Item to add
+     * @param {Event} event
+     * @return {Promise<void>}
+     * @private
+     */
+    async _showDialogAddSubItem(event) {
+        game.l5r5e.HelpersL5r5e.showSubItemDialog(["bond", "title", "signature_scroll", "item_pattern"]).then(
+            (selectedType) => {
+                this._createSubItem({ type: selectedType });
+            }
+        );
+    }
+
+    /**
+     * Add a generic item with sub type
+     * @param {Event} event
+     * @private
+     */
+    async _addSubItem(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const type = $(event.currentTarget).data("item-type");
+        if (!type) {
+            return;
+        }
+
+        const isEquipped = $(event.currentTarget).data("item-equipped") || false;
+        const techniqueType = $(event.currentTarget).data("tech-type") || null;
+
+        return this._createSubItem({ type, isEquipped, techniqueType });
     }
 
     /**

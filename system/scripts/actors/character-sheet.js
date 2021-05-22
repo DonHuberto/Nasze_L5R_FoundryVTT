@@ -65,7 +65,7 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
 
     /**
      * Subscribe to events from the sheet.
-     * @param html HTML content of the sheet.
+     * @param {jQuery} html HTML content of the sheet.
      */
     activateListeners(html) {
         super.activateListeners(html);

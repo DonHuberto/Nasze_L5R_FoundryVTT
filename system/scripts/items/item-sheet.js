@@ -82,7 +82,8 @@ export class ItemSheetL5r5e extends ItemSheet {
 
     /**
      * Subscribe to events from the sheet.
-     * @param html HTML content of the sheet.
+     * @param {jQuery} html HTML content of the sheet.
+     * @override
      */
     activateListeners(html) {
         super.activateListeners(html);
@@ -112,7 +113,7 @@ export class ItemSheetL5r5e extends ItemSheet {
 
     /**
      * Create drag-and-drop workflow handlers for this Application
-     * @return An array of DragDrop handlers
+     * @return {DragDrop[]} An array of DragDrop handlers
      */
     _createDragDropHandlers() {
         return [
@@ -160,6 +161,7 @@ export class ItemSheetL5r5e extends ItemSheet {
 
     /**
      * Add a property to the current item
+     * @param {Item} item
      * @private
      */
     _addProperty(item) {
@@ -222,19 +224,19 @@ export class ItemSheetL5r5e extends ItemSheet {
 
     /**
      * Add a embed item
-     * @param event
+     * @param {Event} event
      * @private
      */
     _addSubItem(event) {
         event.preventDefault();
         event.stopPropagation();
         const itemId = $(event.currentTarget).data("item-id");
-        console.log("TODO _addSubItem", itemId); // TODO _addSubItem
+        console.warn("L5R5E | TODO ItemSheetL5r5e._addSubItem()", itemId); // TODO _addSubItem Currently not used, title override it
     }
 
     /**
      * Add a embed item
-     * @param event
+     * @param {Event} event
      * @private
      */
     _editSubItem(event) {
@@ -249,7 +251,7 @@ export class ItemSheetL5r5e extends ItemSheet {
 
     /**
      * Delete a embed item
-     * @param event
+     * @param {Event} event
      * @private
      */
     _deleteSubItem(event) {

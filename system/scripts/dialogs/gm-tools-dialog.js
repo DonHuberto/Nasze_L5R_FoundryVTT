@@ -18,7 +18,7 @@ export class GmToolsDialog extends FormApplication {
         return foundry.utils.mergeObject(super.defaultOptions, {
             id: "l5r5e-gm-tools-dialog",
             classes: ["l5r5e", "gm-tools-dialog"],
-            template: CONFIG.l5r5e.paths.templates + "dice/gm-tools-dialog.html",
+            template: CONFIG.l5r5e.paths.templates + "dialogs/gm-tools-dialog.html",
             title: game.i18n.localize("l5r5e.gm_toolbox.title"),
             left: x - 512,
             top: y - 98,
@@ -111,6 +111,7 @@ export class GmToolsDialog extends FormApplication {
 
     /**
      * Listen to html elements
+     * @param {jQuery} html HTML content of the sheet.
      * @override
      */
     activateListeners(html) {

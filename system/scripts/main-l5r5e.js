@@ -19,7 +19,7 @@ import { RollL5r5e } from "./dice/roll.js";
 import { DicePickerDialog } from "./dice/dice-picker-dialog.js";
 import { RollnKeepDialog } from "./dice/roll-n-keep-dialog.js";
 import { CombatL5r5e } from "./combat.js";
-import { GmToolsDialog } from "./dice/gm-tools-dialog.js";
+import { GmToolsDialog } from "./dialogs/gm-tools-dialog.js";
 // Items
 import { ItemL5r5e } from "./item.js";
 import { ItemSheetL5r5e } from "./items/item-sheet.js";

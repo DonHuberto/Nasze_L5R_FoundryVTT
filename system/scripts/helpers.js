@@ -6,6 +6,8 @@ import { ItemL5r5e } from "./item.js";
 export class HelpersL5r5e {
     /**
      * Get Rings/Element for List / Select
+     * @param {Actor|null} actor
+     * @return {{id: string, label: *, value}[]}
      */
     static getRingsList(actor = null) {
         return CONFIG.l5r5e.stances.map((e) => ({
@@ -17,6 +19,8 @@ export class HelpersL5r5e {
 
     /**
      * Get Skills for List / Select with groups
+     * @param {boolean} useGroup
+     * @return {{cat: any, id: any, label: *}[]}
      */
     static getSkillsList(useGroup = false) {
         if (!useGroup) {
@@ -64,6 +68,8 @@ export class HelpersL5r5e {
 
     /**
      * Return the target object on a drag n drop event, or null if not found
+     * @param {DragEvent} event
+     * @return {Promise<null>}
      */
     static async getDragnDropTargetObject(event) {
         const json = event.dataTransfer.getData("text/plain");
@@ -76,6 +82,11 @@ export class HelpersL5r5e {
 
     /**
      * Return the object from Game or Pack by his ID, or null if not found
+     * @param {number} id
+     * @param {string} type
+     * @param {string|null} data
+     * @param {string|null} pack
+     * @return {Promise<null>}
      */
     static async getObjectGameOrPack({ id, type, data = null, pack = null }) {
         let document = null;
@@ -142,6 +153,8 @@ export class HelpersL5r5e {
 
     /**
      * Make a temporary item for compendium drag n drop
+     * @param {ItemL5r5e|any[]} data
+     * @return {ItemL5r5e}
      */
     static createItemFromCompendium(data) {
         if (
@@ -174,6 +187,8 @@ export class HelpersL5r5e {
 
     /**
      * Babele and properties specific
+     * @param {Document} document
+     * @return {Promise<void>}
      */
     static async refreshItemProperties(document) {
         if (document.data.data.properties && typeof Babele !== "undefined") {
@@ -191,6 +206,9 @@ export class HelpersL5r5e {
 
     /**
      * Convert (op), (ex)... to associated symbols for content/descriptions
+     * @param {string}  text     Input text
+     * @param {boolean} toSymbol If True convert symbol to html (op), if false html to symbol
+     * @return {string}
      */
     static convertSymbols(text, toSymbol) {
         CONFIG.l5r5e.symbols.forEach((cfg, tag) => {
@@ -208,6 +226,8 @@ export class HelpersL5r5e {
 
     /**
      * Escape Regx characters
+     * @param {string} str
+     * @return {string}
      */
     static escapeRegExp(str) {
         return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -215,6 +235,8 @@ export class HelpersL5r5e {
 
     /**
      * Get the associated pack for a core item (time saving)
+     * @param {string} documentId
+     * @return {string}
      */
     static getPackNameForCoreItem(documentId) {
         const core = new Map();
@@ -264,6 +286,38 @@ export class HelpersL5r5e {
                 },
             },
         }).render(true);
+    }
+
+    /**
+     * Display a dialog to choose what Item type to add
+     * @param {string[]|null} types
+     * @return {Promise<*>} Return the item type choice (armor, bond...)
+     */
+    static async showSubItemDialog(types = null) {
+        // If no types, get the full list
+        if (!types) {
+            types = game.system.entityTypes.Item;
+        }
+        const title = game.i18n.format("ENTITY.Create", { entity: game.i18n.localize("Item") });
+
+        // Render the template
+        const html = await renderTemplate(`${CONFIG.l5r5e.paths.templates}dialogs/choose-item-type-dialog.html`, {
+            type: null,
+            types: types.reduce((obj, t) => {
+                const label = CONFIG.Item.typeLabels[t] ?? t;
+                obj[t] = game.i18n.has(label) ? game.i18n.localize(label) : t;
+                return obj;
+            }, {}),
+        });
+
+        // Display the dialog
+        return Dialog.prompt({
+            title: title,
+            content: html,
+            label: title,
+            callback: (html) => $(html).find("[name='type'] option:selected").val(),
+            rejectClose: false,
+        });
     }
 
     /**

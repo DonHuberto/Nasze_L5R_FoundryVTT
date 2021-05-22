@@ -81,7 +81,7 @@ export class TitleSheetL5r5e extends ItemSheetL5r5e {
 
     /**
      * Subscribe to events from the sheet.
-     * @param html HTML content of the sheet.
+     * @param {jQuery} html HTML content of the sheet.
      */
     activateListeners(html) {
         super.activateListeners(html);
@@ -95,5 +95,31 @@ export class TitleSheetL5r5e extends ItemSheetL5r5e {
         html.find(".item-add").on("click", this._addSubItem.bind(this));
         html.find(`.item-edit`).on("click", this._editSubItem.bind(this));
         html.find(`.item-delete`).on("click", this._deleteSubItem.bind(this));
+    }
+
+    /**
+     * Display a dialog to choose what Item to add, and add it on this Item
+     * @param {Event} event
+     * @return {Promise<void>}
+     * @private
+     */
+    async _addSubItem(event) {
+        // Show Dialog
+        const selectedType = await game.l5r5e.HelpersL5r5e.showSubItemDialog(["advancement", "technique"]);
+
+        // Create the new Item
+        const itemId = await this.document.addEmbedItem(
+            new game.l5r5e.ItemL5r5e({
+                name: game.i18n.localize(`ITEM.Type${selectedType.capitalize()}`),
+                type: selectedType,
+                img: `${CONFIG.l5r5e.paths.assets}icons/items/${selectedType}.svg`,
+            })
+        );
+
+        // Get the store object and display it
+        const item = this.document.items.get(itemId);
+        if (item) {
+            item.sheet.render(true);
+        }
     }
 }

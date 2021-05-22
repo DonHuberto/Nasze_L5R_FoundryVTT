@@ -131,14 +131,14 @@ export class ItemL5r5e extends Item {
      * @param {boolean} save   if we save in db or not (used internally)
      * @param {boolean} newId  if we change the id
      * @param {boolean} addBonusToActor if we update the actor bonus for advancements
-     * @return {Promise<void>}
+     * @return {Promise<string>}
      */
     async addEmbedItem(item, { save = true, newId = true, addBonusToActor = true } = {}) {
         if (!item) {
             return;
         }
 
-        if (!(item instanceof Item) && item._id) {
+        if (!(item instanceof Item) && item?.name && item?.type) {
             // Data -> Item
             item = new ItemL5r5e(item);
         }
@@ -165,16 +165,17 @@ export class ItemL5r5e extends Item {
         if (save) {
             await this.saveEmbedItems();
         }
+        return item.data._id;
     }
 
     /**
      * Update a Embed Item
      * @param {ItemL5r5e} item Object to add
      * @param {boolean} save   if we save in db or not (used internally)
-     * @return {Promise<void>}
+     * @return {Promise<string>}
      */
     async updateEmbedItem(item, { save = true } = {}) {
-        await this.addEmbedItem(item, { save, newId: false, addBonusToActor: false });
+        return await this.addEmbedItem(item, { save, newId: false, addBonusToActor: false });
     }
 
     /**
