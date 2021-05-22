@@ -23,7 +23,7 @@ L5R5E.techniques.set("ninjutsu", { type: "core", displayInTypes: true });
 L5R5E.techniques.set("school_ability", { type: "school", displayInTypes: false });
 L5R5E.techniques.set("mastery_ability", { type: "school", displayInTypes: false });
 // Title
-// L5R5E.techniques.set("title_ability", { type: "title", displayInTypes: false });
+L5R5E.techniques.set("title_ability", { type: "title", displayInTypes: false });
 // Custom
 L5R5E.techniques.set("specificity", { type: "custom", displayInTypes: false });
 

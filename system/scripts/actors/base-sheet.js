@@ -16,11 +16,8 @@ export class BaseSheetL5r5e extends ActorSheet {
         });
     }
 
-    /**
-     * Commons datas
-     * @override
-     */
-    getData(options) {
+    /** @inheritdoc */
+    getData(options = {}) {
         const sheetData = super.getData(options);
 
         sheetData.data.dtypes = ["String", "Number", "Boolean"];
@@ -64,11 +61,17 @@ export class BaseSheetL5r5e extends ActorSheet {
                     break;
 
                 case "title":
+                    // Embed technique in titles
                     Array.from(item.data.items).forEach(([id, embedItem]) => {
                         if (embedItem.data.type === "technique") {
                             out[embedItem.data.data.technique_type].push(embedItem.data);
                         }
                     });
+
+                    // If unlocked, add the "title_ability" as technique (or always displayed for npc)
+                    if (item.data.xp_used >= item.data.xp_cost || this.document.type === "npc") {
+                        out["title_ability"].push(item);
+                    }
                     break;
             } //swi
         });
@@ -84,10 +87,11 @@ export class BaseSheetL5r5e extends ActorSheet {
         sheetData.data.data.techniques["school_ability"] = out["school_ability"].length === 0;
         sheetData.data.data.techniques["mastery_ability"] = out["mastery_ability"].length === 0;
 
-        // Always display "school_ability", but display "mastery_ability" only if rank >= 5
+        // Always display "school_ability", but display a empty "mastery_ability" field only if rank >= 5
         if (sheetData.data.data.identity?.school_rank < 5 && out["mastery_ability"].length === 0) {
             delete out["mastery_ability"];
         }
+
         return out;
     }
 
