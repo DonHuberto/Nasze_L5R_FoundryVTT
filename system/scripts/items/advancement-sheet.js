@@ -7,7 +7,7 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
     /**
      * Sub Types of advancements
      */
-    static types = ["ring", "skill"]; // "peculiarity" and "technique" have theirs own xp count
+    static types = ["ring", "skill"]; // others have theirs own xp count
 
     /** @override */
     static get defaultOptions() {
@@ -73,47 +73,55 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
 
         // Modify image to reflect choice
         if (newChoice.ring) {
+            name = game.i18n.localize(`l5r5e.rings.${newChoice.ring}`) + "+1";
             img = `systems/l5r5e/assets/icons/rings/${newChoice.ring}.svg`;
         } else if (newChoice.skill) {
+            name =
+                game.i18n.localize(`l5r5e.skills.${CONFIG.l5r5e.skills.get(newChoice.skill)}.${newChoice.skill}`) +
+                "+1";
             img = `systems/l5r5e/assets/dices/default/skill_blank.svg`;
         }
 
         // Object embed in actor ?
-        if (this.actor) {
-            const actor = duplicate(this.actor.data.data);
+        const actor = this.document.actor;
+        if (actor) {
+            const actorData = foundry.utils.duplicate(actor.data.data);
             let skillCatId = null;
 
             // Old choices
             if (oldChoice.ring) {
-                actor.rings[oldChoice.ring] = Math.max(1, actor.rings[oldChoice.ring] - 1);
+                actorData.rings[oldChoice.ring] = Math.max(1, actorData.rings[oldChoice.ring] - 1);
             }
             if (oldChoice.skill) {
                 skillCatId = CONFIG.l5r5e.skills.get(oldChoice.skill);
-                actor.skills[skillCatId][oldChoice.skill] = Math.max(0, actor.skills[skillCatId][oldChoice.skill] - 1);
+                actorData.skills[skillCatId][oldChoice.skill] = Math.max(
+                    0,
+                    actorData.skills[skillCatId][oldChoice.skill] - 1
+                );
             }
 
             // new choices
             if (newChoice.ring) {
-                actor.rings[newChoice.ring] = actor.rings[newChoice.ring] + 1;
-                xp_used = actor.rings[newChoice.ring] * CONFIG.l5r5e.xp.ringCostMultiplier;
+                actorData.rings[newChoice.ring] = actorData.rings[newChoice.ring] + 1;
+                xp_used = actorData.rings[newChoice.ring] * CONFIG.l5r5e.xp.ringCostMultiplier;
                 name =
                     game.i18n.localize(`l5r5e.rings.${newChoice.ring}`) +
-                    ` +1 (${actor.rings[newChoice.ring] - 1} -> ${actor.rings[newChoice.ring]})`;
+                    ` +1 (${actorData.rings[newChoice.ring] - 1} -> ${actorData.rings[newChoice.ring]})`;
             }
             if (newChoice.skill) {
                 skillCatId = CONFIG.l5r5e.skills.get(newChoice.skill);
-                actor.skills[skillCatId][newChoice.skill] = actor.skills[skillCatId][newChoice.skill] + 1;
-                xp_used = actor.skills[skillCatId][newChoice.skill] * CONFIG.l5r5e.xp.skillCostMultiplier;
+                actorData.skills[skillCatId][newChoice.skill] = actorData.skills[skillCatId][newChoice.skill] + 1;
+                xp_used = actorData.skills[skillCatId][newChoice.skill] * CONFIG.l5r5e.xp.skillCostMultiplier;
                 name =
                     game.i18n.localize(`l5r5e.skills.${skillCatId}.${newChoice.skill}`) +
-                    ` +1 (${actor.skills[skillCatId][newChoice.skill] - 1} -> ${
-                        actor.skills[skillCatId][newChoice.skill]
+                    ` +1 (${actorData.skills[skillCatId][newChoice.skill] - 1} -> ${
+                        actorData.skills[skillCatId][newChoice.skill]
                     })`;
             }
 
             // Update Actor
-            await this.actor.update({
-                data: diffObject(this.actor.data.data, actor),
+            await actor.update({
+                data: foundry.utils.diffObject(actor.data.data, actorData),
             });
         }
 

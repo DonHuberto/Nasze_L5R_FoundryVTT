@@ -287,11 +287,14 @@ export class TwentyQuestions {
 
         // Clear and add items to actor
         const deleteIds = actor.data.items.map((e) => e.id);
-        await actor.deleteEmbeddedDocuments("Item", deleteIds);
+        if (deleteIds.length > 0) {
+            await actor.deleteEmbeddedDocuments("Item", deleteIds);
+        }
 
         // Add items in 20Q to actor
-        for (const types of Object.values(itemsCache)) {
-            for (const item of types) {
+        const newItemsData = [];
+        Object.values(itemsCache).forEach((types) => {
+            types.forEach((item) => {
                 const itemData = foundry.utils.duplicate(item.data);
                 if (itemData.data?.bought_at_rank) {
                     itemData.data.bought_at_rank = 0;
@@ -299,8 +302,11 @@ export class TwentyQuestions {
                 if (itemData.data?.xp_spent) {
                     itemData.data.xp_spent = 0;
                 }
-                await actor.createEmbeddedDocuments("Item", [itemData]);
-            }
+                newItemsData.push(itemData);
+            });
+        });
+        if (newItemsData.length > 0) {
+            await actor.createEmbeddedDocuments("Item", newItemsData);
         }
 
         // Update actor

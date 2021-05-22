@@ -8,6 +8,14 @@ export class ItemL5r5e extends Item {
     }
 
     /**
+     * Return the linked Actor instance if any (current or embed)
+     * @return {Actor|null}
+     */
+    get actor() {
+        return super.actor || game.actors.get(this.data.data.parent_id?.actor_id) || null;
+    }
+
+    /**
      * Create a new entity using provided input data
      * @override
      */
@@ -27,7 +35,7 @@ export class ItemL5r5e extends Item {
      */
     async update(data = {}, context = {}) {
         // Regular
-        if (!this.data.data.parentId) {
+        if (!this.data.data.parent_id) {
             return super.update(data, context);
         }
 
@@ -67,7 +75,7 @@ export class ItemL5r5e extends Item {
             this.data.data.items = new Map();
 
             itemsData.forEach((item) => {
-                this.addEmbedItem(item, { save: false, newId: false });
+                this.addEmbedItem(item, { save: false, newId: false, addBonusToActor: false });
             });
         }
     }
@@ -75,10 +83,16 @@ export class ItemL5r5e extends Item {
     // ***** parent ids management *****
     /**
      * Return a string with idemId + actorId if any
-     * @return {string} itemId|actor
+     * @return {{item_id: (string|null), actor_id?: (string|null)}}
      */
     getParentsIds() {
-        return this.id + (this.actor?.data?._id ? `|${this.actor.data._id}` : "");
+        const parent = {
+            item_id: this.id,
+        };
+        if (this.actor?.data?._id) {
+            parent.actor_id = this.actor.data._id;
+        }
+        return parent;
     }
 
     /**
@@ -86,17 +100,18 @@ export class ItemL5r5e extends Item {
      * @return {ItemL5r5e|null}
      */
     getItemFromParentId() {
+        const parentIds = this.data.data.parent_id;
         let parentItem;
-        let [parentItemId, parentActorId] = this.data.data.parentId.split("|");
 
-        if (parentActorId) {
+        if (parentIds?.actor_id) {
             // Actor item object
-            const parentActor = parentActorId ? game.actors.get(parentActorId) : null;
-            parentItem = parentActor?.items.get(parentItemId);
-        } else {
+            const parentActor = parentIds.actor_id ? game.actors.get(parentIds.actor_id) : null;
+            parentItem = parentActor?.items.get(parentIds.item_id);
+        } else if (parentIds?.item_id) {
             // World Object
-            parentItem = game.items.get(parentItemId);
+            parentItem = game.items.get(parentIds.item_id);
         }
+
         return parentItem;
     }
 
@@ -115,9 +130,10 @@ export class ItemL5r5e extends Item {
      * @param {ItemL5r5e} item Object to add
      * @param {boolean} save   if we save in db or not (used internally)
      * @param {boolean} newId  if we change the id
+     * @param {boolean} addBonusToActor if we update the actor bonus for advancements
      * @return {Promise<void>}
      */
-    async addEmbedItem(item, { save = true, newId = true } = {}) {
+    async addEmbedItem(item, { save = true, newId = true, addBonusToActor = true } = {}) {
         if (!item) {
             return;
         }
@@ -133,14 +149,17 @@ export class ItemL5r5e extends Item {
         }
 
         // Tag parent (flags won't work as we have no id in db)
-        item.data.data.parentId = this.getParentsIds();
+        item.data.data.parent_id = this.getParentsIds();
 
         // Object
         this.data.data.items.set(item.data._id, item);
 
-        // TODO add bonus from actor
-        if (this.actor instanceof Actor) {
-            // const item = this.data.data.items.get(id);
+        // Add bonus to actor
+        if (addBonusToActor) {
+            const actor = this.actor;
+            if (item instanceof Item && actor instanceof Actor) {
+                actor.addBonus(item);
+            }
         }
 
         if (save) {
@@ -155,23 +174,28 @@ export class ItemL5r5e extends Item {
      * @return {Promise<void>}
      */
     async updateEmbedItem(item, { save = true } = {}) {
-        await this.addEmbedItem(item, { save, newId: false });
+        await this.addEmbedItem(item, { save, newId: false, addBonusToActor: false });
     }
 
     /**
      * Delete the Embed Item and clear the actor bonus if any
-     * @param {ItemL5r5e} item Object to add
+     * @param id Item id
      * @param {boolean} save   if we save in db or not (used internally)
+     * @param {boolean} removeBonusFromActor if we update the actor bonus for advancements
      * @return {Promise<void>}
      */
-    async deleteEmbedItem(id, { save = true } = {}) {
+    async deleteEmbedItem(id, { save = true, removeBonusFromActor = true } = {}) {
         if (!this.data.data.items.has(id)) {
             return;
         }
 
-        // TODO remove bonus from actor
-        if (this.actor instanceof Actor) {
-            // const item = this.data.data.items.get(id);
+        // Remove bonus from actor
+        if (removeBonusFromActor) {
+            const actor = this.actor;
+            const item = this.data.data.items.get(id);
+            if (item instanceof Item && actor instanceof Actor) {
+                actor.removeBonus(item);
+            }
         }
 
         // Remove the embed item

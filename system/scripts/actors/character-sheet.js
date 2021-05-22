@@ -49,13 +49,10 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
         // Split Money
         sheetData.data.data.money = this._zeniToMoney(this.actor.data.data.zeni);
 
-        // Split school advancements by rank, and calculate xp spent
+        // Split school advancements by rank, and calculate xp spent and add it to total
         this._prepareSchoolAdvancement(sheetData);
 
-        // Titles
-        this._prepareTitles(sheetData);
-
-        // Others
+        // Split Others advancements, and calculate xp spent and add it to total
         this._prepareOthersAdvancement(sheetData);
 
         // Total
@@ -106,13 +103,6 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
     }
 
     /**
-     * Prepare Titles, and get xp spend
-     */
-    _prepareTitles(sheetData) {
-        // TODO
-    }
-
-    /**
      * Split the school advancement, calculate the total xp spent and the current total xp spent by rank
      */
     _prepareSchoolAdvancement(sheetData) {
@@ -148,12 +138,23 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
      * Prepare Bonds, Item Pattern, Signature Scroll and get xp spend
      */
     _prepareOthersAdvancement(sheetData) {
+        // Split OthersAdvancement from items
         sheetData.data.advancementsOthers = sheetData.items.filter((item) =>
             ["bond", "item_pattern", "title", "signature_scroll"].includes(item.type)
         );
 
         // Sort by rank desc
-        // sheetData.data.bondsList.sort((a, b) => (b.data.rank || 0) - (a.data.rank || 0));
+        sheetData.data.advancementsOthers.sort((a, b) => (b.data.rank || 0) - (a.data.rank || 0));
+
+        // Total xp spent
+        sheetData.data.advancementsOthersTotalXp = sheetData.data.advancementsOthers.reduce(
+            (acc, item) => acc + (item.data.xp_used || 0),
+            0
+        );
+
+        // Update the total spent
+        sheetData.data.data.xp_spent =
+            parseInt(sheetData.data.data.xp_spent) + sheetData.data.advancementsOthersTotalXp;
     }
 
     /**
@@ -177,6 +178,12 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
         return super._updateObject(event, formData);
     }
 
+    /**
+     * Convert a sum in Zeni to Zeni, Bu and Koku
+     * @param {number} zeni
+     * @return {{bu: number, koku: number, zeni: number}}
+     * @private
+     */
     _zeniToMoney(zeni) {
         const money = {
             koku: 0,
@@ -196,6 +203,14 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
         return money;
     }
 
+    /**
+     * Convert a sum in Zeni, Bu and Koku to Zeni
+     * @param {number} koku
+     * @param {number} bu
+     * @param {number} zeni
+     * @return {number}
+     * @private
+     */
     _moneyToZeni(koku, bu, zeni) {
         return Math.floor(koku * CONFIG.l5r5e.money[0]) + Math.floor(bu * CONFIG.l5r5e.money[1]) + Math.floor(zeni);
     }

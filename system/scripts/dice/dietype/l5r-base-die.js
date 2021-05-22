@@ -71,14 +71,14 @@ export class L5rBaseDie extends DiceTerm {
      * Evaluate the roll term, populating the results Array
      * @override
      */
-    evaluate({ minimize = false, maximize = false } = {}) {
+    evaluate({ minimize = false, maximize = false, async = false } = {}) {
         if (this._evaluated) {
             throw new Error(`This ${this.constructor.name} has already been evaluated and is immutable`);
         }
 
         // Roll the initial number of dice
         for (let n = 1; n <= this.number; n++) {
-            this.roll({ minimize, maximize });
+            this.roll({ minimize, maximize, async });
         }
 
         // Apply modifiers

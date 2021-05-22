@@ -70,7 +70,7 @@
             <th class="name">{{localize 'l5r5e.name'}}</th>
             <th class="xp">{{localize 'l5r5e.advancements.spent'}}</th>
             <th class="rank">{{localize 'l5r5e.rank'}}</th>
-            {{#if editable}}
+            {{#if options.editable}}
                 <th class="actions"></th>
             {{/if}}
         </tr>
@@ -80,5 +80,12 @@
             {{> 'systems/l5r5e/templates/actors/character/advancement-others.html' advancement=advancement editable=../options.editable}}
         {{/each}}
         </tbody>
+        <tfoot class="flex">
+        <tr>
+            <th>
+                {{localize 'l5r5e.advancements.total_xp_rank'}} : {{data.advancementsOthersTotalXp}}
+            </th>
+        </tr>
+        </tfoot>
     </table>
 </fieldset>

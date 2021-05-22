@@ -3,10 +3,10 @@
  */
 export class MigrationL5r5e {
     /**
-     * Version needed for migration stuff to trigger
+     * Minimum Version needed for migration stuff to trigger
      * @type {string}
      */
-    static NEEDED_VERSION = "1.1.0";
+    static NEEDED_VERSION = "1.3.0";
 
     /**
      * Return true if the current world need some updates
@@ -14,7 +14,7 @@ export class MigrationL5r5e {
      */
     static needUpdate() {
         const currentVersion = game.settings.get("l5r5e", "systemMigrationVersion");
-        return currentVersion && isNewerVersion(MigrationL5r5e.NEEDED_VERSION, currentVersion);
+        return currentVersion && foundry.utils.isNewerVersion(MigrationL5r5e.NEEDED_VERSION, currentVersion);
     }
 
     /**
@@ -26,6 +26,7 @@ export class MigrationL5r5e {
             return;
         }
 
+        // Warn the users
         ui.notifications.info(
             `Applying L5R5e System Migration for version ${game.system.data.version}.` +
                 ` Please be patient and do not close your game or shut down your server.`,
@@ -33,56 +34,53 @@ export class MigrationL5r5e {
         );
 
         // Migrate World Actors
-        for (let a of game.actors.contents) {
+        for (let actor of game.actors.contents) {
             try {
-                const updateData = MigrationL5r5e._migrateActorData(a.data);
-                if (!isObjectEmpty(updateData)) {
-                    console.log(`Migrating Actor entity ${a.name}`);
-                    await a.update(updateData, { enforceTypes: false }); // TODO use Actor.updateDocuments(data, context) for multiple actors
+                const updateData = MigrationL5r5e._migrateActorData(actor.data);
+                if (!foundry.utils.isObjectEmpty(updateData)) {
+                    console.log(`L5R5E | Migrating Actor entity ${actor.name}`);
+                    await actor.update(updateData);
                 }
             } catch (err) {
-                err.message = `Failed L5R5e system migration for Actor ${a.name}: ${err.message}`;
+                err.message = `L5R5E | Failed L5R5e system migration for Actor ${actor.name}: ${err.message}`;
                 console.error(err);
             }
         }
 
         // Migrate World Items
-        for (let i of game.items.contents) {
+        for (let item of game.items.contents) {
             try {
-                const updateData = MigrationL5r5e._migrateItemData(i.data);
-                if (!isObjectEmpty(updateData)) {
-                    console.log(`Migrating Item entity ${i.name}`);
-                    await i.update(updateData, { enforceTypes: false }); // TODO use Item.updateDocuments(data, context) for multiple actors
+                const updateData = MigrationL5r5e._migrateItemData(item.data);
+                if (!foundry.utils.isObjectEmpty(updateData)) {
+                    console.log(`L5R5E | Migrating Item entity ${item.name}`);
+                    await item.update(updateData);
                 }
             } catch (err) {
-                err.message = `Failed L5R5e system migration for Item ${i.name}: ${err.message}`;
+                err.message = `L5R5E | Failed L5R5e system migration for Item ${item.name}: ${err.message}`;
                 console.error(err);
             }
         }
 
         // Migrate Actor Override Tokens
-        for (let s of game.scenes.contents) {
+        for (let scene of game.scenes.contents) {
             try {
-                const updateData = MigrationL5r5e._migrateSceneData(s.data);
-                if (!isObjectEmpty(updateData)) {
-                    console.log(`Migrating Scene entity ${s.name}`);
-                    await s.update(updateData, { enforceTypes: false }); // TODO use Scene.updateDocuments(data, context) for multiple actors
+                const updateData = MigrationL5r5e._migrateSceneData(scene.data);
+                if (!foundry.utils.isObjectEmpty(updateData)) {
+                    console.log(`L5R5E | Migrating Scene entity ${scene.name}`);
+                    await scene.update(updateData);
                 }
             } catch (err) {
-                err.message = `Failed L5R5e system migration for Scene ${s.name}: ${err.message}`;
+                err.message = `L5R5E | Failed L5R5e system migration for Scene ${scene.name}: ${err.message}`;
                 console.error(err);
             }
         }
 
         // Migrate World Compendium Packs
-        for (let p of game.packs) {
-            if (p.metadata.package !== "world") {
+        for (let pack of game.packs) {
+            if (pack.metadata.package !== "world" || !["Actor", "Item", "Scene"].includes(pack.metadata.entity)) {
                 continue;
             }
-            if (!["Actor", "Item", "Scene"].includes(p.metadata.entity)) {
-                continue;
-            }
-            await MigrationL5r5e._migrateCompendium(p);
+            await MigrationL5r5e._migrateCompendium(pack);
         }
 
         // Set the migration as complete
@@ -94,7 +92,7 @@ export class MigrationL5r5e {
 
     /**
      * Apply migration rules to all Entities within a single Compendium pack
-     * @param pack
+     * @param {Compendium} pack
      * @return {Promise}
      */
     static async _migrateCompendium(pack) {
@@ -103,18 +101,20 @@ export class MigrationL5r5e {
             return;
         }
 
-        // Unlock the pack for editing
         const wasLocked = pack.locked;
-        await pack.configure({ locked: false });
+        try {
+            // Unlock the pack for editing
+            await pack.configure({ locked: false });
 
-        // Begin by requesting server-side data model migration and get the migrated content
-        await pack.migrate();
-        const content = await pack.getContent();
+            // Begin by requesting server-side data model migration and get the migrated content
+            await pack.migrate();
+            const documents = await pack.getDocuments();
 
-        // Iterate over compendium entries - applying fine-tuned migration functions
-        for (let ent of content) {
-            let updateData = {};
-            try {
+            // Iterate over compendium entries - applying fine-tuned migration functions
+            const updateDatasList = [];
+            for (let ent of documents) {
+                let updateData = {};
+
                 switch (entity) {
                     case "Actor":
                         updateData = MigrationL5r5e._migrateActorData(ent.data);
@@ -126,24 +126,30 @@ export class MigrationL5r5e {
                         updateData = MigrationL5r5e._migrateSceneData(ent.data);
                         break;
                 }
-                if (isObjectEmpty(updateData)) {
+                if (foundry.utils.isObjectEmpty(updateData)) {
                     continue;
                 }
 
-                // Save the entry, if data was changed
-                updateData["_id"] = ent._id;
-                await pack.updateEntity(updateData); // TODO use Item/Actor.updateDocuments(data, context) for multiple actors
-                console.log(`Migrated ${entity} entity ${ent.name} in Compendium ${pack.collection}`);
-            } catch (err) {
-                // Handle migration failures
-                err.message = `Failed L5R5e system migration for entity ${ent.name} in pack ${pack.collection}: ${err.message}`;
-                console.error(err);
+                // Add the entry, if data was changed
+                updateData["_id"] = ent.data._id;
+                updateDatasList.push(updateData);
+
+                console.log(`L5R5E | Migrating ${entity} entity ${ent.name} in Compendium ${pack.collection}`);
             }
+
+            // Save the modified entries
+            if (updateDatasList.length > 0) {
+                await pack.documentClass.updateDocuments(updateDatasList, { pack: pack.collection });
+            }
+        } catch (err) {
+            // Handle migration failures
+            err.message = `L5R5E | Failed system migration for entities ${entity} in pack ${pack.collection}: ${err.message}`;
+            console.error(err);
         }
 
         // Apply the original locked status for the pack
         pack.configure({ locked: wasLocked });
-        console.log(`Migrated all ${entity} contents from Compendium ${pack.collection}`);
+        console.log(`L5R5E | Migrated all ${entity} contents from Compendium ${pack.collection}`);
     }
 
     /**
@@ -153,7 +159,7 @@ export class MigrationL5r5e {
      * @return {Object}       The updateData to apply
      */
     static _migrateSceneData(scene) {
-        const tokens = duplicate(scene.tokens);
+        const tokens = foundry.utils.duplicate(scene.tokens);
         return {
             tokens: tokens.map((t) => {
                 if (!t.actorId || t.actorLink || !t.actorData.data) {
@@ -183,8 +189,6 @@ export class MigrationL5r5e {
         const updateData = {};
         const actorData = actor.data;
 
-        console.log(actorData); // TODO TMP data.data ? à vérifier
-
         // ***** Start of 1.1.0 *****
         // Add "Prepared" in actor
         if (actorData.prepared === undefined) {
@@ -211,6 +215,10 @@ export class MigrationL5r5e {
                 actorData.rings_affinities.strength.value;
             updateData["data.rings_affinities." + actorData.rings_affinities.weakness.ring] =
                 actorData.rings_affinities.weakness.value;
+
+            // Delete old keys : not working :'(
+            updateData["-=data.rings_affinities.strength"] = null;
+            updateData["-=data.rings_affinities.weakness"] = null;
         }
         // ***** End of 1.3.0 *****
 
@@ -224,7 +232,7 @@ export class MigrationL5r5e {
      */
     static cleanActorData(actorData) {
         const model = game.system.model.Actor[actorData.type];
-        actorData.data = filterObject(actorData.data, model);
+        actorData.data = foundry.utils.filterObject(actorData.data, model);
         return actorData;
     }
 

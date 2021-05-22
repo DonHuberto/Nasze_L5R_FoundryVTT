@@ -58,9 +58,19 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         // Add tech the character knows
         sheetData.items.forEach((item) => {
-            if (item.type === "technique") {
-                out[item.data.technique_type].push(item);
-            }
+            switch (item.type) {
+                case "technique":
+                    out[item.data.technique_type].push(item);
+                    break;
+
+                case "title":
+                    Array.from(item.data.items).forEach(([id, embedItem]) => {
+                        if (embedItem.data.type === "technique") {
+                            out[embedItem.data.data.technique_type].push(embedItem.data);
+                        }
+                    });
+                    break;
+            } //swi
         });
 
         // Remove unused techs
@@ -170,35 +180,44 @@ export class BaseSheetL5r5e extends ActorSheet {
         ) {
             return;
         }
-        item = item.toJSON();
 
         // Dropped a item with same "id" as one owned, add qte instead
-        if (item.data.quantity && this.actor.data.items) {
-            const tmpItem = this.actor.data.items.find((e) => e.name === item.name && e.type === item.type);
+        if (item.data.data.quantity && this.actor.data.items) {
+            const tmpItem = this.actor.data.items.find((e) => e.name === item.data.name && e.type === item.data.type);
             if (tmpItem && this._modifyQuantity(tmpItem.id, 1)) {
                 return;
             }
         }
 
         // Item subtype specific
-        switch (item.type) {
+        switch (item.data.type) {
             case "bond": // no break
-            case "advancement": // no break
             case "peculiarity": // no break
             case "item_pattern": // no break
             case "signature_scroll":
                 // Modify the bought at rank to the current actor rank
                 if (this.actor.data.data.identity?.school_rank) {
-                    item.data.bought_at_rank = this.actor.data.data.identity.school_rank;
+                    item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
                 }
+                break;
+
+            case "advancement":
+                // Modify the bought at rank to the current actor rank
+                if (this.actor.data.data.identity?.school_rank) {
+                    item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
+                }
+
+                // Specific advancements, remove 1 to selected ring/skill
+                await this.actor.addBonus(item);
                 break;
 
             case "technique":
                 // School_ability and mastery_ability, allow only 1 per type
-                if (CONFIG.l5r5e.techniques.get(item.data.technique_type)?.type === "school") {
+                if (CONFIG.l5r5e.techniques.get(item.data.data.technique_type)?.type === "school") {
                     if (
                         Array.from(this.actor.items).some(
-                            (e) => e.type === "technique" && e.data.data.technique_type === item.data.technique_type
+                            (e) =>
+                                e.type === "technique" && e.data.data.technique_type === item.data.data.technique_type
                         )
                     ) {
                         ui.notifications.info(game.i18n.localize("l5r5e.techniques.only_one"));
@@ -206,24 +225,25 @@ export class BaseSheetL5r5e extends ActorSheet {
                     }
 
                     // No cost for schools
-                    item.data.xp_cost = 0;
-                    item.data.xp_used = 0;
-                    item.data.in_curriculum = true;
+                    item.data.data.xp_cost = 0;
+                    item.data.data.xp_used = 0;
+                    item.data.data.in_curriculum = true;
                 } else {
                     // Check if technique is allowed for this character
-                    if (!game.user.isGM && !this.actor.data.data.techniques[item.data.technique_type]) {
+                    if (!game.user.isGM && !this.actor.data.data.techniques[item.data.data.technique_type]) {
                         ui.notifications.info(game.i18n.localize("l5r5e.techniques.not_allowed"));
                         return;
                     }
 
                     // Verify cost
-                    item.data.xp_cost = item.data.xp_cost > 0 ? item.data.xp_cost : CONFIG.l5r5e.xp.techniqueCost;
-                    item.data.xp_used = item.data.xp_cost;
+                    item.data.data.xp_cost =
+                        item.data.data.xp_cost > 0 ? item.data.data.xp_cost : CONFIG.l5r5e.xp.techniqueCost;
+                    item.data.data.xp_used = item.data.data.xp_cost;
                 }
 
                 // Modify the bought at rank to the current actor rank
                 if (this.actor.data.data.identity?.school_rank) {
-                    item.data.bought_at_rank = this.actor.data.data.identity.school_rank;
+                    item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
                 }
                 break;
         }
@@ -234,7 +254,7 @@ export class BaseSheetL5r5e extends ActorSheet {
             return;
         }
 
-        return this._onDropItemCreate(item);
+        return this._onDropItemCreate(item.data.toObject(false));
     }
 
     /**
@@ -395,12 +415,25 @@ export class BaseSheetL5r5e extends ActorSheet {
         event.preventDefault();
         event.stopPropagation();
 
+        let item;
         const itemId = $(event.currentTarget).data("item-id");
         if (!itemId) {
             return;
         }
 
-        const item = this.actor.items.get(itemId);
+        const itemParentId = $(event.currentTarget).data("item-parent-id");
+        if (itemParentId) {
+            // Embed Item
+            const parentItem = this.actor.items.get(itemParentId);
+            if (!parentItem) {
+                return;
+            }
+            item = parentItem.items.get(itemId);
+        } else {
+            // Regular item
+            item = this.actor.items.get(itemId);
+        }
+
         if (!item) {
             return;
         }
@@ -421,35 +454,20 @@ export class BaseSheetL5r5e extends ActorSheet {
             return;
         }
 
-        // Remove 1 qty if possible
         const tmpItem = this.actor.items.get(itemId);
-        if (tmpItem && tmpItem.data.data.quantity > 1 && this._modifyQuantity(tmpItem.id, -1)) {
+        if (!tmpItem) {
+            return;
+        }
+
+        // Remove 1 qty if possible
+        if (tmpItem.data.data.quantity > 1 && this._modifyQuantity(tmpItem.id, -1)) {
             return;
         }
 
         const callback = async () => {
             // Specific advancements, remove 1 to selected ring/skill
             if (tmpItem.type === "advancement") {
-                const actor = duplicate(this.actor.data.data);
-                const itmData = tmpItem.data.data;
-                if (itmData.advancement_type === "ring") {
-                    // Ring
-                    actor.rings[itmData.ring] = Math.max(1, actor.rings[itmData.ring] - 1);
-                } else {
-                    // Skill
-                    const skillCatId = CONFIG.l5r5e.skills.get(itmData.skill);
-                    if (skillCatId) {
-                        actor.skills[skillCatId][itmData.skill] = Math.max(
-                            0,
-                            actor.skills[skillCatId][itmData.skill] - 1
-                        );
-                    }
-                }
-
-                // Update Actor
-                this.actor.update({
-                    data: diffObject(this.actor.data.data, actor),
-                });
+                await this.actor.removeBonus(tmpItem);
             }
             return this.actor.deleteEmbeddedDocuments("Item", [itemId]);
         };

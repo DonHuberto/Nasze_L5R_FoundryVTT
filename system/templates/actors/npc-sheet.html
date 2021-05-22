@@ -2,8 +2,8 @@
     {{!-- Sheet Header --}}
     <header class="sheet-header">
         <div class="header-fields identity-wrapper">
-            <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
-            <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
+            <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}"/>
+            <h1 class="charname"><input name="name" type="text" value="{{data.name}}" placeholder="Name"/></h1>
             {{> 'systems/l5r5e/templates/actors/npc/identity.html'}}
         </div>
         <fieldset class="npc-note">

@@ -256,6 +256,23 @@ export class ItemSheetL5r5e extends ItemSheet {
         event.preventDefault();
         event.stopPropagation();
         const itemId = $(event.currentTarget).data("item-id");
-        this.document.deleteEmbedItem(itemId);
+        const item = this.document.getEmbedItem(itemId);
+        if (!item) {
+            return;
+        }
+
+        const callback = async () => {
+            this.document.deleteEmbedItem(itemId);
+        };
+
+        // Holing Ctrl = without confirm
+        if (event.ctrlKey) {
+            return callback();
+        }
+
+        game.l5r5e.HelpersL5r5e.confirmDeleteDialog(
+            game.i18n.format("l5r5e.global.delete_confirm", { name: item.name }),
+            callback
+        );
     }
 }

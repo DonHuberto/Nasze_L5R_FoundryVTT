@@ -1,9 +1,9 @@
 <form class="{{cssClass}}" data-lang="{{localize 'I18N.Language'}}" autocomplete="off">
     {{!-- Sheet Header --}}
     <header class="sheet-header">
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
+        <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}"/>
         <div class="header-fields identity-wrapper">
-            <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
+            <h1 class="charname"><input name="name" type="text" value="{{data.name}}" placeholder="Name"/></h1>
             {{> 'systems/l5r5e/templates/actors/character/identity.html'}}
         </div>
         <div class="header-fields">
@@ -28,7 +28,7 @@
         {{!-- Skills Tab --}}
         <article class="tab skills" data-group="primary" data-tab="skills">
             <ul class="skills-wrapper">
-                {{#each actor.data.data.skills as |category id|}}
+                {{#each data.data.skills as |category id|}}
                     {{> 'systems/l5r5e/templates/actors/character/category.html' category=category categoryId=id}}
                 {{/each}}
             </ul>

@@ -21,14 +21,15 @@ export class TitleSheetL5r5e extends ItemSheetL5r5e {
     async getData(options = {}) {
         const sheetData = await super.getData(options);
 
-        sheetData.data.dtypes = ["String", "Number", "Boolean"];
-        sheetData.data.ringsList = game.l5r5e.HelpersL5r5e.getRingsList();
-
-        console.log(sheetData.data.data.items); // todo tmp
         // Prepare OwnedItems
         sheetData.data.embedItemsList = this._prepareEmbedItems(sheetData.data.data.items);
 
-        console.log(sheetData); // todo tmp
+        // Automatically compute the xp cost
+        sheetData.data.data.xp_used = sheetData.data.embedItemsList.reduce(
+            (acc, item) => acc + (+item.data.xp_used || 0),
+            0
+        );
+
         return sheetData;
     }
 
@@ -63,17 +64,19 @@ export class TitleSheetL5r5e extends ItemSheetL5r5e {
 
         // Check item type and subtype
         let item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
-        if (!item || (item.documentName !== "Item" && !["technique", "advancement"].includes(item.data.type))) {
+        if (!item || item.documentName !== "Item" || !["technique", "advancement"].includes(item.data.type)) {
             return;
         }
 
-        const data = item.data.toJSON();
+        const data = item.data.toObject(false);
 
-        console.log("------ data", data); // todo tmp
+        // Check xp for techs
+        if (item.data.type === "technique") {
+            data.data.xp_cost = data.data.xp_cost > 0 ? data.data.xp_cost : CONFIG.l5r5e.xp.techniqueCost;
+            data.data.xp_used = data.data.xp_cost;
+        }
 
         this.document.addEmbedItem(data);
-
-        console.log(this.document); // todo tmp
     }
 
     /**
@@ -93,16 +96,4 @@ export class TitleSheetL5r5e extends ItemSheetL5r5e {
         html.find(`.item-edit`).on("click", this._editSubItem.bind(this));
         html.find(`.item-delete`).on("click", this._deleteSubItem.bind(this));
     }
-
-    /**
-     * This method is called upon form submission after form data is validated
-     * @param {Event} event       The initial triggering submission event
-     * @param {object} formData   The object of validated form data with which to update the object
-     * @returns {Promise}         A Promise which resolves once the update operation has completed
-     * @abstract
-     */
-    // async _updateObject(event, formData) {
-    //     console.log("------- _updateObject.", formData); // todo TMP
-    //     return super._updateObject(event, formData);
-    // }
 }

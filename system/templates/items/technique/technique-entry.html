@@ -3,8 +3,10 @@
         <li class="item-img"><img src="{{technique.img}}" title="{{technique.name}}" width="32px" height="32px"/></li>
         <li class="item-name">{{technique.name}}</li>
         {{#if editable}}
-            <li data-item-id="{{technique._id}}" class="item-control item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
+            <li data-item-id="{{technique._id}}" {{#if technique.data.parent_id.item_id}}data-item-parent-id="{{technique.data.parent_id.item_id}}"{{/if}} class="item-control item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
+            {{^if technique.data.parent_id.item_id}}
             <li data-item-id="{{technique._id}}" class="item-control item-delete" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></li>
+            {{/if}}
         {{/if}}
     </ul>
     {{#if technique.data.description}}

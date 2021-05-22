@@ -21,9 +21,6 @@ export class ItemPatternSheetL5r5e extends ItemSheetL5r5e {
     async getData(options = {}) {
         const sheetData = await super.getData(options);
 
-        sheetData.data.dtypes = ["String", "Number", "Boolean"];
-        sheetData.data.ringsList = game.l5r5e.HelpersL5r5e.getRingsList();
-
         // Linked Property
         sheetData.data.linkedProperty = await this.getLinkedProperty(sheetData);
 

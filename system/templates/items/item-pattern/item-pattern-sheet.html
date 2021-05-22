@@ -1,7 +1,7 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
-        <img class="profile-img" src="{{document.img}}" data-edit="img" title="{{document.name}}"/>
-        <h1 class="charname"><input name="name" type="text" value="{{document.name}}" placeholder="Name"/></h1>
+        <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}"/>
+        <h1 class="charname"><input name="name" type="text" value="{{data.name}}" placeholder="Name"/></h1>
     </header>
     {{!-- Sheet Body --}}
     <section class="sheet-body">
@@ -9,23 +9,23 @@
         <article class="attributes" data-group="primary" data-tab="attributes">
             <label class="attribute">
                 {{ localize 'l5r5e.advancements.rarity_modifier' }}
-                <input class="select-on-focus" type="number" name="data.rarity_modifier" value="{{document.data.data.rarity_modifier}}" data-dtype="Number" min="0" placeholder="0"/>
+                <input class="select-on-focus" type="number" name="data.rarity_modifier" value="{{data.data.rarity_modifier}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
                 {{ localize 'l5r5e.advancements.cost' }}
-                <input class="select-on-focus" type="number" name="data.xp_cost" value="{{document.data.data.xp_cost}}" data-dtype="Number" min="0" placeholder="0"/>
+                <input class="select-on-focus" type="number" name="data.xp_cost" value="{{data.data.xp_cost}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
                 {{ localize 'l5r5e.advancements.spent' }}
-                <input class="select-on-focus" type="number" name="data.xp_used" value="{{document.data.data.xp_used}}" data-dtype="Number" min="0" placeholder="0"/>
+                <input class="select-on-focus" type="number" name="data.xp_used" value="{{data.data.xp_used}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
                 {{ localize 'l5r5e.rank' }}
-                <input class="select-on-focus" type="number" name="data.rank" value="{{document.data.data.rank}}" data-dtype="Number" min="0" placeholder="0"/>
+                <input class="select-on-focus" type="number" name="data.rank" value="{{data.data.rank}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
                 {{ localize 'l5r5e.bought_at_rank' }}
-                <input class="select-on-focus" type="number" name="data.bought_at_rank" value="{{document.data.data.bought_at_rank}}" data-dtype="Number" min="0" placeholder="0"/>
+                <input class="select-on-focus" type="number" name="data.bought_at_rank" value="{{data.data.bought_at_rank}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
                 {{ localize 'l5r5e.linked_property' }}

@@ -295,14 +295,6 @@ export class RollL5r5e extends Roll {
     }
 
     /**
-     * Render the HTML for the ChatMessage which should be added to the log
-     * @return {Promise<jQuery>}
-     */
-    async getHTML() {
-        console.log(" --------- getHTML");
-    }
-
-    /**
      * Transform a Roll instance into a ChatMessage, displaying the roll result.
      * This function can either create the ChatMessage directly, or return the data object that will be used to create.
      * @override

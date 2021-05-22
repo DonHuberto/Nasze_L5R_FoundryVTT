@@ -108,4 +108,65 @@ export class ActorL5r5e extends Actor {
             }
         }
     }
+
+    /**
+     * Add a Ring/Skill point to the current actor if the item is a advancement
+     * @param {Item} item
+     * @return {Promise<void>}
+     */
+    async addBonus(item) {
+        return this._updateActorFromAdvancement(item, true);
+    }
+
+    /**
+     * Remove a Ring/Skill point to the current actor if the item is a advancement
+     * @param {Item} item
+     * @return {Promise<void>}
+     */
+    async removeBonus(item) {
+        return this._updateActorFromAdvancement(item, false);
+    }
+
+    /**
+     * Alter Actor skill/ring from a advancement
+     * @param {Item}    item
+     * @param {boolean} isAdd True=add, false=remove
+     * @return {Promise<void>}
+     * @private
+     */
+    async _updateActorFromAdvancement(item, isAdd) {
+        if (item && item.type === "advancement") {
+            const actor = foundry.utils.duplicate(this.data.data);
+            const itemData = item.data.data;
+            if (itemData.advancement_type === "ring") {
+                // Ring
+                if (isAdd) {
+                    actor.rings[itemData.ring] = Math.min(9, actor.rings[itemData.ring] + 1);
+                } else {
+                    actor.rings[itemData.ring] = Math.max(1, actor.rings[itemData.ring] - 1);
+                }
+            } else {
+                // Skill
+                const skillCatId = CONFIG.l5r5e.skills.get(itemData.skill);
+                if (skillCatId) {
+                    if (isAdd) {
+                        actor.skills[skillCatId][itemData.skill] = Math.min(
+                            9,
+                            actor.skills[skillCatId][itemData.skill] + 1
+                        );
+                    } else {
+                        actor.skills[skillCatId][itemData.skill] = Math.max(
+                            0,
+                            actor.skills[skillCatId][itemData.skill] - 1
+                        );
+                    }
+                }
+            }
+
+            // Update Actor
+            await this.update({
+                data: foundry.utils.diffObject(this.data.data, actor),
+            });
+        }
+    }
 }
