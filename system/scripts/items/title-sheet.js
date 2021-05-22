@@ -106,6 +106,9 @@ export class TitleSheetL5r5e extends ItemSheetL5r5e {
     async _addSubItem(event) {
         // Show Dialog
         const selectedType = await game.l5r5e.HelpersL5r5e.showSubItemDialog(["advancement", "technique"]);
+        if (!selectedType) {
+            return;
+        }
 
         // Create the new Item
         const itemId = await this.document.addEmbedItem(

@@ -215,6 +215,15 @@ export class BaseSheetL5r5e extends ActorSheet {
                 await this.actor.addBonus(item);
                 break;
 
+            case "title":
+                // Add embed advancements bonus
+                for (let [embedId, embedItem] of item.data.data.items) {
+                    if (embedItem.data.type === "advancement") {
+                        await this.actor.addBonus(embedItem);
+                    }
+                }
+                break;
+
             case "technique":
                 // School_ability and mastery_ability, allow only 1 per type
                 if (CONFIG.l5r5e.techniques.get(item.data.data.technique_type)?.type === "school") {
@@ -258,7 +267,7 @@ export class BaseSheetL5r5e extends ActorSheet {
             return;
         }
 
-        return this._onDropItemCreate(item.data.toObject(false));
+        return this._onDropItemCreate(item.data.toJSON());
     }
 
     /**
@@ -487,9 +496,20 @@ export class BaseSheetL5r5e extends ActorSheet {
         }
 
         const callback = async () => {
-            // Specific advancements, remove 1 to selected ring/skill
-            if (tmpItem.type === "advancement") {
-                await this.actor.removeBonus(tmpItem);
+            switch (tmpItem.type) {
+                case "advancement":
+                    // Remove advancements bonus (1 to selected ring/skill)
+                    await this.actor.removeBonus(tmpItem);
+                    break;
+
+                case "title":
+                    // Remove embed advancements bonus
+                    for (let [embedId, embedItem] of tmpItem.data.data.items) {
+                        if (embedItem.data.type === "advancement") {
+                            await this.actor.removeBonus(embedItem);
+                        }
+                    }
+                    break;
             }
             return this.actor.deleteEmbeddedDocuments("Item", [itemId]);
         };
