@@ -172,3 +172,6 @@ Hooks.on("renderChatMessage", (message, html, data) => HooksL5r5e.renderChatMess
 Hooks.on("renderCombatTracker", (app, html, data) => HooksL5r5e.renderCombatTracker(app, html, data));
 Hooks.on("renderCompendium", async (app, html, data) => HooksL5r5e.renderCompendium(app, html, data));
 Hooks.on("diceSoNiceRollStart", (messageId, context) => HooksL5r5e.diceSoNiceRollStart(messageId, context));
+Hooks.on("preCreateChatMessage", (document, data, options, userId) =>
+    HooksL5r5e.preCreateChatMessage(document, data, options, userId)
+);

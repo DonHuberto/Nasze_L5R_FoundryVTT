@@ -61,6 +61,32 @@ export default class HooksL5r5e {
     }
 
     /**
+     * Modify the content for chat roll command
+     *
+     * The 0.8.x introduce a weird behavior, it get to roll.total as content event if a template was defined.
+     * So we need to intercept a chat roll (/r 1dr) for having them use the right template and not the inline (=total)
+     *
+     * @param {ChatMessage} document
+     * @param {Object}      data
+     * @param {Object}      options
+     * @param {string}      userId
+     * @return {boolean}
+     */
+    static preCreateChatMessage(document, data, options, userId) {
+        // Roll from DP have the "isL5r5eTemplate" option set
+        if (!document.isRoll || options?.isL5r5eTemplate || !document.data?.roll) {
+            return;
+        }
+
+        // So now we have our wrong message only, redo it using the roll
+        const roll = game.l5r5e.RollL5r5e.fromJSON(document.data.roll);
+        roll.toMessage();
+
+        // Return false to let the system known we handled this
+        return false;
+    }
+
+    /**
      * Chat Message
      */
     static renderChatMessage(message, html, data) {

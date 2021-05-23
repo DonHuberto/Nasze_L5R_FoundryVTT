@@ -33,6 +33,7 @@ export class L5rBaseDie extends DiceTerm {
 
     /**
      * Return a standardized representation for the displayed formula associated with this DiceTerm
+     * @return {string}
      * @override
      */
     get formula() {
@@ -53,6 +54,8 @@ export class L5rBaseDie extends DiceTerm {
 
     /**
      * Return the url of the result face
+     * @param {string|number} result
+     * @return {string}
      */
     static getResultSrc(result) {
         return `${CONFIG.l5r5e.paths.assets}dices/default/${this.FACES[result].image}.svg`;
@@ -62,13 +65,18 @@ export class L5rBaseDie extends DiceTerm {
      * Return the total result of the DiceTerm if it has been evaluated
      * Always zero for L5R dices to not count in total for regular dices
      * @override
+     * @return {number|string}
      */
     get total() {
         return 0;
     }
 
     /**
-     * Evaluate the roll term, populating the results Array
+     * Evaluate the term, processing its inputs and finalizing its total.
+     * @param  {boolean} minimize      Minimize the result, obtaining the smallest possible value.
+     * @param  {boolean} maximize      Maximize the result, obtaining the largest possible value.
+     * @param  {boolean} async         Evaluate the term asynchronously, receiving a Promise as the returned value. This will become the default behavior in version 10.x
+     * @return {L5rBaseDie}            The evaluated RollTerm
      * @override
      */
     evaluate({ minimize = false, maximize = false, async = false } = {}) {
@@ -78,7 +86,7 @@ export class L5rBaseDie extends DiceTerm {
 
         // Roll the initial number of dice
         for (let n = 1; n <= this.number; n++) {
-            this.roll({ minimize, maximize, async });
+            this.roll({ minimize, maximize, async }); // TODO async/await in v10.x currently the inline roll is sync
         }
 
         // Apply modifiers
@@ -112,15 +120,22 @@ export class L5rBaseDie extends DiceTerm {
 
     /**
      * Roll the DiceTerm by mapping a random uniform draw against the faces of the dice term
+     * @param {Object} options
+     * @return {DiceTermResult}
      * @override
      */
-    roll(options) {
+    roll(options = { minimize: false, maximize: false }) {
         const roll = super.roll(options);
         //roll.l5r5e = this.l5r5e;
         return roll;
     }
 
-    /** @override */
+    /**
+     * Construct a DiceTerm from a provided data object
+     * @param {object} data  Provided data from an un-serialized term
+     * @return {DiceTerm}    The constructed RollTerm
+     * @override
+     */
     static fromData(data) {
         const roll = super.fromData(data);
         roll.l5r5e = data.l5r5e;
@@ -128,7 +143,8 @@ export class L5rBaseDie extends DiceTerm {
     }
 
     /**
-     * Represent the data of the Roll as an object suitable for JSON serialization
+     * Represent the data of the DiceTerm as an object suitable for JSON serialization
+     * @return {string}
      * @override
      */
     toJSON() {

@@ -151,8 +151,6 @@ export class RollL5r5e extends Roll {
             this.l5r5e.summary[props] += parseInt(term.l5r5e[props]);
         });
         this.l5r5e.summary.totalSuccess += term.totalSuccess;
-
-        // TODO Others advantage/disadvantage
     }
 
     /**
@@ -160,31 +158,28 @@ export class RollL5r5e extends Roll {
      * @override
      */
     get total() {
-        return null; // TODO Bug 0.8.x : If not returning a null/0 value the chat ignore the template. If i do this, no inline but "/r 1dr" work fine :'(
+        if (!this._evaluated) {
+            return null;
+        }
 
-        // if (!this._evaluated) {
-        //     return null;
-        // }
-        //
-        // let total = "";
-        //
-        // // Regular dices total (eg 6)
-        // if (this.l5r5e.dicesTypes.std) {
-        //     total = this._total;
-        // }
-        //
-        // // Add L5R summary
-        // if (this.l5r5e.dicesTypes.l5r) {
-        //     const summary = this.l5r5e.summary;
-        //     total +=
-        //         (this.l5r5e.dicesTypes.std ? " | " : "") +
-        //         ["success", "explosive", "opportunity", "strife"]
-        //             .map((props) => (summary[props] > 0 ? `<i class="i_${props}"></i> ${summary[props]}` : null))
-        //             .filter((c) => !!c)
-        //             .join(" | ");
-        // }
-        //
-        // return total;
+        let total = "";
+
+        // Regular dices total (eg 6)
+        if (this.l5r5e.dicesTypes.std) {
+            total = this._total;
+        }
+
+        // Add L5R summary
+        if (this.l5r5e.dicesTypes.l5r) {
+            const summary = this.l5r5e.summary;
+            total +=
+                (this.l5r5e.dicesTypes.std ? " | " : "") +
+                ["success", "explosive", "opportunity", "strife"]
+                    .map((props) => (summary[props] > 0 ? `<i class="i_${props}"></i> ${summary[props]}` : null))
+                    .filter((c) => !!c)
+                    .join(" | ");
+        }
+        return total;
     }
 
     /**
@@ -302,18 +297,13 @@ export class RollL5r5e extends Roll {
     async toMessage(messageData = {}, { rollMode = null, create = true } = {}) {
         // Perform the roll, if it has not yet been rolled
         if (!this._evaluated) {
-            this.evaluate();
+            this.evaluate({ async: false });
         }
 
+        // RollMode
         const rMode = rollMode || messageData.rollMode || game.settings.get("core", "rollMode");
-        if (["gmroll", "blindroll"].includes(rMode)) {
-            messageData.whisper = ChatMessage.getWhisperRecipients("GM");
-        }
-        if (rMode === "blindroll") {
-            messageData.blind = true;
-        }
-        if (rMode === "selfroll") {
-            messageData.whisper = [game.user.id];
+        if (rollMode) {
+            ChatMessage.applyRollMode(messageData, rMode);
         }
 
         // Prepare chat data
@@ -334,7 +324,11 @@ export class RollL5r5e extends Roll {
         messageData.roll = this;
 
         // Either create the message or just return the chat data
-        const message = await ChatMessage.implementation.create(messageData, { rollMode: rMode, temporary: !create });
+        const message = await ChatMessage.implementation.create(messageData, {
+            rollMode: rMode,
+            temporary: !create,
+            isL5r5eTemplate: true,
+        });
         return create ? message : message.data;
     }
 
@@ -369,8 +363,8 @@ export class RollL5r5e extends Roll {
     toJSON() {
         const json = super.toJSON();
 
-        json.data = duplicate(this.data);
-        json.l5r5e = duplicate(this.l5r5e);
+        json.data = foundry.utils.duplicate(this.data);
+        json.l5r5e = foundry.utils.duplicate(this.l5r5e);
 
         // lightweight the Actor
         if (json.l5r5e.actor) {
