@@ -216,7 +216,8 @@
         },
         "title": {
             "templates": ["basics", "advancement"],
-            "advancements": []
+            "advancements": [],
+            "xp_used_total": 0
         },
         "bond": {
             "templates": ["basics", "advancement"],

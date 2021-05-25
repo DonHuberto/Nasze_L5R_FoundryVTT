@@ -1,4 +1,6 @@
 <form class="{{cssClass}}" autocomplete="off">
+    <input type="hidden" name="data.xp_used" value="{{data.data.xp_used}}" data-dtype="Number">
+    <input type="hidden" name="data.xp_used_total" value="{{data.data.xp_used_total}}" data-dtype="Number">
     <header class="sheet-header">
         <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}"/>
         <h1 class="charname"><input name="name" type="text" value="{{data.name}}" placeholder="Name"/></h1>
@@ -15,10 +17,6 @@
             <label class="attribute">
                 {{localize 'l5r5e.advancements.cost'}}
                 <input class="select-on-focus" type="number" name="data.xp_cost" value="{{data.data.xp_cost}}" data-dtype="Number" min="0" placeholder="0"/>
-            </label>
-            <label class="attribute">
-                {{localize 'l5r5e.advancements.spent'}}
-                <input class="select-on-focus" type="number" name="data.xp_used" value="{{data.data.xp_used}}" data-dtype="Number" min="0" placeholder="0" readonly/>
             </label>
             <label class="attribute">
                 {{localize 'l5r5e.rank'}}
@@ -38,6 +36,7 @@
                 <table>
                     <thead class="flex">
                     <tr class="flexrow row">
+                        <th class="curriculum"></th>
                         <th class="name">{{localize 'l5r5e.name'}}</th>
                         <th class="xp">{{localize 'l5r5e.advancements.spent'}}</th>
                         <th class="rank">{{localize 'l5r5e.rank'}}</th>
@@ -48,9 +47,17 @@
                     </thead>
                     <tbody class="flex">
                     {{#each data.embedItemsList as |advancement|}}
-                        {{> 'systems/l5r5e/templates/actors/character/advancement-others.html' advancement=advancement editable=../options.editable}}
+                        {{> 'systems/l5r5e/templates/actors/character/advancement-others.html' advancement=advancement show_curriculum_toggle=true editable=../options.editable}}
                     {{/each}}
                     </tbody>
+                    <tfoot>
+                    <tr>
+                        <th class="" colspan="5">{{localize 'l5r5e.advancements.total_xp_curriculum'}} : {{data.data.xp_used}} / {{data.data.xp_cost}}</th>
+                    </tr>
+                    <tr>
+                        <th class="" colspan="5">{{localize 'l5r5e.advancements.total_xp_spent'}} : {{data.data.xp_used_total}}</th>
+                    </tr>
+                    </tfoot>
                 </table>
             </fieldset>
         </article>

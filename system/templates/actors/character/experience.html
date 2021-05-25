@@ -53,7 +53,8 @@
                     {{/ifCond}}
                 </th>
                 <th class="">
-                    {{localize 'l5r5e.advancements.total_xp_rank'}} : {{rankObject.spent}}{{#if rankObject.goal}} / {{rankObject.goal}}{{/if}}
+                    {{localize 'l5r5e.advancements.total_xp_curriculum'}} : {{rankObject.spent.curriculum}}{{#if rankObject.goal}} / {{rankObject.goal}}{{/if}}
+                    <br>{{localize 'l5r5e.advancements.total_xp_spent'}} : {{rankObject.spent.total}}
                 </th>
             </tr>
             {{/ifCond}}
@@ -77,13 +78,13 @@
         </thead>
         <tbody class="flex">
         {{#each data.advancementsOthers as |advancement advancementId|}}
-            {{> 'systems/l5r5e/templates/actors/character/advancement-others.html' advancement=advancement editable=../options.editable}}
+            {{> 'systems/l5r5e/templates/actors/character/advancement-others.html' advancement=advancement show_curriculum_toggle=false editable=../options.editable}}
         {{/each}}
         </tbody>
         <tfoot class="flex">
         <tr>
             <th>
-                {{localize 'l5r5e.advancements.total_xp_rank'}} : {{data.advancementsOthersTotalXp}}
+                {{localize 'l5r5e.advancements.total_xp_spent'}} : {{data.advancementsOthersTotalXp}}
             </th>
         </tr>
         </tfoot>

@@ -331,4 +331,34 @@ export class HelpersL5r5e {
             }
         });
     }
+
+    /**
+     * Compute the Xp cost for cursus and total
+     * @param {ItemL5r5e|ItemL5r5e[]} itemsList Item Data
+     * @return {{xp_used_total: number, xp_used: number}}
+     */
+    static getItemsXpCost(itemsList) {
+        let xp_used = 0;
+        let xp_used_total = 0;
+
+        if (!Array.isArray(itemsList)) {
+            itemsList = [itemsList];
+        }
+
+        itemsList.forEach((item) => {
+            let xp = parseInt(item.data.xp_used_total || item.data.xp_used || 0);
+
+            // Full  price
+            xp_used_total += xp;
+
+            // if not in curriculum, xp spent /2 for this item
+            if (!item.data.in_curriculum && xp > 0) {
+                xp = Math.ceil(xp / 2);
+            }
+
+            // Halved or full
+            xp_used += xp;
+        });
+        return { xp_used, xp_used_total };
+    }
 }

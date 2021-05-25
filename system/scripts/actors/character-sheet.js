@@ -111,25 +111,24 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
         sheetData.items
             .filter((item) => ["peculiarity", "technique", "advancement"].includes(item.type))
             .forEach((item) => {
-                let xp = parseInt(item.data.xp_used) || 0;
-                sheetData.data.data.xp_spent = parseInt(sheetData.data.data.xp_spent) + xp;
-
-                // if not in curriculum, xp spent /2 for this item
-                if (!item.data.in_curriculum && xp > 0) {
-                    xp = Math.ceil(xp / 2);
-                }
+                const { xp_used_total, xp_used } = game.l5r5e.HelpersL5r5e.getItemsXpCost(item);
+                sheetData.data.data.xp_spent += xp_used_total;
 
                 const rank = Math.max(0, item.data.bought_at_rank);
                 if (!adv[rank]) {
                     adv[rank] = {
                         rank: rank,
-                        spent: 0,
+                        spent: {
+                            total: 0,
+                            curriculum: 0,
+                        },
                         goal: CONFIG.l5r5e.xp.costPerRank[rank] || null,
                         list: [],
                     };
                 }
                 adv[rank].list.push(item);
-                adv[rank].spent = adv[rank].spent + xp;
+                adv[rank].spent.total += xp_used_total;
+                adv[rank].spent.curriculum += xp_used;
             });
         sheetData.data.advancementsListByRank = adv;
     }
@@ -146,15 +145,14 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
         // Sort by rank desc
         sheetData.data.advancementsOthers.sort((a, b) => (b.data.rank || 0) - (a.data.rank || 0));
 
-        // Total xp spent
+        // Total xp spent in curriculum & total
         sheetData.data.advancementsOthersTotalXp = sheetData.data.advancementsOthers.reduce(
-            (acc, item) => acc + (item.data.xp_used || 0),
+            (acc, item) => acc + parseInt(item.data.xp_used_total || item.data.xp_used || 0),
             0
         );
 
         // Update the total spent
-        sheetData.data.data.xp_spent =
-            parseInt(sheetData.data.data.xp_spent) + sheetData.data.advancementsOthersTotalXp;
+        sheetData.data.data.xp_spent += sheetData.data.advancementsOthersTotalXp;
     }
 
     /**

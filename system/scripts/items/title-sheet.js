@@ -24,11 +24,10 @@ export class TitleSheetL5r5e extends ItemSheetL5r5e {
         // Prepare OwnedItems
         sheetData.data.embedItemsList = this._prepareEmbedItems(sheetData.data.data.items);
 
-        // Automatically compute the xp cost
-        sheetData.data.data.xp_used = sheetData.data.embedItemsList.reduce(
-            (acc, item) => acc + (+item.data.xp_used || 0),
-            0
-        );
+        // Automatically compute the total xp cost (full price) and XP in title (cursus, some halved prices)
+        const { xp_used_total, xp_used } = game.l5r5e.HelpersL5r5e.getItemsXpCost(sheetData.data.embedItemsList);
+        sheetData.data.data.xp_used_total = xp_used_total;
+        sheetData.data.data.xp_used = xp_used;
 
         return sheetData;
     }
@@ -91,10 +90,11 @@ export class TitleSheetL5r5e extends ItemSheetL5r5e {
             return;
         }
 
-        // *** Items : add, edit, delete ***
+        // *** Sub-Items management ***
         html.find(".item-add").on("click", this._addSubItem.bind(this));
         html.find(`.item-edit`).on("click", this._editSubItem.bind(this));
         html.find(`.item-delete`).on("click", this._deleteSubItem.bind(this));
+        html.find(`.item-curriculum`).on("click", this._switchSubItemCurriculum.bind(this));
     }
 
     /**
@@ -104,6 +104,9 @@ export class TitleSheetL5r5e extends ItemSheetL5r5e {
      * @private
      */
     async _addSubItem(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
         // Show Dialog
         const selectedType = await game.l5r5e.HelpersL5r5e.showSubItemDialog(["advancement", "technique"]);
         if (!selectedType) {
@@ -124,5 +127,26 @@ export class TitleSheetL5r5e extends ItemSheetL5r5e {
         if (item) {
             item.sheet.render(true);
         }
+    }
+
+    /**
+     * Toogle the curriculum for this embed item
+     * @param {Event} event
+     * @return {Promise<void>}
+     * @private
+     */
+    async _switchSubItemCurriculum(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const itemId = $(event.currentTarget).data("item-id");
+        const item = this.document.getEmbedItem(itemId);
+        if (!item) {
+            return;
+        }
+
+        // Switch the state and update
+        item.data.data.in_curriculum = !item.data.data.in_curriculum;
+        return this.document.updateEmbedItem(item);
     }
 }
