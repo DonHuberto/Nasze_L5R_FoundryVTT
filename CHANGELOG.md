@@ -14,6 +14,7 @@ __! Be certain to carefully back up any critical user data before installing thi
 - Added an optional "Specificity" technique type to serve as a catch-all (by request).
 - Added Mantis Clan compendium entries.
 - Added a "Description" in PC/NPC sheet: this field is used in limited view (public description, "notes" are private).
+- Removed the "titles" field text in social.
 - Fix : rnkMessage not passing on actor object for NPCs (thanks to Bragma).
 - Fix : The "Crescent Moon Style" technique rank from 4 to 2.
 - Fix : Drop an advancement on a PC/NPC sheet now correctly add the bonus to the Actor (ex Air +1).
