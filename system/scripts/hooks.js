@@ -22,7 +22,7 @@ export default class HooksL5r5e {
      */
     static async ready() {
         // Migration stuff
-        if (game.l5r5e.migrations.needUpdate()) {
+        if (game.l5r5e.migrations.needUpdate(game.l5r5e.migrations.NEEDED_VERSION)) {
             game.l5r5e.migrations.migrateWorld();
         }
 

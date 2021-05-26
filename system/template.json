@@ -21,6 +21,8 @@
                 }
             },
             "social": {
+                "notes": "",
+                "description": "",
                 "social": {
                     "honor": 0,
                     "glory": 0,
@@ -109,14 +111,12 @@
         "character": {
             "templates": ["identity", "rings", "social", "skills", "techniques", "conflict", "advancement"],
             "zeni": 0,
-            "notes": "",
             "twenty_questions": {}
         },
         "npc": {
             "templates": ["rings", "social", "techniques", "conflict"],
             "type": "minion",
             "attitude": "",
-            "notes": "",
             "conflict_rank": {
                 "martial": 0,
                 "social": 0

@@ -9,12 +9,13 @@ export class MigrationL5r5e {
     static NEEDED_VERSION = "1.3.0";
 
     /**
-     * Return true if the current world need some updates
-     * @returns {boolean}
+     * Return true if the version need some updates
+     * @param {string} version
+     * @return {boolean}
      */
-    static needUpdate() {
+    static needUpdate(version) {
         const currentVersion = game.settings.get("l5r5e", "systemMigrationVersion");
-        return currentVersion && foundry.utils.isNewerVersion(MigrationL5r5e.NEEDED_VERSION, currentVersion);
+        return currentVersion && foundry.utils.isNewerVersion(version, currentVersion);
     }
 
     /**
@@ -25,6 +26,10 @@ export class MigrationL5r5e {
         if (!game.user.isGM) {
             return;
         }
+
+        // if (MigrationL5r5e.needUpdate("1.3.0")) {
+        //     ChatMessage.create({"content": "<strong>L5R5E v1.3.0 :</strong><br>"});
+        // }
 
         // Warn the users
         ui.notifications.info(
@@ -190,35 +195,42 @@ export class MigrationL5r5e {
         const actorData = actor.data;
 
         // ***** Start of 1.1.0 *****
-        // Add "Prepared" in actor
-        if (actorData.prepared === undefined) {
-            updateData["data.prepared"] = true;
-        }
+        if (MigrationL5r5e.needUpdate("1.1.0")) {
+            // Add "Prepared" in actor
+            if (actorData.prepared === undefined) {
+                updateData["data.prepared"] = true;
+            }
 
-        // NPC are now without autostats, we need to save the value
-        if (actor.type === "npc") {
-            if (actorData.endurance < 1) {
-                updateData["data.endurance"] = (Number(actorData.rings.earth) + Number(actorData.rings.fire)) * 2;
-                updateData["data.composure"] = (Number(actorData.rings.earth) + Number(actorData.rings.water)) * 2;
-                updateData["data.focus"] = Number(actorData.rings.air) + Number(actorData.rings.fire);
-                updateData["data.vigilance"] = Math.ceil(
-                    (Number(actorData.rings.air) + Number(actorData.rings.water)) / 2
-                );
+            // NPC are now without autostats, we need to save the value
+            if (actor.type === "npc") {
+                if (actorData.endurance < 1) {
+                    updateData["data.endurance"] = (Number(actorData.rings.earth) + Number(actorData.rings.fire)) * 2;
+                    updateData["data.composure"] = (Number(actorData.rings.earth) + Number(actorData.rings.water)) * 2;
+                    updateData["data.focus"] = Number(actorData.rings.air) + Number(actorData.rings.fire);
+                    updateData["data.vigilance"] = Math.ceil(
+                        (Number(actorData.rings.air) + Number(actorData.rings.water)) / 2
+                    );
+                }
             }
         }
         // ***** End of 1.1.0 *****
 
         // ***** Start of 1.3.0 *****
-        // NPC have now more thant a Strength and a Weakness
-        if (actor.type === "npc" && actorData.rings_affinities) {
-            updateData["data.rings_affinities." + actorData.rings_affinities.strength.ring] =
-                actorData.rings_affinities.strength.value;
-            updateData["data.rings_affinities." + actorData.rings_affinities.weakness.ring] =
-                actorData.rings_affinities.weakness.value;
+        if (MigrationL5r5e.needUpdate("1.3.0")) {
+            // PC/NPC removed notes useless props "value"
+            updateData["data.notes"] = actorData.notes.value;
 
-            // Delete old keys : not working :'(
-            updateData["-=data.rings_affinities.strength"] = null;
-            updateData["-=data.rings_affinities.weakness"] = null;
+            // NPC have now more thant a Strength and a Weakness
+            if (actor.type === "npc" && actorData.rings_affinities) {
+                updateData["data.rings_affinities." + actorData.rings_affinities.strength.ring] =
+                    actorData.rings_affinities.strength.value;
+                updateData["data.rings_affinities." + actorData.rings_affinities.weakness.ring] =
+                    actorData.rings_affinities.weakness.value;
+
+                // Delete old keys : not working :'(
+                updateData["-=data.rings_affinities.strength"] = null;
+                updateData["-=data.rings_affinities.weakness"] = null;
+            }
         }
         // ***** End of 1.3.0 *****
 

@@ -55,7 +55,15 @@
         </ul>
     </fieldset>
 </div>
+{{!-- Description (npc have it on header) --}}
+{{#ifCond data.type '==' "character"}}
+<fieldset class="narrative-description">
+    <legend class="text-block-header">{{localize 'l5r5e.description' }}</legend>
+    {{editor content=data.data.description target="data.description" button=true editable=options.editable}}
+</fieldset>
+{{/ifCond}}
+{{!-- Notes (private) --}}
 <fieldset class="narrative-note">
     <legend class="text-block-header">{{localize 'l5r5e.notes' }}</legend>
-    {{editor content=data.data.notes.value target="data.notes.value" button=true editable=options.editable}}
+    {{editor content=data.data.notes target="data.notes" button=true editable=options.editable}}
 </fieldset>

@@ -134,7 +134,7 @@ export class BaseSheetL5r5e extends ActorSheet {
      * @override
      */
     activateEditor(name, options = {}, initialContent = "") {
-        if (name === "data.notes.value" && initialContent) {
+        if (["data.notes", "data.description"].includes(name) && initialContent) {
             initialContent = game.l5r5e.HelpersL5r5e.convertSymbols(initialContent, false);
         }
         super.activateEditor(name, options, initialContent);
@@ -148,8 +148,11 @@ export class BaseSheetL5r5e extends ActorSheet {
      * @override
      */
     async _updateObject(event, formData) {
-        if (formData["data.notes.value"]) {
-            formData["data.notes.value"] = game.l5r5e.HelpersL5r5e.convertSymbols(formData["data.notes.value"], true);
+        if (formData["data.notes"]) {
+            formData["data.notes"] = game.l5r5e.HelpersL5r5e.convertSymbols(formData["data.notes"], true);
+        }
+        if (formData["data.description"]) {
+            formData["data.description"] = game.l5r5e.HelpersL5r5e.convertSymbols(formData["data.description"], true);
         }
         return super._updateObject(event, formData);
     }
