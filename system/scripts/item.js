@@ -148,6 +148,9 @@ export class ItemL5r5e extends Item {
             item.data._id = foundry.utils.randomID();
         }
 
+        // Copy the parent permission to the sub item
+        item.data.permission = this.data.permission;
+
         // Tag parent (flags won't work as we have no id in db)
         item.data.data.parent_id = this.getParentsIds();
 

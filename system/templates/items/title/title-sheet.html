@@ -32,7 +32,7 @@
         <article class="tab experience" data-group="primary" data-tab="experience">
             {{!-- Others progession (does not count in school xp) --}}
             <fieldset class="xp-spent xp-spent-body">
-                <legend class="tools">{{localize 'l5r5e.advancements.title'}} <a data-item-type="advancement-others" class="advancement-others-control item-add" title="{{localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a></legend>
+                <legend class="tools">{{localize 'l5r5e.advancements.title'}} {{#if options.editable}}<a data-item-type="advancement-others" class="advancement-others-control item-add" title="{{localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a>{{/if}}</legend>
                 <table>
                     <thead class="flex">
                     <tr class="flexrow row">
