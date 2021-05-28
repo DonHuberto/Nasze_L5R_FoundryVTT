@@ -15,8 +15,9 @@ This version is authorized by Edge Studio, all texts, images and copyrights are 
 > https://gitlab.com/teaml5r/l5r5e/-/raw/master/system/system.json
 
 ### Recommended modules
-- Dice so Nice, for 3D dices : https://gitlab.com/riccisi/foundryvtt-dice-so-nice
-- Search Anywhere : https://gitlab.com/riccisi/foundryvtt-search-anywhere (don't spent too much time searching the right technique)
+- `Babele` required for non english compendium translation: https://gitlab.com/riccisi/foundryvtt-babele
+- `Dice so Nice` for 3D dices : https://gitlab.com/riccisi/foundryvtt-dice-so-nice
+- `Search Anywhere` https://gitlab.com/riccisi/foundryvtt-search-anywhere (don't spent too much time searching the right technique)
 
 ## Current L5R team (alphabetical order)
 - Carter (compendiums, adventure adaptation)
@@ -54,8 +55,8 @@ La traduction du système fonctionne directement, cependant les compendiums néc
 > https://gitlab.com/riccisi/foundryvtt-babele
 
 ### Modules recommandés
-- Dice so Nice, pour avoir des dés 3D : https://gitlab.com/riccisi/foundryvtt-dice-so-nice
-- Search Anywhere : https://gitlab.com/riccisi/foundryvtt-search-anywhere (pour ne pas perdre top de temps à chercher une technique)
+- `Dice so Nice` pour avoir des dés 3D : https://gitlab.com/riccisi/foundryvtt-dice-so-nice
+- `Search Anywhere` pour ne pas perdre top de temps à chercher une technique : https://gitlab.com/riccisi/foundryvtt-search-anywhere
 
 
 ## Nous rejoindre
@@ -81,7 +82,7 @@ Vous êtes libre de contribuer et proposer après fork des corrections, modifica
 3. Limitez-vous si possible à une Feature par demande de Merge pour ne pas bloquer le processus.
 
 
-Screens
+# Screenshots
 ![FoundryVTT Connection](https://cdn.discordapp.com/attachments/659430710146498583/798684216551407666/unknown.png)
 ![FoundryVTT L5r5e Character and Roll](https://cdn.discordapp.com/attachments/659430710146498583/798686668361039882/unknown.png)
 ![FoundryVTT L5r5e Sheets](https://cdn.discordapp.com/attachments/659430710146498583/798686880974503946/unknown.png)

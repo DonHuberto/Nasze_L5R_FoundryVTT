@@ -169,29 +169,30 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         // Check item type and subtype
         let item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
-        if (
-            !item ||
-            item.documentName !== "Item" ||
-            ![
-                "item",
-                "armor",
-                "weapon",
-                "technique",
-                "peculiarity",
-                "advancement",
-                "title",
-                "bond",
-                "signature_scroll",
-                "item_pattern",
-            ].includes(item.data.type)
-        ) {
+        if (!item || item.documentName !== "Item" || item.data.type === "property") {
             return;
         }
 
-        // Dropped a item with same "id" as one owned, add qte instead
-        if (item.data.data.quantity && this.actor.data.items) {
-            const tmpItem = this.actor.data.items.find((e) => e.name === item.data.name && e.type === item.data.type);
-            if (tmpItem && this._modifyQuantity(tmpItem.id, 1)) {
+        // Dropped a item with same "id" as one owned
+        if (this.actor.data.items) {
+            if (item.data.data.quantity) {
+                // Add quantity instead if they have (id is different so use type and name)
+                const tmpItem = this.actor.data.items.find(
+                    (embedItem) => embedItem.name === item.data.name && embedItem.type === item.data.type
+                );
+                if (tmpItem && this._modifyQuantity(tmpItem.id, 1)) {
+                    return;
+                }
+            } else if (
+                this.actor.data.items.some((embedItem) => {
+                    // Search in children
+                    if (embedItem.items?.has(item.data._id)) {
+                        return true;
+                    }
+                    return embedItem.data._id === item.data._id;
+                })
+            ) {
+                // Exit if we already owned exactly this id (drag a personal item on our own sheet)
                 return;
             }
         }
@@ -219,6 +220,9 @@ export class BaseSheetL5r5e extends ActorSheet {
                 break;
 
             case "title":
+                // Generate new Ids for the embed items
+                await item.generateNewIdsForAllEmbedItems();
+
                 // Add embed advancements bonus
                 for (let [embedId, embedItem] of item.data.data.items) {
                     if (embedItem.data.type === "advancement") {
@@ -231,10 +235,11 @@ export class BaseSheetL5r5e extends ActorSheet {
                 // School_ability and mastery_ability, allow only 1 per type
                 if (CONFIG.l5r5e.techniques.get(item.data.data.technique_type)?.type === "school") {
                     if (
-                        Array.from(this.actor.items).some(
-                            (e) =>
+                        Array.from(this.actor.items).some((e) => {
+                            return (
                                 e.type === "technique" && e.data.data.technique_type === item.data.data.technique_type
-                        )
+                            );
+                        })
                     ) {
                         ui.notifications.info(game.i18n.localize("l5r5e.techniques.only_one"));
                         return;

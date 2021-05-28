@@ -208,6 +208,23 @@ export class ItemL5r5e extends Item {
     }
 
     /**
+     * Generate new Ids for the embed items
+     * @return {Promise<void>}
+     */
+    async generateNewIdsForAllEmbedItems() {
+        // Clear olds ids
+        const oldItems = Array.from(this.data.data.items);
+        this.data.data.items = new Map();
+
+        // Re-add with new ids
+        oldItems.forEach(([id, item]) => {
+            this.addEmbedItem(item, { save: false, newId: true, addBonusToActor: false });
+        });
+
+        return this.saveEmbedItems();
+    }
+
+    /**
      * Save all the Embed Items
      * @return {Promise<void>}
      */
