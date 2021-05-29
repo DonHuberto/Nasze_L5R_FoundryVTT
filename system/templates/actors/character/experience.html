@@ -42,7 +42,7 @@
                     {{> 'systems/l5r5e/templates/actors/character/advancement-school.html' advancement=advancement rank=rankObject.rank editable=../../options.editable}}
                 {{/each}}
                 {{#ifCond rankObject.rank '>' 0}}
-                    <tr class="tfoot flexrow row tab">
+                    <tr data-group="advancements" data-tab="advancement_rank_{{rankObject.rank}}" class="flexrow row tab">
                         <th>{{localize 'l5r5e.advancements.total_xp_curriculum'}} : {{rankObject.spent.curriculum}}{{#if rankObject.goal}} / {{rankObject.goal}}{{/if}}</th>
                         <th>{{localize 'l5r5e.advancements.total_xp_spent'}} : {{rankObject.spent.total}}</th>
                     </tr>
