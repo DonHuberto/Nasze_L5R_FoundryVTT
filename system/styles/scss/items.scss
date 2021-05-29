@@ -362,6 +362,26 @@
         }
     }
 }
+&.item-pattern {
+    .attribute {
+        &.item {
+            display: inline;
+            .item-properties {
+                display: inline;
+                li {
+                    display: inline;
+                }
+            }
+        }
+    }
+}
+&.title {
+    article {
+        &.attributes {
+            height: auto;
+        }
+    }
+}
 .item-list {
     > li {
         .item-description {
@@ -428,8 +448,5 @@
                 display: block;
             }
         }
-    }
-    article {
-        flex: 100%;
     }
 }

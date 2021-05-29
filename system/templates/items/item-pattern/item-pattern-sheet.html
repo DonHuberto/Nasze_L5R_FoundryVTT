@@ -6,7 +6,7 @@
     {{!-- Sheet Body --}}
     <section class="sheet-body">
         {{!-- Attributes Tab --}}
-        <article class="attributes" data-group="primary" data-tab="attributes">
+        <article class="attributes item-list" data-group="primary" data-tab="attributes">
             <label class="attribute">
                 {{ localize 'l5r5e.advancements.rarity_modifier' }}
                 <input class="select-on-focus" type="number" name="data.rarity_modifier" value="{{data.data.rarity_modifier}}" data-dtype="Number" min="0" placeholder="0"/>
@@ -27,12 +27,14 @@
                 {{ localize 'l5r5e.bought_at_rank' }}
                 <input class="select-on-focus" type="number" name="data.bought_at_rank" value="{{data.data.bought_at_rank}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
-            <label class="attribute">
+            <label class="attribute item">
                 {{ localize 'l5r5e.linked_property' }}
                 {{#if data.linkedProperty}}
                 <ul class="item-properties">
-                    <li>{{{ data.linkedProperty.name }}}</li>
-                    <li data-item-id="{{data.linkedProperty.id}}" class="item-control linked-property-delete" title="{{localize 'Delete'}}"> <i class="fas fa-trash"></i></li>
+                    <li>
+                        {{{ data.linkedProperty.name }}}
+                        <span data-item-id="{{data.linkedProperty.id}}" class="item-control linked-property-delete" title="{{localize 'Delete'}}"> <i class="fas fa-trash"></i></span>
+                    </li>
                 </ul>
                 {{else}}
                     -
