@@ -21,7 +21,7 @@
             &.advancement,
             &.items-wrapper {
                 display: grid;
-                flex: calc(100% - 7rem);
+                flex: calc(100%);
             }
         }
         .advancements-tabs {
@@ -286,10 +286,6 @@
                 }
                 input {
                     flex: 1.25rem;
-                    height: 1.25rem;
-                    margin: 0;
-                }
-                .attitude {
                     height: 1.25rem;
                     margin: 0;
                 }
@@ -660,12 +656,17 @@
     }
     .xp,
     .money-wrapper {
-        flex: 0 0 6rem;
-        flex-direction: column;
+        flex: 100%;
+        flex-direction: row;
         color: $black-light;
         label {
-            padding: 0.25rem;
+            display: flex;
+            flex: calc(100% / 3);
+            padding: 0.5rem;
             font-size: 0.85rem;
+            input {
+                margin-left: 0.5rem;
+            }
         }
     }
     table {
@@ -721,6 +722,24 @@
             }
         }
     }
+    .inventory {
+        .items-wrapper {
+            h3 {
+                background: $l5r5e-bold;
+                color: $white;
+                border-bottom: 1px solid;
+                font-family: $font-primary;
+                padding-left: 0.5rem;
+            }
+            .item-list {
+                display: none;
+                &.toggle-active {
+                    display: block;
+                }
+            }
+        }
+    }
+
     &.actor,
     &.npc {
         .initiative {
