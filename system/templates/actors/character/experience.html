@@ -37,28 +37,28 @@
             </tr>
         </thead>
         <tbody class="flex">
-        {{#each data.advancementsListByRank as |rankObject|}}
-            {{#each rankObject.list as |advancement advancementId|}}
-                {{> 'systems/l5r5e/templates/actors/character/advancement-school.html' advancement=advancement rank=rankObject.rank editable=../../options.editable}}
-            {{/each}}
-            {{#ifCond rankObject.rank '>' 0}}
-            <tr data-group="advancements" data-tab="advancement_rank_{{rankObject.rank}}" class="flexrow row tab">
-                <th class="">
+            {{#each data.advancementsListByRank as |rankObject|}}
+                {{#each rankObject.list as |advancement advancementId|}}
+                    {{> 'systems/l5r5e/templates/actors/character/advancement-school.html' advancement=advancement rank=rankObject.rank editable=../../options.editable}}
+                {{/each}}
+                {{#ifCond rankObject.rank '>' 0}}
+                    <tr class="tfoot flexrow row tab">
+                        <th>{{localize 'l5r5e.advancements.total_xp_curriculum'}} : {{rankObject.spent.curriculum}}{{#if rankObject.goal}} / {{rankObject.goal}}{{/if}}</th>
+                        <th>{{localize 'l5r5e.advancements.total_xp_spent'}} : {{rankObject.spent.total}}</th>
+                    </tr>
                     {{#ifCond ../data.data.identity.school_rank '<' 6}}
-                    {{#ifCond (ifCond ../data.data.identity.school_rank '==' rankObject.rank) '&&' (ifCond rankObject.spent '>=' rankObject.goal)}}
-                    <button type="button" name="validate-curriculum">
-                        <i class='fas fa-check-square'></i> {{ localize 'l5r5e.advancements.curriculum_validate'}}
-                    </button>
+                        {{#ifCond (ifCond ../data.data.identity.school_rank '==' rankObject.rank) '&&' (ifCond rankObject.spent.curriculum '>=' rankObject.goal)}}
+                            <tr data-group="advancements" data-tab="advancement_rank_{{rankObject.rank}}" class="flexrow row tab">
+                                <th>
+                                    <button type="button" name="validate-curriculum">
+                                        <i class='fas fa-check-square'></i> {{ localize 'l5r5e.advancements.curriculum_validate'}}
+                                    </button>
+                                </th>
+                            </tr>
+                        {{/ifCond}}
                     {{/ifCond}}
-                    {{/ifCond}}
-                </th>
-                <th class="">
-                    {{localize 'l5r5e.advancements.total_xp_curriculum'}} : {{rankObject.spent.curriculum}}{{#if rankObject.goal}} / {{rankObject.goal}}{{/if}}
-                    <br>{{localize 'l5r5e.advancements.total_xp_spent'}} : {{rankObject.spent.total}}
-                </th>
-            </tr>
-            {{/ifCond}}
-        {{/each}}
+                {{/ifCond}}
+            {{/each}}
         </tbody>
     </table>
 </fieldset>

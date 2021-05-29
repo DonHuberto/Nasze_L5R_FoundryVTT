@@ -1,6 +1,9 @@
 // Item List
 .item-list {
     flex: 100%;
+    .tab[data-tab] {
+        display: none;
+    }
     .item {
         .item-header {
             display: flex;
@@ -425,5 +428,8 @@
                 display: block;
             }
         }
+    }
+    article {
+        flex: 100%;
     }
 }
