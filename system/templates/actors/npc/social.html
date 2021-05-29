@@ -18,15 +18,17 @@
         </label>
     </li>
     <li class="affinities">
-        {{!-- Strength & Weakness --}}
-        {{#each data.stances as |stance|}}
-            <i class="i_{{stance}}" title="{{localizeRing stance}}"></i>
-            <input class="centered-input select-on-focus" type="number" name="data.rings_affinities.{{stance}}" value="{{lookup ../data.data.rings_affinities stance}}" data-dtype="Number" min="-9" max="9" placeholder="0"/>
-        {{/each}}
         {{!-- Attitude --}}
         <label class="attitude">
             <input type="text" name="data.attitude" value="{{data.data.attitude}}" data-dtype="String" placeholder=""/>
             {{localize 'l5r5e.social.attitude'}}
         </label>
+        {{!-- Strength & Weakness --}}
+        {{#each data.stances as |stance|}}
+            <label class="ring">
+                <i class="i_{{stance}}" title="{{localizeRing stance}}"></i>
+                <input class="centered-input select-on-focus" type="number" name="data.rings_affinities.{{stance}}" value="{{lookup ../data.data.rings_affinities stance}}" data-dtype="Number" min="-9" max="9" placeholder="0"/>
+            </label>
+        {{/each}}
     </li>
 </ul>
