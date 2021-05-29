@@ -175,15 +175,8 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         // Dropped a item with same "id" as one owned
         if (this.actor.data.items) {
-            if (item.data.data.quantity) {
-                // Add quantity instead if they have (id is different so use type and name)
-                const tmpItem = this.actor.data.items.find(
-                    (embedItem) => embedItem.name === item.data.name && embedItem.type === item.data.type
-                );
-                if (tmpItem && this._modifyQuantity(tmpItem.id, 1)) {
-                    return;
-                }
-            } else if (
+            // Exit if we already owned exactly this id (drag a personal item on our own sheet)
+            if (
                 this.actor.data.items.some((embedItem) => {
                     // Search in children
                     if (embedItem.items?.has(item.data._id)) {
@@ -192,8 +185,17 @@ export class BaseSheetL5r5e extends ActorSheet {
                     return embedItem.data._id === item.data._id;
                 })
             ) {
-                // Exit if we already owned exactly this id (drag a personal item on our own sheet)
                 return;
+            }
+
+            // Add quantity instead if they have (id is different so use type and name)
+            if (item.data.data.quantity) {
+                const tmpItem = this.actor.data.items.find(
+                    (embedItem) => embedItem.name === item.data.name && embedItem.type === item.data.type
+                );
+                if (tmpItem && this._modifyQuantity(tmpItem.id, 1)) {
+                    return;
+                }
             }
         }
 
