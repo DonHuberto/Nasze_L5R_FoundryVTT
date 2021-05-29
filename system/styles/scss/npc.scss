@@ -166,4 +166,7 @@
             max-height: 12rem;
         }
     }
+    .narrative-note {
+        flex: 0 0 calc(50% - 0.25rem);
+    }
 }
