@@ -49,9 +49,11 @@ export class BaseSheetL5r5e extends ActorSheet {
             .map(([id, cfg]) => id);
 
         // Build the list order
-        Array.from(CONFIG.l5r5e.techniques).forEach(([id, cfg]) => {
-            out[id] = [];
-        });
+        Array.from(CONFIG.l5r5e.techniques)
+            .filter(([id, cfg]) => cfg.type !== "custom" || game.settings.get("l5r5e", "techniques-customs"))
+            .forEach(([id, cfg]) => {
+                out[id] = [];
+            });
 
         // Add tech the character knows
         sheetData.items.forEach((item) => {
@@ -380,12 +382,12 @@ export class BaseSheetL5r5e extends ActorSheet {
                 img: `${CONFIG.l5r5e.paths.assets}icons/items/${type}.svg`,
             },
         ]);
-        if (created?.length > 0) {
+        if (created?.length < 1) {
             return;
         }
         const item = this.actor.items.get(created[0].id);
 
-        // assign current school rank to the new adv/tech
+        // Assign current school rank to the new adv/tech
         if (this.actor.data.data.identity?.school_rank) {
             item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
             if (["advancement", "technique"].includes(item.data.type)) {
@@ -401,10 +403,11 @@ export class BaseSheetL5r5e extends ActorSheet {
                 break;
 
             case "technique": {
-                // If technique, select the current type
+                // If technique, select the current sub-type
                 if (CONFIG.l5r5e.techniques.get(techniqueType)) {
-                    item.data.data.technique_type = techniqueType;
+                    item.data.name = game.i18n.localize(`l5r5e.techniques.${techniqueType}`);
                     item.data.img = `${CONFIG.l5r5e.paths.assets}icons/techs/${techniqueType}.svg`;
+                    item.data.data.technique_type = techniqueType;
                 }
                 break;
             }
