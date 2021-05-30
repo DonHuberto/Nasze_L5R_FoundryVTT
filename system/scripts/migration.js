@@ -88,6 +88,20 @@ export class MigrationL5r5e {
             await MigrationL5r5e._migrateCompendium(pack);
         }
 
+        // Migrate ChatMessages
+        for (let message of game.collections.get("ChatMessage")) {
+            try {
+                const updateData = MigrationL5r5e._migrateChatMessage(message.data);
+                if (!foundry.utils.isObjectEmpty(updateData)) {
+                    console.log(`L5R5E | Migrating ChatMessage entity ${message.id}`);
+                    await message.update(updateData);
+                }
+            } catch (err) {
+                err.message = `L5R5E | Failed L5R5e system migration for Scene ${message.id}: ${err.message}`;
+                console.error(err);
+            }
+        }
+
         // Set the migration as complete
         await game.settings.set("l5r5e", "systemMigrationVersion", game.system.data.version);
         ui.notifications.info(`L5R5e System Migration to version ${game.system.data.version} completed!`, {
@@ -255,5 +269,23 @@ export class MigrationL5r5e {
     static _migrateItemData(item) {
         // Nothing for now
         return {};
+    }
+
+    /**
+     * Migrate a single Item entity to incorporate latest data model changes
+     * @param {ChatMessageData} message
+     */
+    static _migrateChatMessage(message) {
+        const updateData = {};
+
+        // ***** Start of 1.3.0 *****
+        if (MigrationL5r5e.needUpdate("1.3.0")) {
+            // Old chat messages have a "0" in content, in foundry 0.8+ the roll content is generated only if content is null
+            if (message.content === "0") {
+                updateData["content"] = "";
+            }
+        }
+
+        return updateData;
     }
 }
