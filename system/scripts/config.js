@@ -90,7 +90,8 @@ L5R5E.symbols.set("(void)", { class: "i_void", label: "l5r5e.rings.void" });
 
 L5R5E.symbols.set("(kiho)", { class: "i_kiho", label: "l5r5e.techniques.kiho" });
 L5R5E.symbols.set("(maho)", { class: "i_maho", label: "l5r5e.techniques.maho" });
-L5R5E.symbols.set("(ninjitsu)", { class: "i_ninjitsu", label: "l5r5e.techniques.ninjutsu" });
+L5R5E.symbols.set("(ninjutsu)", { class: "i_ninjitsu", label: "l5r5e.techniques.ninjutsu" });
+L5R5E.symbols.set("(ninjitsu)", { class: "i_ninjitsu", label: "l5r5e.techniques.ninjutsu" }); // for compatibility
 L5R5E.symbols.set("(ritual)", { class: "i_rituals", label: "l5r5e.techniques.ritual" });
 L5R5E.symbols.set("(shuji)", { class: "i_shuji", label: "l5r5e.techniques.shuji" });
 L5R5E.symbols.set("(inversion)", { class: "i_inversion", label: "l5r5e.techniques.inversion" });

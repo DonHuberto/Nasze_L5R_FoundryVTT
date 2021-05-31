@@ -214,7 +214,7 @@ export default class HooksL5r5e {
         dice3d.addDicePreset(
             {
                 name: "L5R Ring Dice",
-                type: "ddr", // don't known why the "dd" prefix is required, term is "r"
+                type: "dr",
                 labels: Object.keys(game.l5r5e.RingDie.FACES).map(
                     (e) => `${texturePath}${game.l5r5e.RingDie.FACES[e].image.replace("ring_", "")}.png`
                 ),
@@ -231,7 +231,7 @@ export default class HooksL5r5e {
         dice3d.addDicePreset(
             {
                 name: "L5R Skill Dice",
-                type: "dds",
+                type: "ds",
                 labels: Object.keys(game.l5r5e.AbilityDie.FACES).map(
                     (e) => `${texturePath}${game.l5r5e.AbilityDie.FACES[e].image.replace("skill_", "")}.png`
                 ),

@@ -18,7 +18,7 @@ __! Be certain to carefully back up any critical user data before installing thi
 - Fix : rnkMessage not passing on actor object for NPCs (thanks to Bragma).
 - Fix : The "Crescent Moon Style" technique rank from 4 to 2.
 - Fix : Drop an advancement on a PC/NPC sheet now correctly add the bonus to the Actor (ex Air +1).
-- QoL : RnK button is now black in chat if no actions are left in roll.
+- QoL : RnK button is now black in chat if no actions are left in roll (new messages only).
 - QoL : Added symbols legend in RnK dialog as reminder.
 - QoL : Added "(x Max)" display in RnK picker for max number of dice to keep (thanks to Bragma).
 - Others minor optimizations (ex: 20q saving multiple item at once).
