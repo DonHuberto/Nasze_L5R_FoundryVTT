@@ -391,6 +391,10 @@ export class DicePickerDialog extends FormApplication {
 
         // If initiative roll, check if player already have
         if (this.object.isInitiativeRoll) {
+            if (!game.combat) {
+                ui.notifications.warn(game.i18n.localize("COMBAT.NoneActive"));
+                return this.close();
+            }
             const combatant = game.combat.combatants.find((c) => c.actor.id === this._actor.id && c.initiative > 0);
             if (combatant) {
                 ui.notifications.error(game.i18n.localize("l5r5e.conflict.initiative.already_set"));
@@ -476,7 +480,10 @@ export class DicePickerDialog extends FormApplication {
         }
 
         if (message) {
-            new game.l5r5e.RollnKeepDialog(message.id).render(true);
+            // if DsN active, delay the popup for 2s
+            new Promise((r) => setTimeout(r, !game.dice3d ? 0 : 2000)).then(() => {
+                new game.l5r5e.RollnKeepDialog(message.id).render(true);
+            });
         }
 
         return this.close();

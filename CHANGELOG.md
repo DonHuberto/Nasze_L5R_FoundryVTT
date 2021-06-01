@@ -21,6 +21,7 @@ __! Be certain to carefully back up any critical user data before installing thi
 - QoL : RnK button is now black in chat if no actions are left in roll (new messages only).
 - QoL : Added symbols legend in RnK dialog as reminder.
 - QoL : Added "(x Max)" display in RnK picker for max number of dice to keep (thanks to Bragma).
+- QoL : When DiceSoNice is enabled, the display of the RnK dialog is delayed by 2s before show-up.
 - Others minor optimizations (ex: 20q saving multiple item at once).
 
 ## 1.2.1 - Praised be Firefox

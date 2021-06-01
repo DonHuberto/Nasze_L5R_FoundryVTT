@@ -201,6 +201,7 @@ export class HelpersL5r5e {
                     return property;
                 })
             );
+            document.data.update({ "data.properties": document.data.data.properties });
         }
     }
 
