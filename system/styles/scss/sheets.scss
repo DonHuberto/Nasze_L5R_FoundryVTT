@@ -551,14 +551,31 @@
                 }
             }
         }
-        .narrative-content,
-        .narrative-description {
-            flex: 0 0 calc(50% - 0.25rem);
+        .narrative-content {
+            flex: 100%;
+            display: flex;
             fieldset {
-                display: block;
+                flex: 0 0 calc(50% - 0.75rem);
                 label {
                     width: 100%;
                 }
+            }
+            .narrative-description {
+                max-height: 13rem;
+                font-size: 0.85rem;
+                flex: 1;
+            }
+        }
+        .narrative-list {
+            flex: 0 0 calc(50% - 0.25rem);
+            fieldset {
+                flex: 0 0 calc(50% - 0.25rem);
+                label {
+                    width: 100%;
+                }
+            }
+            .narrative-note {
+                font-size: 0.85rem;
             }
         }
         .techniques-wrapper {
@@ -676,16 +693,21 @@
     table {
         font-size: 0.85rem;
         color: $black-light;
+        text-align: left;
         thead {
-            font-family: $font-tertiary;
+            font-family: $font-secondary;
+            font-weight: normal;
             th {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                font-size: 1rem;
                 &:first-child {
-                    flex: 0 0 2rem;
-                }
-                &:nth-child(2) {
                     flex: calc(100% - 16rem);
                     padding-left: 0.5rem;
                     text-align: left;
+                }
+                &:nth-child(2) {
+                    flex: 0 0 2rem;
                 }
                 &:nth-child(3),
                 &:nth-child(4) {
@@ -721,11 +743,11 @@
                 }
             }
             .tfoot {
+                padding: 0.25 0.5rem;
                 background: rgba(186, 187, 177, 0.5);
-                color: #5a6e5a;
                 text-shadow: none;
                 border-top: rgba(186, 187, 177, 0.5);
-                font-family: $font-tertiary;
+                text-align: center;
             }
             img {
                 width: 16px;
@@ -796,6 +818,7 @@
             .sheet-header {
                 flex: none;
                 height: auto;
+                width: 100%;
             }
             ul {
                 display: flex;
