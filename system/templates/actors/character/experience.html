@@ -42,13 +42,13 @@
                     {{> 'systems/l5r5e/templates/actors/character/advancement-school.html' advancement=advancement rank=rankObject.rank editable=../../options.editable}}
                 {{/each}}
                 {{#ifCond rankObject.rank '>' 0}}
-                    <tr class="tfoot flexrow row" data-group="advancements" data-tab="advancement_rank_{{rankObject.rank}}" class="flexrow row tab">
+                    <tr class="tfoot flexrow row tab" data-group="advancements" data-tab="advancement_rank_{{rankObject.rank}}">
                         <th>{{localize 'l5r5e.advancements.total_xp_curriculum'}} : {{rankObject.spent.curriculum}}{{#if rankObject.goal}} / {{rankObject.goal}}{{/if}}</th>
                         <th>{{localize 'l5r5e.advancements.total_xp_spent'}} : {{rankObject.spent.total}}</th>
                     </tr>
                     {{#ifCond ../data.data.identity.school_rank '<' 6}}
                         {{#ifCond (ifCond ../data.data.identity.school_rank '==' rankObject.rank) '&&' (ifCond rankObject.spent.curriculum '>=' rankObject.goal)}}
-                            <tr class="tfoot flexrow row" data-group="advancements" data-tab="advancement_rank_{{rankObject.rank}}" class="flexrow row tab">
+                            <tr class="tfoot flexrow row tab" data-group="advancements" data-tab="advancement_rank_{{rankObject.rank}}">
                                 <th>
                                     <button type="button" name="validate-curriculum">
                                         <i class='fas fa-check-square'></i> {{ localize 'l5r5e.advancements.curriculum_validate'}}
