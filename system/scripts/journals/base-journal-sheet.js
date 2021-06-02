@@ -31,4 +31,20 @@ export class BaseJournalSheetL5r5e extends JournalSheet {
         }
         return super._updateObject(event, formData);
     }
+
+    /**
+     * Subscribe to events from the sheet.
+     * @param {jQuery} html HTML content of the sheet.
+     */
+    activateListeners(html) {
+        super.activateListeners(html);
+
+        // Commons
+        game.l5r5e.HelpersL5r5e.commonListeners(html);
+
+        // *** Everything below here is only needed if the sheet is editable ***
+        // if (!this.options.editable) {
+        //     return;
+        // }
+    }
 }

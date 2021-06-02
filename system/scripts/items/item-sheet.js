@@ -88,12 +88,8 @@ export class ItemSheetL5r5e extends ItemSheet {
     activateListeners(html) {
         super.activateListeners(html);
 
-        // Toggle
-        html.find(".toggle-on-click").on("click", (event) => {
-            const elmt = $(event.currentTarget).data("toggle");
-            const tgt = html.find("." + elmt);
-            tgt.toggleClass("toggle-active");
-        });
+        // Commons
+        game.l5r5e.HelpersL5r5e.commonListeners(html);
 
         // Everything below here is only needed if the sheet is editable
         if (!this.options.editable) {

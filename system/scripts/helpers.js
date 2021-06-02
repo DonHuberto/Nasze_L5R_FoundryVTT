@@ -362,4 +362,28 @@ export class HelpersL5r5e {
         });
         return { xp_used, xp_used_total };
     }
+
+    /**
+     * Subscribe to common events from the sheet.
+     * @param {jQuery} html HTML content of the sheet.
+     */
+    static commonListeners(html) {
+        // Toggle
+        html.find(".toggle-on-click").on("click", (event) => {
+            const elmt = $(event.currentTarget).data("toggle");
+            const tgt = html.find("." + elmt);
+            tgt.toggleClass("toggle-active");
+        });
+
+        // Compendium folder link
+        html.find(".compendium-link").on("click", (event) => {
+            const packId = $(event.currentTarget).data("pack");
+            if (packId) {
+                const pack = game.packs.get(packId);
+                if (pack) {
+                    pack.render(true);
+                }
+            }
+        });
+    }
 }

@@ -160,12 +160,8 @@ export class TwentyQuestionsDialog extends FormApplication {
     activateListeners(html) {
         super.activateListeners(html);
 
-        // Toggle
-        html.find(".toggle-on-click").on("click", (event) => {
-            const elmt = $(event.currentTarget).data("toggle");
-            const tgt = html.find("." + elmt);
-            tgt.toggleClass("toggle-active");
-        });
+        // Commons
+        game.l5r5e.HelpersL5r5e.commonListeners(html);
 
         // BT Next
         html.find(".next").on("click", (event) => {
