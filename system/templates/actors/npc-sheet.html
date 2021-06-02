@@ -6,10 +6,6 @@
             <h1 class="charname"><input name="name" type="text" value="{{data.name}}" placeholder="Name"/></h1>
             {{> 'systems/l5r5e/templates/actors/npc/identity.html'}}
         </div>
-        <fieldset class="npc-note">
-            <legend class="text-block-header">{{localize 'l5r5e.description'}}</legend>
-            {{editor content=data.data.description target="data.description" button=true editable=options.editable}}
-        </fieldset>
         <div class="header-fields">
             <h2>{{localize 'l5r5e.social.title'}}</h2>
             <h2 class="right">{{localize 'l5r5e.attributes.title'}}</h2>

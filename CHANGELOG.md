@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.3.0 - Foundry 0.8.x compatibility
+## 1.3.0 - Foundry 0.8 Compatibility
 __! Be certain to carefully back up any critical user data before installing this update !__
 - Updated the System to the new version of Foundry VTT (a lot of things broke).
 - NPC can now have strengths/weaknesses with all rings.
@@ -11,13 +11,14 @@ __! Be certain to carefully back up any critical user data before installing thi
   - Item patterns :
     - Can be dropped on another item to add the associated property.
     - To change the linked property, drop any property on the item pattern sheet.
-- Added an optional "Specificity" technique type to serve as a catch-all (by request).
-- Added Mantis Clan compendium entries.
-- Added a "Description" in PC/NPC sheet: this field is used in limited view (public description, "notes" are private).
-- Removed the "titles" field text in social.
+- Added an optional "Specificity" technique type to serve as a catch-all.
+- Added Mantis clan compendium entries.
+- Added a "Description" in PC/NPC sheet: this field is used in limited view ("description" are public, "notes" are private).
+- PC/NPC : Removed the "titles" field in social.
+- NPC : Moved the "note" field in social to gain some space, and uniformize with PC.
 - Fix : rnkMessage not passing on actor object for NPCs (thanks to Bragma).
 - Fix : The "Crescent Moon Style" technique rank from 4 to 2.
-- Fix : Drop an advancement on a PC/NPC sheet now correctly add the bonus to the Actor (ex Air +1).
+- Fix : Drop an advancement on a PC/NPC sheet now correctly add the bonus to the Actor (ex Air +1), and the same with remove.
 - QoL : RnK button is now black in chat if no actions are left in roll (new messages only).
 - QoL : Added symbols legend in RnK dialog as reminder.
 - QoL : Added "(x Max)" display in RnK picker for max number of dice to keep (thanks to Bragma).

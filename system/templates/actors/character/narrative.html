@@ -8,13 +8,11 @@
             <textarea type="text" name="data.social.giri">{{data.data.social.giri}}</textarea>
         </label>
     </fieldset>
-    {{!-- Description (npc have it on header) --}}
-    {{#ifCond data.type '==' "character"}}
+    {{!-- Description (public) --}}
     <fieldset class="narrative-description">
         <legend class="text-block-header">{{localize 'l5r5e.description' }}</legend>
         {{editor content=data.data.description target="data.description" button=true editable=options.editable}}
     </fieldset>
-    {{/ifCond}}
 </div>
 <div class="narrative-list">
     <fieldset>
