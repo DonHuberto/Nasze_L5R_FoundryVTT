@@ -170,7 +170,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         }
 
         // Check item type and subtype
-        let item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
+        const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
         if (!item || item.documentName !== "Item" || item.data.type === "property") {
             return;
         }
@@ -201,8 +201,16 @@ export class BaseSheetL5r5e extends ActorSheet {
             }
         }
 
+        // Can add the item - Foundry override cause props
+        const allowed = Hooks.call("dropActorSheetData", this.actor, this, item);
+        if (allowed === false) {
+            return;
+        }
+
+        let itemData = item.data.toObject(true);
+
         // Item subtype specific
-        switch (item.data.type) {
+        switch (itemData.type) {
             case "advancement":
                 // Specific advancements, remove 1 to selected ring/skill
                 await this.actor.addBonus(item);
@@ -218,15 +226,18 @@ export class BaseSheetL5r5e extends ActorSheet {
                         await this.actor.addBonus(embedItem);
                     }
                 }
+
+                // refresh data
+                itemData = item.data.toObject(true);
                 break;
 
             case "technique":
                 // School_ability and mastery_ability, allow only 1 per type
-                if (CONFIG.l5r5e.techniques.get(item.data.data.technique_type)?.type === "school") {
+                if (CONFIG.l5r5e.techniques.get(itemData.data.technique_type)?.type === "school") {
                     if (
                         Array.from(this.actor.items).some((e) => {
                             return (
-                                e.type === "technique" && e.data.data.technique_type === item.data.data.technique_type
+                                e.type === "technique" && e.data.data.technique_type === itemData.data.technique_type
                             );
                         })
                     ) {
@@ -235,36 +246,31 @@ export class BaseSheetL5r5e extends ActorSheet {
                     }
 
                     // No cost for schools
-                    item.data.data.xp_cost = 0;
-                    item.data.data.xp_used = 0;
-                    item.data.data.in_curriculum = true;
+                    itemData.data.xp_cost = 0;
+                    itemData.data.xp_used = 0;
+                    itemData.data.in_curriculum = true;
                 } else {
                     // Check if technique is allowed for this character
-                    if (!game.user.isGM && !this.actor.data.data.techniques[item.data.data.technique_type]) {
+                    if (!game.user.isGM && !this.actor.data.data.techniques[itemData.data.technique_type]) {
                         ui.notifications.info(game.i18n.localize("l5r5e.techniques.not_allowed"));
                         return;
                     }
 
                     // Verify cost
-                    item.data.data.xp_cost =
-                        item.data.data.xp_cost > 0 ? item.data.data.xp_cost : CONFIG.l5r5e.xp.techniqueCost;
-                    item.data.data.xp_used = item.data.data.xp_cost;
+                    itemData.data.xp_cost =
+                        itemData.data.xp_cost > 0 ? itemData.data.xp_cost : CONFIG.l5r5e.xp.techniqueCost;
+                    itemData.data.xp_used = itemData.data.xp_cost;
                 }
                 break;
         }
 
         // Modify the bought at rank to the current actor rank
-        if (item.data.data.bought_at_rank !== undefined && this.actor.data.data.identity?.school_rank) {
-            item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
+        if (itemData.data.bought_at_rank !== undefined && this.actor.data.data.identity?.school_rank) {
+            itemData.data.bought_at_rank = this.actor.data.data.identity.school_rank;
         }
 
-        // Ok add item - Foundry override cause props
-        const allowed = Hooks.call("dropActorSheetData", this.actor, this, item);
-        if (allowed === false) {
-            return;
-        }
-
-        return this._onDropItemCreate(item.data.toObject(false));
+        // Finally create the embed
+        return this.actor.createEmbeddedDocuments("Item", [itemData]);
     }
 
     /**
