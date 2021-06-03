@@ -203,22 +203,7 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         // Item subtype specific
         switch (item.data.type) {
-            case "bond": // no break
-            case "peculiarity": // no break
-            case "item_pattern": // no break
-            case "signature_scroll":
-                // Modify the bought at rank to the current actor rank
-                if (this.actor.data.data.identity?.school_rank) {
-                    item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
-                }
-                break;
-
             case "advancement":
-                // Modify the bought at rank to the current actor rank
-                if (this.actor.data.data.identity?.school_rank) {
-                    item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
-                }
-
                 // Specific advancements, remove 1 to selected ring/skill
                 await this.actor.addBonus(item);
                 break;
@@ -265,12 +250,12 @@ export class BaseSheetL5r5e extends ActorSheet {
                         item.data.data.xp_cost > 0 ? item.data.data.xp_cost : CONFIG.l5r5e.xp.techniqueCost;
                     item.data.data.xp_used = item.data.data.xp_cost;
                 }
-
-                // Modify the bought at rank to the current actor rank
-                if (this.actor.data.data.identity?.school_rank) {
-                    item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
-                }
                 break;
+        }
+
+        // Modify the bought at rank to the current actor rank
+        if (item.data.data.bought_at_rank !== undefined && this.actor.data.data.identity?.school_rank) {
+            item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
         }
 
         // Ok add item - Foundry override cause props
@@ -279,7 +264,7 @@ export class BaseSheetL5r5e extends ActorSheet {
             return;
         }
 
-        return this._onDropItemCreate(item.data.toJSON());
+        return this._onDropItemCreate(item.data.toObject(false));
     }
 
     /**
