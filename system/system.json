@@ -51,9 +51,9 @@
             "system": "l5r5e"
         },
         {
-            "name": "core-techniques-inversion",
+            "name": "core-techniques-inversions",
             "label": "Techniques Inversions",
-            "path": "packs/core-techniques-inversion.db",
+            "path": "packs/core-techniques-inversions.db",
             "entity": "Item",
             "system": "l5r5e"
         },
@@ -181,6 +181,13 @@
             "label": "Signature Scrolls",
             "path": "packs/core-signature-scrolls.db",
             "entity": "Item",
+            "system": "l5r5e"
+        },
+        {
+            "name": "core-journal-school-curriculum",
+            "label": "School Curriculum",
+            "path": "packs/core-journal-school-curriculum.db",
+            "entity": "JournalEntry",
             "system": "l5r5e"
         },
         {

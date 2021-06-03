@@ -130,6 +130,12 @@
             "name": "Fabrication des shikigami (Shugenja)",
             "description": "",
             "book_reference": "L’Outremonde p.114"
+        },
+        {
+            "id": "Blessing of Fertile Fields",
+            "name": "Blessing of Fertile Fields (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
         }
     ]
 }

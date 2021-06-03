@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.1 - Scholar helper
+- Added a Journal Compendium for School Curriculums.
+- Fix for the "bought_at_rank" value when an Item was on dropped on a sheet.
+
 ## 1.3.0 - Foundry 0.8 Compatibility
 __! Be certain to carefully back up any critical user data before installing this update !__
 - Updated the System to the new version of Foundry VTT (a lot of things broke).
