@@ -27,7 +27,7 @@ export default class HooksL5r5e {
         }
 
         // For some reasons, not always really ready, so wait a little
-        await new Promise((r) => setTimeout(r, 500));
+        await new Promise((r) => setTimeout(r, 2000));
 
         // Settings TN and EncounterType
         if (game.user.isGM) {
