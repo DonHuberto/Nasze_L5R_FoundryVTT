@@ -20,9 +20,10 @@ export class MigrationL5r5e {
 
     /**
      * Perform a system migration for the entire World, applying migrations for Actors, Items, and Compendium packs
-     * @return {Promise}      A Promise which resolves once the migration is completed
+     * @param options
+     * @return {Promise<void>} A Promise which resolves once the migration is completed
      */
-    static async migrateWorld() {
+    static async migrateWorld(options = { force: false }) {
         if (!game.user.isGM) {
             return;
         }
@@ -41,7 +42,7 @@ export class MigrationL5r5e {
         // Migrate World Actors
         for (let actor of game.actors.contents) {
             try {
-                const updateData = MigrationL5r5e._migrateActorData(actor.data);
+                const updateData = MigrationL5r5e._migrateActorData(actor.data, options);
                 if (!foundry.utils.isObjectEmpty(updateData)) {
                     console.log(`L5R5E | Migrating Actor entity ${actor.name}`);
                     await actor.update(updateData);
@@ -55,7 +56,7 @@ export class MigrationL5r5e {
         // Migrate World Items
         for (let item of game.items.contents) {
             try {
-                const updateData = MigrationL5r5e._migrateItemData(item.data);
+                const updateData = MigrationL5r5e._migrateItemData(item.data, options);
                 if (!foundry.utils.isObjectEmpty(updateData)) {
                     console.log(`L5R5E | Migrating Item entity ${item.name}`);
                     await item.update(updateData);
@@ -69,7 +70,7 @@ export class MigrationL5r5e {
         // Migrate Actor Override Tokens
         for (let scene of game.scenes.contents) {
             try {
-                const updateData = MigrationL5r5e._migrateSceneData(scene.data);
+                const updateData = MigrationL5r5e._migrateSceneData(scene.data, options);
                 if (!foundry.utils.isObjectEmpty(updateData)) {
                     console.log(`L5R5E | Migrating Scene entity ${scene.name}`);
                     await scene.update(updateData);
@@ -85,21 +86,27 @@ export class MigrationL5r5e {
             if (pack.metadata.package !== "world" || !["Actor", "Item", "Scene"].includes(pack.metadata.entity)) {
                 continue;
             }
-            await MigrationL5r5e._migrateCompendium(pack);
+            await MigrationL5r5e._migrateCompendium(pack, options);
         }
 
         // Migrate ChatMessages
-        for (let message of game.collections.get("ChatMessage")) {
-            try {
-                const updateData = MigrationL5r5e._migrateChatMessage(message.data);
+        try {
+            const updatedChatList = [];
+            for (let message of game.collections.get("ChatMessage")) {
+                const updateData = MigrationL5r5e._migrateChatMessage(message.data, options);
                 if (!foundry.utils.isObjectEmpty(updateData)) {
-                    console.log(`L5R5E | Migrating ChatMessage entity ${message.id}`);
-                    await message.update(updateData);
+                    updateData["_id"] = message.data._id;
+                    updatedChatList.push(updateData);
                 }
-            } catch (err) {
-                err.message = `L5R5E | Failed L5R5e system migration for Scene ${message.id}: ${err.message}`;
-                console.error(err);
             }
+            // Save all the modified entries at once
+            if (updatedChatList.length > 0) {
+                console.log(`L5R5E | Migrating ${updatedChatList.length} ChatMessage entities`);
+                await ChatMessage.updateDocuments(updatedChatList);
+            }
+        } catch (err) {
+            err.message = `L5R5E | Failed L5R5e system migration for ChatMessage`;
+            console.error(err);
         }
 
         // Set the migration as complete
@@ -112,9 +119,10 @@ export class MigrationL5r5e {
     /**
      * Apply migration rules to all Entities within a single Compendium pack
      * @param {Compendium} pack
+     * @param options
      * @return {Promise}
      */
-    static async _migrateCompendium(pack) {
+    static async _migrateCompendium(pack, options = { force: false }) {
         const entity = pack.metadata.entity;
         if (!["Actor", "Item", "Scene"].includes(entity)) {
             return;
@@ -175,9 +183,10 @@ export class MigrationL5r5e {
      * Migrate a single Scene entity to incorporate changes to the data model of it's actor data overrides
      * Return an Object of updateData to be applied
      * @param {Object} scene  The Scene data to Update
+     * @param options
      * @return {Object}       The updateData to apply
      */
-    static _migrateSceneData(scene) {
+    static _migrateSceneData(scene, options = { force: false }) {
         const tokens = foundry.utils.duplicate(scene.tokens);
         return {
             tokens: tokens.map((t) => {
@@ -190,7 +199,7 @@ export class MigrationL5r5e {
                     t.actorId = null;
                     t.actorData = {};
                 } else if (!t.actorLink) {
-                    const updateData = MigrationL5r5e._migrateActorData(token.data.actorData);
+                    const updateData = MigrationL5r5e._migrateActorData(token.data.actorData, options);
                     t.actorData = foundry.utils.mergeObject(token.data.actorData, updateData);
                 }
                 return t;
@@ -202,14 +211,15 @@ export class MigrationL5r5e {
      * Migrate a single Actor entity to incorporate latest data model changes
      * Return an Object of updateData to be applied
      * @param {Actor} actor   The actor to Update
+     * @param options
      * @return {Object}       The updateData to apply
      */
-    static _migrateActorData(actor) {
+    static _migrateActorData(actor, options = { force: false }) {
         const updateData = {};
         const actorData = actor.data;
 
         // ***** Start of 1.1.0 *****
-        if (MigrationL5r5e.needUpdate("1.1.0")) {
+        if (options?.force || MigrationL5r5e.needUpdate("1.1.0")) {
             // Add "Prepared" in actor
             if (actorData.prepared === undefined) {
                 updateData["data.prepared"] = true;
@@ -230,7 +240,7 @@ export class MigrationL5r5e {
         // ***** End of 1.1.0 *****
 
         // ***** Start of 1.3.0 *****
-        if (MigrationL5r5e.needUpdate("1.3.0")) {
+        if (options?.force || MigrationL5r5e.needUpdate("1.3.0")) {
             // PC/NPC removed notes useless props "value"
             updateData["data.notes"] = actorData.notes.value;
 
@@ -265,8 +275,9 @@ export class MigrationL5r5e {
     /**
      * Migrate a single Item entity to incorporate latest data model changes
      * @param item
+     * @param options
      */
-    static _migrateItemData(item) {
+    static _migrateItemData(item, options = { force: false }) {
         // Nothing for now
         return {};
     }
@@ -274,12 +285,13 @@ export class MigrationL5r5e {
     /**
      * Migrate a single Item entity to incorporate latest data model changes
      * @param {ChatMessageData} message
+     * @param options
      */
-    static _migrateChatMessage(message) {
+    static _migrateChatMessage(message, options = { force: false }) {
         const updateData = {};
 
         // ***** Start of 1.3.0 *****
-        if (MigrationL5r5e.needUpdate("1.3.0")) {
+        if (options?.force || MigrationL5r5e.needUpdate("1.3.0")) {
             // Old chat messages have a "0" in content, in foundry 0.8+ the roll content is generated only if content is null
             if (message.content === "0") {
                 updateData["content"] = "";
