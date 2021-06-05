@@ -484,6 +484,12 @@
             "name": "La manoeuvre de Sire Tempête",
             "description": "",
             "book_reference": "Le Clan de la Mante p.5"
+        },
+        {
+            "id": "Shell of the Tortoise [Tortoise]",
+            "name": "La carapace de la Tortue (Tortue)",
+            "description": "",
+            "book_reference": "Kit du Maitre de jeu"
         }
     ]
 }

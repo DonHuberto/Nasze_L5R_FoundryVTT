@@ -484,6 +484,12 @@
             "name": "La fortune du marin",
             "description": "",
             "book_reference": "Le Clan de la Mante p.5"
+        },
+        {
+            "id": "Way of the Tortoise [Tortoise]",
+            "name": "La voie de la Tortue (Tortue)",
+            "description": "",
+            "book_reference": "Kit du Maitre de jeu"
         }
     ]
 }
