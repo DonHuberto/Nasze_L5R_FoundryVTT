@@ -65,12 +65,17 @@ export class ActorL5r5e extends Actor {
      */
     async update(data = {}, context = {}) {
         // Need a _id
-        if (!data["_id"]) {
+        if (!data._id) {
             data["_id"] = this.id;
         }
 
-        // Fix for token image unliked from character... dunno why
-        if (data.img) {
+        // Update the token image if the sheet image changed, but only if they are the same and linked to actor
+        if (
+            data.img &&
+            this.data.img === this.data.token.img &&
+            this.data.img !== data.img &&
+            (data.token?.actorLink || (data.token?.actorLink === undefined && this.data.token.actorLink))
+        ) {
             data["token.img"] = data.img;
         }
 

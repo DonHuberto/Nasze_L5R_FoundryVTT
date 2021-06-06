@@ -3,6 +3,7 @@
 ## 1.3.1 - Scholar helper
 - Added a Journal Compendium for School Curriculums.
 - Fix for the "bought_at_rank" value when an Item was on dropped on a sheet.
+- Fix for issue #23 "Token image does not save".
 
 ## 1.3.0 - Foundry 0.8 Compatibility
 __! Be certain to carefully back up any critical user data before installing this update !__
