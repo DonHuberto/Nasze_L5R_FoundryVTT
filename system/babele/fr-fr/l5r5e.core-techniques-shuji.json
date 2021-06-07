@@ -430,6 +430,102 @@
             "name": "Vantardise d'Osano-wo (Mante)",
             "description": "",
             "book_reference": "Le Clan de la Mante p.7"
+        },
+        {
+            "id": "Borrowed Courage",
+            "name": "Borrowed Courage (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Clouds Parted by Steel",
+            "name": "Clouds Parted by Steel (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Entice with Falsehoods",
+            "name": "Entice with Falsehoods (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Fortress of Necessity",
+            "name": "Fortress of Necessity (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Great Anvil's Measure",
+            "name": "Great Anvil's Measure (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Steady Hammer",
+            "name": "Steady Hammer (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Call the Wild",
+            "name": "Call the Wild (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Righteous Example",
+            "name": "Righteous Example (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Sting of Warrior's Pride",
+            "name": "Sting of Warrior's Pride (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "To Smash the Heart",
+            "name": "To Smash the Heart (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Coursing March Chant",
+            "name": "Coursing March Chant (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Preserve Strength",
+            "name": "Preserve Strength (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Your Enemy's Arrows",
+            "name": "Your Enemy's Arrows (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Battle of No Escape",
+            "name": "Battle of No Escape (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Moment of Glory",
+            "name": "Moment of Glory (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Victory Without a Sword",
+            "name": "Victory Without a Sword (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
         }
     ]
 }

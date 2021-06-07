@@ -130,6 +130,60 @@
             "name": "Acier de Yasunori",
             "description": "",
             "book_reference": "L’Outremonde p.109"
+        },
+        {
+            "id": "Akodo Pattern",
+            "name": "Akodo Pattern (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Burning Watter Pattern",
+            "name": "Burning Watter Pattern (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Concealment Pattern",
+            "name": "Concealment Pattern (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Deadly Fangs Pattern",
+            "name": "Deadly Fangs Pattern (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Fearsome Snarl Pattern",
+            "name": "Fearsome Snarl Pattern (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Ichirō Pattern",
+            "name": "Ichirō Pattern (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Mountain Silk Pattern",
+            "name": "Mountain Silk Pattern (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Screaming Fire Pattern",
+            "name": "Screaming Fire Pattern (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Toriyama's Endurance Pattern",
+            "name": "Toriyama's Endurance Pattern (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
         }
     ]
 }

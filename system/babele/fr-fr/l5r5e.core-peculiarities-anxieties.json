@@ -264,6 +264,20 @@
             "types": "Relations",
             "description": "",
             "book_reference": "L’Outremonde p.98"
+        },
+        {
+            "id": "Belligerent",
+            "name": "Belligerent (WIP)",
+            "types": "Interpersonal",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Braggart",
+            "name": "Braggart (WIP)",
+            "types": "Interpersonal",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
         }
     ]
 }

@@ -490,6 +490,66 @@
             "name": "La voie de la Tortue (Tortue)",
             "description": "",
             "book_reference": "Kit du Maitre de jeu p.9"
+        },
+        {
+            "id": "Stand as the Mountain",
+            "name": "Stand as the Mountain (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Drilled Precision",
+            "name": "Drilled Precision (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Explosive Arrival",
+            "name": "Explosive Arrival (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Thunderous Courage",
+            "name": "Thunderous Courage (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Badger's Hold",
+            "name": "Badger's Hold (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Hide of Iron",
+            "name": "Hide of Iron (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Sympathetic Bearing",
+            "name": "Sympathetic Bearing (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Elemental Inspiration",
+            "name": "Elemental Inspiration (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "One with the Pride",
+            "name": "One with the Pride (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Oath of Sacrifice",
+            "name": "Oath of Sacrifice (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
         }
     ]
 }

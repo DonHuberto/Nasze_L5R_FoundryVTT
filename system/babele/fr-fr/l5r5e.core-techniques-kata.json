@@ -388,6 +388,24 @@
             "name": "Flowering Deceptions (WIP)",
             "description": "",
             "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Fierce Badger Style",
+            "name": "Fierce Badger Style (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Thicket's Embrace Style",
+            "name": "Thicket's Embrace Style (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Shattering Tide Style",
+            "name": "Shattering Tide Style (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
         }
     ]
 }

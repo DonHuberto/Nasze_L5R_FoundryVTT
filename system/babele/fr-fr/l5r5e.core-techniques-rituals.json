@@ -136,6 +136,54 @@
             "name": "Blessing of Fertile Fields (WIP)",
             "description": "",
             "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Beseech Akodo's Judgment",
+            "name": "Beseech Akodo's Judgment (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Beseech Bayushi's Absolution",
+            "name": "Beseech Bayushi's Absolution (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Beseech Doji's Wisdom",
+            "name": "Beseech Doji's Wisdom (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Beseech Hida's MIght",
+            "name": "Beseech Hida's MIght (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Beseech Shiba's Calm",
+            "name": "Beseech Shiba's Calm (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Beseech Shinjo's Empathy",
+            "name": "Beseech Shinjo's Empathy (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Beseech Togashi's Vision",
+            "name": "Beseech Togashi's Vision (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Imbue Thunder",
+            "name": "Imbue Thunder (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
         }
     ]
 }

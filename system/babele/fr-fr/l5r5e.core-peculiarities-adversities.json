@@ -572,6 +572,13 @@
             "types": "Mental, Relations",
             "description": "",
             "book_reference": "Le Clan de la Mante p.7"
+        },
+        {
+            "id": "Blood Feud",
+            "name": "Blood Feud (WIP)",
+            "types": "Interpersonal, Social",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
         }
     ]
 }

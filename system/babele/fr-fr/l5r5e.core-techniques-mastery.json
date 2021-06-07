@@ -490,6 +490,66 @@
             "name": "La carapace de la Tortue (Tortue)",
             "description": "",
             "book_reference": "Kit du Maitre de jeu p.9"
+        },
+        {
+            "id": "Soul of Deepest Stones",
+            "name": "Soul of Deepest Stones (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Strike Without Shadow",
+            "name": "Strike Without Shadow (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Spreading Chaos",
+            "name": "Spreading Chaos (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Unbreakable Resolve",
+            "name": "Unbreakable Resolve (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Killing Grip",
+            "name": "Killing Grip (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Tenacity of the Forge",
+            "name": "Tenacity of the Forge (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "The Herd Flourishes Together",
+            "name": "The Herd Flourishes Together (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Attuned Invocation",
+            "name": "Attuned Invocation (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "With the Soul of a Lion",
+            "name": "With the Soul of a Lion (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Empty Soul Ki",
+            "name": "Empty Soul Ki (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
         }
     ]
 }

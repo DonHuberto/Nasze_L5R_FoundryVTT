@@ -285,6 +285,20 @@
             "types": "Mental",
             "description": "",
             "book_reference": "Le Clan de la Mante p.7"
+        },
+        {
+            "id": "Ancestry",
+            "name": "Ancestry (WIP)",
+            "types": "Mental",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Glorious Deeds",
+            "name": "Glorious Deeds (WIP)",
+            "types": "Martial, Social",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
         }
     ]
 }

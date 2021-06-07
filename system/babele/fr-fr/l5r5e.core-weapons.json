@@ -790,6 +790,60 @@
             "grip_2": "",
             "description": "",
             "book_reference": "Le Clan de la Mante p.8"
+        },
+        {
+            "id": "Ichirō Sapper Ax",
+            "name": "Ichirō Sapper Ax (WIP)",
+            "category": "",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Magari Yari",
+            "name": "Magari Yari (WIP)",
+            "category": "",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Nagae Yari",
+            "name": "Nagae Yari (WIP)",
+            "category": "",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Nagamaki",
+            "name": "Nagamaki (WIP)",
+            "category": "",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Yoroi-Doshi",
+            "name": "Yoroi-Doshi (WIP)",
+            "category": "",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Gunbai",
+            "name": "Gunbai (WIP)",
+            "category": "",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
         }
     ]
 }

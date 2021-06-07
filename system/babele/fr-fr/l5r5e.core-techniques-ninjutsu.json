@@ -82,6 +82,36 @@
             "name": "Ce qui est à toi est à moi",
             "description": "",
             "book_reference": "Les Cours de Pierre p.114"
+        },
+        {
+            "id": "Employ Terrible Thunder",
+            "name": "Employ Terrible Thunder (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Swift Scouting",
+            "name": "Swift Scouting (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "The Patient Viper",
+            "name": "The Patient Viper (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Vanish in the Shadows",
+            "name": "Vanish in the Shadows (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Wreak Havoc",
+            "name": "Wreak Havoc (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
         }
     ]
 }

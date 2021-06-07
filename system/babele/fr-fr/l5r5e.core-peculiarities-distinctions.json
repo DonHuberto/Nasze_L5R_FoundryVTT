@@ -460,6 +460,20 @@
             "types": "Physique",
             "description": "",
             "book_reference": "Le Clan de la Mante p.7"
+        },
+        {
+            "id": "Guiding Ancestor",
+            "name": "Guiding Ancestor (WIP)",
+            "types": "Spiritual",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Traditional Adherent",
+            "name": "Traditional Adherent (WIP)",
+            "types": "Mental",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
         }
     ]
 }

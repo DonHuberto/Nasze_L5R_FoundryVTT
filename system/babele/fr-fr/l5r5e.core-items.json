@@ -502,6 +502,72 @@
             "name": "TaraiBune",
             "description": "",
             "book_reference": "Le Clan de la Mante p.9"
+        },
+        {
+            "id": "Animal Helm",
+            "name": "Animal Helm (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire p.90"
+        },
+        {
+            "id": "Blasting Powder (1 charge)",
+            "name": "Blasting Powder (1 charge) (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire p.90"
+        },
+        {
+            "id": "Battlefield Heirloom",
+            "name": "Battlefield Heirloom (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire p.90"
+        },
+        {
+            "id": "Battlefield Medical Pack",
+            "name": "Battlefield Medical Pack (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire p.90"
+        },
+        {
+            "id": "Brilliant Flare",
+            "name": "Brilliant Flare (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire p.90"
+        },
+        {
+            "id": "Mempō",
+            "name": "Mempō (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire p.91"
+        },
+        {
+            "id": "Saihai",
+            "name": "Saihai (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire p.91"
+        },
+        {
+            "id": "Sashimono",
+            "name": "Sashimono (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire p.91"
+        },
+        {
+            "id": "Smoking Pipe",
+            "name": "Smoking Pipe (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire p.91"
+        },
+        {
+            "id": "Tetsubishi",
+            "name": "Tetsubishi (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire p.91"
+        },
+        {
+            "id": "Uma-Jirushi",
+            "name": "Uma-Jirushi (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire p.91"
         }
     ]
 }
