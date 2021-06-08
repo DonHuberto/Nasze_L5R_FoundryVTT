@@ -69,14 +69,18 @@ export class ActorL5r5e extends Actor {
             data["_id"] = this.id;
         }
 
-        // Update the token image if the sheet image changed, but only if they are the same and linked to actor
-        if (
-            data.img &&
-            this.data.img === this.data.token.img &&
-            this.data.img !== data.img &&
-            (data.token?.actorLink || (data.token?.actorLink === undefined && this.data.token.actorLink))
-        ) {
-            data["token.img"] = data.img;
+        // Only on linked Actor
+        if (data.token?.actorLink || (data.token?.actorLink === undefined && this.data.token.actorLink)) {
+            // Update the token name/image if the sheet name/image changed, but only if they was previously the same
+            ["name", "img"].forEach((fieldName) => {
+                if (
+                    data[fieldName] &&
+                    this.data[fieldName] === this.data.token[fieldName] &&
+                    this.data[fieldName] !== data[fieldName]
+                ) {
+                    data["token." + fieldName] = data[fieldName];
+                }
+            });
         }
 
         // Now using updateDocuments
