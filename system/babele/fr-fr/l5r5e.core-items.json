@@ -507,67 +507,139 @@
             "id": "Animal Helm",
             "name": "Animal Helm (WIP)",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.90"
+            "book_reference": "Les Champs de la Victoire"
         },
         {
             "id": "Blasting Powder (1 charge)",
             "name": "Blasting Powder (1 charge) (WIP)",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.90"
+            "book_reference": "Les Champs de la Victoire"
         },
         {
             "id": "Battlefield Heirloom",
             "name": "Battlefield Heirloom (WIP)",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.90"
+            "book_reference": "Les Champs de la Victoire"
         },
         {
             "id": "Battlefield Medical Pack",
             "name": "Battlefield Medical Pack (WIP)",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.90"
+            "book_reference": "Les Champs de la Victoire"
         },
         {
             "id": "Brilliant Flare",
             "name": "Brilliant Flare (WIP)",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.90"
+            "book_reference": "Les Champs de la Victoire"
         },
         {
             "id": "Mempō",
             "name": "Mempō (WIP)",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.91"
+            "book_reference": "Les Champs de la Victoire"
         },
         {
             "id": "Saihai",
             "name": "Saihai (WIP)",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.91"
+            "book_reference": "Les Champs de la Victoire"
         },
         {
             "id": "Sashimono",
             "name": "Sashimono (WIP)",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.91"
+            "book_reference": "Les Champs de la Victoire"
         },
         {
             "id": "Smoking Pipe",
             "name": "Smoking Pipe (WIP)",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.91"
+            "book_reference": "Les Champs de la Victoire"
         },
         {
             "id": "Tetsubishi",
             "name": "Tetsubishi (WIP)",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.91"
+            "book_reference": "Les Champs de la Victoire"
         },
         {
             "id": "Uma-Jirushi",
             "name": "Uma-Jirushi (WIP)",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.91"
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Banner of Amaterasu [Blessed Treasure]",
+            "name": "Banner of Amaterasu [Blessed Treasure] (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "The Claws of the Kitsu [Blessed Treasure]",
+            "name": "The Claws of the Kitsu [Blessed Treasure] (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "The Five Akodo Daggers [Blessed Treasure]",
+            "name": "The Five Akodo Daggers [Blessed Treasure] (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Leadership Scrolls [Blessed Treasure]",
+            "name": "Leadership Scrolls [Blessed Treasure] (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "The Anvil of Despair [Concealed Horror]",
+            "name": "L’Enclume du désespoir [Horreur Cachée]",
+            "description": "",
+            "book_reference": "L’Outremonde p.111"
+        },
+        {
+            "id": "The Black Pearls of Fu Leng [Concealed Horror]",
+            "name": "Les Perles noires de Fu Leng [Horreur Cachée]",
+            "description": "",
+            "book_reference": "L’Outremonde p.111"
+        },
+        {
+            "id": "The Henge-Okurimono [Concealed Horror]",
+            "name": "Les Henge-okurimono [Horreur Cachée]",
+            "description": "",
+            "book_reference": "L’Outremonde p.111"
+        },
+        {
+            "id": "The Porcelain Mask of Fu Leng [Concealed Horror]",
+            "name": "Le Masque de porcelaine de Fu Leng [Horreur Cachée]",
+            "description": "",
+            "book_reference": "L’Outremonde p.111"
+        },
+        {
+            "id": "The Jade Cups of Taira [Blessed Treasure]",
+            "name": "Les coupes de Jade de Taira [Trésor Béni]",
+            "description": "",
+            "book_reference": "L’Outremonde p.112"
+        },
+        {
+            "id": "Jade Petal Tea [Blessed Treasure]",
+            "name": "Thé de pétales de Jade [Trésor Béni]",
+            "description": "",
+            "book_reference": "L’Outremonde p.113"
+        },
+        {
+            "id": "Kishu: The Oni-Cutting Sword [Blessed Treasure]",
+            "name": "Kishu : Le sabre Tranche-oni [Trésor Béni]",
+            "description": "",
+            "book_reference": "L’Outremonde p.113"
+        },
+        {
+            "id": "Obsidian Ink [Blessed Treasure]",
+            "name": "Encre d’obsidienne [Trésor Béni]",
+            "description": "",
+            "book_reference": "L’Outremonde p.113"
         }
     ]
 }

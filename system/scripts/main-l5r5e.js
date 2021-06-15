@@ -95,8 +95,8 @@ Hooks.once("init", async () => {
     // Register custom Handlebars Helpers
     RegisterHandlebars();
 
-    // Preload Handlebars templates
-    await PreloadTemplates();
+    // Preload Handlebars templates (Important : Do not await ! It's sometime break the css in clients)
+    PreloadTemplates().then(() => {});
 
     // ***** Register custom sheets *****
     // Actors

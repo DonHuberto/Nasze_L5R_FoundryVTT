@@ -794,8 +794,8 @@
         {
             "id": "Ichirō Sapper Ax",
             "name": "Ichirō Sapper Ax (WIP)",
-            "category": "",
-            "grip_1": "",
+            "category": "Haches",
+            "grip_1": "Emoussé: Dégâts +2, Dangerosité -3",
             "grip_2": "",
             "description": "",
             "book_reference": "Les Champs de la Victoire"
@@ -803,7 +803,7 @@
         {
             "id": "Magari Yari",
             "name": "Magari Yari (WIP)",
-            "category": "",
+            "category": "Armes d'Hast",
             "grip_1": "",
             "grip_2": "",
             "description": "",
@@ -812,7 +812,7 @@
         {
             "id": "Nagae Yari",
             "name": "Nagae Yari (WIP)",
-            "category": "",
+            "category": "Armes d'Hast",
             "grip_1": "",
             "grip_2": "",
             "description": "",
@@ -821,25 +821,25 @@
         {
             "id": "Nagamaki",
             "name": "Nagamaki (WIP)",
-            "category": "",
-            "grip_1": "",
-            "grip_2": "",
+            "category": "Armes d'Hast",
+            "grip_1": "Encombrant",
+            "grip_2": "Dégâts +2, Dangerosité +2",
             "description": "",
             "book_reference": "Les Champs de la Victoire"
         },
         {
             "id": "Yoroi-Doshi",
             "name": "Yoroi-Doshi (WIP)",
-            "category": "",
+            "category": "Armes de Poing",
             "grip_1": "",
-            "grip_2": "",
+            "grip_2": "Dangerosité +3",
             "description": "",
             "book_reference": "Les Champs de la Victoire"
         },
         {
             "id": "Gunbai",
             "name": "Gunbai (WIP)",
-            "category": "",
+            "category": "Armes de Poing",
             "grip_1": "",
             "grip_2": "",
             "description": "",
