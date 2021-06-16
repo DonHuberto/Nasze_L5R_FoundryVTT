@@ -338,3 +338,10 @@ a.compendium-link {
 .window-draggable-handle {
     z-index: 2;
 }
+
+// Fix forien-quest
+#forien-quest-log .window-content,
+#forien-quest-log-form .window-content,
+.window-app.forien-quest-preview .window-content {
+    overflow: initial;
+}
