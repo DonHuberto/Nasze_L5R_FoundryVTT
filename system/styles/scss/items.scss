@@ -189,7 +189,7 @@
             input[type="number"] {
                 width: 2rem;
                 &.grip {
-                    width: 100%;
+                    width: calc(100% - 4rem);
                     margin-bottom: 0.25rem;
                 }
             }

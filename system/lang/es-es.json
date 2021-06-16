@@ -148,7 +148,9 @@
             "readied": "Preparado",
             "category": "Categoría",
             "deadliness": "Letalidad",
-            "grips": "Agarres"
+            "grips": "Agarres",
+            "1hand": "1-hand",
+            "2hand": "2-hand"
         },
         "armors": {
             "title": "Armaduras",

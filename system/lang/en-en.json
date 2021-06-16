@@ -148,7 +148,9 @@
             "readied": "Readied",
             "category": "Category",
             "deadliness": "Deadliness",
-            "grips": "Grips"
+            "grips": "Grips",
+            "1hand": "1-hand",
+            "2hand": "2-hand"
         },
         "armors": {
             "title": "Armors",

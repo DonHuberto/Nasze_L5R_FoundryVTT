@@ -148,7 +148,9 @@
             "readied": "Apprêté",
             "category": "Catégorie",
             "deadliness": "Dangerosité (DGR)",
-            "grips": "Prise"
+            "grips": "Prise",
+            "1hand": "1 main",
+            "2hand": "2 mains"
         },
         "armors": {
             "title": "Armures",
