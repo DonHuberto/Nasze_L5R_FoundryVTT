@@ -9,6 +9,7 @@
 - Fixed the "empty sheet" bug ! (I hope)
 - Fixed the "bought_at_rank" does not change according to the PC rank value when an Item is drop on a sheet.
 - Fixed the issue #23 "Token image does not save". Now we reflect the change on the token name/image only if it's a linked actor and if the token/sheet have the same values.
+- Fixed the "unlink actor data" who still change the Actor Data.
 
 ## 1.3.0 - Foundry 0.8 Compatibility
 __! Be certain to carefully back up any critical user data before installing this update !__

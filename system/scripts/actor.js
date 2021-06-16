@@ -69,6 +69,10 @@ export class ActorL5r5e extends Actor {
             data["_id"] = this.id;
         }
 
+        // Context informations (needed for unlinked token update)
+        context.parent = this.parent;
+        context.pack = this.pack;
+
         // Only on linked Actor
         if (data.token?.actorLink || (data.token?.actorLink === undefined && this.data.token.actorLink)) {
             // Update the token name/image if the sheet name/image changed, but only if they was previously the same
