@@ -387,6 +387,10 @@
         &.attributes {
             height: auto;
         }
+        &.experience {
+            flex: 100%;
+            height: calc(100% - 7.5rem);
+        }
     }
 }
 .item-list {
