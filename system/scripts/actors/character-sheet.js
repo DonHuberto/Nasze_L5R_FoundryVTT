@@ -95,6 +95,9 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
             this.render(false);
         });
 
+        // Money +/-
+        html.find(".money-control").on("click", this._modifyMoney.bind(this));
+
         // Advancements Tab to current rank onload
         // TODO class "Active" Bug on load, dunno why :/
         this._tabs
@@ -211,5 +214,34 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
      */
     _moneyToZeni(koku, bu, zeni) {
         return Math.floor(koku * CONFIG.l5r5e.money[0]) + Math.floor(bu * CONFIG.l5r5e.money[1]) + Math.floor(zeni);
+    }
+
+    /**
+     * Add or Subtract money (+/- buttons)
+     * @param {Event} event
+     * @private
+     */
+    _modifyMoney(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const elmt = $(event.currentTarget);
+        const type = elmt.data("type");
+        let mod = elmt.data("value");
+        if (!mod || !type) {
+            return;
+        }
+
+        if (type !== "zeni") {
+            mod = Math.floor(mod * CONFIG.l5r5e.money[type === "koku" ? 0 : 1]);
+        }
+
+        this.actor.data.data.zeni = +this.actor.data.data.zeni + mod;
+        this.actor.update({
+            data: {
+                zeni: this.actor.data.data.zeni,
+            },
+        });
+        this.render(false);
     }
 }

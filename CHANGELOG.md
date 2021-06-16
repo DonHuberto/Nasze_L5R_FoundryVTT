@@ -6,8 +6,9 @@
 - Added English Compendiums for Field of Victory (thanks to mdosantos).
 - Added English "Blessed Treasures" in items for Field of Victory (thanks to PlatFleece)
 - Added English/French "Blessed Treasures" and "Concealed Horror" in items for Shadowlands.
-- Added label for grips in Weapon sheet (thanks to TesserWract)
-- Fixed the "empty sheet" bug ! (I hope)
+- QoL : Added label for grips in Weapon sheet (thanks to TesserWract).
+- QoL : Added buttons to Add or Subtract money.
+- Fixed the "empty sheet" bug (I hope).
 - Fixed the "bought_at_rank" does not change according to the PC rank value when an Item is drop on a sheet.
 - Fixed the issue #23 "Token image does not save". Now we reflect the change on the token name/image only if it's a linked actor and if the token/sheet have the same values.
 - Fixed the "unlink actor data" who still change the Actor Data.
