@@ -33,7 +33,9 @@
                 <ul class="item-properties">
                     <li>
                         {{{ data.linkedProperty.name }}}
-                        <span data-item-id="{{data.linkedProperty.id}}" class="item-control linked-property-delete" title="{{localize 'Delete'}}"> <i class="fas fa-trash"></i></span>
+                        {{#if options.editable}}
+                            <span data-item-id="{{data.linkedProperty.id}}" class="item-control linked-property-delete" title="{{localize 'Delete'}}"> <i class="fas fa-trash"></i></span>
+                        {{/if}}
                     </li>
                 </ul>
                 {{else}}

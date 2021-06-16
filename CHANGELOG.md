@@ -1,17 +1,18 @@
 # Changelog
 
-## 1.3.1 - Empty Sheet Scholar helper
-- Added a Journal Compendium for School Curriculums.
-- Added Curriculums in description for Titles.
+## 1.3.1 - Empty Sheet Scholar Helper
+- Added English/French Journal Compendiums for School Curriculums.
+- Added English/French Curriculums in description for Titles.
 - Added English Compendiums for Field of Victory (thanks to mdosantos).
 - Added English "Blessed Treasures" in items for Field of Victory (thanks to PlatFleece)
 - Added English/French "Blessed Treasures" and "Concealed Horror" in items for Shadowlands.
+- Added new icons for titles, links, items pattern and scroll signatures.
 - QoL : Added label for grips in Weapon sheet (thanks to TesserWract).
 - QoL : Added buttons to Add or Subtract money.
 - Fixed the "empty sheet" bug (I hope).
 - Fixed the "bought_at_rank" does not change according to the PC rank value when an Item is drop on a sheet.
 - Fixed the issue #23 "Token image does not save". Now we reflect the change on the token name/image only if it's a linked actor and if the token/sheet have the same values.
-- Fixed the "unlink actor data" who still change the Actor Data.
+- Fixed the "unlink actor data" who still change the Actor Data when editing an unlinked token.
 
 ## 1.3.0 - Foundry 0.8 Compatibility
 __! Be certain to carefully back up any critical user data before installing this update !__
