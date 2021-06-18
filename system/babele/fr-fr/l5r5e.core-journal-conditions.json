@@ -1,0 +1,88 @@
+{
+    "label": "États préjudiciables",
+    "mapping": {
+        "content": "content"
+    },
+    "entries": [
+        {
+            "id": "Afflicted",
+            "name": "Tourmenté",
+            "content": "<blockquote>Livre de Règles p.273</blockquote>"
+        },
+        {
+            "id": "Bleeding",
+            "name": "En sang",
+            "content": "<blockquote>Livre de Règles p.272</blockquote>"
+        },
+        {
+            "id": "Burning",
+            "name": "En feu",
+            "content": "<blockquote>Livre de Règles p.272</blockquote>"
+        },
+        {
+            "id": "Compromised",
+            "name": "Compromis",
+            "content": "<blockquote>Livre de Règles p.271</blockquote>"
+        },
+        {
+            "id": "Dazed",
+            "name": "Hébété",
+            "content": "<blockquote>Livre de Règles p.272</blockquote>"
+        },
+        {
+            "id": "Disoriented",
+            "name": "Désorienté",
+            "content": "<blockquote>Livre de Règles p.272</blockquote>"
+        },
+        {
+            "id": "Dying [X Rounds]",
+            "name": "Mourant (X rounds)",
+            "content": "<blockquote>Livre de Règles p.273</blockquote>"
+        },
+        {
+            "id": "Enraged",
+            "name": "Enragé",
+            "content": "<blockquote>Livre de Règles p.272</blockquote>"
+        },
+        {
+            "id": "Exhausted",
+            "name": "Epuisé",
+            "content": "<blockquote>Livre de Règles p.272</blockquote>"
+        },
+        {
+            "id": "Immobilized",
+            "name": "Immobilisé",
+            "content": "<blockquote>Livre de Règles p.272</blockquote>"
+        },
+        {
+            "id": "Incapacitated",
+            "name": "Hors de combat",
+            "content": "<blockquote>Livre de Règles p.272</blockquote>"
+        },
+        {
+            "id": "Intoxicated",
+            "name": "Ivre",
+            "content": "<blockquote>Livre de Règles p.273</blockquote>"
+        },
+        {
+            "id": "Prone",
+            "name": "A terre",
+            "content": "<blockquote>Livre de Règles p.271</blockquote>"
+        },
+        {
+            "id": "Silenced",
+            "name": "Aphone",
+            "content": "<blockquote>Livre de Règles p.271</blockquote>"
+        },
+        {
+            "id": "Unconscious",
+            "name": "Inconscient",
+            "content": "<blockquote>Livre de Règles p.273</blockquote>"
+        },
+        {
+            "id": "Wounded",
+            "name": "Blessé",
+            "content": "<blockquote>Livre de Règles p.271</blockquote>"
+        }
+    ]
+}

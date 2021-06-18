@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.2 - Something new
+- Added English/French Journal Compendiums for Conditions and Terrain Qualities (thanks to TesserWract).
+
 ## 1.3.1 - Empty Sheet Scholar Helper
 - Added English/French Journal Compendiums for School Curriculums.
 - Added English/French Curriculums in description for Titles.

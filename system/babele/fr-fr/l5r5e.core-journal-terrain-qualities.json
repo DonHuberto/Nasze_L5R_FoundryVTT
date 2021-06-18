@@ -1,0 +1,38 @@
+{
+    "label": "Propriétés de terrain",
+    "mapping": {
+        "content": "content"
+    },
+    "entries": [
+        {
+            "id": "Dangerous",
+            "name": "Dangereux",
+            "content": "<blockquote>Livre de Règles p.267</blockquote>"
+        },
+        {
+            "id": "Defiled",
+            "name": "Profané",
+            "content": "<blockquote>Livre de Règles p.267</blockquote>"
+        },
+        {
+            "id": "Entangling",
+            "name": "Handicapant",
+            "content": "<blockquote>Livre de Règles p.267</blockquote>"
+        },
+        {
+            "id": "Hallowed (One or More Elements)",
+            "name": "Sanctifié (un ou plusieurs éléments)",
+            "content": "<blockquote>Livre de Règles p.267</blockquote>"
+        },
+        {
+            "id": "Imbalanced (One or More Elements)",
+            "name": "Déséquilibré (un ou plusieurs éléments)",
+            "content": "<blockquote>Livre de Règles p.267</blockquote>"
+        },
+        {
+            "id": "Obscuring",
+            "name": "Voilé",
+            "content": "<blockquote>Livre de Règles p.267</blockquote>"
+        }
+    ]
+}
