@@ -74,6 +74,9 @@ export class MigrationL5r5e {
                 if (!foundry.utils.isObjectEmpty(updateData)) {
                     console.log(`L5R5E | Migrating Scene entity ${scene.name}`);
                     await scene.update(updateData);
+                    // If we do not do this, then synthetic token actors remain in cache
+                    // with the un-updated actorData.
+                    scene.tokens.contents.forEach((t) => (t._actor = null));
                 }
             } catch (err) {
                 err.message = `L5R5E | Failed L5R5e system migration for Scene ${scene.name}: ${err.message}`;
@@ -187,24 +190,36 @@ export class MigrationL5r5e {
      * @return {Object}       The updateData to apply
      */
     static _migrateSceneData(scene, options = { force: false }) {
-        const tokens = foundry.utils.duplicate(scene.tokens);
-        return {
-            tokens: tokens.map((t) => {
-                if (!t.actorId || t.actorLink || !t.actorData.data) {
-                    t.actorData = {};
-                    return t;
-                }
-                const token = new Token(t);
-                if (!token.actor) {
-                    t.actorId = null;
-                    t.actorData = {};
-                } else if (!t.actorLink) {
-                    const updateData = MigrationL5r5e._migrateActorData(token.data.actorData, options);
-                    t.actorData = foundry.utils.mergeObject(token.data.actorData, updateData);
-                }
-                return t;
-            }),
-        };
+        const tokens = scene.tokens.map((token) => {
+            const t = token.toJSON();
+            if (!t.actorId || t.actorLink) {
+                t.actorData = {};
+            } else if (!game.actors.has(t.actorId)) {
+                t.actorId = null;
+                t.actorData = {};
+            } else if (!t.actorLink) {
+                const actorData = foundry.utils.duplicate(t.actorData);
+                actorData.type = token.actor?.type;
+                const update = MigrationL5r5e._migrateActorData(actorData, options);
+                ["items", "effects"].forEach((embeddedName) => {
+                    if (!update[embeddedName]?.length) {
+                        return;
+                    }
+                    const updates = new Map(update[embeddedName].map((u) => [u._id, u]));
+                    t.actorData[embeddedName].forEach((original) => {
+                        const update = updates.get(original._id);
+                        if (update) {
+                            foundry.utils.mergeObject(original, update);
+                        }
+                    });
+                    delete update[embeddedName];
+                });
+
+                foundry.utils.mergeObject(t.actorData, update);
+            }
+            return t;
+        });
+        return { tokens };
     }
 
     /**
@@ -217,6 +232,8 @@ export class MigrationL5r5e {
     static _migrateActorData(actor, options = { force: false }) {
         const updateData = {};
         const actorData = actor.data;
+
+        // We need to be careful for unlinked tokens, only the diff is store in "data".
 
         // ***** Start of 1.1.0 *****
         if (options?.force || MigrationL5r5e.needUpdate("1.1.0")) {
@@ -242,18 +259,19 @@ export class MigrationL5r5e {
         // ***** Start of 1.3.0 *****
         if (options?.force || MigrationL5r5e.needUpdate("1.3.0")) {
             // PC/NPC removed notes useless props "value"
-            updateData["data.notes"] = actorData.notes.value;
+            if (actorData.notes?.value) {
+                updateData["data.notes"] = actorData.notes.value;
+            }
 
             // NPC have now more thant a Strength and a Weakness
-            if (actor.type === "npc" && actorData.rings_affinities) {
-                updateData["data.rings_affinities." + actorData.rings_affinities.strength.ring] =
-                    actorData.rings_affinities.strength.value;
-                updateData["data.rings_affinities." + actorData.rings_affinities.weakness.ring] =
-                    actorData.rings_affinities.weakness.value;
+            if (actor.type === "npc" && actorData.rings_affinities?.strength) {
+                const aff = actorData.rings_affinities;
+                updateData["data.rings_affinities." + aff.strength.ring] = aff.strength.value;
+                updateData["data.rings_affinities." + aff.weakness.ring] = aff.weakness.value;
 
-                // Delete old keys : not working :'(
-                updateData["-=data.rings_affinities.strength"] = null;
-                updateData["-=data.rings_affinities.weakness"] = null;
+                // Delete old keys
+                updateData["data.rings_affinities.-=strength"] = null;
+                updateData["data.rings_affinities.-=weakness"] = null;
             }
         }
         // ***** End of 1.3.0 *****
