@@ -1,29 +1,29 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
-        <img class="profile-img" src="{{document.img}}" data-edit="img" title="{{document.name}}"/>
-        <h1 class="charname"><input name="name" type="text" value="{{document.name}}" placeholder="Name"/></h1>
+        <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}"/>
+        <h1 class="charname"><input name="name" type="text" value="{{data.name}}" placeholder="Name"/></h1>
     </header>
     {{!-- Sheet Body --}}
     <section class="sheet-body">
         {{!-- attributes--}}
         <article class="attributes" data-group="primary" data-tab="description">
             <label class="attribute-value checkbox">
-                <input type="checkbox" name="data.equipped" {{checked document.data.data.equipped}} />
+                <input type="checkbox" name="data.equipped" {{checked data.data.equipped}} />
                 {{localize 'l5r5e.weapons.sheathed'}}
             </label>
             <label class="attribute-value checkbox">
-                <input type="checkbox" name="data.readied" {{checked document.data.data.readied}} />
+                <input type="checkbox" name="data.readied" {{checked data.data.readied}} />
                 {{localize 'l5r5e.weapons.readied'}}
             </label>
-            {{> 'systems/l5r5e/templates/items/item/item-value.html' }}
+            {{> 'systems/l5r5e/templates/items/item/item-value.html'}}
             <label class="category">
                 {{localize 'l5r5e.weapons.category'}}
-                <input type="text" name="data.category" value="{{document.data.data.category}}" />
+                <input type="text" name="data.category" value="{{data.data.category}}" />
             </label>
             <label class="skillType">
                 {{localize 'l5r5e.skill'}}
                 <select class="attribute-dtype" name="data.skill">
-                    {{#select document.data.data.skill}}
+                    {{#select data.data.skill}}
                         {{#each data.skills as |id cat|}}
                             <option value="{{id}}">{{localizeSkillId id}}</option>
                         {{/each}}
@@ -34,26 +34,26 @@
                 <legend class="text-block-header">{{localize  'l5r5e.weapons.stats'}}</legend>
                 <label>
                     {{localize 'l5r5e.weapons.range'}}
-                    <input class="select-on-focus" type="text" name="data.range" value="{{document.data.data.range}}" data-dtype="String" placeholder="0"/>
+                    <input class="select-on-focus" type="text" name="data.range" value="{{data.data.range}}" data-dtype="String" placeholder="0"/>
                 </label>
                 <label>
                     {{localize 'l5r5e.weapons.damage'}}
-                    <input class="select-on-focus" type="number" name="data.damage" value="{{document.data.data.damage}}" data-dtype="Number" min="0" placeholder="0"/>
+                    <input class="select-on-focus" type="number" name="data.damage" value="{{data.data.damage}}" data-dtype="Number" min="0" placeholder="0"/>
                 </label>
                 <label>
                     {{localize 'l5r5e.weapons.deadliness'}}
-                    <input class="select-on-focus" type="number" name="data.deadliness" value="{{document.data.data.deadliness}}" data-dtype="Number" min="0" placeholder="0"/>
+                    <input class="select-on-focus" type="number" name="data.deadliness" value="{{data.data.deadliness}}" data-dtype="Number" min="0" placeholder="0"/>
                 </label>
             </fieldset>
             <fieldset class="stats">
                 <legend class="text-block-header">{{localize 'l5r5e.weapons.grips'}}</legend>
                 <label>
                     {{localize 'l5r5e.weapons.1hand'}}
-                    <input class="grip" type="text" name="data.grip_1" value="{{document.data.data.grip_1}}" />
+                    <input class="grip" type="text" name="data.grip_1" value="{{data.data.grip_1}}" />
                 </label>
                 <label>
                     {{localize 'l5r5e.weapons.2hand'}}
-                    <input class="grip" type="text" name="data.grip_2" value="{{document.data.data.grip_2}}" />
+                    <input class="grip" type="text" name="data.grip_2" value="{{data.data.grip_2}}" />
                 </label>
             </fieldset>
         </article>

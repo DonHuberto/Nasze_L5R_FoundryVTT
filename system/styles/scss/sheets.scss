@@ -878,34 +878,3 @@
         }
     }
 }
-// tooltip
-.l5r5e-tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted #963c41;
-    overflow: initial !important;
-    .l5r5e-tooltip-ct,
-    &.l5r5e-tooltip-ct {
-        visibility: hidden;
-        width: 100%;
-        background: #fffae6 url("../assets/imgs/bg-l5r.webp") no-repeat;
-        color: $white;
-        text-align: center;
-        border: 1px solid rgba(0, 0, 0, 0.15);
-        border-radius: 0.25rem;
-        padding: 0.25rem;
-
-        /* Position */
-        position: absolute;
-        z-index: 1;
-        * {
-            color: $white;
-        }
-    }
-    &:hover {
-        .l5r5e-tooltip-ct,
-        &.l5r5e-tooltip-ct {
-            visibility: visible;
-        }
-    }
-}

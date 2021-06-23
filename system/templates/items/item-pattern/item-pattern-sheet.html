@@ -8,31 +8,31 @@
         {{!-- Attributes Tab --}}
         <article class="attributes item-list" data-group="primary" data-tab="attributes">
             <label class="attribute">
-                {{ localize 'l5r5e.advancements.rarity_modifier' }}
+                {{localize 'l5r5e.advancements.rarity_modifier'}}
                 <input class="select-on-focus" type="number" name="data.rarity_modifier" value="{{data.data.rarity_modifier}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
-                {{ localize 'l5r5e.advancements.cost' }}
+                {{localize 'l5r5e.advancements.cost'}}
                 <input class="select-on-focus" type="number" name="data.xp_cost" value="{{data.data.xp_cost}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
-                {{ localize 'l5r5e.advancements.spent' }}
+                {{localize 'l5r5e.advancements.spent'}}
                 <input class="select-on-focus" type="number" name="data.xp_used" value="{{data.data.xp_used}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
-                {{ localize 'l5r5e.rank' }}
+                {{localize 'l5r5e.rank'}}
                 <input class="select-on-focus" type="number" name="data.rank" value="{{data.data.rank}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
-                {{ localize 'l5r5e.bought_at_rank' }}
+                {{localize 'l5r5e.bought_at_rank'}}
                 <input class="select-on-focus" type="number" name="data.bought_at_rank" value="{{data.data.bought_at_rank}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute item">
-                {{ localize 'l5r5e.linked_property' }}
+                {{localize 'l5r5e.linked_property'}}
                 {{#if data.linkedProperty}}
                 <ul class="item-properties">
                     <li>
-                        {{{ data.linkedProperty.name }}}
+                        {{{data.linkedProperty.name}}}
                         {{#if options.editable}}
                             <span data-item-id="{{data.linkedProperty.id}}" class="item-control linked-property-delete" title="{{localize 'Delete'}}"> <i class="fas fa-trash"></i></span>
                         {{/if}}

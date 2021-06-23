@@ -1,0 +1,32 @@
+<div class="{{cssClass}}" data-actor-id="{{actor.data._id}}" data-item-id="{{data.data._id}}">
+    <header class="card-header flexrow">
+        <img src="{{data.img}}" title="{{data.name}}" width="36" height="36"/>
+        <h3 class="item-name">{{data.name}}</h3>
+    </header>
+    <section class="sheet-body">
+        {{localize 'l5r5e.weapons.sheathed'}} : {{#if data.data.equipped}}{{localize 'Yes'}}{{else}}{{localize 'No'}}{{/if}}
+        <br>
+        {{localize 'l5r5e.weapons.readied'}} : {{#if data.data.readied}}{{localize 'Yes'}}{{else}}{{localize 'No'}}{{/if}}
+
+        {{!--item-value--}}
+        <br>
+        {{localize 'l5r5e.quantity'}} : {{data.data.quantity}}
+        <br>
+        {{localize 'l5r5e.weight'}} :{{data.data.weight}}
+        <br>
+        {{localize 'l5r5e.rarity'}} : {{data.data.rarity}}
+        <br>
+        {{localize 'l5r5e.value'}} : {{data.data.zeni}}
+
+        {{!--properties--}}
+        <br>
+        {{localize 'l5r5e.properties'}} :
+        {{#each data.data.properties as |property idx|}}{{#ifCond idx '>' 0}}, {{/ifCond}}{{property.name}}{{/each}}
+
+        {{!--item-infos--}}
+        <br>
+        {{localize 'l5r5e.description'}} : {{{data.data.description}}}
+        <br>
+        {{localize 'l5r5e.book_reference'}} : {{data.data.book_reference}}
+    </section>
+</div>

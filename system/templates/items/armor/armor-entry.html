@@ -1,10 +1,10 @@
-<li class="item armor flexcol toggle-on-click" data-toggle="item-description-{{armor.id}}" data-item-id="{{armor.id}}">
+<li class="item armor flexcol" data-item-id="{{armor.id}}">
     <ul class="item-header item-control">
         <li class="item-img"><img src="{{armor.img}}" title="{{armor.name}}" width="32px" height="32px"/></li>
-        <li class="item-name">{{armor.name}}</li>
+        <li class="item-name l5r5e-tooltip" data-item-id="{{armor.id}}">{{armor.name}}</li>
         <li class="icon-stat-container">
             <i class="fas fa-tint" title="{{localize 'l5r5e.armors.type'}} {{localize 'l5r5e.armors.physical'}}"> {{armor.data.data.armor.physical}}</i>
-            <i class="fas fa-bolt" title="{{ localize 'l5r5e.armors.type'}} {{localize 'l5r5e.armors.supernatural'}}"> {{armor.data.data.armor.supernatural}}</i>
+            <i class="fas fa-bolt" title="{{localize 'l5r5e.armors.type'}} {{localize 'l5r5e.armors.supernatural'}}"> {{armor.data.data.armor.supernatural}}</i>
         </li>
         {{#if editable}}
         <li data-item-id="{{armor.id}}" class="item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
@@ -13,10 +13,7 @@
     </ul>
     <ul class="item-properties">
         {{#each armor.data.data.properties as |property id|}}
-            <li>{{{ property.name }}}</li>
+            <li class="l5r5e-tooltip" data-property-id="{{property.id}}">{{{property.name}}}</li>
         {{/each}}
     </ul>
-    {{#if armor.data.data.description}}
-    <div class="item-description item-description-{{armor.id}}">{{{ armor.data.data.description }}}</div>
-    {{/if}}
 </li>

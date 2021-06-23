@@ -1,7 +1,7 @@
-<li class="item technique flexcol toggle-on-click" data-toggle="item-description-{{technique._id}}" data-item-id="{{technique._id}}">
+<li class="item technique flexcol" data-item-id="{{technique._id}}">
     <ul class="item-header technique-controls">
         <li class="item-img"><img src="{{technique.img}}" title="{{technique.name}}" width="32px" height="32px"/></li>
-        <li class="item-name">{{technique.name}}</li>
+        <li class="item-name l5r5e-tooltip" data-item-id="{{technique._id}}" {{#if technique.data.parent_id.item_id}}data-item-parent-id="{{technique.data.parent_id.item_id}}"{{/if}}>{{technique.name}}</li>
         {{#if editable}}
             <li data-item-id="{{technique._id}}" {{#if technique.data.parent_id.item_id}}data-item-parent-id="{{technique.data.parent_id.item_id}}"{{/if}} class="item-control item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
             {{^if technique.data.parent_id.item_id}}
@@ -9,7 +9,4 @@
             {{/if}}
         {{/if}}
     </ul>
-    {{#if technique.data.description}}
-    <div class="item-description item-description-{{technique._id}}">{{{technique.data.description}}}</div>
-    {{/if}}
 </li>

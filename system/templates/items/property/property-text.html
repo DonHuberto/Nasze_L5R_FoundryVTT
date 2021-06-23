@@ -1,0 +1,12 @@
+<div class="{{cssClass}}" data-actor-id="{{actor.data._id}}" data-item-id="{{data.data._id}}">
+    <header class="card-header flexrow">
+        <img src="{{data.img}}" title="{{data.name}}" width="36" height="36"/>
+        <h3 class="item-name">{{data.name}}</h3>
+    </header>
+    <section class="sheet-body">
+        {{!--item-infos--}}
+        {{localize 'l5r5e.description'}} : {{{data.data.description}}}
+        <br>
+        {{localize 'l5r5e.book_reference'}} : {{data.data.book_reference}}
+    </section>
+</div>

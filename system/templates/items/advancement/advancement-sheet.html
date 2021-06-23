@@ -15,7 +15,7 @@
                 {{/select}}
             </select>
 
-            {{#ifCond data.data.advancement_type '==' 'ring' }}
+            {{#ifCond data.data.advancement_type '==' 'ring'}}
             <select name="data.ring" id="advancement_ring">
                 {{#select data.data.ring}}
                     {{#each data.ringsList as |obj|}}
@@ -25,7 +25,7 @@
             </select>
             {{/ifCond}}
 
-            {{#ifCond data.data.advancement_type '==' 'skill' }}
+            {{#ifCond data.data.advancement_type '==' 'skill'}}
                 <select name="data.skill" id="advancement_skill">
                     <option value="">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
                     {{#select data.data.skill}}
@@ -41,18 +41,18 @@
             {{/ifCond}}
             <label class="cursus attribute-value checkbox">
                 <input type="checkbox" name="data.in_curriculum" {{checked data.data.in_curriculum}} />
-                {{ localize 'l5r5e.advancements.curriculum' }}
+                {{localize 'l5r5e.advancements.curriculum'}}
             </label>
             <label class="attribute">
-                {{ localize 'l5r5e.advancements.spent' }}
+                {{localize 'l5r5e.advancements.spent'}}
                 <input class="select-on-focus" type="number" name="data.xp_used" value="{{data.data.xp_used}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
-                {{ localize 'l5r5e.rank' }}
+                {{localize 'l5r5e.rank'}}
                 <input class="select-on-focus" type="number" name="data.rank" value="{{data.data.rank}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
-                {{ localize 'l5r5e.bought_at_rank' }}
+                {{localize 'l5r5e.bought_at_rank'}}
                 <input class="select-on-focus" type="number" name="data.bought_at_rank" value="{{data.data.bought_at_rank}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
         </article>

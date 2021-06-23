@@ -1,7 +1,9 @@
 # Changelog
 
-## 1.3.2 - Something new
+## 1.3.2 - Bubble Everywhere
+- Replaced moving description in items by a big popup on hover.
 - Added English/French Journal Compendiums for Conditions and Terrain Qualities (thanks to TesserWract).
+- Added FoV Terrain Compendium
 
 ## 1.3.1 - Empty Sheet Scholar Helper
 - Added English/French Journal Compendiums for School Curriculums.

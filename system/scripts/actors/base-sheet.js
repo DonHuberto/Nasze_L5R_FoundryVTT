@@ -281,7 +281,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         super.activateListeners(html);
 
         // Commons
-        game.l5r5e.HelpersL5r5e.commonListeners(html);
+        game.l5r5e.HelpersL5r5e.commonListeners(html, this.actor);
 
         // *** Everything below here is only needed if the sheet is editable ***
         if (!this.options.editable) {
@@ -446,29 +446,11 @@ export class BaseSheetL5r5e extends ActorSheet {
         event.preventDefault();
         event.stopPropagation();
 
-        let item;
-        const itemId = $(event.currentTarget).data("item-id");
-        if (!itemId) {
-            return;
-        }
-
-        const itemParentId = $(event.currentTarget).data("item-parent-id");
-        if (itemParentId) {
-            // Embed Item
-            const parentItem = this.actor.items.get(itemParentId);
-            if (!parentItem) {
-                return;
+        game.l5r5e.HelpersL5r5e.getEmbedItemByEvent(event, this.actor).then((item) => {
+            if (item) {
+                item.sheet.render(true);
             }
-            item = parentItem.items.get(itemId);
-        } else {
-            // Regular item
-            item = this.actor.items.get(itemId);
-        }
-
-        if (!item) {
-            return;
-        }
-        item.sheet.render(true);
+        });
     }
 
     /**

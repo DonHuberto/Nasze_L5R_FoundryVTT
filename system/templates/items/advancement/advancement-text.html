@@ -1,0 +1,27 @@
+<div class="{{cssClass}}" data-actor-id="{{actor.data._id}}" data-item-id="{{data.data._id}}">
+    <header class="card-header flexrow">
+        <img src="{{data.img}}" title="{{data.name}}" width="36" height="36"/>
+        <h3 class="item-name">{{data.name}}</h3>
+    </header>
+    <section class="sheet-body">
+        {{#ifCond data.data.advancement_type '==' 'ring' }}
+            {{localize 'l5r5e.rings.title'}} : {{localizeRing data.data.ring}}
+        {{else}}
+            {{localize 'l5r5e.skill'}} : {{localizeSkillId data.data.skill}}
+        {{/ifCond}}
+        <br>
+        {{localize 'l5r5e.advancements.curriculum'}} : {{#if data.data.in_curriculum}}{{localize 'Yes'}}{{else}}{{localize 'No'}}{{/if}}
+        <br>
+        {{localize 'l5r5e.advancements.spent'}} : {{data.data.xp_used}}
+        <br>
+        {{localize 'l5r5e.rank'}} : {{data.data.rank}}
+        <br>
+        {{localize 'l5r5e.bought_at_rank'}} : {{data.data.bought_at_rank}}
+
+        {{!--item-infos--}}
+        <br>
+        {{localize 'l5r5e.description'}} : {{{data.data.description}}}
+        <br>
+        {{localize 'l5r5e.book_reference'}} : {{data.data.book_reference}}
+    </section>
+</div>

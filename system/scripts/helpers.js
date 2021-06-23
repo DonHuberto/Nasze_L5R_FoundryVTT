@@ -366,8 +366,9 @@ export class HelpersL5r5e {
     /**
      * Subscribe to common events from the sheet.
      * @param {jQuery} html HTML content of the sheet.
+     * @param {Actor} actor Actor Object
      */
-    static commonListeners(html) {
+    static commonListeners(html, actor = null) {
         // Toggle
         html.find(".toggle-on-click").on("click", (event) => {
             const elmt = $(event.currentTarget).data("toggle");
@@ -385,5 +386,85 @@ export class HelpersL5r5e {
                 }
             }
         });
+
+        // Item detail tooltips
+        const fctPos = (event, popup) => {
+            let left = +event.clientX + 60,
+                top = +event.clientY;
+
+            let maxY = window.innerHeight - popup.outerHeight();
+            if (top > maxY) {
+                top = maxY - 10;
+            }
+
+            let maxX = window.innerWidth - popup.outerWidth();
+            if (left > maxX) {
+                left -= popup.outerWidth() + 100;
+            }
+            return { left: left + "px", top: top + "px", visibility: "visible" };
+        };
+        html.find(".l5r5e-tooltip")
+            .on("mouseenter", async (event) => {
+                $(document.body).find("#l5r5e-tooltip-ct").remove();
+
+                const item = await HelpersL5r5e.getEmbedItemByEvent(event, actor);
+                if (!item) {
+                    return;
+                }
+
+                const type = item.type.replace("_", "-"); // ex: item_pattern
+                const tpl = await renderTemplate(
+                    `${CONFIG.l5r5e.paths.templates}items/${type}/${type}-text.html`,
+                    item
+                );
+                if (!tpl) {
+                    return;
+                }
+
+                const popup = $(document.body).append(
+                    `<div id="l5r5e-tooltip-ct" class="l5r5e-tooltip l5r5e-tooltip-ct">${tpl}</div>`
+                );
+                popup.css(fctPos(event, popup));
+            })
+            .on("mousemove", (event) => {
+                const popup = $(document.body).find("#l5r5e-tooltip-ct");
+                if (popup) {
+                    popup.css(fctPos(event, popup));
+                }
+            })
+            .on("mouseleave", () => {
+                $(document.body).find("#l5r5e-tooltip-ct").remove();
+            }); // tooltips
+    }
+
+    /**
+     * Get a Item from a Actor Sheet
+     * @param {Event} event HTML Event
+     * @param {ActorL5r5e} actor
+     */
+    static async getEmbedItemByEvent(event, actor) {
+        const current = $(event.currentTarget);
+        const itemId = current.data("item-id");
+        const propertyId = current.data("property-id");
+        const itemParentId = current.data("item-parent-id");
+
+        let item;
+        if (propertyId) {
+            item = await HelpersL5r5e.getObjectGameOrPack({ id: propertyId, type: "Item" });
+        } else if (itemParentId) {
+            // Embed Item
+            const parentItem = actor.items.get(itemParentId);
+            if (!parentItem) {
+                return;
+            }
+            item = parentItem.items.get(itemId);
+        } else {
+            // Regular item
+            item = actor.items.get(itemId);
+        }
+        if (!item) {
+            return;
+        }
+        return item;
     }
 }

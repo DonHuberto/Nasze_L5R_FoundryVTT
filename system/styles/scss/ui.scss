@@ -655,3 +655,31 @@ button {
         }
     }
 }
+
+// global tooltip
+.l5r5e-tooltip {
+    cursor: url("../assets/cursors/pointer.webp"), pointer;
+
+    .l5r5e-tooltip-ct,
+    &.l5r5e-tooltip-ct {
+        visibility: hidden;
+        min-height: 200px;
+        width: 600px;
+        height: auto;
+        max-height: 1000px;
+        //background: #fffae6 url("../assets/imgs/bg-l5r.webp") no-repeat;
+        background-color: #3e3a30;
+        color: $white;
+        font-size: 0.8rem;
+        text-align: left;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 0.25rem;
+        padding: 0.25rem;
+        display: block;
+        position: absolute;
+        z-index: 9999;
+        * {
+            color: $white;
+        }
+    }
+}
