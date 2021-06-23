@@ -33,6 +33,26 @@
             "id": "Obscuring",
             "name": "Voilé",
             "content": "<blockquote>Livre de Règles p.267</blockquote>"
+        },
+        {
+            "id": "Confining",
+            "name": "Confining (WIP)",
+            "content": "<blockquote>Les Champs de la Victoire</blockquote>"
+        },
+        {
+            "id": "Elevated",
+            "name": "Elevated (WIP)",
+            "content": "<blockquote>Les Champs de la Victoire</blockquote>"
+        },
+        {
+            "id": "Open",
+            "name": "Open (WIP)",
+            "content": "<blockquote>Les Champs de la Victoire</blockquote>"
+        },
+        {
+            "id": "Recessed",
+            "name": "Recessed (WIP)",
+            "content": "<blockquote>Les Champs de la Victoire</blockquote>"
         }
     ]
 }
