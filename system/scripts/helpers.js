@@ -197,6 +197,8 @@ export class HelpersL5r5e {
                     const gameProp = await HelpersL5r5e.getObjectGameOrPack({ id: property.id, type: "Item" });
                     if (gameProp) {
                         return { id: gameProp.id, name: gameProp.name };
+                    } else {
+                        console.warn(`L5R5E | Unknown property id[${property.id}]`);
                     }
                     return property;
                 })

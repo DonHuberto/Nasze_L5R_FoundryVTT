@@ -43,6 +43,8 @@ export class ItemSheetL5r5e extends ItemSheet {
                 if (gameProp) {
                     sheetData.data.propertiesList.push(gameProp);
                     props.push({ id: gameProp.id, name: gameProp.name });
+                } else {
+                    console.warn(`L5R5E | Unknown property id[${property.id}]`);
                 }
             }
             sheetData.data.data.properties = props;

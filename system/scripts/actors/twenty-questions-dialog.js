@@ -379,6 +379,7 @@ export class TwentyQuestionsDialog extends FormApplication {
                 }
                 const item = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack({ id: id, type: "Item" });
                 if (!item) {
+                    console.warn(`L5R5E | Unknown item id[${id}]`);
                     continue;
                 }
                 newStep.push(id);

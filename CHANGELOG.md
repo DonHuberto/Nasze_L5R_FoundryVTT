@@ -3,7 +3,8 @@
 ## 1.3.2 - Bubble Everywhere
 - Replaced moving description in items by a big popup on hover.
 - Added English/French Journal Compendiums for Conditions and Terrain Qualities (thanks to TesserWract).
-- Added FoV Terrain Compendium
+- Added FoV Terrain Compendium.
+- Fixed school compendium: "Kuni Warden School" from "Scorpion" to "Crab".
 
 ## 1.3.1 - Empty Sheet Scholar Helper
 - Added English/French Journal Compendiums for School Curriculums.
