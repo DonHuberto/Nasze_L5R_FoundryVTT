@@ -78,8 +78,15 @@ export default class HooksL5r5e {
             return;
         }
 
-        // So now we have our wrong message only, redo it using the roll
+        // Get the roll object
         const roll = game.l5r5e.RollL5r5e.fromJSON(document.data.roll);
+
+        // Ignore non l5r roll (std or table)
+        if (!roll.l5r5e?.dicesTypes?.l5r) {
+            return;
+        }
+
+        // So now we have our wrong message only, redo it using the roll
         roll.toMessage();
 
         // Return false to let the system known we handled this

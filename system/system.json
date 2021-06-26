@@ -210,6 +210,13 @@
             "path": "packs/great-clans-presentation.db",
             "entity": "JournalEntry",
             "system": "l5r5e"
+        },
+        {
+            "name": "pow-name-tables",
+            "label": "Name Tables",
+            "path": "packs/pow-name-tables.db",
+            "entity": "RollTable",
+            "system": "l5r5e"
         }
     ],
     "languages": [

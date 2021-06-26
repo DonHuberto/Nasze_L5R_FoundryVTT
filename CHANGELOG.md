@@ -4,7 +4,9 @@
 - Replaced moving description in items by a big popup on hover.
 - Added English/French Journal Compendiums for Conditions and Terrain Qualities (thanks to TesserWract).
 - Added FoV Terrain Compendium.
+- Added PoW Name Tables compendium : Qamarist Names, Ivory Kingdoms Names, Rokugani Names and Ujik Names.
 - Fixed school compendium: "Kuni Warden School" from "Scorpion" to "Crab".
+- Fixed roll for RollTable not showing the text
 
 ## 1.3.1 - Empty Sheet Scholar Helper
 - Added English/French Journal Compendiums for School Curriculums.

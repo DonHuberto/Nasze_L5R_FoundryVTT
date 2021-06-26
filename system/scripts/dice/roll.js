@@ -254,7 +254,7 @@ export class RollL5r5e extends Roll {
         // Define chat data
         const chatData = {
             formula: isPrivate ? "???" : this._formula,
-            flavor: isPrivate ? null : chatOptions.flavor,
+            flavor: isPrivate ? null : chatOptions.flavor || this.options.flavor,
             user: chatOptions.user,
             isPublicRoll: !isPrivate,
             tooltip: isPrivate ? "" : await this.getTooltip({ from: "render" }),
