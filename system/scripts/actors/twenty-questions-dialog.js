@@ -122,6 +122,15 @@ export class TwentyQuestionsDialog extends FormApplication {
                     drop: this._onDropItem.bind(this, "peculiarity"),
                 },
             }),
+            new DragDrop({
+                dragSelector: ".bond",
+                dropSelector: ".bonds",
+                permissions: { dragstart: this._canDragStart.bind(this), drop: this._canDragDrop.bind(this) },
+                callbacks: {
+                    dragstart: this._onDragStart.bind(this),
+                    drop: this._onDropItem.bind(this, "bond"),
+                },
+            }),
         ];
     }
 
@@ -149,6 +158,11 @@ export class TwentyQuestionsDialog extends FormApplication {
                 ...this.summary,
                 errors: this.summary.errors.join(", "),
             },
+            templates: [
+                { id: "core", label: game.i18n.localize("l5r5e.twenty_questions.part0.type_core") },
+                { id: "pow", label: game.i18n.localize("l5r5e.twenty_questions.part0.type_pow") },
+            ],
+            suffix: this.object.data.template === "pow" ? "_pow" : "",
         };
     }
 
@@ -218,7 +232,7 @@ export class TwentyQuestionsDialog extends FormApplication {
             return;
         }
 
-        if (!["item", "technique", "peculiarity"].includes(type)) {
+        if (!["item", "technique", "peculiarity", "bond"].includes(type)) {
             return;
         }
         const stepKey = $(event.target).data("step");
@@ -230,7 +244,7 @@ export class TwentyQuestionsDialog extends FormApplication {
             // Get item
             const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
             if (item.documentName !== "Item" || !item) {
-                console.warn("forbidden item for this drop zone", type, item.data.type);
+                console.warn(`forbidden item for this drop zone ${type} : ${item.data.type}`);
                 return;
             }
 
@@ -243,7 +257,7 @@ export class TwentyQuestionsDialog extends FormApplication {
                 (type !== "item" && item.data.type !== type) ||
                 (type === "item" && !["item", "weapon", "armor"].includes(item.data.type))
             ) {
-                console.warn("forbidden item for this drop zone", type, item.data.type);
+                console.warn(`forbidden item for this drop zone ${type} : ${item.data.type}`);
                 return;
             }
 
@@ -255,7 +269,7 @@ export class TwentyQuestionsDialog extends FormApplication {
                     // School Ability
                     if (stepKey === "step3.school_ability") {
                         if (item.data.data.technique_type !== "school_ability") {
-                            console.warn("This technique is not a school ability", item.data.data.technique_type);
+                            console.warn(`This technique is not a school ability : ${item.data.data.technique_type}`);
                             return;
                         }
                     } else if (!this.object.data.step3.allowed_techniques?.[item.data.data.technique_type]) {
@@ -327,7 +341,15 @@ export class TwentyQuestionsDialog extends FormApplication {
     async _updateObject(event, formData) {
         // Check "Or" conditions
         formData["step7.social_add_glory"] = formData["step7.skill"] === "none" ? 5 : 0;
-        formData["step8.social_add_honor"] = formData["step8.skill"] === "none" ? 10 : 0;
+
+        if (formData["template"] === "pow" && this.object.data.step8.item.length > 0) {
+            formData["step8.skill"] = "none";
+            formData["step8.social_add_honor"] = 0;
+        } else {
+            formData["step8.social_add_honor"] =
+                !formData["step8.skill"] || formData["step8.skill"] === "none" ? 10 : 0;
+            foundry.utils.setProperty(this.object.data, "step8.item", []);
+        }
 
         if (this.object.data.step13.advantage.length > 0) {
             formData["step13.skill"] = "none";

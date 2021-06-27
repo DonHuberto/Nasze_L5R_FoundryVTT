@@ -1,13 +1,21 @@
 <ul class="identity-content">
     <li>
         <label class="attribute-label">
-            {{localize 'l5r5e.clan'}}
+            {{#ifCond data.data.template '==' 'pow'}}
+                {{localize 'l5r5e.region'}}
+            {{else}}
+                {{localize 'l5r5e.clan'}}
+            {{/ifCond}}
             <input type="text" name="data.identity.clan" value="{{data.data.identity.clan}}"/>
         </label>
     </li>
     <li>
         <label class="attribute-label">
-            {{localize 'l5r5e.family'}}
+            {{#ifCond data.data.template '==' 'pow'}}
+                {{localize 'l5r5e.upbringing'}}
+            {{else}}
+                {{localize 'l5r5e.family'}}
+            {{/ifCond}}
             <input type="text" name="data.identity.family" value="{{data.data.identity.family}}"/>
         </label>
     </li>

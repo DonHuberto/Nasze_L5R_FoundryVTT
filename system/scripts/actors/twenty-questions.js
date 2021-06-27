@@ -34,6 +34,7 @@ export class TwentyQuestions {
         "step3.school_ability",
         "step3.equipment",
         "step9.distinction",
+        "step8.item",
         "step10.adversity",
         "step11.passion",
         "step12.anxiety",
@@ -41,6 +42,7 @@ export class TwentyQuestions {
         "step13.disadvantage",
         "step14.special_features",
         "step16.item",
+        "step17.bond",
         "step18.heritage_item",
     ];
 
@@ -48,6 +50,7 @@ export class TwentyQuestions {
      * All this object data (Steps)
      */
     data = {
+        template: "core",
         generated: false,
         step1: {
             clan: "",
@@ -108,6 +111,9 @@ export class TwentyQuestions {
             bushido: "",
             skill: "",
             social_add_honor: 10,
+            tenet_paramount: "",
+            tenet_less_significant: "",
+            item: [],
         },
         step9: {
             success: "",
@@ -145,6 +151,7 @@ export class TwentyQuestions {
         step17: {
             parents_pov: "",
             skill: "",
+            bond: [],
         },
         step18: {
             heritage_name: "",
@@ -186,7 +193,7 @@ export class TwentyQuestions {
         const actorDatas = actor.data.data;
 
         // already 20q struct ?
-        if (!isObjectEmpty(actorDatas.twenty_questions)) {
+        if (!foundry.utils.isObjectEmpty(actorDatas.twenty_questions)) {
             this.data = {
                 ...this.data,
                 ...actorDatas.twenty_questions,
@@ -234,6 +241,7 @@ export class TwentyQuestions {
             parseInt(formData.step18.heritage_add_honor);
 
         // Update the actor
+        actorDatas.template = formData.template;
         actorDatas.zeni = Math.floor(formData.step2.wealth * 50);
         actorDatas.identity = {
             ...actorDatas.identity,

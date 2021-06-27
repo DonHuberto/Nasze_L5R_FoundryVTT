@@ -110,6 +110,7 @@
         },
         "character": {
             "templates": ["identity", "rings", "social", "skills", "techniques", "conflict", "advancement"],
+            "template": "core",
             "zeni": 0,
             "twenty_questions": {}
         },

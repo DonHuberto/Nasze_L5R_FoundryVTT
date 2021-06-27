@@ -1,10 +1,16 @@
 <div class="narrative-content">
     <fieldset>
         <legend class="text-block-header">{{localize 'l5r5e.social.title'}}</legend>
-        <label class="attribute-label">{{localize 'l5r5e.social.ninjo'}}
+        <label class="attribute-label">
+            {{localize 'l5r5e.social.ninjo'}}
             <textarea type="text" name="data.social.ninjo">{{data.data.social.ninjo}}</textarea>
         </label>
-        <label class="attribute-label">{{localize 'l5r5e.social.giri'}}
+        <label class="attribute-label">
+            {{#ifCond data.data.template '==' 'pow'}}
+                {{localize 'l5r5e.social.past'}}
+            {{else}}
+                {{localize 'l5r5e.social.giri'}}
+            {{/ifCond}}
             <textarea type="text" name="data.social.giri">{{data.data.social.giri}}</textarea>
         </label>
     </fieldset>
