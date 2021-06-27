@@ -7,7 +7,8 @@
 - Added FoV Terrain Compendium.
 - Added PoW Name Tables compendium : Qamarist Names, Ivory Kingdoms Names, Rokugani Names and Ujik Names.
 - Fixed school compendium: "Kuni Warden School" from "Scorpion" to "Crab".
-- Fixed roll for RollTable not showing the text
+- Fixed roll for RollTable not showing the text.
+- Fixed some Pdf Copy-Paste error in school cursus that make L instead of I: Lkoma/Lsawa/Luchi...
 
 ## 1.3.1 - Empty Sheet Scholar Helper
 - Added English/French Journal Compendiums for School Curriculums.

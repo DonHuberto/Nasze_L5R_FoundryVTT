@@ -413,7 +413,7 @@
                 "tenets": "Choose one tenet of Bushidō as paramount and one tenet as less significant (see The Clans Views of Bushidō, page 301 of the core rulebook):",
                 "tenet_paramount": "Paramount",
                 "tenet_less_significant": "Less Significant",
-                "object": "Item (Rarity 7 or lower)"
+                "object": "Item (Rarity 5 or lower)"
             },
             "part4": {
                 "title": "Parte IV: Fortalezas y Debilidades",
