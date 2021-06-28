@@ -213,6 +213,11 @@
             "ninjo": "Ninjo",
             "giri": "Giri",
             "past": "Past",
+            "bushido_tenets": {
+                "title": "Bushido Tenets",
+                "paramount": "Paramount",
+                "less_significant": "Less Significant"
+            },
             "titles": "Títulos",
             "attitude": "Actitud:",
             "advantages": "Distinciones y pasiones",
@@ -411,8 +416,6 @@
                 "q8_pow": "8. What does your character think of Bushidō? (p. 62)",
                 "increase_honor": "Aumento del honor",
                 "tenets": "Choose one tenet of Bushidō as paramount and one tenet as less significant (see The Clans Views of Bushidō, page 301 of the core rulebook):",
-                "tenet_paramount": "Paramount",
-                "tenet_less_significant": "Less Significant",
                 "object": "Item (Rarity 5 or lower)"
             },
             "part4": {

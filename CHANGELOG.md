@@ -2,7 +2,8 @@
 
 ## 1.3.2 - Ronin Bubble Everywhere
 - Replaced moving description in items by a big popup on hover.
-- Added PoW Revised 20Q (and added tenet to core too).
+- Added PoW Revised 20Q
+- Added Bushido tenets on Social tab in sheet for all (I think this is useful for players, and it's in Core rulebook so... why this is not by default ;) ).
 - Added English/French Journal Compendiums for Conditions and Terrain Qualities (thanks to TesserWract).
 - Added FoV Terrain Compendium.
 - Added PoW Name Tables compendium : Qamarist Names, Ivory Kingdoms Names, Rokugani Names and Ujik Names.

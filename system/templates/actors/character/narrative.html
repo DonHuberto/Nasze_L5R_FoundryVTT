@@ -1,4 +1,5 @@
 <div class="narrative-content">
+    {{!-- Ninjo/Giri --}}
     <fieldset>
         <legend class="text-block-header">{{localize 'l5r5e.social.title'}}</legend>
         <label class="attribute-label">
@@ -14,13 +15,21 @@
             <textarea type="text" name="data.social.giri">{{data.data.social.giri}}</textarea>
         </label>
     </fieldset>
-    {{!-- Description (public) --}}
-    <fieldset class="narrative-description">
-        <legend class="text-block-header">{{localize 'l5r5e.description' }}</legend>
-        {{editor content=data.data.description target="data.description" button=true editable=options.editable}}
+    {{!-- Bushido Tenets --}}
+    <fieldset>
+        <legend class="text-block-header">{{localize 'l5r5e.social.bushido_tenets.title'}}</legend>
+        <label class="attribute-label">
+            {{localize 'l5r5e.social.bushido_tenets.paramount'}}
+            <textarea type="text" name="data.social.bushido_tenets.paramount">{{data.data.social.bushido_tenets.paramount}}</textarea>
+        </label>
+        <label class="attribute-label">
+            {{localize 'l5r5e.social.bushido_tenets.less_significant'}}
+            <textarea type="text" name="data.social.bushido_tenets.less_significant">{{data.data.social.bushido_tenets.less_significant}}</textarea>
+        </label>
     </fieldset>
 </div>
 <div class="narrative-list">
+    {{!-- Advantages --}}
     <fieldset>
         <legend class="text-block-header">
             {{localize 'l5r5e.social.advantages'}}
@@ -36,9 +45,10 @@
             {{/each}}
         </ul>
     </fieldset>
+    {{!-- Disadvantages --}}
     <fieldset>
         <legend class="text-block-header">
-            {{localize 'l5r5e.social.disadvantages' }}
+            {{localize 'l5r5e.social.disadvantages'}}
             {{#if options.editable}}
             <a data-item-type="peculiarity" class="peculiarity-control item-add" title="{{localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a>
             {{/if}}
@@ -51,7 +61,7 @@
             {{/each}}
         </ul>
     </fieldset>
-    {{!-- bonds --}}
+    {{!-- Bonds --}}
     <fieldset>
         <legend class="text-block-header">
             {{localize 'l5r5e.social.bonds' }}
@@ -68,8 +78,15 @@
         </ul>
     </fieldset>
 </div>
-{{!-- Notes (private) --}}
-<fieldset class="narrative-note">
-    <legend class="text-block-header">{{localize 'l5r5e.notes' }}</legend>
-    {{editor content=data.data.notes target="data.notes" button=true editable=options.editable}}
-</fieldset>
+<div class="narrative-fluff">
+    {{!-- Description (public) --}}
+    <fieldset class="narrative-description">
+        <legend class="text-block-header">{{localize 'l5r5e.description' }}</legend>
+        {{editor content=data.data.description target="data.description" button=true editable=options.editable}}
+    </fieldset>
+    {{!-- Notes (private) --}}
+    <fieldset class="narrative-note">
+        <legend class="text-block-header">{{localize 'l5r5e.notes' }}</legend>
+        {{editor content=data.data.notes target="data.notes" button=true editable=options.editable}}
+    </fieldset>
+</div>

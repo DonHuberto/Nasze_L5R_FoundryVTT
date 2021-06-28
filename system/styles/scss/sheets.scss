@@ -560,11 +560,6 @@
                     width: 100%;
                 }
             }
-            .narrative-description {
-                max-height: 13rem;
-                font-size: 0.85rem;
-                flex: 1;
-            }
         }
         .narrative-list {
             flex: 0 0 calc(50% - 0.25rem);
@@ -573,6 +568,16 @@
                 label {
                     width: 100%;
                 }
+            }
+        }
+        .narrative-fluff {
+            flex: 1;
+            flex: 0 0 calc(50% - 0.75rem);
+
+            .narrative-description {
+                max-height: 13rem;
+                font-size: 0.85rem;
+                flex: 1;
             }
             .narrative-note {
                 font-size: 0.85rem;

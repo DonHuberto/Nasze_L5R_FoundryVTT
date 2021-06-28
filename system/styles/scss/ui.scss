@@ -667,6 +667,7 @@ button {
         width: 600px;
         height: auto;
         max-height: 1000px;
+        overflow-y: hidden;
         //background: #fffae6 url("../assets/imgs/bg-l5r.webp") no-repeat;
         background-color: #3e3a30;
         color: $white;

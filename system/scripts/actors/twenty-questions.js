@@ -216,6 +216,8 @@ export class TwentyQuestions {
         this.data.step3.allowed_techniques.ninjutsu = actorDatas.techniques.ninjutsu;
         this.data.step5.social_giri = actorDatas.social.giri;
         this.data.step6.social_ninjo = actorDatas.social.ninjo;
+        this.data.step8.tenet_paramount = actorDatas.social.bushido_tenets.paramount;
+        this.data.step8.tenet_less_significant = actorDatas.social.bushido_tenets.less_significant;
         this.data.step19.firstname = actor.data.name.replace(/^(?:\w+\s+)?(.+)$/gi, "$1") || "";
     }
 
@@ -258,6 +260,10 @@ export class TwentyQuestions {
             honor: honor,
             giri: formData.step5.social_giri,
             ninjo: formData.step6.social_ninjo,
+            bushido_tenets: {
+                paramount: formData.step8.tenet_paramount,
+                less_significant: formData.step8.tenet_less_significant,
+            },
         };
 
         actorDatas.techniques = {

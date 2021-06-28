@@ -213,6 +213,11 @@
             "ninjo": "Ninjo",
             "giri": "Giri",
             "past": "Passé",
+            "bushido_tenets": {
+                "title": "Principes du Bushido",
+                "paramount": "Primordial",
+                "less_significant": "Moins important"
+            },
             "titles": "Titres",
             "attitude": "attitude :",
             "advantages": "Aptitudes et Passions",
@@ -411,8 +416,6 @@
                 "q8_pow": "8. Que pense votre personnage du bushido ? (p. 62)",
                 "increase_honor": "Augmentation de l'honneur (+10)",
                 "tenets": "Choisissez un principe du Bushido comme primordial et un principe comme moins important (voir Les Clans et leurs vision du Bushido, page 301 du livre de règles)",
-                "tenet_paramount": "Primordial",
-                "tenet_less_significant": "Moins important",
                 "object": "Objet (Rareté inférieur ou égale à 5)"
             },
             "part4": {

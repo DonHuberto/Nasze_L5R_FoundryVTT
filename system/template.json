@@ -28,7 +28,11 @@
                     "glory": 0,
                     "status": 0,
                     "ninjo": "",
-                    "giri": ""
+                    "giri": "",
+                    "bushido_tenets": {
+                        "paramount": "",
+                        "less_significant": ""
+                    }
                 }
             },
             "skills": {
