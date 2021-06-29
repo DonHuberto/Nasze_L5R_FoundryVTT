@@ -346,7 +346,7 @@
             "rarity_modifier": "Modificateur de rareté",
             "item_pattern": "Procédés de fabrication",
             "signature_scroll": "Rouleaux de marque",
-            "school_curriculum_journal": "Déposer le journal du curriculum dans la feuille pour le lier"
+            "school_curriculum_journal": "Déposer un journal de Cursus dans la feuille pour le lier"
         },
         "character_types": {
             "character": "Personnage Joueur",
