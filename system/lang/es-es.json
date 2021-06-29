@@ -345,7 +345,8 @@
             "curriculum_validate": "Completar este rango",
             "rarity_modifier": "Rarity modifier",
             "item_pattern": "Item patterns",
-            "signature_scroll": "Signature scrolls"
+            "signature_scroll": "Signature scrolls",
+            "school_curriculum_journal": "Drop curriculum's journal in sheet to link it"
         },
         "character_types": {
             "character": "Personaje jugador",

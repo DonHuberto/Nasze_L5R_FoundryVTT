@@ -103,6 +103,81 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
         this._tabs
             .find((e) => e._navSelector === ".advancements-tabs")
             .activate("advancement_rank_" + (this.actor.data.data.identity.school_rank || 0));
+
+        // Open linked school curriculum journal
+        html.find(`.school-journal-link`).on("click", async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const actorJournal = this.actor.data.data.identity.school_curriculum_journal;
+            const journal = await this._getJournal(actorJournal.id, actorJournal.pack);
+            if (journal) {
+                journal.sheet.render(true);
+            }
+        });
+    }
+
+    /**
+     * Handle dropped data on the Actor sheet
+     * @param {DragEvent} event
+     */
+    async _onDrop(event) {
+        // *** Everything below here is only needed if the sheet is editable ***
+        if (!this.options.editable) {
+            return;
+        }
+
+        // Curriculum Journal
+        const json = event.dataTransfer.getData("text/plain");
+        if (!json) {
+            return;
+        }
+
+        const data = JSON.parse(json);
+        if (data.type !== "JournalEntry") {
+            return;
+        }
+
+        const journal = await this._getJournal(data.id, data.pack);
+        if (!journal) {
+            return;
+        }
+
+        this.actor.data.data.identity.school_curriculum_journal = {
+            id: journal.data._id,
+            name: journal.data.name,
+            pack: data.pack || null,
+        };
+
+        await this.actor.update({
+            data: {
+                identity: {
+                    school_curriculum_journal: this.actor.data.data.identity.school_curriculum_journal,
+                },
+            },
+        });
+    }
+
+    /**
+     * Return the Journal in Pack or in World
+     * @param id
+     * @param pack
+     * @return {Promise<game.l5r5e.JournalL5r5e>}
+     * @private
+     */
+    async _getJournal(id, pack = null) {
+        let journal;
+        if (pack) {
+            // Compendium
+            journal = await game.packs.get(pack)?.getDocument(id);
+        } else {
+            // World
+            journal = game.journal.get(id);
+        }
+        if (!journal || !(journal instanceof game.l5r5e.JournalL5r5e) || !journal.data?._id) {
+            return;
+        }
+        return journal;
     }
 
     /**

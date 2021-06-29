@@ -8,6 +8,7 @@
                     "family": "",
                     "school": "",
                     "school_rank": 1,
+                    "school_curriculum_journal": {},
                     "roles": ""
                 }
             },
@@ -115,8 +116,8 @@
         "character": {
             "templates": ["identity", "rings", "social", "skills", "techniques", "conflict", "advancement"],
             "template": "core",
-            "zeni": 0,
-            "twenty_questions": {}
+            "twenty_questions": {},
+            "zeni": 0
         },
         "npc": {
             "templates": ["rings", "social", "techniques", "conflict"],

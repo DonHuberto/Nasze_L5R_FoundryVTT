@@ -15,7 +15,14 @@
 </fieldset>
 {{!-- School progession --}}
 <fieldset class="advancement advancements-body">
-    <legend class="tools">{{localize 'l5r5e.school'}} <a data-item-type="advancement" class="advancement-control item-add" title="{{localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a></legend>
+    <legend class="tools">
+        {{#if data.data.identity.school_curriculum_journal.id}}
+            <a class="school-journal-link"><i class="fas fa-search"></i></a> {{data.data.identity.school_curriculum_journal.name}}
+        {{else}}
+            {{localize 'l5r5e.school'}} ({{localize 'l5r5e.advancements.school_curriculum_journal'}})
+        {{/if}}
+        <a data-item-type="advancement" class="advancement-control item-add" title="{{localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a>
+    </legend>
     <nav class="advancements-tabs tabs" data-group="advancements">
         <a class="item advancements-tab" data-tab="advancement_rank_0">{{localize 'l5r5e.advancements.school_rank_0'}}</a>
         {{#each data.advancementsListByRank as |rankObject|}}

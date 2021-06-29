@@ -345,7 +345,8 @@
             "curriculum_validate": "Complete this rank",
             "rarity_modifier": "Rarity modifier",
             "item_pattern": "Item Patterns",
-            "signature_scroll": "Signature Scrolls"
+            "signature_scroll": "Signature Scrolls",
+            "school_curriculum_journal": "Drop curriculum's journal in sheet to link it"
         },
         "character_types": {
             "character": "Player Character",

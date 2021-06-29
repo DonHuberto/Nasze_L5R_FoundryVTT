@@ -366,6 +366,7 @@ export class TwentyQuestionsDialog extends FormApplication {
         this.actor.data.data.twenty_questions = this.object.data;
         await this.actor.update({
             data: {
+                template: formData["template"],
                 twenty_questions: this.object.data,
             },
         });
