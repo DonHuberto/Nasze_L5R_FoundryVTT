@@ -668,9 +668,8 @@ button {
         height: auto;
         max-height: 1000px;
         overflow-y: hidden;
-        //background: #fffae6 url("../assets/imgs/bg-l5r.webp") no-repeat;
-        background-color: #3e3a30;
-        color: $white;
+        background: #3e3a30 url("../assets/imgs/bg-l5r.webp") no-repeat;
+        color: $black-light;
         font-size: 0.8rem;
         text-align: left;
         border: 1px solid rgba(0, 0, 0, 0.15);
@@ -680,7 +679,7 @@ button {
         position: absolute;
         z-index: 9999;
         * {
-            color: $white;
+            color: $black-light;
         }
     }
 }

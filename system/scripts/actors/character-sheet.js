@@ -135,7 +135,7 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
 
         const data = JSON.parse(json);
         if (data.type !== "JournalEntry") {
-            return;
+            return super._onDrop(event);
         }
 
         const journal = await this._getJournal(data.id, data.pack);
