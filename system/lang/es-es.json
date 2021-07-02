@@ -141,6 +141,7 @@
         "weight": "Peso",
         "properties": "Propiedades",
         "linked_property": "linked Property",
+        "removed_properties": "Cancel",
         "weapons": {
             "title": "Armas",
             "damage": "Daño",

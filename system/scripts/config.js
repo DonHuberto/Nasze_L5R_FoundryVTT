@@ -8,6 +8,21 @@ L5R5E.paths = {
 L5R5E.money = [50, 10];
 L5R5E.stances = ["earth", "air", "water", "fire", "void"];
 
+L5R5E.xp = {
+    costPerRank: [0, 20, 24, 32, 44, 60],
+    bondCostPerRank: [0, 3, 4, 6, 8, 10],
+    ringCostMultiplier: 3,
+    skillCostMultiplier: 2,
+    techniqueCost: 3,
+};
+
+L5R5E.initiativeSkills = {
+    intrigue: "sentiment",
+    duel: "meditation",
+    skirmish: "tactics",
+    mass_battle: "command",
+};
+
 // *** Techniques ***
 L5R5E.techniques = new Map();
 // Core
@@ -26,21 +41,6 @@ L5R5E.techniques.set("mastery_ability", { type: "school", displayInTypes: false 
 L5R5E.techniques.set("title_ability", { type: "title", displayInTypes: false });
 // Custom
 L5R5E.techniques.set("specificity", { type: "custom", displayInTypes: false });
-
-L5R5E.xp = {
-    costPerRank: [0, 20, 24, 32, 44, 60],
-    bondCostPerRank: [0, 3, 4, 6, 8, 10],
-    ringCostMultiplier: 3,
-    skillCostMultiplier: 2,
-    techniqueCost: 3,
-};
-
-L5R5E.initiativeSkills = {
-    intrigue: "sentiment",
-    duel: "meditation",
-    skirmish: "tactics",
-    mass_battle: "command",
-};
 
 // Map SkillId - CategoryId
 L5R5E.skills = new Map();

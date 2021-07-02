@@ -140,7 +140,10 @@ export class HelpersL5r5e {
                     document.data.update({ "flags.core.sourceId": document.uuid });
                 }
 
-                await HelpersL5r5e.refreshItemProperties(document);
+                // Care to infinite loop in properties
+                if (document.type !== "property") {
+                    await HelpersL5r5e.refreshItemProperties(document);
+                }
                 document.prepareData();
             }
         } catch (err) {

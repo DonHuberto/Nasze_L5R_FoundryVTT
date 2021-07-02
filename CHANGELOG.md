@@ -8,6 +8,7 @@
 - Added FoV Terrain Compendium.
 - Added PoW Name Tables compendium : Qamarist Names, Ivory Kingdoms Names, Rokugani Names and Ujik Names.
 - Added ability to drop a (Curriculum) Journal to have a button in school experience tab.
+- Added properties antagonists (ex : Sacred remove Unholy on drop).
 - Fixed school compendium: "Kuni Warden School" from "Scorpion" to "Crab".
 - Fixed roll for RollTable not showing the text.
 - Fixed some Pdf Copy-Paste error in school cursus that make L instead of I: Lkoma/Lsawa/Luchi...

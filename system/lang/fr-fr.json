@@ -141,6 +141,7 @@
         "weight": "Poids",
         "properties": "Propriétés",
         "linked_property": "Propriété liée",
+        "removed_properties": "Annule",
         "weapons": {
             "title": "Armement",
             "damage": "Dégâts de base (DDB)",

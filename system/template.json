@@ -207,7 +207,8 @@
             "technique_type": "kata"
         },
         "property": {
-            "templates": ["basics"]
+            "templates": ["basics"],
+            "properties": []
         },
         "peculiarity": {
             "templates": ["basics", "advancement"],

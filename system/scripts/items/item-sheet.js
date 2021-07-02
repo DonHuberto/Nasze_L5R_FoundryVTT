@@ -136,7 +136,12 @@ export class ItemSheetL5r5e extends ItemSheet {
 
         // Check item type and subtype
         let item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
-        if (!item || item.documentName !== "Item" || this.item.type === "property") {
+        if (!item || item.documentName !== "Item") {
+            return;
+        }
+
+        // If we are a property, the child id need to be different to parent
+        if (this.item.type === "property" && this.item.id === item.data._id) {
             return;
         }
 
@@ -172,6 +177,14 @@ export class ItemSheetL5r5e extends ItemSheet {
         }
 
         this.document.data.data.properties.push({ id: item.id, name: item.name });
+
+        // This props remove others ?
+        if (Array.isArray(item.data.data.properties) && item.data.data.properties.length > 0) {
+            const idsToRemove = item.data.data.properties.map((e) => e.id);
+            this.document.data.data.properties = this.document.data.data.properties.filter(
+                (p) => !idsToRemove.includes(p.id)
+            );
+        }
 
         this.document.update({
             data: {
