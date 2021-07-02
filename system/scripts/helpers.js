@@ -1,5 +1,3 @@
-import { ItemL5r5e } from "./item.js";
-
 /**
  * Extends the actor to process special things from L5R.
  */
@@ -94,7 +92,7 @@ export class HelpersL5r5e {
         try {
             // Direct Object
             if (data?._id) {
-                document = HelpersL5r5e.createItemFromCompendium(data);
+                document = HelpersL5r5e.createDocumentFromCompendium({ type, data });
             } else if (!id || !type) {
                 return null;
             }
@@ -109,7 +107,7 @@ export class HelpersL5r5e {
                 if (pack) {
                     const data = await game.packs.get(pack).getDocument(id);
                     if (data) {
-                        document = HelpersL5r5e.createItemFromCompendium(data);
+                        document = HelpersL5r5e.createDocumentFromCompendium({ type, data });
                     }
                 }
             }
@@ -130,7 +128,7 @@ export class HelpersL5r5e {
 
                     const data = await comp.getDocument(id);
                     if (data) {
-                        document = HelpersL5r5e.createItemFromCompendium(data);
+                        document = HelpersL5r5e.createDocumentFromCompendium({ type, data });
                     }
                 }
             }
@@ -153,35 +151,35 @@ export class HelpersL5r5e {
 
     /**
      * Make a temporary item for compendium drag n drop
-     * @param {ItemL5r5e|any[]} data
+     * @param {string}          type
+     * @param {ItemL5r5e|JournalL5r5e|any[]} data
      * @return {ItemL5r5e}
      */
-    static createItemFromCompendium(data) {
-        if (
-            ![
-                "item",
-                "armor",
-                "weapon",
-                "technique",
-                "property",
-                "peculiarity",
-                "advancement",
-                "title",
-                "bond",
-                "signature_scroll",
-                "item_pattern",
-            ].includes(data.type)
-        ) {
-            return data;
-        }
+    static createDocumentFromCompendium({ type, data }) {
+        let document = null;
 
-        let document;
-        if (data instanceof ItemL5r5e) {
-            document = data;
-        } else {
-            // Quick object
-            document = new ItemL5r5e(data);
-        }
+        switch (type) {
+            case "Item":
+                if (data instanceof game.l5r5e.ItemL5r5e) {
+                    document = data;
+                } else {
+                    document = new game.l5r5e.ItemL5r5e(data);
+                }
+                break;
+
+            case "JournalEntry":
+                if (data instanceof game.l5r5e.JournalL5r5e) {
+                    document = data;
+                } else {
+                    document = new game.l5r5e.JournalL5r5e(data);
+                }
+                break;
+
+            default:
+                console.log(`L5R5E | createObjectFromCompendium - Unmanaged type ${type}`);
+                break;
+        } // swi
+
         return document;
     }
 
@@ -191,7 +189,7 @@ export class HelpersL5r5e {
      * @return {Promise<void>}
      */
     static async refreshItemProperties(document) {
-        if (document.data.data.properties && typeof Babele !== "undefined") {
+        if (document.data?.data?.properties && typeof Babele !== "undefined") {
             document.data.data.properties = await Promise.all(
                 document.data.data.properties.map(async (property) => {
                     const gameProp = await HelpersL5r5e.getObjectGameOrPack({ id: property.id, type: "Item" });
@@ -243,6 +241,8 @@ export class HelpersL5r5e {
      */
     static getPackNameForCoreItem(documentId) {
         const core = new Map();
+
+        // Items
         core.set("Pro", "l5r5e.core-properties");
         core.set("Kat", "l5r5e.core-techniques-kata");
         core.set("Kih", "l5r5e.core-techniques-kiho");
@@ -265,6 +265,12 @@ export class HelpersL5r5e {
         core.set("Pas", "l5r5e.core-peculiarities-passions");
         core.set("Adv", "l5r5e.core-peculiarities-adversities");
         core.set("Anx", "l5r5e.core-peculiarities-anxieties");
+
+        // Journal
+        core.set("Csc", "l5r5e.core-journal-school-curriculum");
+        core.set("Con", "l5r5e.core-journal-conditions");
+        core.set("Ter", "l5r5e.core-journal-terrain-qualities");
+
         return core.get(documentId.replace(/L5RCore(\w{3})\d+/gi, "$1"));
     }
 

@@ -40,8 +40,8 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
     /**
      * Commons datas
      */
-    getData() {
-        const sheetData = super.getData();
+    getData(options = {}) {
+        const sheetData = super.getData(options);
 
         // Min rank = 1
         this.actor.data.data.identity.school_rank = Math.max(1, this.actor.data.data.identity.school_rank);
@@ -75,25 +75,12 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
             return;
         }
 
-        // *** Items : curriculum management ***
-        html.find(`.item-curriculum`).on("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            this._switchSubItemCurriculum(event);
-        });
-        html.find(`button[name=validate-curriculum]`).on("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            this.actor.data.data.identity.school_rank = this.actor.data.data.identity.school_rank + 1;
-            this.actor.update({
-                data: {
-                    identity: {
-                        school_rank: this.actor.data.data.identity.school_rank,
-                    },
-                },
-            });
-            this.render(false);
-        });
+        // Open linked school curriculum journal
+        html.find(".school-journal-link").on("click", this._openLinkedJournal.bind(this));
+
+        // Curriculum management
+        html.find(".item-curriculum").on("click", this._switchSubItemCurriculum.bind(this));
+        html.find("button[name=validate-curriculum]").on("click", this._actorAddOneToRank.bind(this));
 
         // Money +/-
         html.find(".money-control").on("click", this._modifyMoney.bind(this));
@@ -103,81 +90,6 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
         this._tabs
             .find((e) => e._navSelector === ".advancements-tabs")
             .activate("advancement_rank_" + (this.actor.data.data.identity.school_rank || 0));
-
-        // Open linked school curriculum journal
-        html.find(`.school-journal-link`).on("click", async (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-
-            const actorJournal = this.actor.data.data.identity.school_curriculum_journal;
-            const journal = await this._getJournal(actorJournal.id, actorJournal.pack);
-            if (journal) {
-                journal.sheet.render(true);
-            }
-        });
-    }
-
-    /**
-     * Handle dropped data on the Actor sheet
-     * @param {DragEvent} event
-     */
-    async _onDrop(event) {
-        // *** Everything below here is only needed if the sheet is editable ***
-        if (!this.options.editable) {
-            return;
-        }
-
-        // Curriculum Journal
-        const json = event.dataTransfer.getData("text/plain");
-        if (!json) {
-            return;
-        }
-
-        const data = JSON.parse(json);
-        if (data.type !== "JournalEntry") {
-            return super._onDrop(event);
-        }
-
-        const journal = await this._getJournal(data.id, data.pack);
-        if (!journal) {
-            return;
-        }
-
-        this.actor.data.data.identity.school_curriculum_journal = {
-            id: journal.data._id,
-            name: journal.data.name,
-            pack: data.pack || null,
-        };
-
-        await this.actor.update({
-            data: {
-                identity: {
-                    school_curriculum_journal: this.actor.data.data.identity.school_curriculum_journal,
-                },
-            },
-        });
-    }
-
-    /**
-     * Return the Journal in Pack or in World
-     * @param id
-     * @param pack
-     * @return {Promise<game.l5r5e.JournalL5r5e>}
-     * @private
-     */
-    async _getJournal(id, pack = null) {
-        let journal;
-        if (pack) {
-            // Compendium
-            journal = await game.packs.get(pack)?.getDocument(id);
-        } else {
-            // World
-            journal = game.journal.get(id);
-        }
-        if (!journal || !(journal instanceof game.l5r5e.JournalL5r5e) || !journal.data?._id) {
-            return;
-        }
-        return journal;
     }
 
     /**
@@ -318,5 +230,49 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
             },
         });
         this.render(false);
+    }
+
+    /**
+     * Add +1 to actor school rank
+     * @param {Event} event
+     * @private
+     */
+    async _actorAddOneToRank(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        this.actor.data.data.identity.school_rank = this.actor.data.data.identity.school_rank + 1;
+        await this.actor.update({
+            data: {
+                identity: {
+                    school_rank: this.actor.data.data.identity.school_rank,
+                },
+            },
+        });
+        this.render(false);
+    }
+
+    /**
+     * Open the linked school curriculum journal
+     * @param {Event} event
+     * @private
+     */
+    async _openLinkedJournal(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const actorJournal = this.actor.data.data.identity.school_curriculum_journal;
+        if (!actorJournal.id) {
+            return;
+        }
+
+        const journal = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack({
+            id: actorJournal.id,
+            pack: actorJournal.pack,
+            type: "JournalEntry",
+        });
+        if (journal) {
+            journal.sheet.render(true);
+        }
     }
 }

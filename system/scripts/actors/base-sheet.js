@@ -171,7 +171,28 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         // Check item type and subtype
         const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
-        if (!item || item.documentName !== "Item" || item.data.type === "property") {
+        if (!item || !["Item", "JournalEntry"].includes(item.documentName) || item.data.type === "property") {
+            return;
+        }
+
+        // Specific curriculum journal drop
+        if (item.documentName === "JournalEntry") {
+            // npc does not have this
+            if (!this.actor.data.data.identity?.school_curriculum_journal) {
+                return;
+            }
+            this.actor.data.data.identity.school_curriculum_journal = {
+                id: item.data._id,
+                name: item.data.name,
+                pack: item.pack || null,
+            };
+            await this.actor.update({
+                data: {
+                    identity: {
+                        school_curriculum_journal: this.actor.data.data.identity.school_curriculum_journal,
+                    },
+                },
+            });
             return;
         }
 
@@ -513,6 +534,9 @@ export class BaseSheetL5r5e extends ActorSheet {
      * @private
      */
     _switchSubItemCurriculum(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
         const itemId = $(event.currentTarget).data("item-id");
         const item = this.actor.items.get(itemId);
         if (item.type !== "item") {
