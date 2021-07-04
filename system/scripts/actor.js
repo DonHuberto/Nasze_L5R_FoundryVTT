@@ -65,7 +65,7 @@ export class ActorL5r5e extends Actor {
      */
     async update(data = {}, context = {}) {
         // Need a _id
-        if (!data._id) {
+        if (!data["_id"]) {
             data["_id"] = this.id;
         }
 
@@ -73,8 +73,13 @@ export class ActorL5r5e extends Actor {
         context.parent = this.parent;
         context.pack = this.pack;
 
+        // NPC switch between types : Linked actor for Adversary, unlinked for Minion
+        if (this.data.type === "npc" && data["data.type"] !== this.data.data.type) {
+            data["token.actorLink"] = data["data.type"] === "adversary";
+        }
+
         // Only on linked Actor
-        if (data.token?.actorLink || (data.token?.actorLink === undefined && this.data.token.actorLink)) {
+        if (!!data["token.actorLink"] || (data["token.actorLink"] === undefined && this.data.token.actorLink)) {
             // Update the token name/image if the sheet name/image changed, but only if they was previously the same
             ["name", "img"].forEach((fieldName) => {
                 if (
@@ -88,8 +93,7 @@ export class ActorL5r5e extends Actor {
         }
 
         // Now using updateDocuments
-        data = data instanceof Array ? data : [data];
-        return Actor.updateDocuments(data, context);
+        return Actor.updateDocuments([data], context);
     }
 
     /** @override */
