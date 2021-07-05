@@ -59,6 +59,12 @@ export class BaseSheetL5r5e extends ActorSheet {
         sheetData.items.forEach((item) => {
             switch (item.type) {
                 case "technique":
+                    if (!out[item.data.technique_type]) {
+                        console.warn(
+                            `L5R5E | Empty or unknown technique type[${item.data.technique_type}] forced to "kata" in item id[${item._id}], name[${item.name}]`
+                        );
+                        item.data.technique_type = "kata";
+                    }
                     out[item.data.technique_type].push(item);
                     break;
 
@@ -66,6 +72,12 @@ export class BaseSheetL5r5e extends ActorSheet {
                     // Embed technique in titles
                     Array.from(item.data.items).forEach(([id, embedItem]) => {
                         if (embedItem.data.type === "technique") {
+                            if (!out[embedItem.data.data.technique_type]) {
+                                console.warn(
+                                    `L5R5E | Empty or unknown technique type[${embedItem.data.data.technique_type}] forced to "kata" in item id[${id}], name[${embedItem.data.name}], parent: id[${item._id}], name[${item.name}]`
+                                );
+                                embedItem.data.data.technique_type = "kata";
+                            }
                             out[embedItem.data.data.technique_type].push(embedItem.data);
                         }
                     });
