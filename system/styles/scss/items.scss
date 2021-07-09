@@ -313,8 +313,11 @@
 }
 &.property {
     article {
+        &.properties {
+            width: 100%;
+        }
         &.infos {
-            height: calc(100% - 0.5rem);
+            height: calc(100% - 4.5rem);
         }
     }
 }
@@ -383,16 +386,20 @@
     }
 }
 &.title {
+    .sheet-body {
+        height: calc(100% - 90px - 4.25rem);
+    }
     article {
         &.infos {
             height: calc(100% - 3.5rem);
         }
         &.attributes {
             height: auto;
+            background: transparent;
         }
         &.experience {
             flex: 100%;
-            height: calc(100% - 3.5rem);
+            height: calc(100% - 4rem);
         }
     }
 }

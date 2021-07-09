@@ -555,16 +555,16 @@
             flex: 100%;
             display: flex;
             fieldset {
-                flex: 0 0 calc(50% - 0.75rem);
+                flex: 0 0 calc(50% - 0.5rem);
                 label {
                     width: 100%;
                 }
             }
         }
         .narrative-list {
-            flex: 0 0 calc(50% - 0.25rem);
+            flex: 0 0 50%;
             fieldset {
-                flex: 0 0 calc(50% - 0.25rem);
+                flex: 0 0 50%;
                 label {
                     width: 100%;
                 }
@@ -572,7 +572,7 @@
         }
         .narrative-fluff {
             flex: 1;
-            flex: 0 0 calc(50% - 0.75rem);
+            flex: 0 0 50%;
 
             .narrative-description {
                 max-height: 13rem;
@@ -581,6 +581,9 @@
             }
             .narrative-note {
                 font-size: 0.85rem;
+            }
+            .editor-content {
+                min-height: 10rem;
             }
         }
         .techniques-wrapper {

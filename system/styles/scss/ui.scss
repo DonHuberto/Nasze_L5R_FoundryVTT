@@ -666,20 +666,38 @@ button {
         min-height: 200px;
         width: 600px;
         height: auto;
-        max-height: 1000px;
-        overflow-y: hidden;
+        max-height: 100%;
         background: #3e3a30 url("../assets/imgs/bg-l5r.webp") no-repeat;
         color: $black-light;
         font-size: 0.8rem;
         text-align: left;
-        border: 1px solid rgba(0, 0, 0, 0.15);
-        border-radius: 0.25rem;
-        padding: 0.25rem;
+        border: 1px solid #c3a582;
+        border-radius: 0;
+        padding: 0.5rem 0.75rem;
         display: block;
         position: absolute;
         z-index: 9999;
         * {
             color: $black-light;
         }
+        &:before {
+            z-index: -1;
+            content: "";
+            position: absolute;
+            height: calc(100% + 0.6rem);
+            width: calc(100% - 0.65rem);
+            border: 1px solid #c3a582;
+            border-radius: 0;
+            top: -0.35rem;
+            left: 0.25rem;
+        }
+    }
+    .card-header img {
+        display: inline-block;
+        background: transparent;
+        border: 0 none;
+        width: 20px;
+        margin: 0;
+        padding: 0;
     }
 }
