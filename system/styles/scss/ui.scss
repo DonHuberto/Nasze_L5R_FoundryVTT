@@ -680,6 +680,18 @@ button {
         * {
             color: $black-light;
         }
+        section > ul {
+            display: flex;
+            flex-flow: row wrap;
+            padding: 0.25rem 0 0.25rem 1rem;
+            li {
+                flex: 50%;
+                padding: 0;
+                padding-right: 1rem;
+                margin: 0;
+                list-style-type: square;
+            }
+        }
         &:before {
             z-index: -2;
             content: "";

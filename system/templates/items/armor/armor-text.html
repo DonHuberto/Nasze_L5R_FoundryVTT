@@ -5,48 +5,38 @@
     <section class="sheet-body">
         <ul>
             <li>
-                <p><strong>{{localize 'l5r5e.weapons.sheathed'}}</strong> : {{localizeYesNo data.data.equipped}}</p>
+                <strong>{{localize 'l5r5e.weapons.sheathed'}}</strong> : {{localizeYesNo data.data.equipped}}
             </li>
             <li>
-                <p><strong>{{localize 'l5r5e.weapons.readied'}}</strong> : {{localizeYesNo data.data.readied}}</p>
+                <strong>{{localize 'l5r5e.weapons.readied'}}</strong> : {{localizeYesNo data.data.readied}}
             </li>
-
             {{!--item-value--}}
             <li>
-                <p><strong>{{localize 'l5r5e.quantity'}} </strong> : {{data.data.quantity}}</p>
+                <strong>{{localize 'l5r5e.quantity'}} </strong> : {{data.data.quantity}}
             </li>
             <li>
-                <p><strong>{{localize 'l5r5e.weight'}}</strong> : {{data.data.weight}}</p>
+                <strong>{{localize 'l5r5e.weight'}}</strong> : {{data.data.weight}}
             </li>
             <li>
-                <p><strong>{{localize 'l5r5e.rarity'}}</strong> : {{data.data.rarity}}</p>
+                <strong>{{localize 'l5r5e.rarity'}}</strong> : {{data.data.rarity}}
             </li>
             <li>
-                <p><strong>{{localize 'l5r5e.value'}}</strong> : {{data.data.zeni}}</p>
-            </li>
-
-            <li>
-                <p><strong>{{localize 'l5r5e.armors.physical'}}</strong> : {{data.data.armor.physical}}</p>
+                <strong>{{localize 'l5r5e.value'}}</strong> : {{data.data.zeni}}
             </li>
             <li>
-                <p><strong>{{localize 'l5r5e.armors.supernatural'}}</strong> : {{data.data.armor.supernatural}}</p>
-            </li>
-
-            {{!--properties--}}
-            <li>
-                <p>
-                    <strong>{{localize 'l5r5e.properties'}}</strong> :
-                    {{#each data.data.properties as |property idx|}}{{#ifCond idx '>' 0}}, {{/ifCond}}{{property.name}}{{/each}}
-                </p>
-            </li>
-
-            {{!--item-infos--}}
-            <li>
-                <p><strong>{{localize 'l5r5e.description'}}</strong> : {{{data.data.description}}}</p>
+                <strong>{{localize 'l5r5e.armors.physical'}}</strong> : {{data.data.armor.physical}}
             </li>
             <li>
-                <p><strong>{{localize 'l5r5e.book_reference'}}</strong> : {{data.data.book_reference}}</p>
+                <strong>{{localize 'l5r5e.armors.supernatural'}}</strong> : {{data.data.armor.supernatural}}
             </li>
         </ul>
+        {{!--properties--}}
+        <p>
+            <strong>{{localize 'l5r5e.properties'}}</strong> :
+            {{#each data.data.properties as |property idx|}}{{#ifCond idx '>' 0}}, {{/ifCond}}{{property.name}}{{/each}}
+        </p>
+        {{!--item-infos--}}
+        <p><strong>{{localize 'l5r5e.description'}}</strong> : {{{data.data.description}}}</p>
+        <p><strong>{{localize 'l5r5e.book_reference'}}</strong> : {{data.data.book_reference}}</p>
     </section>
 </div>

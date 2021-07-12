@@ -5,63 +5,54 @@
     <section class="sheet-body">
         <ul>
             <li>
-                <p><strong>{{localize 'l5r5e.weapons.sheathed'}}</strong> : {{localizeYesNo data.data.equipped}}</p>
+                <strong>{{localize 'l5r5e.weapons.sheathed'}}</strong> : {{localizeYesNo data.data.equipped}}
             </li>
             <li>
-                <p><strong>{{localize 'l5r5e.weapons.readied'}}</strong> : {{localizeYesNo data.data.readied}}</p>
+                <strong>{{localize 'l5r5e.weapons.readied'}}</strong> : {{localizeYesNo data.data.readied}}
             </li>
-
             {{!--item-value--}}
             <li>
-                <p><strong>{{localize 'l5r5e.quantity'}} </strong> : {{data.data.quantity}}</p>
+                <strong>{{localize 'l5r5e.quantity'}} </strong> : {{data.data.quantity}}
             </li>
             <li>
-                <p><strong>{{localize 'l5r5e.weight'}}</strong> : {{data.data.weight}}</p>
+                <strong>{{localize 'l5r5e.weight'}}</strong> : {{data.data.weight}}
             </li>
             <li>
-                <p><strong>{{localize 'l5r5e.rarity'}}</strong> : {{data.data.rarity}}</p>
+                <strong>{{localize 'l5r5e.rarity'}}</strong> : {{data.data.rarity}}
             </li>
             <li>
-                <p><strong>{{localize 'l5r5e.value'}}</strong> : {{data.data.zeni}}</p>
-            </li>
-
-            <li>
-                <p><strong>{{localize 'l5r5e.weapons.category'}}</strong> : {{data.data.category}}</p>
-            </li>
-            <li>
-                <p><strong>{{localize 'l5r5e.skill'}}</strong> : {{localizeSkillId data.data.skill}}</p>
-            </li>
-            <li>
-                <p><strong>{{localize 'l5r5e.weapons.range'}}</strong> : {{data.data.range}}</p>
-            </li>
-            <li>
-                <p><strong>{{localize 'l5r5e.weapons.damage'}}</strong> : {{data.data.damage}}</p>
-            </li>
-            <li>
-                <p><strong>{{localize 'l5r5e.weapons.deadliness'}}</strong> : {{data.data.deadliness}}</p>
-            </li>
-            <li>
-                <p><strong>{{localize 'l5r5e.weapons.1hand'}}</strong> : {{data.data.grip_1}}</p>
-            </li>
-            <li>
-                <p><strong>{{localize 'l5r5e.weapons.2hand'}}</strong> : {{data.data.grip_2}}</p>
+                <strong>{{localize 'l5r5e.value'}}</strong> : {{data.data.zeni}}
             </li>
 
-            {{!--properties--}}
             <li>
-                <p>
-                    <strong>{{localize 'l5r5e.properties'}}</strong> :
-                    {{#each data.data.properties as |property idx|}}{{#ifCond idx '>' 0}}, {{/ifCond}}{{property.name}}{{/each}}
-                </p>
-            </li>
-
-            {{!--item-infos--}}
-            <li>
-                <p><strong>{{localize 'l5r5e.description'}}</strong> : {{{data.data.description}}}</p>
+                <strong>{{localize 'l5r5e.weapons.category'}}</strong> : {{data.data.category}}
             </li>
             <li>
-                <p><strong>{{localize 'l5r5e.book_reference'}}</strong> : {{data.data.book_reference}}</p>
+                <strong>{{localize 'l5r5e.skill'}}</strong> : {{localizeSkillId data.data.skill}}
+            </li>
+            <li>
+                <strong>{{localize 'l5r5e.weapons.range'}}</strong> : {{data.data.range}}
+            </li>
+            <li>
+                <strong>{{localize 'l5r5e.weapons.damage'}}</strong> : {{data.data.damage}}
+            </li>
+            <li>
+                <strong>{{localize 'l5r5e.weapons.deadliness'}}</strong> : {{data.data.deadliness}}
+            </li>
+            <li>
+                <strong>{{localize 'l5r5e.weapons.1hand'}}</strong> : {{data.data.grip_1}}
+            </li>
+            <li>
+                <strong>{{localize 'l5r5e.weapons.2hand'}}</strong> : {{data.data.grip_2}}
             </li>
         </ul>
+        {{!--properties--}}
+        <p>
+            <strong>{{localize 'l5r5e.properties'}}</strong> :
+            {{#each data.data.properties as |property idx|}}{{#ifCond idx '>' 0}}, {{/ifCond}}{{property.name}}{{/each}}
+        </p>
+        {{!--item-infos--}}
+        <p><strong>{{localize 'l5r5e.description'}}</strong> : {{{data.data.description}}}</p>
+        <p><strong>{{localize 'l5r5e.book_reference'}}</strong> : {{data.data.book_reference}}</p>
     </section>
 </div>
