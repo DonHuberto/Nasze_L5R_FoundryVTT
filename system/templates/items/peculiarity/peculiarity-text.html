@@ -3,24 +3,36 @@
         <h2 class="item-name"><img src="{{data.img}}" title="{{data.name}}" /> {{data.name}}</h2>
     </header>
     <section class="sheet-body">
-        {{localize 'l5r5e.rings.title'}} : {{localizeRing data.data.ring}}
-        <br>
-        {{localize 'l5r5e.types'}} : {{localize (localize 'l5r5e.peculiarities.types.{type}' type=data.data.peculiarity_type)}}
-        <br>
-        {{localize 'l5r5e.advancements.curriculum'}} : {{#if data.data.in_curriculum}}{{localize 'Yes'}}{{else}}{{localize 'No'}}{{/if}}
-        <br>
-        {{localize 'l5r5e.advancements.spent'}} : {{data.data.xp_used}}
-        <br>
-        {{localize 'l5r5e.rank'}} : {{data.data.rank}}
-        <br>
-        {{localize 'l5r5e.bought_at_rank'}} : {{data.data.bought_at_rank}}
-        <br>
-        {{localize 'l5r5e.types'}} : {{data.data.types}}
+        <ul>
+            <li>
+                <p><strong>{{localize 'l5r5e.rings.title'}}</strong> : {{localizeRing data.data.ring}}</p>
+            </li>
+            <li>
+                <p><strong>{{localize 'l5r5e.types'}}</strong> : {{localize (localize 'l5r5e.peculiarities.types.{type}' type=data.data.peculiarity_type)}}</p>
+            </li>
+            <li>
+                <p><strong>{{localize 'l5r5e.advancements.curriculum'}}</strong> : {{localizeYesNo data.data.in_curriculum}}</p>
+            </li>
+            <li>
+                <p><strong>{{localize 'l5r5e.advancements.spent'}}</strong> : {{data.data.xp_used}}</p>
+            </li>
+            <li>
+                <p><strong>{{localize 'l5r5e.rank'}}</strong> : {{data.data.rank}}</p>
+            </li>
+            <li>
+                <p><strong>{{localize 'l5r5e.bought_at_rank'}}</strong> : {{data.data.bought_at_rank}}</p>
+            </li>
+            <li>
+                <p><strong>{{localize 'l5r5e.types'}}</strong> : {{data.data.types}}</p>
+            </li>
 
-        {{!--item-infos--}}
-        <br>
-        {{localize 'l5r5e.description'}} : {{{data.data.description}}}
-        <br>
-        {{localize 'l5r5e.book_reference'}} : {{data.data.book_reference}}
+            {{!--item-infos--}}
+            <li>
+                <p><strong>{{localize 'l5r5e.description'}}</strong> : {{{data.data.description}}}</p>
+            </li>
+            <li>
+                <p><strong>{{localize 'l5r5e.book_reference'}}</strong> : {{data.data.book_reference}}</p>
+            </li>
+        </ul>
     </section>
 </div>

@@ -29,6 +29,10 @@ export const RegisterHandlebars = function () {
         return game.i18n.localize("l5r5e.techniques." + techniqueName.toLowerCase());
     });
 
+    Handlebars.registerHelper("localizeYesNo", function (isYes) {
+        return game.i18n.localize(isYes ? "Yes" : "No");
+    });
+
     /* ------------------------------------ */
     /* Dice                                 */
     /* ------------------------------------ */

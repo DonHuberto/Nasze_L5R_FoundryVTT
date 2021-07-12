@@ -3,44 +3,65 @@
         <h2 class="item-name"><img src="{{data.img}}" title="{{data.name}}" /> {{data.name}}</h2>
     </header>
     <section class="sheet-body">
-        {{localize 'l5r5e.weapons.sheathed'}} : {{#if data.data.equipped}}{{localize 'Yes'}}{{else}}{{localize 'No'}}{{/if}}
-        <br>
-        {{localize 'l5r5e.weapons.readied'}} : {{#if data.data.readied}}{{localize 'Yes'}}{{else}}{{localize 'No'}}{{/if}}
+        <ul>
+            <li>
+                <p><strong>{{localize 'l5r5e.weapons.sheathed'}}</strong> : {{localizeYesNo data.data.equipped}}</p>
+            </li>
+            <li>
+                <p><strong>{{localize 'l5r5e.weapons.readied'}}</strong> : {{localizeYesNo data.data.readied}}</p>
+            </li>
 
-        {{!--item-value--}}
-        <br>
-        {{localize 'l5r5e.quantity'}} : {{data.data.quantity}}
-        <br>
-        {{localize 'l5r5e.weight'}} :{{data.data.weight}}
-        <br>
-        {{localize 'l5r5e.rarity'}} : {{data.data.rarity}}
-        <br>
-        {{localize 'l5r5e.value'}} : {{data.data.zeni}}
+            {{!--item-value--}}
+            <li>
+                <p><strong>{{localize 'l5r5e.quantity'}} </strong> : {{data.data.quantity}}</p>
+            </li>
+            <li>
+                <p><strong>{{localize 'l5r5e.weight'}}</strong> : {{data.data.weight}}</p>
+            </li>
+            <li>
+                <p><strong>{{localize 'l5r5e.rarity'}}</strong> : {{data.data.rarity}}</p>
+            </li>
+            <li>
+                <p><strong>{{localize 'l5r5e.value'}}</strong> : {{data.data.zeni}}</p>
+            </li>
 
-        <br>
-        {{localize 'l5r5e.weapons.category'}} : {{data.data.category}}
-        <br>
-        {{localize 'l5r5e.skill'}} : {{localizeSkillId data.data.skill}}
-        <br>
-        {{localize 'l5r5e.weapons.range'}} : {{data.data.range}}
-        <br>
-        {{localize 'l5r5e.weapons.damage'}} :  {{data.data.damage}}
-        <br>
-        {{localize 'l5r5e.weapons.deadliness'}} : {{data.data.deadliness}}
-        <br>
-        {{localize 'l5r5e.weapons.1hand'}} : {{data.data.grip_1}}
-        <br>
-        {{localize 'l5r5e.weapons.2hand'}} : {{data.data.grip_2}}
+            <li>
+                <p><strong>{{localize 'l5r5e.weapons.category'}}</strong> : {{data.data.category}}</p>
+            </li>
+            <li>
+                <p><strong>{{localize 'l5r5e.skill'}}</strong> : {{localizeSkillId data.data.skill}}</p>
+            </li>
+            <li>
+                <p><strong>{{localize 'l5r5e.weapons.range'}}</strong> : {{data.data.range}}</p>
+            </li>
+            <li>
+                <p><strong>{{localize 'l5r5e.weapons.damage'}}</strong> : {{data.data.damage}}</p>
+            </li>
+            <li>
+                <p><strong>{{localize 'l5r5e.weapons.deadliness'}}</strong> : {{data.data.deadliness}}</p>
+            </li>
+            <li>
+                <p><strong>{{localize 'l5r5e.weapons.1hand'}}</strong> : {{data.data.grip_1}}</p>
+            </li>
+            <li>
+                <p><strong>{{localize 'l5r5e.weapons.2hand'}}</strong> : {{data.data.grip_2}}</p>
+            </li>
 
-        {{!--properties--}}
-        <br>
-        {{localize 'l5r5e.properties'}} :
-        {{#each data.data.properties as |property idx|}}{{#ifCond idx '>' 0}}, {{/ifCond}}{{property.name}}{{/each}}
+            {{!--properties--}}
+            <li>
+                <p>
+                    <strong>{{localize 'l5r5e.properties'}}</strong> :
+                    {{#each data.data.properties as |property idx|}}{{#ifCond idx '>' 0}}, {{/ifCond}}{{property.name}}{{/each}}
+                </p>
+            </li>
 
-        {{!--item-infos--}}
-        <br>
-        {{localize 'l5r5e.description'}} : {{{data.data.description}}}
-        <br>
-        {{localize 'l5r5e.book_reference'}} : {{data.data.book_reference}}
+            {{!--item-infos--}}
+            <li>
+                <p><strong>{{localize 'l5r5e.description'}}</strong> : {{{data.data.description}}}</p>
+            </li>
+            <li>
+                <p><strong>{{localize 'l5r5e.book_reference'}}</strong> : {{data.data.book_reference}}</p>
+            </li>
+        </ul>
     </section>
 </div>
