@@ -1,18 +1,18 @@
 # Changelog
 
 ## 1.3.2 - Ronin's Bubble
-- Replaced moving description in items by a big tooltip on hover.
+- Added a tooltip on hover with all information for items all, and removed all these silly moving description (which made me crazy).
 - Added PoW Revised 20Q (for old Ronin, just modify the template in 20Q to change the character sheet fields).
 - Added Bushido tenets on Social tab in sheet for all (I think this is useful for players, and it's in Core rulebook so... why this is not by default ;) ).
-- Added English/French Journal Compendiums for Conditions and Terrain Qualities (thanks to TesserWract).
-- Added FoV Terrain Compendium.
-- Added PoW Name Tables compendium : Qamarist Names, Ivory Kingdoms Names, Rokugani Names and Ujik Names.
-- Added ability to drop a (Curriculum) Journal to have a button in school experience tab.
-- Added properties antagonists (ex : Sacred remove Unholy on drop).
-- Added when switching between NPC types, now the prototype token is altered this way : Linked actor for Adversary, unlinked for Minion.
+- Added English/French Journal Compendiums for Conditions and Terrain Qualities (thanks to TesserWract for English and icons).
+- Added English FoV Terrain Compendium.
+- Added PoW Name Tables compendium : Qamarist Names, Ivory Kingdoms Names, Rokugani Names and Ujik Names (courteously authorized by Edge).
+- Added ability to drop a (Curriculum) Journal to have a link in school experience tab.
+- Added properties antagonists (ex : "Sacred" remove "Unholy" on drop). So now properties can have another properties in them.
+- Added a little time saver : when switching between NPC types, now the prototype token is altered this way : Linked actor for Adversary, unlinked for Minion.
+- Fixed roll for RollTable not showing the text in chat.
 - Fixed school compendium: "Kuni Warden School" from "Scorpion" to "Crab".
-- Fixed roll for RollTable not showing the text.
-- Fixed some Pdf Copy-Paste error in school cursus that make L instead of I: Lkoma/Lsawa/Luchi...
+- Fixed some Pdf Copy-Paste error in school cursus that make L instead of I : Lkoma/Lsawa/Luchi...
 
 ## 1.3.1 - Empty Sheet Scholar Helper
 - Added English/French Journal Compendiums for School Curriculums.
