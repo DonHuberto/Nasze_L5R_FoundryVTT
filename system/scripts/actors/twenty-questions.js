@@ -325,7 +325,7 @@ export class TwentyQuestions {
 
         // Update actor
         await actor.update({
-            name: (formData.step2.family + " " + formData.step19.firstname).trim(),
+            name: ((formData.template !== "pow" ? formData.step2.family + " " : "") + formData.step19.firstname).trim(),
             data: actorDatas,
         });
     }

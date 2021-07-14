@@ -1,7 +1,7 @@
 # Changelog
 
 ## 1.3.2 - Ronin's Bubble
-- Added a tooltip on hover with all information for items all, and removed all these silly moving description (which made me crazy).
+- Added a tooltip on hover with all information for items, and removed all these silly moving description (which made me crazy).
 - Added PoW Revised 20Q (for old Ronin, just modify the template in 20Q to change the character sheet fields).
 - Added Bushido tenets on Social tab in sheet for all (I think this is useful for players, and it's in Core rulebook so... why this is not by default ;) ).
 - Added English/French Journal Compendiums for Conditions and Terrain Qualities (thanks to TesserWract for English and icons).
