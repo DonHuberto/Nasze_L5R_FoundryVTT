@@ -490,7 +490,7 @@
             "name": "Parapluie",
             "category": "Armes improvisées",
             "grip_1": "",
-            "grip_2": "Matraque : - / Poignarder : Dégâts +2, Dangerosité +2",
+            "grip_2": "Matraque : Dégâts +2 / Poignarder : Dégâts +2, Dangerosité +2",
             "description": "",
             "book_reference": "La Voie des Vagues"
         },
