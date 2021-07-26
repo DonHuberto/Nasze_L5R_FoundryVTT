@@ -1,5 +1,7 @@
 # Changelog
 
+## 1.3.3 - TODO
+
 ## 1.3.2 - Ronin's Bubble
 - Added a tooltip on hover with all information for items, and removed all these silly moving description (which made me crazy).
 - Added PoW Revised 20Q (for old Ronin, just modify the template in 20Q to change the character sheet fields).
