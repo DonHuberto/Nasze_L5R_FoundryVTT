@@ -258,7 +258,7 @@ export class RollnKeepDialog extends FormApplication {
         }
 
         // *** Everything below here is only needed if the sheet is editable ***
-        if (!this.options.editable) {
+        if (!this.isEditable) {
             return;
         }
 
@@ -277,7 +277,7 @@ export class RollnKeepDialog extends FormApplication {
      */
     async _onDropItem(event) {
         // *** Everything below here is only needed if the sheet is editable ***
-        if (!this.options.editable) {
+        if (!this.isEditable) {
             return;
         }
 
@@ -660,7 +660,7 @@ export class RollnKeepDialog extends FormApplication {
      */
     async _updateObject(event, formData) {
         // *** Everything below here is only needed if the sheet is editable ***
-        if (!this.options.editable) {
+        if (!this.isEditable) {
             return;
         }
 

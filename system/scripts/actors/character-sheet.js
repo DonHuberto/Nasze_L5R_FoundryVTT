@@ -22,7 +22,7 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
      */
     _getHeaderButtons() {
         let buttons = super._getHeaderButtons();
-        if (!this.options.editable || this.actor.limited) {
+        if (!this.isEditable || this.actor.limited) {
             return buttons;
         }
 
@@ -71,7 +71,7 @@ export class CharacterSheetL5r5e extends BaseSheetL5r5e {
         super.activateListeners(html);
 
         // *** Everything below here is only needed if the sheet is editable ***
-        if (!this.options.editable) {
+        if (!this.isEditable) {
             return;
         }
 

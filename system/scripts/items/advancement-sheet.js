@@ -37,7 +37,7 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
         super.activateListeners(html);
 
         // Everything below here is only needed if the sheet is editable
-        if (!this.options.editable) {
+        if (!this.isEditable) {
             return;
         }
 

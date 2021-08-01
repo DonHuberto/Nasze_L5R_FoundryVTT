@@ -431,11 +431,7 @@ export class HelpersL5r5e {
                     return;
                 }
 
-                const type = item.type.replace("_", "-"); // ex: item_pattern
-                const tpl = await renderTemplate(
-                    `${CONFIG.l5r5e.paths.templates}items/${type}/${type}-text.html`,
-                    item
-                );
+                const tpl = await item.renderTextTemplate();
                 if (!tpl) {
                     return;
                 }
@@ -460,6 +456,7 @@ export class HelpersL5r5e {
      * Get a Item from a Actor Sheet
      * @param {Event} event HTML Event
      * @param {ActorL5r5e} actor
+     * @return {ItemL5r5e}
      */
     static async getEmbedItemByEvent(event, actor) {
         const current = $(event.currentTarget);

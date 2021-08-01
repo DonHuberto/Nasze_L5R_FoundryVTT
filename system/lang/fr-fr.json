@@ -42,6 +42,7 @@
             "edit": "Modifier",
             "delete_confirm": "Etes-vous sûr de vouloir supprimer '{name}' ?",
             "drop_here": "Déposez ici",
+            "send_to_chat": "Env. dans la Conv.",
             "edge_translation_disclaimer": ""
         },
         "logo": {

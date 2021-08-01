@@ -1,6 +1,11 @@
 # Changelog
 
 ## 1.3.3 - TODO
+- Added "send to chat" button on items sheets.
+- Fixed Compendium entries thanks to TesserWract :
+  - Utaku Battle Maiden: Replace "Striking as Air" with "Courtier's Resolve".
+  - Weapons: Chair, lute, sake bottle and cups, and scroll case use the "Unarmed skill" and changed the umbrella's stab grip to be 2-handed.
+- Minor fixe on editable state.
 
 ## 1.3.2 - Ronin's Bubble
 - Added a tooltip on hover with all information for items, and removed all these silly moving description (which made me crazy).

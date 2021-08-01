@@ -177,7 +177,7 @@ export class BaseSheetL5r5e extends ActorSheet {
      */
     async _onDrop(event) {
         // *** Everything below here is only needed if the sheet is editable ***
-        if (!this.options.editable) {
+        if (!this.isEditable) {
             return;
         }
 
@@ -317,7 +317,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         game.l5r5e.HelpersL5r5e.commonListeners(html, this.actor);
 
         // *** Everything below here is only needed if the sheet is editable ***
-        if (!this.options.editable) {
+        if (!this.isEditable) {
             return;
         }
 

@@ -43,7 +43,7 @@ export class BaseJournalSheetL5r5e extends JournalSheet {
         game.l5r5e.HelpersL5r5e.commonListeners(html);
 
         // *** Everything below here is only needed if the sheet is editable ***
-        // if (!this.options.editable) {
+        // if (!this.isEditable) {
         //     return;
         // }
     }

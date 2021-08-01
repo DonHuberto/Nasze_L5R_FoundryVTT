@@ -188,7 +188,7 @@ export class TwentyQuestionsDialog extends FormApplication {
         });
 
         // *** Everything below here is only needed if the sheet is editable ***
-        if (!this.options.editable) {
+        if (!this.isEditable) {
             return;
         }
 
@@ -228,7 +228,7 @@ export class TwentyQuestionsDialog extends FormApplication {
      */
     async _onDropItem(type, event) {
         // *** Everything below here is only needed if the sheet is editable ***
-        if (!this.options.editable) {
+        if (!this.isEditable) {
             return;
         }
 

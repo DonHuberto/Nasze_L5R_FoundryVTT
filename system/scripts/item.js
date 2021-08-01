@@ -115,6 +115,20 @@ export class ItemL5r5e extends Item {
         return parentItem;
     }
 
+    /**
+     * Render the text template for this Item (tooltips and chat)
+     * @return {Promise<string|null>}
+     */
+    async renderTextTemplate() {
+        const type = this.type.replace("_", "-"); // ex: item_pattern
+        await game.l5r5e.HelpersL5r5e.refreshItemProperties(this);
+        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}items/${type}/${type}-text.html`, this);
+        if (!tpl) {
+            return null;
+        }
+        return tpl;
+    }
+
     // ***** Embedded items management *****
     /**
      * Shortcut for this.data.data.items.get

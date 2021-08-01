@@ -15,6 +15,48 @@ export class ItemSheetL5r5e extends ItemSheet {
     }
 
     /**
+     * Add the SendToChat button on top of sheet
+     * @override
+     */
+    _getHeaderButtons() {
+        let buttons = super._getHeaderButtons();
+
+        // Send To Chat
+        buttons.unshift({
+            label: game.i18n.localize("l5r5e.global.send_to_chat"),
+            class: "twenty-questions",
+            icon: "fas fa-comment-dots",
+            onclick: async () => this.sendToChat(),
+        });
+
+        return buttons;
+    }
+
+    /**
+     * Send the description of this Item to chat
+     * @return {Promise<*>}
+     */
+    async sendToChat() {
+        const tpl = await this.object.renderTextTemplate();
+        if (!tpl) {
+            return;
+        }
+
+        let link = null;
+        if (this.object.data.flags.core?.sourceId) {
+            link = this.object.data.flags.core?.sourceId.replace(/(\w+)\.(.+)/, "@$1[$2]");
+        } else if (this.object.pack) {
+            link = `@Compendium[${this.object.pack}.${this.object.id}]{${this.object.name}}`;
+        } else if (!this.object.actor) {
+            link = this.object.link;
+        }
+
+        return ChatMessage.create({
+            content: (link ? link + `<br>` : "") + tpl,
+        });
+    }
+
+    /**
      * @return {Object|Promise}
      */
     async getData(options = {}) {
@@ -25,6 +67,10 @@ export class ItemSheetL5r5e extends ItemSheet {
 
         // Prepare Properties (id/name => object)
         await this._prepareProperties(sheetData);
+
+        // Fix editable
+        sheetData.editable = this.isEditable;
+        sheetData.options.editable = sheetData.editable;
 
         return sheetData;
     }
@@ -94,7 +140,7 @@ export class ItemSheetL5r5e extends ItemSheet {
         game.l5r5e.HelpersL5r5e.commonListeners(html);
 
         // Everything below here is only needed if the sheet is editable
-        if (!this.options.editable) {
+        if (!this.isEditable) {
             return;
         }
 
@@ -130,7 +176,7 @@ export class ItemSheetL5r5e extends ItemSheet {
      */
     async _onDrop(event) {
         // Everything below here is only needed if the sheet is editable
-        if (!this.options.editable) {
+        if (!this.isEditable) {
             return;
         }
 
