@@ -212,6 +212,13 @@
             "system": "l5r5e"
         },
         {
+            "name": "core-journal-opportunities",
+            "label": "Opportunities",
+            "path": "packs/core-journal-opportunities.db",
+            "entity": "JournalEntry",
+            "system": "l5r5e"
+        },
+        {
             "name": "pow-name-tables",
             "label": "Name Tables",
             "path": "packs/pow-name-tables.db",

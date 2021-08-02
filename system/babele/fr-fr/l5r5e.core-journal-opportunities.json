@@ -1,0 +1,68 @@
+{
+    "label": "Aubaines",
+    "mapping": {
+        "content": "content"
+    },
+    "entries": [
+        {
+            "id": "Use in Negotiations",
+            "name": "Utilisation au cours de Négociations",
+            "content": "<blockquote>Livre de Règles</blockquote>"
+        },
+        {
+            "id": "General Use",
+            "name": "Utilisation Générale",
+            "content": "<blockquote>Livre de Règles</blockquote>"
+        },
+        {
+            "id": "Use related to Skills",
+            "name": "Utilisation liées aux Compétences",
+            "content": "<blockquote>Livre de Règles</blockquote>"
+        },
+        {
+            "id": "Use during Invocations",
+            "name": "Utilisation lors des Invocations",
+            "content": "<blockquote>Livre de Règles</blockquote>"
+        },
+        {
+            "id": "Use during Initiative tests",
+            "name": "Utilisation lors des tests d'Initiative",
+            "content": "<blockquote>Livre de Règles</blockquote>"
+        },
+        {
+            "id": "Use during a Time Out",
+            "name": "Utilisation lors d'un Temps Mort",
+            "content": "<blockquote>Livre de Règles</blockquote>"
+        },
+        {
+            "id": "Use during an Idyll",
+            "name": "Utilisation au cours d'une Idylle",
+            "content": "<blockquote>Livre de Règles</blockquote>"
+        },
+        {
+            "id": "Use in the Outworld or in Tainted Territory",
+            "name": "Utilisation dans l'Outremonde ou en Territoire Souillé",
+            "content": "<blockquote>Livre de Règles</blockquote>"
+        },
+        {
+            "id": "Use during a Spy mission",
+            "name": "Utilisation au cours d'une mission d'Espionnage",
+            "content": "<blockquote>Livre de Règles</blockquote>"
+        },
+        {
+            "id": "Use when facing Corruption",
+            "name": "Utilisation face à la Corruption",
+            "content": "<blockquote>Livre de Règles</blockquote>"
+        },
+        {
+            "id": "Use while being Soiled",
+            "name": "Utilisation en étant Souillé",
+            "content": "<blockquote>Livre de Règles</blockquote>"
+        },
+        {
+            "id": "Use related to Confrontations and Martial Skills",
+            "name": "Utilisation liées aux Confrontations et Compétences Martiales",
+            "content": "<blockquote>Livre de Règles</blockquote>"
+        }
+    ]
+}

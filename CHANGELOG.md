@@ -2,6 +2,7 @@
 
 ## 1.3.3 - TODO
 - Added "send to chat" button on items sheets.
+- Added Opportunity usage helper Compendium.
 - Fixed Compendium entries thanks to TesserWract :
   - Utaku Battle Maiden: Replace "Striking as Air" with "Courtier's Resolve".
   - Weapons: Chair, lute, sake bottle and cups, and scroll case use the "Unarmed skill" and changed the umbrella's stab grip to be 2-handed.
