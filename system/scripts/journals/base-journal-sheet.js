@@ -3,6 +3,35 @@
  * @extends {JournalSheet}
  */
 export class BaseJournalSheetL5r5e extends JournalSheet {
+    // /** @override */
+    // static get defaultOptions() {
+    //     return foundry.utils.mergeObject(super.defaultOptions, {
+    //         classes: ["l5r5e", "sheet", "journal"], // app window-app sheet journal-sheet
+    //         template: CONFIG.l5r5e.paths.templates + "journal/journal-sheet.html",
+    //         width: 520,
+    //         height: 480,
+    //         tabs: [{ navSelector: ".journal-tabs", contentSelector: ".journal-body", initial: "description" }],
+    //     });
+    // }
+
+    /**
+     * Add the SendToChat button on top of sheet
+     * @override
+     */
+    _getHeaderButtons() {
+        let buttons = super._getHeaderButtons();
+
+        // Send To Chat
+        buttons.unshift({
+            label: game.i18n.localize("l5r5e.global.send_to_chat"),
+            class: "send-to-chat",
+            icon: "fas fa-comment-dots",
+            onclick: async () => game.l5r5e.HelpersL5r5e.sendToChat(this.object),
+        });
+
+        return buttons;
+    }
+
     /**
      * Activate a named TinyMCE text editor
      * @param {string} name             The named data field which the editor modifies.
@@ -25,7 +54,6 @@ export class BaseJournalSheetL5r5e extends JournalSheet {
      * @override
      */
     async _updateObject(event, formData) {
-        // event.type = mcesave / submit
         if (formData.content) {
             formData.content = game.l5r5e.HelpersL5r5e.convertSymbols(formData.content, true);
         }

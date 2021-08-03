@@ -1,7 +1,7 @@
 # Changelog
 
 ## 1.3.3 - TODO
-- Added "send to chat" button on items sheets.
+- Added "send to chat" header button on Item and Journal sheets.
 - Added Opportunity usage helper Compendium.
 - Fixed Compendium entries thanks to TesserWract :
   - Utaku Battle Maiden: Replace "Striking as Air" with "Courtier's Resolve".

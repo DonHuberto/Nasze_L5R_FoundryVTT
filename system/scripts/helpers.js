@@ -483,4 +483,29 @@ export class HelpersL5r5e {
         }
         return item;
     }
+
+    /**
+     * Send the description of this Item to chat
+     * @param {JournalL5r5e|ItemSheetL5r5e} object
+     * @return {Promise<*>}
+     */
+    static async sendToChat(object) {
+        const tpl = await object.renderTextTemplate();
+        if (!tpl) {
+            return;
+        }
+
+        let link = null;
+        if (object.data.flags.core?.sourceId) {
+            link = object.data.flags.core?.sourceId.replace(/(\w+)\.(.+)/, "@$1[$2]");
+        } else if (object.pack) {
+            link = `@Compendium[${object.pack}.${object.id}]{${object.name}}`;
+        } else if (!object.actor) {
+            link = object.link;
+        }
+
+        return ChatMessage.create({
+            content: (link ? link + `<br>` : "") + tpl,
+        });
+    }
 }

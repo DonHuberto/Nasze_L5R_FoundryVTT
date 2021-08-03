@@ -24,36 +24,12 @@ export class ItemSheetL5r5e extends ItemSheet {
         // Send To Chat
         buttons.unshift({
             label: game.i18n.localize("l5r5e.global.send_to_chat"),
-            class: "twenty-questions",
+            class: "send-to-chat",
             icon: "fas fa-comment-dots",
-            onclick: async () => this.sendToChat(),
+            onclick: async () => game.l5r5e.HelpersL5r5e.sendToChat(this.object),
         });
 
         return buttons;
-    }
-
-    /**
-     * Send the description of this Item to chat
-     * @return {Promise<*>}
-     */
-    async sendToChat() {
-        const tpl = await this.object.renderTextTemplate();
-        if (!tpl) {
-            return;
-        }
-
-        let link = null;
-        if (this.object.data.flags.core?.sourceId) {
-            link = this.object.data.flags.core?.sourceId.replace(/(\w+)\.(.+)/, "@$1[$2]");
-        } else if (this.object.pack) {
-            link = `@Compendium[${this.object.pack}.${this.object.id}]{${this.object.name}}`;
-        } else if (!this.object.actor) {
-            link = this.object.link;
-        }
-
-        return ChatMessage.create({
-            content: (link ? link + `<br>` : "") + tpl,
-        });
     }
 
     /**
