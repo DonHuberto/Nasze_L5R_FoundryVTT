@@ -490,11 +490,13 @@ export class HelpersL5r5e {
      * @return {Promise<*>}
      */
     static async sendToChat(object) {
+        // Get the html
         const tpl = await object.renderTextTemplate();
         if (!tpl) {
             return;
         }
 
+        // Create the link
         let link = null;
         if (object.data.flags.core?.sourceId) {
             link = object.data.flags.core?.sourceId.replace(/(\w+)\.(.+)/, "@$1[$2]");
@@ -504,8 +506,9 @@ export class HelpersL5r5e {
             link = object.link;
         }
 
+        // Send to Chat
         return ChatMessage.create({
-            content: (link ? link + `<br>` : "") + tpl,
+            content: `<div class="l5r5e-chat-item">${tpl}${link ? `<hr>` + link : ""}</div>`,
         });
     }
 }

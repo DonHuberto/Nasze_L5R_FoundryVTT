@@ -1,10 +1,16 @@
 <div class="{{cssClass}}" data-actor-id="{{actor.data._id}}" data-item-id="{{data._id}}">
     <header class="card-header">
         <h2 class="item-name">
-            {{#if data.img}}<img src="{{data.img}}" title="{{data.name}}" />{{/if}} {{data.name}}
+            {{#ifCond data.img '&&' data.content}}<img src="{{data.img}}" title="{{data.name}}" />{{/ifCond}} {{data.name}}
         </h2>
     </header>
     <section class="sheet-body">
-        <p>{{{data.content}}}</p>
+        <p>
+            {{#if data.content}}
+                {{{data.content}}}
+            {{else}}
+                {{#if data.img}}<img src="{{data.img}}" title="{{data.name}}" />{{/if}}
+            {{/if}}
+        </p>
     </section>
 </div>
