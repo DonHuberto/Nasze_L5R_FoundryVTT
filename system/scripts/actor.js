@@ -186,4 +186,16 @@ export class ActorL5r5e extends Actor {
             });
         }
     }
+
+    /**
+     * Render the text template for this Actor (tooltips and chat)
+     * @return {Promise<string|null>}
+     */
+    async renderTextTemplate() {
+        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}actors/actor-text.html`, this);
+        if (!tpl) {
+            return null;
+        }
+        return tpl;
+    }
 }

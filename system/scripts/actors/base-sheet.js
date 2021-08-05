@@ -16,6 +16,24 @@ export class BaseSheetL5r5e extends ActorSheet {
         });
     }
 
+    /**
+     * Add the SendToChat button on top of sheet
+     * @override
+     */
+    _getHeaderButtons() {
+        let buttons = super._getHeaderButtons();
+
+        // Send To Chat
+        buttons.unshift({
+            label: game.i18n.localize("l5r5e.global.send_to_chat"),
+            class: "send-to-chat",
+            icon: "fas fa-comment-dots",
+            onclick: async () => game.l5r5e.HelpersL5r5e.sendToChat(this.object),
+        });
+
+        return buttons;
+    }
+
     /** @inheritdoc */
     getData(options = {}) {
         const sheetData = super.getData(options);
