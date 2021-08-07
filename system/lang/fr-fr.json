@@ -319,7 +319,7 @@
                 "earthtip": "Quand vous êtes la cible d'un test d'Attaque ou de Manipulation, votre adversaire ne peut pas dépenser d'Aubaine pour vous infliger des coups critiques ou des états.",
                 "firetip": "Lorsque vous réussissez un test, chaque Conflit obtenu sur vos dés gardés compte comme un succès bonus.",
                 "watertip": "Pendant votre tour, vous pouvez effectuer une action supplémentaire qui ne nécessite pas de test, et dont le type est différent de l'action que vous avez déjà effectuée à ce tour.",
-                "voidtip": "Tant que vous êtes dans cette posture, vous ne subissez aucun point de Conflit en cas de Conflit."
+                "voidtip": "Tant que vous êtes dans cette posture, vous ne subissez aucun point de Conflit sur les dés que vous gardez. Vous subissez toujours ceux qui ont une autre origine."
             },
             "initiative": {
                 "title": "Initiative",
