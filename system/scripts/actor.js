@@ -64,6 +64,9 @@ export class ActorL5r5e extends Actor {
      * @override
      */
     async update(data = {}, context = {}) {
+        // fix foundry v0.8.8 (config token=object, update=flat array)
+        data = foundry.utils.flattenObject(data);
+
         // Need a _id
         if (!data["_id"]) {
             data["_id"] = this.id;
@@ -74,7 +77,7 @@ export class ActorL5r5e extends Actor {
         context.pack = this.pack;
 
         // NPC switch between types : Linked actor for Adversary, unlinked for Minion
-        if (this.data.type === "npc" && data["data.type"] !== this.data.data.type) {
+        if (!!data["data.type"] && this.data.type === "npc" && data["data.type"] !== this.data.data.type) {
             data["token.actorLink"] = data["data.type"] === "adversary";
         }
 
