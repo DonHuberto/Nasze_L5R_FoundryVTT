@@ -5,13 +5,13 @@
     },
     "entries": [
         {
-            "id": "Use in Negotiations",
-            "name": "Utilisation au cours de Négociations",
+            "id": "General Use",
+            "name": "Utilisation Générale",
             "content": "<blockquote>Livre de Règles</blockquote>"
         },
         {
-            "id": "General Use",
-            "name": "Utilisation Générale",
+            "id": "Use in Negotiations",
+            "name": "Utilisation au cours de Négociations",
             "content": "<blockquote>Livre de Règles</blockquote>"
         },
         {
@@ -40,7 +40,7 @@
             "content": "<blockquote>Livre de Règles</blockquote>"
         },
         {
-            "id": "Use in the Outworld or in Tainted Territory",
+            "id": "Use in the ShadowLands or in Tainted Territory",
             "name": "Utilisation dans l'Outremonde ou en Territoire Souillé",
             "content": "<blockquote>Livre de Règles</blockquote>"
         },
