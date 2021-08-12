@@ -512,7 +512,13 @@ export class RollnKeepDialog extends FormApplication {
 
         // Show DsN dice for the new roll
         if (game.dice3d !== undefined) {
-            game.dice3d.showForRoll(roll, game.user, true);
+            game.dice3d.showForRoll(
+                roll,
+                game.user,
+                true,
+                this._message.data.whisper.length === 0 ? null : this._message.data.whisper,
+                this._message.data.blind
+            );
         }
 
         roll.terms.forEach((term) => {
@@ -617,6 +623,7 @@ export class RollnKeepDialog extends FormApplication {
         if (this.roll.l5r5e.isInitiativeRoll) {
             let msgOptions = {
                 rnkRoll: this.roll,
+                rollMode: game.l5r5e.HelpersL5r5e.getRollMode(this._message.data),
             };
 
             await this.roll.l5r5e.actor.rollInitiative({
@@ -630,7 +637,10 @@ export class RollnKeepDialog extends FormApplication {
             delete msgOptions.rnkMessage;
         } else {
             // Send it to chat, switch to new message
-            this.message = await this.roll.toMessage();
+            this.message = await this.roll.toMessage(
+                {},
+                { rollMode: game.l5r5e.HelpersL5r5e.getRollMode(this._message.data) }
+            );
         }
 
         // Refresh viewers

@@ -88,7 +88,7 @@ export class CombatL5r5e extends Combat {
                 if (messageOptions.rnkRoll instanceof game.l5r5e.RollL5r5e && ids.length === 1) {
                     // Specific RnK
                     roll = messageOptions.rnkRoll;
-                    rnkMessage = await roll.toMessage({ flavor });
+                    rnkMessage = await roll.toMessage({ flavor }, { rollMode: messageOptions.rollMode || null });
                 } else {
                     // Regular
                     roll = new game.l5r5e.RollL5r5e(formula);

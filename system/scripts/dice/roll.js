@@ -302,8 +302,8 @@ export class RollL5r5e extends Roll {
 
         // RollMode
         const rMode = rollMode || messageData.rollMode || game.settings.get("core", "rollMode");
-        if (rollMode) {
-            ChatMessage.applyRollMode(messageData, rMode);
+        if (rMode) {
+            messageData = ChatMessage.applyRollMode(messageData, rMode);
         }
 
         // Prepare chat data
@@ -336,8 +336,8 @@ export class RollL5r5e extends Roll {
     static fromData(data) {
         const roll = super.fromData(data);
 
-        roll.data = duplicate(data.data);
-        roll.l5r5e = duplicate(data.l5r5e);
+        roll.data = foundry.utils.duplicate(data.data);
+        roll.l5r5e = foundry.utils.duplicate(data.l5r5e);
 
         // get real Actor object
         if (data.l5r5e.actor) {

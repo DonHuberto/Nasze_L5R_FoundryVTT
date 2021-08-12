@@ -6,6 +6,9 @@
 - Fixed Compendium entries thanks to TesserWract :
   - Utaku Battle Maiden: Replace "Striking as Air" with "Courtier's Resolve".
   - Weapons: Chair, lute, sake bottle and cups, and scroll case use the "Unarmed skill" and changed the umbrella's stab grip to be 2-handed.
+- Fixes for RnK :
+  - Visibility mode is now consistent with the 1st message (public, private, gm...).
+  - DiceSoNice will now not show the new dice(s) for explosive in non-public mode.
 - Minor fixe on editable state.
 
 ## 1.3.2 - Ronin's Bubble

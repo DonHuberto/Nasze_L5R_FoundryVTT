@@ -511,4 +511,22 @@ export class HelpersL5r5e {
             content: `<div class="l5r5e-chat-item">${tpl}${link ? `<hr>` + link : ""}</div>`,
         });
     }
+
+    /**
+     * Return the RollMode for this ChatData
+     * @param  {object} chatData
+     * @return {string}
+     */
+    static getRollMode(chatData) {
+        if (chatData.whisper.length === 1 && chatData.whisper[0] === game.user.id) {
+            return "selfroll";
+        }
+        if (chatData.blind) {
+            return "blindroll";
+        }
+        if (chatData.whisper.length > 1) {
+            return "gmroll";
+        }
+        return "roll";
+    }
 }
