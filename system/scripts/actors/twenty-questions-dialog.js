@@ -175,7 +175,7 @@ export class TwentyQuestionsDialog extends FormApplication {
         super.activateListeners(html);
 
         // Commons
-        game.l5r5e.HelpersL5r5e.commonListeners(html);
+        game.l5r5e.HelpersL5r5e.commonListeners(html, this.actor);
 
         // BT Next
         html.find(".next").on("click", (event) => {

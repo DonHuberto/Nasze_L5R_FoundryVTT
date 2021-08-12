@@ -469,7 +469,12 @@ export class HelpersL5r5e {
             item = await HelpersL5r5e.getObjectGameOrPack({ id: propertyId, type: "Item" });
         } else if (itemParentId) {
             // Embed Item
-            const parentItem = actor.items.get(itemParentId);
+            let parentItem;
+            if (actor) {
+                parentItem = actor.items?.get(itemParentId);
+            } else {
+                parentItem = game.items.get(itemParentId);
+            }
             if (!parentItem) {
                 return;
             }

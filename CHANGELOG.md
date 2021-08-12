@@ -9,6 +9,7 @@
 - Fixes for RnK :
   - Visibility mode is now consistent with the 1st message (public, private, gm...).
   - DiceSoNice will now not show the new dice(s) for explosive in non-public mode.
+- Fixed Title's embed items tooltips.
 - Minor fixe on editable state.
 
 ## 1.3.2 - Ronin's Bubble

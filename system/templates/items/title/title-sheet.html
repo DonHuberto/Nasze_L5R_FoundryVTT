@@ -51,7 +51,7 @@
                     </thead>
                     <tbody class="flex">
                     {{#each data.embedItemsList as |advancement|}}
-                        {{> 'systems/l5r5e/templates/actors/character/advancement-others.html' advancement=advancement show_curriculum_toggle=true editable=../options.editable}}
+                        {{> 'systems/l5r5e/templates/actors/character/advancement-others.html' advancement=advancement show_curriculum_toggle=true editable=../options.editable parent_id=../data._id}}
                     {{/each}}
                     </tbody>
                     <tfoot>

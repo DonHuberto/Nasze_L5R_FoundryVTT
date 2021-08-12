@@ -113,7 +113,7 @@ export class ItemSheetL5r5e extends ItemSheet {
         super.activateListeners(html);
 
         // Commons
-        game.l5r5e.HelpersL5r5e.commonListeners(html);
+        game.l5r5e.HelpersL5r5e.commonListeners(html, this.actor);
 
         // Everything below here is only needed if the sheet is editable
         if (!this.isEditable) {
