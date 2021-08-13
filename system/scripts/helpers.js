@@ -253,33 +253,34 @@ export class HelpersL5r5e {
     static getPackNameForCoreItem(documentId) {
         const core = new Map();
 
-        // Items
+        core.set("Arm", "l5r5e.core-armors");
+        core.set("Bon", "l5r5e.core-bonds");
+        core.set("Itp", "l5r5e.core-item-patterns");
+        core.set("Ite", "l5r5e.core-items");
         core.set("Pro", "l5r5e.core-properties");
-        core.set("Kat", "l5r5e.core-techniques-kata");
-        core.set("Kih", "l5r5e.core-techniques-kiho");
+        core.set("Tit", "l5r5e.core-titles");
+        core.set("Sig", "l5r5e.core-signature-scrolls");
+        core.set("Wea", "l5r5e.core-weapons");
+
         core.set("Ins", "l5r5e.core-techniques-inversion");
         core.set("Inv", "l5r5e.core-techniques-invocations");
+        core.set("Kat", "l5r5e.core-techniques-kata");
+        core.set("Kih", "l5r5e.core-techniques-kiho");
+        core.set("Mah", "l5r5e.core-techniques-maho");
+        core.set("Mas", "l5r5e.core-techniques-mastery");
+        core.set("Nin", "l5r5e.core-techniques-ninjutsu");
         core.set("Rit", "l5r5e.core-techniques-rituals");
         core.set("Shu", "l5r5e.core-techniques-shuji");
-        core.set("Mah", "l5r5e.core-techniques-maho");
-        core.set("Nin", "l5r5e.core-techniques-ninjutsu");
         core.set("Sch", "l5r5e.core-techniques-school");
-        core.set("Mas", "l5r5e.core-techniques-mastery");
-        core.set("Ite", "l5r5e.core-items");
-        core.set("Arm", "l5r5e.core-armors");
-        core.set("Wea", "l5r5e.core-weapons");
-        core.set("Bon", "l5r5e.core-bonds");
-        core.set("Tit", "l5r5e.core-titles");
-        core.set("Itp", "l5r5e.core-item-patterns");
-        core.set("Sig", "l5r5e.core-signature-scrolls");
-        core.set("Dis", "l5r5e.core-peculiarities-distinctions");
-        core.set("Pas", "l5r5e.core-peculiarities-passions");
+
         core.set("Adv", "l5r5e.core-peculiarities-adversities");
         core.set("Anx", "l5r5e.core-peculiarities-anxieties");
+        core.set("Dis", "l5r5e.core-peculiarities-distinctions");
+        core.set("Pas", "l5r5e.core-peculiarities-passions");
 
-        // Journal
-        core.set("Csc", "l5r5e.core-journal-school-curriculum");
         core.set("Con", "l5r5e.core-journal-conditions");
+        core.set("Opp", "l5r5e.core-journal-opportunities");
+        core.set("Csc", "l5r5e.core-journal-school-curriculum");
         core.set("Ter", "l5r5e.core-journal-terrain-qualities");
 
         return core.get(documentId.replace(/L5RCore(\w{3})\d+/gi, "$1"));
@@ -344,7 +345,7 @@ export class HelpersL5r5e {
      * Notify Applications using Difficulty settings that the values was changed
      */
     static notifyDifficultyChange() {
-        ["l5r5e-dice-picker-dialog", "l5r5e-gm-tools-dialog"].forEach((appId) => {
+        ["l5r5e-dice-picker-dialog", "l5r5e-gm-toolbox"].forEach((appId) => {
             const app = Object.values(ui.windows).find((e) => e.id === appId);
             if (app && typeof app.refresh === "function") {
                 app.refresh();
@@ -407,21 +408,6 @@ export class HelpersL5r5e {
         });
 
         // Item detail tooltips
-        const fctPos = (event, popup) => {
-            let left = +event.clientX + 60,
-                top = +event.clientY;
-
-            let maxY = window.innerHeight - popup.outerHeight();
-            if (top > maxY) {
-                top = maxY - 10;
-            }
-
-            let maxX = window.innerWidth - popup.outerWidth();
-            if (left > maxX) {
-                left -= popup.outerWidth() + 100;
-            }
-            return { left: left + "px", top: top + "px", visibility: "visible" };
-        };
         html.find(".l5r5e-tooltip")
             .on("mouseenter", async (event) => {
                 $(document.body).find("#l5r5e-tooltip-ct").remove();
@@ -436,20 +422,41 @@ export class HelpersL5r5e {
                     return;
                 }
 
-                const popup = $(document.body).append(
+                $(document.body).append(
                     `<div id="l5r5e-tooltip-ct" class="l5r5e-tooltip l5r5e-tooltip-ct">${tpl}</div>`
                 );
-                popup.css(fctPos(event, popup));
             })
             .on("mousemove", (event) => {
                 const popup = $(document.body).find("#l5r5e-tooltip-ct");
                 if (popup) {
-                    popup.css(fctPos(event, popup));
+                    popup.css(HelpersL5r5e.popupPosition(event, popup));
                 }
             })
             .on("mouseleave", () => {
                 $(document.body).find("#l5r5e-tooltip-ct").remove();
             }); // tooltips
+    }
+
+    /**
+     * Return the Popup position avoiding screen borders
+     * @param {Event} event HTML Event
+     * @param popup
+     * @return {{top: string, visibility: string, left: string}}
+     */
+    static popupPosition(event, popup) {
+        let left = +event.clientX + 60,
+            top = +event.clientY;
+
+        let maxY = window.innerHeight - popup.outerHeight();
+        if (top > maxY) {
+            top = maxY - 10;
+        }
+
+        let maxX = window.innerWidth - popup.outerWidth();
+        if (left > maxX) {
+            left -= popup.outerWidth() + 100;
+        }
+        return { left: left + "px", top: top + "px", visibility: "visible" };
     }
 
     /**

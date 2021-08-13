@@ -2,7 +2,7 @@
  * L5R GM Toolbox dialog
  * @extends {FormApplication}
  */
-export class GmToolsDialog extends FormApplication {
+export class GmToolbox extends FormApplication {
     /**
      * Settings
      */
@@ -16,11 +16,11 @@ export class GmToolsDialog extends FormApplication {
         const x = $(window).width();
         const y = $(window).height();
         return foundry.utils.mergeObject(super.defaultOptions, {
-            id: "l5r5e-gm-tools-dialog",
-            classes: ["l5r5e", "gm-tools-dialog"],
-            template: CONFIG.l5r5e.paths.templates + "dialogs/gm-tools-dialog.html",
+            id: "l5r5e-gm-toolbox",
+            classes: ["l5r5e", "gm-toolbox"],
+            template: CONFIG.l5r5e.paths.templates + "gm/gm-toolbox.html",
             title: game.i18n.localize("l5r5e.gm_toolbox.title"),
-            left: x - 512,
+            left: x - 605,
             top: y - 98,
             closeOnSubmit: false,
             submitOnClose: false,
@@ -152,11 +152,24 @@ export class GmToolsDialog extends FormApplication {
             game.settings.set("l5r5e", "initiative-difficulty-value", this.object.difficulty).then(() => this.submit());
         });
 
-        // Scene End & Sleep
+        // Scene End, Sleep, void pt
         html.find(`.gm_actor_updates`).on("click", (event) => {
             event.preventDefault();
             event.stopPropagation();
             this._updatesActors($(event.currentTarget).data("type"));
+        });
+
+        // GM Monitor
+        html.find(`.gm_monitor`).on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const app = Object.values(ui.windows).find((e) => e.id === "l5r5e-gm-monitor");
+            if (app) {
+                app.close();
+            } else {
+                new game.l5r5e.GmMonitor().render(true);
+            }
         });
     }
 
@@ -202,6 +215,14 @@ export class GmToolsDialog extends FormApplication {
                         Math.ceil(actor.data.data.strife.max / 2)
                     );
                     break;
+
+                case "reset_void":
+                    // only pc
+                    if (actor.data.type !== "character" || !actor.hasPlayerOwner) {
+                        return;
+                    }
+                    actor.data.data.void_points.value = Math.ceil(actor.data.data.void_points.max / 2);
+                    break;
             }
 
             actor.update({
@@ -211,6 +232,9 @@ export class GmToolsDialog extends FormApplication {
                     },
                     strife: {
                         value: actor.data.data.strife.value,
+                    },
+                    void_points: {
+                        value: actor.data.data.void_points.value,
                     },
                 },
             });

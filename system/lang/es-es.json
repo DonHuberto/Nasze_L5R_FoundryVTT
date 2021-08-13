@@ -40,6 +40,7 @@
         "global": {
             "add": "Añadir",
             "edit": "Editar",
+            "refresh": "Refresh",
             "delete_confirm": "¿Estás seguro de que quieres borrar '{name}' ?",
             "drop_here": "Dejar caer aquí",
             "send_to_chat": "To Chat",
@@ -134,7 +135,14 @@
             "sleep": "Descanso confortable para todos los personajes (Eliminar fatiga = Agua x2)",
             "sleep_info": "Los personajes han dormido bien.",
             "scene_end": "Final de la escena (El Conflicto y la Fatiga de los personajes se reduce hasta la mitad del máximo del valor)",
-            "scene_end_info": "La tensión de la escena por fin disminuye."
+            "scene_end_info": "La tensión de la escena por fin disminuye.",
+            "reset_void": "Start of the game: Reset the players' void points",
+            "reset_void_info": "Void points have been attributed."
+        },
+        "gm_monitor": {
+            "title": "GM Monitor",
+            "honor_glory_status": "H/G/S",
+            "focus_vigilance": "Foc./Vig."
         },
         "max": "Máx",
         "current": "Actuales",

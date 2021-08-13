@@ -1,0 +1,45 @@
+<form class="l5r5e gm-monitor" autocomplete="off">
+    <table>
+        <thead>
+            <th class="img"></th>
+            <th class="stance"></th>
+            <th class="name">{{localize 'l5r5e.name'}}</th>
+            <th class="rank"><i class="i_bushi"></i> / <i class="i_courtier"></i></th>
+            <th class="social">{{localize 'l5r5e.gm_monitor.honor_glory_status'}}</th>
+            <th class="fatigue">{{localize 'l5r5e.attributes.fatigue'}}</th>
+            <th class="strife">{{localize 'l5r5e.attributes.strife'}}</th>
+            <th class="vigilance">{{localize 'l5r5e.gm_monitor.focus_vigilance'}}</th>
+            <th class="void"><i class="i_void"></i></th>
+            <th class=""></th>
+            <th class=""></th>
+        </thead>
+        <tbody>
+        {{#each data.actors as |actor|}}
+        <tr>
+            <td><img class="profile actor-profile" title="{{actor.name}}" src="{{actor.img}}"></td>
+            <td><i class="{{actor.data.data.stance}} i_{{actor.data.data.stance}}"></i></td>
+            <td>
+                <a data-actor-id="{{actor.id}}" class="actor-sheet-control">{{actor.name}}</a>
+                {{#if actor.data.data.attitude}}<br>({{actor.data.data.attitude}}){{/if}}
+            </td>
+            <td>
+                {{#if actor.data.data.identity.school_rank}}
+                    {{actor.data.data.identity.school_rank}}
+                {{else}}
+                    {{actor.data.data.conflict_rank.martial}} / {{actor.data.data.conflict_rank.social}}
+                {{/if}}
+            </td>
+            <td>
+                {{actor.data.data.social.honor}} / {{actor.data.data.social.glory}} / {{actor.data.data.social.status}}
+            </td>
+            <td>{{actor.data.data.fatigue.value}} / {{actor.data.data.fatigue.max}}</td>
+            <td>{{actor.data.data.strife.value}} / {{actor.data.data.strife.max}}</td>
+            <td>{{actor.data.data.focus}} / {{actor.data.data.vigilance}}</td>
+            <td>{{actor.data.data.void_points.value}} / {{actor.data.data.void_points.max}}</td>
+            <td><i data-actor-id="{{actor.id}}" class="fas fa-question-circle actor-infos-control"></i></td>
+            <td><span data-actor-id="{{actor.id}}" class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span></td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</form>

@@ -1,8 +1,10 @@
 # Changelog
 
 ## 1.3.3 - Send to Chat
-- Added "send to chat" header button on Actor, Item and Journal sheets.
-- Added Opportunity usage helper Compendium (courteously authorized by Edge).
+- Added "Gm Monitor", a little windows to see a summary of actor (drop any actor on it).
+- Added "reset void point" and "Gm Monitor" button to GM toolbox.
+- Added "send to chat" header button on : Actor, Item and Journal sheets.
+- Added Opportunity usage helper in Journal Compendium (courteously authorized by Edge).
 - Fixed Compendium entries thanks to TesserWract :
   - Utaku Battle Maiden: Replace "Striking as Air" with "Courtier's Resolve".
   - Weapons: Chair, lute, sake bottle and cups, and scroll case use the "Unarmed skill" and changed the umbrella's stab grip to be 2-handed.

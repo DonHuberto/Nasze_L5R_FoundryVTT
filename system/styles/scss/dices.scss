@@ -399,7 +399,25 @@
     }
 }
 
-#l5r5e-gm-tools-dialog {
+#l5r5e-gm-monitor {
+    min-height: 270px;
+    min-width: 500px;
+
+    .window-content {
+        th,
+        td {
+            border: 1px solid #5a6e5a;
+            padding: 0.25em;
+        }
+        img {
+            border: none;
+            max-width: 28px;
+            max-height: 28px;
+        }
+    }
+}
+
+#l5r5e-gm-toolbox {
     //bottom: 0;
     //right: 0.5rem;
     display: flex;
@@ -473,7 +491,9 @@
                 padding: 0.5rem;
             }
             .fa-bed,
-            .fa-star-half-alt {
+            .fa-star-half-alt,
+            .fa-table,
+            .fa-podcast {
                 width: 100%;
                 padding: 0.5rem;
             }

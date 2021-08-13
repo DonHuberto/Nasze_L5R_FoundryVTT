@@ -100,4 +100,15 @@ export const RegisterSettings = function () {
         type: String,
         default: "null",
     });
+
+    /* ------------------------------------ */
+    /* GM Monitor windows (GM only)         */
+    /* ------------------------------------ */
+    game.settings.register("l5r5e", "gm-monitor-actors", {
+        name: "Gm Monitor",
+        scope: "world", // for sync between gm
+        config: false,
+        type: Array,
+        default: [],
+    });
 };

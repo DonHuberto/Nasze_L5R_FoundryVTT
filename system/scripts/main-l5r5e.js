@@ -19,7 +19,6 @@ import { RollL5r5e } from "./dice/roll.js";
 import { DicePickerDialog } from "./dice/dice-picker-dialog.js";
 import { RollnKeepDialog } from "./dice/roll-n-keep-dialog.js";
 import { CombatL5r5e } from "./combat.js";
-import { GmToolsDialog } from "./dialogs/gm-tools-dialog.js";
 // Items
 import { ItemL5r5e } from "./item.js";
 import { ItemSheetL5r5e } from "./items/item-sheet.js";
@@ -38,6 +37,8 @@ import { JournalL5r5e } from "./journal.js";
 import { BaseJournalSheetL5r5e } from "./journals/base-journal-sheet.js";
 // Specific
 import { MigrationL5r5e } from "./migration.js";
+import { GmToolbox } from "./gm/gm-toolbox.js";
+import { GmMonitor } from "./gm/gm-monitor.js";
 
 /* ------------------------------------ */
 /* Initialize system                    */
@@ -84,7 +85,8 @@ Hooks.once("init", async () => {
         ActorL5r5e,
         DicePickerDialog,
         RollnKeepDialog,
-        GmToolsDialog,
+        GmToolbox,
+        GmMonitor,
         HelpDialog,
         sockets: new SocketHandlerL5r5e(),
         migrations: MigrationL5r5e,
