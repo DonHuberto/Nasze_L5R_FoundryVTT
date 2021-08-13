@@ -176,8 +176,7 @@ export class GmMonitor extends FormApplication {
 
         this.object.actors.push(actor[0]);
 
-        await this._saveActorsIds();
-        return this.refresh();
+        return this._saveAndRefresh();
     }
 
     /**
@@ -191,6 +190,16 @@ export class GmMonitor extends FormApplication {
             "gm-monitor-actors",
             this.object.actors.map((e) => e.id)
         );
+    }
+
+    /**
+     * Save ids and refresh the windows (local and socket)
+     * @return {Promise<void>}
+     */
+    async _saveAndRefresh() {
+        await this._saveActorsIds();
+        game.l5r5e.sockets.refreshAppId("l5r5e-gm-monitor");
+        return this.refresh();
     }
 
     /**
@@ -228,8 +237,7 @@ export class GmMonitor extends FormApplication {
 
         this.object.actors = this.object.actors.filter((e) => e.id !== id);
 
-        await this._saveActorsIds();
-        return this.refresh();
+        return this._saveAndRefresh();
     }
 
     /**

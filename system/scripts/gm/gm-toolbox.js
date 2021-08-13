@@ -189,12 +189,12 @@ export class GmToolbox extends FormApplication {
      * @param {string} type
      * @private
      */
-    _updatesActors(type) {
+    async _updatesActors(type) {
         if (!game.user.isGM) {
             return;
         }
 
-        game.actors.contents.forEach((actor) => {
+        for await (const actor of game.actors.contents) {
             switch (type) {
                 case "sleep":
                     // Remove 'water x2' fatigue points
@@ -225,7 +225,7 @@ export class GmToolbox extends FormApplication {
                     break;
             }
 
-            actor.update({
+            await actor.update({
                 data: {
                     fatigue: {
                         value: actor.data.data.fatigue.value,
@@ -238,7 +238,7 @@ export class GmToolbox extends FormApplication {
                     },
                 },
             });
-        });
+        }
 
         ui.notifications.info(game.i18n.localize(`l5r5e.gm_toolbox.${type}_info`));
 
