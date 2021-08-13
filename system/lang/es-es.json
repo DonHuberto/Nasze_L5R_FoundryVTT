@@ -40,7 +40,6 @@
         "global": {
             "add": "Añadir",
             "edit": "Editar",
-            "refresh": "Refresh",
             "delete_confirm": "¿Estás seguro de que quieres borrar '{name}' ?",
             "drop_here": "Dejar caer aquí",
             "send_to_chat": "To Chat",

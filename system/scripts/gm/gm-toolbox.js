@@ -241,5 +241,11 @@ export class GmToolbox extends FormApplication {
         });
 
         ui.notifications.info(game.i18n.localize(`l5r5e.gm_toolbox.${type}_info`));
+
+        // Refresh gm-monitor
+        Object.values(ui.windows)
+            .find((e) => e.id === "l5r5e-gm-monitor")
+            ?.refresh();
+        game.l5r5e.sockets.refreshAppId("l5r5e-gm-monitor");
     }
 }

@@ -25,27 +25,9 @@ export class GmMonitor extends FormApplication {
             resizable: true,
             closeOnSubmit: false,
             submitOnClose: false,
-            submitOnChange: true,
+            submitOnChange: false,
             dragDrop: [{ dragSelector: null, dropSelector: null }],
         });
-    }
-
-    /**
-     * Add the Refresh button on top of sheet
-     * @override
-     */
-    _getHeaderButtons() {
-        let buttons = super._getHeaderButtons();
-
-        // Send To Chat
-        buttons.unshift({
-            label: game.i18n.localize("l5r5e.global.refresh"),
-            class: "refresh",
-            icon: "fas fa-sync-alt",
-            onclick: async () => this.refresh(),
-        });
-
-        return buttons;
     }
 
     /**
@@ -103,8 +85,6 @@ export class GmMonitor extends FormApplication {
         if (!game.user.isGM) {
             return false;
         }
-        // this.position.width = "auto";
-        // this.position.height = "auto";
         return super.render(force, options);
     }
 
@@ -168,17 +148,6 @@ export class GmMonitor extends FormApplication {
             .on("mouseleave", () => {
                 $(document.body).find("#l5r5e-tooltip-ct").remove();
             }); // tooltips
-    }
-
-    /**
-     * This method is called upon form submission after form data is validated
-     * @param event    The initial triggering submission event
-     * @param formData The object of validated form data with which to update the object
-     * @returns        A Promise which resolves once the update operation has completed
-     * @override
-     */
-    async _updateObject(event, formData) {
-        this.render(false);
     }
 
     /**
@@ -258,8 +227,8 @@ export class GmMonitor extends FormApplication {
         }
 
         this.object.actors = this.object.actors.filter((e) => e.id !== id);
-        await this._saveActorsIds();
 
+        await this._saveActorsIds();
         return this.refresh();
     }
 

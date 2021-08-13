@@ -400,7 +400,7 @@
 }
 
 #l5r5e-gm-monitor {
-    min-height: 270px;
+    min-height: 170px;
     min-width: 500px;
 
     .window-content {
@@ -413,6 +413,9 @@
             border: none;
             max-width: 28px;
             max-height: 28px;
+        }
+        .overvalue {
+            color: $red-dice;
         }
     }
 }
