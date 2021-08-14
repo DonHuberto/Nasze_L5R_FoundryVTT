@@ -96,7 +96,17 @@ export class ActorL5r5e extends Actor {
         }
 
         // Now using updateDocuments
-        return Actor.updateDocuments([data], context);
+        return Actor.updateDocuments([data], context).then(() => {
+            // Notify the "Gm Monitor" if this actor is watched
+            if (game.settings.get("l5r5e", "gm-monitor-actors").find((e) => e === this.id)) {
+                game.l5r5e.sockets.refreshAppId("l5r5e-gm-monitor");
+                if (game.user.isGM) {
+                    Object.values(ui.windows)
+                        .find((e) => e.id === "l5r5e-gm-monitor")
+                        ?.refresh();
+                }
+            }
+        });
     }
 
     /** @override */
@@ -200,5 +210,29 @@ export class ActorL5r5e extends Actor {
             return null;
         }
         return tpl;
+    }
+
+    /**
+     * Return true if a weapon is equipped
+     * @return {boolean}
+     */
+    haveWeaponEquipped() {
+        return this.items.some((e) => e.type === "weapon" && !!e.data.data.equipped);
+    }
+
+    /**
+     * Return true if a weapon is readied
+     * @return {boolean}
+     */
+    haveWeaponReadied() {
+        return this.items.some((e) => e.type === "weapon" && !!e.data.data.equipped && !!e.data.data.readied);
+    }
+
+    /**
+     * Return true if a armor is equipped
+     * @return {boolean}
+     */
+    haveArmorEquipped() {
+        return this.items.some((e) => e.type === "armor" && !!e.data.data.equipped);
     }
 }

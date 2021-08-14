@@ -110,5 +110,6 @@ export const RegisterSettings = function () {
         config: false,
         type: Array,
         default: [],
+        onChange: () => game.l5r5e.sockets.refreshAppId("l5r5e-gm-monitor"),
     });
 };

@@ -2,8 +2,10 @@
     <table>
         <thead>
             <th class="img"></th>
-            <th class="stance"></th>
             <th class="name">{{localize 'l5r5e.name'}}</th>
+            <th class="stance"><i class="i_fire"></i></th>
+            <th class="weapon"><i class="fas fa-fan"></i></th>
+            <th class="armor"><i class="fas fa-user-shield"></i></th>
             <th class="rank"><i class="i_bushi"></i> / <i class="i_courtier"></i></th>
             <th class="social">{{localize 'l5r5e.gm_monitor.honor_glory_status'}}</th>
             <th class="fatigue">{{localize 'l5r5e.attributes.fatigue'}}</th>
@@ -17,11 +19,13 @@
         {{#each data.actors as |actor|}}
         <tr>
             <td><img class="profile actor-profile" title="{{actor.name}}" src="{{actor.img}}"></td>
-            <td><i class="{{actor.data.data.stance}} i_{{actor.data.data.stance}}"></i></td>
             <td>
                 <a data-actor-id="{{actor.id}}" class="actor-sheet-control">{{actor.name}}</a>
                 {{#if actor.data.data.attitude}}<br>({{actor.data.data.attitude}}){{/if}}
             </td>
+            <td><i data-type="text" data-text="<h2>{{localize 'l5r5e.conflict.stance'}} ({{localizeRing actor.data.data.stance}})</h2>{{localizeStanceTip actor.data.data.stance}}" class="i_{{actor.data.data.stance}} actor-infos-control"></i></td>
+            <td>{{#if actor.haveWeaponEquipped}}<i data-type="weapons" data-actor-id="{{actor.id}}" class="fas fa-fan actor-infos-control {{#if actor.haveWeaponReadied}}badvalue{{/if}}"></i>{{/if}}</td>
+            <td>{{#if actor.haveArmorEquipped}}<i data-type="armors" data-actor-id="{{actor.id}}" class="fas fa-user-shield actor-infos-control"></i>{{/if}}</td>
             <td>
                 {{#if actor.data.data.identity.school_rank}}
                     {{actor.data.data.identity.school_rank}}
@@ -30,15 +34,27 @@
                 {{/if}}
             </td>
             <td>
-                {{actor.data.data.social.honor}} / {{actor.data.data.social.glory}} / {{actor.data.data.social.status}}
+                <span class="{{#ifCond actor.data.data.social.honor '>' 64}}goodvalue{{/ifCond}}{{#ifCond actor.data.data.social.honor '<' 30}}badvalue{{/ifCond}}">{{actor.data.data.social.honor}}</span>
+                / <span class="{{#ifCond actor.data.data.social.glory '>' 64}}goodvalue{{/ifCond}}{{#ifCond actor.data.data.social.glory '<' 20}}badvalue{{/ifCond}}">{{actor.data.data.social.glory}}</span>
+                / {{actor.data.data.social.status}}
             </td>
-            <td><span class="{{#ifCond actor.data.data.fatigue.value '>' actor.data.data.fatigue.max}}overvalue{{/ifCond}}">{{actor.data.data.fatigue.value}}</span> / {{actor.data.data.fatigue.max}}</td>
-            <td><span class="{{#ifCond actor.data.data.strife.value '>' actor.data.data.strife.max}}overvalue{{/ifCond}}">{{actor.data.data.strife.value}}</span> / {{actor.data.data.strife.max}}</td>
             <td>
-                {{actor.data.data.focus}} / {{#if actor.data.data.is_compromised}}<span class="overvalue">1</span>{{else}}{{actor.data.data.vigilance}}{{/if}}
+                <span class="{{#ifCond actor.data.data.fatigue.value '>' actor.data.data.fatigue.max}}badvalue{{/ifCond}}">{{actor.data.data.fatigue.value}}</span>
+                / {{actor.data.data.fatigue.max}}
             </td>
-            <td>{{actor.data.data.void_points.value}} / {{actor.data.data.void_points.max}}</td>
-            <td><i data-actor-id="{{actor.id}}" class="fas fa-question-circle actor-infos-control"></i></td>
+            <td>
+                <span class="{{#ifCond actor.data.data.strife.value '>' actor.data.data.strife.max}}badvalue{{/ifCond}}">{{actor.data.data.strife.value}}</span>
+                / {{actor.data.data.strife.max}}
+            </td>
+            <td>
+                {{actor.data.data.focus}}
+                / {{#if actor.data.data.is_compromised}}<span class="badvalue">1</span>{{else}}{{actor.data.data.vigilance}}{{/if}}
+            </td>
+            <td>
+                {{actor.data.data.void_points.value}}
+                / {{actor.data.data.void_points.max}}
+            </td>
+            <td><i data-actor-id="{{actor.id}}" data-type="global" class="fas fa-question-circle actor-infos-control"></i></td>
             <td><span data-actor-id="{{actor.id}}" class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span></td>
         </tr>
         {{/each}}

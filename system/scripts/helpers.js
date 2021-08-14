@@ -408,16 +408,42 @@ export class HelpersL5r5e {
         });
 
         // Item detail tooltips
-        html.find(".l5r5e-tooltip")
+        this.popupManager(html.find(".l5r5e-tooltip"), async (event) => {
+            const item = await HelpersL5r5e.getEmbedItemByEvent(event, actor);
+            if (!item) {
+                return;
+            }
+            return await item.renderTextTemplate();
+        });
+    }
+
+    /**
+     * Do the Popup for the selected element
+     * @param {Selector} selector HTML Selector
+     * @param {function} callback Callback function(event), must return the html to display
+     */
+    static popupManager(selector, callback) {
+        const popupPosition = (event, popup) => {
+            let left = +event.clientX + 60,
+                top = +event.clientY;
+
+            let maxY = window.innerHeight - popup.outerHeight();
+            if (top > maxY) {
+                top = maxY - 10;
+            }
+
+            let maxX = window.innerWidth - popup.outerWidth();
+            if (left > maxX) {
+                left -= popup.outerWidth() + 100;
+            }
+            return { left: left + "px", top: top + "px", visibility: "visible" };
+        };
+
+        selector
             .on("mouseenter", async (event) => {
                 $(document.body).find("#l5r5e-tooltip-ct").remove();
 
-                const item = await HelpersL5r5e.getEmbedItemByEvent(event, actor);
-                if (!item) {
-                    return;
-                }
-
-                const tpl = await item.renderTextTemplate();
+                const tpl = await callback(event);
                 if (!tpl) {
                     return;
                 }
@@ -429,34 +455,12 @@ export class HelpersL5r5e {
             .on("mousemove", (event) => {
                 const popup = $(document.body).find("#l5r5e-tooltip-ct");
                 if (popup) {
-                    popup.css(HelpersL5r5e.popupPosition(event, popup));
+                    popup.css(popupPosition(event, popup));
                 }
             })
             .on("mouseleave", () => {
                 $(document.body).find("#l5r5e-tooltip-ct").remove();
             }); // tooltips
-    }
-
-    /**
-     * Return the Popup position avoiding screen borders
-     * @param {Event} event HTML Event
-     * @param popup
-     * @return {{top: string, visibility: string, left: string}}
-     */
-    static popupPosition(event, popup) {
-        let left = +event.clientX + 60,
-            top = +event.clientY;
-
-        let maxY = window.innerHeight - popup.outerHeight();
-        if (top > maxY) {
-            top = maxY - 10;
-        }
-
-        let maxX = window.innerWidth - popup.outerWidth();
-        if (left > maxX) {
-            left -= popup.outerWidth() + 100;
-        }
-        return { left: left + "px", top: top + "px", visibility: "visible" };
     }
 
     /**

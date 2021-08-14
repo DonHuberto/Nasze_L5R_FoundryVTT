@@ -187,17 +187,7 @@ export class BaseSheetL5r5e extends ActorSheet {
             formData["data.description"] = game.l5r5e.HelpersL5r5e.convertSymbols(formData["data.description"], true);
         }
 
-        return super._updateObject(event, formData).then(() => {
-            // Notify the "Gm Monitor" if this actor is watched
-            if (game.settings.get("l5r5e", "gm-monitor-actors").find((e) => e === this.actor.id)) {
-                game.l5r5e.sockets.refreshAppId("l5r5e-gm-monitor");
-                if (game.user.isGM) {
-                    Object.values(ui.windows)
-                        .find((e) => e.id === "l5r5e-gm-monitor")
-                        ?.refresh();
-                }
-            }
-        });
+        return super._updateObject(event, formData);
     }
 
     /**

@@ -20,7 +20,7 @@ export class GmMonitor extends FormApplication {
             classes: ["l5r5e", "gm-monitor"],
             template: CONFIG.l5r5e.paths.templates + "gm/gm-monitor.html",
             title: game.i18n.localize("l5r5e.gm_monitor.title"),
-            width: 640,
+            width: 700,
             height: 300,
             resizable: true,
             closeOnSubmit: false,
@@ -120,34 +120,33 @@ export class GmMonitor extends FormApplication {
         html.find(`.actor-remove-control`).on("click", this._removeActor.bind(this));
 
         // Tooltips
-        html.find(".actor-infos-control")
-            .on("mouseenter", async (event) => {
-                $(document.body).find("#l5r5e-tooltip-ct").remove();
+        game.l5r5e.HelpersL5r5e.popupManager(html.find(".actor-infos-control"), async (event) => {
+            const type = $(event.currentTarget).data("type");
+            if (!type) {
+                return;
+            }
+            if (type === "text") {
+                return $(event.currentTarget).data("text");
+            }
 
-                const id = $(event.currentTarget).data("actor-id");
-                if (!id) {
-                    return;
-                }
+            const id = $(event.currentTarget).data("actor-id");
+            if (!id) {
+                return;
+            }
+            const actor = this.object.actors.find((e) => e.id === id);
+            if (!actor) {
+                return;
+            }
 
-                const actor = this.object.actors.find((e) => e.id === id);
-                if (!actor) {
-                    return;
-                }
-                const tpl = await this._getTooltipForActor(actor);
-
-                $(document.body).append(
-                    `<div id="l5r5e-tooltip-ct" class="l5r5e-tooltip l5r5e-tooltip-ct">${tpl}</div>`
-                );
-            })
-            .on("mousemove", (event) => {
-                const popup = $(document.body).find("#l5r5e-tooltip-ct");
-                if (popup) {
-                    popup.css(game.l5r5e.HelpersL5r5e.popupPosition(event, popup));
-                }
-            })
-            .on("mouseleave", () => {
-                $(document.body).find("#l5r5e-tooltip-ct").remove();
-            }); // tooltips
+            switch (type) {
+                case "armors":
+                    return await this._getTooltipArmors(actor);
+                case "weapons":
+                    return await this._getTooltipWeapons(actor);
+                case "global":
+                    return await this._getTooltipGlobal(actor);
+            }
+        });
     }
 
     /**
@@ -176,7 +175,8 @@ export class GmMonitor extends FormApplication {
 
         this.object.actors.push(actor[0]);
 
-        return this._saveAndRefresh();
+        await this._saveActorsIds();
+        return this.refresh();
     }
 
     /**
@@ -190,16 +190,6 @@ export class GmMonitor extends FormApplication {
             "gm-monitor-actors",
             this.object.actors.map((e) => e.id)
         );
-    }
-
-    /**
-     * Save ids and refresh the windows (local and socket)
-     * @return {Promise<void>}
-     */
-    async _saveAndRefresh() {
-        await this._saveActorsIds();
-        game.l5r5e.sockets.refreshAppId("l5r5e-gm-monitor");
-        return this.refresh();
     }
 
     /**
@@ -237,7 +227,8 @@ export class GmMonitor extends FormApplication {
 
         this.object.actors = this.object.actors.filter((e) => e.id !== id);
 
-        return this._saveAndRefresh();
+        await this._saveActorsIds();
+        return this.refresh();
     }
 
     /**
@@ -246,7 +237,7 @@ export class GmMonitor extends FormApplication {
      * @return {string}
      * @private
      */
-    async _getTooltipForActor(actor) {
+    async _getTooltipGlobal(actor) {
         const data = actor.data.data;
 
         // Peculiarities
@@ -260,33 +251,67 @@ export class GmMonitor extends FormApplication {
             .map((e) => e.name)
             .join(", ");
 
-        // Equipped Armors & Weapons
-        const arm = actor.items
+        // *** Template ***
+        return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor-tooltips/global.html`, {
+            actorData: data,
+            advantages: adv,
+            disadvantages: dis,
+        });
+    }
+
+    /**
+     * Get weapons informations for this actor
+     * @param {BaseSheetL5r5e} actor
+     * @return {string}
+     * @private
+     */
+    async _getTooltipWeapons(actor) {
+        const display = (e) => {
+            return (
+                e.name +
+                ` (<i class="fas fa-arrows-alt-h"> ${e.data.data.range || 0}</i>` +
+                ` / <i class="fas fa-tint"> ${e.data.data.damage}</i>` +
+                ` / <i class="fas fa-skull"> ${e.data.data.deadliness}</i>)`
+            );
+        };
+
+        // Readied Weapons
+        const readied = actor.items
+            .filter((e) => e.type === "weapon" && e.data.data.equipped && !!e.data.data.readied)
+            .map((e) => display(e));
+
+        // Equipped Weapons
+        const sheathed = actor.items
+            .filter((e) => e.type === "weapon" && e.data.data.equipped && !e.data.data.readied)
+            .map((e) => display(e));
+
+        // *** Template ***
+        return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor-tooltips/weapons.html`, {
+            readied,
+            sheathed,
+        });
+    }
+
+    /**
+     * Get armors informations for this actor
+     * @param {BaseSheetL5r5e} actor
+     * @return {string}
+     * @private
+     */
+    async _getTooltipArmors(actor) {
+        // Equipped Armors
+        const armors = actor.items
             .filter((e) => e.type === "armor" && e.data.data.equipped)
             .map(
                 (e) =>
                     e.name +
-                    `(<i class="fas fa-tint">${e.data.data.armor.physical}</i> / <i class="fas fa-bolt">${e.data.data.armor.supernatural}</i>)`
-            )
-            .join(", ");
-        const wea = actor.items
-            .filter((e) => e.type === "weapon" && e.data.data.equipped)
-            .map(
-                (e) =>
-                    e.name +
-                    `(<i class="fas fa-arrows-alt-h"> ${e.data.data.range || 0}</i> / <i class="fas fa-tint"> ${
-                        e.data.data.damage
-                    }</i> / <i class="fas fa-skull"> ${e.data.data.deadliness}</i>)`
-            )
-            .join(", ");
+                    ` (<i class="fas fa-tint">${e.data.data.armor.physical}</i>` +
+                    ` / <i class="fas fa-bolt">${e.data.data.armor.supernatural}</i>)`
+            );
 
         // *** Template ***
-        return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/gm-monitor-tooltip.html`, {
-            actorData: data,
-            advantages: adv,
-            disadvantages: dis,
-            armors: arm,
-            weapons: wea,
+        return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor-tooltips/armors.html`, {
+            armors,
         });
     }
 }
