@@ -130,12 +130,12 @@
         "gm_toolbox": {
             "title": "GM ToolBox",
             "difficulty_hidden": "Change difficulty visibility",
-            "difficulty": "Change difficulty (right: add, left: subtract, middle: TN 2)",
-            "sleep": "Comfortable rest for all characters (Remove Water x2 fatigue)",
+            "difficulty": "Change difficulty (right click: add, left: subtract, middle: TN 2)",
+            "sleep": "Comfortable rest for all characters (Remove Water x2 fatigue. Right click: controlled pc only. Left: All actors)",
             "sleep_info": "The characters had a good night's sleep.",
-            "scene_end": "End of scene (Conflict and Fatigue half reset for all characters)",
+            "scene_end": "End of scene (Conflict and Fatigue half reset for all characters. Right click: controlled pc only. Left: All actors)",
             "scene_end_info": "The tension of the scene finally drops.",
-            "reset_void": "Start of the game: Reset the players' void points",
+            "reset_void": "Start of the game: Reset the players' void points (Right click: controlled pc only. Left: All actors",
             "reset_void_info": "Void points have been attributed."
         },
         "gm_monitor": {

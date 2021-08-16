@@ -1,7 +1,7 @@
 # Changelog
 
-## 1.3.3 - Send to Chat
-- Added "Gm Monitor", a little windows to see a summary of actor (drop any actor on it).
+## 1.3.3 - Send'n'Watch
+- Added "Gm Monitor", a windows to see summaries of actor (drop any actor on it, by default all controlled pc will fill it).
 - Added "reset void point" and "Gm Monitor" button to GM toolbox.
 - Added "send to chat" header button on : Actor, Item and Journal sheets.
 - Added Opportunity usage helper in Journal Compendium (courteously authorized by Edge).

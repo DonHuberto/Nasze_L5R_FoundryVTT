@@ -131,11 +131,11 @@
             "title": "GM ToolBox",
             "difficulty_hidden": "Cambiar la dificultad visible",
             "difficulty": "Cambiar dificultad (derecha: añadir, izquierda: sustraer, central: NO 2)",
-            "sleep": "Descanso confortable para todos los personajes (Eliminar fatiga = Agua x2)",
+            "sleep": "Descanso confortable para todos los personajes (Eliminar fatiga = Agua x2. Right click: controlled pc only. Left: All actors)",
             "sleep_info": "Los personajes han dormido bien.",
-            "scene_end": "Final de la escena (El Conflicto y la Fatiga de los personajes se reduce hasta la mitad del máximo del valor)",
+            "scene_end": "Final de la escena (El Conflicto y la Fatiga de los personajes se reduce hasta la mitad del máximo del valor. Right click: controlled pc only. Left: All actors)",
             "scene_end_info": "La tensión de la escena por fin disminuye.",
-            "reset_void": "Start of the game: Reset the players' void points",
+            "reset_void": "Start of the game: Reset the players' void points (Right click: controlled pc only. Left: All actors)",
             "reset_void_info": "Void points have been attributed."
         },
         "gm_monitor": {

@@ -152,12 +152,8 @@ export class GmToolbox extends FormApplication {
             game.settings.set("l5r5e", "initiative-difficulty-value", this.object.difficulty).then(() => this.submit());
         });
 
-        // Scene End, Sleep, void pt
-        html.find(`.gm_actor_updates`).on("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            this._updatesActors($(event.currentTarget).data("type"));
-        });
+        // Scene End, Sleep, Void Pts
+        html.find(`.gm_actor_updates`).on("mousedown", this._updatesActors.bind(this));
 
         // GM Monitor
         html.find(`.gm_monitor`).on("click", (event) => {
@@ -186,15 +182,23 @@ export class GmToolbox extends FormApplication {
 
     /**
      * Update all actors
-     * @param {string} type
+     * @param {Event} event
      * @private
      */
-    async _updatesActors(type) {
+    async _updatesActors(event) {
         if (!game.user.isGM) {
             return;
         }
 
+        const isAll = event.which !== 1;
+        const type = $(event.currentTarget).data("type");
+
         for await (const actor of game.actors.contents) {
+            // only controlled pc
+            if (!isAll && (actor.data.type !== "character" || !actor.hasPlayerOwner)) {
+                continue;
+            }
+
             switch (type) {
                 case "sleep":
                     // Remove 'water x2' fatigue points
@@ -217,10 +221,6 @@ export class GmToolbox extends FormApplication {
                     break;
 
                 case "reset_void":
-                    // only pc
-                    if (actor.data.type !== "character" || !actor.hasPlayerOwner) {
-                        return;
-                    }
                     actor.data.data.void_points.value = Math.ceil(actor.data.data.void_points.max / 2);
                     break;
             }
