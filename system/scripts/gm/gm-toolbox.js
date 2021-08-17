@@ -190,11 +190,11 @@ export class GmToolbox extends FormApplication {
             return;
         }
 
+        // Left clic: controlled pc only, others: all actors
         const isAll = event.which !== 1;
         const type = $(event.currentTarget).data("type");
 
         for await (const actor of game.actors.contents) {
-            // only controlled pc
             if (!isAll && (actor.data.type !== "character" || !actor.hasPlayerOwner)) {
                 continue;
             }
@@ -240,12 +240,8 @@ export class GmToolbox extends FormApplication {
             });
         }
 
-        ui.notifications.info(game.i18n.localize(`l5r5e.gm_toolbox.${type}_info`));
-
-        // Refresh gm-monitor
-        Object.values(ui.windows)
-            .find((e) => e.id === "l5r5e-gm-monitor")
-            ?.refresh();
-        game.l5r5e.sockets.refreshAppId("l5r5e-gm-monitor");
+        ui.notifications.info(
+            ` <i class="fas fa-user${isAll ? "s" : ""}"></i> ` + game.i18n.localize(`l5r5e.gm_toolbox.${type}_info`)
+        );
     }
 }

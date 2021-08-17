@@ -30,7 +30,7 @@ export class SocketHandlerL5r5e {
                     break;
 
                 default:
-                    console.warn(new Error("This socket event is not supported"), data);
+                    console.warn(new Error("L5R5E | This socket event is not supported"), data);
                     break;
             }
         });
@@ -61,10 +61,12 @@ export class SocketHandlerL5r5e {
      * @param appId
      */
     refreshAppId(appId) {
-        game.socket.emit(SocketHandlerL5r5e.SOCKET_NAME, {
-            type: "refreshAppId",
-            appId,
-        });
+        game.l5r5e.HelpersL5r5e.debounce(appId, () => {
+            game.socket.emit(SocketHandlerL5r5e.SOCKET_NAME, {
+                type: "refreshAppId",
+                appId,
+            });
+        })();
     }
     _onRefreshAppId(data) {
         const app = Object.values(ui.windows).find((e) => e.id === data.appId);

@@ -545,4 +545,42 @@ export class HelpersL5r5e {
         }
         return "roll";
     }
+
+    /**
+     * Isolated Debounce by Id
+     *
+     * Usage : game.l5r5e.HelpersL5r5e.debounce('appId', (text) => { console.log(text) })('my text');
+     *
+     * @param id       Named id
+     * @param callback Callback function
+     * @param timeout  Wait time (500ms by default)
+     * @param leading  If true the callback will be executed only at the first debounced-function call,
+     *                 otherwise the callback will only be executed `delay` milliseconds after the last debounced-function call
+     * @return {(function(...[*]=): void)|*}
+     */
+    static debounce(id, callback, timeout = 500, leading = false) {
+        /* eslint-disable no-undef */
+        if (!debounce.timeId) {
+            debounce.timeId = {};
+        }
+        return (...args) => {
+            if (leading) {
+                // callback will be executed only at the first debounced-function call
+                if (!debounce.timeId[id]) {
+                    callback.apply(this, args);
+                }
+                clearTimeout(debounce.timeId[id]);
+                debounce.timeId[id] = setTimeout(() => {
+                    debounce.timeId[id] = undefined;
+                }, timeout);
+            } else {
+                // callback will only be executed `delay` milliseconds after the last debounced-function call
+                clearTimeout(debounce.timeId[id]);
+                debounce.timeId[id] = setTimeout(() => {
+                    callback.apply(this, args);
+                }, timeout);
+            }
+        };
+        /* eslint-enable no-undef */
+    }
 }

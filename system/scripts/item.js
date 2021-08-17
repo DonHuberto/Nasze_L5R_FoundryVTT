@@ -42,7 +42,7 @@ export class ItemL5r5e extends Item {
         // **** Embed Items, need to get the parents ****
         const parentItem = this.getItemFromParentId();
         if (!parentItem) {
-            console.warn(`Embed parentItem not found`);
+            console.warn(`L5R5E | Embed parentItem not found`);
             return;
         }
 
