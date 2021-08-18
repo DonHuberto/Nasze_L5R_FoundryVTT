@@ -190,7 +190,7 @@ export class GmToolbox extends FormApplication {
             return;
         }
 
-        // Left clic: controlled pc only, others: all actors
+        // Left clic: assigned characters only, others: all actors
         const isAll = event.which !== 1;
         const type = $(event.currentTarget).data("type");
 

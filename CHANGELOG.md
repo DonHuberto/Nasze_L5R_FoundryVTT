@@ -1,11 +1,21 @@
 # Changelog
 
 ## 1.3.3 - Send'n'Watch
-- Added "Gm Monitor", a windows to see summaries of actor (drop any actor on it, by default all controlled pc will fill it).
-- Added "reset void point" and "Gm Monitor" button to GM toolbox.
-- Added "send to chat" header button on : Actor, Item and Journal sheets.
+- GM toolbox changes :
+  - Added "Reset void point" and "Gm Monitor" buttons.
+  - "Reset void point", "Sleep" and "Scene End" now use left clic to target only assigned characters, and right clic to do all actors.
+- Added "Gm Monitor", a windows to see summaries of actors :
+  - Drop any actor on it to display them.
+  - By default, or if the list is empty, all assigned characters will fill it.
+- Added "send to chat" header buttons on sheets for :
+  - Item : Image and description
+  - Actor : Image and Public description
+  - Journal : Image and description, or full image if no text, or only description if no image.
+  - The link behavior is :
+    - World items and Compendiums : Direct link
+    - Actor items : Try to get the world/compendium items as actor items are not accessible to others players. If the source cannot be resolved, do not display the link.
 - Added Opportunity usage helper in Journal Compendium (courteously authorized by Edge).
-- Fixed Compendium entries thanks to TesserWract :
+- Fixed Compendiums entries thanks to TesserWract :
   - Utaku Battle Maiden: Replace "Striking as Air" with "Courtier's Resolve".
   - Weapons: Chair, lute, sake bottle and cups, and scroll case use the "Unarmed skill" and changed the umbrella's stab grip to be 2-handed.
 - Fixes for RnK :

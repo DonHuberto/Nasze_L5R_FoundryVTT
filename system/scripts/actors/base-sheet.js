@@ -28,7 +28,13 @@ export class BaseSheetL5r5e extends ActorSheet {
             label: game.i18n.localize("l5r5e.global.send_to_chat"),
             class: "send-to-chat",
             icon: "fas fa-comment-dots",
-            onclick: async () => game.l5r5e.HelpersL5r5e.sendToChat(this.object),
+            onclick: () =>
+                game.l5r5e.HelpersL5r5e.debounce(
+                    "send2chat-" + this.object.id,
+                    () => game.l5r5e.HelpersL5r5e.sendToChat(this.object),
+                    2000,
+                    true
+                )(),
         });
 
         return buttons;
