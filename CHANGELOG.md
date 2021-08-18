@@ -16,13 +16,20 @@
     - Actor items : Try to get the world/compendium items as actor items are not accessible to others players. If the source cannot be resolved, do not display the link.
 - Added Opportunity usage helper in Journal Compendium (courteously authorized by Edge).
 - Fixed Compendiums entries thanks to TesserWract :
-  - Utaku Battle Maiden: Replace "Striking as Air" with "Courtier's Resolve".
-  - Weapons: Chair, lute, sake bottle and cups, and scroll case use the "Unarmed skill" and changed the umbrella's stab grip to be 2-handed.
+  - Weapons:
+      - Chair, lute, sake bottle and cups, and scroll case use the "Unarmed skill"
+      - Changed the umbrella's stab grip to be 2-handed.
+  - Techniques :
+    - "Utaku Battle Maiden": Replaced "Striking as Air" with "Courtier's Resolve".
+    - "Disappearing World Style": Ring used changed from "air" to "fire".
+    - "Lord Hida's Grip": Added the "(Crab)" prerequisite.
+    - "Lord Shiba's Valor": Added the "(Phoenix)" prerequisite.
 - Fixes for RnK :
   - Visibility mode is now consistent with the 1st message (public, private, gm...).
   - DiceSoNice will now not show the new dice(s) for explosive in non-public mode.
 - Fixed Title's embed items tooltips.
 - Minor fixe on editable state.
+- Updated compatibility to Foundry VTT v0.8.9
 
 ## 1.3.2 - Ronin's Bubble
 - Added a tooltip on hover with all information for items, and removed all these silly moving description (which made me crazy).
