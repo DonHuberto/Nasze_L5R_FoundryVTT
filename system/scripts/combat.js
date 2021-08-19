@@ -50,7 +50,6 @@ export class CombatL5r5e extends Combat {
             // Prepared is a boolean or if null we get the info in the actor sheet
             const isPc = combatant.actor.data.type === "character";
             const isPrepared = combatant.actor.isPrepared;
-            console.log(isPrepared);
 
             // A character’s initiative value is based on their state of preparedness when the conflict began.
             // If the character was ready for the conflict, their base initiative value is their focus attribute.
