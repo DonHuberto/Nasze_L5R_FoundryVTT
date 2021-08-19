@@ -99,12 +99,7 @@ export class ActorL5r5e extends Actor {
         return Actor.updateDocuments([data], context).then(() => {
             // Notify the "Gm Monitor" if this actor is watched
             if (game.settings.get("l5r5e", "gm-monitor-actors").find((e) => e === this.id)) {
-                game.l5r5e.sockets.refreshAppId("l5r5e-gm-monitor");
-                if (game.user.isGM) {
-                    Object.values(ui.windows)
-                        .find((e) => e.id === "l5r5e-gm-monitor")
-                        ?.refresh();
-                }
+                game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor");
             }
         });
     }
@@ -216,7 +211,7 @@ export class ActorL5r5e extends Actor {
      * Return true if a weapon is equipped
      * @return {boolean}
      */
-    haveWeaponEquipped() {
+    get haveWeaponEquipped() {
         return this.items.some((e) => e.type === "weapon" && !!e.data.data.equipped);
     }
 
@@ -224,7 +219,7 @@ export class ActorL5r5e extends Actor {
      * Return true if a weapon is readied
      * @return {boolean}
      */
-    haveWeaponReadied() {
+    get haveWeaponReadied() {
         return this.items.some((e) => e.type === "weapon" && !!e.data.data.equipped && !!e.data.data.readied);
     }
 
@@ -232,7 +227,27 @@ export class ActorL5r5e extends Actor {
      * Return true if a armor is equipped
      * @return {boolean}
      */
-    haveArmorEquipped() {
+    get haveArmorEquipped() {
         return this.items.some((e) => e.type === "armor" && !!e.data.data.equipped);
+    }
+
+    /**
+     * Return true if this actor is prepared (overridden by global)
+     * @return {boolean}
+     */
+    get isPrepared() {
+        const cfg = {
+            character: game.settings.get("l5r5e", "initiative-prepared-character"),
+            adversary: game.settings.get("l5r5e", "initiative-prepared-adversary"),
+            minion: game.settings.get("l5r5e", "initiative-prepared-minion"),
+        };
+
+        // Prepared is a boolean or if null we get the info in the actor
+        let isPrepared = this.data.type === "character" ? cfg.character : cfg[this.data.data.type];
+        if (isPrepared === "null") {
+            isPrepared = this.data.data.prepared ? "true" : "false";
+        }
+
+        return isPrepared;
     }
 }

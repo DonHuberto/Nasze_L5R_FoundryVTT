@@ -85,6 +85,7 @@ export const RegisterSettings = function () {
         config: false,
         type: String,
         default: "null",
+        onChange: () => game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor"),
     });
     game.settings.register("l5r5e", "initiative-prepared-adversary", {
         name: "Initiative NPC adversary are prepared or not",
@@ -92,6 +93,7 @@ export const RegisterSettings = function () {
         config: false,
         type: String,
         default: "null",
+        onChange: () => game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor"),
     });
     game.settings.register("l5r5e", "initiative-prepared-minion", {
         name: "Initiative NPC minion are prepared or not",
@@ -99,6 +101,7 @@ export const RegisterSettings = function () {
         config: false,
         type: String,
         default: "null",
+        onChange: () => game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor"),
     });
 
     /* ------------------------------------ */
@@ -106,10 +109,10 @@ export const RegisterSettings = function () {
     /* ------------------------------------ */
     game.settings.register("l5r5e", "gm-monitor-actors", {
         name: "Gm Monitor",
-        scope: "world", // for sync between gm
+        scope: "world",
         config: false,
         type: Array,
         default: [],
-        onChange: () => game.l5r5e.sockets.refreshAppId("l5r5e-gm-monitor"),
+        onChange: () => game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor"),
     });
 };

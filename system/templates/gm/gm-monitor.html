@@ -4,9 +4,10 @@
             <th class="img"></th>
             <th class="name">{{localize 'l5r5e.name'}}</th>
             <th class="stance"><i class="i_earth"></i></th>
+            <th class="prepared"><i class="fas prepared-icon-true"></i></th>
             <th class="weapon"><i class="fas fa-fan"></i></th>
             <th class="armor"><i class="fas fa-user-shield"></i></th>
-            <th class="rank"><i class="i_bushi"></i> / <i class="i_courtier"></i></th>
+            <th class="rank">{{localize 'l5r5e.rank'}}</th>
             <th class="social">{{localize 'l5r5e.gm_monitor.honor_glory_status'}}</th>
             <th class="fatigue">{{localize 'l5r5e.attributes.fatigue'}}</th>
             <th class="strife">{{localize 'l5r5e.attributes.strife'}}</th>
@@ -21,17 +22,29 @@
             <td><img class="profile actor-profile" title="{{actor.name}}" src="{{actor.img}}"></td>
             <td>
                 <a data-actor-id="{{actor.id}}" class="actor-sheet-control">{{actor.name}}</a>
-                {{#if actor.data.data.attitude}}<br>({{actor.data.data.attitude}}){{/if}}
+                {{#if actor.data.data.attitude}}<p>({{actor.data.data.attitude}})</p>{{/if}}
             </td>
             <td><i data-type="text" data-text="<h2>{{localize 'l5r5e.conflict.stance'}} ({{localizeRing actor.data.data.stance}})</h2>{{localizeStanceTip actor.data.data.stance}}" class="i_{{actor.data.data.stance}} actor-infos-control"></i></td>
+            <td><i class="fa fas prepared-icon-{{actor.isPrepared}} {{#ifCond actor.isPrepared '==' 'false'}}badvalue{{/ifCond}}" title="{{localize (localize 'l5r5e.conflict.initiative.prepared_{value}' value=actor.isPrepared)}}"></i></td>
             <td>{{#if actor.haveWeaponEquipped}}<i data-type="weapons" data-actor-id="{{actor.id}}" class="fas fa-fan actor-infos-control {{#if actor.haveWeaponReadied}}badvalue{{/if}}"></i>{{/if}}</td>
             <td>{{#if actor.haveArmorEquipped}}<i data-type="armors" data-actor-id="{{actor.id}}" class="fas fa-user-shield actor-infos-control"></i>{{/if}}</td>
             <td>
+                <p>
                 {{#if actor.data.data.identity.school_rank}}
                     {{actor.data.data.identity.school_rank}}
                 {{else}}
-                    {{actor.data.data.conflict_rank.martial}} / {{actor.data.data.conflict_rank.social}}
+                    <i class="i_bushi" title="{{localize 'l5r5e.social.npc.combat'}}"></i> {{actor.data.data.conflict_rank.martial}} <i class="i_courtier" title="{{localize 'l5r5e.social.npc.intrigue'}}"></i> {{actor.data.data.conflict_rank.social}}
                 {{/if}}
+                </p>
+                <p>
+                {{#if actor.data.data.rings_affinities}}
+                {{#each actor.data.data.rings_affinities as |ringValue ringId|}}
+                    {{#if ringValue}}
+                    <i class="i_{{ringId}}" title="{{localizeRing ringId}}"></i> {{ringValue}}
+                    {{/if}}
+                {{/each}}
+                {{/if}}
+                </p>
             </td>
             <td>
                 <span class="{{#ifCond actor.data.data.social.honor '>' 64}}goodvalue{{/ifCond}}{{#ifCond actor.data.data.social.honor '<' 30}}badvalue{{/ifCond}}">{{actor.data.data.social.honor}}</span>

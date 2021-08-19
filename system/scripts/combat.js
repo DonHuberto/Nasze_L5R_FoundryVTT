@@ -26,11 +26,6 @@ export class CombatL5r5e extends Combat {
         const cfg = {
             difficulty: game.settings.get("l5r5e", "initiative-difficulty-value"),
             difficultyHidden: game.settings.get("l5r5e", "initiative-difficulty-hidden"),
-            prepared: {
-                character: game.settings.get("l5r5e", "initiative-prepared-character"),
-                adversary: game.settings.get("l5r5e", "initiative-prepared-adversary"),
-                minion: game.settings.get("l5r5e", "initiative-prepared-minion"),
-            },
         };
 
         // SkillId from DicePicker or global
@@ -54,10 +49,7 @@ export class CombatL5r5e extends Combat {
 
             // Prepared is a boolean or if null we get the info in the actor sheet
             const isPc = combatant.actor.data.type === "character";
-            let isPrepared = isPc ? cfg.prepared.character : cfg.prepared[data.type];
-            if (isPrepared === "null") {
-                isPrepared = data.prepared ? "true" : "false";
-            }
+            const isPrepared = combatant.isPrepared;
 
             // A character’s initiative value is based on their state of preparedness when the conflict began.
             // If the character was ready for the conflict, their base initiative value is their focus attribute.

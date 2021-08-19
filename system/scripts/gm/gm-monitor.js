@@ -20,7 +20,7 @@ export class GmMonitor extends FormApplication {
             classes: ["l5r5e", "gm-monitor"],
             template: CONFIG.l5r5e.paths.templates + "gm/gm-monitor.html",
             title: game.i18n.localize("l5r5e.gm_monitor.title"),
-            width: 700,
+            width: 800,
             height: 300,
             resizable: true,
             closeOnSubmit: false,
@@ -175,8 +175,7 @@ export class GmMonitor extends FormApplication {
 
         this.object.actors.push(actor[0]);
 
-        await this._saveActorsIds();
-        return this.refresh();
+        return this._saveActorsIds();
     }
 
     /**
@@ -227,8 +226,7 @@ export class GmMonitor extends FormApplication {
 
         this.object.actors = this.object.actors.filter((e) => e.id !== id);
 
-        await this._saveActorsIds();
-        return this.refresh();
+        return this._saveActorsIds();
     }
 
     /**

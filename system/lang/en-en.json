@@ -234,7 +234,9 @@
             "bonds": "Bonds",
             "npc": {
                 "advantages": "Advantages",
-                "disadvantages": "Disadvantages"
+                "disadvantages": "Disadvantages",
+                "combat": "Combat",
+                "intrigue": "Intrigue"
             }
         },
         "skills": {

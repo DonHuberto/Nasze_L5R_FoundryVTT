@@ -354,6 +354,17 @@ export class HelpersL5r5e {
     }
 
     /**
+     * Send a refresh to socket, and on local windows app
+     * @param {String} appId Application name
+     */
+    static refreshLocalAndSocket(appId) {
+        game.l5r5e.sockets.refreshAppId(appId);
+        Object.values(ui.windows)
+            .find((e) => e.id === appId)
+            ?.refresh();
+    }
+
+    /**
      * Compute the Xp cost for cursus and total
      * @param {ItemL5r5e|ItemL5r5e[]} itemsList Item Data
      * @return {{xp_used_total: number, xp_used: number}}
