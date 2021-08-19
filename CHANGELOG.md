@@ -14,18 +14,19 @@
   - The link behavior is :
     - World items and Compendiums : Direct link
     - Actor items : Try to get the world/compendium items as actor items are not accessible to others players. If the source cannot be resolved, do not display the link.
+    - Please note the target permission is not checked to display the link. So player without rights will have a permission error message on click.
 - Added Opportunity usage helper in Journal Compendium (courteously authorized by Edge).
 - Fixed Compendiums entries thanks to TesserWract :
   - Weapons:
-      - Chair, lute, sake bottle and cups, and scroll case use the "Unarmed skill"
+      - Chair, lute, sake bottle and cups, and scroll case use the "Unarmed skill".
       - Changed the umbrella's stab grip to be 2-handed.
   - Techniques :
     - "Utaku Battle Maiden": Replaced "Striking as Air" with "Courtier's Resolve".
     - "Disappearing World Style": Ring used changed from "air" to "fire".
-    - "Lord Hida's Grip": Added the "(Crab)" prerequisite.
-    - "Lord Shiba's Valor": Added the "(Phoenix)" prerequisite.
+    - "Lord Hida's Grip": Added the "(Crab)" prerequisite in title.
+    - "Lord Shiba's Valor": Added the "(Phoenix)" prerequisite in title.
 - Fixes for RnK :
-  - Visibility mode is now consistent with the 1st message (public, private, gm...).
+  - Visibility mode now should be consistent with the 1st message (public, private, gm...).
   - DiceSoNice will now not show the new dice(s) for explosive in non-public mode.
 - Fixed Title's embed items tooltips.
 - Minor fixe on editable state.
