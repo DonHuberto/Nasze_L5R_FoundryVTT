@@ -267,7 +267,7 @@ export class GmMonitor extends FormApplication {
         const display = (e) => {
             return (
                 e.name +
-                ` (<i class="fas fa-arrows-alt-h"> ${e.data.data.range || 0}</i>` +
+                ` (<i class="fas fa-arrows-alt-h"> ${e.data.data.range}</i>` +
                 ` / <i class="fas fa-tint"> ${e.data.data.damage}</i>` +
                 ` / <i class="fas fa-skull"> ${e.data.data.deadliness}</i>)`
             );

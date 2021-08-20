@@ -78,6 +78,13 @@ export class ItemL5r5e extends Item {
                 this.addEmbedItem(item, { save: false, newId: false, addBonusToActor: false });
             });
         }
+
+        // Sanitize some values
+        if (this.data.type === "weapon") {
+            this.data.data.range = this.data.data.range || 0;
+            this.data.data.damage = this.data.data.damage || 0;
+            this.data.data.deadliness = this.data.data.deadliness || 0;
+        }
     }
 
     // ***** parent ids management *****
