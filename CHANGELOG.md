@@ -29,6 +29,7 @@
   - Visibility mode now should be consistent with the 1st message (public, private, gm...).
   - DiceSoNice will now not show the new dice(s) for explosive in non-public mode.
 - Fixed Title's embed items tooltips.
+- Rarity is now stored in string to allow range.
 - Minor fixe on editable state.
 - Updated compatibility to Foundry VTT v0.8.9
 
