@@ -771,6 +771,12 @@ button {
         form {
             padding: 0 0.5rem;
         }
+        thead tr > th {
+            background: rgba(186, 187, 177, 0.9);
+            position: sticky;
+            z-index: 2;
+            top: 0;
+        }
         th,
         td {
             border: 1px solid #5a6e5a50;

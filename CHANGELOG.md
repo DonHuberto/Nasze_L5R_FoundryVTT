@@ -9,7 +9,7 @@
   - By default, or if the list is empty, all assigned characters will fill it.
 - Added "send to chat" header buttons on sheets for :
   - Item : Image and description
-  - Actor : Image and Public description
+  - Actor : Image and public description
   - Journal : Image and description, or full image if no text, or only description if no image.
   - The link behavior is :
     - World items and Compendiums : Direct link
@@ -20,8 +20,9 @@
   - Weapons:
       - Chair, lute, sake bottle and cups, and scroll case use the "Unarmed skill".
       - Changed the umbrella's stab grip to be 2-handed.
+  - School Cursus :
+      - "Utaku Battle Maiden": Replaced "Striking as Air" with "Courtier's Resolve".
   - Techniques :
-    - "Utaku Battle Maiden": Replaced "Striking as Air" with "Courtier's Resolve".
     - "Disappearing World Style": Ring used changed from "air" to "fire".
     - "Lord Hida's Grip": Added the "(Crab)" prerequisite in title.
     - "Lord Shiba's Valor": Added the "(Phoenix)" prerequisite in title.
