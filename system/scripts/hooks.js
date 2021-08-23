@@ -7,7 +7,7 @@ export default class HooksL5r5e {
         // Embed Babele compendiums
         if (
             typeof Babele !== "undefined" &&
-            Babele.get().modules.every((module) => module.lang !== "fr" || module.module !== "l5r5e-dev")
+            Babele.get().modules.every((module) => module.lang !== "fr" || module.module !== "l5r5e-custom-compendiums")
         ) {
             Babele.get().register({
                 module: "../systems/l5r5e", // babele only accept modules, so... well :D
