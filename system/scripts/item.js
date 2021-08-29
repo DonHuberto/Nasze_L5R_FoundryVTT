@@ -80,10 +80,17 @@ export class ItemL5r5e extends Item {
         }
 
         // Sanitize some values
-        if (this.data.type === "weapon") {
-            this.data.data.range = this.data.data.range || 0;
-            this.data.data.damage = this.data.data.damage || 0;
-            this.data.data.deadliness = this.data.data.deadliness || 0;
+        switch (this.data.type) {
+            case "armor":
+                this.data.data.armor.physical = this.data.data.armor.physical || 0;
+                this.data.data.armor.supernatural = this.data.data.armor.supernatural || 0;
+                break;
+
+            case "weapon":
+                this.data.data.range = this.data.data.range || 0;
+                this.data.data.damage = this.data.data.damage || 0;
+                this.data.data.deadliness = this.data.data.deadliness || 0;
+                break;
         }
     }
 

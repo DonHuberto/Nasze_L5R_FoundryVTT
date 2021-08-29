@@ -234,6 +234,10 @@ export class MigrationL5r5e {
         const actorData = actor.data;
 
         // We need to be careful for unlinked tokens, only the diff is store in "data".
+        // ex no diff : actor = {type: "npc"}, actorData = undefined
+        if (!actorData) {
+            return updateData;
+        }
 
         // ***** Start of 1.1.0 *****
         if (options?.force || MigrationL5r5e.needUpdate("1.1.0")) {

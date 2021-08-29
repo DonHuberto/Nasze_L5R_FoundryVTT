@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.4 - ?
+- Added FoV English Opportunities usage.
+- Fixed Compendiums entries :
+  - "Asako Inquisitor School [Crab]" => "Asako Inquisitor School [Phoenix]"
+  - Opportunities "Conflict use" table : the Air entry for 2 opportunities was replaced by this real text (copy past error).
+
 ## 1.3.3 - Send'n'Watch
 - GM toolbox changes :
   - Added "Reset void point" and "Gm Monitor" buttons.

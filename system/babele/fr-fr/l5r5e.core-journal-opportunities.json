@@ -63,6 +63,16 @@
             "id": "Espionage Use",
             "name": "Utilisation au cours d'une mission d'Espionnage",
             "content": "<blockquote>Les Cours de Pierre p.133</blockquote><br><h2><i class=\"i_air\" title=\"\"></i> Air (Précision, Discrétion, Subtilité, Astuce, Élégance)</h2><p><strong><i class=\"i_opportunity\" title=\"\"></i>+ :</strong> Votre discrétion vous permet de disparaître de la vue d'autrui, que ce soit en vous cachant dans une foule ou sur un terrain adapté. Désignez autant de Sous-fifres que de <i class=\"i_opportunity\" title=\"\"></i> dépensés de cette façon, ou un seul Antagoniste doté d'une valeur de Vigilance inférieure ou égale au nombre de <i class=\"i_opportunity\" title=\"\"></i> dépensés de cette façon. Ces personnages vous perdent de vue (et ne remarquent pas votre absence à moins d'être en train de vous chercher).</p><br><br><h2><i class=\"i_earth\" title=\"\"></i> Terre (Prudence, Calme, Minutie, Pragmatique, Rigoureux)</h2><p><strong><i class=\"i_opportunity\" title=\"\"></i>+ :</strong> Vous trouvez une excellente cachette, qu'il s'agisse d'un lieu où personne ne remet votre couverture en question ou d'un endroit dissimulé qu'on ne pense pas à vérifier. Tant que vous y restez, le ND de vos tests effectués pour ne pas vous faire remarquer diminue de 1 par <i class=\"i_opportunity\" title=\"\"></i> dépensé de cette façon.</p><br><br><h2><i class=\"i_fire\" title=\"\"></i> Feu (Créatif, Redoutable, Remarquable, Farouche, Franc)</h2><p><strong><i class=\"i_opportunity\" title=\"\"></i><i class=\"i_opportunity\" title=\"\"></i><i class=\"i_opportunity\" title=\"\"></i> :</strong> Un mouvement involontaire de votre part attire l'attention d'un individu ou d'une créature... mais contre toute attente, il est amical ou prêt à vous épauler. Qui est-ce, et comment vous aide-t-il ? Vous prend-il pour quelqu'un d'autre ?</p><br><br><h2><i class=\"i_water\" title=\"\"></i> Eau (Efficacité, Flexibilité, Sociable, Adaptation, Perspicace)</h2><p><strong><i class=\"i_opportunity\" title=\"\"></i> :</strong> Vous découvrez un indice vous permettant de trouver ailleurs d'autres informations sur votre cible ou sur votre objectif. Le MJ vous révèle une nouvelle piste viable, sans lien avec votre opération actuelle, pour continuer à espionner sur ce sujet.</p><br><br><h2><i class=\"i_void\" title=\"\"></i> Vide (Agir à l'instinct, Mystérieux, Sagesse, Inébranlable, Illuminé)</h2><p><strong><i class=\"i_opportunity\" title=\"\"></i> :</strong> Si vous vous fiez à votre expérience, il est possible que vous ne soyez pas le premier espion à passer en ces lieux. Le MJ vous révèle si un autre shinobi a déjà visité l'endroit et, si tel est le cas, quelle trace il a involontairement laissée derrière lui.</p>"
+        },
+        {
+            "id": "Mass Battles Use",
+            "name": "Utilisation au cours d'une Bataille de de Masse",
+            "content": "<blockquote>Les Champs de la Victoire</blockquote><br>"
+        },
+        {
+            "id": "Contested Territory Use",
+            "name": "Utilisation au cours en Terrain Contesté",
+            "content": "<blockquote>Les Champs de la Victoire</blockquote><br>"
         }
     ]
 }
