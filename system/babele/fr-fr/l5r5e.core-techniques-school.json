@@ -550,6 +550,12 @@
             "name": "Oath of Sacrifice (WIP)",
             "description": "",
             "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Eye of the Storm",
+            "name": "L’oeil de la tempête",
+            "description": "",
+            "book_reference": "Le Clan de la Mante p.6"
         }
     ]
 }

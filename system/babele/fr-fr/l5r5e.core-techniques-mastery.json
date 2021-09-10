@@ -550,6 +550,12 @@
             "name": "Empty Soul Ki (WIP)",
             "description": "",
             "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Storm Surge",
+            "name": "Onde de tempête",
+            "description": "",
+            "book_reference": "Le Clan de la Mante p.6"
         }
     ]
 }

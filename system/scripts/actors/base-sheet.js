@@ -239,7 +239,7 @@ export class BaseSheetL5r5e extends ActorSheet {
             if (
                 this.actor.data.items.some((embedItem) => {
                     // Search in children
-                    if (embedItem.items?.has(item.data._id)) {
+                    if (embedItem.items instanceof Map && embedItem.items.has(item.data._id)) {
                         return true;
                     }
                     return embedItem.data._id === item.data._id;

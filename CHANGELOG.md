@@ -2,9 +2,11 @@
 
 ## 1.3.4 - ?
 - Added FoV English Opportunities usage.
-- Fixed Compendiums entries :
-  - "Asako Inquisitor School [Crab]" => "Asako Inquisitor School [Phoenix]"
-  - Opportunities "Conflict use" table : the Air entry for 2 opportunities was replaced by this real text (copy past error).
+- Compendiums :
+  - Added missing Mantis "Storm Fleet Tide Seer" school techniques : "Storm Surge" and "Eye of the Storm".
+  - Fixed Compendiums entries :
+    - "Asako Inquisitor School [Crab]" => "Asako Inquisitor School [Phoenix]"
+    - Opportunities "Conflict use" table : the Air entry for 2 opportunities was replaced by this real text (copy past error).
 
 ## 1.3.3 - Send'n'Watch
 - GM toolbox changes :
