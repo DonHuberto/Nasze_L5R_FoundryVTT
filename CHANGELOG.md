@@ -1,6 +1,7 @@
 # Changelog
 
 ## 1.3.4 - ?
+- Fixed some item errors on drop.
 - Added FoV English Opportunities usage.
 - Compendiums :
   - Added missing Mantis "Storm Fleet Tide Seer" school techniques : "Storm Surge" and "Eye of the Storm".

@@ -4,7 +4,7 @@ export class ItemL5r5e extends Item {
      * @returns {Collection<BaseItem>}
      */
     get items() {
-        return this.data.data.items || null;
+        return this.data.data.items || new Map();
     }
 
     /**
