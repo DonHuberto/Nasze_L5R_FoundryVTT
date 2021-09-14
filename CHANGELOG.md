@@ -1,13 +1,17 @@
 # Changelog
 
-## 1.3.4 - ?
-- Fixed some item errors on drop.
+## 1.3.4 - Compendiums Update
+- Fixed a bug with sheet item drop.
 - Added FoV English Opportunities usage.
 - Compendiums :
+  - Opportunities "Conflict use" table : the Air entry for 2 opportunities was replaced by this real text (copy past error).
   - Added missing Mantis "Storm Fleet Tide Seer" school techniques : "Storm Surge" and "Eye of the Storm".
+  - PoW :
+    - Added School Curriculum
+    - Added Titles
   - Fixed Compendiums entries :
     - "Asako Inquisitor School [Crab]" => "Asako Inquisitor School [Phoenix]"
-    - Opportunities "Conflict use" table : the Air entry for 2 opportunities was replaced by this real text (copy past error).
+    - FoV Title : "Elemental Guard" (duplicate) to "Elemental Legionnaire".
 
 ## 1.3.3 - Send'n'Watch
 - GM toolbox changes :

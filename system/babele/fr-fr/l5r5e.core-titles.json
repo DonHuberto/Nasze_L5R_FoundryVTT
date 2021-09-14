@@ -162,8 +162,8 @@
             "book_reference": "Les Champs de la Victoire"
         },
         {
-            "id": "Elemental Guard",
-            "name": "Elemental Guard (WIP)",
+            "id": "Elemental Legionnaire",
+            "name": "Elemental Legionnaire (WIP)",
             "description": "<h2>Cursus</h2><table><tr><td>Compétences Martiales</td><td>Grp. de comp.</td></tr><tr><td>Commandement</td><td>Compétence</td></tr><tr><td>Médecine</td><td>Compétence</td></tr><tr><td>Forge</td><td>Compétence</td></tr><tr><td><a class=\"compendium-link\" data-pack=\"l5r5e.core-techniques-kata\"><i class=\"i_kata\" title=\"\"></i> Kata de rang 1-3</a> <i class=\"i_prerequisite_exemption\" title=\"\"></i></td><td>Tech. Grp.</td></tr><tr><td><a class=\"entity-link\" draggable=\"true\" data-pack=\"l5r5e.core-techniques-shuji\" data-id=\"L5RCoreShu000076\"><i class=\"i_shuji\" title=\"\"></i> Great Anvil's Measure (WIP)</a> <i class=\"i_prerequisite_exemption\" title=\"\"></i></td><td>Technique</td></tr><tr><td><a class=\"entity-link\" draggable=\"true\" data-pack=\"l5r5e.core-techniques-shuji\" data-id=\"L5RCoreShu000086\"><i class=\"i_shuji\" title=\"\"></i> Moment of Glory (WIP)</a> <i class=\"i_prerequisite_exemption\" title=\"\"></i></td><td>Technique</td></tr></table>",
             "book_reference": "Les Champs de la Victoire"
         },
@@ -226,6 +226,24 @@
             "name": "War College Graduate (WIP)",
             "description": "<h2>Cursus</h2><table><tr><td>Compétences Martiales</td><td>Grp. de comp.</td></tr><tr><td>Commandement</td><td>Compétence</td></tr><tr><td>Culture</td><td>Compétence</td></tr><tr><td>Gouvernement</td><td>Compétence</td></tr><tr><td><a class=\"compendium-link\" data-pack=\"l5r5e.core-techniques-kata\"><i class=\"i_kata\" title=\"\"></i> Kata de rang 1-3</a> <i class=\"i_prerequisite_exemption\" title=\"\"></i></td><td>Tech. Grp.</td></tr><tr><td><a class=\"compendium-link\" data-pack=\"l5r5e.core-techniques-shuji\"><i class=\"i_shuji\" title=\"\"></i> Shuji de rang 1-3</a> <i class=\"i_prerequisite_exemption\" title=\"\"></i></td><td>Tech. Grp.</td></tr><tr><td><a class=\"entity-link\" draggable=\"true\" data-pack=\"l5r5e.core-techniques-rituals\" data-id=\"L5RCoreRit000023\"><i class=\"i_rituals\" title=\"\"></i> Beseech Akodo's Judgment (WIP)</a> <i class=\"i_prerequisite_exemption\" title=\"\"></i></td><td>Technique</td></tr></table>",
             "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "In Service to a Lord",
+            "name": "In Service to a Lord (WIP)",
+            "description": "<h2>Cursus</h2><table><tr><td>Compétences Martiales</td><td>Grp. de comp.</td></tr><tr><td>Compétences Sociales</td><td>Grp. de comp.</td></tr><tr><td>Culture</td><td>Compétence</td></tr><tr><td>Gouvernement</td><td>Compétence</td></tr><tr><td><a class=\"compendium-link\" data-pack=\"l5r5e.core-techniques-kata\"><i class=\"i_kata\" title=\"\"></i> Kata de rang 1-2</a> <i class=\"i_prerequisite_exemption\" title=\"\"></i></td><td>Tech. Grp.</td></tr><tr><td><a class=\"entity-link\" draggable=\"true\" data-pack=\"l5r5e.core-techniques-shuji\" data-id=\"L5RCoreShu000009\"><i class=\"i_shuji\" title=\"\"></i> Proposition du loup</a> <i class=\"i_prerequisite_exemption\" title=\"\"></i></td><td>Technique</td></tr><tr><td><a class=\"entity-link\" draggable=\"true\" data-pack=\"l5r5e.core-techniques-shuji\" data-id=\"L5RCoreShu000066\"><i class=\"i_shuji\" title=\"\"></i> Fluent Bargaining (WIP)</a> <i class=\"i_prerequisite_exemption\" title=\"\"></i></td><td>Technique</td></tr></table>",
+            "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Perfect Land Sect Member",
+            "name": "Perfect Land Sect Member (WIP)",
+            "description": "<h2>Cursus</h2><table><tr><td>Compétences Savantes</td><td>Grp. de comp.</td></tr><tr><td>Courtoisie</td><td>Compétence</td></tr><tr><td>Forme</td><td>Compétence</td></tr><tr><td>Travail manuel</td><td>Compétence</td></tr><tr><td><a class=\"compendium-link\" data-pack=\"l5r5e.core-techniques-shuji\"><i class=\"i_shuji\" title=\"\"></i> Shuji de l’Eau de rang 1-2</a> <i class=\"i_prerequisite_exemption\" title=\"\"></i></td><td>Tech. Grp.</td></tr><tr><td><a class=\"entity-link\" draggable=\"true\" data-pack=\"l5r5e.core-techniques-shuji\" data-id=\"L5RCoreShu000070\"><i class=\"i_shuji\" title=\"\"></i> Roar of Encouragement (WIP)</a> <i class=\"i_prerequisite_exemption\" title=\"\"></i></td><td>Technique</td></tr><tr><td><a class=\"entity-link\" draggable=\"true\" data-pack=\"l5r5e.core-techniques-shuji\" data-id=\"L5RCoreShu000020\"><i class=\"i_shuji\" title=\"\"></i> Cri de ralliement</a> <i class=\"i_prerequisite_exemption\" title=\"\"></i></td><td>Technique</td></tr></table>",
+            "book_reference": "La Voie des Vagues"
+        },
+        {
+            "id": "Ghostlands Warrior",
+            "name": "Ghostlands Warrior (WIP)",
+            "description": "<h2>Cursus</h2><table><tr><td>Compétences Martiales</td><td>Grp. de comp.</td></tr><tr><td>Commandement</td><td>Compétence</td></tr><tr><td>Médecine</td><td>Compétence</td></tr><tr><td>Survie</td><td>Compétence</td></tr><tr><td><a class=\"entity-link\" draggable=\"true\" data-pack=\"l5r5e.core-techniques-kiho\" data-id=\"L5RCoreKih000003\"><i class=\"i_kiho\" title=\"\"></i> La Terre voit sans yeux</a> <i class=\"i_prerequisite_exemption\" title=\"\"></i></td><td>Technique</td></tr><tr><td><a class=\"entity-link\" draggable=\"true\" data-pack=\"l5r5e.core-techniques-kata\" data-id=\"L5RCoreKat000009\"><i class=\"i_kata\" title=\"\"></i> Mortelle envolée</a> <i class=\"i_prerequisite_exemption\" title=\"\"></i></td><td>Technique</td></tr><tr><td><a class=\"entity-link\" draggable=\"true\" data-pack=\"l5r5e.core-techniques-rituals\" data-id=\"L5RCoreRit000018\"><i class=\"i_rituals\" title=\"\"></i> Cleansing of Coral and Gold (Ivory Kingdoms Region) (WIP)</a> <i class=\"i_prerequisite_exemption\" title=\"\"></i></td><td>Technique</td></tr></table>",
+            "book_reference": "La Voie des Vagues"
         }
     ]
 }
