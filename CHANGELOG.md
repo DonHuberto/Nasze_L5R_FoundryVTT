@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.5 - ?
+- Added real icon for Inversion and Mantra.
+- Standardization of "great-clans-presentation" pack name to "core-journal-great-clans-presentation".
+
 ## 1.3.4 - Compendiums Update
 - Fixed a bug with sheet item drop introduced in previous version.
 - Added FoV English Opportunities usage.
