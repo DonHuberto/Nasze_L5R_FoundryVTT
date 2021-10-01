@@ -1,9 +1,9 @@
-import { BaseSheetL5r5e } from "./base-sheet.js";
+import { BaseCharacterSheetL5r5e } from "./base-character-sheet.js";
 
 /**
  * NPC Sheet
  */
-export class NpcSheetL5r5e extends BaseSheetL5r5e {
+export class NpcSheetL5r5e extends BaseCharacterSheetL5r5e {
     /**
      * Sub Types
      */

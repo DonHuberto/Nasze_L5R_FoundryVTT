@@ -21,7 +21,8 @@
     },
     "ACTOR": {
         "TypeCharacter": "Personnage Joueur",
-        "TypeNpc": "Personnage non Joueur"
+        "TypeNpc": "Personnage non Joueur",
+        "TypeArmy": "Armée"
     },
     "ITEM": {
         "TypeItem": "Objet",
@@ -34,7 +35,9 @@
         "TypeTitle": "Titre",
         "TypeBond": "Lien",
         "TypeSignature_scroll": "Rouleau de marque",
-        "TypeItem_pattern": "Procédé de fabrication"
+        "TypeItem_pattern": "Procédé de fabrication",
+        "TypeArmy_fortification": "Fortification",
+        "TypeArmy_cohort": "Régiment"
     },
     "l5r5e": {
         "global": {
@@ -363,6 +366,36 @@
             "character": "Personnage Joueur",
             "adversary": "Antagoniste",
             "minion": "Sous-fifre"
+        },
+        "army": {
+            "warlord": "Seigneur de guerre",
+            "allies_backers": "Alliés et Soutiens",
+            "purpose_mustering": "Objectif du rassemblement",
+            "battle_readiness": {
+                "title": "Aptitudes au combat",
+                "strength": "Force",
+                "casualties": "Usure et pertes",
+                "discipline": "Discipline",
+                "panic": "Panique"
+            },
+            "commander": "Commandant",
+            "commander_abilities": "Capacités du commandant",
+            "army_abilities": "Capacités de l'armée",
+            "commander_standing": "Position du commandant",
+            "supplies_logistics": "Fournitures et logistique",
+            "past_battles": "Batailles passées",
+            "cohort": {
+                "tab": "Régiments",
+                "title": "Régiment",
+                "leader": "Aptitude au combat",
+                "abilities": "Capacités"
+            },
+            "fortification": {
+                "tab": "Fortifications",
+                "title": "Fortifications",
+                "difficulty": "Difficulté",
+                "attrition_reduction": "Attrition Reduction"
+            }
         },
         "twenty_questions": {
             "title": "Le jeu des Vingt questions",

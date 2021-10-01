@@ -478,7 +478,7 @@ export class HelpersL5r5e {
      * Get a Item from a Actor Sheet
      * @param {Event} event HTML Event
      * @param {ActorL5r5e} actor
-     * @return {ItemL5r5e}
+     * @return {Promise<ItemL5r5e>}
      */
     static async getEmbedItemByEvent(event, actor) {
         const current = $(event.currentTarget);

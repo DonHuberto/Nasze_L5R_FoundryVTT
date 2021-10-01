@@ -28,6 +28,10 @@ export const PreloadTemplates = async function () {
         `${tpl}actors/npc/social.html`,
         `${tpl}actors/npc/skill.html`,
         `${tpl}actors/npc/techniques.html`,
+        // *** Actors : Army ***
+        `${tpl}actors/army/cohort.html`,
+        `${tpl}actors/army/fortification.html`,
+        `${tpl}actors/army/others.html`,
         // *** Items ***
         `${tpl}items/advancement/advancement-entry.html`,
         `${tpl}items/advancement/advancement-sheet.html`,
@@ -57,5 +61,7 @@ export const PreloadTemplates = async function () {
         `${tpl}items/weapon/weapons.html`,
         `${tpl}items/weapon/weapon-entry.html`,
         `${tpl}items/weapon/weapon-sheet.html`,
+        `${tpl}items/army-cohort/army-cohort-entry.html`,
+        `${tpl}items/army-fortification/army-fortification-entry.html`,
     ]);
 };

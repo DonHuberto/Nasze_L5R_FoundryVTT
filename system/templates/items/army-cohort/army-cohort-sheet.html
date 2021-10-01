@@ -1,0 +1,43 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}"/>
+        <h1 class="charname"><input name="name" type="text" value="{{data.name}}" placeholder="Name"/></h1>
+    </header>
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+        {{!-- properties Tab --}}
+        <article class="attributes" data-group="primary" data-tab="description">
+            <label class="attribute army-cohort-types">
+                {{localize 'l5r5e.army.cohort.leader'}}
+                <input class="select-on-focus" type="number" name="data.leader" value="{{data.data.leader}}" data-dtype="Number"/>
+            </label>
+            <label class="attribute army-cohort-types">
+                {{localize 'l5r5e.equipment'}}
+                <input class="select-on-focus" type="number" name="data.equipment" value="{{data.data.equipment}}" data-dtype="Number"/>
+            </label>
+            <label class="attribute army-cohort-types">
+                {{localize 'l5r5e.army.cohort.abilities'}}
+                <input class="select-on-focus" type="number" name="data.abilities" value="{{data.data.abilities}}" data-dtype="Number"/>
+            </label>
+
+            {{!-- battle readiness --}}
+            <label class="attribute army-cohort-types">
+                {{localize 'l5r5e.army.battle_readiness.strength'}}
+                <input class="select-on-focus" type="number" name="data.battle_readiness.casualties_strength.max" value="{{data.data.battle_readiness.casualties_strength.max}}" data-dtype="Number"/>
+            </label>
+            <label class="attribute army-cohort-types">
+                {{localize 'l5r5e.army.battle_readiness.casualties'}}
+                <input class="select-on-focus" type="number" name="data.battle_readiness.casualties_strength.value" value="{{data.data.battle_readiness.casualties_strength.value}}" data-dtype="Number"/>
+            </label>
+            <label class="attribute army-cohort-types">
+                {{localize 'l5r5e.army.battle_readiness.discipline'}}
+                <input class="select-on-focus" type="number" name="data.battle_readiness.panic_discipline.max" value="{{data.data.battle_readiness.panic_discipline.max}}" data-dtype="Number"/>
+            </label>
+            <label class="attribute army-cohort-types">
+                {{localize 'l5r5e.army.battle_readiness.panic'}}
+                <input class="select-on-focus" type="number" name="data.battle_readiness.panic_discipline.value" value="{{data.data.battle_readiness.panic_discipline.value}}" data-dtype="Number"/>
+            </label>
+        </article>
+        {{> 'systems/l5r5e/templates/items/item/item-infos.html'}}
+    </section>
+</form>

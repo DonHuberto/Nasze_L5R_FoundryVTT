@@ -21,7 +21,8 @@
     },
     "ACTOR": {
         "TypeCharacter": "Personaje jugador",
-        "TypeNpc": "Personaje no jugador"
+        "TypeNpc": "Personaje no jugador",
+        "TypeArmy": "Army"
     },
     "ITEM": {
         "TypeItem": "Objeto",
@@ -34,7 +35,9 @@
         "TypeTitle": "Title",
         "TypeBond": "Bond",
         "TypeSignatureScroll": "Signature Scroll",
-        "TypeItemPattern": "Item Pattern"
+        "TypeItemPattern": "Item Pattern",
+        "TypeArmy_fortification": "Fortification",
+        "TypeArmy_cohort": "Cohort"
     },
     "l5r5e": {
         "global": {
@@ -363,6 +366,36 @@
             "character": "Personaje jugador",
             "adversary": "Adversario",
             "minion": "Esbirro"
+        },
+        "army": {
+            "warlord": "Warlord",
+            "allies_backers": "Allies and Backers",
+            "purpose_mustering": "Purpose for Mustering",
+            "battle_readiness": {
+                "title": "Battle Readiness",
+                "strength": "Strength",
+                "casualties": "Casualties",
+                "discipline": "Discipline",
+                "panic": "Panic"
+            },
+            "commander": "Commander",
+            "commander_abilities": "Commander's relevant abilities",
+            "army_abilities": "Army Abilities",
+            "commander_standing": "Commander's Standing",
+            "supplies_logistics": "Supplies and Logistics",
+            "past_battles": "Past Battles",
+            "cohort": {
+                "tab": "Cohorts",
+                "title": "Cohorts",
+                "leader": "Battle Readiness",
+                "abilities": "Abilities"
+            },
+            "fortification": {
+                "tab": "Fortifications",
+                "title": "Fortification Held",
+                "difficulty": "Difficulty Value",
+                "attrition_reduction": "Attrition Reduction"
+            }
         },
         "twenty_questions": {
             "title": "Veinte preguntas",

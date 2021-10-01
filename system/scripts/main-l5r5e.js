@@ -11,6 +11,7 @@ import HooksL5r5e from "./hooks.js";
 import { ActorL5r5e } from "./actor.js";
 import { CharacterSheetL5r5e } from "./actors/character-sheet.js";
 import { NpcSheetL5r5e } from "./actors/npc-sheet.js";
+import { ArmySheetL5r5e } from "./actors/army-sheet.js";
 // Dice and rolls
 import { L5rBaseDie } from "./dice/dietype/l5r-base-die.js";
 import { AbilityDie } from "./dice/dietype/ability-die.js";
@@ -32,6 +33,8 @@ import { TitleSheetL5r5e } from "./items/title-sheet.js";
 import { BondSheetL5r5e } from "./items/bond-sheet.js";
 import { SignatureScrollSheetL5r5e } from "./items/signature-scroll-sheet.js";
 import { ItemPatternSheetL5r5e } from "./items/item-pattern-sheet.js";
+import { ArmyCohortSheetL5r5e } from "./items/army-cohort-sheet.js";
+import { ArmyFortificationSheetL5r5e } from "./items/army-fortification-sheet.js";
 // JournalEntry
 import { JournalL5r5e } from "./journal.js";
 import { BaseJournalSheetL5r5e } from "./journals/base-journal-sheet.js";
@@ -106,6 +109,7 @@ Hooks.once("init", async () => {
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("l5r5e", CharacterSheetL5r5e, { types: ["character"], makeDefault: true });
     Actors.registerSheet("l5r5e", NpcSheetL5r5e, { types: ["npc"], makeDefault: true });
+    Actors.registerSheet("l5r5e", ArmySheetL5r5e, { types: ["army"], makeDefault: true });
 
     // Items
     Items.unregisterSheet("core", ItemSheet);
@@ -120,6 +124,8 @@ Hooks.once("init", async () => {
     Items.registerSheet("l5r5e", BondSheetL5r5e, { types: ["bond"], makeDefault: true });
     Items.registerSheet("l5r5e", SignatureScrollSheetL5r5e, { types: ["signature_scroll"], makeDefault: true });
     Items.registerSheet("l5r5e", ItemPatternSheetL5r5e, { types: ["item_pattern"], makeDefault: true });
+    Items.registerSheet("l5r5e", ArmyCohortSheetL5r5e, { types: ["army_cohort"], makeDefault: true });
+    Items.registerSheet("l5r5e", ArmyFortificationSheetL5r5e, { types: ["army_fortification"], makeDefault: true });
 
     // Journal
     Items.unregisterSheet("core", JournalSheet);

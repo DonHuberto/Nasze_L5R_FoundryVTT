@@ -1,8 +1,12 @@
 # Changelog
 
-## 1.3.5 - ?
+## 1.4.0 - Armies
+- Added Army, Cohort and Fortification sheets.
 - Added real icon for Inversion and Mantra.
 - Standardization of "great-clans-presentation" pack name to "core-journal-great-clans-presentation".
+- SendToChat now check links validity before adding them.
+- Compendiums :
+  - PoW: 'Urbane and Worldly' advantage was misspelled 'Wroldly' (thx to Cernunnos).
 
 ## 1.3.4 - Compendiums Update
 - Fixed a bug with sheet item drop introduced in previous version.

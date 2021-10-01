@@ -1,18 +1,16 @@
 /**
- * Base Sheet for Actor and Npc
+ * Extend the basic ItemSheet with some very simple modifications
+ * @extends {ItemSheet}
  */
-export class BaseSheetL5r5e extends ActorSheet {
-    /**
-     * Commons options
-     */
+export class BaseItemSheetL5r5e extends ItemSheet {
+    /** @override */
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
-            classes: ["l5r5e", "sheet", "actor"],
-            // template: CONFIG.l5r5e.paths.templates + "actors/character-sheet.html",
-            width: 600,
-            height: 800,
-            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills" }],
-            dragDrop: [{ dragSelector: ".item-list .item", dropSelector: null }],
+            classes: ["l5r5e", "sheet", "item"],
+            //template: CONFIG.l5r5e.paths.templates + "items/item/item-sheet.html",
+            width: 520,
+            height: 480,
+            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
         });
     }
 
@@ -40,29 +38,19 @@ export class BaseSheetL5r5e extends ActorSheet {
         return buttons;
     }
 
-    /** @inheritdoc */
-    getData(options = {}) {
-        const sheetData = super.getData(options);
+    /**
+     * @return {Object|Promise}
+     */
+    async getData(options = {}) {
+        const sheetData = await super.getData(options);
 
         sheetData.data.dtypes = ["String", "Number", "Boolean"];
 
-        // Sort Items by name
-        sheetData.items.sort((a, b) => {
-            return a.name.localeCompare(b.name);
-        });
+        // Fix editable
+        sheetData.editable = this.isEditable;
+        sheetData.options.editable = sheetData.editable;
 
         return sheetData;
-    }
-
-    /**
-     * Return a light sheet if in "limited" state
-     * @override
-     */
-    get template() {
-        if (!game.user.isGM && this.actor.limited) {
-            return `${CONFIG.l5r5e.paths.templates}actors/limited-sheet.html`;
-        }
-        return this.options.template;
     }
 
     /**
@@ -73,7 +61,7 @@ export class BaseSheetL5r5e extends ActorSheet {
      * @override
      */
     activateEditor(name, options = {}, initialContent = "") {
-        if (["data.notes", "data.description"].includes(name) && initialContent) {
+        if (name === "data.description" && initialContent) {
             initialContent = game.l5r5e.HelpersL5r5e.convertSymbols(initialContent, false);
         }
         super.activateEditor(name, options, initialContent);
@@ -87,19 +75,19 @@ export class BaseSheetL5r5e extends ActorSheet {
      * @override
      */
     async _updateObject(event, formData) {
-        if (formData["data.notes"]) {
-            formData["data.notes"] = game.l5r5e.HelpersL5r5e.convertSymbols(formData["data.notes"], true);
-        }
         if (formData["data.description"]) {
+            // Base links (Journal, compendiums...)
+            formData["data.description"] = TextEditor.enrichHTML(formData["data.description"]);
+            // L5R Symbols
             formData["data.description"] = game.l5r5e.HelpersL5r5e.convertSymbols(formData["data.description"], true);
         }
-
         return super._updateObject(event, formData);
     }
 
     /**
      * Subscribe to events from the sheet.
      * @param {jQuery} html HTML content of the sheet.
+     * @override
      */
     activateListeners(html) {
         super.activateListeners(html);
@@ -107,7 +95,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         // Commons
         game.l5r5e.HelpersL5r5e.commonListeners(html, this.actor);
 
-        // *** Everything below here is only needed if the sheet is editable ***
+        // Everything below here is only needed if the sheet is editable
         if (!this.isEditable) {
             return;
         }
@@ -118,93 +106,51 @@ export class BaseSheetL5r5e extends ActorSheet {
             event.stopPropagation();
             event.target.select();
         });
-
-        // *** Items : add, edit, delete ***
-        html.find(".item-add").on("click", this._addSubItem.bind(this));
-        html.find(`.item-edit`).on("click", this._editSubItem.bind(this));
-        html.find(`.item-delete`).on("click", this._deleteSubItem.bind(this));
     }
 
     /**
-     * Add a generic item with sub type
-     * @param {string}      type           Item sub type (armor, weapon, bond...)
-     * @return {Promise<void>}
-     * @private
-     */
-    async _createSubItem({ type }) {
-        if (!type) {
-            return;
-        }
-
-        const created = await this.actor.createEmbeddedDocuments("Item", [
-            {
-                name: game.i18n.localize(`ITEM.Type${type.capitalize()}`),
-                type: type,
-                img: `${CONFIG.l5r5e.paths.assets}icons/items/${type}.svg`,
-            },
-        ]);
-        if (created?.length < 1) {
-            return;
-        }
-        const item = this.actor.items.get(created[0].id);
-
-        item.sheet.render(true);
-    }
-
-    /**
-     * Add a generic item with sub type
+     * Add a embed item
      * @param {Event} event
      * @private
      */
-    async _addSubItem(event) {
+    _addSubItem(event) {
         event.preventDefault();
         event.stopPropagation();
-
-        const type = $(event.currentTarget).data("item-type");
-        if (!type) {
-            return;
-        }
-
-        return this._createSubItem({ type });
+        const itemId = $(event.currentTarget).data("item-id");
+        console.warn("L5R5E | TODO ItemSheetL5r5e._addSubItem()", itemId); // TODO _addSubItem Currently not used, title override it
     }
 
     /**
-     * Edit a generic item with sub type
+     * Add a embed item
      * @param {Event} event
      * @private
      */
     _editSubItem(event) {
         event.preventDefault();
         event.stopPropagation();
-
-        game.l5r5e.HelpersL5r5e.getEmbedItemByEvent(event, this.actor).then((item) => {
-            if (item) {
-                item.sheet.render(true);
-            }
-        });
+        const itemId = $(event.currentTarget).data("item-id");
+        const item = this.document.items.get(itemId);
+        if (item) {
+            item.sheet.render(true);
+        }
     }
 
     /**
-     * Delete a generic item with sub type
+     * Delete a embed item
      * @param {Event} event
      * @private
      */
     _deleteSubItem(event) {
         event.preventDefault();
         event.stopPropagation();
-
         const itemId = $(event.currentTarget).data("item-id");
-        if (!itemId) {
-            return;
-        }
-
-        const tmpItem = this.actor.items.get(itemId);
-        if (!tmpItem) {
+        const item = this.document.getEmbedItem(itemId);
+        if (!item) {
             return;
         }
 
         const callback = async () => {
-            return this.actor.deleteEmbeddedDocuments("Item", [itemId]);
+            this.document.deleteEmbedItem(itemId);
         };
 
         // Holing Ctrl = without confirm
@@ -213,7 +159,7 @@ export class BaseSheetL5r5e extends ActorSheet {
         }
 
         game.l5r5e.HelpersL5r5e.confirmDeleteDialog(
-            game.i18n.format("l5r5e.global.delete_confirm", { name: tmpItem.name }),
+            game.i18n.format("l5r5e.global.delete_confirm", { name: item.name }),
             callback
         );
     }

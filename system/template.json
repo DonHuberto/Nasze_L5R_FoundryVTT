@@ -1,6 +1,6 @@
 {
     "Actor": {
-        "types": ["character", "npc"],
+        "types": ["character", "npc", "army"],
         "templates": {
             "identity": {
                 "identity": {
@@ -141,6 +141,33 @@
                 "social": 0,
                 "trade": 0
             }
+        },
+        "army": {
+            "warlord": "",
+            "allies_backers": "",
+            "purpose_mustering": "",
+            "battle_readiness": {
+                "casualties_strength": {
+                    "max": 0,
+                    "value": 0
+                },
+                "panic_discipline": {
+                    "max": 0,
+                    "value": 0
+                }
+            },
+            "commander": "",
+            "commander_abilities": "",
+            "army_abilities": "",
+            "commander_standing": {
+                "honor": 0,
+                "glory": 0,
+                "status": 0
+            },
+            "supplies_logistics": "",
+            "notes": "",
+            "description": "",
+            "past_battles": ""
         }
     },
     "Item": {
@@ -155,7 +182,9 @@
             "title",
             "bond",
             "signature_scroll",
-            "item_pattern"
+            "item_pattern",
+            "army_cohort",
+            "army_fortification"
         ],
         "templates": {
             "basics": {
@@ -236,6 +265,28 @@
         },
         "signature_scroll": {
             "templates": ["basics", "advancement"]
+        },
+        "army_cohort": {
+            "templates": ["basics"],
+            "leader": "",
+            "equipment": "",
+            "abilities": "",
+            "battle_readiness": {
+                "casualties_strength": {
+                    "max": 0,
+                    "value": 0
+                },
+                "panic_discipline": {
+                    "max": 0,
+                    "value": 0
+                }
+            }
+        },
+        "army_fortification": {
+            "templates": ["basics"],
+            "difficulty": "",
+            "attrition_reduction": "",
+            "notes": ""
         }
     }
 }

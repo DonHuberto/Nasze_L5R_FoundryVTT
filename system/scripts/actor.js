@@ -55,6 +55,23 @@ export class ActorL5r5e extends Actor {
                     { overwrite: false }
                 );
                 break;
+
+            case "army":
+                foundry.utils.mergeObject(
+                    data.token,
+                    {
+                        actorLink: true,
+                        disposition: 0, // neutral
+                        bar1: {
+                            attribute: "battle_readiness.casualties_strength",
+                        },
+                        bar2: {
+                            attribute: "battle_readiness.panic_discipline",
+                        },
+                    },
+                    { overwrite: false }
+                );
+                break;
         }
         await super.create(data, options);
     }
