@@ -20,7 +20,15 @@
                 <strong>{{localize 'l5r5e.advancements.total_xp_spent'}}</strong> : {{data.data.xp_used_total}}
             </li>
         </ul>
-        {{!-- {{#each data.embedItemsList as |advancement|}} {{json advancement}} {{/each}} --}}
+        {{!--advancements--}}
+        {{#if data.embedItemsList}}
+        <p>
+            <strong>{{localize 'l5r5e.advancements.title'}}</strong>
+            <ul>
+            {{#each data.embedItemsList as |advancement|}}<li>{{advancement.name}} ({{advancement.data.xp_used}})</li>{{/each}}
+            </ul>
+        </p>
+        {{/if}}
         {{!--item-infos--}}
         <p><strong>{{localize 'l5r5e.description'}}</strong> : {{{data.data.description}}}</p>
         <p><strong>{{localize 'l5r5e.book_reference'}}</strong> : {{data.data.book_reference}}</p>

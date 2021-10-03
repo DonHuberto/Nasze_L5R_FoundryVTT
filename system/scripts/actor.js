@@ -217,7 +217,8 @@ export class ActorL5r5e extends Actor {
      * @return {Promise<string|null>}
      */
     async renderTextTemplate() {
-        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}actors/actor-text.html`, this);
+        const data = (await this.sheet?.getData()) || this;
+        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}actors/actor-text.html`, data);
         if (!tpl) {
             return null;
         }
