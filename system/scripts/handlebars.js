@@ -43,19 +43,20 @@ export const RegisterHandlebars = function () {
     /* ------------------------------------ */
     /* Utility                              */
     /* ------------------------------------ */
-    /**
-     * Json - Display a object in textarea (for debug)
-     */
+    // Json - Display a object in textarea (for debug)
     Handlebars.registerHelper("json", function (...objects) {
         objects.pop(); // remove this function call
         return new Handlebars.SafeString(objects.map((e) => `<textarea>${JSON.stringify(e)}</textarea>`));
     });
 
-    /**
-     * Add props "checked" if a and b are equal ({{radioChecked a b}}
-     */
+    // Add props "checked" if a and b are equal ({{radioChecked a b}}
     Handlebars.registerHelper("radioChecked", function (a, b) {
         return a === b ? new Handlebars.SafeString('checked="checked"') : "";
+    });
+
+    // Add a setter
+    Handlebars.registerHelper("setVar", function (varName, varValue, options) {
+        options.data.root[varName] = varValue;
     });
 
     /**

@@ -39,6 +39,11 @@ export class CombatL5r5e extends Combat {
         for (const combatantId of ids) {
             const combatant = game.combat.combatants.find((c) => c.id === combatantId);
 
+            // Skip non character types (army)
+            if (!["character", "npc"].includes(combatant.actor.data.type)) {
+                continue;
+            }
+
             // Skip if combatant already have a initiative value
             if (!messageOptions.rerollInitiative && (!combatant || !combatant.actor)) {
                 return;

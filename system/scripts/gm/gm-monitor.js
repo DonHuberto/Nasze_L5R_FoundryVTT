@@ -168,12 +168,18 @@ export class GmMonitor extends FormApplication {
             return;
         }
 
-        const actor = game.actors.filter((e) => e.id === data.id);
+        const actor = game.actors.find((e) => e.id === data.id);
         if (!actor) {
             return;
         }
 
-        this.object.actors.push(actor[0]);
+        // No armies allowed !
+        if (actor.data.type === "army") {
+            console.log(`L5R5E | Armies are not supported !`);
+            return;
+        }
+
+        this.object.actors.push(actor);
 
         return this._saveActorsIds();
     }

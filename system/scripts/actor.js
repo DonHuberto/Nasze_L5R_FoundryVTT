@@ -254,6 +254,10 @@ export class ActorL5r5e extends Actor {
      * @return {boolean}
      */
     get isPrepared() {
+        if (!["character", "npc"].includes(this.data.type)) {
+            return false;
+        }
+
         const cfg = {
             character: game.settings.get("l5r5e", "initiative-prepared-character"),
             adversary: game.settings.get("l5r5e", "initiative-prepared-adversary"),

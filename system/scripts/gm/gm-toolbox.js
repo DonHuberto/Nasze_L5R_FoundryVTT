@@ -195,6 +195,12 @@ export class GmToolbox extends FormApplication {
         const type = $(event.currentTarget).data("type");
 
         for await (const actor of game.actors.contents) {
+            // Only characters types
+            if (!["character", "npc"].includes(actor.data.type)) {
+                continue;
+            }
+
+            // Manage left/right button
             if (!isAll && (actor.data.type !== "character" || !actor.hasPlayerOwner)) {
                 continue;
             }
