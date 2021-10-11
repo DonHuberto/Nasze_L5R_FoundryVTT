@@ -8,6 +8,9 @@
 - Compendiums :
   - PoW: 'Urbane and Worldly' advantage was misspelled 'Wroldly' (thx to Cernunnos).
 
+## 1.3.5 - DsN hotfix
+- Fixed a bug introduced by DiceSoNice 4.2.1 : context in "diceSoNiceRollStart" hook rebuild data and lost what we needed. The consequence is 3d dice flood a lot in RnK.
+
 ## 1.3.4 - Compendiums Update
 - Fixed a bug with sheet item drop introduced in previous version.
 - Added FoV English Opportunities usage.
