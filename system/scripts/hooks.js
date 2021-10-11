@@ -259,7 +259,10 @@ export default class HooksL5r5e {
      * @param {object} context
      */
     static diceSoNiceRollStart(messageId, context) {
-        if (context.roll.l5r5e?.history) {
+        // In DsN 4.2.1+ the roll is altered in context.
+        // So we need to get the original message instead of "context.roll.l5r5e?.history"
+        const message = game.messages.get(messageId);
+        if (message?._roll?.l5r5e?.history) {
             context.blind = true;
         }
     }
