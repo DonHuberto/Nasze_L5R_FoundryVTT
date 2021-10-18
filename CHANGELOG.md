@@ -7,6 +7,7 @@
 - SendToChat now check links validity before adding them.
 - Compendiums :
   - PoW: 'Urbane and Worldly' advantage was misspelled 'Wroldly' (thx to Cernunnos).
+- New NPC changed from "minion" to "adversary" by default.
 
 ## 1.3.5 - DsN hotfix
 - Fixed a bug introduced by DiceSoNice 4.2.1 : context in "diceSoNiceRollStart" hook rebuild data and lost what we needed. The consequence is 3d dice flood a lot in RnK.

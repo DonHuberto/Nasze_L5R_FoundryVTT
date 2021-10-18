@@ -43,7 +43,7 @@ export class ActorL5r5e extends Actor {
                 foundry.utils.mergeObject(
                     data.token,
                     {
-                        actorLink: false,
+                        actorLink: true,
                         disposition: 0, // neutral
                         bar1: {
                             attribute: "fatigue",

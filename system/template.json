@@ -121,7 +121,7 @@
         },
         "npc": {
             "templates": ["rings", "social", "techniques", "conflict"],
-            "type": "minion",
+            "type": "adversary",
             "attitude": "",
             "conflict_rank": {
                 "martial": 0,
