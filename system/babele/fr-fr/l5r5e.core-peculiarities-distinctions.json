@@ -386,45 +386,45 @@
         },
         {
             "id": "Ardent Leader",
-            "name": "Ardent Leader (WIP)",
+            "name": "Chef ardent",
             "types": "Mental, Relations",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.69"
         },
         {
             "id": "Dashing Scar",
-            "name": "Dashing Scar (WIP)",
+            "name": "Impressionnante cicatrice",
             "types": "Relations",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.69"
         },
         {
             "id": "Lucky Hunter",
-            "name": "Lucky Hunter (WIP)",
+            "name": "Chasseur chanceux",
             "types": "Physique, Spirituel",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.69"
         },
         {
             "id": "Scrounger",
-            "name": "Scrounger (WIP)",
+            "name": "Profiteur",
             "types": "Mental, Relations",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.70"
         },
         {
             "id": "Scrappy",
-            "name": "Scrappy (WIP)",
+            "name": "Bagarreur",
             "types": "Mental, Physique",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.68"
         },
         {
             "id": "Urbane and Worldly",
-            "name": "Urbane and Worldly (WIP)",
+            "name": "Baroudeur bienséant",
             "types": "Physique, Relations",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.69"
         },
         {
             "id": "Dead Eyes",
@@ -474,6 +474,13 @@
             "types": "Mental",
             "description": "",
             "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Passion for [Foreign Performing Art Form]",
+            "name": "Talent pour [une forme d’art étrangère]",
+            "types": "Relations, Renommée",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.70"
         }
     ]
 }

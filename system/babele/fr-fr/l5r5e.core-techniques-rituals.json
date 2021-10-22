@@ -85,39 +85,39 @@
         },
         {
             "id": "Balancing Salve (Qamarist Region)",
-            "name": "Balancing Salve (Qamarist Region) (WIP)",
+            "name": "Baume d’équilibre (Califat Qamariste)",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.96"
         },
         {
             "id": "Elixir of Recovery (Qamarist Region)",
-            "name": "Elixir of Recovery (Qamarist Region) (WIP)",
+            "name": "Elixir de guérison (Califat Qamariste)",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.96"
         },
         {
             "id": "Fortitude Draught (Qamarist Region)",
-            "name": "Fortitude Draught (Qamarist Region) (WIP)",
+            "name": "Décoction de résistance (Califat Qamariste)",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.96"
         },
         {
             "id": "Restorative Transmutation (Qamarist Region)",
-            "name": "Restorative Transmutation (Qamarist Region) (WIP)",
+            "name": "Transmutation reconstituante (Califat qamariste)",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.97"
         },
         {
             "id": "Cleansing of Coral and Gold (Ivory Kingdoms Region)",
-            "name": "Cleansing of Coral and Gold (Ivory Kingdoms Region) (WIP)",
+            "name": "Purification par le corail et l’or (Royaumes d’Ivoire)",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.97"
         },
         {
             "id": "Wayfarer's Path",
-            "name": "Wayfarer's Path (WIP)",
+            "name": "La route du voyageur",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.97"
         },
         {
             "id": "Blessing of Steel (Artisan)",

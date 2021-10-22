@@ -470,52 +470,52 @@
         },
         {
             "id": "Debt to [Person or Organization]",
-            "name": "Debt to [Person or Organization] (WIP)",
+            "name": "Dette envers [une personne ou une organisation]",
             "types": "Relations",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.71"
         },
         {
             "id": "Bullheaded",
-            "name": "Bullheaded (WIP)",
+            "name": "Entêté",
             "types": "Mental",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.72"
         },
         {
             "id": "Many Mouths",
-            "name": "Many Mouths (WIP)",
+            "name": "Des bouches à nourrir",
             "types": "Mental, Relations",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.71"
         },
         {
             "id": "Horrible Scar",
-            "name": "Horrible Scar (WIP)",
+            "name": "Horrible cicatrice",
             "types": "Mental, Relations",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.72"
         },
         {
             "id": "Pursued by [Individual or Group]",
-            "name": "Pursued by [Individual or Group] (WIP)",
+            "name": "Poursuivi par [un individu ou un groupe]",
             "types": "Mental, Relations",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.73"
         },
         {
             "id": "Encompassing Duty",
-            "name": "Encompassing Duty (WIP)",
+            "name": "Devoir absolu",
             "types": "Mental",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.72"
         },
         {
             "id": "Stained Lineage",
-            "name": "Stained Lineage (WIP)",
+            "name": "Lignée entachée",
             "types": "Mental, Relations",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.72"
         },
         {
             "id": "Shadowlands Taint [One with the Darkness]",

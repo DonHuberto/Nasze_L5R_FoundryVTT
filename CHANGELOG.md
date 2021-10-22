@@ -6,7 +6,11 @@
 - Standardization of "great-clans-presentation" pack name to "core-journal-great-clans-presentation".
 - SendToChat now check links validity before adding them.
 - Compendiums :
-  - PoW: 'Urbane and Worldly' advantage was misspelled 'Wroldly' (thx to Cernunnos).
+  - PoW:
+    - 'Urbane and Worldly' advantage was misspelled 'Wroldly' (thx to Cernunnos).
+    - Updated all French compendiums.
+    - Changed "Passion for [Foreign Performing Art Form]" from "Passion" to "Distinction".
+    - Changed "Flowering Deceptions" from "Kata" to "Shuji".
 - New NPC changed from "minion" to "adversary" by default.
 
 ## 1.3.5 - DsN hotfix

@@ -369,73 +369,73 @@
             "id": "Travel Rations",
             "name": "Rations de voyage",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.114"
         },
         {
             "id": "Cooking Kit",
-            "name": "Kit de cuisine",
+            "name": "Nécessaire de cuisine",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.114"
         },
         {
             "id": "Dice Kit",
-            "name": "Kit de dés",
+            "name": "Dés à jouer",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.114"
         },
         {
             "id": "Alchemy Kit",
-            "name": "Kit d'alchimie",
+            "name": "Nécessaire d’alchimie",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.114"
         },
         {
             "id": "Fishing kit",
-            "name": "Kit de pêche",
+            "name": "Nécessaire de pêche",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.115"
         },
         {
             "id": "Tailor's Kit",
-            "name": "Kit du tailleur",
+            "name": "Nécessaire de couture",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.114"
         },
         {
             "id": "Weaver's Kit",
-            "name": "Kit du tisserand",
+            "name": "Nécessaire de tissage",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.115"
         },
         {
             "id": "Mason's Kit",
-            "name": "Kit du maçon",
+            "name": "Nécessaire de maçonnerie",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.115"
         },
         {
             "id": "Chandu",
             "name": "Chandu (Opium)",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.115"
         },
         {
             "id": "Thievery Kit",
-            "name": "Kit de vol",
+            "name": "Nécessaire de cambriolage",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.116"
         },
         {
             "id": "Poppy Tea",
-            "name": "Thé au pavot",
+            "name": "Thé de pavot",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.116"
         },
         {
             "id": "Shikomizue",
             "name": "Shikomizue",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.116"
         },
         {
             "id": "Climbing Kit",

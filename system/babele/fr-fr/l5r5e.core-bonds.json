@@ -43,31 +43,31 @@
         },
         {
             "id": "Old Flame",
-            "name": "Ancien amour",
+            "name": "Ancien amant",
             "description": "",
-            "book_reference": "La Voie des Vagues",
-            "bond_type": "Ancien amour"
+            "book_reference": "La Voie des Vagues p.188",
+            "bond_type": "Ancien amant"
         },
         {
             "id": "Partner",
             "name": "Partenaire",
             "description": "",
-            "book_reference": "La Voie des Vagues",
+            "book_reference": "La Voie des Vagues p.189",
             "bond_type": "Partenaire"
         },
         {
             "id": "Protector and Ward",
-            "name": "Protecteur et Gardien",
+            "name": "Protecteur et pupille",
             "description": "",
-            "book_reference": "La Voie des Vagues",
-            "bond_type": "Protecteur et Gardien"
+            "book_reference": "La Voie des Vagues p.189",
+            "bond_type": "Protecteur et pupille"
         },
         {
             "id": "Wanderers Fellowship",
-            "name": "Fraternité des vagabonds",
+            "name": "Frères d’errance",
             "description": "",
-            "book_reference": "La Voie des Vagues",
-            "bond_type": "Fraternité des vagabonds"
+            "book_reference": "La Voie des Vagues p.191",
+            "bond_type": "Frères d’errance"
         }
     ]
 }

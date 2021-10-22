@@ -218,31 +218,31 @@
         },
         {
             "id": "Eyes of Many",
-            "name": "Eyes of Many (WIP)",
+            "name": "Aux yeux de tous",
             "types": "Mental",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.73"
         },
         {
             "id": "Coming Storm",
-            "name": "Coming Storm (WIP)",
+            "name": "Désastre à venir",
             "types": "Mental",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.74"
         },
         {
             "id": "Fear of Stagnation",
-            "name": "Fear of Stagnation (WIP)",
+            "name": "Peur de stagner",
             "types": "Mental",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.74"
         },
         {
             "id": "Failure",
-            "name": "Failure (WIP)",
+            "name": "Déception",
             "types": "Mental",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.73"
         },
         {
             "id": "Fallen Ancestor",

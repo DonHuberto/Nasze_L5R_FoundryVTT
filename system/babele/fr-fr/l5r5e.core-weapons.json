@@ -478,21 +478,21 @@
         },
         {
             "id": "Sake Bottle & Cups",
-            "name": "Bouteille et coupe à saké",
+            "name": "Bouteille et coupe de saké",
             "category": "Armes improvisées",
             "grip_1": "",
             "grip_2": "Matraque : - / Jeté : Dangerosité +2 / Portée 1-3 / Tranchant",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.112"
         },
         {
             "id": "Umbrella",
-            "name": "Parapluie",
+            "name": "Ombrelle",
             "category": "Armes improvisées",
             "grip_1": "",
             "grip_2": "Matraque : Dégâts +2 / Poignarder : Dégâts +2, Dangerosité +2",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.112"
         },
         {
             "id": "Talwar",
@@ -501,16 +501,16 @@
             "grip_1": "",
             "grip_2": "",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.112"
         },
         {
             "id": "Scroll Case",
-            "name": "Boîte à parchemin",
+            "name": "Etui à parchemins",
             "category": "Armes improvisées",
             "grip_1": "",
             "grip_2": "Dégâts +2 / Dangerosité +1",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.112"
         },
         {
             "id": "Urumi",
@@ -519,25 +519,25 @@
             "grip_1": "",
             "grip_2": "",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.112"
         },
         {
             "id": "Iron Sheath",
-            "name": "Manchon de fer",
+            "name": "Fourreau ferré",
             "category": "Armes improvisées",
             "grip_1": "",
             "grip_2": "Dégâts +2",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.112"
         },
         {
             "id": "Buckler",
-            "name": "Buckler",
+            "name": "Bocle",
             "category": "Boucliers",
             "grip_1": "",
             "grip_2": "",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.112"
         },
         {
             "id": "Lute",
@@ -546,16 +546,16 @@
             "grip_1": "",
             "grip_2": "Dégâts +1 / Dangerosité +1",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.112"
         },
         {
             "id": "Sling",
-            "name": "Sling",
+            "name": "Fronde",
             "category": "Armes Spécialisées",
             "grip_1": "",
             "grip_2": "",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.112"
         },
         {
             "id": "Gada",
@@ -564,25 +564,25 @@
             "grip_1": "",
             "grip_2": "Dangerosité +3",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.112"
         },
         {
             "id": "Kuwa",
-            "name": "Koweït",
+            "name": "Kuwa",
             "category": "Haches",
             "grip_1": "",
             "grip_2": "Dégâts +2 / Dangerosité +2 / Portée 1-2",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.112"
         },
         {
             "id": "Qamarist Heavy Shield",
-            "name": "Bouclier lourd des Qamaristes",
+            "name": "Ecu Qamaristes",
             "category": "Boucliers",
             "grip_1": "",
             "grip_2": "",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.112"
         },
         {
             "id": "Boat Oar",
@@ -591,7 +591,7 @@
             "grip_1": "",
             "grip_2": "Dégâts +2 / Dangerosité +3",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.112"
         },
         {
             "id": "Fishing Net",
@@ -600,7 +600,7 @@
             "grip_1": "",
             "grip_2": "",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.112"
         },
         {
             "id": "Chair",
@@ -609,16 +609,16 @@
             "grip_1": "",
             "grip_2": "Matraque : Dégâts +2 / Jeté : Dangerosité +1 / Portée 0-2",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.112"
         },
         {
             "id": "Chain Whip",
-            "name": "Fouet à chaîne",
+            "name": "Chaîne à neuf section",
             "category": "Armes Spécialisées",
             "grip_1": "",
             "grip_2": "",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.112"
         },
         {
             "id": "Genno",

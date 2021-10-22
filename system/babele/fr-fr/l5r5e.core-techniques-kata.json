@@ -211,183 +211,177 @@
         },
         {
             "id": "Chaotic Scattering",
-            "name": "Chaotic Scattering (WIP)",
+            "name": "Dispersion chaotique",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.86"
         },
         {
             "id": "Mind's Edge",
-            "name": "Mind's Edge (WIP)",
+            "name": "Le tranchant de l’esprit",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.86"
         },
         {
             "id": "Iron Shell Style",
-            "name": "Iron Shell Style (WIP)",
+            "name": "Style de la carapace de fer",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.87"
         },
         {
             "id": "Boar's Wrath Style",
-            "name": "Boar's Wrath Style (WIP)",
+            "name": "Style de la fureur du sanglier",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.90"
         },
         {
             "id": "Thunderous Hooves Style",
-            "name": "Thunderous Hooves Style (WIP)",
+            "name": "Style du tonnerre des sabots",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.87"
         },
         {
             "id": "Rider's Haste",
-            "name": "Rider's Haste (WIP)",
+            "name": "La précipitation du cavalier",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.86"
         },
         {
             "id": "Void Embrace Style",
-            "name": "Void Embrace Style (WIP)",
+            "name": "Style de l’étreinte du Vide",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.87"
         },
         {
             "id": "Improvised Assault",
-            "name": "Improvised Assault (WIP)",
+            "name": "Assaut improvisé",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.88"
         },
         {
             "id": "Bonebreaker Style",
-            "name": "Bonebreaker Style (WIP)",
+            "name": "Style de l’écrasement des os",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.90"
         },
         {
             "id": "Flashing Steel Strike",
-            "name": "Flashing Steel Strike (WIP)",
+            "name": "Assaut de l’éclat d’acier",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.87"
         },
         {
             "id": "Deflective Defense",
-            "name": "Deflective Defense (WIP)",
+            "name": "Déflexion",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.89"
         },
         {
             "id": "Daring Swing",
-            "name": "Daring Swing (WIP)",
+            "name": "Balancement hardi",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.89"
         },
         {
             "id": "Iaijutsu Cut: Reverse Draw",
-            "name": "Iaijutsu Cut: Reverse Draw (WIP)",
+            "name": "Attaque de iaijutsu : garde inversée",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.88"
         },
         {
             "id": "Landslide Strike",
-            "name": "Landslide Strike (WIP)",
+            "name": "Assaut du glissement de terrain",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.88"
         },
         {
             "id": "Laughing Fox Style",
-            "name": "Laughing Fox Style (WIP)",
+            "name": "Style du renard rieur",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.91"
         },
         {
             "id": "Iaijutsu Cut: Sword and Sheath",
-            "name": "Iaijutsu Cut: Sword and Sheath (WIP)",
+            "name": "Attaque de iaijutsu : sabre et fourreau",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.88"
         },
         {
             "id": "Piercing Bolt Style",
-            "name": "Piercing Bolt Style (WIP)",
+            "name": "Style de la charge perforante",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.90"
         },
         {
             "id": "Reckless Lunge",
-            "name": "Reckless Lunge (WIP)",
+            "name": "Fente téméraire",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.89"
         },
         {
             "id": "Swirling Tempest Style",
-            "name": "Swirling Tempest Style (WIP)",
+            "name": "Style de la tempête tournoyante",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.90"
         },
         {
             "id": "Snapping Branch Strike",
-            "name": "Snapping Branch Strike (WIP)",
+            "name": "Assaut de la branche cassée",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.87"
         },
         {
             "id": "Thunderous Blows Style",
-            "name": "Thunderous Blows Style (WIP)",
+            "name": "Style des coups tonitruants",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.91"
         },
         {
             "id": "Rushing Ox Style",
-            "name": "Rushing Ox Style (WIP)",
+            "name": "Style de la charge du taureau",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.90"
         },
         {
             "id": "Wheeling Sweep",
-            "name": "Wheeling Sweep (WIP)",
+            "name": "Balayage tournoyant",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.89"
         },
         {
             "id": "Eyeless Sight Shot",
-            "name": "Eyeless Sight Shot (WIP)",
+            "name": "Tir à l’aveugle",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.91"
         },
         {
             "id": "Twin Streams Style",
-            "name": "Twin Streams Style (WIP)",
+            "name": "Style des ruisseaux jumeaux",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.91"
         },
         {
             "id": "Staggering Shot",
-            "name": "Staggering Shot (WIP)",
+            "name": "Tir déséquilibrant",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.92"
         },
         {
             "id": "Falling Heavens Shot",
-            "name": "Falling Heavens Shot (WIP)",
+            "name": "Tir tombé des Cieux",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.92"
         },
         {
             "id": "Swirling Viper Style",
-            "name": "Swirling Viper Style (WIP)",
+            "name": "Style de la vipère tournoyante",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.91"
         },
         {
             "id": "Wasp's Spite Style",
-            "name": "Wasp's Spite Style (WIP)",
+            "name": "Style de l’agressivité de la guêpe",
             "description": "",
-            "book_reference": "La Voie des Vagues"
-        },
-        {
-            "id": "Flowering Deceptions",
-            "name": "Flowering Deceptions (WIP)",
-            "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.91"
         },
         {
             "id": "Fierce Badger Style",

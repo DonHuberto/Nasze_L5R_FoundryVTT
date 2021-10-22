@@ -337,93 +337,93 @@
         },
         {
             "id": "Look Out",
-            "name": "Look Out (WIP)",
+            "name": "Attention !",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.92"
         },
         {
             "id": "Bellow of Resolve",
-            "name": "Bellow of Resolve (WIP)",
+            "name": "Hurlement de soutien",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.92"
         },
         {
             "id": "Ruse of the Moon's Reflection",
-            "name": "Ruse of the Moon's Reflection (WIP)",
+            "name": "Ruse du reflet de la Lune",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.93"
         },
         {
             "id": "Eyes Up!",
-            "name": "Eyes Up! (WIP)",
+            "name": "Là-haut !",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.94"
         },
         {
             "id": "Pack Gambit",
-            "name": "Pack Gambit (WIP)",
+            "name": "Manoeuvre de meute",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.93"
         },
         {
             "id": "Mentor's Guidance",
-            "name": "Mentor's Guidance (WIP)",
+            "name": "Les conseils du mentor",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.93"
         },
         {
             "id": "Malleable Formation",
-            "name": "Malleable Formation (WIP)",
+            "name": "Formation mobile",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.94"
         },
         {
             "id": "Goading Taunt",
-            "name": "Goading Taunt (WIP)",
+            "name": "Raillerie provocante",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.95"
         },
         {
             "id": "Watch My Back",
-            "name": "Watch My Back (WIP)",
+            "name": "Protège-moi",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.94"
         },
         {
             "id": "Illuminate the Way",
-            "name": "Illuminate the Way (WIP)",
+            "name": "Eclaire mon chemin",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.94"
         },
         {
             "id": "Fluent Bargaining",
-            "name": "Fluent Bargaining (WIP)",
+            "name": "Négociations fructueuses",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.94"
         },
         {
             "id": "Bond of Heroes",
-            "name": "Bond of Heroes (WIP)",
+            "name": "Le lien des héros",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.95"
         },
         {
             "id": "Tonight, I Am Your Opponent",
-            "name": "Tonight, I Am Your Opponent (WIP)",
+            "name": "Ce soir, je suis ton adversaire",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.95"
         },
         {
             "id": "Wanderer's Resolve",
-            "name": "Wanderer's Resolve (WIP)",
+            "name": "La détermination du vagabond",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.95"
         },
         {
             "id": "Roar of Encouragement",
-            "name": "Roar of Encouragement (WIP)",
+            "name": "Hurlement d’encouragement",
             "description": "",
-            "book_reference": "La Voie des Vagues"
+            "book_reference": "La Voie des Vagues p.94"
         },
         {
             "id": "Osano-wo’s Boast (Mantis)",
@@ -526,6 +526,12 @@
             "name": "Victory Without a Sword (WIP)",
             "description": "",
             "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Flowering Deceptions",
+            "name": "Les fleurs de la supercherie",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.93"
         }
     ]
 }

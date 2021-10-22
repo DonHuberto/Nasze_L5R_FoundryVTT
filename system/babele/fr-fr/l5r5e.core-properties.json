@@ -184,6 +184,24 @@
             "name": "Toriyama's Endurance Pattern (WIP)",
             "description": "",
             "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Spirit of the Qamarist Pattern",
+            "name": "Procédé de l’esprit des Qamaristes",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.117"
+        },
+        {
+            "id": "Ghostlands Yodhaniya Pattern",
+            "name": "Procédé des Yodhaniya des terres Spectrales",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.117"
+        },
+        {
+            "id": "Kökejin’s Heart of the Wind Pattern",
+            "name": "Procédé du Coeur du vent de Kökejin",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.117"
         }
     ]
 }
