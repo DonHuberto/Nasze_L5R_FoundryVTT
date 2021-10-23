@@ -1,16 +1,16 @@
 # Changelog
 
-## 1.4.0 - Armies
+## 1.4.0 - Armies & French PoW
 - Added Army, Cohort and Fortification sheets.
 - Added real icon for Inversion and Mantra.
 - Standardization of "great-clans-presentation" pack name to "core-journal-great-clans-presentation".
 - SendToChat now check links validity before adding them.
 - Compendiums :
   - PoW:
-    - 'Urbane and Worldly' advantage was misspelled 'Wroldly' (thx to Cernunnos).
-    - Updated all French compendiums.
-    - Changed "Passion for [Foreign Performing Art Form]" from "Passion" to "Distinction".
-    - Changed "Flowering Deceptions" from "Kata" to "Shuji".
+    - Updated all French compendiums from official French translation.
+    - Fixed : "Urbane and Worldly" advantage was misspelled "Wroldly" (thx to Cernunnos).
+    - Fixed : "Passion for [Foreign Performing Art Form]" from "Passion" to "Distinction" type.
+    - Fixed : "Flowering Deceptions" from "Kata" to "Shuji" type.
 - New NPC changed from "minion" to "adversary" by default.
 
 ## 1.3.5 - DsN hotfix
