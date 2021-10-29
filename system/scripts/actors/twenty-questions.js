@@ -85,6 +85,7 @@ export class TwentyQuestions {
                 shuji: false,
                 maho: false,
                 ninjutsu: false,
+                mantra: false,
                 specificity: true,
             },
             techniques: [],
@@ -214,6 +215,7 @@ export class TwentyQuestions {
         this.data.step3.allowed_techniques.shuji = actorDatas.techniques.shuji;
         this.data.step3.allowed_techniques.maho = actorDatas.techniques.maho;
         this.data.step3.allowed_techniques.ninjutsu = actorDatas.techniques.ninjutsu;
+        this.data.step3.allowed_techniques.mantra = actorDatas.techniques.mantra;
         this.data.step5.social_giri = actorDatas.social.giri;
         this.data.step6.social_ninjo = actorDatas.social.ninjo;
         this.data.step8.tenet_paramount = actorDatas.social.bushido_tenets.paramount;
@@ -276,6 +278,7 @@ export class TwentyQuestions {
             shuji: !!formData.step3.allowed_techniques.shuji,
             maho: !!formData.step3.allowed_techniques.maho,
             ninjutsu: !!formData.step3.allowed_techniques.ninjutsu,
+            mantra: !!formData.step3.allowed_techniques.mantra,
         };
 
         // Rings - Reset to 1, and apply modifiers

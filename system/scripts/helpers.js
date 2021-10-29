@@ -267,6 +267,7 @@ export class HelpersL5r5e {
         core.set("Kat", "l5r5e.core-techniques-kata");
         core.set("Kih", "l5r5e.core-techniques-kiho");
         core.set("Mah", "l5r5e.core-techniques-maho");
+        core.set("Man", "l5r5e.core-techniques-mantra");
         core.set("Mas", "l5r5e.core-techniques-mastery");
         core.set("Nin", "l5r5e.core-techniques-ninjutsu");
         core.set("Rit", "l5r5e.core-techniques-rituals");

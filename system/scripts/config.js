@@ -34,6 +34,7 @@ L5R5E.techniques.set("ritual", { type: "core", displayInTypes: true });
 L5R5E.techniques.set("shuji", { type: "core", displayInTypes: true });
 L5R5E.techniques.set("maho", { type: "core", displayInTypes: true });
 L5R5E.techniques.set("ninjutsu", { type: "core", displayInTypes: true });
+L5R5E.techniques.set("mantra", { type: "core", displayInTypes: true });
 // School
 L5R5E.techniques.set("school_ability", { type: "school", displayInTypes: false });
 L5R5E.techniques.set("mastery_ability", { type: "school", displayInTypes: false });

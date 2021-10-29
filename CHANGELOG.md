@@ -2,7 +2,8 @@
 
 ## 1.4.0 - Armies & French PoW
 - Added Army, Cohort and Fortification sheets.
-- Added real icon for Inversion and Mantra.
+- Added real icons for Inversion and Mantra.
+- Added Mantra technique type.
 - Standardization of "great-clans-presentation" pack name to "core-journal-great-clans-presentation".
 - SendToChat now check links validity before adding them.
 - Compendiums :

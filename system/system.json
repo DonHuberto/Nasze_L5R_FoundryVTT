@@ -93,6 +93,13 @@
             "system": "l5r5e"
         },
         {
+            "name": "core-techniques-mantra",
+            "label": "Techniques Mantra",
+            "path": "packs/core-techniques-mantra.db",
+            "entity": "Item",
+            "system": "l5r5e"
+        },
+        {
             "name": "core-techniques-school",
             "label": "School Abilities",
             "path": "packs/core-techniques-school.db",
