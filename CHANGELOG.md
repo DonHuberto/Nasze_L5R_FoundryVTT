@@ -13,6 +13,7 @@
     - Fixed : "Passion for [Foreign Performing Art Form]" from "Passion" to "Distinction" type.
     - Fixed : "Flowering Deceptions" from "Kata" to "Shuji" type.
 - New NPC changed from "minion" to "adversary" by default.
+- 20Q : Fixed line break in techniques label list.
 
 ## 1.3.5 - DsN hotfix
 - Fixed a bug introduced by DiceSoNice 4.2.1 : context in "diceSoNiceRollStart" hook rebuild data and lost what we needed. The consequence is 3d dice flood a lot in RnK.
