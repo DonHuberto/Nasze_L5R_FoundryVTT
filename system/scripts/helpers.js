@@ -641,4 +641,28 @@ export class HelpersL5r5e {
         };
         /* eslint-enable no-undef */
     }
+
+    /**
+     * Shortcut method to draw names to chat (private) from a table in compendium without importing it
+     * @param {String} pack       Compendium name
+     * @param {String} tableName  Table name in this compendium
+     * @param {String} retrieve   How many draw we do
+     * @return {Promise<void>}
+     */
+    static async drawManyFromPack(pack, tableName, retrieve = 5) {
+        const comp = await game.packs.get(pack);
+        if (!comp) {
+            console.log(`L5R5E | Pack not found[${pack}]`);
+            return;
+        }
+        if (!comp.indexed) {
+            await comp.getDocuments();
+        }
+        const table = await comp.getName(tableName);
+        if (!table) {
+            console.log(`L5R5E | Table not found[${tableName}]`);
+            return;
+        }
+        await table.drawMany(retrieve, { rollMode: "selfroll" });
+    }
 }

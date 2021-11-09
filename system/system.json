@@ -226,10 +226,17 @@
             "system": "l5r5e"
         },
         {
-            "name": "pow-name-tables",
+            "name": "core-name-tables",
             "label": "Name Tables",
-            "path": "packs/pow-name-tables.db",
+            "path": "packs/core-name-tables.db",
             "entity": "RollTable",
+            "system": "l5r5e"
+        },
+        {
+            "name": "core-macros",
+            "label": "L5R5E Macros",
+            "path": "packs/core-macros.db",
+            "entity": "Macro",
             "system": "l5r5e"
         }
     ],

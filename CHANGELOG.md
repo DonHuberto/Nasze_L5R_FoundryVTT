@@ -12,6 +12,8 @@
     - Fixed : "Urbane and Worldly" advantage was misspelled "Wroldly" (thx to Cernunnos).
     - Fixed : "Passion for [Foreign Performing Art Form]" from "Passion" to "Distinction" type.
     - Fixed : "Flowering Deceptions" from "Kata" to "Shuji" type.
+  - Added two tables to draw japanese names (1491 males names / 530 females names).
+  - Added some Macros.
 - New NPC changed from "minion" to "adversary" by default.
 - 20Q : Fixed line break in techniques label list.
 
