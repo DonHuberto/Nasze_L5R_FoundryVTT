@@ -644,12 +644,13 @@ export class HelpersL5r5e {
 
     /**
      * Shortcut method to draw names to chat (private) from a table in compendium without importing it
-     * @param {String} pack       Compendium name
-     * @param {String} tableName  Table name in this compendium
-     * @param {String} retrieve   How many draw we do
-     * @return {Promise<void>}
+     * @param {String} pack                Compendium name
+     * @param {String} tableName           Table name in this compendium
+     * @param {String} retrieve            How many draw we do
+     * @param {object} opt                 drawMany config option object
+     * @return {Promise<{RollTableDraw}>}  The drawn results
      */
-    static async drawManyFromPack(pack, tableName, retrieve = 5) {
+    static async drawManyFromPack(pack, tableName, retrieve = 5, opt = { rollMode: "selfroll" }) {
         const comp = await game.packs.get(pack);
         if (!comp) {
             console.log(`L5R5E | Pack not found[${pack}]`);
@@ -663,6 +664,6 @@ export class HelpersL5r5e {
             console.log(`L5R5E | Table not found[${tableName}]`);
             return;
         }
-        await table.drawMany(retrieve, { rollMode: "selfroll" });
+        return await table.drawMany(retrieve, opt);
     }
 }
