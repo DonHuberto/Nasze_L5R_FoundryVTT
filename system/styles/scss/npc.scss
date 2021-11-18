@@ -170,3 +170,16 @@
         flex: 0 0 calc(50% - 0.25rem);
     }
 }
+&.character-generator-dialog {
+    form .body {
+        clear: both;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin: 3px 0;
+        align-items: start;
+    }
+    input[type="number"] {
+        width: auto;
+    }
+}

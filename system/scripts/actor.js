@@ -130,10 +130,7 @@ export class ActorL5r5e extends Actor {
 
             // No automation for npc as they cheat in stats
             if (this.data.type === "character") {
-                data.endurance = (Number(data.rings.earth) + Number(data.rings.fire)) * 2;
-                data.composure = (Number(data.rings.earth) + Number(data.rings.water)) * 2;
-                data.focus = Number(data.rings.air) + Number(data.rings.fire);
-                data.vigilance = Math.ceil((Number(data.rings.air) + Number(data.rings.water)) / 2);
+                ActorL5r5e.computeDerivedAttributes(data);
             }
 
             // Attributes bars
@@ -149,6 +146,16 @@ export class ActorL5r5e extends Actor {
                 data.void_points.value = data.void_points.max;
             }
         }
+    }
+
+    /**
+     * Set derived attributes (endurance, composure, focus, vigilance) from rings values
+     */
+    static computeDerivedAttributes(data) {
+        data.endurance = (Number(data.rings.earth) + Number(data.rings.fire)) * 2;
+        data.composure = (Number(data.rings.earth) + Number(data.rings.water)) * 2;
+        data.focus = Number(data.rings.air) + Number(data.rings.fire);
+        data.vigilance = Math.ceil((Number(data.rings.air) + Number(data.rings.water)) / 2);
     }
 
     /**
