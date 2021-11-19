@@ -7,6 +7,7 @@ export class GmMonitor extends FormApplication {
      * Settings
      */
     object = {
+        view: "characters", // characters|armies
         actors: [],
     };
 
@@ -28,6 +29,33 @@ export class GmMonitor extends FormApplication {
             submitOnChange: false,
             dragDrop: [{ dragSelector: null, dropSelector: null }],
         });
+    }
+
+    /**
+     * Add the Switch View button on top of sheet
+     * @override
+     */
+    _getHeaderButtons() {
+        let buttons = super._getHeaderButtons();
+
+        // Send To Chat
+        buttons.unshift({
+            label: game.i18n.localize("l5r5e.gm_monitor.switch_view"),
+            class: "switch-view",
+            icon: "fas fa-users",
+            onclick: () =>
+                game.l5r5e.HelpersL5r5e.debounce(
+                    "SwitchView-" + this.object.id,
+                    () => {
+                        this.object.view = this.object.view === "armies" ? "characters" : "armies";
+                        this.render(false);
+                    },
+                    1000,
+                    true
+                )(),
+        });
+
+        return buttons;
     }
 
     /**
@@ -72,9 +100,7 @@ export class GmMonitor extends FormApplication {
             return a.name.localeCompare(b.name);
         });
 
-        this.object = {
-            actors,
-        };
+        this.object.actors = actors;
     }
 
     /**
@@ -97,7 +123,12 @@ export class GmMonitor extends FormApplication {
     getData(options = null) {
         return {
             ...super.getData(options),
-            data: this.object,
+            data: {
+                ...this.object,
+                actors: this.object.actors.filter((e) =>
+                    this.object.view === "armies" ? e.type === "army" : e.type !== "army"
+                ),
+            },
         };
     }
 
@@ -140,11 +171,11 @@ export class GmMonitor extends FormApplication {
 
             switch (type) {
                 case "armors":
-                    return await this._getTooltipArmors(actor);
+                    return this._getTooltipArmors(actor);
                 case "weapons":
-                    return await this._getTooltipWeapons(actor);
+                    return this._getTooltipWeapons(actor);
                 case "global":
-                    return await this._getTooltipGlobal(actor);
+                    return actor.type === "army" ? this._getTooltipArmiesGlobal(actor) : this._getTooltipGlobal(actor);
             }
         });
     }
@@ -170,12 +201,6 @@ export class GmMonitor extends FormApplication {
 
         const actor = game.actors.find((e) => e.id === data.id);
         if (!actor) {
-            return;
-        }
-
-        // No armies allowed !
-        if (actor.data.type === "army") {
-            console.log(`L5R5E | Armies are not supported !`);
             return;
         }
 
@@ -236,7 +261,7 @@ export class GmMonitor extends FormApplication {
     }
 
     /**
-     * Get tooltips informations for this actor
+     * Get tooltips informations for this character
      * @param {BaseSheetL5r5e} actor
      * @return {string}
      * @private
@@ -260,6 +285,21 @@ export class GmMonitor extends FormApplication {
             actorData: data,
             advantages: adv,
             disadvantages: dis,
+        });
+    }
+
+    /**
+     * Get tooltips informations for this army
+     * @param {BaseSheetL5r5e} actor
+     * @return {string}
+     * @private
+     */
+    async _getTooltipArmiesGlobal(actor) {
+        const data = actor.data.data;
+
+        // *** Template ***
+        return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor-tooltips/global-armies.html`, {
+            actorData: data,
         });
     }
 

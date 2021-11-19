@@ -784,6 +784,8 @@ button {
         }
         img {
             border: none;
+            min-width: 16px;
+            min-height: 16px;
             max-width: 28px;
             max-height: 28px;
         }

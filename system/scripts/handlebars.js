@@ -80,16 +80,16 @@ export const RegisterHandlebars = function () {
                 result = a !== b;
                 break;
             case "<":
-                result = a < b;
+                result = +a < +b;
                 break;
             case "<=":
-                result = a <= b;
+                result = +a <= +b;
                 break;
             case ">":
-                result = a > b;
+                result = +a > +b;
                 break;
             case ">=":
-                result = a >= b;
+                result = +a >= +b;
                 break;
             case "&&":
                 result = a && b;

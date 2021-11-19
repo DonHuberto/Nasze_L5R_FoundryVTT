@@ -143,6 +143,7 @@
         },
         "gm_monitor": {
             "title": "GM Monitor",
+            "switch_view": "Switch View",
             "honor_glory_status": "H/G/S",
             "focus_vigilance": "Att./Vig."
         },
