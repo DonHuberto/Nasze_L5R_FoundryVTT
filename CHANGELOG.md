@@ -8,6 +8,9 @@
 - Compendiums :
   - PoW:
     - Updated all French compendiums from official French translation.
+    - Added missing items pattern : "Spirit of the Qamarist Pattern", "Ghostlands Yodhaniya Pattern" and "Kökejin’s Heart of the Wind Pattern".
+    - Added missing title : "Astradhari".
+    - Added mantras : "Summon Mantra : [One Implement]" and "Countering Mantra".
     - Fixed : "Urbane and Worldly" advantage was misspelled "Wroldly" (thx to Cernunnos).
     - Fixed : "Passion for [Foreign Performing Art Form]" from "Passion" to "Distinction" type.
     - Fixed : "Flowering Deceptions" from "Kata" to "Shuji" type.

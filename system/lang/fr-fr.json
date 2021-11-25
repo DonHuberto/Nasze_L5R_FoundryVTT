@@ -389,7 +389,7 @@
             "cohort": {
                 "tab": "Régiments",
                 "title": "Régiment",
-                "leader": "Aptitude au combat",
+                "leader": "Leader",
                 "abilities": "Capacités"
             },
             "fortification": {

@@ -285,8 +285,8 @@
         },
         "army_fortification": {
             "templates": ["basics"],
-            "difficulty": "",
-            "attrition_reduction": "",
+            "difficulty": 0,
+            "attrition_reduction": 0,
             "notes": ""
         }
     }
