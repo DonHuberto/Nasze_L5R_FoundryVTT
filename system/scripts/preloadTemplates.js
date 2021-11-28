@@ -29,6 +29,7 @@ export const PreloadTemplates = async function () {
         `${tpl}actors/npc/skill.html`,
         `${tpl}actors/npc/techniques.html`,
         // *** Actors : Army ***
+        `${tpl}actors/army/army.html`,
         `${tpl}actors/army/cohort.html`,
         `${tpl}actors/army/fortification.html`,
         `${tpl}actors/army/others.html`,

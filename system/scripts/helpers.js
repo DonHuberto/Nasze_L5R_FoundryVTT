@@ -661,7 +661,7 @@ export class HelpersL5r5e {
         }
         const table = await comp.getName(tableName);
         if (!table) {
-            console.log(`L5R5E | Table not found[${tableName}]`);
+            console.log(`L5R5E | Table not found[${tableName}]`, comp, table);
             return;
         }
         return await table.drawMany(retrieve, opt);

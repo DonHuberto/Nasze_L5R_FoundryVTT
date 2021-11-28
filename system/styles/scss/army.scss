@@ -6,11 +6,80 @@
             h1 {
                 flex: 1;
             }
+            .readiness {
+                flex: 0 0 100%;
+                display: flex;
+                flex-wrap: wrap;
+
+                ul {
+                    display: flex;
+                    position: relative;
+                    padding: 0.25rem;
+                    height: 80px;
+
+                    li {
+                        flex: 25%;
+                        display: inline-grid;
+                        strong {
+                            color: $l5r5e-label;
+                            text-align: center;
+                        }
+                        label {
+                            flex: 100%;
+                        }
+                        input {
+                            background: transparent;
+                            border: 0 none;
+                            text-align: center;
+                        }
+                        &:after {
+                            content: "";
+                            width: 2rem;
+                            height: 2rem;
+                            position: relative;
+                            right: calc(50% - 5.5rem);
+                            top: calc(50% - 2.83rem);
+                            background: transparent url("../assets/icons/circle.svg") no-repeat 0 0;
+                            background-size: contain;
+                            opacity: 0.25;
+                            z-index: -1;
+                        }
+                        &:nth-child(1) {
+                            &:after {
+                                transform: rotate(0deg);
+                            }
+                        }
+                        &:nth-child(2) {
+                            &:after {
+                                transform: rotate(90deg);
+                            }
+                        }
+                        &:nth-child(3) {
+                            &:after {
+                                transform: rotate(180deg);
+                            }
+                        }
+                        &:nth-child(4) {
+                            &:after {
+                                transform: rotate(-90deg);
+                            }
+                        }
+                    }
+                }
+                align-items: flex-start;
+                h2 {
+                    flex: 0 0 100%;
+                }
+            }
+        }
+    }
+
+    .tab {
+        &.army {
             .warlord,
             .commander {
                 display: flex;
                 fieldset {
-                    flex: content;
                     margin-top: 0.25rem;
                     margin-bottom: 0.25rem;
                     strong {
@@ -19,66 +88,72 @@
                     label {
                         flex: 100%;
                     }
+                    p {
+                        width: 100%;
+                    }
+                    textarea {
+                        height: calc(100% - 22px);
+                    }
                 }
             }
-            .readiness,
             .standing {
-                align-items: flex-start;
+                flex: 0 0 100%;
+                display: flex;
+                flex-wrap: wrap;
+
                 h2 {
                     flex: 0 0 100%;
                 }
-                ul > li {
-                    position: relative;
-                    padding: 0.25rem;
-                    display: flex;
-                    flex-direction: column-reverse;
-                    strong {
-                        text-align: center;
-                    }
-                    input {
-                        background: transparent;
-                        border: 0 none;
-                        text-align: center;
-                    }
-                    &:after {
-                        content: "";
-                        width: 2rem;
-                        height: 2rem;
-                        position: absolute;
-                        right: calc(50% - 0.95rem);
-                        top: calc(50% - 1.6rem);
-                        background: transparent url("../assets/icons/circle.svg") no-repeat 0 0;
-                        background-size: contain;
-                        opacity: 0.25;
-                    }
-                    &:nth-child(1) {
-                        &:after {
-                            transform: rotate(0deg);
-                        }
-                    }
-                    &:nth-child(2) {
-                        &:after {
-                            transform: rotate(90deg);
-                        }
-                    }
-                    &:nth-child(3) {
-                        &:after {
-                            transform: rotate(180deg);
-                        }
-                    }
-                    &:nth-child(4) {
-                        &:after {
-                            transform: rotate(-90deg);
-                        }
-                    }
-                }
-            }
-            .readiness {
                 ul {
                     display: flex;
-                    flex-wrap: wrap;
+                    position: relative;
                     li {
-                        flex: 50%;
+                        flex: 33%;
+                        display: inline-grid;
+                        position: relative;
+                        padding: 0.25rem;
+                        flex-direction: column-reverse;
+
+                        strong {
+                            text-align: center;
+                        }
+
+                        input {
+                            background: transparent;
+                            border: 0 none;
+                            text-align: center;
+                        }
+
+                        &:after {
+                            content: "";
+                            width: 2rem;
+                            height: 2rem;
+                            position: absolute;
+                            right: calc(50% - 0.95rem);
+                            top: calc(50% - 0.2rem);
+                            background: transparent url("../assets/icons/circle.svg") no-repeat 0 0;
+                            background-size: contain;
+                            opacity: 0.25;
+                            z-index: -1;
+                        }
+
+                        &:nth-child(1) {
+                            &:after {
+                                transform: rotate(0deg);
+                            }
+                        }
+
+                        &:nth-child(2) {
+                            &:after {
+                                transform: rotate(90deg);
+                            }
+                        }
+
+                        &:nth-child(3) {
+                            &:after {
+                                transform: rotate(180deg);
+                            }
+                        }
                     }
                 }
             }

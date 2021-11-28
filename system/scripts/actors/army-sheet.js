@@ -13,7 +13,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
             template: CONFIG.l5r5e.paths.templates + "actors/army-sheet.html",
             width: 600,
             height: 800,
-            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "cohort" }],
+            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "army" }],
             dragDrop: [{ dragSelector: ".item-list .item", dropSelector: null }],
         });
     }
@@ -60,7 +60,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
         // Check item type and subtype
         const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
         if (!item || item.documentName !== "Item" || !["army_cohort", "army_fortification"].includes(item.data.type)) {
-            console.warn("L5R5E | Wrong type", item.data.type);
+            console.warn("L5R5E | Wrong type", item?.data?.type, item);
             return;
         }
 
