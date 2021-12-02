@@ -70,7 +70,7 @@ export class HelpersL5r5e {
      * @return {Promise<null>}
      */
     static async getDragnDropTargetObject(event) {
-        const json = event.dataTransfer.getData("text/plain");
+        const json = event.dataTransfer?.getData("text/plain");
         if (!json) {
             return null;
         }
@@ -426,6 +426,18 @@ export class HelpersL5r5e {
                 return;
             }
             return await item.renderTextTemplate();
+        });
+
+        // Open actor sheet
+        html.find(".open-sheet-actor-id").on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const id = $(event.currentTarget).data("actor-id");
+            if (!id) {
+                return;
+            }
+            game.actors.get(id)?.sheet?.render(true);
         });
     }
 

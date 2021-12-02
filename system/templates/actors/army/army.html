@@ -2,7 +2,14 @@
     <fieldset>
         <p>
             <strong>{{localize 'l5r5e.army.warlord'}}</strong>
-            <input name="data.warlord" type="text" value="{{data.data.warlord}}" />
+        </p>
+        <p>
+            {{#if data.data.warlord_actor_id}}
+                <span data-actor-id="{{actor.id}}" data-type="warlord" class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span>
+                <a data-actor-id="{{data.data.warlord_actor_id}}" class="open-sheet-actor-id">{{data.data.warlord}}</a>
+            {{else}}
+                <input name="data.warlord" type="text" value="{{data.data.warlord}}" />
+            {{/if}}
         </p>
         <p>
             <strong>{{localize 'l5r5e.army.allies_backers'}}</strong>
@@ -18,21 +25,26 @@
     <fieldset>
         <label>
             <strong>{{localize 'l5r5e.army.commander'}}</strong>
-            <input name="data.commander" type="text" value="{{data.data.commander}}" />
         </label>
+        {{#if data.data.commander_actor_id}}
+            <span data-actor-id="{{actor.id}}" data-type="commander" class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span>
+            <a data-actor-id="{{data.data.commander_actor_id}}" class="open-sheet-actor-id">{{data.data.commander}}</a>
+        {{else}}
+            <input name="data.commander" type="text" value="{{data.data.commander}}" />
+        {{/if}}
         <div class="standing">
             <ul>
                 <li>
                     <strong>{{localize 'l5r5e.social.honor'}}</strong>
-                    <input name="data.commander_standing.honor" type="text" value="{{data.data.commander_standing.honor}}" />
+                    <input name="data.commander_standing.honor" type="number" value="{{data.data.commander_standing.honor}}" />
                 </li>
                 <li>
                     <strong>{{localize 'l5r5e.social.glory'}}</strong>
-                    <input name="data.commander_standing.glory" type="text" value="{{data.data.commander_standing.glory}}" />
+                    <input name="data.commander_standing.glory" type="number" value="{{data.data.commander_standing.glory}}" />
                 </li>
                 <li>
                     <strong>{{localize 'l5r5e.social.status'}}</strong>
-                    <input name="data.commander_standing.status" type="text" value="{{data.data.commander_standing.status}}" />
+                    <input name="data.commander_standing.status" type="number" value="{{data.data.commander_standing.status}}" />
                 </li>
             </ul>
         </div>

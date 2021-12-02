@@ -20,6 +20,7 @@
                     li {
                         flex: 25%;
                         display: inline-grid;
+                        position: relative;
                         strong {
                             color: $l5r5e-label;
                             text-align: center;
@@ -36,9 +37,9 @@
                             content: "";
                             width: 2rem;
                             height: 2rem;
-                            position: relative;
-                            right: calc(50% - 5.5rem);
-                            top: calc(50% - 2.83rem);
+                            position: absolute;
+                            right: calc(50% - 0.9rem);
+                            top: calc(50% - 0.2rem);
                             background: transparent url("../assets/icons/circle.svg") no-repeat 0 0;
                             background-size: contain;
                             opacity: 0.25;
@@ -93,6 +94,9 @@
                     }
                     textarea {
                         height: calc(100% - 22px);
+                    }
+                    .actor-remove-control {
+                        font-size: 12px;
                     }
                 }
             }
@@ -156,6 +160,13 @@
                         }
                     }
                 }
+            }
+        }
+        &.others {
+            flex-direction: column;
+            .editor-content {
+                min-height: 8rem;
+                max-height: 14rem;
             }
         }
     }

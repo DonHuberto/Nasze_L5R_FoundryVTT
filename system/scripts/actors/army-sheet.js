@@ -14,8 +14,75 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
             width: 600,
             height: 800,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "army" }],
-            dragDrop: [{ dragSelector: ".item-list .item", dropSelector: null }],
         });
+    }
+
+    constructor(options = {}) {
+        super(options);
+        this._initialize();
+    }
+
+    /**
+     * Initialize once
+     * @private
+     */
+    _initialize() {
+        const data = this.object.data.data;
+
+        // update linked actor datas
+        if (data.commander_actor_id) {
+            const commander = game.actors.get(data.commander_actor_id);
+            if (commander) {
+                this._updateLinkedActorData("commander", commander);
+            } else {
+                this._removeLinkedActorData("commander");
+            }
+        }
+        if (data.warlord_actor_id) {
+            const warlord = game.actors.get(data.warlord_actor_id);
+            if (warlord) {
+                this._updateLinkedActorData("warlord", warlord);
+            } else {
+                this._removeLinkedActorData("warlord");
+            }
+        }
+    }
+
+    /**
+     * Create drag-and-drop workflow handlers for this Application
+     * @return An array of DragDrop handlers
+     */
+    _createDragDropHandlers() {
+        return [
+            new DragDrop({
+                dropSelector: ".warlord",
+                callbacks: { drop: this._onDropActors.bind(this, "warlord") },
+            }),
+            new DragDrop({
+                dropSelector: ".commander",
+                callbacks: { drop: this._onDropActors.bind(this, "commander") },
+            }),
+            new DragDrop({
+                dropSelector: null,
+                callbacks: { drop: this._onDrop.bind(this) },
+            }),
+        ];
+    }
+
+    /**
+     * Subscribe to events from the sheet.
+     * @param {jQuery} html HTML content of the sheet.
+     */
+    activateListeners(html) {
+        super.activateListeners(html);
+
+        // *** Everything below here is only needed if the sheet is editable ***
+        if (!this.isEditable) {
+            return;
+        }
+
+        // Delete the linked Actor (warlod/commander)
+        html.find(".actor-remove-control").on("click", this._removeLinkedActor.bind(this));
     }
 
     /** @inheritdoc */
@@ -48,7 +115,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
     }
 
     /**
-     * Handle dropped data on the Actor sheet
+     * Handle dropped Item data on the Actor sheet (cohort, fortification)
      * @param {DragEvent} event
      */
     async _onDrop(event) {
@@ -57,10 +124,12 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
             return;
         }
 
-        // Check item type and subtype
         const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
         if (!item || item.documentName !== "Item" || !["army_cohort", "army_fortification"].includes(item.data.type)) {
-            console.warn("L5R5E | Wrong type", item?.data?.type, item);
+            // actor dual trigger...
+            if (item?.documentName !== "Actor") {
+                console.warn("L5R5E | Wrong item type", item?.data?.type, item);
+            }
             return;
         }
 
@@ -72,7 +141,101 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
 
         let itemData = item.data.toObject(true);
 
-        // Finally create the embed
+        // Finally, create the embed
         return this.actor.createEmbeddedDocuments("Item", [itemData]);
+    }
+
+    /**
+     * Handle dropped Actor data on the Actor sheet
+     * @param {string}    type  warlord|commander|item
+     * @param {DragEvent} event
+     */
+    async _onDropActors(type, event) {
+        // *** Everything below here is only needed if the sheet is editable ***
+        if (!this.isEditable) {
+            return;
+        }
+
+        const droppedActor = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
+        return this._updateLinkedActorData(type, droppedActor);
+    }
+
+    /**
+     * Remove the linked actor (commander/warlord)
+     * @param {Event} event
+     * @return {Promise<void>}
+     * @private
+     */
+    async _removeLinkedActor(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const id = $(event.currentTarget).data("actor-id");
+        const type = $(event.currentTarget).data("type");
+        if (!id || !type) {
+            return;
+        }
+        return this._removeLinkedActorData(type);
+    }
+
+    /**
+     * Update actor datas for this army sheet
+     * @param {string}     type  commander|warlord
+     * @param {ActorL5r5e} actor actor object
+     * @return {Promise<abstract.Document>}
+     * @private
+     */
+    async _updateLinkedActorData(type, actor) {
+        if (!actor || actor.documentName !== "Actor" || !["character", "npc"].includes(actor.data?.type)) {
+            console.warn("L5R5E | Wrong actor type", actor?.data?.type, actor);
+            return;
+        }
+
+        const actorData = {};
+        switch (type) {
+            case "commander":
+                actorData.commander = actor.data.name;
+                actorData.commander_actor_id = actor.data._id;
+                actorData.commander_standing = {
+                    honor: actor.data.data.social.honor,
+                    glory: actor.data.data.social.glory,
+                    status: actor.data.data.social.status,
+                };
+                break;
+
+            case "warlord":
+                actorData.warlord = actor.data.name;
+                actorData.warlord_actor_id = actor.data._id;
+                break;
+
+            default:
+                console.warn("L5R5E | Unknown type", type);
+                return;
+        }
+        return this.actor.update({ data: actorData });
+    }
+
+    /**
+     * Clean ActorId for army sheet
+     * @param  {string} type commander|warlord
+     * @return {Promise<abstract.Document>}
+     * @private
+     */
+    async _removeLinkedActorData(type) {
+        const actorData = {};
+        switch (type) {
+            case "commander":
+                actorData.commander_actor_id = null;
+                break;
+
+            case "warlord":
+                actorData.warlord_actor_id = null;
+                break;
+
+            default:
+                console.warn("L5R5E | Unknown type", type);
+                return;
+        }
+        return this.actor.update({ data: actorData });
     }
 }

@@ -144,8 +144,8 @@ export class GmMonitor extends FormApplication {
             return;
         }
 
-        // Open sheet
-        html.find(`.actor-sheet-control`).on("click", this._openActorSheet.bind(this));
+        // Commons
+        game.l5r5e.HelpersL5r5e.commonListeners(html);
 
         // Delete
         html.find(`.actor-remove-control`).on("click", this._removeActor.bind(this));
@@ -220,24 +220,6 @@ export class GmMonitor extends FormApplication {
             "gm-monitor-actors",
             this.object.actors.map((e) => e.id)
         );
-    }
-
-    /**
-     * Open the Sheet for this actor
-     * @param {Event} event
-     * @return {Promise<void>}
-     * @private
-     */
-    async _openActorSheet(event) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        const id = $(event.currentTarget).data("actor-id");
-        if (!id) {
-            return;
-        }
-
-        this.object.actors.find((e) => e.id === id)?.sheet?.render(true);
     }
 
     /**
