@@ -24,6 +24,7 @@ export class CharacterGeneratorDialog extends FormApplication {
         generateNarrative: true,
         generatePeculiarities: true,
         generateItems: true,
+        generateTechniques: true,
         generateSocial: true,
     };
 
@@ -100,7 +101,12 @@ export class CharacterGeneratorDialog extends FormApplication {
         });
 
         // Update current Object with new data to keep selection
-        this.object = formData;
+        // Get selected value from generator for random values
+        this.object = {
+            ...formData,
+            clan: generator.data.clan,
+            gender: generator.data.gender,
+        };
 
         // Update actor with selection
         const updatedDatas = await generator.toActor(this.actor, formData);

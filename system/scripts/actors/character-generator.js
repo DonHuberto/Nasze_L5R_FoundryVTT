@@ -294,6 +294,7 @@ export class CharacterGenerator {
      * @param {boolean}    generateDemeanor      If true generate Demeanor and rings affinities
      * @param {boolean}    generatePeculiarities If true generate Advantage and Disadvantage
      * @param {boolean}    generateItems         If true generate Armor, Weapons and Items
+     * @param {boolean}    generateTechniques    If true generate Shuji, Katas...
      * @param {boolean}    generateNarrative     If true generate Narrative and fluff
      * @return {Promise<Object>}
      */
@@ -306,6 +307,7 @@ export class CharacterGenerator {
             generateDemeanor = true,
             generatePeculiarities = true,
             generateItems = true,
+            generateTechniques = true,
             generateNarrative = true,
         } = {}
     ) {
@@ -342,7 +344,7 @@ export class CharacterGenerator {
         }
 
         // Items types
-        if (generatePeculiarities || generateItems) {
+        if (generatePeculiarities || generateItems || generateTechniques) {
             const newItemsData = [];
 
             // Advantage / Disadvantage
@@ -353,6 +355,11 @@ export class CharacterGenerator {
             // Items
             if (generateItems) {
                 await this._generateItems(actor, newItemsData);
+            }
+
+            // Techniques
+            if (generateTechniques) {
+                await this._generateTechniques(actor, newItemsData);
             }
 
             // Add to actor
@@ -441,8 +448,8 @@ export class CharacterGenerator {
             await actor.deleteEmbeddedDocuments("Item", deleteIds);
         }
 
-        // Add peculiarities
-        for (const pack of ["adversities", "distinctions", "passions"]) {
+        // Add 1 each peculiarity
+        for (const pack of ["adversities", "distinctions", "passions", "anxieties"]) {
             const item = await CharacterGenerator._getItemFromPack(`l5r5e.core-peculiarities-${pack}`);
             if (item) {
                 newItemsData.push(foundry.utils.duplicate(item.data));
@@ -460,7 +467,6 @@ export class CharacterGenerator {
     async _generateItems(actor, newItemsData) {
         // Clear actor items
         const deleteIds = actor.data.items.filter((e) => ["armor", "weapon", "item"].includes(e.type)).map((e) => e.id);
-
         if (deleteIds.length > 0) {
             await actor.deleteEmbeddedDocuments("Item", deleteIds);
         }
@@ -494,6 +500,120 @@ export class CharacterGenerator {
                 }
             }
         }
+    }
+
+    /**
+     * Generate Techniques
+     * @param {ActorL5r5e} actor
+     * @param {DocumentData[]} newItemsData
+     * @return {Promise<void>}
+     * @private
+     */
+    async _generateTechniques(actor, newItemsData) {
+        // Clear actor items
+        const deleteIds = actor.data.items.filter((e) => e.type === "technique").map((e) => e.id);
+        if (deleteIds.length > 0) {
+            await actor.deleteEmbeddedDocuments("Item", deleteIds);
+        }
+
+        const avgrv = this.data.avgRingsValue;
+
+        /**
+         * Techs config
+         *
+         * exemple: {
+         *   probability: .7,
+         *     skill: {
+         *     grp_name: "scholar",
+         *     value_min: 1,
+         *   },
+         *   qty: {
+         *     min: 1,
+         *     max: avgrv,
+         *   },
+         * },
+         */
+        const techCfg = {
+            kata: {
+                probability: 1,
+                skill: {
+                    grp_name: "martial",
+                    value_min: 1,
+                },
+                qty: {
+                    min: 1,
+                    max: avgrv,
+                },
+            },
+            kiho: {
+                probability: 0.1,
+                skill: {
+                    grp_name: "martial",
+                    value_min: 1,
+                },
+            },
+            ninjutsu: {
+                probability: 0.1,
+                skill: {
+                    grp_name: "martial",
+                    value_min: 1,
+                },
+            },
+            shuji: {
+                probability: 1,
+                qty: {
+                    min: 1,
+                },
+            },
+            rituals: {
+                probability: 0.2,
+            },
+            maho: {
+                probability: 0.1,
+            },
+            invocations: {
+                probability: 0.3,
+                skill: {
+                    grp_name: "scholar",
+                    value_min: 1,
+                },
+                qty: {
+                    min: 2,
+                    max: Math.max(2, avgrv),
+                },
+            },
+        };
+
+        for (const pack in techCfg) {
+            const cfg = techCfg[pack];
+
+            // Minimum skill required (npc only for now)
+            if (!!cfg.skill && actor.data.data.skills[cfg.skill.grp_name] < cfg.skill.value_min) {
+                console.log("1");
+                continue;
+            }
+
+            console.log("2");
+
+            // Check probabilities to have more than min qty
+            let qtyMax = cfg.qty?.min ?? 0;
+            if (Math.random() < cfg.probability) {
+                qtyMax = CharacterGenerator._randomInt(cfg.qty?.min ?? 0, cfg.qty?.max ?? avgrv);
+            }
+
+            for (let qty = 0; qty < qtyMax; qty++) {
+                // Rank is limited by avgRingsValue
+                let item;
+                do {
+                    item = await CharacterGenerator._getItemFromPack(`l5r5e.core-techniques-${pack}`);
+                } while (item && item.data.data.rank > avgrv);
+
+                if (item) {
+                    // console.log('adding', pack, item.data.name);
+                    newItemsData.push(foundry.utils.duplicate(item.data));
+                }
+            } // fr qty
+        } // fr techCfg
     }
 
     /**
