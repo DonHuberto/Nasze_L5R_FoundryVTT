@@ -1,4 +1,4 @@
-<li class="item cohort flexcol">
+<li class="item cohort flexcol entity-link actor" {{#if cohort.data.leader_actor_id}}draggable="true" data-actor-id="{{cohort.data.leader_actor_id}}"{{/if}}>
     <ul class="item-header item-control">
         <li class="item-img"><img src="{{cohort.img}}" title="{{cohort.name}}" width="32px" height="32px"/></li>
         <li class="item-name l5r5e-tooltip" data-item-id="{{cohort._id}}">{{cohort.name}}</li>
@@ -14,8 +14,7 @@
         {{/if}}
     </ul>
     <ul class="item-properties">
-        {{#if cohort.data.leader}}<li>{{localize 'l5r5e.army.cohort.leader'}} : {{cohort.data.leader}}</li>{{/if}}
+        {{#if cohort.data.leader}}<li>{{localize 'l5r5e.army.cohort.leader'}} : {{#if cohort.data.leader_actor_id}}<a data-actor-id="{{cohort.data.leader_actor_id}}" class="open-sheet-actor-id">{{cohort.data.leader}}</a>{{else}}{{cohort.data.leader}}{{/if}}</li>{{/if}}
         {{#if cohort.data.equipment}}<li>{{localize 'l5r5e.equipment'}} : {{cohort.data.equipment}}</li>{{/if}}
-        {{#if cohort.data.abilities}}<li>{{localize 'l5r5e.army.cohort.abilities'}} : {{cohort.data.abilities}}</li>{{/if}}
     </ul>
 </li>

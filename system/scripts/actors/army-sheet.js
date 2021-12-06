@@ -17,6 +17,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
         });
     }
 
+    /** @override */
     constructor(options = {}) {
         super(options);
         this._initialize();
@@ -81,7 +82,9 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
             return;
         }
 
-        // Delete the linked Actor (warlod/commander)
+        html.find(".entity-link").on("dragstart", this._onDragEntityLink.bind(this));
+
+        // Delete the linked Actor (warlord/commander)
         html.find(".actor-remove-control").on("click", this._removeLinkedActor.bind(this));
     }
 
@@ -112,6 +115,24 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
         });
 
         return out;
+    }
+
+    /**
+     * Callback actions which occur at the beginning of a drag start workflow.
+     * @param {DragEvent} event	The originating DragEvent
+     */
+    _onDragEntityLink(event) {
+        const actorId = $(event.currentTarget).data("actor-id");
+        if (!actorId) {
+            return;
+        }
+        event.originalEvent.dataTransfer.setData(
+            "text/plain",
+            JSON.stringify({
+                type: "Actor",
+                id: actorId,
+            })
+        );
     }
 
     /**

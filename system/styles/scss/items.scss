@@ -411,9 +411,12 @@
     }
     article {
         &.attributes {
-            height: 10.5rem;
+            height: 7rem;
             input[type="text"] {
                 width: 100%;
+            }
+            .actor-remove-control {
+                font-size: 12px;
             }
             .flx50 {
                 flex: 0 0 calc(50% - 0.5rem);
@@ -421,6 +424,16 @@
             .flx100 {
                 flex: 0 0 calc(100% - 0.5rem);
             }
+            .editor-content {
+                min-height: 8rem;
+                max-height: 14rem;
+            }
+        }
+        &.abilities {
+            align-self: stretch;
+            height: calc(100% - 8rem);
+            width: 100%;
+            box-sizing: content-box;
         }
     }
 }

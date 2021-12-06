@@ -272,6 +272,7 @@
         "army_cohort": {
             "templates": ["basics"],
             "leader": "",
+            "leader_actor_id": null,
             "equipment": "",
             "abilities": "",
             "battle_readiness": {
