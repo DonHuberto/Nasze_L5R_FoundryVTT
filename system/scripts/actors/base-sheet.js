@@ -87,13 +87,12 @@ export class BaseSheetL5r5e extends ActorSheet {
      * @override
      */
     async _updateObject(event, formData) {
-        if (formData["data.notes"]) {
-            formData["data.notes"] = game.l5r5e.HelpersL5r5e.convertSymbols(formData["data.notes"], true);
-        }
-        if (formData["data.description"]) {
-            formData["data.description"] = game.l5r5e.HelpersL5r5e.convertSymbols(formData["data.description"], true);
-        }
-
+        ["data.notes", "data.description"].forEach((name) => {
+            if (!formData[name]) {
+                return;
+            }
+            formData[name] = game.l5r5e.HelpersL5r5e.convertSymbols(formData[name], true);
+        });
         return super._updateObject(event, formData);
     }
 

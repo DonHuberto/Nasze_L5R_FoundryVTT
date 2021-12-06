@@ -63,7 +63,6 @@ export class ArmyCohortSheetL5r5e extends ItemSheetL5r5e {
      */
     async _updateObject(event, formData) {
         if (formData["data.abilities"]) {
-            // L5R Symbols
             formData["data.abilities"] = game.l5r5e.HelpersL5r5e.convertSymbols(formData["data.abilities"], true);
         }
         return super._updateObject(event, formData);

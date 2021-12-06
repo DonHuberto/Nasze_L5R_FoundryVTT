@@ -56,7 +56,7 @@
     <fieldset class="army-abilities">
         <label>
             <strong>{{localize 'l5r5e.army.army_abilities'}}</strong>
-            <textarea type="text" name="data.army_abilities">{{data.data.army_abilities}}</textarea>
+            {{editor content=data.data.army_abilities target="data.army_abilities" button=true editable=options.editable}}
         </label>
     </fieldset>
 </div>
