@@ -21,7 +21,7 @@
         <tbody>
         {{#each data.actors as |actor|}}
         <tr>
-            <td><img class="profile actor-profile" title="{{actor.name}}" src="{{actor.img}}"></td>
+            <td><img data-actor-id="{{actor.id}}" draggable="true" class="profile actor-profile dragndrop-actor-id pointer" title="{{actor.name}}" src="{{actor.img}}"></td>
             <td>
                 <a data-actor-id="{{actor.id}}" class="open-sheet-actor-id">{{actor.name}}</a>
                 {{#if actor.data.data.attitude}}<p>({{actor.data.data.attitude}})</p>{{/if}}
@@ -91,7 +91,7 @@
         <tbody>
         {{#each data.actors as |actor|}}
         <tr>
-            <td><img class="profile actor-profile" title="{{actor.name}}" src="{{actor.img}}"></td>
+            <td><img data-actor-id="{{actor.id}}" draggable="true" class="profile actor-profile dragndrop-actor-id pointer" title="{{actor.name}}" src="{{actor.img}}"></td>
             <td><a data-actor-id="{{actor.id}}" class="open-sheet-actor-id">{{actor.name}}</a></td>
             <td>
                 {{#if actor.data.data.warlord_actor_id}}

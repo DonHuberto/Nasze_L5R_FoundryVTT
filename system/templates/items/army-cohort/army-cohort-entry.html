@@ -1,6 +1,6 @@
-<li class="item cohort flexcol entity-link actor" {{#if cohort.data.leader_actor_id}}draggable="true" data-actor-id="{{cohort.data.leader_actor_id}}"{{/if}}>
+<li class="item cohort flexcol dragndrop-actor-id actor">
     <ul class="item-header item-control">
-        <li class="item-img"><img src="{{cohort.img}}" title="{{cohort.name}}" width="32px" height="32px"/></li>
+        <li class="item-img"><img src="{{cohort.img}}" title="{{cohort.name}}" width="32px" height="32px" {{#if cohort.data.leader_actor_id}}draggable="true" class="dragndrop-actor-id pointer" data-actor-id="{{cohort.data.leader_actor_id}}"{{/if}}/></li>
         <li class="item-name l5r5e-tooltip" data-item-id="{{cohort._id}}">{{cohort.name}}</li>
         <li class="icon-stat-container">
             <i class="fas fa-user-injured" title="{{localize 'l5r5e.army.battle_readiness.casualties'}}"> {{cohort.data.battle_readiness.casualties_strength.value}}</i>

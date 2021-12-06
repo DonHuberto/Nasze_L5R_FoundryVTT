@@ -70,12 +70,10 @@ export class HelpersL5r5e {
      * @return {Promise<null>}
      */
     static async getDragnDropTargetObject(event) {
-        const json = event.dataTransfer?.getData("text/plain");
-        if (!json) {
-            return null;
-        }
-        const data = JSON.parse(json);
-        if (!data) {
+        let data;
+        try {
+            data = JSON.parse(event.dataTransfer?.getData("text/plain"));
+        } catch (err) {
             return null;
         }
         return await HelpersL5r5e.getObjectGameOrPack(data);
@@ -417,6 +415,21 @@ export class HelpersL5r5e {
                     pack.render(true);
                 }
             }
+        });
+
+        // Ability to drag n drop an actor
+        html.find(".dragndrop-actor-id").on("dragstart", (event) => {
+            const actorId = $(event.currentTarget).data("actor-id");
+            if (!actorId) {
+                return;
+            }
+            event.originalEvent.dataTransfer.setData(
+                "text/plain",
+                JSON.stringify({
+                    type: "Actor",
+                    id: actorId,
+                })
+            );
         });
 
         // Item detail tooltips
