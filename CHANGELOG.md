@@ -2,10 +2,10 @@
 
 ## 1.4.0 - Armies & French PoW
 - Added Army (Actor), Cohort (Item) and Fortification (Item) sheets.
-- Actor Sheet (PC, NPC, Army) : Added the ability to Drag n Drop an actor's image to map (token).
+- Actor Sheet (PC, NPC, Army) : Added the ability to Drag n Drop an actor's image.
 - GM monitor :
   - Added Armies view.
-  - Added the ability to Drag n Drop an actor's image to map (token).
+  - Added the ability to Drag n Drop an actor's image.
 - Added real icons for Inversion and Mantra.
 - Added Mantra technique type.
 - Compendiums :
