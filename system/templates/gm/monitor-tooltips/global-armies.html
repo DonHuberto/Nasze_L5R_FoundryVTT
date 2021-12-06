@@ -9,4 +9,13 @@
         <li><b>{{localize 'l5r5e.army.army_abilities'}}</b> : {{actorData.army_abilities}}</li>
     </ul>
     <p>{{{actorData.description}}}</p>
+
+    {{json actorData.items}}
+
+    {{localize 'l5r5e.army.cohort.title'}}
+    <ul>
+        {{#each data.splitItemsList.army_cohort as |item|}}
+            <li><b>{{localize 'l5r5e.army.allies_backers'}}</b> : {{actorData.allies_backers}}</li>
+        {{/each}}
+    </ul>
 </section>
