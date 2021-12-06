@@ -394,7 +394,7 @@
             },
             "fortification": {
                 "tab": "Fortifications",
-                "title": "Fortifications",
+                "title": "Fortification",
                 "difficulty": "Difficulté",
                 "attrition_reduction": "Usure"
             }

@@ -277,11 +277,11 @@ export class GmMonitor extends FormApplication {
      * @private
      */
     async _getTooltipArmiesGlobal(actor) {
-        const data = actor.data.data;
+        const actorData = (await actor.sheet?.getData()) || actor.data;
 
         // *** Template ***
         return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor-tooltips/global-armies.html`, {
-            actorData: data,
+            actorData: actorData.data,
         });
     }
 
