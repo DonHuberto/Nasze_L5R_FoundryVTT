@@ -681,7 +681,7 @@ export class HelpersL5r5e {
             console.log(`L5R5E | Pack not found[${pack}]`);
             return;
         }
-        if (!comp.indexed) {
+        if (!comp.indexed || comp.size < 1) {
             await comp.getDocuments();
         }
         const table = await comp.getName(tableName);
