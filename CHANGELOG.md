@@ -17,6 +17,7 @@
     - Fixed : "Urbane and Worldly" advantage was misspelled "Wroldly" (thx to Cernunnos).
     - Fixed : "Passion for [Foreign Performing Art Form]" from "Passion" to "Distinction" type.
     - Fixed : "Flowering Deceptions" from "Kata" to "Shuji" type.
+  - Added Hooves (weapon) & Arrows (object)
   - Added two tables to draw japanese names (1500 males names & 530 females names).
   - Added some Macros.
 - Standardization of "great-clans-presentation" pack name to "core-journal-great-clans-presentation".
