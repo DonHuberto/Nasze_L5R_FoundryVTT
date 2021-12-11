@@ -92,6 +92,10 @@
                 .commander {
                     display: flex;
 
+                    .fa-sign-in-alt {
+                        transform: rotate(90deg);
+                    }
+
                     fieldset {
                         margin-top: 0.25rem;
                         margin-bottom: 0.25rem;

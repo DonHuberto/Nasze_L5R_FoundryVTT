@@ -1,8 +1,6 @@
 <div class="header-fields warlord">
     <fieldset>
-        <p>
-            <strong>{{localize 'l5r5e.army.warlord'}}</strong>
-        </p>
+        <legend>{{^if data.data.warlord_actor_id}}<i class="fa fa-sign-in-alt" aria-hidden="true"></i> {{/if}}{{localize 'l5r5e.army.warlord'}}</legend>
         <p>
             {{#if data.data.warlord_actor_id}}
                 <span data-actor-id="{{actor.id}}" data-type="warlord" class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span>
@@ -23,9 +21,7 @@
 </div>
 <div class="header-fields commander">
     <fieldset>
-        <label>
-            <strong>{{localize 'l5r5e.army.commander'}}</strong>
-        </label>
+        <legend>{{^if data.data.commander_actor_id}}<i class="fa fa-sign-in-alt" aria-hidden="true"></i> {{/if}}{{localize 'l5r5e.army.commander'}}</legend>
         {{#if data.data.commander_actor_id}}
             <span data-actor-id="{{actor.id}}" data-type="commander" class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span>
             <a data-actor-id="{{data.data.commander_actor_id}}" class="open-sheet-actor-id">{{data.data.commander}}</a>

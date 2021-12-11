@@ -410,6 +410,9 @@
         height: calc(100% - 92px - 3.6rem);
     }
     article {
+        .fa-sign-in-alt {
+            transform: rotate(90deg);
+        }
         &.attributes {
             height: 7rem;
             input[type="text"] {
