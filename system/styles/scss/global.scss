@@ -333,9 +333,34 @@ a.compendium-link {
     word-break: break-all;
 }
 
+// Color for playlist
+#playlists .sound-control {
+    i.fas.fa-random,
+    i.far.fa-arrow-alt-circle-right,
+    i.fas.fa-compress-arrows-alt,
+    i.fas.fa-ban {
+        color: #ff6400;
+    }
+
+    i.fas.fa-square {
+        color: #dd0000;
+    }
+
+    i.fas.fa-play,
+    i.fas.fa-play-circle {
+        color: #00dd00;
+    }
+
+    i.fas.fa-pause,
+    i.fas.fa-backward,
+    i.fas.fa-forward {
+        color: #0096ff;
+    }
+}
+
 // Fix for "search anywhere" draggable icon
 .window-draggable-handle {
-    z-index: 2;
+    z-index: 20 !important;
 }
 
 // Fix forien-quest
