@@ -198,6 +198,11 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
 
         // Item subtype specific
         switch (itemData.type) {
+            case "army_cohort":
+            case "army_fortification":
+                console.warn("L5R5E | Army items are not allowed", item?.data?.type, item);
+                return;
+
             case "advancement":
                 // Specific advancements, remove 1 to selected ring/skill
                 await this.actor.addBonus(item);

@@ -160,7 +160,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
         if (!item || item.documentName !== "Item" || !["army_cohort", "army_fortification"].includes(item.data.type)) {
             // actor dual trigger...
             if (item?.documentName !== "Actor") {
-                console.warn("L5R5E | Wrong item type", item?.data?.type, item);
+                console.warn("L5R5E | Characters items are not allowed", item?.data?.type, item);
             }
             return;
         }
