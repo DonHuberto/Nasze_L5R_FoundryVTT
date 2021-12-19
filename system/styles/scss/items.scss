@@ -98,6 +98,8 @@
 }
 // Advancement Sheet, Armor Sheet, Item Sheet, Peculiarity Sheet, Property Sheet, Technique Sheet, Weapon Sheet
 &.advancement,
+&.army-cohort,
+&.army-fortification,
 &.armor,
 &.bond,
 &.item,
@@ -400,6 +402,55 @@
         &.experience {
             flex: 100%;
             height: calc(100% - 4rem);
+        }
+    }
+}
+&.army-cohort {
+    .sheet-body {
+        height: calc(100% - 92px - 3.6rem);
+    }
+    article {
+        .fa-sign-in-alt {
+            transform: rotate(90deg);
+        }
+        &.attributes {
+            height: 7rem;
+            input[type="text"] {
+                width: 100%;
+            }
+            .actor-remove-control {
+                font-size: 12px;
+            }
+            .flx50 {
+                flex: 0 0 calc(50% - 0.5rem);
+            }
+            .flx100 {
+                flex: 0 0 calc(100% - 0.5rem);
+            }
+            .editor-content {
+                min-height: 8rem;
+                max-height: 14rem;
+            }
+        }
+        &.abilities {
+            align-self: stretch;
+            height: calc(100% - 8rem);
+            width: 100%;
+            box-sizing: content-box;
+        }
+    }
+}
+
+&.army-fortification {
+    .sheet-body {
+        height: calc(100% - 92px);
+    }
+    article {
+        &.infos {
+            height: calc(100% - 4.5rem);
+        }
+        &.attributes {
+            height: 3.5rem;
         }
     }
 }

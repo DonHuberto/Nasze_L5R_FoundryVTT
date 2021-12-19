@@ -1,0 +1,23 @@
+{{!-- Supplies and Logistics --}}
+<fieldset class="supplies_logistics">
+    <legend class="text-block-header">{{localize 'l5r5e.army.supplies_logistics'}}</legend>
+    {{editor content=data.data.supplies_logistics target="data.supplies_logistics" button=true editable=options.editable}}
+</fieldset>
+
+{{!-- Past Battles --}}
+<fieldset class="past_battles">
+    <legend class="text-block-header">{{localize 'l5r5e.army.past_battles'}}</legend>
+    {{editor content=data.data.past_battles target="data.past_battles" button=true editable=options.editable}}
+</fieldset>
+
+{{!-- Description (public) --}}
+<fieldset class="description">
+    <legend class="text-block-header">{{localize 'l5r5e.description'}}</legend>
+    {{editor content=data.data.description target="data.description" button=true editable=options.editable}}
+</fieldset>
+
+{{!-- Notes (private) --}}
+<fieldset class="note">
+    <legend class="text-block-header">{{localize 'l5r5e.notes'}}</legend>
+    {{editor content=data.data.notes target="data.notes" button=true editable=options.editable}}
+</fieldset>

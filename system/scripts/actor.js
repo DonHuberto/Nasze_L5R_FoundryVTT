@@ -43,13 +43,30 @@ export class ActorL5r5e extends Actor {
                 foundry.utils.mergeObject(
                     data.token,
                     {
-                        actorLink: false,
+                        actorLink: true,
                         disposition: 0, // neutral
                         bar1: {
                             attribute: "fatigue",
                         },
                         bar2: {
                             attribute: "strife",
+                        },
+                    },
+                    { overwrite: false }
+                );
+                break;
+
+            case "army":
+                foundry.utils.mergeObject(
+                    data.token,
+                    {
+                        actorLink: true,
+                        disposition: 0, // neutral
+                        bar1: {
+                            attribute: "battle_readiness.casualties_strength",
+                        },
+                        bar2: {
+                            attribute: "battle_readiness.panic_discipline",
                         },
                     },
                     { overwrite: false }
@@ -200,7 +217,8 @@ export class ActorL5r5e extends Actor {
      * @return {Promise<string|null>}
      */
     async renderTextTemplate() {
-        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}actors/actor-text.html`, this);
+        const data = (await this.sheet?.getData()) || this;
+        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}actors/actor-text.html`, data);
         if (!tpl) {
             return null;
         }
@@ -236,6 +254,10 @@ export class ActorL5r5e extends Actor {
      * @return {boolean}
      */
     get isPrepared() {
+        if (!["character", "npc"].includes(this.data.type)) {
+            return false;
+        }
+
         const cfg = {
             character: game.settings.get("l5r5e", "initiative-prepared-character"),
             adversary: game.settings.get("l5r5e", "initiative-prepared-adversary"),

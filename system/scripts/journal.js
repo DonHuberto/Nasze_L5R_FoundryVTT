@@ -7,7 +7,8 @@ export class JournalL5r5e extends JournalEntry {
      * @return {Promise<string|null>}
      */
     async renderTextTemplate() {
-        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}journal/journal-text.html`, this);
+        const data = (await this.sheet?.getData()) || this;
+        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}journal/journal-text.html`, data);
         if (!tpl) {
             return null;
         }

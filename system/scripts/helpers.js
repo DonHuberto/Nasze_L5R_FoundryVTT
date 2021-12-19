@@ -70,12 +70,10 @@ export class HelpersL5r5e {
      * @return {Promise<null>}
      */
     static async getDragnDropTargetObject(event) {
-        const json = event.dataTransfer.getData("text/plain");
-        if (!json) {
-            return null;
-        }
-        const data = JSON.parse(json);
-        if (!data) {
+        let data;
+        try {
+            data = JSON.parse(event.dataTransfer?.getData("text/plain"));
+        } catch (err) {
             return null;
         }
         return await HelpersL5r5e.getObjectGameOrPack(data);
@@ -267,6 +265,7 @@ export class HelpersL5r5e {
         core.set("Kat", "l5r5e.core-techniques-kata");
         core.set("Kih", "l5r5e.core-techniques-kiho");
         core.set("Mah", "l5r5e.core-techniques-maho");
+        core.set("Man", "l5r5e.core-techniques-mantra");
         core.set("Mas", "l5r5e.core-techniques-mastery");
         core.set("Nin", "l5r5e.core-techniques-ninjutsu");
         core.set("Rit", "l5r5e.core-techniques-rituals");
@@ -418,6 +417,21 @@ export class HelpersL5r5e {
             }
         });
 
+        // Ability to drag n drop an actor
+        html.find(".dragndrop-actor-id").on("dragstart", (event) => {
+            const actorId = $(event.currentTarget).data("actor-id");
+            if (!actorId) {
+                return;
+            }
+            event.originalEvent.dataTransfer.setData(
+                "text/plain",
+                JSON.stringify({
+                    type: "Actor",
+                    id: actorId,
+                })
+            );
+        });
+
         // Item detail tooltips
         this.popupManager(html.find(".l5r5e-tooltip"), async (event) => {
             const item = await HelpersL5r5e.getEmbedItemByEvent(event, actor);
@@ -425,6 +439,18 @@ export class HelpersL5r5e {
                 return;
             }
             return await item.renderTextTemplate();
+        });
+
+        // Open actor sheet
+        html.find(".open-sheet-actor-id").on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const id = $(event.currentTarget).data("actor-id");
+            if (!id) {
+                return;
+            }
+            game.actors.get(id)?.sheet?.render(true);
         });
     }
 
@@ -478,7 +504,7 @@ export class HelpersL5r5e {
      * Get a Item from a Actor Sheet
      * @param {Event} event HTML Event
      * @param {ActorL5r5e} actor
-     * @return {ItemL5r5e}
+     * @return {Promise<ItemL5r5e>}
      */
     static async getEmbedItemByEvent(event, actor) {
         const current = $(event.currentTarget);
@@ -527,16 +553,62 @@ export class HelpersL5r5e {
         let link = null;
         if (object.data.flags.core?.sourceId) {
             link = object.data.flags.core?.sourceId.replace(/(\w+)\.(.+)/, "@$1[$2]");
-        } else if (object.pack) {
+            if (!HelpersL5r5e.isLinkValid(link)) {
+                link = null;
+            }
+        }
+        if (!link && object.pack) {
             link = `@Compendium[${object.pack}.${object.id}]{${object.name}}`;
-        } else if (!object.actor) {
+            if (!HelpersL5r5e.isLinkValid(link)) {
+                link = null;
+            }
+        }
+        if (!link && !object.actor) {
             link = object.link;
+            if (!HelpersL5r5e.isLinkValid(link)) {
+                link = null;
+            }
         }
 
         // Send to Chat
         return ChatMessage.create({
             content: `<div class="l5r5e-chat-item">${tpl}${link ? `<hr>` + link : ""}</div>`,
         });
+    }
+
+    /**
+     * Check if the link is valid (format "@Item[L5RCoreIte000042]{Amigasa}" / "@Compendium[l5r5e.core-peculiarities-distinctions.L5RCoreDis000002]{Ambidextrie}")
+     * @param  {string} link
+     * @return {boolean}
+     */
+    static isLinkValid(link) {
+        const [type, target] = link.replace(/@(\w+)\[([^\]]+)\].*/, "$1|$2").split("|");
+
+        // Get a matched World document
+        // "@Item[L5RCoreIte000042]{Amigasa}"
+        if (CONST.ENTITY_TYPES.includes(type)) {
+            const collection = game.collections.get(type);
+            const document = /^[a-zA-Z0-9]{16}$/.test(target) ? collection.get(target) : collection.getName(target);
+            return !!document;
+        }
+
+        // Get a matched Compendium entity
+        // "@Compendium[l5r5e.core-peculiarities-distinctions.L5RCoreDis000002]{Ambidextrie}"
+        if (type === "Compendium") {
+            // Get the linked Entity
+            const [scope, packName, id] = target.split(".");
+            const pack = game.packs.get(`${scope}.${packName}`);
+            if (!pack) {
+                return false;
+            }
+            // If the pack is indexed, check, if not assume it's ok
+            if (pack.index.size) {
+                const index = pack.index.find((i) => i._id === id || i.name === id);
+                return !!index;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -593,5 +665,29 @@ export class HelpersL5r5e {
             }
         };
         /* eslint-enable no-undef */
+    }
+
+    /**
+     * Shortcut method to draw names to chat (private) from a table in compendium without importing it
+     * @param {String} pack                Compendium name
+     * @param {String} tableName           Table name in this compendium
+     * @param {String} retrieve            How many draw we do
+     * @param {object} opt                 drawMany config option object
+     * @return {Promise<{RollTableDraw}>}  The drawn results
+     */
+    static async drawManyFromPack(pack, tableName, retrieve = 5, opt = { rollMode: "selfroll" }) {
+        const comp = await game.packs.get(pack);
+        if (!comp) {
+            console.log(`L5R5E | Pack not found[${pack}]`);
+            return;
+        }
+        await comp.getDocuments();
+
+        const table = await comp.getName(tableName);
+        if (!table) {
+            console.log(`L5R5E | Table not found[${tableName}]`, comp, table);
+            return;
+        }
+        return await table.drawMany(retrieve, opt);
     }
 }

@@ -21,7 +21,8 @@
     },
     "ACTOR": {
         "TypeCharacter": "Personaje jugador",
-        "TypeNpc": "Personaje no jugador"
+        "TypeNpc": "Personaje no jugador",
+        "TypeArmy": "Army"
     },
     "ITEM": {
         "TypeItem": "Objeto",
@@ -34,7 +35,9 @@
         "TypeTitle": "Title",
         "TypeBond": "Bond",
         "TypeSignatureScroll": "Signature Scroll",
-        "TypeItemPattern": "Item Pattern"
+        "TypeItemPattern": "Item Pattern",
+        "TypeArmy_fortification": "Fortification",
+        "TypeArmy_cohort": "Cohort"
     },
     "l5r5e": {
         "global": {
@@ -140,6 +143,7 @@
         },
         "gm_monitor": {
             "title": "GM Monitor",
+            "switch_view": "Switch View",
             "honor_glory_status": "H/G/S",
             "focus_vigilance": "Foc./Vig."
         },
@@ -187,6 +191,7 @@
             "shuji": "Shuji",
             "maho": "Mahõ",
             "ninjutsu": "Ninjutsu",
+            "mantra": "Mantra",
             "school_ability": "Capacidad de escuela",
             "mastery_ability": "Habilidad de maestría",
             "title_ability": "Title Ability",
@@ -363,6 +368,36 @@
             "character": "Personaje jugador",
             "adversary": "Adversario",
             "minion": "Esbirro"
+        },
+        "army": {
+            "warlord": "Warlord",
+            "allies_backers": "Allies and Backers",
+            "purpose_mustering": "Purpose for Mustering",
+            "battle_readiness": {
+                "title": "Battle Readiness",
+                "strength": "Strength",
+                "casualties": "Casualties",
+                "discipline": "Discipline",
+                "panic": "Panic"
+            },
+            "commander": "Commander",
+            "commander_abilities": "Commander's relevant abilities",
+            "army_abilities": "Army Abilities",
+            "commander_standing": "Commander's Standing",
+            "supplies_logistics": "Supplies and Logistics",
+            "past_battles": "Past Battles",
+            "cohort": {
+                "tab": "Cohorts",
+                "title": "Cohort",
+                "leader": "Leader",
+                "abilities": "Abilities"
+            },
+            "fortification": {
+                "tab": "Fortifications",
+                "title": "Fortification Held",
+                "difficulty": "Difficulty Value",
+                "attrition_reduction": "Attrition Reduction"
+            }
         },
         "twenty_questions": {
             "title": "Veinte preguntas",

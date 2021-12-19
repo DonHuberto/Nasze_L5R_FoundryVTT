@@ -1,4 +1,6 @@
 <form class="l5r5e gm-monitor" autocomplete="off">
+{{#ifCond data.view "==" "characters"}}
+    {{!-- Characters & Npcs --}}
     <table>
         <thead>
             <th class="img"></th>
@@ -19,9 +21,9 @@
         <tbody>
         {{#each data.actors as |actor|}}
         <tr>
-            <td><img class="profile actor-profile" title="{{actor.name}}" src="{{actor.img}}"></td>
+            <td><img data-actor-id="{{actor.id}}" draggable="true" class="profile actor-profile dragndrop-actor-id pointer" title="{{actor.name}}" src="{{actor.img}}"></td>
             <td>
-                <a data-actor-id="{{actor.id}}" class="actor-sheet-control">{{actor.name}}</a>
+                <a data-actor-id="{{actor.id}}" class="open-sheet-actor-id">{{actor.name}}</a>
                 {{#if actor.data.data.attitude}}<p>({{actor.data.data.attitude}})</p>{{/if}}
             </td>
             <td><i data-type="text" data-text="<h2>{{localize 'l5r5e.conflict.stance'}} ({{localizeRing actor.data.data.stance}})</h2>{{localizeStanceTip actor.data.data.stance}}" class="i_{{actor.data.data.stance}} actor-infos-control"></i></td>
@@ -73,4 +75,55 @@
         {{/each}}
         </tbody>
     </table>
+{{else}}
+    {{!-- Armies --}}
+    <table>
+        <thead>
+            <th class="img"></th>
+            <th class="name">{{localize 'l5r5e.name'}}</th>
+            <th class="warlord">{{localize 'l5r5e.army.warlord'}}</th>
+            <th class="casualties"><i class="fas fa-user-injured" title="{{localize 'l5r5e.army.battle_readiness.casualties'}}"></i> / <i class="fas fa-fist-raised" title="{{localize 'l5r5e.army.battle_readiness.strength'}}"></i></th>
+            <th class="panic"><i class="fas fa-ghost" title="{{localize 'l5r5e.army.battle_readiness.panic'}}"></i> / <i class="fas fa-user-friends" title="{{localize 'l5r5e.army.battle_readiness.discipline'}}"></i></th>
+            <th class="commander">{{localize 'l5r5e.army.commander'}} {{localize 'l5r5e.gm_monitor.honor_glory_status'}}</th>
+            <th class=""></th>
+            <th class=""></th>
+        </thead>
+        <tbody>
+        {{#each data.actors as |actor|}}
+        <tr>
+            <td><img data-actor-id="{{actor.id}}" draggable="true" class="profile actor-profile dragndrop-actor-id pointer" title="{{actor.name}}" src="{{actor.img}}"></td>
+            <td><a data-actor-id="{{actor.id}}" class="open-sheet-actor-id">{{actor.name}}</a></td>
+            <td>
+                {{#if actor.data.data.warlord_actor_id}}
+                    <a data-actor-id="{{actor.data.data.warlord_actor_id}}" class="open-sheet-actor-id">{{actor.data.data.warlord}}</a>
+                {{else}}
+                    {{actor.data.data.warlord}}
+                {{/if}}
+            </td>
+            <td>
+                <span class="{{#ifCond actor.data.data.battle_readiness.casualties_strength.value '>' actor.data.data.battle_readiness.casualties_strength.max}}badvalue{{/ifCond}}">{{actor.data.data.battle_readiness.casualties_strength.value}}</span>
+                 / {{actor.data.data.battle_readiness.casualties_strength.max}}
+             </td>
+            <td>
+                <span class="{{#ifCond actor.data.data.battle_readiness.panic_discipline.value '>' actor.data.data.battle_readiness.panic_discipline.max}}badvalue{{/ifCond}}">{{actor.data.data.battle_readiness.panic_discipline.value}}</span>
+                / {{actor.data.data.battle_readiness.panic_discipline.max}}
+            </td>
+            <td>
+                {{#if actor.data.data.commander_actor_id}}
+                    <a data-actor-id="{{actor.data.data.commander_actor_id}}" class="open-sheet-actor-id">{{actor.data.data.commander}}</a>
+                {{else}}
+                    {{actor.data.data.commander}}
+                {{/if}}
+                <br>
+                <span class="{{#ifCond actor.data.data.commander_standing.honor '>' 64}}goodvalue{{/ifCond}}{{#ifCond actor.data.data.commander_standing.honor '<' 30}}badvalue{{/ifCond}}">{{actor.data.data.commander_standing.honor}}</span>
+                / <span class="{{#ifCond actor.data.data.commander_standing.glory '>' 64}}goodvalue{{/ifCond}}{{#ifCond actor.data.data.commander_standing.glory '<' 20}}badvalue{{/ifCond}}">{{actor.data.data.commander_standing.glory}}</span>
+                / {{actor.data.data.commander_standing.status}}
+            </td>
+            <td><i data-actor-id="{{actor.id}}" data-type="global" class="fas fa-question-circle actor-infos-control"></i></td>
+            <td><span data-actor-id="{{actor.id}}" class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span></td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
+{{/ifCond}}
 </form>

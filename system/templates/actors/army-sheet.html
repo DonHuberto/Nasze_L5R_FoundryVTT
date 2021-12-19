@@ -1,0 +1,59 @@
+<form class="{{cssClass}}" data-lang="{{localize 'I18N.Language'}}" autocomplete="off">
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+        <img class="profile-img dragndrop-actor-id pointer" src="{{data.img}}" data-edit="img" data-actor-id="{{actor.id}}" draggable="true" title="{{data.name}}"/>
+        <div class="header-fields identity-wrapper">
+            <h1 class="charname"><input name="name" type="text" value="{{data.name}}" placeholder="Name"/></h1>
+            <div class="readiness">
+                <ul>
+                    <li>
+                        <input name="data.battle_readiness.casualties_strength.value" type="number" value="{{data.data.battle_readiness.casualties_strength.value}}" />
+                        <strong>{{localize 'l5r5e.army.battle_readiness.casualties'}}</strong>
+                    </li>
+                    <li>
+                        <input name="data.battle_readiness.casualties_strength.max" type="number" value="{{data.data.battle_readiness.casualties_strength.max}}" />
+                        <strong>{{localize 'l5r5e.army.battle_readiness.strength'}}</strong>
+                    </li>
+                    <li>
+                        <input name="data.battle_readiness.panic_discipline.value" type="number" value="{{data.data.battle_readiness.panic_discipline.value}}" />
+                        <strong>{{localize 'l5r5e.army.battle_readiness.panic'}}</strong>
+                    </li>
+                    <li>
+                        <input name="data.battle_readiness.panic_discipline.max" type="number" value="{{data.data.battle_readiness.panic_discipline.max}}" />
+                        <strong>{{localize 'l5r5e.army.battle_readiness.discipline'}}</strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+        {{!-- Sheet Tab Navigation --}}
+        <nav class="sheet-tabs tabs" data-group="primary">
+            <a class="item" data-tab="army">{{localize 'ACTOR.TypeArmy'}}</a>
+            <a class="item" data-tab="cohort">{{localize 'l5r5e.army.cohort.tab'}}</a>
+            <a class="item" data-tab="fortification">{{localize 'l5r5e.army.fortification.tab'}}</a>
+            <a class="item" data-tab="others">{{localize 'l5r5e.notes'}}</a>
+        </nav>
+
+        {{!-- Army Tab --}}
+        <article class="tab army" data-group="primary" data-tab="army">
+            {{> 'systems/l5r5e/templates/actors/army/army.html'}}
+        </article>
+
+        {{!-- Cohort Tab --}}
+        <article class="tab cohort" data-group="primary" data-tab="cohort">
+            {{> 'systems/l5r5e/templates/actors/army/cohort.html'}}
+        </article>
+
+        {{!-- Fortification Tab --}}
+        <article class="tab fortification" data-group="primary" data-tab="fortification">
+            {{> 'systems/l5r5e/templates/actors/army/fortification.html'}}
+        </article>
+
+        {{!-- Others Tab --}}
+        <article class="tab others" data-group="primary" data-tab="others">
+            {{> 'systems/l5r5e/templates/actors/army/others.html'}}
+        </article>
+    </section>
+</form>

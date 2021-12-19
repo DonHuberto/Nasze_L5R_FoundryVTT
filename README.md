@@ -83,7 +83,9 @@ Vous êtes libre de contribuer et proposer après fork des corrections, modifica
 
 
 # Screenshots
-![FoundryVTT Connection](https://cdn.discordapp.com/attachments/659430710146498583/798684216551407666/unknown.png)
-![FoundryVTT L5r5e Character and Roll](https://cdn.discordapp.com/attachments/659430710146498583/798686668361039882/unknown.png)
-![FoundryVTT L5r5e Sheets](https://cdn.discordapp.com/attachments/659430710146498583/798686880974503946/unknown.png)
-![FoundryVTT L5r5e Itemss](https://cdn.discordapp.com/attachments/659430710146498583/798687268528848987/unknown.png)
+![L5R 5e FoundryVTT Connection](./screenshoots/login.jpg?raw=true)
+![L5R 5e FoundryVTT Roll n Keep](./screenshoots/roll.jpg?raw=true)
+![L5R 5e FoundryVTT School](./screenshoots/school.jpg?raw=true)
+![L5R 5e FoundryVTT Pc](./screenshoots/sheet_pc.jpg?raw=true)
+![L5R 5e FoundryVTT Npc](./screenshoots/sheet_npc_army.jpg?raw=true)
+![L5R 5e FoundryVTT Compendiums](./screenshoots/compendiums.jpg?raw=true)

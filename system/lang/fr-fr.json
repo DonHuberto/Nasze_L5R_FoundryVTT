@@ -21,7 +21,8 @@
     },
     "ACTOR": {
         "TypeCharacter": "Personnage Joueur",
-        "TypeNpc": "Personnage non Joueur"
+        "TypeNpc": "Personnage non Joueur",
+        "TypeArmy": "Armée"
     },
     "ITEM": {
         "TypeItem": "Objet",
@@ -34,7 +35,9 @@
         "TypeTitle": "Titre",
         "TypeBond": "Lien",
         "TypeSignature_scroll": "Rouleau de marque",
-        "TypeItem_pattern": "Procédé de fabrication"
+        "TypeItem_pattern": "Procédé de fabrication",
+        "TypeArmy_fortification": "Fortification",
+        "TypeArmy_cohort": "Régiment"
     },
     "l5r5e": {
         "global": {
@@ -140,6 +143,7 @@
         },
         "gm_monitor": {
             "title": "GM Monitor",
+            "switch_view": "Switch View",
             "honor_glory_status": "H/G/S",
             "focus_vigilance": "Att./Vig."
         },
@@ -187,6 +191,7 @@
             "shuji": "Shuji",
             "maho": "Mahõ",
             "ninjutsu": "Ninjutsu",
+            "mantra": "Mantra",
             "school_ability": "Capacité d'école",
             "mastery_ability": "Capacité de maîtrise",
             "title_ability": "Capacité de Titre",
@@ -364,6 +369,36 @@
             "adversary": "Antagoniste",
             "minion": "Sous-fifre"
         },
+        "army": {
+            "warlord": "Seigneur de guerre",
+            "allies_backers": "Alliés et Soutiens",
+            "purpose_mustering": "Objectif du rassemblement",
+            "battle_readiness": {
+                "title": "Aptitudes au combat",
+                "strength": "Force",
+                "casualties": "Usure et pertes",
+                "discipline": "Discipline",
+                "panic": "Panique"
+            },
+            "commander": "Commandant",
+            "commander_abilities": "Capacités du commandant",
+            "army_abilities": "Capacités de l'armée",
+            "commander_standing": "Position du commandant",
+            "supplies_logistics": "Fournitures et logistique",
+            "past_battles": "Batailles passées",
+            "cohort": {
+                "tab": "Régiments",
+                "title": "Régiment",
+                "leader": "Lieutenant",
+                "abilities": "Capacités"
+            },
+            "fortification": {
+                "tab": "Fortifications",
+                "title": "Fortification",
+                "difficulty": "Difficulté",
+                "attrition_reduction": "Usure"
+            }
+        },
         "twenty_questions": {
             "title": "Le jeu des Vingt questions",
             "bt_abrev": "20Q",
@@ -381,7 +416,7 @@
             "part0": {
                 "intro": "Renseignez vos réponses au jeu des vingt questions sur ce formulaire et notez-y des éléments à utiliser ultérieurement !",
                 "section": "Livre de Règles de La Légende des Cinq Anneaux, Chapitre 2 : Création de personnage, p. 41-95",
-                "section_pow": "La Légende des Cinq Anneaux, La Voie des Vagues, Chapitre 2: Création de personnage, p. 30–82",
+                "section_pow": "La Légende des Cinq Anneaux, La Voie des Vagues, Chapitre 2: Création de personnage, p. 30–74",
                 "type": "Sélectionnez le type de 20Q que vous souhaitez utiliser",
                 "type_core": "Samurai (Livre de Règles)",
                 "type_pow": "Ronin (La Voie des Vagues)"
@@ -390,10 +425,10 @@
                 "title": "Partie I : Identité (clan et famille)",
                 "title_pow": "Partie I: Identité (Région et Education)",
                 "q1": "1. A quel clan appartient votre personnage ? (p. 41)",
-                "q1_pow": "1. De quelle région vient votre personnage ? (p. 31)",
+                "q1_pow": "1. De quelle région votre personnage est-il originaire ? (p. 31)",
                 "status": "Statut",
                 "q2": "2. A quelle famille appartient votre personnage ? (p. 49)",
-                "q2_pow": "2. Quelle a été l'éducation de votre personnage ? (p. 43)",
+                "q2_pow": "2. Quelle éducation votre personnage a-t-il reçue ? (p. 43)",
                 "money": "Fortune de départ en Koku",
                 "glory": "Gloire"
             },
@@ -409,20 +444,20 @@
                 "starting_techniques": "Techniques de départ (2-5)",
                 "outfit": "Équipement de départ",
                 "q4": "4. De quelle manière votre personnage se démarque-t-il au sein de son école ? (p. 88)",
-                "q4_pow": "4. Qu'est-ce qui met votre personnage dans et hors du pétrin ? (p. 60)"
+                "q4_pow": "4. Qu'est-ce qui attire des ennuis à votre personnage dans ou l'en sort ? (p. 60)"
             },
             "part3": {
                 "title": "Partie III : Honneur et Gloire",
-                "title_pow": "Partie III: Le passé et l'Avenir : ils interagissent et se transforment",
+                "title_pow": "Partie III: Passé et Avenir",
                 "q5": "5. Qui est le seigneur de votre personnage et quel est le devoir de votre personnage envers lui ? (p. 88)",
-                "q5_pow": "5. Quel est le passé de votre personnage et comment l'affecte-t-il ? (p. 60)",
-                "choose_giri": "Choisissez un giri",
-                "choose_past": "Choisissez un passé",
+                "q5_pow": "5. Quel est le passé de votre personnage et comment affecte-t-il ce dernier ? (p. 60)",
+                "choose_giri": "Choisissez votre giri",
+                "choose_past": "Choisissez votre passé",
                 "q6": "6. Que désire votre personnage, et en quoi ce désir risque-t-il de l’empêcher d’accomplir son devoir ? (p. 90)",
-                "q6_pow": "6. À quoi votre personnage aspire-t-il, et comment son passé peut-il avoir un impact sur son ninjō ? (p. 62)",
-                "choose_ninjo": "Choisissez un ninjō",
+                "q6_pow": "6. Que désire votre personnage, et en quoi ce désir risque-t-il de l’empêcher d’accomplir son devoir ? (p. 62)",
+                "choose_ninjo": "Choisissez votre ninjō",
                 "q7": "7. Quelle relation votre personnage entretient-il avec son clan ? (p. 91)",
-                "q7_pow": "7. Pour quoi votre personnage est-il connu ? (p. 61)",
+                "q7_pow": "7. Quel fait marquant caractérise votre personnage ? (p. 62)",
                 "increase_glory": "Augmentation de la gloire (+5)",
                 "q8": "8. Que pense votre personnage du bushido ? (p. 91)",
                 "q8_pow": "8. Que pense votre personnage du bushido ? (p. 62)",
@@ -457,14 +492,14 @@
                 "q15": "15. Comment votre personnage réagit-il aux situations stressantes ? (p. 94)",
                 "q15_pow": "15. Comment votre personnage réagit-il aux situations stressantes ? (p. 66)",
                 "q16": "16. Quelles relations votre personnage entretient-il avec des familles, des organisations, des traditions et des clans différents ? (p. 94)",
-                "q16_pow": "16. Quelles sont vos relations avec votre famille, les clans, les paysans et les autres ? (p. 66)",
+                "q16_pow": "16. Quelles relations votre personnage entretient-il avec sa famille, les clans, les roturiers et les autres ? (p. 66)",
                 "object": "Objet (Rareté inférieur ou égale à 7)"
             },
             "part6": {
                 "title": "Partie VI : Lignée et Famille",
-                "title_pow": "Partie VI: Ancêtres et Liens",
+                "title_pow": "Partie VI: Lignées et Liens",
                 "q17": "17. Comment les parents de votre personnage le décriraient-ils ? (p. 95)",
-                "q17_pow": "17. Quelle histoire partagée avez-vous avec votre groupe ? (p. 66)",
+                "q17_pow": "17. Quel est votre passé commun avec votre groupe ? (p. 66)",
                 "bond": "Déterminez un lien approprié qui s'applique à votre relation",
                 "q18": "18. En l’honneur de qui votre personnage a-t-il été prénommé ? (p. 95)",
                 "q18_pow": "18. Qui vous a élevé ? (p. 67)",
@@ -474,7 +509,7 @@
                 "d10r2_choice": "Effet du 2ème D10",
                 "d10r2_drop_items": "Ou une technique, un avantage, un objet...",
                 "q19": "19. Quel est le prénom de votre personnage ? (p. 95)",
-                "q19_pow": "19. Quel est le prénom de votre personnage ? (p. 68)"
+                "q19_pow": "19. Quel est votre nom ? (p. 68)"
             },
             "part7": {
                 "title": "Partie VII : Mort",

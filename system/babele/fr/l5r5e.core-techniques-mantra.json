@@ -1,0 +1,21 @@
+{
+    "label": "Techniques Mantra",
+    "mapping": {
+        "description": "data.description",
+        "book_reference": "data.book_reference"
+    },
+    "entries": [
+        {
+            "id": "Summon Mantra : [One Implement]",
+            "name": "Mantra de conjuration : [Nom de l’instrument]",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.99"
+        },
+        {
+            "id": "Countering Mantra",
+            "name": "Mantra de contre",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.99"
+        }
+    ]
+}

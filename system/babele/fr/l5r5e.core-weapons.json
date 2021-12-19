@@ -1,0 +1,858 @@
+{
+    "label": "Armes",
+    "mapping": {
+        "category": "data.category",
+        "grip_1": "data.grip_1",
+        "grip_2": "data.grip_2",
+        "description": "data.description",
+        "book_reference": "data.book_reference"
+    },
+    "entries": [
+        {
+            "id": "Bokken",
+            "name": "Bokken",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "Dégâts +2",
+            "description": "",
+            "book_reference": "Livre de Règles p.232"
+        },
+        {
+            "id": "Chokutō",
+            "name": "Chokutō",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.232"
+        },
+        {
+            "id": "Scimitar",
+            "name": "Cimeterre",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.232"
+        },
+        {
+            "id": "Dao",
+            "name": "Dao",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.232"
+        },
+        {
+            "id": "Gao",
+            "name": "Gao",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.232"
+        },
+        {
+            "id": "Jian",
+            "name": "Jian",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "Dangerosité +1 / Acérée",
+            "description": "",
+            "book_reference": "Livre de Règles p.232"
+        },
+        {
+            "id": "Katana",
+            "name": "Katana",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "Dangerosité +2",
+            "description": "",
+            "book_reference": "Livre de Règles p.232"
+        },
+        {
+            "id": "Nodachi",
+            "name": "Nodachi",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.233"
+        },
+        {
+            "id": "Wakizashi",
+            "name": "Wakizashi",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "Dangerosité +2",
+            "description": "",
+            "book_reference": "Livre de Règles p.233"
+        },
+        {
+            "id": "Zanbatō",
+            "name": "Zanbatō",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.233"
+        },
+        {
+            "id": "Masakari",
+            "name": "Masakari",
+            "category": "Haches",
+            "grip_1": "",
+            "grip_2": "Dangerosité +2",
+            "description": "",
+            "book_reference": "Livre de Règles p.233"
+        },
+        {
+            "id": "Ono",
+            "name": "Ono",
+            "category": "Haches",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.233"
+        },
+        {
+            "id": "Club",
+            "name": "Gourdin",
+            "category": "Armes Contondantes",
+            "grip_1": "",
+            "grip_2": "Dégâts +1",
+            "description": "",
+            "book_reference": "Livre de Règles p.234"
+        },
+        {
+            "id": "Kiseru",
+            "name": "Kiseru",
+            "category": "Armes Contondantes",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.234"
+        },
+        {
+            "id": "Hammer",
+            "name": "Marteau",
+            "category": "Armes Contondantes",
+            "grip_1": "",
+            "grip_2": "Dégâts +2",
+            "description": "",
+            "book_reference": "Livre de Règles p.234"
+        },
+        {
+            "id": "Otsuchi",
+            "name": "Otsuchi",
+            "category": "Armes Contondantes",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.234"
+        },
+        {
+            "id": "Tetsubō",
+            "name": "Tetsubō",
+            "category": "Armes Contondantes",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.234"
+        },
+        {
+            "id": "Jitte",
+            "name": "Jitte",
+            "category": "Armes de Poing",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.234"
+        },
+        {
+            "id": "Knife",
+            "name": "Couteau",
+            "category": "Armes de Poing",
+            "grip_1": "",
+            "grip_2": "Dangerosité +2",
+            "description": "",
+            "book_reference": "Livre de Règles p.234"
+        },
+        {
+            "id": "Nunchaku",
+            "name": "Nunchaku",
+            "category": "Armes de Poing",
+            "grip_1": "",
+            "grip_2": "Entrave",
+            "description": "",
+            "book_reference": "Livre de Règles p.235"
+        },
+        {
+            "id": "Tessen",
+            "name": "Tessen",
+            "category": "Armes de Poing",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.235"
+        },
+        {
+            "id": "Bisentō",
+            "name": "Bisentō",
+            "category": "Armes d'Hast",
+            "grip_1": "Portée 1",
+            "grip_2": "Dégâts +2",
+            "description": "",
+            "book_reference": "Livre de Règles p.235"
+        },
+        {
+            "id": "Bō",
+            "name": "Bō",
+            "category": "Armes d'Hast",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.235"
+        },
+        {
+            "id": "Ji",
+            "name": "Ji",
+            "category": "Armes d'Hast",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.235"
+        },
+        {
+            "id": "Naginata",
+            "name": "Naginata",
+            "category": "Armes d'Hast",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.235"
+        },
+        {
+            "id": "Trident",
+            "name": "Trident",
+            "category": "Armes d'Hast",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.235"
+        },
+        {
+            "id": "Yari",
+            "name": "Yari",
+            "category": "Armes d'Hast",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.235"
+        },
+        {
+            "id": "Horsebow",
+            "name": "Arc de cavalerie",
+            "category": "Arcs",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.236"
+        },
+        {
+            "id": "Daikyū",
+            "name": "Daikyū",
+            "category": "Arcs",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.236"
+        },
+        {
+            "id": "Yumi",
+            "name": "Yumi",
+            "category": "Arcs",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.236"
+        },
+        {
+            "id": "Oyumi",
+            "name": "Oyumi",
+            "category": "Arbalètes",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.236"
+        },
+        {
+            "id": "Kama",
+            "name": "Kama",
+            "category": "Armes Spécialisées",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.237"
+        },
+        {
+            "id": "Kusari-gama",
+            "name": "Kusari-gama",
+            "category": "Armes Spécialisées",
+            "grip_1": "",
+            "grip_2": "Portée 2-3",
+            "description": "",
+            "book_reference": "Livre de Règles p.237"
+        },
+        {
+            "id": "Blowgun",
+            "name": "Sarbacane",
+            "category": "Armes Spécialisées",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.237"
+        },
+        {
+            "id": "Shuriken",
+            "name": "Shuriken",
+            "category": "Armes Spécialisées",
+            "grip_1": "(lancé) Arts Martiaux (Distance), Portée 1-3",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.237"
+        },
+        {
+            "id": "Punch",
+            "name": "Coup de poing",
+            "category": "Attaques à mains nues",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.237"
+        },
+        {
+            "id": "Kick",
+            "name": "Coup de pied",
+            "category": "Attaques à mains nues",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.237"
+        },
+        {
+            "id": "Bite",
+            "name": "Morsure",
+            "category": "Attaques à mains nues",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.237"
+        },
+        {
+            "id": "Tachi",
+            "name": "Tachi",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "Dangerosité +1",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Whip",
+            "name": "Fouet",
+            "category": "Armes Spécialisées",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Moshi Sun Ax",
+            "name": "Hache du soleil Moshi",
+            "category": "Haches",
+            "grip_1": "",
+            "grip_2": "Dégâts +3",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Uchigatana",
+            "name": "Uchigatana",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Shakujo",
+            "name": "Shakujo",
+            "category": "Armes d'Hast",
+            "grip_1": "",
+            "grip_2": "Dégâts +1",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Kusarifundo",
+            "name": "Kusarifundo",
+            "category": "Armes Spécialisées",
+            "grip_1": "",
+            "grip_2": "Entrave",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.111"
+        },
+        {
+            "id": "Shakuhachi",
+            "name": "Shakuhachi",
+            "category": "Armes Spécialisées",
+            "grip_1": "",
+            "grip_2": "Dégâts +1",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.111"
+        },
+        {
+            "id": "Kyoketsu Shoge",
+            "name": "Kyoketsu Shoge",
+            "category": "Armes Spécialisées",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.111"
+        },
+        {
+            "id": "Shinobigatana",
+            "name": "Shinobigatana",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "Dangerosité +1",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.110"
+        },
+        {
+            "id": "Ninjatõ",
+            "name": "Ninjatõ",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "Dangerosité +1",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.109"
+        },
+        {
+            "id": "Kamayari",
+            "name": "Kamayari",
+            "category": "Armes Spécialisées",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.111"
+        },
+        {
+            "id": "Tekagi",
+            "name": "Tekagi",
+            "category": "Armes Spécialisées",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.112"
+        },
+        {
+            "id": "Folding Half-Bow",
+            "name": "Demi-arc pliant",
+            "category": "Arcs",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.110"
+        },
+        {
+            "id": "Tekken",
+            "name": "Tekken",
+            "category": "Armes Spécialisées",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.112"
+        },
+        {
+            "id": "Sake Bottle & Cups",
+            "name": "Bouteille et coupe de saké",
+            "category": "Armes improvisées",
+            "grip_1": "",
+            "grip_2": "Matraque : - / Jeté : Dangerosité +2 / Portée 1-3 / Tranchant",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.112"
+        },
+        {
+            "id": "Umbrella",
+            "name": "Ombrelle",
+            "category": "Armes improvisées",
+            "grip_1": "",
+            "grip_2": "Matraque : Dégâts +2 / Poignarder : Dégâts +2, Dangerosité +2",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.112"
+        },
+        {
+            "id": "Talwar",
+            "name": "Talwar",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.112"
+        },
+        {
+            "id": "Scroll Case",
+            "name": "Etui à parchemins",
+            "category": "Armes improvisées",
+            "grip_1": "",
+            "grip_2": "Dégâts +2 / Dangerosité +1",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.112"
+        },
+        {
+            "id": "Urumi",
+            "name": "Urumi",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.112"
+        },
+        {
+            "id": "Iron Sheath",
+            "name": "Fourreau ferré",
+            "category": "Armes improvisées",
+            "grip_1": "",
+            "grip_2": "Dégâts +2",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.112"
+        },
+        {
+            "id": "Buckler",
+            "name": "Bocle",
+            "category": "Boucliers",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.112"
+        },
+        {
+            "id": "Lute",
+            "name": "Luth",
+            "category": "Armes improvisées",
+            "grip_1": "",
+            "grip_2": "Dégâts +1 / Dangerosité +1",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.112"
+        },
+        {
+            "id": "Sling",
+            "name": "Fronde",
+            "category": "Armes Spécialisées",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.112"
+        },
+        {
+            "id": "Gada",
+            "name": "Gada",
+            "category": "Armes Contondantes",
+            "grip_1": "",
+            "grip_2": "Dangerosité +3",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.112"
+        },
+        {
+            "id": "Kuwa",
+            "name": "Kuwa",
+            "category": "Haches",
+            "grip_1": "",
+            "grip_2": "Dégâts +2 / Dangerosité +2 / Portée 1-2",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.112"
+        },
+        {
+            "id": "Qamarist Heavy Shield",
+            "name": "Ecu Qamaristes",
+            "category": "Boucliers",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.112"
+        },
+        {
+            "id": "Boat Oar",
+            "name": "Rame de bateau",
+            "category": "Armes improvisées",
+            "grip_1": "",
+            "grip_2": "Dégâts +2 / Dangerosité +3",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.112"
+        },
+        {
+            "id": "Fishing Net",
+            "name": "Filet de pêche",
+            "category": "Armes improvisées",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.112"
+        },
+        {
+            "id": "Chair",
+            "name": "Chaise",
+            "category": "Armes improvisées",
+            "grip_1": "",
+            "grip_2": "Matraque : Dégâts +2 / Jeté : Dangerosité +1 / Portée 0-2",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.112"
+        },
+        {
+            "id": "Chain Whip",
+            "name": "Chaîne à neuf section",
+            "category": "Armes Spécialisées",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.112"
+        },
+        {
+            "id": "Genno",
+            "name": "Genno",
+            "category": "Marteaux",
+            "grip_1": "",
+            "grip_2": "Dégâts +4",
+            "description": "",
+            "book_reference": "L’Outremonde p.102"
+        },
+        {
+            "id": "Tekkan",
+            "name": "Tekkan",
+            "category": "Sabres",
+            "grip_1": "Encombrant",
+            "grip_2": "Dégâts +2",
+            "description": "",
+            "book_reference": "L’Outremonde p.102"
+        },
+        {
+            "id": "Small Shield",
+            "name": "Petit bouclier",
+            "category": "Boucliers",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "L’Outremonde p.104"
+        },
+        {
+            "id": "O-Gata Dohou",
+            "name": "O-Gata Dohou",
+            "category": "Engins de siège",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "L’Outremonde p.105"
+        },
+        {
+            "id": "Large Shield",
+            "name": "Grand bouclier",
+            "category": "Boucliers",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "L’Outremonde p.104"
+        },
+        {
+            "id": "Kaiu no Oyumi",
+            "name": "Kaiu no Oyumi",
+            "category": "Arbalètes",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "L’Outremonde p.103"
+        },
+        {
+            "id": "Tsuruhashi",
+            "name": "Tsuruhashi",
+            "category": "Haches",
+            "grip_1": "Encombrant",
+            "grip_2": "Dangerosité +2",
+            "description": "",
+            "book_reference": "L’Outremonde p.102"
+        },
+        {
+            "id": "Flyssa",
+            "name": "Flissa",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "Accérée",
+            "description": "",
+            "book_reference": "L’Outremonde p.102"
+        },
+        {
+            "id": "Sode",
+            "name": "Sode",
+            "category": "Boucliers",
+            "grip_1": "Epaules",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "L’Outremonde p.103"
+        },
+        {
+            "id": "Ballista",
+            "name": "Baliste",
+            "category": "Engins de siège",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "L’Outremonde p.105"
+        },
+        {
+            "id": "Kabutowari",
+            "name": "Kabutowari",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "L’Outremonde p.102"
+        },
+        {
+            "id": "Storm Bow",
+            "name": "Arc tempête",
+            "category": "Arcs",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "L’Outremonde p.103"
+        },
+        {
+            "id": "Doom Crossbow",
+            "name": "Arbalète funeste",
+            "category": "Arbalètes",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "L’Outremonde p.103"
+        },
+        {
+            "id": "Butterfly sword",
+            "name": "Epée papillon",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Le Clan de la Mante p.8"
+        },
+        {
+            "id": "Eku",
+            "name": "Eku",
+            "category": "Armes d'Hast",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Le Clan de la Mante p.8"
+        },
+        {
+            "id": "Tinbe-Rochin",
+            "name": "Rochin",
+            "category": "Armes d'Hast",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Le Clan de la Mante p.8"
+        },
+        {
+            "id": "Sai",
+            "name": "Sai",
+            "category": "Armes de Poing",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Le Clan de la Mante p.8"
+        },
+        {
+            "id": "Tonfa",
+            "name": "Tonfa",
+            "category": "Armes de Poing",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Le Clan de la Mante p.9"
+        },
+        {
+            "id": "Tinbe",
+            "name": "Timbe",
+            "category": "Boucliers",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Le Clan de la Mante p.8"
+        },
+        {
+            "id": "Ichirō Sapper Ax",
+            "name": "Ichirō Sapper Ax (WIP)",
+            "category": "Haches",
+            "grip_1": "Emoussé: Dégâts +2, Dangerosité -3",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Magari Yari",
+            "name": "Magari Yari (WIP)",
+            "category": "Armes d'Hast",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Nagae Yari",
+            "name": "Nagae Yari (WIP)",
+            "category": "Armes d'Hast",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Nagamaki",
+            "name": "Nagamaki (WIP)",
+            "category": "Armes d'Hast",
+            "grip_1": "Encombrant",
+            "grip_2": "Dégâts +2, Dangerosité +2",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Yoroi-Doshi",
+            "name": "Yoroi-Doshi (WIP)",
+            "category": "Armes de Poing",
+            "grip_1": "",
+            "grip_2": "Dangerosité +3",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Gunbai",
+            "name": "Gunbai (WIP)",
+            "category": "Armes de Poing",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Hooves",
+            "name": "Sabots",
+            "category": "Attaques à mains nues",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Livre de Règles p.327"
+        }
+    ]
+}

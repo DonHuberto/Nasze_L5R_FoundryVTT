@@ -1,0 +1,561 @@
+{
+    "label": "Capacités d’école",
+    "mapping": {
+        "description": "data.description",
+        "book_reference": "data.book_reference"
+    },
+    "entries": [
+        {
+            "id": "Way of the Crab",
+            "name": "La voie du Crabe",
+            "description": "",
+            "book_reference": "Livre de Règles p.57"
+        },
+        {
+            "id": "Flickering Flame Skirmisher",
+            "name": "Dérobade de la flamme fugitive",
+            "description": "",
+            "book_reference": "Livre de Règles p.58"
+        },
+        {
+            "id": "Masterful Builder",
+            "name": "Maître bâtisseur",
+            "description": "",
+            "book_reference": "Livre de Règles p.59"
+        },
+        {
+            "id": "Gaze into Shadow",
+            "name": "Regarder dans les ténèbres",
+            "description": "",
+            "book_reference": "Livre de Règles p.60"
+        },
+        {
+            "id": "Way of the Carp",
+            "name": "La voie de la Carpe",
+            "description": "",
+            "book_reference": "Livre de Règles p.61"
+        },
+        {
+            "id": "Spiritual Artisan",
+            "name": "Artisan spirituel",
+            "description": "",
+            "book_reference": "Livre de Règles p.62"
+        },
+        {
+            "id": "Vigilance of Mind",
+            "name": "Vigilance de l’esprit",
+            "description": "",
+            "book_reference": "Livre de Règles p.63"
+        },
+        {
+            "id": "Speaking in Silence",
+            "name": "Communication silencieuse",
+            "description": "",
+            "book_reference": "Livre de Règles p.64"
+        },
+        {
+            "id": "Way of the Crane",
+            "name": "La voie de la Grue",
+            "description": "",
+            "book_reference": "Livre de Règles p.65"
+        },
+        {
+            "id": "Elemental Transmutation",
+            "name": "Transmutation élémentaire",
+            "description": "",
+            "book_reference": "Livre de Règles p.66"
+        },
+        {
+            "id": "Kitsuki’s Method",
+            "name": "La méthode Kitsuki",
+            "description": "",
+            "book_reference": "Livre de Règles p.67"
+        },
+        {
+            "id": "Way of the Dragon",
+            "name": "La voie du Dragon",
+            "description": "",
+            "book_reference": "Livre de Règles p.68"
+        },
+        {
+            "id": "Blood of the Kami",
+            "name": "Sang des Kamis",
+            "description": "",
+            "book_reference": "Livre de Règles p.69"
+        },
+        {
+            "id": "Way of the Lion",
+            "name": "La voie du Lion",
+            "description": "",
+            "book_reference": "Livre de Règles p.70"
+        },
+        {
+            "id": "Heart of the Lion",
+            "name": "Le cœur du Lion",
+            "description": "",
+            "book_reference": "Livre de Règles p.71"
+        },
+        {
+            "id": "Favor of the Ancestors",
+            "name": "Faveur des ancêtres",
+            "description": "",
+            "book_reference": "Livre de Règles p.72"
+        },
+        {
+            "id": "Matsu’s Fury",
+            "name": "La fureur de Matsu",
+            "description": "",
+            "book_reference": "Livre de Règles p.73"
+        },
+        {
+            "id": "Wisdom of the Ages",
+            "name": "Sagesse éternelle",
+            "description": "",
+            "book_reference": "Livre de Règles p.74"
+        },
+        {
+            "id": "One with the Elements",
+            "name": "Union avec les éléments",
+            "description": "",
+            "book_reference": "Livre de Règles p.75"
+        },
+        {
+            "id": "Way of the Phoenix",
+            "name": "La voie du Phénix",
+            "description": "",
+            "book_reference": "Livre de Règles p.76"
+        },
+        {
+            "id": "Sacred Arrows",
+            "name": "Flèches sacrées",
+            "description": "",
+            "book_reference": "Livre de Règles p.77"
+        },
+        {
+            "id": "Weakness Is My Strength",
+            "name": "La faiblesse est ma force",
+            "description": "",
+            "book_reference": "Livre de Règles p.78"
+        },
+        {
+            "id": "The Path of Shadows",
+            "name": "Le sentier des ombres",
+            "description": "",
+            "book_reference": "Livre de Règles p.79"
+        },
+        {
+            "id": "The Kami’s Whisper",
+            "name": "Le murmure des kamis",
+            "description": "",
+            "book_reference": "Livre de Règles p.80"
+        },
+        {
+            "id": "Mystical Script",
+            "name": "Calligraphie mystique",
+            "description": "",
+            "book_reference": "Livre de Règles p.81"
+        },
+        {
+            "id": "Vendor of Strange Wares",
+            "name": "Vendeur d’étranges articles",
+            "description": "",
+            "book_reference": "Livre de Règles p.82"
+        },
+        {
+            "id": "The Way of Names",
+            "name": "La voie des noms",
+            "description": "",
+            "book_reference": "Livre de Règles p.83"
+        },
+        {
+            "id": "Swirling Desert Wind",
+            "name": "Le tourbillon du simoun",
+            "description": "",
+            "book_reference": "Livre de Règles p.84"
+        },
+        {
+            "id": "Born in the Saddle",
+            "name": "Né sur une selle",
+            "description": "",
+            "book_reference": "Livre de Règles p.85"
+        },
+        {
+            "id": "Heroic Charge",
+            "name": "Charge héroïque",
+            "description": "",
+            "book_reference": "Livre de Règles p.86"
+        },
+        {
+            "id": "School of Waves",
+            "name": "L’école des vagues",
+            "description": "",
+            "book_reference": "Livre de Règles p.87"
+        },
+        {
+            "id": "Flesh of the Elements",
+            "name": "Flesh of the Elements (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Soul of Ceremony",
+            "name": "Soul of Ceremony (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Way of the Void",
+            "name": "Way of the Void (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "The Body is a Shrine",
+            "name": "The Body is a Shrine (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Every Stone Serves",
+            "name": "Every Stone Serves (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Celestial Alignment",
+            "name": "Celestial Alignment (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Blazing Tears of Lady Sun",
+            "name": "Blazing Tears of Lady Sun (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Sudden nightfall",
+            "name": "Sudden nightfall (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Steed of the Kami",
+            "name": "Steed of the Kami (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Way of the Scorpion",
+            "name": "La voie du Scorpion",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.89"
+        },
+        {
+            "id": "Incisive Insight",
+            "name": "Pénétrante perspicacité",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.90"
+        },
+        {
+            "id": "Procedure and Protocol",
+            "name": "Procédure et protocole",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.91"
+        },
+        {
+            "id": "Victory before Honor",
+            "name": "La victoire passe avant l’honneur",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.92"
+        },
+        {
+            "id": "Disciple of Darkness",
+            "name": "Disciple des ténèbres",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.93"
+        },
+        {
+            "id": "Architect of Tranquility",
+            "name": "Architecte de la tranquillité",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.94"
+        },
+        {
+            "id": "Gift of Musubi-no-Kami",
+            "name": "Don de Musubi no Kami",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.95"
+        },
+        {
+            "id": "Typhoon in the Bamboo Grove",
+            "name": "Le typhon dans la bambouseraie",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.96"
+        },
+        {
+            "id": "A Grain of Truth",
+            "name": "Un soupçon de vérité",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.97"
+        },
+        {
+            "id": "Claws of the Crab",
+            "name": "Les pinces du Crabe",
+            "description": "",
+            "book_reference": "Les Cours de Pierre p.98"
+        },
+        {
+            "id": "Well Traveled",
+            "name": "Grand voyageur",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude p.232"
+        },
+        {
+            "id": "Voice of the Emperor",
+            "name": "La Voix de L'empereur",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude p.234"
+        },
+        {
+            "id": "Necessary Actions",
+            "name": "Interventions de rigueur",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude p.235"
+        },
+        {
+            "id": "Just as Predicted",
+            "name": "Tout comme je l’avais prédit",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude p.236"
+        },
+        {
+            "id": "Speed of Heaven",
+            "name": "Célérité des Cieux",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude p.237"
+        },
+        {
+            "id": "Blessing of the Fortunes",
+            "name": "Bénédiction des fortunes",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude p.238"
+        },
+        {
+            "id": "Embrace the Void",
+            "name": "Embrasser le Vide",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude p.239"
+        },
+        {
+            "id": "Fox Spirit",
+            "name": "Esprit renard",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude p.240"
+        },
+        {
+            "id": "Professional Saboteur",
+            "name": "Saboteur professionnel",
+            "description": "",
+            "book_reference": "L’Empire d’Émeraude p.241"
+        },
+        {
+            "id": "Signiature Weapon",
+            "name": "Arme favorite",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.48"
+        },
+        {
+            "id": "Piercing Insight",
+            "name": "Perspicacité remarquable",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.49"
+        },
+        {
+            "id": "Risk and Reward",
+            "name": "Risque et récompense",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.50"
+        },
+        {
+            "id": "Tactical Cover",
+            "name": "Couvert tactique",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.51"
+        },
+        {
+            "id": "Naturally Attuned",
+            "name": "Naturellement en accord",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.52"
+        },
+        {
+            "id": "Resourceful Artistry",
+            "name": "Ingéniosité artistique",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.53"
+        },
+        {
+            "id": "Unexpected Wisdom",
+            "name": "Sagesse inattendue",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.54"
+        },
+        {
+            "id": "Seer of the Lords of Death",
+            "name": "Prophète des seigneurs de la Mort",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.55"
+        },
+        {
+            "id": "Akilah's Teachings",
+            "name": "Les enseignements d’Akilah",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.56"
+        },
+        {
+            "id": "Creative Execution",
+            "name": "Exécution créative",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.57"
+        },
+        {
+            "id": "Gift of Inner Power",
+            "name": "Don de la puissance intérieure",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.58"
+        },
+        {
+            "id": "Flurry of Steel",
+            "name": "Déluge d’acier",
+            "description": "",
+            "book_reference": "La Voie des Vagues p.59"
+        },
+        {
+            "id": "Traces of Passage",
+            "name": "Vestiges d’un passage",
+            "description": "",
+            "book_reference": "L’Outremonde p.88"
+        },
+        {
+            "id": "Sacred Art of Steel",
+            "name": "L’art sacré de l’acier",
+            "description": "",
+            "book_reference": "L’Outremonde p.89"
+        },
+        {
+            "id": "Field Medicine",
+            "name": "Médecine de terrain",
+            "description": "",
+            "book_reference": "L’Outremonde p.90"
+        },
+        {
+            "id": "Supressing Blows",
+            "name": "Frappes d’intimidation",
+            "description": "",
+            "book_reference": "L’Outremonde p.91"
+        },
+        {
+            "id": "Sharpened Ki",
+            "name": "Ki exacerbé",
+            "description": "",
+            "book_reference": "L’Outremonde p.92"
+        },
+        {
+            "id": "Hands of Earth and Sky",
+            "name": "Mains de la terre et du ciel",
+            "description": "",
+            "book_reference": "L’Outremonde p.93"
+        },
+        {
+            "id": "Eyes of Yotogi",
+            "name": "Les yeux de Yotogi",
+            "description": "",
+            "book_reference": "L’Outremonde p.94"
+        },
+        {
+            "id": "Warded Shikigami",
+            "name": "Shikigami bardé de glyphes",
+            "description": "",
+            "book_reference": "L’Outremonde p.95"
+        },
+        {
+            "id": "Sailor’s Fortune",
+            "name": "La fortune du marin",
+            "description": "",
+            "book_reference": "Le Clan de la Mante p.5"
+        },
+        {
+            "id": "Way of the Tortoise [Tortoise]",
+            "name": "La voie de la Tortue (Tortue)",
+            "description": "",
+            "book_reference": "Kit du Maitre de jeu p.9"
+        },
+        {
+            "id": "Stand as the Mountain",
+            "name": "Stand as the Mountain (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Drilled Precision",
+            "name": "Drilled Precision (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Explosive Arrival",
+            "name": "Explosive Arrival (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Thunderous Courage",
+            "name": "Thunderous Courage (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Badger's Hold",
+            "name": "Badger's Hold (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Hide of Iron",
+            "name": "Hide of Iron (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Sympathetic Bearing",
+            "name": "Sympathetic Bearing (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Elemental Inspiration",
+            "name": "Elemental Inspiration (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "One with the Pride",
+            "name": "One with the Pride (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Oath of Sacrifice",
+            "name": "Oath of Sacrifice (WIP)",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Eye of the Storm",
+            "name": "L’oeil de la tempête",
+            "description": "",
+            "book_reference": "Le Clan de la Mante p.6"
+        }
+    ]
+}

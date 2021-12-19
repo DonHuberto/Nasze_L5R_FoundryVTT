@@ -134,9 +134,12 @@ export class ItemL5r5e extends Item {
      * @return {Promise<string|null>}
      */
     async renderTextTemplate() {
+        const data = (await this.sheet?.getData()) || this;
+        if (data instanceof ItemL5r5e) {
+            await game.l5r5e.HelpersL5r5e.refreshItemProperties(this);
+        }
         const type = this.type.replace("_", "-"); // ex: item_pattern
-        await game.l5r5e.HelpersL5r5e.refreshItemProperties(this);
-        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}items/${type}/${type}-text.html`, this);
+        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}items/${type}/${type}-text.html`, data);
         if (!tpl) {
             return null;
         }

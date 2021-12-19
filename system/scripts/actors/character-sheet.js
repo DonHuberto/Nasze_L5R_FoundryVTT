@@ -1,10 +1,10 @@
-import { BaseSheetL5r5e } from "./base-sheet.js";
+import { BaseCharacterSheetL5r5e } from "./base-character-sheet.js";
 import { TwentyQuestionsDialog } from "./twenty-questions-dialog.js";
 
 /**
  * Actor / Character Sheet
  */
-export class CharacterSheetL5r5e extends BaseSheetL5r5e {
+export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["l5r5e", "sheet", "actor"],

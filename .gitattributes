@@ -1,0 +1,3 @@
+# Make .db files keep LF ending as Foundry rewrite in this format
+*.db text eol=lf
+*.json text eol=lf

@@ -4,16 +4,12 @@ export default class HooksL5r5e {
      * Do anything after initialization but before ready
      */
     static setup() {
-        // Embed Babele compendiums
+        // Enable embed Babele compendiums only if custom compendium is not found or disabled
         if (
             typeof Babele !== "undefined" &&
-            Babele.get().modules.every((module) => module.lang !== "fr" || module.module !== "l5r5e-custom-compendiums")
+            Babele.get().modules.every((module) => module.module !== "l5r5e-custom-compendiums")
         ) {
-            Babele.get().register({
-                module: "../systems/l5r5e", // babele only accept modules, so... well :D
-                lang: "fr",
-                dir: "babele/fr-fr",
-            });
+            Babele.get().setSystemTranslationsDir("babele"); // Since Babele v2.0.4
         }
     }
 
