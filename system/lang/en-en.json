@@ -142,6 +142,7 @@
         },
         "gm_monitor": {
             "title": "GM Monitor",
+            "switch_view": "Switch View",
             "honor_glory_status": "H/G/S",
             "focus_vigilance": "Foc./Vig."
         },
@@ -386,8 +387,8 @@
             "past_battles": "Past Battles",
             "cohort": {
                 "tab": "Cohorts",
-                "title": "Cohorts",
-                "leader": "Battle Readiness",
+                "title": "Cohort",
+                "leader": "Leader",
                 "abilities": "Abilities"
             },
             "fortification": {

@@ -145,6 +145,7 @@
         },
         "army": {
             "warlord": "",
+            "warlord_actor_id": null,
             "allies_backers": "",
             "purpose_mustering": "",
             "battle_readiness": {
@@ -158,6 +159,7 @@
                 }
             },
             "commander": "",
+            "commander_actor_id": null,
             "commander_abilities": "",
             "army_abilities": "",
             "commander_standing": {
@@ -270,6 +272,7 @@
         "army_cohort": {
             "templates": ["basics"],
             "leader": "",
+            "leader_actor_id": null,
             "equipment": "",
             "abilities": "",
             "battle_readiness": {
@@ -285,8 +288,8 @@
         },
         "army_fortification": {
             "templates": ["basics"],
-            "difficulty": "",
-            "attrition_reduction": "",
+            "difficulty": 0,
+            "attrition_reduction": 0,
             "notes": ""
         }
     }

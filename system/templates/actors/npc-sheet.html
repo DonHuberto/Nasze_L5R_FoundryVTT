@@ -2,7 +2,7 @@
     {{!-- Sheet Header --}}
     <header class="sheet-header">
         <div class="header-fields identity-wrapper">
-            <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}"/>
+            <img class="profile-img dragndrop-actor-id pointer" src="{{data.img}}" data-edit="img" data-actor-id="{{actor.id}}" draggable="true" title="{{data.name}}"/>
             <h1 class="charname"><input name="name" type="text" value="{{data.name}}" placeholder="Name"/></h1>
             {{> 'systems/l5r5e/templates/actors/npc/identity.html'}}
         </div>

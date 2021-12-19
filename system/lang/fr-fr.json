@@ -142,6 +142,7 @@
         },
         "gm_monitor": {
             "title": "GM Monitor",
+            "switch_view": "Switch View",
             "honor_glory_status": "H/G/S",
             "focus_vigilance": "Att./Vig."
         },
@@ -387,14 +388,14 @@
             "cohort": {
                 "tab": "Régiments",
                 "title": "Régiment",
-                "leader": "Aptitude au combat",
+                "leader": "Lieutenant",
                 "abilities": "Capacités"
             },
             "fortification": {
                 "tab": "Fortifications",
-                "title": "Fortifications",
+                "title": "Fortification",
                 "difficulty": "Difficulté",
-                "attrition_reduction": "Attrition Reduction"
+                "attrition_reduction": "Usure"
             }
         },
         "twenty_questions": {

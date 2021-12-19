@@ -640,6 +640,12 @@
             "name": "Encre d’obsidienne [Trésor Béni]",
             "description": "",
             "book_reference": "L’Outremonde p.113"
+        },
+        {
+            "id": "Arrows",
+            "name": "Flèches",
+            "description": "",
+            "book_reference": "Livre de Règles"
         }
     ]
 }

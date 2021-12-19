@@ -70,12 +70,10 @@ export class HelpersL5r5e {
      * @return {Promise<null>}
      */
     static async getDragnDropTargetObject(event) {
-        const json = event.dataTransfer.getData("text/plain");
-        if (!json) {
-            return null;
-        }
-        const data = JSON.parse(json);
-        if (!data) {
+        let data;
+        try {
+            data = JSON.parse(event.dataTransfer?.getData("text/plain"));
+        } catch (err) {
             return null;
         }
         return await HelpersL5r5e.getObjectGameOrPack(data);
@@ -419,6 +417,21 @@ export class HelpersL5r5e {
             }
         });
 
+        // Ability to drag n drop an actor
+        html.find(".dragndrop-actor-id").on("dragstart", (event) => {
+            const actorId = $(event.currentTarget).data("actor-id");
+            if (!actorId) {
+                return;
+            }
+            event.originalEvent.dataTransfer.setData(
+                "text/plain",
+                JSON.stringify({
+                    type: "Actor",
+                    id: actorId,
+                })
+            );
+        });
+
         // Item detail tooltips
         this.popupManager(html.find(".l5r5e-tooltip"), async (event) => {
             const item = await HelpersL5r5e.getEmbedItemByEvent(event, actor);
@@ -426,6 +439,18 @@ export class HelpersL5r5e {
                 return;
             }
             return await item.renderTextTemplate();
+        });
+
+        // Open actor sheet
+        html.find(".open-sheet-actor-id").on("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const id = $(event.currentTarget).data("actor-id");
+            if (!id) {
+                return;
+            }
+            game.actors.get(id)?.sheet?.render(true);
         });
     }
 
@@ -656,12 +681,11 @@ export class HelpersL5r5e {
             console.log(`L5R5E | Pack not found[${pack}]`);
             return;
         }
-        if (!comp.indexed) {
-            await comp.getDocuments();
-        }
+        await comp.getDocuments();
+
         const table = await comp.getName(tableName);
         if (!table) {
-            console.log(`L5R5E | Table not found[${tableName}]`);
+            console.log(`L5R5E | Table not found[${tableName}]`, comp, table);
             return;
         }
         return await table.drawMany(retrieve, opt);

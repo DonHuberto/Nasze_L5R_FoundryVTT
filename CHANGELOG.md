@@ -1,19 +1,27 @@
 # Changelog
 
 ## 1.4.0 - Armies & French PoW
-- Added Army, Cohort and Fortification sheets.
+- Added Army (Actor), Cohort (Item) and Fortification (Item) sheets.
+- Actor Sheet (PC, NPC, Army) : Added the ability to Drag n Drop an actor's image.
+- GM monitor :
+  - Added Armies view.
+  - Added the ability to Drag n Drop an actor's image.
 - Added real icons for Inversion and Mantra.
 - Added Mantra technique type.
-- Standardization of "great-clans-presentation" pack name to "core-journal-great-clans-presentation".
-- SendToChat now check links validity before adding them.
 - Compendiums :
   - PoW:
     - Updated all French compendiums from official French translation.
+    - Added missing items pattern : "Spirit of the Qamarist Pattern", "Ghostlands Yodhaniya Pattern" and "Kökejin’s Heart of the Wind Pattern".
+    - Added missing title : "Astradhari".
+    - Added mantras : "Summon Mantra : [One Implement]" and "Countering Mantra".
     - Fixed : "Urbane and Worldly" advantage was misspelled "Wroldly" (thx to Cernunnos).
     - Fixed : "Passion for [Foreign Performing Art Form]" from "Passion" to "Distinction" type.
     - Fixed : "Flowering Deceptions" from "Kata" to "Shuji" type.
+  - Added Hooves (weapon) & Arrows (object)
   - Added two tables to draw japanese names (1500 males names & 530 females names).
   - Added some Macros.
+- Standardization of "great-clans-presentation" pack name to "core-journal-great-clans-presentation".
+- SendToChat now check links validity before adding them.
 - New NPC changed from "minion" to "adversary" by default.
 - 20Q : Fixed line break in techniques label list.
 
