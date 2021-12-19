@@ -2,7 +2,7 @@
 &.sheet {
     &.army {
         .sheet-header {
-            height: auto;
+            height: 9.5rem;
 
             h1 {
                 flex: 1;
@@ -17,7 +17,7 @@
                     display: flex;
                     position: relative;
                     padding: 0.25rem;
-                    height: 80px;
+                    height: 4rem;
 
                     li {
                         flex: 25%;
@@ -27,6 +27,8 @@
                         strong {
                             color: $l5r5e-label;
                             text-align: center;
+                            text-transform: uppercase;
+                            font-size: 0.75rem;
                         }
 
                         label {
@@ -45,7 +47,7 @@
                             height: 2rem;
                             position: absolute;
                             right: calc(50% - 0.9rem);
-                            top: calc(50% - 0.2rem);
+                            top: 0.1rem;
                             background: transparent url("../assets/icons/circle.svg") no-repeat 0 0;
                             background-size: contain;
                             opacity: 0.25;
@@ -85,114 +87,117 @@
                 }
             }
         }
-
-        .tab {
-            &.army {
-                .warlord,
-                .commander {
-                    display: flex;
-
-                    .fa-sign-in-alt {
-                        transform: rotate(90deg);
-                    }
-
-                    fieldset {
-                        margin-top: 0.25rem;
-                        margin-bottom: 0.25rem;
-
-                        strong {
-                            color: $l5r5e-label;
-                        }
-
-                        label {
-                            flex: 100%;
-                        }
-
-                        p {
-                            width: 100%;
-                        }
-
-                        textarea {
-                            height: calc(100% - 22px);
-                        }
-
-                        .actor-remove-control {
-                            font-size: 12px;
-                        }
-                    }
-                }
-
-                .standing {
-                    flex: 0 0 100%;
-                    display: flex;
-                    flex-wrap: wrap;
-
-                    h2 {
-                        flex: 0 0 100%;
-                    }
-
-                    ul {
+        .sheet-body {
+            height: calc(100% - 9.5rem);
+            .tab {
+                height: calc(100% - 3.5rem);
+                &.army {
+                    .warlord,
+                    .commander {
                         display: flex;
-                        position: relative;
 
-                        li {
-                            flex: 33%;
-                            display: inline-grid;
-                            position: relative;
-                            padding: 0.25rem;
-                            flex-direction: column-reverse;
+                        .fa-sign-in-alt {
+                            transform: rotate(90deg);
+                        }
+
+                        fieldset {
+                            margin-top: 0.25rem;
+                            margin-bottom: 0.25rem;
 
                             strong {
-                                text-align: center;
+                                color: $l5r5e-label;
                             }
 
-                            input {
-                                background: transparent;
-                                border: 0 none;
-                                text-align: center;
+                            label {
+                                flex: 100%;
                             }
 
-                            &:after {
-                                content: "";
-                                width: 2rem;
-                                height: 2rem;
-                                position: absolute;
-                                right: calc(50% - 0.95rem);
-                                top: calc(50% - 0.2rem);
-                                background: transparent url("../assets/icons/circle.svg") no-repeat 0 0;
-                                background-size: contain;
-                                opacity: 0.25;
-                                z-index: -1;
+                            p {
+                                width: 100%;
                             }
 
-                            &:nth-child(1) {
-                                &:after {
-                                    transform: rotate(0deg);
+                            textarea {
+                                height: calc(100% - 22px);
+                            }
+
+                            .actor-remove-control {
+                                font-size: 12px;
+                            }
+                        }
+                    }
+
+                    .standing {
+                        flex: 0 0 100%;
+                        display: flex;
+                        flex-wrap: wrap;
+
+                        h2 {
+                            flex: 0 0 100%;
+                        }
+
+                        ul {
+                            display: flex;
+                            position: relative;
+
+                            li {
+                                flex: 33%;
+                                display: inline-grid;
+                                position: relative;
+                                padding: 0.25rem;
+                                flex-direction: column-reverse;
+
+                                strong {
+                                    text-align: center;
                                 }
-                            }
 
-                            &:nth-child(2) {
-                                &:after {
-                                    transform: rotate(90deg);
+                                input {
+                                    background: transparent;
+                                    border: 0 none;
+                                    text-align: center;
                                 }
-                            }
 
-                            &:nth-child(3) {
                                 &:after {
-                                    transform: rotate(180deg);
+                                    content: "";
+                                    width: 2rem;
+                                    height: 2rem;
+                                    position: absolute;
+                                    right: calc(50% - 0.95rem);
+                                    top: calc(50% - 0.2rem);
+                                    background: transparent url("../assets/icons/circle.svg") no-repeat 0 0;
+                                    background-size: contain;
+                                    opacity: 0.25;
+                                    z-index: -1;
+                                }
+
+                                &:nth-child(1) {
+                                    &:after {
+                                        transform: rotate(0deg);
+                                    }
+                                }
+
+                                &:nth-child(2) {
+                                    &:after {
+                                        transform: rotate(90deg);
+                                    }
+                                }
+
+                                &:nth-child(3) {
+                                    &:after {
+                                        transform: rotate(180deg);
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
 
-            &.others {
-                flex-direction: column;
+                &.others {
+                    flex-direction: column;
 
-                .editor-content {
-                    min-height: 8rem;
-                    max-height: 14rem;
+                    .editor-content {
+                        min-height: 8rem;
+                        max-height: 14rem;
+                    }
                 }
             }
         }
