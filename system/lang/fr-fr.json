@@ -39,6 +39,9 @@
         "TypeArmy_fortification": "Fortification",
         "TypeArmy_cohort": "Régiment"
     },
+    "JOURNAL": {
+        "TypeJournal": "Journal"
+    },
     "l5r5e": {
         "global": {
             "add": "Ajouter",
