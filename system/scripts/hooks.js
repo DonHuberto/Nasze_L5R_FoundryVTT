@@ -68,7 +68,7 @@ export default class HooksL5r5e {
      * @param {string}      userId
      * @return {boolean}
      */
-    static preCreateChatMessage(document, data, options, userId) {
+    static async preCreateChatMessage(document, data, options, userId) {
         // Roll from DP have the "isL5r5eTemplate" option set
         if (!document.isRoll || options?.isL5r5eTemplate || !document.data?.roll) {
             return;
@@ -83,7 +83,7 @@ export default class HooksL5r5e {
         }
 
         // So now we have our wrong message only, redo it using the roll
-        roll.toMessage();
+        await roll.toMessage();
 
         // Return false to let the system known we handled this
         return false;

@@ -56,7 +56,7 @@ export class RollL5r5e extends Roll {
      * Execute the Roll, replacing dice and evaluating the total result
      * @override
      **/
-    evaluate({ minimize = false, maximize = false, async = false } = {}) {
+    async evaluate({ minimize = false, maximize = false, async = true } = {}) {
         if (this._evaluated) {
             throw new Error("This Roll object has already been rolled.");
         }
@@ -71,7 +71,7 @@ export class RollL5r5e extends Roll {
         this._total = 0;
 
         // Roll
-        super.evaluate({ minimize, maximize, async });
+        await super.evaluate({ minimize, maximize, async });
         this._evaluated = true;
 
         // Save initial formula
@@ -297,7 +297,7 @@ export class RollL5r5e extends Roll {
     async toMessage(messageData = {}, { rollMode = null, create = true } = {}) {
         // Perform the roll, if it has not yet been rolled
         if (!this._evaluated) {
-            this.evaluate({ async: false });
+            await this.evaluate();
         }
 
         // RollMode
