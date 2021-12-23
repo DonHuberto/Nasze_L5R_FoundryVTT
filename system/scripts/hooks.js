@@ -41,7 +41,7 @@ export default class HooksL5r5e {
 
         // If any disclaimer "not translated by Edge"
         const disclaimer = game.i18n.localize("l5r5e.global.edge_translation_disclaimer");
-        if (disclaimer !== "l5r5e.global.edge_translation_disclaimer") {
+        if (disclaimer !== "" && disclaimer !== "l5r5e.global.edge_translation_disclaimer") {
             ui.notifications.info(disclaimer);
         }
     }
