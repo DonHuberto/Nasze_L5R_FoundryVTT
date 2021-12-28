@@ -2,19 +2,19 @@
     <li>
         <label class="attribute-label centered-input">
             <strong>{{localize 'l5r5e.social.honor'}}</strong>
-            <input class="centered-input select-on-focus" type="number" name="data.social.honor" value="{{data.data.social.honor}}" data-dtype="Number" placeholder="0"/>
+            <input class="centered-input select-on-focus" type="number" name="data.social.honor" value="{{data.data.social.honor}}" data-dtype="Number" placeholder="0" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
         </label>
     </li>
     <li>
         <label class="attribute-label centered-input">
             <strong>{{localize 'l5r5e.social.glory'}}</strong>
-            <input class="centered-input select-on-focus" type="number" name="data.social.glory" value="{{data.data.social.glory}}" data-dtype="Number" placeholder="0"/>
+            <input class="centered-input select-on-focus" type="number" name="data.social.glory" value="{{data.data.social.glory}}" data-dtype="Number" placeholder="0" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
         </label>
     </li>
     <li>
         <label class="attribute-label centered-input">
             <strong>{{localize 'l5r5e.social.status'}}</strong>
-            <input class="centered-input select-on-focus" type="number" name="data.social.status" value="{{data.data.social.status}}" data-dtype="Number" placeholder="0"/>
+            <input class="centered-input select-on-focus" type="number" name="data.social.status" value="{{data.data.social.status}}" data-dtype="Number" placeholder="0" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
         </label>
     </li>
 </ul>
