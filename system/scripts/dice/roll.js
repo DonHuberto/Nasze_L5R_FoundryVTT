@@ -248,7 +248,7 @@ export class RollL5r5e extends Roll {
 
         // Execute the roll, if needed
         if (!this._evaluated) {
-            this.roll();
+            await this.roll();
         }
 
         // Define chat data

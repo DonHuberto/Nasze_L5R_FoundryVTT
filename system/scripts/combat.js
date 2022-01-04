@@ -41,10 +41,14 @@ export class CombatL5r5e extends Combat {
 
             // Skip non character types (army)
             if (!["character", "npc"].includes(combatant.actor.data.type)) {
+                updatedCombatants.push({
+                    _id: combatant.id,
+                    initiative: 0,
+                });
                 continue;
             }
 
-            // Skip if combatant already have a initiative value
+            // Skip if combatant already have an initiative value
             if (!messageOptions.rerollInitiative && (!combatant || !combatant.actor)) {
                 return;
             }
@@ -103,7 +107,7 @@ export class CombatL5r5e extends Combat {
                     roll.l5r5e.voidPointUsed = !!messageOptions.useVoidPoint;
                     roll.l5r5e.skillAssistance = messageOptions.skillAssistance || 0;
 
-                    roll.roll();
+                    await roll.roll();
                     rnkMessage = await roll.toMessage({ flavor });
                 }
 
@@ -140,6 +144,11 @@ export class CombatL5r5e extends Combat {
     _sortCombatants(a, b) {
         // if tie, sort by honor, less honorable first
         if (a.initiative === b.initiative) {
+            // skip if armies
+            if (a.actor.data.type === "army" || b.actor.data.type === "army") {
+                return 0;
+            }
+
             // if tie, Character > Adversary > Minion
             if (a.actor.data.data.social.honor === b.actor.data.data.social.honor) {
                 return (
