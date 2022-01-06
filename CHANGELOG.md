@@ -3,6 +3,7 @@
 ## 1.5.0 - FoundryVTT v9 Compatibility
 - Updated the System to FoundryVTT v9.
 - Fixed armies in combat tracker.
+- Thanks to Perkuns for his help with the CSS for this v9 release.
 
 ## 1.4.0 - Armies & French PoW
 - Added Army (Actor), Cohort (Item) and Fortification (Item) sheets.

@@ -18,9 +18,9 @@ button {
     border: 1px solid rgb(195, 165, 130);
     border-radius: 0;
     overflow: initial;
-    height: calc(100% - 1rem);
+    height: calc(100% - 0.8rem);
     top: 0.5rem;
-    min-width: 40px;
+    min-width: 320px;
     letter-spacing: 0.1rem;
     &:before {
         z-index: -1;
@@ -92,6 +92,15 @@ button {
                 background-size: 85%;
                 &:before {
                     content: "";
+                }
+            }
+            &.fa-id-badge {
+                // TODO needs background image
+                background-size: 85%;
+                color: black;
+                padding-left: 2px;
+                &:before {
+                    content: "\f2c1";
                 }
             }
             &.fa-music {
@@ -328,9 +337,9 @@ button {
 
 // hotbar
 #hotbar {
-    margin: 0;
+    //margin: 0;
     #action-bar {
-        flex: 0 0 100%;
+        //flex: 0 0 100%;
         .macro {
             background-position: center;
             background-size: 100%;
@@ -406,7 +415,7 @@ button {
     border-image: url("../assets/ui/macro-button.webp") 15 repeat;
     border-image-width: 0.5rem;
     border-image-outset: 0px;
-    margin: 0;
+    //margin: 0;
     padding: 0;
     left: 1.15rem;
     bottom: 0.65rem;
@@ -431,7 +440,7 @@ button {
     height: 80px;
     width: 88px;
     margin-left: 0.5rem;
-    opacity: 0;
+    opacity: 0.9;
 }
 
 // navigation
