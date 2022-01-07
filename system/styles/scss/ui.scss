@@ -9,6 +9,14 @@ button {
     cursor: url("../assets/cursors/pointer.webp"), pointer;
 }
 
+// System title was too long and merge version with module number
+#game-details {
+    .system {
+        overflow: auto;
+        border-bottom: 1px solid var(--color-border-light-highlight);
+    }
+}
+
 // sidebar
 #sidebar {
     padding: 0.5rem 0.25rem 0.5rem 0.5rem;
