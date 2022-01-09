@@ -9,8 +9,8 @@
         <article class="attributes" data-group="primary" data-tab="attributes">
             <select name="data.advancement_type" id="advancement_type">
                 {{#select data.data.advancement_type}}
-                    {{#each data.subTypesList as |type|}}
-                        <option value="{{type}}">{{type}}</option>
+                    {{#each data.subTypesList as |label type|}}
+                        <option value="{{type}}">{{localize label}}</option>
                     {{/each}}
                 {{/select}}
             </select>

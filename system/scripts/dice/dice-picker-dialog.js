@@ -159,10 +159,7 @@ export class DicePickerDialog extends FormApplication {
             return;
         }
         this._actor = actor;
-        if (this.object.ring.id === "void") {
-            this.ringId = this._actor.data.data.stance;
-            this.object.ring.value = this._actor.data.data.rings[this.object.ring.id];
-        }
+        this.ringId = this._actor.data.data.stance;
     }
 
     /**
@@ -171,6 +168,7 @@ export class DicePickerDialog extends FormApplication {
      */
     set ringId(ringId) {
         this.object.ring.id = CONFIG.l5r5e.stances.includes(ringId) ? ringId : "void";
+        this.object.ring.value = this._actor.data.data.rings[this.object.ring.id];
     }
 
     /**
