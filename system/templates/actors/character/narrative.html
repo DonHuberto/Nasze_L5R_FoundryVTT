@@ -4,7 +4,7 @@
         <legend class="text-block-header">{{localize 'l5r5e.social.title'}}</legend>
         <label class="attribute-label">
             {{localize 'l5r5e.social.ninjo'}}
-            <textarea type="text" name="data.social.ninjo">{{data.data.social.ninjo}}</textarea>
+            <textarea type="text" name="data.social.ninjo" {{^if data.editable_not_soft_locked}}disabled{{/if}}>{{data.data.social.ninjo}}</textarea>
         </label>
         <label class="attribute-label">
             {{#ifCond data.data.template '==' 'pow'}}
@@ -12,7 +12,7 @@
             {{else}}
                 {{localize 'l5r5e.social.giri'}}
             {{/ifCond}}
-            <textarea type="text" name="data.social.giri">{{data.data.social.giri}}</textarea>
+            <textarea type="text" name="data.social.giri" {{^if data.editable_not_soft_locked}}disabled{{/if}}>{{data.data.social.giri}}</textarea>
         </label>
     </fieldset>
     {{!-- Bushido Tenets --}}

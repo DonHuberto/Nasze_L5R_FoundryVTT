@@ -6,7 +6,7 @@
         </label>
         <label class="attribute-label">
             <strong>{{localize 'l5r5e.attributes.fatigue'}}</strong>
-            <input class="centered-input select-on-focus" type="number" name="data.fatigue.value" value="{{data.data.fatigue.value}}" data-dtype="Number" min="0" placeholder="0"/>
+            <input class="centered-input select-on-focus" type="number" name="data.fatigue.value" value="{{data.data.fatigue.value}}" data-dtype="Number" min="0" placeholder="0" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
         </label>
         <p class="item-description"> {{localize 'l5r5e.attributes.endurancetip'}}</p>
     </li>
@@ -17,7 +17,7 @@
         </label>
         <label class="attribute-label">
             <strong>{{localize 'l5r5e.attributes.strife'}}</strong>
-            <input class="centered-input select-on-focus" type="number" name="data.strife.value" value="{{data.data.strife.value}}" data-dtype="Number" min="0" placeholder="0"/>
+            <input class="centered-input select-on-focus" type="number" name="data.strife.value" value="{{data.data.strife.value}}" data-dtype="Number" min="0" placeholder="0" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
         </label>
         <p class="item-description"> {{localize 'l5r5e.attributes.composuretip'}}</p>
     </li>
@@ -42,7 +42,7 @@
     <li class="void-content">
         <label class="attribute-label">
             <strong>{{localize 'l5r5e.attributes.voidpoints'}}</strong>
-            <input class="centered-input select-on-focus" type="number" name="data.void_points.value" value="{{data.data.void_points.value}}" data-dtype="Number" placeholder="0" min="0" max="{{data.data.void_points.max}}"/>
+            <input class="centered-input select-on-focus" type="number" name="data.void_points.value" value="{{data.data.void_points.value}}" data-dtype="Number" placeholder="0" min="0" max="{{data.data.void_points.max}}" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
             <input class="centered-input" type="number" name="data.void_points.max" value="{{data.data.void_points.max}}" data-dtype="Number" disabled/>
         </label>
     </li>

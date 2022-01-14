@@ -134,7 +134,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
      */
     async _onDrop(event) {
         // *** Everything below here is only needed if the sheet is editable ***
-        if (!this.isEditable) {
+        if (!this.isEditable || this.actor.data.data.soft_locked) {
             return;
         }
 
