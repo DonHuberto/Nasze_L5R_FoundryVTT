@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.0 - SoftLock
+- Added SoftLock on PC sheet
+
 ## 1.5.0 - FoundryVTT v9 Compatibility
 - Updated the System to FoundryVTT v9.
 - Thanks to Perkuns for his help with the CSS for this v9 release.
