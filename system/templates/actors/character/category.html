@@ -2,7 +2,7 @@
     <h4 class="section-header">{{localizeSkill categoryId 'title'}}</h4>
     <ul class="skill-category-skills-list">
         {{#each category as |skill id|}}
-            {{> 'systems/l5r5e/templates/actors/character/skill.html' categoryId=../categoryId skill=skill skillId=id}}
+            {{> 'systems/l5r5e/templates/actors/character/skill.html' categoryId=../categoryId skill=skill skillId=id data=../data}}
         {{/each}}
     </ul>
     <ul class="skill-category-ring-actions">

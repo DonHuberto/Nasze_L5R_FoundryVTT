@@ -31,6 +31,9 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
         // Split Items by types
         sheetData.data.splitItemsList = this._splitItems(sheetData);
 
+        // Shortcut for some tests
+        sheetData.data.editable_not_soft_locked = sheetData.editable && !sheetData.data.data.soft_locked;
+
         return sheetData;
     }
 

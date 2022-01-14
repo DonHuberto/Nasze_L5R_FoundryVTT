@@ -2,6 +2,9 @@
     "Actor": {
         "types": ["character", "npc", "army"],
         "templates": {
+            "softlock": {
+                "soft_locked": false
+            },
             "identity": {
                 "identity": {
                     "clan": "",
@@ -115,7 +118,7 @@
             }
         },
         "character": {
-            "templates": ["identity", "rings", "social", "skills", "techniques", "conflict", "advancement"],
+            "templates": ["softlock", "identity", "rings", "social", "skills", "techniques", "conflict", "advancement"],
             "template": "core",
             "twenty_questions": {},
             "zeni": 0
