@@ -95,6 +95,7 @@
                     .warlord,
                     .commander {
                         display: flex;
+                        flex-wrap: wrap;
 
                         .fa-sign-in-alt {
                             transform: rotate(90deg);
@@ -189,8 +190,29 @@
                             }
                         }
                     }
+                    .warlord-name {
+                        display: flex;
+                        flex-wrap: wrap;
+                        margin: 0;
+                        padding: 0.5rem 0.5rem 0;
+                        background: $l5r5e-title;
+                        --notchSize: 0.25rem;
+                        i {
+                            color: $l5r5e-black;
+                            margin-right: 0.5rem;
+                        }
+                        label {
+                            flex: 0 0 auto !important;
+                            height: 1.65rem;
+                            margin: 0;
+                            padding: 0 0.5rem;
+                            color: $l5r5e-label;
+                            background: $l5r5e-white;
+                            border: 1px solid $l5r5e-label;
+                            border-radius: 1rem;
+                        }
+                    }
                 }
-
                 &.others {
                     flex-direction: column;
 

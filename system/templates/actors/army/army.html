@@ -1,10 +1,12 @@
 <div class="header-fields warlord">
     <fieldset>
         <legend>{{^if data.data.warlord_actor_id}}<i class="fa fa-sign-in-alt" aria-hidden="true"></i> {{/if}}{{localize 'l5r5e.army.warlord'}}</legend>
-        <p>
+        <p class="warlord-name">
             {{#if data.data.warlord_actor_id}}
-                <span data-actor-id="{{actor.id}}" data-type="warlord" class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span>
-                <a data-actor-id="{{data.data.warlord_actor_id}}" class="open-sheet-actor-id">{{data.data.warlord}}</a>
+                <label>
+                    <a data-actor-id="{{data.data.warlord_actor_id}}" class="open-sheet-actor-id">{{data.data.warlord}}</a>
+                    <span data-actor-id="{{actor.id}}" data-type="warlord" class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span>
+                </label>
             {{else}}
                 <input name="data.warlord" type="text" value="{{data.data.warlord}}" />
             {{/if}}
