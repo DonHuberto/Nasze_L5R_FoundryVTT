@@ -534,46 +534,48 @@ button {
 // controls
 #controls {
     top: 100px;
-    .scene-control.active,
-    .control-tool.active,
-    .scene-control:hover,
-    .control-tool:hover {
-        background: linear-gradient(
-            $l5r5e-linear-gradient-first,
-            $l5r5e-linear-gradient-first-dark,
-            $l5r5e-linear-gradient-first
-        );
-        background-origin: padding-box;
-        border-image: url("../assets/ui/macro-button.webp") 10 repeat;
-        border-image-width: 0.25rem;
-        border-image-outset: 0px;
-        box-shadow: 0 0 10px $red;
-        &:hover {
+    ol {
+        .scene-control.active,
+        .control-tool.active,
+        .scene-control:hover,
+        .control-tool:hover {
             background: linear-gradient(
-                $l5r5e-linear-gradient-first-dark,
                 $l5r5e-linear-gradient-first,
-                $l5r5e-linear-gradient-first-dark
+                $l5r5e-linear-gradient-first-dark,
+                $l5r5e-linear-gradient-first
             );
+            background-origin: padding-box;
+            border-image: url("../assets/ui/macro-button.webp") 10 repeat;
+            border-image-width: 0.25rem;
+            border-image-outset: 0px;
+            box-shadow: 0 0 10px $red;
+            &:hover {
+                background: linear-gradient(
+                    $l5r5e-linear-gradient-first-dark,
+                    $l5r5e-linear-gradient-first,
+                    $l5r5e-linear-gradient-first-dark
+                );
+            }
         }
-    }
-    .scene-control,
-    .control-tool {
-        color: $white;
-        background: linear-gradient(
-            $l5r5e-linear-gradient-second,
-            $l5r5e-linear-gradient-second-dark,
-            $l5r5e-linear-gradient-second
-        );
-        background-origin: padding-box;
-        border-image: url("../assets/ui/macro-button.webp") 10 repeat;
-        border-image-width: 0.25rem;
-        border-image-outset: 0px;
-        &:hover {
+        .scene-control,
+        .control-tool {
+            color: $white;
             background: linear-gradient(
-                $l5r5e-linear-gradient-first-dark,
-                $l5r5e-linear-gradient-first,
-                $l5r5e-linear-gradient-first-dark
+                $l5r5e-linear-gradient-second,
+                $l5r5e-linear-gradient-second-dark,
+                $l5r5e-linear-gradient-second
             );
+            background-origin: padding-box;
+            border-image: url("../assets/ui/macro-button.webp") 10 repeat;
+            border-image-width: 0.25rem;
+            border-image-outset: 0px;
+            &:hover {
+                background: linear-gradient(
+                    $l5r5e-linear-gradient-first-dark,
+                    $l5r5e-linear-gradient-first,
+                    $l5r5e-linear-gradient-first-dark
+                );
+            }
         }
     }
 }
