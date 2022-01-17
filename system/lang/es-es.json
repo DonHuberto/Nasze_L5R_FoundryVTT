@@ -148,7 +148,8 @@
             "title": "GM Monitor",
             "switch_view": "Switch View",
             "honor_glory_status": "H/G/S",
-            "focus_vigilance": "Foc./Vig."
+            "focus_vigilance": "Foc./Vig.",
+            "mouse_control": "Right click +1, left: -1, middle: reset to 0"
         },
         "max": "Máx",
         "current": "Actuales",

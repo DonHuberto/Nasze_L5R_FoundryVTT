@@ -38,7 +38,7 @@ export class GmMonitor extends FormApplication {
     _getHeaderButtons() {
         let buttons = super._getHeaderButtons();
 
-        // Send To Chat
+        // Switch view Characters/Armies
         buttons.unshift({
             label: game.i18n.localize("l5r5e.gm_monitor.switch_view"),
             class: "switch-view",
@@ -150,6 +150,9 @@ export class GmMonitor extends FormApplication {
         // Delete
         html.find(`.actor-remove-control`).on("click", this._removeActor.bind(this));
 
+        // Add/Subtract
+        html.find(`.actor-modify-control`).on("mousedown", this._modifyActor.bind(this));
+
         // Tooltips
         game.l5r5e.HelpersL5r5e.popupManager(html.find(".actor-infos-control"), async (event) => {
             const type = $(event.currentTarget).data("type");
@@ -243,7 +246,102 @@ export class GmMonitor extends FormApplication {
     }
 
     /**
-     * Get tooltips informations for this character
+     * Add or subtract fatigue/strife/void/casualties/panic
+     * @param event
+     * @return {Promise<void>}
+     * @private
+     */
+    async _modifyActor(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const type = $(event.currentTarget).data("type");
+        if (!type) {
+            console.warn("L5R5E | type not set", type);
+            return;
+        }
+        const id = $(event.currentTarget).data("actor-id");
+        if (!id) {
+            console.warn("L5R5E | actor id not set", type);
+            return;
+        }
+        const actor = game.actors.get(id);
+        if (!actor) {
+            console.warn("L5R5E | Actor not found", type);
+            return;
+        }
+
+        // Mouse bt : middle = 0, left +1, right -1
+        const add = event.which === 2 ? -999 : event.which === 1 ? 1 : -1;
+
+        switch (type) {
+            // *** Characters ***
+            case "fatigue":
+                await actor.update({
+                    data: {
+                        fatigue: {
+                            value: Math.max(0, actor.data.data.fatigue.value + add),
+                        },
+                    },
+                });
+                break;
+
+            case "strife":
+                await actor.update({
+                    data: {
+                        strife: {
+                            value: Math.max(0, actor.data.data.strife.value + add),
+                        },
+                    },
+                });
+                break;
+
+            case "void_points":
+                await actor.update({
+                    data: {
+                        void_points: {
+                            value: Math.min(
+                                actor.data.data.void_points.max,
+                                Math.max(0, actor.data.data.void_points.value + add)
+                            ),
+                        },
+                    },
+                });
+                break;
+
+            // *** Armies ***
+            case "casualties":
+                await actor.update({
+                    data: {
+                        battle_readiness: {
+                            casualties_strength: {
+                                value: Math.max(0, actor.data.data.battle_readiness.casualties_strength.value + add),
+                            },
+                        },
+                    },
+                });
+                break;
+
+            case "panic":
+                await actor.update({
+                    data: {
+                        battle_readiness: {
+                            panic_discipline: {
+                                value: Math.max(0, actor.data.data.battle_readiness.panic_discipline.value + add),
+                            },
+                        },
+                    },
+                });
+                break;
+
+            default:
+                console.warn("L5R5E | Unsupported type", type);
+                break;
+        }
+    }
+
+    /**
+     * Get tooltips information for this character
      * @param {BaseSheetL5r5e} actor
      * @return {string}
      * @private
