@@ -7,11 +7,11 @@
         <label class="attribute-label">
             <strong>{{localize 'l5r5e.attributes.fatigue'}}</strong>
             <input class="centered-input select-on-focus" type="number" name="data.fatigue.value" value="{{data.data.fatigue.value}}" data-dtype="Number" min="0" placeholder="0" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
+            <span class="attributes-buttons">
+                <i class="addsub-control pointer-choice fa fa-plus-square" data-type="fatigue" data-value="1"></i>
+                <i class="addsub-control pointer-choice fa fa-minus-square" data-type="fatigue" data-value="-1"></i>
+            </span>
         </label>
-        <span class="attributes-buttons">
-            <i class="addsub-control pointer-choice fa fa-plus-square" data-type="fatigue" data-value="1"></i>
-            <i class="addsub-control pointer-choice fa fa-minus-square" data-type="fatigue" data-value="-1"></i>
-        </span>
         <p class="item-description"> {{localize 'l5r5e.attributes.endurancetip'}}</p>
     </li>
     <li class="composure-content">
@@ -22,11 +22,11 @@
         <label class="attribute-label">
             <strong>{{localize 'l5r5e.attributes.strife'}}</strong>
             <input class="centered-input select-on-focus" type="number" name="data.strife.value" value="{{data.data.strife.value}}" data-dtype="Number" min="0" placeholder="0" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
+            <span class="attributes-buttons">
+                <i class="addsub-control pointer-choice fa fa-plus-square" data-type="strife" data-value="1"></i>
+                <i class="addsub-control pointer-choice fa fa-minus-square" data-type="strife" data-value="-1"></i>
+            </span>
         </label>
-        <span class="attributes-buttons">
-            <i class="addsub-control pointer-choice fa fa-plus-square" data-type="strife" data-value="1"></i>
-            <i class="addsub-control pointer-choice fa fa-minus-square" data-type="strife" data-value="-1"></i>
-        </span>
         <p class="item-description"> {{localize 'l5r5e.attributes.composuretip'}}</p>
     </li>
     <li class="focus-content">
