@@ -313,6 +313,9 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
 
         // Others Advancements
         html.find(".item-advancement-choose").on("click", this._showDialogAddSubItem.bind(this));
+
+        // Fatigue/Strife +/-
+        html.find(".addsub-control").on("click", this._modifyFatigueOrStrife.bind(this));
     }
 
     /**
@@ -507,6 +510,48 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Add or Subtract Fatigue/Strife (+/- buttons)
+     * @param {Event} event
+     * @private
+     */
+    async _modifyFatigueOrStrife(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const elmt = $(event.currentTarget);
+        const type = elmt.data("type");
+        let mod = elmt.data("value");
+        if (!mod) {
+            return;
+        }
+        switch (type) {
+            case "fatigue":
+                await this.actor.update({
+                    data: {
+                        fatigue: {
+                            value: Math.max(0, this.actor.data.data.fatigue.value + mod),
+                        },
+                    },
+                });
+                break;
+
+            case "strife":
+                await this.actor.update({
+                    data: {
+                        strife: {
+                            value: Math.max(0, this.actor.data.data.strife.value + mod),
+                        },
+                    },
+                });
+                break;
+
+            default:
+                console.warn("L5R5E | Unsupported type", type);
+                break;
+        }
     }
 
     /**
