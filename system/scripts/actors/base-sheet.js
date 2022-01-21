@@ -51,6 +51,9 @@ export class BaseSheetL5r5e extends ActorSheet {
             return a.name.localeCompare(b.name);
         });
 
+        // Shortcut for some tests
+        sheetData.data.editable_not_soft_locked = sheetData.editable && !sheetData.data.data.soft_locked;
+
         return sheetData;
     }
 

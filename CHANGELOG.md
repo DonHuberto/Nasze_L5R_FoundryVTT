@@ -1,8 +1,9 @@
 # Changelog
 
 ## 1.6.0 - SoftLock
-- Added SoftLock on PC/NPC sheet
-- PC & NPC Sheet : Added +/- button to add or subtract Fatigue and Strife
+- Added SoftLock on PC/NPC/Armies sheet.
+- PC & NPC Sheet : Added +/- button to add or subtract Fatigue and Strife.
+- Armies Sheet : Added +/- button to add or subtract Casualties and Panic.
 - GmMonitor : Added ability to add or subtract fatigue/strife/void/casualties/panic points on mouse clic (left/right).
 
 ## 1.5.0 - FoundryVTT v9 Compatibility

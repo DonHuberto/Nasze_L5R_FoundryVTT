@@ -147,6 +147,7 @@
             }
         },
         "army": {
+            "templates": ["softlock"],
             "warlord": "",
             "warlord_actor_id": null,
             "allies_backers": "",

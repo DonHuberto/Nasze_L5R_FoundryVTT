@@ -24,6 +24,11 @@
                         display: inline-grid;
                         position: relative;
 
+                        .attributes-buttons {
+                            line-height: 13px;
+                            text-align: center;
+                        }
+
                         strong {
                             color: $l5r5e-label;
                             text-align: center;

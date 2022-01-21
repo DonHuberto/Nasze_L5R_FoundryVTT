@@ -1,25 +1,33 @@
 <form class="{{cssClass}}" data-lang="{{localize 'I18N.Language'}}" autocomplete="off">
     {{!-- Sheet Header --}}
     <header class="sheet-header">
-        <img class="profile-img dragndrop-actor-id pointer" src="{{data.img}}" data-edit="img" data-actor-id="{{actor.id}}" draggable="true" title="{{data.name}}"/>
+        <img class="profile-img dragndrop-actor-id pointer" src="{{data.img}}" {{#if data.editable_not_soft_locked}}data-edit="img"{{/if}} data-actor-id="{{actor.id}}" draggable="true" title="{{data.name}}"/>
         <div class="header-fields identity-wrapper">
-            <h1 class="charname"><input name="name" type="text" value="{{data.name}}" placeholder="Name"/></h1>
+            <h1 class="charname"><input name="name" type="text" value="{{data.name}}" placeholder="Name" {{^if data.editable_not_soft_locked}}disabled{{/if}}/></h1>
             <div class="readiness">
                 <ul>
                     <li>
-                        <input name="data.battle_readiness.casualties_strength.value" type="number" value="{{data.data.battle_readiness.casualties_strength.value}}" />
+                        <input name="data.battle_readiness.casualties_strength.value" type="number" value="{{data.data.battle_readiness.casualties_strength.value}}"  {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
                         <strong>{{localize 'l5r5e.army.battle_readiness.casualties'}}</strong>
+                        <span class="attributes-buttons">
+                            <i class="addsub-control pointer-choice fa fa-minus-square" data-type="casualties" data-value="-1"></i>
+                            <i class="addsub-control pointer-choice fa fa-plus-square" data-type="casualties" data-value="1"></i>
+                        </span>
                     </li>
                     <li>
-                        <input name="data.battle_readiness.casualties_strength.max" type="number" value="{{data.data.battle_readiness.casualties_strength.max}}" />
+                        <input name="data.battle_readiness.casualties_strength.max" type="number" value="{{data.data.battle_readiness.casualties_strength.max}}"  {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
                         <strong>{{localize 'l5r5e.army.battle_readiness.strength'}}</strong>
                     </li>
                     <li>
-                        <input name="data.battle_readiness.panic_discipline.value" type="number" value="{{data.data.battle_readiness.panic_discipline.value}}" />
+                        <input name="data.battle_readiness.panic_discipline.value" type="number" value="{{data.data.battle_readiness.panic_discipline.value}}"  {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
                         <strong>{{localize 'l5r5e.army.battle_readiness.panic'}}</strong>
+                        <span class="attributes-buttons">
+                            <i class="addsub-control pointer-choice fa fa-minus-square" data-type="panic" data-value="-1"></i>
+                            <i class="addsub-control pointer-choice fa fa-plus-square" data-type="panic" data-value="1"></i>
+                        </span>
                     </li>
                     <li>
-                        <input name="data.battle_readiness.panic_discipline.max" type="number" value="{{data.data.battle_readiness.panic_discipline.max}}" />
+                        <input name="data.battle_readiness.panic_discipline.max" type="number" value="{{data.data.battle_readiness.panic_discipline.max}}"  {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
                         <strong>{{localize 'l5r5e.army.battle_readiness.discipline'}}</strong>
                     </li>
                 </ul>

@@ -113,6 +113,13 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
             return;
         }
 
+        // Casualties/Panic +/-
+        html.find(".addsub-control").on("click", this._modifyCasualtiesOrPanic.bind(this));
+
+        if (this.actor.data.data.soft_locked) {
+            return;
+        }
+
         // Delete the linked Actor (warlord/commander)
         html.find(".actor-remove-control").on("click", this._removeLinkedActor.bind(this));
     }
@@ -152,7 +159,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
      */
     async _onDrop(event) {
         // *** Everything below here is only needed if the sheet is editable ***
-        if (!this.isEditable) {
+        if (!this.isEditable || this.actor.data.data.soft_locked) {
             return;
         }
 
@@ -184,7 +191,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
      */
     async _onDropActors(type, event) {
         // *** Everything below here is only needed if the sheet is editable ***
-        if (!this.isEditable) {
+        if (!this.isEditable || this.actor.data.data.soft_locked) {
             return;
         }
 
@@ -269,5 +276,54 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
                 return;
         }
         return this.actor.update({ data: actorData });
+    }
+
+    /**
+     * Add or Subtract Casualties/Panic (+/- buttons)
+     * @param {Event} event
+     * @private
+     */
+    async _modifyCasualtiesOrPanic(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const elmt = $(event.currentTarget);
+        const type = elmt.data("type");
+        let mod = elmt.data("value");
+        if (!mod) {
+            return;
+        }
+        switch (type) {
+            case "casualties":
+                await this.actor.update({
+                    data: {
+                        battle_readiness: {
+                            casualties_strength: {
+                                value: Math.max(
+                                    0,
+                                    this.actor.data.data.battle_readiness.casualties_strength.value + mod
+                                ),
+                            },
+                        },
+                    },
+                });
+                break;
+
+            case "panic":
+                await this.actor.update({
+                    data: {
+                        battle_readiness: {
+                            panic_discipline: {
+                                value: Math.max(0, this.actor.data.data.battle_readiness.panic_discipline.value + mod),
+                            },
+                        },
+                    },
+                });
+                break;
+
+            default:
+                console.warn("L5R5E | Unsupported type", type);
+                break;
+        }
     }
 }
