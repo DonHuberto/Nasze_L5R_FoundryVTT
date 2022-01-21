@@ -1,7 +1,7 @@
 <form class="{{cssClass}}" data-lang="{{localize 'I18N.Language'}}" autocomplete="off">
     {{!-- Sheet Header --}}
     <header class="sheet-header">
-        <img class="profile-img dragndrop-actor-id pointer" src="{{data.img}}" data-edit="img" data-actor-id="{{actor.id}}" draggable="true" title="{{data.name}}"/>
+        <img class="profile-img dragndrop-actor-id pointer" src="{{data.img}}" {{#if data.editable_not_soft_locked}}data-edit="img"{{/if}} data-actor-id="{{actor.id}}" draggable="true" title="{{data.name}}"/>
         <div class="header-fields identity-wrapper">
             <h1 class="charname"><input name="name" type="text" value="{{data.name}}" placeholder="Name" {{^if data.editable_not_soft_locked}}disabled{{/if}}/></h1>
             {{> 'systems/l5r5e/templates/actors/character/identity.html'}}

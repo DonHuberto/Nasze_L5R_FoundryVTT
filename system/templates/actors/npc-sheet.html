@@ -2,8 +2,8 @@
     {{!-- Sheet Header --}}
     <header class="sheet-header">
         <div class="header-fields identity-wrapper">
-            <img class="profile-img dragndrop-actor-id pointer" src="{{data.img}}" data-edit="img" data-actor-id="{{actor.id}}" draggable="true" title="{{data.name}}"/>
-            <h1 class="charname"><input name="name" type="text" value="{{data.name}}" placeholder="Name"/></h1>
+            <img class="profile-img dragndrop-actor-id pointer" src="{{data.img}}" {{#if data.editable_not_soft_locked}}data-edit="img"{{/if}} data-actor-id="{{actor.id}}" draggable="true" title="{{data.name}}"/>
+            <h1 class="charname"><input name="name" type="text" value="{{data.name}}" placeholder="Name" {{^if data.editable_not_soft_locked}}disabled{{/if}}/></h1>
             {{> 'systems/l5r5e/templates/actors/npc/identity.html'}}
         </div>
         <div class="header-fields">

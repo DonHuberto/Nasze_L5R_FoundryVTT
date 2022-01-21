@@ -124,7 +124,7 @@
             "zeni": 0
         },
         "npc": {
-            "templates": ["rings", "social", "techniques", "conflict"],
+            "templates": ["softlock", "rings", "social", "techniques", "conflict"],
             "type": "adversary",
             "attitude": "",
             "conflict_rank": {

@@ -1,7 +1,7 @@
 # Changelog
 
 ## 1.6.0 - SoftLock
-- Added SoftLock on PC sheet
+- Added SoftLock on PC/NPC sheet
 - PC & NPC Sheet : Added +/- button to add or subtract Fatigue and Strife
 - GmMonitor : Added ability to add or subtract fatigue/strife/void/casualties/panic points on mouse clic (left/right).
 
