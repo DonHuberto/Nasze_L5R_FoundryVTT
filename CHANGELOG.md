@@ -5,6 +5,7 @@
 - PC & NPC Sheet : Added +/- button to add or subtract Fatigue and Strife.
 - Armies Sheet : Added +/- button to add or subtract Casualties and Panic.
 - GmMonitor : Added ability to add or subtract fatigue/strife/void/casualties/panic points on mouse clic (left/right).
+- Techniques Compendiums : Trying a cheap Rank filter.
 
 ## 1.5.0 - FoundryVTT v9 Compatibility
 - Updated the System to FoundryVTT v9.
