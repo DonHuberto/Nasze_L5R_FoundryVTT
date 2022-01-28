@@ -1,9 +1,10 @@
 # Changelog
 
-## 1.6.0 - SoftLock
-- Added SoftLock on PC/NPC/Armies sheet.
-- PC & NPC Sheet : Added +/- button to add or subtract Fatigue and Strife.
-- Armies Sheet : Added +/- button to add or subtract Casualties and Panic.
+## 1.6.0 - QoL & SoftLock
+- PC/NPC/Armies sheet:
+  - Added SoftLock functionality.
+  - Added a new button bar for system specific buttons.
+  - Added +/- buttons to add or subtract Fatigue and Strife (PC & NPC Sheet), Casualties and Panic (Armies Sheet).
 - GmMonitor : Added ability to add or subtract fatigue/strife/void/casualties/panic points on mouse clic (left/right).
 - Compendiums :
   - Techniques : QoL - Trying a cheap Rank filter.

@@ -1,4 +1,10 @@
 <form class="{{cssClass}}" data-lang="{{localize 'I18N.Language'}}" autocomplete="off">
+    {{!-- L5R Button bar --}}
+    <div class="l5r-buttons-bar">
+    {{#each l5rHeaderButtons}}
+        <a class="l5r-header-button {{this.class}}"><i class="{{this.icon}}"></i>{{localize this.label}}</a>
+    {{/each}}
+    </div>
     {{!-- Sheet Header --}}
     <header class="sheet-header">
         <img class="profile-img dragndrop-actor-id pointer" src="{{data.img}}" {{#if data.editable_not_soft_locked}}data-edit="img"{{/if}} data-actor-id="{{actor.id}}" draggable="true" title="{{data.name}}"/>

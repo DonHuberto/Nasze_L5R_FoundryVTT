@@ -17,11 +17,12 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
     }
 
     /**
-     * Add the TwentyQuestions button on top of sheet
+     * Add the TwentyQuestions button in L5R specific bar
      * @override
+     * @return {{label: string, class: string, icon: string, onclick: Function|null}[]}
      */
-    _getHeaderButtons() {
-        let buttons = super._getHeaderButtons();
+    _getL5rHeaderButtons() {
+        const buttons = super._getL5rHeaderButtons();
         if (!this.isEditable || this.actor.limited) {
             return buttons;
         }

@@ -17,15 +17,40 @@ export class BaseSheetL5r5e extends ActorSheet {
     }
 
     /**
-     * Add the SendToChat button on top of sheet
-     * @override
+     * Add buttons to L5R specific bar
+     * @return {{label: string, class: string, icon: string, onclick: Function|null}[]}
      */
-    _getHeaderButtons() {
-        let buttons = super._getHeaderButtons();
+    _getL5rHeaderButtons() {
+        /**
+         * @var {{label: string, class: string, icon: string, onclick: Function|null}[]}
+         */
+        const buttons = [];
+
+        if (this.isEditable && !this.actor.limited) {
+            // Lock/Unlock
+            buttons.unshift({
+                label: `l5r5e.global.${this.actor.data.data.soft_locked ? "" : "un"}locked`,
+                class: "l5r-softlock",
+                icon: this.actor.data.data.soft_locked ? "fas fa-lock" : "fas fa-unlock",
+                onclick: () =>
+                    game.l5r5e.HelpersL5r5e.debounce(
+                        "lock-" + this.object.id,
+                        () => {
+                            this.actor.update({
+                                data: {
+                                    soft_locked: !this.actor.data.data.soft_locked,
+                                },
+                            });
+                        },
+                        500,
+                        true
+                    )(),
+            });
+        }
 
         // Send To Chat
         buttons.unshift({
-            label: game.i18n.localize("l5r5e.global.send_to_chat"),
+            label: "l5r5e.global.send_to_chat",
             class: "send-to-chat",
             icon: "fas fa-comment-dots",
             onclick: () =>
@@ -43,6 +68,9 @@ export class BaseSheetL5r5e extends ActorSheet {
     /** @inheritdoc */
     getData(options = {}) {
         const sheetData = super.getData(options);
+
+        // System Header Buttons
+        sheetData.l5rHeaderButtons = this._getL5rHeaderButtons();
 
         sheetData.data.dtypes = ["String", "Number", "Boolean"];
 
@@ -108,6 +136,14 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         // Commons
         game.l5r5e.HelpersL5r5e.commonListeners(html, this.actor);
+
+        // System Header Buttons
+        const l5rHeaderButtons = this._getL5rHeaderButtons();
+        html.find(".l5r-header-button").click((event) => {
+            event.preventDefault();
+            const button = l5rHeaderButtons.find((b) => event.currentTarget.classList.contains(b.class));
+            button.onclick(event);
+        });
 
         // *** Everything below here is only needed if the sheet is editable ***
         if (!this.isEditable) {

@@ -6,6 +6,20 @@
             text-shadow: 0 0 2px $red;
         }
     }
+    .l5r-buttons-bar {
+        display: flex;
+        flex: 0 0 100%;
+        overflow: hidden;
+        padding: 0 8px;
+        line-height: 30px;
+        justify-content: flex-end;
+        background: rgba(186, 187, 177, 0.5);
+
+        a.l5r-header-button {
+            flex: none;
+            margin: 0 0 0 8px;
+        }
+    }
     &.actor {
         .sheet-header {
             height: 26rem;
