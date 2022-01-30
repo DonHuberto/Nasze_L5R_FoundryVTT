@@ -274,6 +274,15 @@ export class GmMonitor extends FormApplication {
         // Mouse bt : middle = 0, left +1, right -1
         const add = event.which === 2 ? -999 : event.which === 1 ? 1 : -1;
 
+        // Stance
+        let stanceIdx =
+            CONFIG.l5r5e.stances.findIndex((s) => s === actor.data.data.stance) + (event.which === 1 ? 1 : -1);
+        if (stanceIdx < 0) {
+            stanceIdx = CONFIG.l5r5e.stances.length - 1;
+        } else if (stanceIdx > CONFIG.l5r5e.stances.length - 1) {
+            stanceIdx = 0;
+        }
+
         switch (type) {
             // *** Characters ***
             case "fatigue":
@@ -305,6 +314,22 @@ export class GmMonitor extends FormApplication {
                                 Math.max(0, actor.data.data.void_points.value + add)
                             ),
                         },
+                    },
+                });
+                break;
+
+            case "stance":
+                await actor.update({
+                    data: {
+                        stance: CONFIG.l5r5e.stances[stanceIdx],
+                    },
+                });
+                break;
+
+            case "prepared":
+                await actor.update({
+                    data: {
+                        prepared: !actor.data.data.prepared,
                     },
                 });
                 break;

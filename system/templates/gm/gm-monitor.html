@@ -26,8 +26,16 @@
                 <a data-actor-id="{{actor.id}}" class="open-sheet-actor-id">{{actor.name}}</a>
                 {{#if actor.data.data.attitude}}<p>({{actor.data.data.attitude}})</p>{{/if}}
             </td>
-            <td><i data-type="text" data-text="<h2>{{localize 'l5r5e.conflict.stance'}} ({{localizeRing actor.data.data.stance}})</h2>{{localizeStanceTip actor.data.data.stance}}" class="i_{{actor.data.data.stance}} actor-infos-control"></i></td>
-            <td><i data-type="text" data-text="<h2>{{localize 'l5r5e.conflict.initiative.title'}} : {{localize (localize 'l5r5e.conflict.initiative.prepared_{value}' value=actor.isPrepared)}}</h2>" class="fa fas prepared-icon-{{actor.isPrepared}} {{#ifCond actor.isPrepared '==' 'false'}}badvalue{{/ifCond}} actor-infos-control"></i></td>
+            <td>
+                <a data-actor-id="{{actor.id}}" data-type="stance" class="actor-modify-control">
+                    <i data-type="text" data-text="<h2>{{localize 'l5r5e.conflict.stance'}} ({{localizeRing actor.data.data.stance}})</h2>{{localizeStanceTip actor.data.data.stance}}" class="i_{{actor.data.data.stance}} actor-infos-control"></i>
+                </a>
+            </td>
+            <td>
+                <a data-actor-id="{{actor.id}}" data-type="prepared" class="actor-modify-control">
+                    <i data-type="text" data-text="<h2>{{localize 'l5r5e.conflict.initiative.title'}} : {{localize (localize 'l5r5e.conflict.initiative.prepared_{value}' value=actor.isPrepared)}}</h2>" class="fa fas prepared-icon-{{actor.isPrepared}} {{#ifCond actor.isPrepared '==' 'false'}}badvalue{{/ifCond}} actor-infos-control"></i>
+                </a>
+            </td>
             <td>{{#if actor.haveWeaponEquipped}}<i data-type="weapons" data-actor-id="{{actor.id}}" class="fas fa-fan actor-infos-control {{#if actor.haveWeaponReadied}}badvalue{{/if}}"></i>{{/if}}</td>
             <td>{{#if actor.haveArmorEquipped}}<i data-type="armors" data-actor-id="{{actor.id}}" class="fas fa-user-shield actor-infos-control"></i>{{/if}}</td>
             <td>

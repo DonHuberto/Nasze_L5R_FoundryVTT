@@ -5,7 +5,9 @@
   - Added SoftLock functionality.
   - Added a new button bar for system specific buttons.
   - Added +/- buttons to add or subtract Fatigue and Strife (PC & NPC Sheet), Casualties and Panic (Armies Sheet).
-- GmMonitor : Added ability to add or subtract fatigue/strife/void/casualties/panic points on mouse clic (left/right).
+- GmMonitor :
+  - Added ability to add or subtract fatigue/strife/void/casualties/panic points on mouse clic (left/right/middle).
+  - Added ability to switch between stance/prepared on mouse clic (left/right).
 - Compendiums :
   - Techniques : QoL - Trying a cheap Rank filter.
   - Inversion techniques : Updated xp cost from 3 to 6.
