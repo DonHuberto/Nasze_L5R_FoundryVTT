@@ -283,85 +283,53 @@ export class GmMonitor extends FormApplication {
             stanceIdx = 0;
         }
 
+        const updateData = {};
         switch (type) {
             // *** Characters ***
             case "fatigue":
-                await actor.update({
-                    data: {
-                        fatigue: {
-                            value: Math.max(0, actor.data.data.fatigue.value + add),
-                        },
-                    },
-                });
+                updateData["data.fatigue.value"] = Math.max(0, actor.data.data.fatigue.value + add);
                 break;
 
             case "strife":
-                await actor.update({
-                    data: {
-                        strife: {
-                            value: Math.max(0, actor.data.data.strife.value + add),
-                        },
-                    },
-                });
+                updateData["data.strife.value"] = Math.max(0, actor.data.data.strife.value + add);
                 break;
 
             case "void_points":
-                await actor.update({
-                    data: {
-                        void_points: {
-                            value: Math.min(
-                                actor.data.data.void_points.max,
-                                Math.max(0, actor.data.data.void_points.value + add)
-                            ),
-                        },
-                    },
-                });
+                updateData["data.void_points.value"] = Math.min(
+                    actor.data.data.void_points.max,
+                    Math.max(0, actor.data.data.void_points.value + add)
+                );
                 break;
 
             case "stance":
-                await actor.update({
-                    data: {
-                        stance: CONFIG.l5r5e.stances[stanceIdx],
-                    },
-                });
+                updateData["data.stance"] = CONFIG.l5r5e.stances[stanceIdx];
                 break;
 
             case "prepared":
-                await actor.update({
-                    data: {
-                        prepared: !actor.data.data.prepared,
-                    },
-                });
+                updateData["data.prepared"] = !actor.data.data.prepared;
                 break;
 
             // *** Armies ***
             case "casualties":
-                await actor.update({
-                    data: {
-                        battle_readiness: {
-                            casualties_strength: {
-                                value: Math.max(0, actor.data.data.battle_readiness.casualties_strength.value + add),
-                            },
-                        },
-                    },
-                });
+                updateData["data.battle_readiness.casualties_strength.value"] = Math.max(
+                    0,
+                    actor.data.data.battle_readiness.casualties_strength.value + add
+                );
                 break;
 
             case "panic":
-                await actor.update({
-                    data: {
-                        battle_readiness: {
-                            panic_discipline: {
-                                value: Math.max(0, actor.data.data.battle_readiness.panic_discipline.value + add),
-                            },
-                        },
-                    },
-                });
+                updateData["data.battle_readiness.panic_discipline.value"] = Math.max(
+                    0,
+                    actor.data.data.battle_readiness.panic_discipline.value + add
+                );
                 break;
 
             default:
                 console.warn("L5R5E | Unsupported type", type);
                 break;
+        }
+        if (!foundry.utils.isObjectEmpty(updateData)) {
+            await actor.update(updateData);
         }
     }
 
