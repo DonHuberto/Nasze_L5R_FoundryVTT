@@ -11,9 +11,10 @@
         flex: 0 0 100%;
         overflow: hidden;
         padding: 0 8px;
-        line-height: 30px;
+        line-height: 1.9rem;
         justify-content: flex-end;
         background: rgba(186, 187, 177, 0.5);
+        height: 2rem;
 
         a.l5r-header-button {
             flex: none;
@@ -29,7 +30,7 @@
             }
         }
         .sheet-body {
-            height: calc(100% - 27rem);
+            height: calc(100% - 28rem);
         }
         fieldset {
             &.advancement,

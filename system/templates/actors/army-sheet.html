@@ -13,27 +13,35 @@
             <div class="readiness">
                 <ul>
                     <li>
-                        <input name="data.battle_readiness.casualties_strength.value" type="number" value="{{data.data.battle_readiness.casualties_strength.value}}"  {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
+                        <label class="attribute-label-casualties">
+                            <input name="data.battle_readiness.casualties_strength.value" type="number" value="{{data.data.battle_readiness.casualties_strength.value}}"  {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
+                            <span class="attributes-buttons">
+                                <i class="addsub-control pointer-choice fa fa-plus-square" data-type="casualties" data-value="1"></i>
+                                <i class="addsub-control pointer-choice fa fa-minus-square" data-type="casualties" data-value="-1"></i>
+                            </span>
+                        </label>
                         <strong>{{localize 'l5r5e.army.battle_readiness.casualties'}}</strong>
-                        <span class="attributes-buttons">
-                            <i class="addsub-control pointer-choice fa fa-minus-square" data-type="casualties" data-value="-1"></i>
-                            <i class="addsub-control pointer-choice fa fa-plus-square" data-type="casualties" data-value="1"></i>
-                        </span>
                     </li>
                     <li>
-                        <input name="data.battle_readiness.casualties_strength.max" type="number" value="{{data.data.battle_readiness.casualties_strength.max}}"  {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
+                        <label class="attribute-label-strength">
+                            <input name="data.battle_readiness.casualties_strength.max" type="number" value="{{data.data.battle_readiness.casualties_strength.max}}"  {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
+                        </label>
                         <strong>{{localize 'l5r5e.army.battle_readiness.strength'}}</strong>
                     </li>
                     <li>
-                        <input name="data.battle_readiness.panic_discipline.value" type="number" value="{{data.data.battle_readiness.panic_discipline.value}}"  {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
+                        <label class="attribute-label-panic">
+                            <input name="data.battle_readiness.panic_discipline.value" type="number" value="{{data.data.battle_readiness.panic_discipline.value}}"  {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
+                            <span class="attributes-buttons">
+                                <i class="addsub-control pointer-choice fa fa-plus-square" data-type="panic" data-value="1"></i>
+                                <i class="addsub-control pointer-choice fa fa-minus-square" data-type="panic" data-value="-1"></i>
+                            </span>
+                        </label>
                         <strong>{{localize 'l5r5e.army.battle_readiness.panic'}}</strong>
-                        <span class="attributes-buttons">
-                            <i class="addsub-control pointer-choice fa fa-minus-square" data-type="panic" data-value="-1"></i>
-                            <i class="addsub-control pointer-choice fa fa-plus-square" data-type="panic" data-value="1"></i>
-                        </span>
                     </li>
                     <li>
-                        <input name="data.battle_readiness.panic_discipline.max" type="number" value="{{data.data.battle_readiness.panic_discipline.max}}"  {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
+                        <label class="attribute-label-discipline">
+                            <input name="data.battle_readiness.panic_discipline.max" type="number" value="{{data.data.battle_readiness.panic_discipline.max}}"  {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
+                        </label>
                         <strong>{{localize 'l5r5e.army.battle_readiness.discipline'}}</strong>
                     </li>
                 </ul>

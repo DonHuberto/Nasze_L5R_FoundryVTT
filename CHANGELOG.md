@@ -6,6 +6,7 @@
   - Added a new button bar for system specific buttons.
   - Added +/- buttons to add or subtract Fatigue and Strife (PC & NPC Sheet), Casualties and Panic (Armies Sheet).
 - GmMonitor :
+  - Moved Honor/Glory/status in tooltip.
   - Added ability to add or subtract fatigue/strife/void/casualties/panic points on mouse clic (left/right/middle).
   - Added ability to switch between stance/prepared on mouse clic (left/right).
 - Compendiums :

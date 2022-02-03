@@ -10,7 +10,6 @@
             <th class="weapon"><i class="fas fa-fan"></i></th>
             <th class="armor"><i class="fas fa-user-shield"></i></th>
             <th class="rank">{{localize 'l5r5e.rank'}}</th>
-            <th class="social">{{localize 'l5r5e.gm_monitor.honor_glory_status'}}</th>
             <th class="fatigue">{{localize 'l5r5e.attributes.fatigue'}}</th>
             <th class="strife">{{localize 'l5r5e.attributes.strife'}}</th>
             <th class="vigilance">{{localize 'l5r5e.gm_monitor.focus_vigilance'}}</th>
@@ -28,7 +27,7 @@
             </td>
             <td>
                 <a data-actor-id="{{actor.id}}" data-type="stance" class="actor-modify-control">
-                    <i data-type="text" data-text="<h2>{{localize 'l5r5e.conflict.stance'}} ({{localizeRing actor.data.data.stance}})</h2>{{localizeStanceTip actor.data.data.stance}}" class="i_{{actor.data.data.stance}} actor-infos-control"></i>
+                    <i data-type="text" data-text="<h2>{{localize 'l5r5e.conflict.stance'}} ({{localizeRing actor.data.data.stance}} - {{lookup actor.data.data.rings actor.data.data.stance}})</h2>{{localizeStanceTip actor.data.data.stance}}" class="i_{{actor.data.data.stance}} actor-infos-control"></i>
                 </a>
             </td>
             <td>
@@ -55,11 +54,6 @@
                     {{/each}}
                     {{/if}}
                 </p>
-            </td>
-            <td>
-                <span class="{{#ifCond actor.data.data.social.honor '>' 64}}goodvalue{{/ifCond}}{{#ifCond actor.data.data.social.honor '<' 30}}badvalue{{/ifCond}}">{{actor.data.data.social.honor}}</span>
-                / <span class="{{#ifCond actor.data.data.social.glory '>' 64}}goodvalue{{/ifCond}}{{#ifCond actor.data.data.social.glory '<' 20}}badvalue{{/ifCond}}">{{actor.data.data.social.glory}}</span>
-                / {{actor.data.data.social.status}}
             </td>
             <td>
                 <a title="{{localize 'l5r5e.gm_monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="fatigue" class="actor-modify-control">
