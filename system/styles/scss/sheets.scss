@@ -190,6 +190,10 @@
                     height: 1.75rem;
                     margin: 0 1rem 0 0.5rem;
                     padding: 0 0.25rem 0.25rem;
+                    &[disabled] {
+                        border: 1px solid rgba(186, 187, 177, 0.5);
+                        background: $l5r5e-white-light;
+                    }
                 }
             }
             .identity-content {
@@ -289,7 +293,6 @@
                     margin: 0 0.25rem;
                     height: 2rem;
                     &[disabled] {
-                        border: 1px solid rgba(186, 187, 177, 0.5);
                         background: $l5r5e-white-light;
                     }
                 }
