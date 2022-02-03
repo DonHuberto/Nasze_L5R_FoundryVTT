@@ -3,7 +3,7 @@
 ## 1.6.0 - QoL & SoftLock
 - PC/NPC/Armies sheet:
   - Added SoftLock functionality.
-  - Added a new button bar for system specific buttons.
+  - Added a new button bar for system specific buttons to reduce elements in headers.
   - Added +/- buttons to add or subtract Fatigue and Strife (PC & NPC Sheet), Casualties and Panic (Armies Sheet).
 - GmMonitor :
   - Moved Honor/Glory/status in tooltip.
