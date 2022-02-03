@@ -12,6 +12,7 @@
 - Compendiums :
   - Techniques : QoL - Trying a cheap Rank filter.
   - Inversion techniques : Updated xp cost from 3 to 6.
+- Spanish language updated thanks to Alejandro Barranquero.
 
 ## 1.5.0 - FoundryVTT v9 Compatibility
 - Updated the System to FoundryVTT v9.
