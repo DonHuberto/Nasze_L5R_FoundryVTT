@@ -152,17 +152,18 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
      * @param formData
      */
     _updateObject(event, formData) {
-        // Store money in zeni
-        formData["data.zeni"] = this._moneyToZeni(
-            formData["data.money.koku"],
-            formData["data.money.bu"],
-            formData["data.money.zeni"]
-        );
-
-        // Remove fake money object
-        delete formData["data.money.koku"];
-        delete formData["data.money.bu"];
-        delete formData["data.money.zeni"];
+        // Store money in Zeni
+        if (formData["data.money.koku"] || formData["data.money.bu"] || formData["data.money.zeni"]) {
+            formData["data.zeni"] = this._moneyToZeni(
+                formData["data.money.koku"] || 0,
+                formData["data.money.bu"] || 0,
+                formData["data.money.zeni"] || 0
+            );
+            // Remove fake money object
+            delete formData["data.money.koku"];
+            delete formData["data.money.bu"];
+            delete formData["data.money.zeni"];
+        }
 
         // Save computed values
         const currentData = this.object.data.data;
