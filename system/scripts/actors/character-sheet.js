@@ -164,6 +164,16 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
         delete formData["data.money.bu"];
         delete formData["data.money.zeni"];
 
+        // Save computed values
+        const currentData = this.object.data.data;
+        formData["data.focus"] = currentData.focus;
+        formData["data.vigilance"] = currentData.vigilance;
+        formData["data.endurance"] = currentData.endurance;
+        formData["data.composure"] = currentData.composure;
+        formData["data.fatigue.max"] = currentData.fatigue.max;
+        formData["data.strife.max"] = currentData.strife.max;
+        formData["data.void_points.max"] = currentData.void_points.max;
+
         return super._updateObject(event, formData);
     }
 
