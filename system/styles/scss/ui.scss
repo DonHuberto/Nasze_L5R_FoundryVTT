@@ -9,6 +9,14 @@ button {
     cursor: url("../assets/cursors/pointer.webp"), pointer;
 }
 
+// System title was too long and merge version with module number
+#game-details {
+    .system {
+        overflow: auto;
+        border-bottom: 1px solid var(--color-border-light-highlight);
+    }
+}
+
 // sidebar
 #sidebar {
     padding: 0.5rem 0.25rem 0.5rem 0.5rem;
@@ -18,10 +26,13 @@ button {
     border: 1px solid rgb(195, 165, 130);
     border-radius: 0;
     overflow: initial;
-    height: calc(100% - 1rem);
-    top: 0.5rem;
+    height: calc(100% - 1.1rem);
+    top: 0.2rem;
+    width: 320px;
     min-width: 40px;
     letter-spacing: 0.1rem;
+    position: relative;
+    margin-right: 0.5rem;
     &:before {
         z-index: -1;
         content: "";
@@ -92,6 +103,14 @@ button {
                 background-size: 85%;
                 &:before {
                     content: "";
+                }
+            }
+            &.fa-id-badge {
+                background-size: 85%;
+                color: black;
+                padding-left: 2px;
+                &:before {
+                    content: "\f2c1";
                 }
             }
             &.fa-music {
@@ -328,9 +347,9 @@ button {
 
 // hotbar
 #hotbar {
-    margin: 0;
+    //margin: 0;
     #action-bar {
-        flex: 0 0 100%;
+        //flex: 0 0 100%;
         .macro {
             background-position: center;
             background-size: 100%;
@@ -408,9 +427,10 @@ button {
     border-image-outset: 0px;
     margin: 0;
     padding: 0;
-    left: 1.15rem;
+    left: 0.2rem;
     bottom: 0.65rem;
     box-shadow: inset 0 0 0.5rem $black-light;
+    position: relative;
     &:before {
         z-index: -1;
         position: absolute;
@@ -431,7 +451,7 @@ button {
     height: 80px;
     width: 88px;
     margin-left: 0.5rem;
-    opacity: 0;
+    opacity: 0.8;
 }
 
 // navigation
@@ -514,46 +534,48 @@ button {
 // controls
 #controls {
     top: 100px;
-    .scene-control.active,
-    .control-tool.active,
-    .scene-control:hover,
-    .control-tool:hover {
-        background: linear-gradient(
-            $l5r5e-linear-gradient-first,
-            $l5r5e-linear-gradient-first-dark,
-            $l5r5e-linear-gradient-first
-        );
-        background-origin: padding-box;
-        border-image: url("../assets/ui/macro-button.webp") 10 repeat;
-        border-image-width: 0.25rem;
-        border-image-outset: 0px;
-        box-shadow: 0 0 10px $red;
-        &:hover {
+    ol {
+        .scene-control.active,
+        .control-tool.active,
+        .scene-control:hover,
+        .control-tool:hover {
             background: linear-gradient(
-                $l5r5e-linear-gradient-first-dark,
                 $l5r5e-linear-gradient-first,
-                $l5r5e-linear-gradient-first-dark
+                $l5r5e-linear-gradient-first-dark,
+                $l5r5e-linear-gradient-first
             );
+            background-origin: padding-box;
+            border-image: url("../assets/ui/macro-button.webp") 10 repeat;
+            border-image-width: 0.25rem;
+            border-image-outset: 0px;
+            box-shadow: 0 0 10px $red;
+            &:hover {
+                background: linear-gradient(
+                    $l5r5e-linear-gradient-first-dark,
+                    $l5r5e-linear-gradient-first,
+                    $l5r5e-linear-gradient-first-dark
+                );
+            }
         }
-    }
-    .scene-control,
-    .control-tool {
-        color: $white;
-        background: linear-gradient(
-            $l5r5e-linear-gradient-second,
-            $l5r5e-linear-gradient-second-dark,
-            $l5r5e-linear-gradient-second
-        );
-        background-origin: padding-box;
-        border-image: url("../assets/ui/macro-button.webp") 10 repeat;
-        border-image-width: 0.25rem;
-        border-image-outset: 0px;
-        &:hover {
+        .scene-control,
+        .control-tool {
+            color: $white;
             background: linear-gradient(
-                $l5r5e-linear-gradient-first-dark,
-                $l5r5e-linear-gradient-first,
-                $l5r5e-linear-gradient-first-dark
+                $l5r5e-linear-gradient-second,
+                $l5r5e-linear-gradient-second-dark,
+                $l5r5e-linear-gradient-second
             );
+            background-origin: padding-box;
+            border-image: url("../assets/ui/macro-button.webp") 10 repeat;
+            border-image-width: 0.25rem;
+            border-image-outset: 0px;
+            &:hover {
+                background: linear-gradient(
+                    $l5r5e-linear-gradient-first-dark,
+                    $l5r5e-linear-gradient-first,
+                    $l5r5e-linear-gradient-first-dark
+                );
+            }
         }
     }
 }
@@ -719,6 +741,12 @@ button {
             top: -1px;
             left: -1px;
         }
+        .goodvalue {
+            color: #4e8c69;
+        }
+        .badvalue {
+            color: #ab2a00;
+        }
     }
     .card-header img {
         display: inline-block;
@@ -765,7 +793,7 @@ button {
 
 #l5r5e-gm-monitor {
     min-height: 170px;
-    min-width: 500px;
+    min-width: 240px;
 
     .window-content {
         form {

@@ -10,7 +10,6 @@
             <th class="weapon"><i class="fas fa-fan"></i></th>
             <th class="armor"><i class="fas fa-user-shield"></i></th>
             <th class="rank">{{localize 'l5r5e.rank'}}</th>
-            <th class="social">{{localize 'l5r5e.gm_monitor.honor_glory_status'}}</th>
             <th class="fatigue">{{localize 'l5r5e.attributes.fatigue'}}</th>
             <th class="strife">{{localize 'l5r5e.attributes.strife'}}</th>
             <th class="vigilance">{{localize 'l5r5e.gm_monitor.focus_vigilance'}}</th>
@@ -26,8 +25,16 @@
                 <a data-actor-id="{{actor.id}}" class="open-sheet-actor-id">{{actor.name}}</a>
                 {{#if actor.data.data.attitude}}<p>({{actor.data.data.attitude}})</p>{{/if}}
             </td>
-            <td><i data-type="text" data-text="<h2>{{localize 'l5r5e.conflict.stance'}} ({{localizeRing actor.data.data.stance}})</h2>{{localizeStanceTip actor.data.data.stance}}" class="i_{{actor.data.data.stance}} actor-infos-control"></i></td>
-            <td><i data-type="text" data-text="<h2>{{localize 'l5r5e.conflict.initiative.title'}} : {{localize (localize 'l5r5e.conflict.initiative.prepared_{value}' value=actor.isPrepared)}}</h2>" class="fa fas prepared-icon-{{actor.isPrepared}} {{#ifCond actor.isPrepared '==' 'false'}}badvalue{{/ifCond}} actor-infos-control"></i></td>
+            <td>
+                <a data-actor-id="{{actor.id}}" data-type="stance" class="actor-modify-control">
+                    <i data-type="text" data-text="<h2>{{localize 'l5r5e.conflict.stance'}} ({{localizeRing actor.data.data.stance}} - {{lookup actor.data.data.rings actor.data.data.stance}})</h2>{{localizeStanceTip actor.data.data.stance}}" class="i_{{actor.data.data.stance}} actor-infos-control"></i>
+                </a>
+            </td>
+            <td>
+                <a data-actor-id="{{actor.id}}" data-type="prepared" class="actor-modify-control">
+                    <i data-type="text" data-text="<h2>{{localize 'l5r5e.conflict.initiative.title'}} : {{localize (localize 'l5r5e.conflict.initiative.prepared_{value}' value=actor.isPrepared)}}</h2>" class="fa fas prepared-icon-{{actor.isPrepared}} {{#ifCond actor.isPrepared '==' 'false'}}badvalue{{/ifCond}} actor-infos-control"></i>
+                </a>
+            </td>
             <td>{{#if actor.haveWeaponEquipped}}<i data-type="weapons" data-actor-id="{{actor.id}}" class="fas fa-fan actor-infos-control {{#if actor.haveWeaponReadied}}badvalue{{/if}}"></i>{{/if}}</td>
             <td>{{#if actor.haveArmorEquipped}}<i data-type="armors" data-actor-id="{{actor.id}}" class="fas fa-user-shield actor-infos-control"></i>{{/if}}</td>
             <td>
@@ -49,25 +56,26 @@
                 </p>
             </td>
             <td>
-                <span class="{{#ifCond actor.data.data.social.honor '>' 64}}goodvalue{{/ifCond}}{{#ifCond actor.data.data.social.honor '<' 30}}badvalue{{/ifCond}}">{{actor.data.data.social.honor}}</span>
-                / <span class="{{#ifCond actor.data.data.social.glory '>' 64}}goodvalue{{/ifCond}}{{#ifCond actor.data.data.social.glory '<' 20}}badvalue{{/ifCond}}">{{actor.data.data.social.glory}}</span>
-                / {{actor.data.data.social.status}}
+                <a title="{{localize 'l5r5e.gm_monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="fatigue" class="actor-modify-control">
+                    <span class="{{#ifCond actor.data.data.fatigue.value '>' actor.data.data.fatigue.max}}badvalue{{/ifCond}}">{{actor.data.data.fatigue.value}}</span>
+                    / {{actor.data.data.fatigue.max}}
+                </a>
             </td>
             <td>
-                <span class="{{#ifCond actor.data.data.fatigue.value '>' actor.data.data.fatigue.max}}badvalue{{/ifCond}}">{{actor.data.data.fatigue.value}}</span>
-                / {{actor.data.data.fatigue.max}}
-            </td>
-            <td>
-                <span class="{{#ifCond actor.data.data.strife.value '>' actor.data.data.strife.max}}badvalue{{/ifCond}}">{{actor.data.data.strife.value}}</span>
-                / {{actor.data.data.strife.max}}
+                <a title="{{localize 'l5r5e.gm_monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="strife" class="actor-modify-control">
+                    <span class="{{#ifCond actor.data.data.strife.value '>' actor.data.data.strife.max}}badvalue{{/ifCond}}">{{actor.data.data.strife.value}}</span>
+                    / {{actor.data.data.strife.max}}
+                </a>
             </td>
             <td>
                 {{actor.data.data.focus}}
                 / {{#if actor.data.data.is_compromised}}<span class="badvalue">1</span>{{else}}{{actor.data.data.vigilance}}{{/if}}
             </td>
             <td>
-                {{actor.data.data.void_points.value}}
-                / {{actor.data.data.void_points.max}}
+                <a title="{{localize 'l5r5e.gm_monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="void_points" class="actor-modify-control">
+                    {{actor.data.data.void_points.value}}
+                    / {{actor.data.data.void_points.max}}
+                </a>
             </td>
             <td><i data-actor-id="{{actor.id}}" data-type="global" class="fas fa-question-circle actor-infos-control"></i></td>
             <td><span data-actor-id="{{actor.id}}" class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span></td>
@@ -101,12 +109,16 @@
                 {{/if}}
             </td>
             <td>
-                <span class="{{#ifCond actor.data.data.battle_readiness.casualties_strength.value '>' actor.data.data.battle_readiness.casualties_strength.max}}badvalue{{/ifCond}}">{{actor.data.data.battle_readiness.casualties_strength.value}}</span>
-                 / {{actor.data.data.battle_readiness.casualties_strength.max}}
+                <a title="{{localize 'l5r5e.gm_monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="casualties" class="actor-modify-control">
+                    <span class="{{#ifCond actor.data.data.battle_readiness.casualties_strength.value '>' actor.data.data.battle_readiness.casualties_strength.max}}badvalue{{/ifCond}}">{{actor.data.data.battle_readiness.casualties_strength.value}}</span>
+                     / {{actor.data.data.battle_readiness.casualties_strength.max}}
+                 </a>
              </td>
             <td>
-                <span class="{{#ifCond actor.data.data.battle_readiness.panic_discipline.value '>' actor.data.data.battle_readiness.panic_discipline.max}}badvalue{{/ifCond}}">{{actor.data.data.battle_readiness.panic_discipline.value}}</span>
-                / {{actor.data.data.battle_readiness.panic_discipline.max}}
+                <a title="{{localize 'l5r5e.gm_monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="panic" class="actor-modify-control">
+                    <span class="{{#ifCond actor.data.data.battle_readiness.panic_discipline.value '>' actor.data.data.battle_readiness.panic_discipline.max}}badvalue{{/ifCond}}">{{actor.data.data.battle_readiness.panic_discipline.value}}</span>
+                    / {{actor.data.data.battle_readiness.panic_discipline.max}}
+                </a>
             </td>
             <td>
                 {{#if actor.data.data.commander_actor_id}}

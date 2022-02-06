@@ -107,29 +107,96 @@ Hooks.once("init", async () => {
     // ***** Register custom sheets *****
     // Actors
     Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("l5r5e", CharacterSheetL5r5e, { types: ["character"], makeDefault: true });
-    Actors.registerSheet("l5r5e", NpcSheetL5r5e, { types: ["npc"], makeDefault: true });
-    Actors.registerSheet("l5r5e", ArmySheetL5r5e, { types: ["army"], makeDefault: true });
+    Actors.registerSheet("l5r5e", CharacterSheetL5r5e, {
+        types: ["character"],
+        label: "ACTOR.TypeCharacter",
+        makeDefault: true,
+    });
+    Actors.registerSheet("l5r5e", NpcSheetL5r5e, {
+        types: ["npc"],
+        label: "ACTOR.TypeNpc",
+        makeDefault: true,
+    });
+    Actors.registerSheet("l5r5e", ArmySheetL5r5e, {
+        types: ["army"],
+        label: "ACTOR.TypeArmy",
+        makeDefault: true,
+    });
 
     // Items
     Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet("l5r5e", ItemSheetL5r5e, { types: ["item"], makeDefault: true });
-    Items.registerSheet("l5r5e", ArmorSheetL5r5e, { types: ["armor"], makeDefault: true });
-    Items.registerSheet("l5r5e", WeaponSheetL5r5e, { types: ["weapon"], makeDefault: true });
-    Items.registerSheet("l5r5e", TechniqueSheetL5r5e, { types: ["technique"], makeDefault: true });
-    Items.registerSheet("l5r5e", PropertySheetL5r5e, { types: ["property"], makeDefault: true });
-    Items.registerSheet("l5r5e", PeculiaritySheetL5r5e, { types: ["peculiarity"], makeDefault: true });
-    Items.registerSheet("l5r5e", AdvancementSheetL5r5e, { types: ["advancement"], makeDefault: true });
-    Items.registerSheet("l5r5e", TitleSheetL5r5e, { types: ["title"], makeDefault: true });
-    Items.registerSheet("l5r5e", BondSheetL5r5e, { types: ["bond"], makeDefault: true });
-    Items.registerSheet("l5r5e", SignatureScrollSheetL5r5e, { types: ["signature_scroll"], makeDefault: true });
-    Items.registerSheet("l5r5e", ItemPatternSheetL5r5e, { types: ["item_pattern"], makeDefault: true });
-    Items.registerSheet("l5r5e", ArmyCohortSheetL5r5e, { types: ["army_cohort"], makeDefault: true });
-    Items.registerSheet("l5r5e", ArmyFortificationSheetL5r5e, { types: ["army_fortification"], makeDefault: true });
+    Items.registerSheet("l5r5e", ItemSheetL5r5e, {
+        types: ["item"],
+        label: "ITEM.TypeItem",
+        makeDefault: true,
+    });
+    Items.registerSheet("l5r5e", ArmorSheetL5r5e, {
+        types: ["armor"],
+        label: "ITEM.TypeArmor",
+        makeDefault: true,
+    });
+    Items.registerSheet("l5r5e", WeaponSheetL5r5e, {
+        types: ["weapon"],
+        label: "ITEM.TypeWeapon",
+        makeDefault: true,
+    });
+    Items.registerSheet("l5r5e", TechniqueSheetL5r5e, {
+        types: ["technique"],
+        label: "ITEM.TypeTechnique",
+        makeDefault: true,
+    });
+    Items.registerSheet("l5r5e", PropertySheetL5r5e, {
+        types: ["property"],
+        label: "ITEM.TypeProperty",
+        makeDefault: true,
+    });
+    Items.registerSheet("l5r5e", PeculiaritySheetL5r5e, {
+        types: ["peculiarity"],
+        label: "ITEM.TypePeculiarity",
+        makeDefault: true,
+    });
+    Items.registerSheet("l5r5e", AdvancementSheetL5r5e, {
+        types: ["advancement"],
+        label: "ITEM.TypeAdvancement",
+        makeDefault: true,
+    });
+    Items.registerSheet("l5r5e", TitleSheetL5r5e, {
+        types: ["title"],
+        label: "ITEM.TypeTitle",
+        makeDefault: true,
+    });
+    Items.registerSheet("l5r5e", BondSheetL5r5e, {
+        types: ["bond"],
+        label: "ITEM.TypeBond",
+        makeDefault: true,
+    });
+    Items.registerSheet("l5r5e", SignatureScrollSheetL5r5e, {
+        types: ["signature_scroll"],
+        label: "ITEM.TypeSignature_scroll",
+        makeDefault: true,
+    });
+    Items.registerSheet("l5r5e", ItemPatternSheetL5r5e, {
+        types: ["item_pattern"],
+        label: "ITEM.TypeItem_pattern",
+        makeDefault: true,
+    });
+    Items.registerSheet("l5r5e", ArmyCohortSheetL5r5e, {
+        types: ["army_cohort"],
+        label: "ITEM.TypeArmy_cohort",
+        makeDefault: true,
+    });
+    Items.registerSheet("l5r5e", ArmyFortificationSheetL5r5e, {
+        types: ["army_fortification"],
+        label: "ITEM.TypeArmy_fortification",
+        makeDefault: true,
+    });
 
     // Journal
-    Items.unregisterSheet("core", JournalSheet);
-    Items.registerSheet("l5r5e", BaseJournalSheetL5r5e, { makeDefault: true });
+    Journal.unregisterSheet("core", JournalSheet);
+    Journal.registerSheet("l5r5e", BaseJournalSheetL5r5e, {
+        label: "JOURNAL.TypeJournal",
+        makeDefault: true,
+    });
 
     // Override the default Token _drawBar function to allow fatigue bar reversing.
     Token.prototype._drawBar = function (number, bar, data) {
@@ -181,6 +248,6 @@ Hooks.on("renderChatMessage", (message, html, data) => HooksL5r5e.renderChatMess
 Hooks.on("renderCombatTracker", (app, html, data) => HooksL5r5e.renderCombatTracker(app, html, data));
 Hooks.on("renderCompendium", async (app, html, data) => HooksL5r5e.renderCompendium(app, html, data));
 Hooks.on("diceSoNiceRollStart", (messageId, context) => HooksL5r5e.diceSoNiceRollStart(messageId, context));
-Hooks.on("preCreateChatMessage", (document, data, options, userId) =>
-    HooksL5r5e.preCreateChatMessage(document, data, options, userId)
-);
+
+// TODO Seem fixed in v9, remove in v10 if good
+// Hooks.on("preCreateChatMessage", (document, data, options, userId) => HooksL5r5e.preCreateChatMessage(document, data, options, userId));

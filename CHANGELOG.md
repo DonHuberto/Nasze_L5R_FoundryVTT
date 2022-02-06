@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.6.0 - QoL & SoftLock
+- PC/NPC/Armies sheet:
+  - Added SoftLock functionality.
+  - Added a new button bar for system specific buttons to reduce elements in headers.
+  - Added +/- buttons to add or subtract Fatigue and Strife (PC & NPC Sheet), Casualties and Panic (Armies Sheet).
+- GmMonitor :
+  - Moved Honor/Glory/status in tooltip.
+  - Added ability to add or subtract fatigue/strife/void/casualties/panic points on mouse clic (left/right/middle).
+  - Added ability to switch between stance/prepared on mouse clic (left/right).
+- Compendiums :
+  - Techniques : QoL - Trying a cheap Rank filter.
+  - Inversion techniques : Updated xp cost from 3 to 6.
+- Spanish language updated thanks to Alejandro Barranquero.
+
+## 1.5.0 - FoundryVTT v9 Compatibility
+- Updated the System to FoundryVTT v9.
+- Thanks to Perkuns for his help with the CSS for this v9 release.
+- Fixed armies in combat tracker.
+- Fixed "traditional-japanese-man.svg" and "traditional-japanese-woman.svg" headers for firefox (x/y/width/height).
+- Trying to fix advancements behavior, who sometime left point on the old choice.
+
 ## 1.4.0 - Armies & French PoW
 - Added Army (Actor), Cohort (Item) and Fortification (Item) sheets.
 - Actor Sheet (PC, NPC, Army) : Added the ability to Drag n Drop an actor's image.

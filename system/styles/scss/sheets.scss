@@ -6,6 +6,21 @@
             text-shadow: 0 0 2px $red;
         }
     }
+    .l5r-buttons-bar {
+        display: flex;
+        flex: 0 0 100%;
+        overflow: hidden;
+        padding: 0 8px;
+        line-height: 1.9rem;
+        justify-content: flex-end;
+        background: rgba(186, 187, 177, 0.5);
+        height: 2rem;
+
+        a.l5r-header-button {
+            flex: none;
+            margin: 0 0 0 8px;
+        }
+    }
     &.actor {
         .sheet-header {
             height: 26rem;
@@ -15,7 +30,7 @@
             }
         }
         .sheet-body {
-            height: calc(100% - 27rem);
+            height: calc(100% - 28rem);
         }
         fieldset {
             &.advancement,
@@ -175,6 +190,10 @@
                     height: 1.75rem;
                     margin: 0 1rem 0 0.5rem;
                     padding: 0 0.25rem 0.25rem;
+                    &[disabled] {
+                        border: 1px solid rgba(186, 187, 177, 0.5);
+                        background: $l5r5e-white-light;
+                    }
                 }
             }
             .identity-content {
@@ -384,6 +403,11 @@
                     right: 0;
                     width: 3.5rem;
                 }
+            }
+            .attributes-buttons {
+                line-height: 13px;
+                position: relative;
+                top: 0.2rem;
             }
             .void-content {
                 width: 100%;

@@ -583,7 +583,7 @@ export class RollnKeepDialog extends FormApplication {
         };
 
         // Fill the data
-        roll.evaluate({ async: false });
+        await roll.evaluate();
 
         // Modify results
         roll.terms.map((term) => {

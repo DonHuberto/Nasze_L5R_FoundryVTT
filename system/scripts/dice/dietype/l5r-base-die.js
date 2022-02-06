@@ -79,14 +79,14 @@ export class L5rBaseDie extends DiceTerm {
      * @return {L5rBaseDie}            The evaluated RollTerm
      * @override
      */
-    evaluate({ minimize = false, maximize = false, async = false } = {}) {
+    async evaluate({ minimize = false, maximize = false, async = true } = {}) {
         if (this._evaluated) {
             throw new Error(`This ${this.constructor.name} has already been evaluated and is immutable`);
         }
 
         // Roll the initial number of dice
         for (let n = 1; n <= this.number; n++) {
-            this.roll({ minimize, maximize, async }); // TODO async/await in v10.x currently the inline roll is sync
+            await this.roll({ minimize, maximize, async });
         }
 
         // Apply modifiers

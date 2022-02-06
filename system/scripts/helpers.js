@@ -318,7 +318,7 @@ export class HelpersL5r5e {
         if (!types) {
             types = game.system.entityTypes.Item;
         }
-        const title = game.i18n.format("ENTITY.Create", { entity: game.i18n.localize("Item") });
+        const title = game.i18n.format("DOCUMENT.Create", { type: game.i18n.localize("Item") });
 
         // Render the template
         const html = await renderTemplate(`${CONFIG.l5r5e.paths.templates}dialogs/choose-item-type-dialog.html`, {

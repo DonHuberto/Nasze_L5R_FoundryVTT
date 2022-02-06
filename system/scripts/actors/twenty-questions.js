@@ -245,6 +245,7 @@ export class TwentyQuestions {
             parseInt(formData.step18.heritage_add_honor);
 
         // Update the actor
+        actorDatas.soft_locked = true;
         actorDatas.template = formData.template;
         actorDatas.zeni = Math.floor(formData.step2.wealth * 50);
         actorDatas.identity = {

@@ -1,10 +1,12 @@
 /** Global **/
 
 body {
-    background: url("../assets/imgs/bg-table.webp") no-repeat center;
-    background-size: cover;
     > * {
         scrollbar-width: thin;
+    }
+    &:not(.background) {
+        background: url("../assets/imgs/bg-table.webp") no-repeat;
+        background-size: auto;
     }
 }
 

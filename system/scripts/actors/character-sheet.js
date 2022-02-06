@@ -17,11 +17,12 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
     }
 
     /**
-     * Add the TwentyQuestions button on top of sheet
+     * Add the TwentyQuestions button in L5R specific bar
      * @override
+     * @return {{label: string, class: string, icon: string, onclick: Function|null}[]}
      */
-    _getHeaderButtons() {
-        let buttons = super._getHeaderButtons();
+    _getL5rHeaderButtons() {
+        const buttons = super._getL5rHeaderButtons();
         if (!this.isEditable || this.actor.limited) {
             return buttons;
         }
@@ -151,17 +152,28 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
      * @param formData
      */
     _updateObject(event, formData) {
-        // Store money in zeni
-        formData["data.zeni"] = this._moneyToZeni(
-            formData["data.money.koku"],
-            formData["data.money.bu"],
-            formData["data.money.zeni"]
-        );
+        // Store money in Zeni
+        if (formData["data.money.koku"] || formData["data.money.bu"] || formData["data.money.zeni"]) {
+            formData["data.zeni"] = this._moneyToZeni(
+                formData["data.money.koku"] || 0,
+                formData["data.money.bu"] || 0,
+                formData["data.money.zeni"] || 0
+            );
+            // Remove fake money object
+            delete formData["data.money.koku"];
+            delete formData["data.money.bu"];
+            delete formData["data.money.zeni"];
+        }
 
-        // Remove fake money object
-        delete formData["data.money.koku"];
-        delete formData["data.money.bu"];
-        delete formData["data.money.zeni"];
+        // Save computed values
+        const currentData = this.object.data.data;
+        formData["data.focus"] = currentData.focus;
+        formData["data.vigilance"] = currentData.vigilance;
+        formData["data.endurance"] = currentData.endurance;
+        formData["data.composure"] = currentData.composure;
+        formData["data.fatigue.max"] = currentData.fatigue.max;
+        formData["data.strife.max"] = currentData.strife.max;
+        formData["data.void_points.max"] = currentData.void_points.max;
 
         return super._updateObject(event, formData);
     }

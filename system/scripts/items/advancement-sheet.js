@@ -7,7 +7,7 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
     /**
      * Sub Types of advancements
      */
-    static types = ["ring", "skill"]; // others have theirs own xp count
+    static types = { ring: "l5r5e.rings.title", skill: "l5r5e.skill" }; // others have theirs own xp count
 
     /** @override */
     static get defaultOptions() {
@@ -46,19 +46,30 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
         const currentSkill = this.object.data.data.skill;
 
         html.find("#advancement_type").on("change", (event) => {
+            $(event.target).prop("disabled", true);
             if ($(event.target).val() === "skill") {
-                this._updateChoice({ ring: currentRing }, { skill: currentSkill });
+                this._updateChoice({ ring: currentRing }, { skill: currentSkill }).then(
+                    $(event.target).prop("disabled", false)
+                );
             } else {
-                this._updateChoice({ skill: currentSkill }, { ring: currentRing });
+                this._updateChoice({ skill: currentSkill }, { ring: currentRing }).then(
+                    $(event.target).prop("disabled", false)
+                );
             }
         });
 
         html.find("#advancement_ring").on("change", (event) => {
-            this._updateChoice({ ring: currentRing }, { ring: $(event.target).val() });
+            $(event.target).prop("disabled", true);
+            this._updateChoice({ ring: currentRing }, { ring: $(event.target).val() }).then(
+                $(event.target).prop("disabled", false)
+            );
         });
 
         html.find("#advancement_skill").on("change", (event) => {
-            this._updateChoice({ skill: currentSkill }, { skill: $(event.target).val() });
+            $(event.target).prop("disabled", true);
+            this._updateChoice({ skill: currentSkill }, { skill: $(event.target).val() }).then(
+                $(event.target).prop("disabled", false)
+            );
         });
     }
 
