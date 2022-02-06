@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.0 - Npc Generator
+- NPC Sheet : Added a new generator feature.
+
 ## 1.6.0 - QoL & SoftLock
 - PC/NPC/Armies sheet:
   - Added SoftLock functionality.
