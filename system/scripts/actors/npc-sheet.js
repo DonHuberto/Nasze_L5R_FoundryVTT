@@ -18,12 +18,13 @@ export class NpcSheetL5r5e extends BaseCharacterSheetL5r5e {
     }
 
     /**
-     * Add the NpcGenerator button on top of sheet
+     * Add the CharacterGenerator button in L5R specific bar
      * @override
+     * @return {{label: string, class: string, icon: string, onclick: Function|null}[]}
      */
-    _getHeaderButtons() {
-        let buttons = super._getHeaderButtons();
-        if (!this.isEditable || this.actor.limited) {
+    _getL5rHeaderButtons() {
+        const buttons = super._getL5rHeaderButtons();
+        if (!this.isEditable || this.actor.limited || this.actor.data.data.soft_locked) {
             return buttons;
         }
 

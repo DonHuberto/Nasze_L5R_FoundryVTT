@@ -3,36 +3,6 @@
  */
 export class CharacterGenerator {
     //<editor-fold desc="Config Datas">
-    static clansAndFamilies = {
-        // Majors
-        imperial: ["Miya", "Otomo", "Seppun"],
-        crab: ["Hida", "Kaiu", "Hiruma", "Yasuki", "Kuni"],
-        crane: ["Asahina", "Daidoji", "Doji", "Kakita"],
-        dragon: ["Kitsuki", "Mirumoto", "Togashi"],
-        lion: ["Akodo", "Ikoma", "Kitsu", "Matsu"],
-        phoenix: ["Agasha", "Asako", "Isawa", "Shiba"],
-        scorpion: ["Bayushi", "Shosuro", "Soshi", "Yogo"],
-        unicorn: ["Ide", "Iuchi", "Moto", "Shinjo", "Utaku"],
-        mantis: ["(mantis)"], // no family name, boat name
-
-        // Minors
-        ronin: ["(ronin)"], // can be anything
-        badger: ["Ichiro"],
-        bat: ["Komori"],
-        boar: ["Heichi"],
-        dragonfly: ["Tonbo"],
-        firefly: ["Hotaru"],
-        hare: ["Ujina", "Usagi"],
-        monkey: ["Toku", "Fuzake"],
-        oriole: ["Tsi"],
-        ox: ["Morito"],
-        sparrow: ["Suzume"],
-        tortoise: ["Kasuga"],
-        // ivory_kingdoms
-        // qamarist
-        // ujik
-    };
-
     static demeanorList = [
         { id: "adaptable", mod: { fire: 2, earth: -2 } },
         { id: "adaptable", mod: { water: 2, earth: -2 } },
@@ -130,17 +100,17 @@ export class CharacterGenerator {
      * @param {string} gender        random|male|female
      */
     constructor({ avgRingsValue = 3, clanName = "random", gender = "random" }) {
-        if (!CharacterGenerator.clansAndFamilies[clanName]) {
+        if (!CONFIG.l5r5e.families.has(clanName)) {
             clanName = "random";
         }
         if (clanName === "random") {
-            clanName = CharacterGenerator._getRandomArrayValue(Object.keys(CharacterGenerator.clansAndFamilies));
+            clanName = CharacterGenerator._getRandomArrayValue(Array.from(CONFIG.l5r5e.families.keys()));
         }
         if (gender === "random" || !["male", "female"].includes(gender)) {
             gender = Math.random() > 0.5 ? "male" : "female";
         }
 
-        this.data.avgRingsValue = CharacterGenerator._sanitizeMinMax(avgRingsValue);
+        this.data.avgRingsValue = CharacterGenerator.sanitizeMinMax(avgRingsValue);
         this.data.clan = clanName;
         this.data.family = CharacterGenerator._getRandomFamily(clanName);
         this.data.gender = gender;
@@ -182,9 +152,8 @@ export class CharacterGenerator {
      * Always return a number between 1 and 5
      * @param {number} number
      * @return {number}
-     * @private
      */
-    static _sanitizeMinMax(number) {
+    static sanitizeMinMax(number) {
         return Math.min(5, Math.max(1, number));
     }
 
@@ -222,10 +191,11 @@ export class CharacterGenerator {
         // Ronin specific, can be any other family name
         if (clanName === "ronin") {
             originClan = CharacterGenerator._getRandomArrayValue(
-                Object.keys(CharacterGenerator.clansAndFamilies).filter((e) => e !== "ronin")
+                Array.from(CONFIG.l5r5e.families.keys()).filter((e) => e !== "ronin")
             );
         }
-        return CharacterGenerator._getRandomArrayValue(CharacterGenerator.clansAndFamilies[originClan]);
+
+        return CharacterGenerator._getRandomArrayValue(CONFIG.l5r5e.families.get(originClan));
     }
 
     /**
@@ -288,33 +258,41 @@ export class CharacterGenerator {
      * Modify the current actor datas with selected options
      *
      * @param {ActorL5r5e} actor                 Actor object
-     * @param {boolean}    generateName          If true generate a new name
-     * @param {boolean}    generateAttributes    If true generate rings, attributes, skills and confrontation ranks
-     * @param {boolean}    generateSocial        If true generate Social Standing
-     * @param {boolean}    generateDemeanor      If true generate Demeanor and rings affinities
-     * @param {boolean}    generatePeculiarities If true generate Advantage and Disadvantage
-     * @param {boolean}    generateItems         If true generate Armor, Weapons and Items
-     * @param {boolean}    generateTechniques    If true generate Shuji, Katas...
-     * @param {boolean}    generateNarrative     If true generate Narrative and fluff
+     * @param {Object}     generate
+     * @param {boolean}    generate.name          If true generate a new name
+     * @param {boolean}    generate.attributes    If true generate rings, attributes, skills and confrontation ranks
+     * @param {boolean}    generate.social        If true generate Social Standing
+     * @param {boolean}    generate.demeanor      If true generate Demeanor and rings affinities
+     * @param {boolean}    generate.peculiarities If true generate Advantage and Disadvantage
+     * @param {boolean}    generate.items         If true generate Armor, Weapons and Items
+     * @param {boolean}    generate.techniques    If true generate Shuji, Katas...
+     * @param {boolean}    generate.narrative     If true generate Narrative and fluff
      * @return {Promise<Object>}
      */
     async toActor(
         actor,
-        {
-            generateName = true,
-            generateAttributes = true,
-            generateSocial = true,
-            generateDemeanor = true,
-            generatePeculiarities = true,
-            generateItems = true,
-            generateTechniques = true,
-            generateNarrative = true,
-        } = {}
+        generate = {
+            name: true,
+            attributes: true,
+            social: true,
+            demeanor: true,
+            peculiarities: true,
+            items: true,
+            techniques: true,
+            narrative: true,
+        }
     ) {
         const actorDatas = actor.data.data;
 
+        console.log(generate); // TODO tmp
+
         // Name
-        const newName = generateName ? await this.getRandomizedName() : actor.data.name;
+        const newName = generate.name ? await this.getRandomizedName() : actor.data.name;
+
+        actorDatas.identity.age = this.data.age;
+        actorDatas.identity.clan = this.data.clan;
+        actorDatas.identity.family = this.data.family;
+        actorDatas.identity.female = this.data.gender === "female";
 
         // Img (only if default)
         const folder = "systems/l5r5e/assets/icons/actors";
@@ -327,38 +305,38 @@ export class CharacterGenerator {
             : actor.data.img;
 
         // Generate attributes (rings, attributes, skills, confrontation ranks)
-        if (generateAttributes) {
+        if (generate.attributes) {
             this._generateAttributes(actorDatas);
         }
 
         // Social Standing
-        if (generateSocial) {
+        if (generate.social) {
             actorDatas.social.honor = this.data.honor;
             actorDatas.social.glory = this.data.glory;
             actorDatas.social.status = this.data.status;
         }
 
         // Demeanor (npc only)
-        if (generateDemeanor && actor.type === "npc") {
+        if (generate.demeanor && actor.type === "npc") {
             this._generateDemeanor(actorDatas);
         }
 
         // Items types
-        if (generatePeculiarities || generateItems || generateTechniques) {
+        if (generate.peculiarities || generate.items || generate.techniques) {
             const newItemsData = [];
 
             // Advantage / Disadvantage
-            if (generatePeculiarities) {
+            if (generate.peculiarities) {
                 await this._generatePeculiarities(actor, newItemsData);
             }
 
             // Items
-            if (generateItems) {
+            if (generate.items) {
                 await this._generateItems(actor, newItemsData);
             }
 
             // Techniques
-            if (generateTechniques) {
+            if (generate.techniques) {
                 await this._generateTechniques(actor, newItemsData);
             }
 
@@ -369,7 +347,7 @@ export class CharacterGenerator {
         }
 
         // Narrative
-        if (generateNarrative) {
+        if (generate.narrative) {
             this._generateNarrative(actorDatas);
         }
 
@@ -393,7 +371,7 @@ export class CharacterGenerator {
         // Rings
         CONFIG.l5r5e.stances.forEach((ringName) => {
             // avgRingsValue + (-1|0|1)
-            actorDatas.rings[ringName] = CharacterGenerator._sanitizeMinMax(
+            actorDatas.rings[ringName] = CharacterGenerator.sanitizeMinMax(
                 this.data.avgRingsValue - 1 + Math.floor(Math.random() * 3)
             );
             stats.min = Math.min(stats.min, actorDatas.rings[ringName]);

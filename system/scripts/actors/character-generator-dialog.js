@@ -15,17 +15,19 @@ export class CharacterGeneratorDialog extends FormApplication {
      * Payload Object
      */
     object = {
-        avg_rings: 3,
+        avgRings: 3,
         clan: "random",
         gender: "random",
-        generateAttributes: true,
-        generateDemeanor: true,
-        generateName: true,
-        generateNarrative: true,
-        generatePeculiarities: true,
-        generateItems: true,
-        generateTechniques: true,
-        generateSocial: true,
+        generate: {
+            attributes: true,
+            demeanor: true,
+            items: true,
+            name: true,
+            narrative: true,
+            peculiarities: true,
+            social: true,
+            techniques: true,
+        },
     };
 
     /**
@@ -60,6 +62,32 @@ export class CharacterGeneratorDialog extends FormApplication {
     constructor(actor = null, options = {}) {
         super({}, options);
         this.actor = actor;
+        this.initializeFromActor();
+    }
+
+    /**
+     * Try to get values from actor to initialize the generator
+     */
+    initializeFromActor() {
+        const actorDatas = this.actor.data.data;
+
+        // Identity
+        //this.object.age = actorDatas.age;
+        this.object.clan = actorDatas.identity.clan || "random";
+        this.object.gender = actorDatas.identity.female
+            ? "female"
+            : actorDatas.identity.female === false
+            ? "male"
+            : "random";
+
+        // Rings
+        this.object.avgRings = CharacterGenerator.sanitizeMinMax(
+            Math.round(
+                Object.values(actorDatas.rings).reduce((acc, ringValue) => {
+                    return acc + ringValue;
+                }, 0) / 5
+            )
+        );
     }
 
     /**
@@ -68,7 +96,7 @@ export class CharacterGeneratorDialog extends FormApplication {
      * @return {Object}
      */
     async getData(options = null) {
-        const clans = Object.keys(CharacterGenerator.clansAndFamilies).map((e) => ({
+        const clans = Array.from(CONFIG.l5r5e.families.keys()).map((e) => ({
             id: e,
             label: game.i18n.localize("l5r5e.clans." + e),
         }));
@@ -93,23 +121,22 @@ export class CharacterGeneratorDialog extends FormApplication {
      * @override
      */
     async _updateObject(event, formData) {
+        formData = foundry.utils.expandObject(formData);
+
         // Generate datas
         const generator = new CharacterGenerator({
-            avgRingsValue: formData.avg_rings,
+            avgRingsValue: formData.avgRings,
             clanName: formData.clan,
             gender: formData.gender,
         });
 
         // Update current Object with new data to keep selection
-        // Get selected value from generator for random values
         this.object = {
             ...formData,
-            clan: generator.data.clan,
-            gender: generator.data.gender,
         };
 
         // Update actor with selection
-        const updatedDatas = await generator.toActor(this.actor, formData);
+        const updatedDatas = await generator.toActor(this.actor, formData.generate);
         await this.actor.update(updatedDatas);
 
         this.render(false);

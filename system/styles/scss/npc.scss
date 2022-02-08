@@ -182,4 +182,16 @@
     input[type="number"] {
         width: auto;
     }
+    form .form-group {
+        border-bottom: solid #8080803d 1px;
+
+        &.smaller {
+            > label {
+                flex: 10;
+            }
+            .form-fields {
+                flex: 1;
+            }
+        }
+    }
 }

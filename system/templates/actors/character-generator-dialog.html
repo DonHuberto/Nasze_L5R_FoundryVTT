@@ -1,8 +1,8 @@
 <form class="l5r5e character-generator-dialog" autocomplete="off">
     <div class="content">
-        <div class="form-group body">
-            <label>
-                {{localize 'l5r5e.clan'}}
+        <div class="form-group">
+            <label>{{localize 'l5r5e.clan'}}</label>
+            <div class="form-fields">
                 <select class="attribute-dtype" name="clan">
                     {{#select data.clan}}
                     {{#each clanList as |value|}}
@@ -10,8 +10,11 @@
                     {{/each}}
                     {{/select}}
                 </select>
-
-                {{localize 'l5r5e.gender.title'}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label>{{localize 'l5r5e.gender.title'}}</label>
+            <div class="form-fields">
                 <select class="attribute-dtype" name="gender">
                     {{#select data.gender}}
                     {{#each genderList as |value|}}
@@ -19,47 +22,68 @@
                     {{/each}}
                     {{/select}}
                 </select>
-
-                {{localize 'l5r5e.char_generator.average_value'}} <input class="centered-input" type="number" name="avg_rings" value="{{data.avg_rings}}" data-dtype="Number" min="1" max="5" />
-            </label>
-            <label>
-            {{localize 'l5r5e.char_generator.generate'}}:
-            </label>
-            <label>
-                <input type="checkbox" name="generateName" {{checked data.generateName}} />
-                {{localize 'l5r5e.name'}}
-            </label>
-            <label>
-                <input type="checkbox" name="generateAttributes" {{checked data.generateAttributes}} />
-                {{localize 'l5r5e.char_generator.attributes'}}
-            </label>
-            <label>
-                <input type="checkbox" name="generateSocial" {{checked data.generateSocial}} />
-                {{localize 'l5r5e.char_generator.social'}}
-            </label>
-            {{#if isNpc}}
-            <label>
-                <input type="checkbox" name="generateDemeanor" {{checked data.generateDemeanor}} />
-                {{localize 'l5r5e.char_generator.demeanor'}}
-            </label>
-            {{/if}}
-            <label>
-                <input type="checkbox" name="generatePeculiarities" {{checked data.generatePeculiarities}} />
-                {{localize 'l5r5e.char_generator.peculiarities'}}
-            </label>
-            <label>
-                <input type="checkbox" name="generateItems" {{checked data.generateItems}} />
-                {{localize 'l5r5e.char_generator.items'}}
-            </label>
-            <label>
-                <input type="checkbox" name="generateTechniques" {{checked data.generateTechniques}} />
-                {{localize 'l5r5e.techniques.title'}}
-            </label>
-            <label>
-                <input type="checkbox" name="generateNarrative" {{checked data.generateNarrative}} />
-                {{localize 'l5r5e.char_generator.narrative'}}
-            </label>
+            </div>
         </div>
+        <div class="form-group">
+            <label>{{localize 'l5r5e.char_generator.average_value'}}</label>
+            <div class="form-fields">
+                <input type="range" name="avgRings" data-dtype="Number" value="{{data.avgRings}}" min="1" max="5" step="1">
+                <span class="range-value">{{data.avgRings}}</span>
+            </div>
+        </div>
+
+        <h2 class="separator">{{localize 'l5r5e.char_generator.generate'}}</h2>
+        <div class="form-group smaller">
+            <label>{{localize 'l5r5e.name'}}</label>
+            <div class="form-fields">
+                <input type="checkbox" name="generate.name" data-dtype="Boolean" {{checked data.generate.name}} />
+            </div>
+        </div>
+        <div class="form-group smaller">
+            <label>{{localize 'l5r5e.char_generator.attributes'}}</label>
+            <div class="form-fields">
+                <input type="checkbox" name="generate.attributes" data-dtype="Boolean" {{checked data.generate.attributes}} />
+            </div>
+        </div>
+        <div class="form-group smaller">
+            <label>{{localize 'l5r5e.char_generator.social'}}</label>
+            <div class="form-fields">
+                <input type="checkbox" name="generate.social" data-dtype="Boolean" {{checked data.generate.social}} />
+            </div>
+        </div>
+        {{#if isNpc}}
+        <div class="form-group smaller">
+            <label>{{localize 'l5r5e.char_generator.demeanor'}}</label>
+            <div class="form-fields">
+                <input type="checkbox" name="generate.demeanor" data-dtype="Boolean" {{checked data.generate.demeanor}} />
+            </div>
+        </div>
+        {{/if}}
+        <div class="form-group smaller">
+            <label>{{localize 'l5r5e.char_generator.peculiarities'}}</label>
+            <div class="form-fields">
+                <input type="checkbox" name="generate.peculiarities" data-dtype="Boolean" {{checked data.generate.peculiarities}} />
+            </div>
+        </div>
+        <div class="form-group smaller">
+            <label>{{localize 'l5r5e.char_generator.items'}}</label>
+            <div class="form-fields">
+                <input type="checkbox" name="generate.items" data-dtype="Boolean" {{checked data.generate.items}} />
+            </div>
+        </div>
+        <div class="form-group smaller">
+            <label>{{localize 'l5r5e.techniques.title'}}</label>
+            <div class="form-fields">
+                <input type="checkbox" name="generate.techniques" data-dtype="Boolean" {{checked data.generate.techniques}} />
+            </div>
+        </div>
+        <div class="form-group smaller">
+            <label>{{localize 'l5r5e.char_generator.narrative'}}</label>
+            <div class="form-fields">
+                <input type="checkbox" name="generate.narrative" data-dtype="Boolean" {{checked data.generate.narrative}} />
+            </div>
+        </div>
+
         <div class="form-group footer">
             <button name="generate" id="generate" type="submit">
                 {{localize 'l5r5e.char_generator.generate'}} <i class='fas fa-arrow-circle-right'></i>

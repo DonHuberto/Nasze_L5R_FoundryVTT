@@ -690,4 +690,123 @@ export class HelpersL5r5e {
         }
         return await table.drawMany(retrieve, opt);
     }
+
+    /**
+     * Return the string without accents
+     * @param  {string} str
+     * @return {string}
+     */
+    static noAccents(str) {
+        return str.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    /**
+     * Autocomplete method
+     * @param {jQuery}   html HTML content of the sheet.
+     * @param {string}   name Html name of the input
+     * @param {string[]} list Array of string to display
+     */
+    static autocomplete(html, name, list = []) {
+        const inp = document.getElementsByName(name)?.[0];
+        if (list.length < 1) {
+            return;
+        }
+        let currentFocus;
+
+        const closeAllLists = (elmnt = null) => {
+            const collection = document.getElementsByClassName("autocomplete-items");
+            for (let item of collection) {
+                if (!elmnt || (elmnt !== item && elmnt !== inp)) {
+                    item.parentNode.removeChild(item);
+                }
+            }
+        };
+
+        // execute a function when someone writes in the text field
+        inp.addEventListener("input", (inputEvent) => {
+            closeAllLists();
+
+            const val = inputEvent.target.value;
+            if (!val) {
+                return false;
+            }
+
+            currentFocus = -1;
+
+            // create a DIV element that will contain the items (values)
+            const listDiv = document.createElement("DIV");
+            listDiv.setAttribute("id", inputEvent.target.id + "autocomplete-list");
+            listDiv.setAttribute("class", "autocomplete-items");
+
+            // append the DIV element as a child of the autocomplete container
+            inputEvent.target.parentNode.appendChild(listDiv);
+
+            list.forEach((value, index) => {
+                if (
+                    HelpersL5r5e.noAccents(value.substring(0, val.length).toLowerCase()) ===
+                    HelpersL5r5e.noAccents(val.toLowerCase())
+                ) {
+                    const choiceDiv = document.createElement("DIV");
+                    choiceDiv.setAttribute("data-id", index);
+                    choiceDiv.innerHTML = `<strong>${value.substring(0, val.length)}</strong>${value.substring(
+                        val.length
+                    )}`;
+
+                    choiceDiv.addEventListener("click", (clickEvent) => {
+                        const selectedIndex = clickEvent.target.attributes["data-id"].value;
+                        if (!list[selectedIndex]) {
+                            return;
+                        }
+                        inp.value = list[selectedIndex];
+                        closeAllLists();
+                    });
+                    listDiv.appendChild(choiceDiv);
+                }
+            });
+        });
+
+        // execute a function presses a key on the keyboard
+        inp.addEventListener("keydown", function (e) {
+            const collection = document.getElementById(this.id + "autocomplete-list")?.getElementsByTagName("div");
+            if (!collection) {
+                return;
+            }
+            switch (e.code) {
+                case "ArrowUp":
+                case "ArrowDown":
+                    // focus index
+                    currentFocus += e.code === "ArrowUp" ? -1 : 1;
+                    if (currentFocus >= collection.length) {
+                        currentFocus = 0;
+                    }
+                    if (currentFocus < 0) {
+                        currentFocus = collection.length - 1;
+                    }
+                    // css classes
+                    for (let item of collection) {
+                        item.classList.remove("autocomplete-active");
+                    }
+                    collection[currentFocus]?.classList.add("autocomplete-active");
+                    break;
+
+                case "Tab":
+                case "Enter":
+                    e.preventDefault();
+                    if (currentFocus > -1 && !!collection[currentFocus]) {
+                        collection[currentFocus].click();
+                    }
+                    break;
+
+                case "Escape":
+                    closeAllLists();
+                    break;
+            } //swi
+        });
+
+        // execute a function when someone clicks in the document
+        html.on("focusout", (e) => {
+            console.log("aaaaaaaaaa");
+            closeAllLists(e.target);
+        });
+    }
 }

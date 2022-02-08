@@ -43,7 +43,7 @@ L5R5E.techniques.set("title_ability", { type: "title", displayInTypes: false });
 // Custom
 L5R5E.techniques.set("specificity", { type: "custom", displayInTypes: false });
 
-// Map SkillId - CategoryId
+// *** SkillId - CategoryId ***
 L5R5E.skills = new Map();
 L5R5E.skills.set("aesthetics", "artisan");
 L5R5E.skills.set("composition", "artisan");
@@ -74,7 +74,7 @@ L5R5E.skills.set("seafaring", "trade");
 L5R5E.skills.set("skulduggery", "trade");
 L5R5E.skills.set("survival", "trade");
 
-// Symbols Map
+// *** Symbols ***
 L5R5E.symbols = new Map();
 L5R5E.symbols.set("(op)", { class: "i_opportunity", label: "l5r5e.chatdices.opportunities" });
 L5R5E.symbols.set("(su)", { class: "i_success", label: "l5r5e.chatdices.successes" });
@@ -114,3 +114,29 @@ L5R5E.symbols.set("(unicorn)", { class: "i_unicorn", label: "" });
 L5R5E.symbols.set("(bushi)", { class: "i_bushi", label: "" });
 L5R5E.symbols.set("(courtier)", { class: "i_courtier", label: "" });
 L5R5E.symbols.set("(shugenja)", { class: "i_shugenja", label: "" });
+
+// *** Clans and Families ***
+L5R5E.families = new Map();
+// Majors
+L5R5E.families.set("imperial", ["Miya", "Otomo", "Seppun"]);
+L5R5E.families.set("crab", ["Hida", "Kaiu", "Hiruma", "Yasuki", "Kuni"]);
+L5R5E.families.set("crane", ["Asahina", "Daidoji", "Doji", "Kakita"]);
+L5R5E.families.set("dragon", ["Kitsuki", "Mirumoto", "Togashi"]);
+L5R5E.families.set("lion", ["Akodo", "Ikoma", "Kitsu", "Matsu"]);
+L5R5E.families.set("phoenix", ["Agasha", "Asako", "Isawa", "Shiba"]);
+L5R5E.families.set("scorpion", ["Bayushi", "Shosuro", "Soshi", "Yogo"]);
+L5R5E.families.set("unicorn", ["Ide", "Iuchi", "Moto", "Shinjo", "Utaku"]);
+// Minors
+L5R5E.families.set("mantis", ["(boat name)"]); // no family name, boat name
+L5R5E.families.set("ronin", ["(ronin)"]); // can be anything
+L5R5E.families.set("badger", ["Ichiro"]);
+L5R5E.families.set("bat", ["Komori"]);
+L5R5E.families.set("boar", ["Heichi"]);
+L5R5E.families.set("dragonfly", ["Tonbo"]);
+L5R5E.families.set("firefly", ["Hotaru"]);
+L5R5E.families.set("hare", ["Ujina", "Usagi"]);
+L5R5E.families.set("monkey", ["Toku", "Fuzake"]);
+L5R5E.families.set("oriole", ["Tsi"]);
+L5R5E.families.set("ox", ["Morito"]);
+L5R5E.families.set("sparrow", ["Suzume"]);
+L5R5E.families.set("tortoise", ["Kasuga"]);
