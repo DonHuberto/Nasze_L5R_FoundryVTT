@@ -23,14 +23,22 @@
                     {{#if data.skill.list}}
                         {{#if actorIsPc}}
                             <label>{{localizeSkill data.skill.cat 'title'}}</label>
+                            <select class="attribute-dtype" name="skill">
+                                {{#select data.skill.id}}
+                                {{#each data.skill.list as |item|}}
+                                    <option value="{{item.id}}">{{item.label}}</option>
+                                {{/each}}
+                                {{/select}}
+                            </select>
+                        {{else}}
+                            <select class="attribute-dtype" name="skill">
+                                {{#select data.skill.cat}}
+                                {{#each data.skill.list as |item|}}
+                                    <option value="{{item.id}}">{{item.label}}</option>
+                                {{/each}}
+                                {{/select}}
+                            </select>
                         {{/if}}
-                        <select class="attribute-dtype" name="skill">
-                            {{#select data.skill.id}}
-                            {{#each data.skill.list as |id|}}
-                                <option value="{{id}}">{{localizeSkillId id}}</option>
-                            {{/each}}
-                            {{/select}}
-                        </select>
                     {{else}}
                         <label>{{localizeSkill data.skill.cat 'title'}}</label>
                         {{#if actorIsPc}}
@@ -39,11 +47,13 @@
                         </div>
                         {{/if}}
                     {{/if}}
-                    <label id="stance_label">{{localizeSkill data.skill.cat data.ring.id}}</label>
-                    <div id="skill_default_value" class="dice-container pointer-choice">
-                        <img src="systems/l5r5e/assets/dices/default/skill_blank.svg" alt="1">
-                        <div class="dice-value">
-                            <span class="dice-skill" type="text" name="skill_{{data.skill.name}}">{{data.skill.defaultValue}}</span>
+                    <div>
+                        <label id="stance_label">{{localizeSkill data.skill.cat data.ring.id}}</label>
+                        <div id="skill_default_value" class="dice-container pointer-choice">
+                            <img src="systems/l5r5e/assets/dices/default/skill_blank.svg" alt="1">
+                            <div class="dice-value">
+                                <span class="dice-skill" type="text" name="skill_{{data.skill.name}}">{{data.skill.defaultValue}}</span>
+                            </div>
                         </div>
                     </div>
                 {{else}}

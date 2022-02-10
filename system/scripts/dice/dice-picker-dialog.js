@@ -196,7 +196,11 @@ export class DicePickerDialog extends FormApplication {
         }
         this.object.skill.list = this.parseSkillsList(skillsList);
         if (this.object.skill.list.length > 0) {
-            this.skillId = this.object.skill.list[0];
+            if (this.actorIsPc) {
+                this.skillId = this.object.skill.list[0].id;
+            } else {
+                this.skillCatId = this.object.skill.list[0].id;
+            }
         }
     }
 
@@ -348,7 +352,11 @@ export class DicePickerDialog extends FormApplication {
         html.find("select[name=skill]").on("change", async (event) => {
             event.preventDefault();
             event.stopPropagation();
-            this.skillId = event.target.value;
+            if (this.actorIsPc) {
+                this.skillId = event.target.value;
+            } else {
+                this.skillCatId = event.target.value;
+            }
             this.render(false);
         });
 
@@ -728,20 +736,34 @@ export class DicePickerDialog extends FormApplication {
      */
     parseSkillsList(skillList) {
         const categories = game.l5r5e.HelpersL5r5e.getCategoriesSkillsList();
-        const out = new Set();
+
+        // Sanitize and uniques values
+        const unqSkillList = new Set();
         skillList.split(",").forEach((s) => {
             s = s.trim();
 
             if (CONFIG.l5r5e.skills.has(s)) {
-                out.add(this.actorIsPc ? s : CONFIG.l5r5e.skills.get(s));
+                unqSkillList.add(this.actorIsPc ? s : CONFIG.l5r5e.skills.get(s));
             } else if (categories.has(s)) {
                 if (this.actorIsPc) {
-                    categories.get(s).forEach((e) => out.add(e));
+                    categories.get(s).forEach((e) => unqSkillList.add(e));
                 } else {
-                    out.add(s);
+                    unqSkillList.add(s);
                 }
             }
         });
-        return [...out];
+
+        // Sort by the translated label
+        const array = [...unqSkillList].map((id) => {
+            return {
+                id: id,
+                label: this.actorIsPc
+                    ? game.i18n.localize(`l5r5e.skills.${CONFIG.l5r5e.skills.get(id)}.${id}`)
+                    : game.i18n.localize(`l5r5e.skills.${id}.title`),
+            };
+        });
+        array.sort((a, b) => a.label.localeCompare(b.label));
+
+        return array;
     }
 }
