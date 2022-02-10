@@ -20,17 +20,32 @@
             </td>
             <td class="skill">
                 {{#if data.skill.name}}
-                    <label>{{localizeSkill data.skill.cat 'title'}}</label>
-                {{#if actorIsPc}}
-                    <label>{{data.skill.name}}</label>
-                {{/if}}
-                        <label id="stance_label">{{localizeSkill data.skill.cat data.ring.id}}</label>
-                        <div id="skill_default_value" class="dice-container pointer-choice">
-                            <img src="systems/l5r5e/assets/dices/default/skill_blank.svg" alt="1">
-                            <div class="dice-value">
-                                <span class="dice-skill" type="text" name="skill_{{data.skill.name}}">{{data.skill.defaultValue}}</span>
-                            </div>
+                    {{#if data.skill.list}}
+                        {{#if actorIsPc}}
+                            <label>{{localizeSkill data.skill.cat 'title'}}</label>
+                        {{/if}}
+                        <select class="attribute-dtype" name="skill">
+                            {{#select data.skill.id}}
+                            {{#each data.skill.list as |id|}}
+                                <option value="{{id}}">{{localizeSkillId id}}</option>
+                            {{/each}}
+                            {{/select}}
+                        </select>
+                    {{else}}
+                        <label>{{localizeSkill data.skill.cat 'title'}}</label>
+                        {{#if actorIsPc}}
+                        <div>
+                            <label>{{data.skill.name}}</label>
                         </div>
+                        {{/if}}
+                    {{/if}}
+                    <label id="stance_label">{{localizeSkill data.skill.cat data.ring.id}}</label>
+                    <div id="skill_default_value" class="dice-container pointer-choice">
+                        <img src="systems/l5r5e/assets/dices/default/skill_blank.svg" alt="1">
+                        <div class="dice-value">
+                            <span class="dice-skill" type="text" name="skill_{{data.skill.name}}">{{data.skill.defaultValue}}</span>
+                        </div>
+                    </div>
                 {{else}}
                     <img class="profile-img" src="systems/l5r5e/assets/imgs/noskill.webp" data-edit="img" alt="no skill selected" />
                 {{/if}}

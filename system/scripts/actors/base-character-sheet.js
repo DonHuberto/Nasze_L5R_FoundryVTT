@@ -619,28 +619,13 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
         if (!item || item.type !== "technique" || !item.data.data.skill) {
             return;
         }
+
         const itemData = item.data.data;
-
-        const difficulties = game.l5r5e.DicePickerDialog.parseDifficulty(this.actor, itemData.difficulty);
-        if (!difficulties) {
-            // do not block if no target or not found
-            difficulties.difficulty = null;
-            difficulties.difficultyHidden = null;
-            return;
-        }
-
-        const skills = game.l5r5e.DicePickerDialog.parseSkills(itemData.skill);
-        if (!skills) {
-            return;
-        }
-
-        console.log(difficulties, skills); // todo tmp
-
         new game.l5r5e.DicePickerDialog({
             actor: this.actor,
             ringId: itemData.ring || null,
-            ...difficulties,
-            ...skills,
+            difficulty: itemData.difficulty || null,
+            skillsList: itemData.skill || null,
         }).render(true);
     }
 }

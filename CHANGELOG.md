@@ -6,7 +6,7 @@
     - Added the ability to techniques, with a skill set, to open the DicePicker with presets values.
     - Some can interact with targets, but do the default difficulty if none.
 - Compendiums :
-    - Techniques : Added difficulty and skill values.
+    - Techniques : Added difficulty and skill values (not all techniques).
 
 ## 1.6.0 - QoL & SoftLock
 - PC/NPC/Armies sheet:
