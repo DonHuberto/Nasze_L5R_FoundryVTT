@@ -140,3 +140,7 @@ L5R5E.families.set("oriole", ["Tsi"]);
 L5R5E.families.set("ox", ["Morito"]);
 L5R5E.families.set("sparrow", ["Suzume"]);
 L5R5E.families.set("tortoise", ["Kasuga"]);
+// External
+L5R5E.families.set("ivory_kingdoms", []);
+L5R5E.families.set("qamarist", []);
+L5R5E.families.set("ujik", []);

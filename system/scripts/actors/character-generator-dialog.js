@@ -21,11 +21,11 @@ export class CharacterGeneratorDialog extends FormApplication {
         generate: {
             attributes: true,
             demeanor: true,
+            identity: true,
             items: true,
             name: true,
             narrative: true,
             peculiarities: true,
-            social: true,
             techniques: true,
         },
     };
@@ -40,7 +40,7 @@ export class CharacterGeneratorDialog extends FormApplication {
             classes: ["l5r5e", "character-generator-dialog"],
             template: CONFIG.l5r5e.paths.templates + "actors/character-generator-dialog.html",
             title: game.i18n.localize("l5r5e.char_generator.title"),
-            // width: 600,
+            width: 450,
             // height: 360,
             resizable: false,
             closeOnSubmit: false,
@@ -72,13 +72,9 @@ export class CharacterGeneratorDialog extends FormApplication {
         const actorDatas = this.actor.data.data;
 
         // Identity
-        //this.object.age = actorDatas.age;
         this.object.clan = actorDatas.identity.clan || "random";
-        this.object.gender = actorDatas.identity.female
-            ? "female"
-            : actorDatas.identity.female === false
-            ? "male"
-            : "random";
+        this.object.gender =
+            actorDatas.identity.female === null ? "random" : actorDatas.identity.female ? "female" : "male";
 
         // Rings
         this.object.avgRings = CharacterGenerator.sanitizeMinMax(
@@ -106,8 +102,8 @@ export class CharacterGeneratorDialog extends FormApplication {
             clanList: [{ id: "random", label: game.i18n.localize("l5r5e.random") }, ...clans],
             genderList: [
                 { id: "random", label: game.i18n.localize("l5r5e.random") },
-                { id: "male", label: game.i18n.localize("l5r5e.gender.male") },
-                { id: "female", label: game.i18n.localize("l5r5e.gender.female") },
+                { id: "male", label: game.i18n.localize("l5r5e.social.gender.male") },
+                { id: "female", label: game.i18n.localize("l5r5e.social.gender.female") },
             ],
             data: this.object,
         };

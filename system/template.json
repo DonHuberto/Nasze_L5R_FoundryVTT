@@ -10,8 +10,8 @@
                     "age": "",
                     "clan": "",
                     "family": "",
-                    "female": false,
-                    "marital_status": "unmarried",
+                    "female": null,
+                    "marital_status": "",
                     "roles": "",
                     "school": "",
                     "school_rank": 1,
@@ -243,6 +243,8 @@
         },
         "technique": {
             "templates": ["basics", "advancement"],
+            "skill": "",
+            "difficulty": "",
             "technique_type": "kata"
         },
         "property": {

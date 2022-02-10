@@ -87,9 +87,6 @@ export class CharacterGenerator {
         family: "",
         gender: "male",
         age: 15,
-        honor: 30,
-        glory: 30,
-        status: 30,
         maritalStatus: "",
     };
 
@@ -114,27 +111,24 @@ export class CharacterGenerator {
         this.data.clan = clanName;
         this.data.family = CharacterGenerator._getRandomFamily(clanName);
         this.data.gender = gender;
-        this.data.age = CharacterGenerator._randomInt(15, this.data.avgRingsValue * 10 + 15);
-        this.genSocialStanding();
-        this.data.maritalStatus = this.genMaritalStatus();
     }
 
     /**
-     * Return true if the gender is male
+     * Return true if the gender is Female
      * @return {boolean}
      */
-    get isMale() {
-        return this.data.gender === "male";
+    get isFemale() {
+        return this.data.gender === "female";
     }
 
     /**
      * Return a random value for this array
      * @param array
-     * @return {*}
+     * @return {String}
      * @private
      */
     static _getRandomArrayValue(array) {
-        return array[Math.floor(Math.random() * array.length)];
+        return array[Math.floor(Math.random() * array.length)] ?? "";
     }
 
     /**
@@ -203,30 +197,63 @@ export class CharacterGenerator {
      * @return {Promise<string>}
      */
     async getRandomizedName() {
-        let table = `Japanese names (${this.isMale ? "Male" : "Female"})`;
-        // switch (this.data.clan) {
-        //     case "ivory_kingdoms": table = 'Ivory kingdoms names'; break;
-        //     case "qamarist": table = 'Qamarist names'; break;
-        //     case "ujik": table = 'Ujik names'; break;
-        // }
-
+        let table = `Japanese names (${this.isFemale ? "Female" : "Male"})`;
+        switch (this.data.clan) {
+            case "ivory_kingdoms":
+                table = "Ivory Kingdoms names";
+                break;
+            case "qamarist":
+                table = "Qamarist names";
+                break;
+            case "ujik":
+                table = "Ujik names";
+                break;
+        }
         const randomNames = await game.l5r5e.HelpersL5r5e.drawManyFromPack("l5r5e.core-name-tables", table, 1, {
             displayChat: false,
         });
-        return this.data.family + " " + randomNames?.results[0]?.data.text || "";
+        return this.data.family + " " + (randomNames?.results[0]?.data.text || "");
+    }
+
+    /**
+     * Generate the actor age
+     * @param  {number} avgRingsValue
+     * @return {number}
+     */
+    static genAge(avgRingsValue) {
+        return CharacterGenerator._randomInt(15, avgRingsValue * 10 + 15);
+    }
+
+    /**
+     * Return the marriage state
+     * @param  {number} age
+     * @return {string} unmarried|betrothed|married|widowed
+     */
+    static genMaritalStatus(age) {
+        const rng = Math.random();
+        if (age < 20) {
+            return rng < 0.1 ? "married" : rng < 0.4 ? "betrothed" : "unmarried";
+        }
+        if (age < 30) {
+            return rng < 0.4 ? "married" : rng < 0.7 ? "betrothed" : "unmarried";
+        }
+        return rng < 0.8 ? "married" : rng < 0.9 ? "widowed" : "unmarried";
     }
 
     /**
      * Generate Honor, Glory and Status values
+     * @param {number} age
+     * @param {string} clan
+     * @return {{honor: number, glory: number, status: number}}
      */
-    genSocialStanding() {
+    static genSocialStanding(age, clan) {
         const karma = Math.random() < 0.66 ? 1 : -1;
         const rng = (initial, variation) => {
             return initial + CharacterGenerator._randomInt(5, variation) * karma;
         };
 
-        let honor = rng(34, this.data.age / 2);
-        switch (this.data.clan) {
+        let honor = rng(34, age / 2);
+        switch (clan) {
             case "lion":
                 honor += 10;
                 break;
@@ -234,24 +261,11 @@ export class CharacterGenerator {
                 honor -= 10;
                 break;
         }
-        this.data.honor = honor;
-        this.data.glory = rng(40, this.data.age / 3);
-        this.data.status = rng(30, this.data.age / 4);
-    }
-
-    /**
-     * Return the marriage state
-     * @return {string} unmarried|betrothed|married|widowed
-     */
-    genMaritalStatus() {
-        const rng = Math.random();
-        if (this.data.age < 20) {
-            return rng < 0.1 ? "married" : rng < 0.4 ? "betrothed" : "unmarried";
-        }
-        if (this.data.age < 30) {
-            return rng < 0.4 ? "married" : rng < 0.7 ? "betrothed" : "unmarried";
-        }
-        return rng < 0.8 ? "married" : rng < 0.9 ? "widowed" : "unmarried";
+        return {
+            honor,
+            glory: rng(40, age / 3),
+            status: rng(30, age / 4),
+        };
     }
 
     /**
@@ -260,8 +274,8 @@ export class CharacterGenerator {
      * @param {ActorL5r5e} actor                 Actor object
      * @param {Object}     generate
      * @param {boolean}    generate.name          If true generate a new name
-     * @param {boolean}    generate.attributes    If true generate rings, attributes, skills and confrontation ranks
-     * @param {boolean}    generate.social        If true generate Social Standing
+     * @param {boolean}    generate.identity      If true generate Clan, Gender, Age, Marital status
+     * @param {boolean}    generate.attributes    If true generate Rings, attributes, skills and confrontation ranks
      * @param {boolean}    generate.demeanor      If true generate Demeanor and rings affinities
      * @param {boolean}    generate.peculiarities If true generate Advantage and Disadvantage
      * @param {boolean}    generate.items         If true generate Armor, Weapons and Items
@@ -274,7 +288,7 @@ export class CharacterGenerator {
         generate = {
             name: true,
             attributes: true,
-            social: true,
+            identity: true,
             demeanor: true,
             peculiarities: true,
             items: true,
@@ -284,36 +298,45 @@ export class CharacterGenerator {
     ) {
         const actorDatas = actor.data.data;
 
-        console.log(generate); // TODO tmp
+        // Need to set some required values
+        this.data.age = actorDatas.identity.age || CharacterGenerator.genAge(this.data.avgRingsValue);
+        this.data.maritalStatus =
+            actorDatas.identity.marital_status || CharacterGenerator.genMaritalStatus(this.data.age);
+
+        actorDatas.identity.clan = this.data.clan;
+        actorDatas.identity.family = this.data.family;
+        actorDatas.identity.female = this.isFemale;
 
         // Name
         const newName = generate.name ? await this.getRandomizedName() : actor.data.name;
 
-        actorDatas.identity.age = this.data.age;
-        actorDatas.identity.clan = this.data.clan;
-        actorDatas.identity.family = this.data.family;
-        actorDatas.identity.female = this.data.gender === "female";
+        // Identity
+        if (generate.identity) {
+            actorDatas.identity.age = CharacterGenerator.genAge(this.data.avgRingsValue);
+            actorDatas.identity.marital_status = CharacterGenerator.genMaritalStatus(this.data.age);
+            this._generateNotes(actorDatas);
+        }
 
-        // Img (only if default)
+        // Img (only if system defaults)
         const folder = "systems/l5r5e/assets/icons/actors";
         const newImg = [
             `${folder}/npc.svg`,
             `${folder}/traditional-japanese-man.svg`,
             `${folder}/traditional-japanese-woman.svg`,
         ].includes(actor.data.img)
-            ? `${folder}/traditional-japanese-${this.isMale ? "man" : "woman"}.svg`
+            ? `${folder}/traditional-japanese-${this.isFemale ? "woman" : "man"}.svg`
             : actor.data.img;
 
-        // Generate attributes (rings, attributes, skills, confrontation ranks)
+        // Generate attributes & Social Standing
         if (generate.attributes) {
+            // Generate attributes (rings, attributes, skills, confrontation ranks)
             this._generateAttributes(actorDatas);
-        }
 
-        // Social Standing
-        if (generate.social) {
-            actorDatas.social.honor = this.data.honor;
-            actorDatas.social.glory = this.data.glory;
-            actorDatas.social.status = this.data.status;
+            // Social Standing
+            const social = CharacterGenerator.genSocialStanding(this.data.age, this.data.clan);
+            actorDatas.social.honor = social.honor;
+            actorDatas.social.glory = social.glory;
+            actorDatas.social.status = social.status;
         }
 
         // Demeanor (npc only)
@@ -321,7 +344,7 @@ export class CharacterGenerator {
             this._generateDemeanor(actorDatas);
         }
 
-        // Items types
+        // Item types
         if (generate.peculiarities || generate.items || generate.techniques) {
             const newItemsData = [];
 
@@ -346,7 +369,7 @@ export class CharacterGenerator {
             }
         }
 
-        // Narrative
+        // TODO Narrative
         if (generate.narrative) {
             this._generateNarrative(actorDatas);
         }
@@ -358,8 +381,8 @@ export class CharacterGenerator {
             data: actorDatas,
         };
     }
-
     //<editor-fold desc="toActor generators">
+
     /**
      * Generate attributes (rings, attributes, skills, confrontation ranks)
      * @param {DocumentData.data} actorDatas
@@ -386,9 +409,11 @@ export class CharacterGenerator {
             (skillName) => (actorDatas.skills[skillName] = Math.floor(Math.random() * stats.max))
         );
 
-        // Confrontation ranks
-        actorDatas.conflict_rank.martial = this.data.avgRingsValue + actorDatas.skills.martial;
-        actorDatas.conflict_rank.social = this.data.avgRingsValue + actorDatas.skills.social;
+        // Confrontation ranks (npc only)
+        if (actorDatas.conflict_rank) {
+            actorDatas.conflict_rank.martial = this.data.avgRingsValue + actorDatas.skills.martial;
+            actorDatas.conflict_rank.social = this.data.avgRingsValue + actorDatas.skills.social;
+        }
     }
 
     /**
@@ -595,26 +620,29 @@ export class CharacterGenerator {
     }
 
     /**
+     * Fill notes with some values that don't appear in sheet
+     * @param {DocumentData.data} actorDatas
+     * @private
+     */
+    _generateNotes(actorDatas) {
+        actorDatas.notes =
+            `<p>${game.i18n.localize("l5r5e.social.age")}: ${this.data.age}</p>` +
+            `<p>${game.i18n.localize("l5r5e.social.gender.title")}: ${game.i18n.localize(
+                "l5r5e.social.gender." + this.data.gender
+            )}</p>` +
+            `<p>${game.i18n.localize("l5r5e.clan")}: ${game.i18n.localize("l5r5e.clans." + this.data.clan)}</p>` +
+            `<p>${game.i18n.localize("l5r5e.social.marital_status.title")}: ${game.i18n.localize(
+                "l5r5e.social.marital_status." + this.data.maritalStatus
+            )}</p>`;
+    }
+
+    /**
      * Generate Narrative fluff
      * @param {DocumentData.data} actorDatas
      * @private
      */
     _generateNarrative(actorDatas) {
-        // Fill notes with some values that don't appear in sheet
-        actorDatas.notes =
-            `<p>${game.i18n.localize("l5r5e.char_generator.age")}: ${this.data.age}</p>` +
-            `<p>${game.i18n.localize("l5r5e.gender.title")}: ${game.i18n.localize(
-                "l5r5e.gender." + this.data.gender
-            )}</p>` +
-            `<p>${game.i18n.localize("l5r5e.clan")}: ${game.i18n.localize("l5r5e.clans." + this.data.clan)}</p>` +
-            `<p>${game.i18n.localize("l5r5e.char_generator.marital_status.title")}: ${game.i18n.localize(
-                "l5r5e.char_generator.marital_status." + this.data.maritalStatus
-            )}</p>`;
-
-        // data: {
-        //     "notes": "",
-        //     "description": "",
-        // },
+        // actorDatas.description = '';
     }
     //</editor-fold>
 }

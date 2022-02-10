@@ -247,6 +247,19 @@
                 "disadvantages": "Disadvantages",
                 "combat": "Combat",
                 "intrigue": "Intrigue"
+            },
+            "age": "Age",
+            "marital_status": {
+                "title": "Marital Status",
+                "married": "Married",
+                "betrothed": "Betrothed",
+                "unmarried": "Unmarried",
+                "widowed": "Widowed"
+            },
+            "gender": {
+                "title": "Gender",
+                "male": "Male",
+                "female": "Female"
             }
         },
         "skills": {
@@ -527,30 +540,17 @@
             }
         },
         "random": "Random",
-        "gender": {
-            "title": "Gender",
-            "male": "Male",
-            "female": "Female"
-        },
         "char_generator": {
             "title": "Character Generator",
             "head_bt_title": "Char. Generator",
             "generate": "Generate",
             "average_value": "Average value",
-            "attributes": "Attributes (rings, skills, confrontation ranks)",
-            "social": "Social standing (honor, glory, status)",
+            "identity": "Clan, gender, age, marital status",
+            "attributes": "Social standing, Rings, Attributes and Skills",
             "demeanor": "Demeanor & rings affinities",
             "peculiarities": "Advantages and Disadvantages",
             "items": "Armure, Armes, et Objets",
-            "narrative": "Narrative (Notes)",
-            "age": "Age",
-            "marital_status": {
-                "title": "Marital Status",
-                "married": "Married",
-                "betrothed": "Betrothed",
-                "unmarried": "Unmarried",
-                "widowed": "Widowed"
-            }
+            "narrative": "Narrative (Description)"
         },
         "clans": {
             "title": "Clans",

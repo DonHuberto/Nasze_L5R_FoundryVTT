@@ -11,10 +11,14 @@ export class DicePickerDialog extends FormApplication {
     _actor = null;
 
     /**
-     * If GM as set to hidden, lock the player choice so he cannot look the TN
-     * @type {boolean}
+     * If GM or Constructor set to hidden, lock the player choice, so he cannot look the TN
+     * @type {{gm: boolean, option: boolean}}
+     * @private
      */
-    _difficultyHiddenIsLock = false;
+    _difficultyHiddenIsLock = {
+        gm: false,
+        option: false,
+    };
 
     /**
      * Payload Object
@@ -135,6 +139,9 @@ export class DicePickerDialog extends FormApplication {
         }
 
         // DifficultyHidden
+        if (options.difficultyHidden) {
+            this._difficultyHiddenIsLock.option = true;
+        }
         this.difficultyHidden = !!options.difficultyHidden;
 
         // InitiativeRoll
@@ -229,8 +236,8 @@ export class DicePickerDialog extends FormApplication {
      * @param difficulty
      */
     set difficulty(difficulty) {
-        difficulty = parseInt(difficulty) || null;
-        if (difficulty < 0) {
+        difficulty = parseInt(difficulty);
+        if (isNaN(difficulty) || difficulty < 0) {
             difficulty = 2;
         }
         this.object.difficulty.value = difficulty;
@@ -242,8 +249,8 @@ export class DicePickerDialog extends FormApplication {
      */
     set difficultyHidden(isHidden) {
         // If GM hide, then player choice don't matter
-        this._difficultyHiddenIsLock = game.settings.get("l5r5e", "initiative-difficulty-hidden");
-        if (this._difficultyHiddenIsLock) {
+        this._difficultyHiddenIsLock.gm = game.settings.get("l5r5e", "initiative-difficulty-hidden");
+        if (this._difficultyHiddenIsLock.gm || this._difficultyHiddenIsLock.option) {
             isHidden = true;
         }
         this.object.difficulty.hidden = !!isHidden;
@@ -274,7 +281,7 @@ export class DicePickerDialog extends FormApplication {
             canUseVoidPoint:
                 this.object.difficulty.addVoidPoint || !this._actor || this._actor.data.data.void_points.value > 0,
             disableSubmit: this.object.skill.value < 1 && this.object.ring.value < 1,
-            difficultyHiddenIsLock: this._difficultyHiddenIsLock,
+            difficultyHiddenIsLock: this._difficultyHiddenIsLock.gm || this._difficultyHiddenIsLock.option,
         };
     }
 
@@ -552,5 +559,151 @@ export class DicePickerDialog extends FormApplication {
         }
 
         return game.user.assignHotbarMacro(macro, "auto"); // 1st available
+    }
+
+    /**
+     * Parse the difficulty from technique
+     *
+     * Exemples :
+     * "@T:vigilance"
+     * "@T:vigilance|min"
+     * "@T:vigilance|max"
+     * "@T:vigilance|max(statusRank)"
+     * "@T:intrigueRank"
+     * "@T:martialRank"
+     * "@T:statusRank|max"
+     * "@T:strife.value|max"
+     *
+     * @param {string|number} difficulty
+     * @return {{difficulty: number, difficultyHidden: boolean}|boolean}
+     */
+    static parseDifficulty(actor, difficulty) {
+        const out = {
+            difficulty: null,
+            difficultyHidden: null,
+        };
+
+        // Macro style
+        if (!Number.isNumeric(difficulty) && difficulty.startsWith("@")) {
+            // 0: "@T:vigilance|max(statusRank)"
+            // 1: "T" // Meaning : S(elf), T(arget)
+            // 2: "vigilance"
+            // 3: "max"
+            // 4: "statusRank"
+            const infos = difficulty.match(/^@([TS]):([^|]+?)(?:\|(min|max)(?:\(([^)]+?)\))?)?$/);
+
+            // Search for reference actor
+            if (!infos || ((infos[1] === "T" || !!infos[3]) && game.user.targets.size < 1)) {
+                // no target set, do manual TN
+                return out;
+            }
+
+            // Define which actor is needed for the difficulty
+            let targetActor;
+            if (infos[1] === "S") {
+                targetActor = actor;
+            } else {
+                // Between the targets
+                targetActor = DicePickerDialog._getTargetActorFromSelection(
+                    infos[4] || infos[2],
+                    !infos[3] ? null : infos[3] === "min"
+                );
+            }
+            if (!targetActor) {
+                console.log("L5R5E | Fail to get actor from target selection");
+                return out;
+            }
+
+            // Check in actor.<prop> or actor.data.data.<prop>
+            difficulty = targetActor[infos[2]] || targetActor.data.data[infos[2]] || null;
+            if (difficulty < 1) {
+                console.log("L5R5E | Fail to parse difficulty from target");
+                return out;
+            }
+
+            // Hide npc stats on target
+            if (infos[1] === "T") {
+                out.difficultyHidden = true;
+            }
+        }
+
+        // fallback
+        out.difficulty = parseInt(difficulty);
+        if (isNaN(out.difficulty) || out.difficulty < 0) {
+            out.difficulty = null;
+        }
+        return out;
+    }
+
+    /**
+     * Parse Skills from technique
+     * @param {string} skills
+     * @return {{skillId: number, skillCatId: number}|boolean}
+     */
+    static parseSkills(skills) {
+        // Check category
+        const categories = game.l5r5e.HelpersL5r5e.getCategoriesSkillsList();
+        const categories2 = game.l5r5e.HelpersL5r5e.getSkillsList(true);
+
+        // Expand category (social) to it's skillname (command,courtesy...)
+        // const skillList = [];
+        // skills.split(',').forEach(e => {
+        //     if () {
+        //         table.push(e);
+        //     }
+        // });
+
+        console.log(categories, categories2);
+
+        // Check skill
+
+        return {
+            skillId: skills,
+            // skillCatId,
+        };
+    }
+
+    /**
+     * Return the actor who have the min/max value for this property
+     * @param  {string}       property Property name (vigilance, strife.value)
+     * @param  {boolean|null} isMin    Null: single target, Min/Max: get the actor who have the max value
+     * @return {null|*}
+     * @private
+     */
+    static _getTargetActorFromSelection(property, isMin = null) {
+        if (game.user.targets.size < 1) {
+            return null;
+        }
+
+        let targetActor;
+        if (isMin === null) {
+            // only one target, get the first element
+            targetActor = Array.from(game.user.targets).values().next()?.value.document.actor;
+        } else {
+            // Group (Min/Max)
+            const targetGrp = Array.from(game.user.targets).reduce(
+                (acc, tgt) => {
+                    const targetActor = tgt.document.actor;
+                    if (!["character", "npc"].includes(targetActor.type)) {
+                        return acc;
+                    }
+
+                    const targetData = targetActor.data.data;
+                    const value = targetActor[property] || targetData[property] || null;
+                    if (!value) {
+                        return acc;
+                    }
+
+                    if ((isMin && value < acc.value) || (!isMin && value > acc.value)) {
+                        acc.actor = targetActor;
+                        acc.value = value;
+                    }
+                    return acc;
+                },
+                { actor: null, value: 0 }
+            );
+            targetActor = targetGrp.actor;
+        }
+        return targetActor;
     }
 }

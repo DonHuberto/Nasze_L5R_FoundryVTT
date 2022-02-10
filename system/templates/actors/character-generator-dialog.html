@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label>{{localize 'l5r5e.gender.title'}}</label>
+            <label>{{localize 'l5r5e.social.gender.title'}}</label>
             <div class="form-fields">
                 <select class="attribute-dtype" name="gender">
                     {{#select data.gender}}
@@ -40,15 +40,15 @@
             </div>
         </div>
         <div class="form-group smaller">
-            <label>{{localize 'l5r5e.char_generator.attributes'}}</label>
+            <label>{{localize 'l5r5e.char_generator.identity'}}</label>
             <div class="form-fields">
-                <input type="checkbox" name="generate.attributes" data-dtype="Boolean" {{checked data.generate.attributes}} />
+                <input type="checkbox" name="generate.identity" data-dtype="Boolean" {{checked data.generate.identity}} />
             </div>
         </div>
         <div class="form-group smaller">
-            <label>{{localize 'l5r5e.char_generator.social'}}</label>
+            <label>{{localize 'l5r5e.char_generator.attributes'}}</label>
             <div class="form-fields">
-                <input type="checkbox" name="generate.social" data-dtype="Boolean" {{checked data.generate.social}} />
+                <input type="checkbox" name="generate.attributes" data-dtype="Boolean" {{checked data.generate.attributes}} />
             </div>
         </div>
         {{#if isNpc}}
@@ -77,12 +77,14 @@
                 <input type="checkbox" name="generate.techniques" data-dtype="Boolean" {{checked data.generate.techniques}} />
             </div>
         </div>
+        {{!--
         <div class="form-group smaller">
             <label>{{localize 'l5r5e.char_generator.narrative'}}</label>
             <div class="form-fields">
                 <input type="checkbox" name="generate.narrative" data-dtype="Boolean" {{checked data.generate.narrative}} />
             </div>
         </div>
+        --}}
 
         <div class="form-group footer">
             <button name="generate" id="generate" type="submit">

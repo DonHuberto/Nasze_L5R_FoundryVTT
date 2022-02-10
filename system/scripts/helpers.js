@@ -44,6 +44,21 @@ export class HelpersL5r5e {
     }
 
     /**
+     * Return Categories and Skill names in it
+     * @return {Map}
+     */
+    static getCategoriesSkillsList() {
+        return Array.from(CONFIG.l5r5e.skills).reduce((acc, [id, cat]) => {
+            if (acc.has(cat)) {
+                acc.set(cat, [...acc.get(cat), id]);
+            } else {
+                acc.set(cat, [id]);
+            }
+            return acc;
+        }, new Map());
+    }
+
+    /**
      * Get Techniques for List / Select
      * @param types           core|school|title|custom
      * @param displayInTypes  null|true|false

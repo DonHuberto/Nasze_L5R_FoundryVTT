@@ -2,42 +2,46 @@
  * Custom Handlebars for L5R5e
  */
 export const RegisterHandlebars = function () {
+    const sanitizeIfFail = (str) => {
+        return str.indexOf("l5r5e.") !== -1 && str.indexOf("undefined") ? "" : str;
+    };
+
     /* ------------------------------------ */
     /* Localizations                        */
     /* ------------------------------------ */
     Handlebars.registerHelper("localizeSkill", function (categoryId, skillId) {
         const key = "l5r5e.skills." + categoryId.toLowerCase() + "." + skillId.toLowerCase();
-        return game.i18n.localize(key);
+        return sanitizeIfFail(game.i18n.localize(key));
     });
 
     Handlebars.registerHelper("localizeSkillId", function (skillId) {
         const key = "l5r5e.skills." + CONFIG.l5r5e.skills.get(skillId.toLowerCase()) + "." + skillId.toLowerCase();
-        return game.i18n.localize(key);
+        return sanitizeIfFail(game.i18n.localize(key));
     });
 
     Handlebars.registerHelper("localizeRing", function (ringId) {
         const key = "l5r5e.rings." + ringId.toLowerCase();
-        return game.i18n.localize(key);
+        return sanitizeIfFail(game.i18n.localize(key));
     });
 
     Handlebars.registerHelper("localizeStanceTip", function (ringId) {
         const key = "l5r5e.conflict.stances." + ringId.toLowerCase() + "tip";
-        return game.i18n.localize(key);
+        return sanitizeIfFail(game.i18n.localize(key));
     });
 
     Handlebars.registerHelper("localizeTechnique", function (techniqueName) {
-        return game.i18n.localize("l5r5e.techniques." + techniqueName.toLowerCase());
+        return sanitizeIfFail(game.i18n.localize("l5r5e.techniques." + techniqueName.toLowerCase()));
     });
 
     Handlebars.registerHelper("localizeYesNo", function (isYes) {
-        return game.i18n.localize(isYes ? "Yes" : "No");
+        return sanitizeIfFail(game.i18n.localize(isYes ? "Yes" : "No"));
     });
 
     /* ------------------------------------ */
     /* Dice                                 */
     /* ------------------------------------ */
     Handlebars.registerHelper("getDiceFaceUrl", function (diceClass, faceId) {
-        return game.l5r5e[diceClass].getResultSrc(faceId);
+        return sanitizeIfFail(game.l5r5e[diceClass].getResultSrc(faceId));
     });
 
     /* ------------------------------------ */

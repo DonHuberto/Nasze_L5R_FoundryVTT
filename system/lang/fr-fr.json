@@ -247,6 +247,19 @@
                 "disadvantages": "Désavantages",
                 "combat": "Combat",
                 "intrigue": "Intrigue"
+            },
+            "age": "Age",
+            "marital_status": {
+                "title": "État civil",
+                "married": "Marié(e)",
+                "betrothed": "Fiancé(e)",
+                "unmarried": "Célibataire",
+                "widowed": "Veuf/Veuve"
+            },
+            "gender": {
+                "title": "Genre",
+                "male": "Homme",
+                "female": "Femme"
             }
         },
         "skills": {
@@ -527,30 +540,17 @@
             }
         },
         "random": "Aléatoire",
-        "gender": {
-            "title": "Genre",
-            "male": "Homme",
-            "female": "Femme"
-        },
         "char_generator": {
             "title": "Générateur de personnage",
             "head_bt_title": "Générateur",
             "generate": "Générer",
             "average_value": "Valeur moyenne",
-            "attributes": "Attributs (anneaux, compétences, rangs de confrontation)",
-            "social": "Position sociale (honneur, gloire, statut)",
+            "identity": "Clan, genre, age, état civil",
+            "attributes": "Position sociale, anneaux, attributs et compétences",
             "demeanor": "Comportement et affinités avec les anneaux",
             "peculiarities": "Avantages et désavantages",
             "items": "Armure, Armes, et Objets",
-            "narrative": "Narration (Notes)",
-            "age": "Age",
-            "marital_status": {
-                "title": "État civil",
-                "married": "Marié(e)",
-                "betrothed": "Fiancé(e)",
-                "unmarried": "Célibataire",
-                "widowed": "Veuf/Veuve"
-            }
+            "narrative": "Narration (Description)"
         },
         "clans": {
             "title": "Clans",

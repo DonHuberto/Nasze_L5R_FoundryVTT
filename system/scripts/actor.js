@@ -279,4 +279,37 @@ export class ActorL5r5e extends Actor {
 
         return isPrepared;
     }
+
+    /**
+     * Return the Status Rank of this actor
+     * @return {number|null}
+     */
+    get statusRank() {
+        if (!["character", "npc"].includes(this.data.type)) {
+            return null;
+        }
+        return Math.floor(this.data.data.social.status / 10);
+    }
+
+    /**
+     * Return the Intrigue Rank of this actor
+     * @return {number|null}
+     */
+    get intrigueRank() {
+        if (!["character", "npc"].includes(this.data.type)) {
+            return null;
+        }
+        return this.data.type === "npc" ? this.data.data.conflict_rank.social : this.data.data.identity.school_rank;
+    }
+
+    /**
+     * Return the Martial Rank of this actor
+     * @return {number|null}
+     */
+    get martialRank() {
+        if (!["character", "npc"].includes(this.data.type)) {
+            return null;
+        }
+        return this.data.type === "npc" ? this.data.data.conflict_rank.martial : this.data.data.identity.school_rank;
+    }
 }

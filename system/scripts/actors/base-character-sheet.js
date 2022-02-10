@@ -277,33 +277,14 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
             return;
         }
 
-        // *** Dice event on Skills clic ***
-        html.find(".dice-picker").on("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            const li = $(event.currentTarget);
-            let skillId = li.data("skill") || null;
+        // Dice event on Skills clic
+        html.find(".dice-picker").on("click", this._openDicePickerForSkill.bind(this));
 
-            const weaponId = li.data("weapon-id") || null;
-            if (weaponId) {
-                skillId = this._getWeaponSkillId(weaponId);
-            }
-
-            new game.l5r5e.DicePickerDialog({
-                ringId: li.data("ring") || null,
-                skillId: skillId,
-                skillCatId: li.data("skillcat") || null,
-                isInitiativeRoll: li.data("initiative") || false,
-                actor: this.actor,
-            }).render(true);
-        });
+        // Dice event on Technique clic
+        html.find(".dice-picker-tech").on("click", this._openDicePickerForTechnique.bind(this));
 
         // Prepared (Initiative)
-        html.find(".prepared-control").on("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            this._switchPrepared();
-        });
+        html.find(".prepared-control").on("click", this._switchPrepared.bind(this));
 
         // Equipped / Readied
         html.find(".equip-readied-control").on("click", this._switchEquipReadied.bind(this));
@@ -317,9 +298,13 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
 
     /**
      * Switch the state "prepared" (initiative)
+     * @param {Event} event
      * @private
      */
-    _switchPrepared() {
+    _switchPrepared(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
         this.actor.data.data.prepared = !this.actor.data.data.prepared;
         this.actor.update({
             data: {
@@ -593,5 +578,69 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
             return item.data.data.skill;
         }
         return null;
+    }
+
+    /**
+     * Open the dice-picker for this skill
+     * @param {Event} event
+     * @private
+     */
+    _openDicePickerForSkill(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        const li = $(event.currentTarget);
+        let skillId = li.data("skill") || null;
+
+        const weaponId = li.data("weapon-id") || null;
+        if (weaponId) {
+            skillId = this._getWeaponSkillId(weaponId);
+        }
+
+        new game.l5r5e.DicePickerDialog({
+            ringId: li.data("ring") || null,
+            skillId: skillId,
+            skillCatId: li.data("skillcat") || null,
+            isInitiativeRoll: li.data("initiative") || false,
+            actor: this.actor,
+        }).render(true);
+    }
+
+    /**
+     * Open the dice-picker for this technique
+     * @param {Event} event
+     * @private
+     */
+    _openDicePickerForTechnique(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const itemId = $(event.currentTarget).data("item-id") || null;
+        const item = this.actor.items.get(itemId);
+        if (!item || item.type !== "technique" || !item.data.data.skill) {
+            return;
+        }
+        const itemData = item.data.data;
+
+        const difficulties = game.l5r5e.DicePickerDialog.parseDifficulty(this.actor, itemData.difficulty);
+        if (!difficulties) {
+            // do not block if no target or not found
+            difficulties.difficulty = null;
+            difficulties.difficultyHidden = null;
+            return;
+        }
+
+        const skills = game.l5r5e.DicePickerDialog.parseSkills(itemData.skill);
+        if (!skills) {
+            return;
+        }
+
+        console.log(difficulties, skills); // todo tmp
+
+        new game.l5r5e.DicePickerDialog({
+            actor: this.actor,
+            ringId: itemData.ring || null,
+            ...difficulties,
+            ...skills,
+        }).render(true);
     }
 }
