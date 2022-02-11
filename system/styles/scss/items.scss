@@ -269,10 +269,13 @@
         }
     }
 }
-&.peculiarity,
 &.technique {
     article {
         &.attributes {
+            height: 7.5rem;
+            input[type="text"] {
+                width: 10rem;
+            }
             .cursus {
                 flex: 0 0 calc(20% - 0.5rem);
                 line-height: 0.75rem;
@@ -283,12 +286,24 @@
                 }
             }
         }
+        &.infos {
+            height: calc(100% - 8.5rem);
+        }
     }
 }
 &.peculiarity {
     article {
         &.attributes {
             height: 8.5rem;
+            .cursus {
+                flex: 0 0 calc(20% - 0.5rem);
+                line-height: 0.75rem;
+                text-align: right;
+                margin: 0 0.25rem;
+                input {
+                    margin-top: 0.25rem;
+                }
+            }
         }
         &.infos {
             height: calc(100% - 9.5rem);

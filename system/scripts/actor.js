@@ -130,10 +130,7 @@ export class ActorL5r5e extends Actor {
 
             // No automation for npc as they cheat in stats
             if (this.data.type === "character") {
-                data.endurance = (Number(data.rings.earth) + Number(data.rings.fire)) * 2;
-                data.composure = (Number(data.rings.earth) + Number(data.rings.water)) * 2;
-                data.focus = Number(data.rings.air) + Number(data.rings.fire);
-                data.vigilance = Math.ceil((Number(data.rings.air) + Number(data.rings.water)) / 2);
+                ActorL5r5e.computeDerivedAttributes(data);
             }
 
             // Attributes bars
@@ -149,6 +146,16 @@ export class ActorL5r5e extends Actor {
                 data.void_points.value = data.void_points.max;
             }
         }
+    }
+
+    /**
+     * Set derived attributes (endurance, composure, focus, vigilance) from rings values
+     */
+    static computeDerivedAttributes(data) {
+        data.endurance = (Number(data.rings.earth) + Number(data.rings.fire)) * 2;
+        data.composure = (Number(data.rings.earth) + Number(data.rings.water)) * 2;
+        data.focus = Number(data.rings.air) + Number(data.rings.fire);
+        data.vigilance = Math.ceil((Number(data.rings.air) + Number(data.rings.water)) / 2);
     }
 
     /**
@@ -271,5 +278,38 @@ export class ActorL5r5e extends Actor {
         }
 
         return isPrepared;
+    }
+
+    /**
+     * Return the Status Rank of this actor
+     * @return {number|null}
+     */
+    get statusRank() {
+        if (!["character", "npc"].includes(this.data.type)) {
+            return null;
+        }
+        return Math.floor(this.data.data.social.status / 10);
+    }
+
+    /**
+     * Return the Intrigue Rank of this actor
+     * @return {number|null}
+     */
+    get intrigueRank() {
+        if (!["character", "npc"].includes(this.data.type)) {
+            return null;
+        }
+        return this.data.type === "npc" ? this.data.data.conflict_rank.social : this.data.data.identity.school_rank;
+    }
+
+    /**
+     * Return the Martial Rank of this actor
+     * @return {number|null}
+     */
+    get martialRank() {
+        if (!["character", "npc"].includes(this.data.type)) {
+            return null;
+        }
+        return this.data.type === "npc" ? this.data.data.conflict_rank.martial : this.data.data.identity.school_rank;
     }
 }

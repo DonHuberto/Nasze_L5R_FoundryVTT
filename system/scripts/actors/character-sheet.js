@@ -76,6 +76,24 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
             return;
         }
 
+        // Autocomplete
+        game.l5r5e.HelpersL5r5e.autocomplete(
+            html,
+            "data.identity.clan",
+            Object.entries(game.i18n.translations.l5r5e.clans)
+                .filter(([k, v]) => k !== "title")
+                .map(([k, v]) => v)
+        );
+        game.l5r5e.HelpersL5r5e.autocomplete(
+            html,
+            "data.identity.family",
+            CONFIG.l5r5e.families.get(
+                Object.entries(game.i18n.translations.l5r5e.clans).find(
+                    ([k, v]) => v === this.actor.data.data.identity.clan
+                )?.[0]
+            )
+        );
+
         // Open linked school curriculum journal
         html.find(".school-journal-link").on("click", this._openLinkedJournal.bind(this));
 

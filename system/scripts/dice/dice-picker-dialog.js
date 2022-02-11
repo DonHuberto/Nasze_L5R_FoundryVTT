@@ -11,10 +11,14 @@ export class DicePickerDialog extends FormApplication {
     _actor = null;
 
     /**
-     * If GM as set to hidden, lock the player choice so he cannot look the TN
-     * @type {boolean}
+     * If GM or Constructor set to hidden, lock the player choice, so he cannot look the TN
+     * @type {{gm: boolean, option: boolean}}
+     * @private
      */
-    _difficultyHiddenIsLock = false;
+    _difficultyHiddenIsLock = {
+        gm: false,
+        option: false,
+    };
 
     /**
      * Payload Object
@@ -29,6 +33,7 @@ export class DicePickerDialog extends FormApplication {
             value: 0,
             defaultValue: 0,
             cat: "",
+            list: [],
             name: "",
             assistance: 0,
         },
@@ -90,6 +95,7 @@ export class DicePickerDialog extends FormApplication {
      *   ringId            string (fire)
      *   skillId           string (design)
      *   skillCatId        string (artisan)
+     *   skillsList        string[] (artisan,fitness)
      *   difficulty        number (0-9)
      *   difficultyHidden  boolean
      *   isInitiativeRoll  boolean
@@ -117,7 +123,12 @@ export class DicePickerDialog extends FormApplication {
             this.ringId = options.ringId;
         }
 
-        // Skill / SkillCategory
+        // SkillList
+        if (options.skillsList) {
+            this.skillList = options.skillsList;
+        }
+
+        // Skill
         if (options.skillId) {
             this.skillId = options.skillId;
         }
@@ -128,13 +139,14 @@ export class DicePickerDialog extends FormApplication {
         }
 
         // Difficulty
-        if (options.difficulty) {
-            this.difficulty = options.difficulty;
-        } else {
+        if (!options.difficulty || !this.parseDifficulty(options.difficulty)) {
             this.difficulty = game.settings.get("l5r5e", "initiative-difficulty-value");
         }
 
         // DifficultyHidden
+        if (options.difficultyHidden) {
+            this._difficultyHiddenIsLock.option = true;
+        }
         this.difficultyHidden = !!options.difficultyHidden;
 
         // InitiativeRoll
@@ -145,8 +157,10 @@ export class DicePickerDialog extends FormApplication {
      * Refresh data (used from socket)
      */
     async refresh() {
-        this.difficulty = game.settings.get("l5r5e", "initiative-difficulty-value");
-        this.difficultyHidden = false;
+        if (this._difficultyHiddenIsLock.option) {
+            this.difficulty = game.settings.get("l5r5e", "initiative-difficulty-value");
+            this.difficultyHidden = false;
+        }
         this.render(false);
     }
 
@@ -169,6 +183,25 @@ export class DicePickerDialog extends FormApplication {
     set ringId(ringId) {
         this.object.ring.id = CONFIG.l5r5e.stances.includes(ringId) ? ringId : "void";
         this.object.ring.value = this._actor.data.data.rings[this.object.ring.id];
+    }
+
+    /**
+     * Set the list of allowed skill to choose.
+     * Coma separated, can be a category names or skill names.
+     * @param {string} skillsList
+     */
+    set skillList(skillsList) {
+        if (!skillsList) {
+            return;
+        }
+        this.object.skill.list = this.parseSkillsList(skillsList);
+        if (this.object.skill.list.length > 0) {
+            if (this.actorIsPc) {
+                this.skillId = this.object.skill.list[0].id;
+            } else {
+                this.skillCatId = this.object.skill.list[0].id;
+            }
+        }
     }
 
     /**
@@ -229,8 +262,11 @@ export class DicePickerDialog extends FormApplication {
      * @param difficulty
      */
     set difficulty(difficulty) {
-        difficulty = parseInt(difficulty) || null;
-        if (difficulty < 0) {
+        if (this._difficultyHiddenIsLock.option) {
+            return;
+        }
+        difficulty = parseInt(difficulty);
+        if (isNaN(difficulty) || difficulty < 0) {
             difficulty = 2;
         }
         this.object.difficulty.value = difficulty;
@@ -242,8 +278,8 @@ export class DicePickerDialog extends FormApplication {
      */
     set difficultyHidden(isHidden) {
         // If GM hide, then player choice don't matter
-        this._difficultyHiddenIsLock = game.settings.get("l5r5e", "initiative-difficulty-hidden");
-        if (this._difficultyHiddenIsLock) {
+        this._difficultyHiddenIsLock.gm = game.settings.get("l5r5e", "initiative-difficulty-hidden");
+        if (this._difficultyHiddenIsLock.gm || this._difficultyHiddenIsLock.option) {
             isHidden = true;
         }
         this.object.difficulty.hidden = !!isHidden;
@@ -260,6 +296,14 @@ export class DicePickerDialog extends FormApplication {
     }
 
     /**
+     * Return true if an actor is loaded and is a Character
+     * @return {boolean}
+     */
+    get actorIsPc() {
+        return !this._actor || this._actor.data?.type === "character";
+    }
+
+    /**
      * Construct and return the data object used to render the HTML template for this form application.
      * @param options
      * @return {Object}
@@ -270,11 +314,11 @@ export class DicePickerDialog extends FormApplication {
             ringsList: game.l5r5e.HelpersL5r5e.getRingsList(this._actor),
             data: this.object,
             actor: this._actor,
-            actorIsPc: !this._actor || this._actor.data?.type === "character",
+            actorIsPc: this.actorIsPc,
             canUseVoidPoint:
                 this.object.difficulty.addVoidPoint || !this._actor || this._actor.data.data.void_points.value > 0,
             disableSubmit: this.object.skill.value < 1 && this.object.ring.value < 1,
-            difficultyHiddenIsLock: this._difficultyHiddenIsLock,
+            difficultyHiddenIsLock: this._difficultyHiddenIsLock.gm || this._difficultyHiddenIsLock.option,
         };
     }
 
@@ -303,6 +347,18 @@ export class DicePickerDialog extends FormApplication {
      */
     activateListeners(html) {
         super.activateListeners(html);
+
+        // Skill Selection from list
+        html.find("select[name=skill]").on("change", async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            if (this.actorIsPc) {
+                this.skillId = event.target.value;
+            } else {
+                this.skillCatId = event.target.value;
+            }
+            this.render(false);
+        });
 
         // Select Ring
         html.find('input[name="approach"]').on("click", async (event) => {
@@ -552,5 +608,162 @@ export class DicePickerDialog extends FormApplication {
         }
 
         return game.user.assignHotbarMacro(macro, "auto"); // 1st available
+    }
+
+    /**
+     * Return the actor who have the min/max value for this property
+     * @param  {string}       property Property name (vigilance, strife.value)
+     * @param  {boolean|null} isMin    Null: single target, Min/Max: get the actor who have the max value
+     * @return {ActorL5r5e|null}
+     * @private
+     */
+    static _getTargetActorFromSelection(property, isMin = null) {
+        if (game.user.targets.size < 1) {
+            return null;
+        }
+
+        let targetActor;
+        if (isMin === null) {
+            // only one target, get the first element
+            targetActor = Array.from(game.user.targets).values().next()?.value.document.actor;
+        } else {
+            // Group (Min/Max)
+            const targetGrp = Array.from(game.user.targets).reduce(
+                (acc, tgt) => {
+                    const targetActor = tgt.document.actor;
+                    if (!["character", "npc"].includes(targetActor.type)) {
+                        return acc;
+                    }
+
+                    const targetData = targetActor.data.data;
+                    const value = targetActor[property] || targetData[property] || null;
+                    if (!value) {
+                        return acc;
+                    }
+
+                    if ((isMin && value < acc.value) || (!isMin && value > acc.value)) {
+                        acc.actor = targetActor;
+                        acc.value = value;
+                    }
+                    return acc;
+                },
+                { actor: null, value: 0 }
+            );
+            targetActor = targetGrp.actor;
+        }
+        return targetActor;
+    }
+
+    /**
+     * Parse the difficulty from technique
+     *
+     * Exemples :
+     * "@S:vigilance"
+     * "@T:vigilance"
+     * "@T:vigilance|min"
+     * "@T:vigilance|max"
+     * "@T:vigilance|max(statusRank)"
+     * "@T:intrigueRank"
+     * "@T:martialRank"
+     * "@T:statusRank|max"
+     * "@T:strife.value|max"
+     *
+     * @param {string|number} difficulty
+     * @return {boolean}
+     */
+    parseDifficulty(difficulty) {
+        // Macro style
+        if (!Number.isNumeric(difficulty) && difficulty.startsWith("@")) {
+            // 0: "@T:vigilance|max(statusRank)"
+            // 1: "T" // Meaning : S(elf), T(arget)
+            // 2: "vigilance"
+            // 3: "max"
+            // 4: "statusRank"
+            const infos = difficulty.match(/^@([TS]):([^|]+?)(?:\|(min|max)(?:\(([^)]+?)\))?)?$/);
+            if (!infos) {
+                console.log("L5R5E | Fail to parse difficulty", difficulty);
+                return false;
+            }
+
+            // Define which actor is needed for the difficulty
+            let targetActor;
+            if (infos[1] === "S") {
+                targetActor = this._actor;
+            } else if (game.user.targets.size > 0) {
+                // Between the targets
+                targetActor = DicePickerDialog._getTargetActorFromSelection(
+                    infos[4] || infos[2],
+                    !infos[3] ? null : infos[3] === "min"
+                );
+            }
+            // Wrong syntax or no target set, do manual TN
+            if (!targetActor) {
+                console.log("L5R5E | Fail to get actor from target selection");
+                return false;
+            }
+
+            // Check in actor.<prop> or actor.data.data.<prop>
+            difficulty = targetActor[infos[2]] || targetActor.data.data[infos[2]] || null;
+            if (difficulty < 1) {
+                console.log("L5R5E | Fail to parse difficulty from target");
+                return false;
+            }
+
+            // Hide npc stats on target
+            if (infos[1] === "T") {
+                this.difficultyHidden = true;
+                this._difficultyHiddenIsLock.option = true;
+            }
+        }
+
+        // finally
+        difficulty = parseInt(difficulty);
+        if (isNaN(difficulty) || difficulty < 0) {
+            return false;
+        }
+        this.difficulty = difficulty;
+        return true;
+    }
+
+    /**
+     * Parse Skills from technique
+     *
+     * Character : expand category (social) to it's skillname (command,courtesy...)
+     * NPC : shrink to category names
+     *
+     * @param {string} skillList
+     * @return {string[]}
+     */
+    parseSkillsList(skillList) {
+        const categories = game.l5r5e.HelpersL5r5e.getCategoriesSkillsList();
+
+        // Sanitize and uniques values
+        const unqSkillList = new Set();
+        skillList.split(",").forEach((s) => {
+            s = s.trim();
+
+            if (CONFIG.l5r5e.skills.has(s)) {
+                unqSkillList.add(this.actorIsPc ? s : CONFIG.l5r5e.skills.get(s));
+            } else if (categories.has(s)) {
+                if (this.actorIsPc) {
+                    categories.get(s).forEach((e) => unqSkillList.add(e));
+                } else {
+                    unqSkillList.add(s);
+                }
+            }
+        });
+
+        // Sort by the translated label
+        const array = [...unqSkillList].map((id) => {
+            return {
+                id: id,
+                label: this.actorIsPc
+                    ? game.i18n.localize(`l5r5e.skills.${CONFIG.l5r5e.skills.get(id)}.${id}`)
+                    : game.i18n.localize(`l5r5e.skills.${id}.title`),
+            };
+        });
+        array.sort((a, b) => a.label.localeCompare(b.label));
+
+        return array;
     }
 }

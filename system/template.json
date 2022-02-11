@@ -7,12 +7,15 @@
             },
             "identity": {
                 "identity": {
+                    "age": "",
                     "clan": "",
                     "family": "",
+                    "female": null,
+                    "marital_status": "",
+                    "roles": "",
                     "school": "",
                     "school_rank": 1,
-                    "school_curriculum_journal": {},
-                    "roles": ""
+                    "school_curriculum_journal": {}
                 }
             },
             "rings": {
@@ -124,7 +127,7 @@
             "zeni": 0
         },
         "npc": {
-            "templates": ["softlock", "rings", "social", "techniques", "conflict"],
+            "templates": ["softlock", "identity", "rings", "social", "techniques", "conflict"],
             "type": "adversary",
             "attitude": "",
             "conflict_rank": {
@@ -240,6 +243,8 @@
         },
         "technique": {
             "templates": ["basics", "advancement"],
+            "skill": "",
+            "difficulty": "",
             "technique_type": "kata"
         },
         "property": {
