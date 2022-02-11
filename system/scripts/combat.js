@@ -142,14 +142,14 @@ export class CombatL5r5e extends Combat {
      * @private
      */
     _sortCombatants(a, b) {
-        // if tie, sort by honor, less honorable first
+        // if tie : sort by honor, less honorable first
         if (a.initiative === b.initiative) {
-            // skip if armies
-            if (a.actor.data.type === "army" || b.actor.data.type === "army") {
+            // skip if no actor or if armies
+            if (!a.actor || !b.actor || a.actor.data.type === "army" || b.actor.data.type === "army") {
                 return 0;
             }
 
-            // if tie, Character > Adversary > Minion
+            // if tie again : Character > Adversary > Minion
             if (a.actor.data.data.social.honor === b.actor.data.data.social.honor) {
                 return (
                     CombatL5r5e._getWeightByActorType(a.actor.data) - CombatL5r5e._getWeightByActorType(b.actor.data)

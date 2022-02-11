@@ -330,6 +330,7 @@ export class GmMonitor extends FormApplication {
         }
         if (!foundry.utils.isObjectEmpty(updateData)) {
             await actor.update(updateData);
+            this.render(false);
         }
     }
 

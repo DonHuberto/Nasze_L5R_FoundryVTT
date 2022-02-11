@@ -55,7 +55,7 @@
                         <th>{{localize 'l5r5e.advancements.total_xp_curriculum'}} : {{rankObject.spent.curriculum}}{{#if rankObject.goal}} / {{rankObject.goal}}{{/if}}</th>
                         <th>{{localize 'l5r5e.advancements.total_xp_spent'}} : {{rankObject.spent.total}}</th>
                     </tr>
-                    {{#if data.editable_not_soft_locked}}
+                    {{#if ../data.editable_not_soft_locked}}
                         {{#ifCond ../data.data.identity.school_rank '<' 6}}
                             {{#ifCond (ifCond ../data.data.identity.school_rank '==' rankObject.rank) '&&' (ifCond rankObject.spent.curriculum '>=' rankObject.goal)}}
                                 <tr class="tfoot flexrow row tab" data-group="advancements" data-tab="advancement_rank_{{rankObject.rank}}">

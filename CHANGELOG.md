@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.6.1 - Bugfix
+- PC sheet : fixed the "Complete this rank" button who stayed hidden in experience tab.
+- GmMonitor : fixed a bug with render when the list was emptied.
+- Combat : fixed a null error when sometimes the combatant actor is null.
+
 ## 1.6.0 - QoL & SoftLock
 - PC/NPC/Armies sheet:
   - Added SoftLock functionality.
