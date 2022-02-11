@@ -5,15 +5,15 @@
 {{!-- item patterns list --}}
 <fieldset>
     <legend class="text-block-header">
-        {{localize 'l5r5e.advancements.item_pattern' }}
-        {{#if options.editable}}
+        {{localize 'l5r5e.advancements.item_pattern'}}
+        {{#if data.editable_not_soft_locked}}
             <a data-item-type="item_pattern" class="item-pattern-control item-add" title="{{localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a>
         {{/if}}
     </legend>
     <ul class="item-list">
         {{#each actor.items as |pattern id|}}
             {{#ifCond pattern.data.type '==' 'item_pattern'}}
-                {{> 'systems/l5r5e/templates/items/item-pattern/item-pattern-entry.html' pattern=pattern id=id editable=../options.editable}}
+                {{> 'systems/l5r5e/templates/items/item-pattern/item-pattern-entry.html' pattern=pattern id=id editable=../data.editable_not_soft_locked}}
             {{/ifCond}}
         {{/each}}
     </ul>

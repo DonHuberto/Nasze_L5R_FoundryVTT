@@ -2,6 +2,9 @@
     "Actor": {
         "types": ["character", "npc", "army"],
         "templates": {
+            "softlock": {
+                "soft_locked": false
+            },
             "identity": {
                 "identity": {
                     "clan": "",
@@ -115,13 +118,13 @@
             }
         },
         "character": {
-            "templates": ["identity", "rings", "social", "skills", "techniques", "conflict", "advancement"],
+            "templates": ["softlock", "identity", "rings", "social", "skills", "techniques", "conflict", "advancement"],
             "template": "core",
             "twenty_questions": {},
             "zeni": 0
         },
         "npc": {
-            "templates": ["rings", "social", "techniques", "conflict"],
+            "templates": ["softlock", "rings", "social", "techniques", "conflict"],
             "type": "adversary",
             "attitude": "",
             "conflict_rank": {
@@ -144,6 +147,7 @@
             }
         },
         "army": {
+            "templates": ["softlock"],
             "warlord": "",
             "warlord_actor_id": null,
             "allies_backers": "",

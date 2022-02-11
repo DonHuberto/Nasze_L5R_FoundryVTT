@@ -49,6 +49,8 @@
             "delete_confirm": "Etes-vous sûr de vouloir supprimer '{name}' ?",
             "drop_here": "Déposez ici",
             "send_to_chat": "Vers Conv.",
+            "locked": "Verrouillé",
+            "unlocked": "Déverrouillé",
             "edge_translation_disclaimer": ""
         },
         "logo": {
@@ -148,7 +150,8 @@
             "title": "GM Monitor",
             "switch_view": "Switch View",
             "honor_glory_status": "H/G/S",
-            "focus_vigilance": "Att./Vig."
+            "focus_vigilance": "Att./Vig.",
+            "mouse_control": "Click Droit +1, Gauche: -1, Milieu: Remise à 0"
         },
         "max": "Max",
         "current": "Actuel",

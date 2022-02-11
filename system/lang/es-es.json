@@ -22,7 +22,7 @@
     "ACTOR": {
         "TypeCharacter": "Personaje jugador",
         "TypeNpc": "Personaje no jugador",
-        "TypeArmy": "Army"
+        "TypeArmy": "Ejército"
     },
     "ITEM": {
         "TypeItem": "Objeto",
@@ -32,15 +32,15 @@
         "TypeProperty": "Propiedad",
         "TypePeculiarity": "Peculiaridad",
         "TypeAdvancement": "Mejora",
-        "TypeTitle": "Title",
-        "TypeBond": "Bond",
-        "TypeSignatureScroll": "Signature Scroll",
-        "TypeItemPattern": "Item Pattern",
-        "TypeArmy_fortification": "Fortification",
-        "TypeArmy_cohort": "Cohort"
+        "TypeTitle": "Título",
+        "TypeBond": "Vínculo",
+        "TypeSignatureScroll": "Pergamino especial",
+        "TypeItemPattern": "Patrón de objeto",
+        "TypeArmy_fortification": "Fortificación",
+        "TypeArmy_cohort": "Cohorte"
     },
     "JOURNAL": {
-        "TypeJournal": "Journal"
+        "TypeJournal": "Diario"
     },
     "l5r5e": {
         "global": {
@@ -49,6 +49,8 @@
             "delete_confirm": "¿Estás seguro de que quieres borrar '{name}' ?",
             "drop_here": "Dejar caer aquí",
             "send_to_chat": "To Chat",
+            "locked": "Locked",
+            "unlocked": "Unlocked",
             "edge_translation_disclaimer": "Edge Studio nos da su permiso para ofrecer este módulo a la comunidad, pero tanto los textos así como los códigos que lo constituyen no tienen su aprobación explícita."
         },
         "logo": {
@@ -79,16 +81,16 @@
         "clan": "Clan",
         "family": "Familia",
         "region": "Region",
-        "upbringing": "Upbringing",
+        "upbringing": "Educación",
         "school": "Escuela",
         "schoolrank": "Rango",
         "roles": "Funciones",
         "distinctions": "Distinciones",
-        "distinctionstip": "Puedes volver a lanzar hasta dos dados si una distición te ayuda en la tirada.",
+        "distinctionstip": "Puedes volver a lanzar hasta dos dados si una distinción te ayuda en la tirada.",
         "adversities": "Adversidades",
-        "adversitiestip": "Vuelve a lanzar dos dados con Éxito o Éxito relanzable si una adversidad influye en tu tirada. Si fallas, ganas 1 punto de vacío.",
+        "adversitiestip": "Vuelve a lanzar dos dados con Éxito o Éxito relanzable si una adversidad influye en tu tirada. Si fallas, ganas 1 punto de Vacío.",
         "anxieties": "Ansiedades",
-        "anxietiestip": "Tras realizar una tirada relacionada con tu ansiedad, recibes 3 puntos de Conflicto. Luego ganas 1 punto de vacío (limitado a 1 por escena).",
+        "anxietiestip": "Tras realizar una tirada relacionada con tu ansiedad, recibes 3 puntos de Conflicto. Luego ganas 1 punto de Vacío (limitado a 1 por escena).",
         "passions": "Pasiones",
         "passionstip": "Después de efectuar una tirada relacionada con tu pasión, descarta tres puntos de Conflicto.",
         "personality": "Personalidad",
@@ -107,7 +109,7 @@
             "difficulty": "NO",
             "difficulty_hidden": "NO ???",
             "dicepicker": "Dice Picker",
-            "void_point_used": "Punto de vacío utilizado",
+            "void_point_used": "Punto de Vacío utilizado",
             "assistance_used": "Asistencia de habilidad utilizada",
             "roll_n_keep": "Tirar y guardar",
             "initiative_roll": "Tirada de Iniciativa",
@@ -137,26 +139,27 @@
             "title": "GM ToolBox",
             "difficulty_hidden": "Cambiar la dificultad visible",
             "difficulty": "Cambiar dificultad (derecha: añadir, izquierda: sustraer, central: NO 2)",
-            "sleep": "Descanso confortable para todos los personajes (Eliminar fatiga = Agua x2. Right click: assigned characters only. Left: All actors)",
+            "sleep": "Descanso confortable para todos los personajes (Eliminar fatiga = Agua x2. (Click derecho: sólo a los personajes seleccionados. Izquierdo: a todos los actores)",
             "sleep_info": "Los personajes han dormido bien.",
-            "scene_end": "Final de la escena (El Conflicto y la Fatiga de los personajes se reduce hasta la mitad del máximo del valor. Right click: assigned characters only. Left: All actors)",
+            "scene_end": "Final de la escena (El Conflicto y la Fatiga de los personajes se reduce hasta la mitad del máximo del valor (Click derecho: sólo a los personajes seleccionados. Izquierdo: a todos los actores)",
             "scene_end_info": "La tensión de la escena por fin disminuye.",
-            "reset_void": "Start of the game: Reset the players' void points (Right click: assigned characters only. Left: All actors)",
-            "reset_void_info": "Void points have been attributed."
+            "reset_void": "Comienzo de la partida: Resetea los puntos de Vacío de los jugadores (Click derecho: sólo a los personajes seleccionados. Izquierdo: a todos los actores)",
+            "reset_void_info": "Se han adjudicado los puntos de Vacío."
         },
         "gm_monitor": {
-            "title": "GM Monitor",
-            "switch_view": "Switch View",
-            "honor_glory_status": "H/G/S",
-            "focus_vigilance": "Foc./Vig."
+            "title": "Pantalla del DJ",
+            "switch_view": "Cambiar vista",
+            "honor_glory_status": "H/G/E",
+            "focus_vigilance": "Con./Ale.",
+            "mouse_control": "Right click +1, left: -1, middle: reset to 0"
         },
         "max": "Máx",
         "current": "Actuales",
         "quantity": "Cantidad",
         "weight": "Peso",
         "properties": "Propiedades",
-        "linked_property": "linked Property",
-        "removed_properties": "Cancel",
+        "linked_property": "Propiedad vínculada",
+        "removed_properties": "Anula",
         "weapons": {
             "title": "Armas",
             "damage": "Daño",
@@ -167,14 +170,14 @@
             "category": "Categoría",
             "deadliness": "Letalidad",
             "grips": "Agarres",
-            "1hand": "1-hand",
-            "2hand": "2-hand"
+            "1hand": "1-mano",
+            "2hand": "2-manos"
         },
         "armors": {
             "title": "Armaduras",
             "type": "Defensa",
-            "physical": "física",
-            "supernatural": "sobrenatural",
+            "physical": "Física",
+            "supernatural": "Sobrenatural",
             "equipped": "Equipado"
         },
         "items": {
@@ -197,7 +200,7 @@
             "mantra": "Mantra",
             "school_ability": "Capacidad de escuela",
             "mastery_ability": "Habilidad de maestría",
-            "title_ability": "Title Ability",
+            "title_ability": "Capacidad de título",
             "specificity": "Specificity"
         },
         "peculiarities": {
@@ -231,15 +234,15 @@
             "giri": "Giri",
             "past": "Past",
             "bushido_tenets": {
-                "title": "Bushido Tenets",
-                "paramount": "Paramount",
-                "less_significant": "Less Significant"
+                "title": "Preceptos del Bushidō",
+                "paramount": "Más importante",
+                "less_significant": "Menos significativo"
             },
             "titles": "Títulos",
             "attitude": "Actitud:",
             "advantages": "Distinciones y pasiones",
             "disadvantages": "Adversidades y ansiedades",
-            "bonds": "Bonds",
+            "bonds": "Vínculos",
             "npc": {
                 "advantages": "Ventajas",
                 "disadvantages": "Desventajas",
@@ -324,7 +327,7 @@
             "focustip": "Aire + Fuego",
             "vigilance": "Alerta",
             "vigilancetip": "(Aire + Agua) /2",
-            "voidpoints": "P. Vacío",
+            "voidpoints": "Puntos de Vacío",
             "fatigue": "Fatiga",
             "strife": "Conflicto"
         },
@@ -353,19 +356,19 @@
         "advancements": {
             "title": "Avances",
             "school_rank": "Rango de la escuela",
-            "school_rank_0": "Bg",
+            "school_rank_0": "Inicial",
             "total": "Total",
             "cost": "Coste",
             "spent": "Gastado",
             "saved": "Guardado",
             "total_xp_spent": "PE gastados",
-            "total_xp_curriculum": "Xp spent on curriculum",
+            "total_xp_curriculum": "PE gastados en el programa",
             "curriculum": "En programa de estudio",
             "curriculum_validate": "Completar este rango",
-            "rarity_modifier": "Rarity modifier",
-            "item_pattern": "Item patterns",
-            "signature_scroll": "Signature scrolls",
-            "school_curriculum_journal": "Drop curriculum's journal in sheet to link it"
+            "rarity_modifier": "Modificador de rareza",
+            "item_pattern": "Patrones de objetos",
+            "signature_scroll": "Pergaminos espaciales",
+            "school_curriculum_journal": "Arrastra el diario del programa en la hoja para vincularlo"
         },
         "character_types": {
             "character": "Personaje jugador",
@@ -413,16 +416,16 @@
             "increase_skill3": "Incremento de habilidad (3-5)",
             "choose_one_ring": "Elige uno",
             "choose_one_skill": "Elige una",
-            "or": "O",
-            "and": "Y",
+            "or": "o",
+            "and": "y",
             "error": "Uy, parece que hay un error:",
             "part0": {
                 "intro": "Puedes usar esta hoja para rellenar tus respuestas al Juego de las 20 Preguntas, y para tomar notas para más tarde!",
-                "section": "Leyenda de los Cinco Anillos, capítulo 2: Creación de personajes, p. 41-95",
-                "section_pow": "Legend of the Five Rings Path of Waves, Chapter 2: Creating a Character p. 30–82",
-                "type": "Select the 20Q template you want to use",
-                "type_core": "Samurai (Core Rulebook)",
-                "type_pow": "Ronin (Path of Waves)"
+                "section": "Leyenda de los Cinco Anillos, capítulo 2: Creación de personajes, pp. 41-95",
+                "section_pow": "Leyenda de los Cinco Anillos Senda de las olas, capítulo 2: Creación de personajes pp. 30–82",
+                "type": "Elige la plantilla de 20P que quieres usar",
+                "type_core": "Samurai (Libro básico)",
+                "type_pow": "Ronin (Senda de las olas)"
             },
             "part1": {
                 "title": "Parte I: Identidad básica (Clan y Familia)",
@@ -465,8 +468,8 @@
                 "q8": "8. ¿Qué piensa tu personaje acerca del Bushidō? (p. 91)",
                 "q8_pow": "8. What does your character think of Bushidō? (p. 62)",
                 "increase_honor": "Aumento del honor",
-                "tenets": "Choose one tenet of Bushidō as paramount and one tenet as less significant (see The Clans Views of Bushidō, page 301 of the core rulebook):",
-                "object": "Item (Rarity 5 or lower)"
+                "tenets": "Escoge un precepto del Bushidō más importante y un precepto como menos significativo (ver las opiniones de los Clanes respecto del Bushidō, página 301 del libro de reglas básicas):",
+                "object": "Objeto (Rareza 5 o inferior)"
             },
             "part4": {
                 "title": "Parte IV: Fortalezas y Debilidades",
@@ -520,8 +523,8 @@
                 "q20_pow": "20. ¿Cómo debería morir tu personaje? (p. 68)",
                 "summary": "Resumen",
                 "generchar": "Generar el personaje",
-                "generchar_disclaimer": "Advertencia, esto borrará los datos actuales del personaje!",
-                "generchar_errors": "Borrar los errores antes de continuar!"
+                "generchar_disclaimer": "Advertencia, ¡esto borrará los datos actuales del personaje!",
+                "generchar_errors": "¡Borrar los errores antes de continuar!"
             }
         }
     }

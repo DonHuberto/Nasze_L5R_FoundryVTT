@@ -9,7 +9,7 @@ export default class HooksL5r5e {
             typeof Babele !== "undefined" &&
             Babele.get().modules.every((module) => module.module !== "l5r5e-custom-compendiums")
         ) {
-            Babele.get().setSystemTranslationsDir("babele"); // Since Babele v2.0.4
+            Babele.get().setSystemTranslationsDir("babele"); // Since Babele v2.0.7
         }
     }
 
@@ -178,10 +178,33 @@ export default class HooksL5r5e {
      * Compendium display
      */
     static async renderCompendium(app, html, data) {
-        // templates "item" : add Rarity
-        // Techniques / Peculiarities : add Ring / Rank
         if (app.collection.documentName === "Item") {
             const content = await app.collection.getDocuments();
+
+            // Add rank filter for techniques
+            if (
+                content[0].type === "technique" &&
+                !["l5r5e.core-techniques-school", "l5r5e.core-techniques-mastery"].includes(data.collection.collection)
+            ) {
+                const rankFilter = (event, rank) => {
+                    html[0].querySelectorAll(".directory-item").forEach((line) => {
+                        $(line).css("display", rank === 0 || $(line)[0].innerText?.endsWith(rank) ? "flex" : "none");
+                    });
+                };
+                const elmt = html.find(".directory-header");
+                if (elmt.length > 0) {
+                    const div = $('<div class="flexrow"></div>');
+                    for (let rank = 0; rank < 6; rank++) {
+                        const bt = $(`<a>${rank === 0 ? "x" : rank}</a>`);
+                        bt.on("click", (event) => rankFilter(event, rank));
+                        div.append(bt);
+                    }
+                    elmt.append(div);
+                }
+            }
+
+            // Items : add Rarity
+            // Techniques / Peculiarities : add Ring / Rank
             content.forEach((document) => {
                 if (["weapon", "armor", "item", "peculiarity", "technique", "peculiarity"].includes(document.type)) {
                     html.find(`[data-document-id="${document.id}"]`).append(
