@@ -93,9 +93,15 @@
         border: none !important;
         text-shadow: none !important;
     }
+
     select {
         text-align: center;
         width: 134px;
+        direction: rtl;
+        appearance: none;
+    }
+    option {
+        font-size: 0.8rem;
     }
 
     img {

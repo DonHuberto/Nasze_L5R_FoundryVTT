@@ -197,10 +197,15 @@ export class DicePickerDialog extends FormApplication {
         }
         this.object.skill.list = this.parseSkillsList(skillsList);
         if (this.object.skill.list.length > 0) {
-            if (this.actorIsPc) {
-                this.skillId = this.object.skill.list[0].id;
-            } else {
+            // Set 1st skill
+            if (this.useCategory) {
                 this.skillCatId = this.object.skill.list[0].id;
+            } else {
+                this.skillId = this.object.skill.list[0].id;
+            }
+            // Remove the list if only one item
+            if (this.object.skill.list.length === 1) {
+                this.object.skill.list = null;
             }
         }
     }
@@ -297,11 +302,11 @@ export class DicePickerDialog extends FormApplication {
     }
 
     /**
-     * Return true if an actor is loaded and is a Character
+     * Return true if an actor is loaded and is a NPC
      * @return {boolean}
      */
-    get actorIsPc() {
-        return !this._actor || this._actor.data?.type === "character";
+    get useCategory() {
+        return !!this._actor && this._actor.data?.type === "npc";
     }
 
     /**
@@ -315,7 +320,7 @@ export class DicePickerDialog extends FormApplication {
             ringsList: game.l5r5e.HelpersL5r5e.getRingsList(this._actor),
             data: this.object,
             actor: this._actor,
-            actorIsPc: this.actorIsPc,
+            useCategory: this.useCategory,
             canUseVoidPoint:
                 this.object.difficulty.addVoidPoint || !this._actor || this._actor.data.data.void_points.value > 0,
             disableSubmit: this.object.skill.value < 1 && this.object.ring.value < 1,
@@ -353,10 +358,10 @@ export class DicePickerDialog extends FormApplication {
         html.find("select[name=skill]").on("change", async (event) => {
             event.preventDefault();
             event.stopPropagation();
-            if (this.actorIsPc) {
-                this.skillId = event.target.value;
-            } else {
+            if (this.useCategory) {
                 this.skillCatId = event.target.value;
+            } else {
+                this.skillId = event.target.value;
             }
             this.render(false);
         });
@@ -751,12 +756,12 @@ export class DicePickerDialog extends FormApplication {
             s = s.trim();
 
             if (CONFIG.l5r5e.skills.has(s)) {
-                unqSkillList.add(this.actorIsPc ? s : CONFIG.l5r5e.skills.get(s));
+                unqSkillList.add(this.useCategory ? CONFIG.l5r5e.skills.get(s) : s);
             } else if (categories.has(s)) {
-                if (this.actorIsPc) {
-                    categories.get(s).forEach((e) => unqSkillList.add(e));
-                } else {
+                if (this.useCategory) {
                     unqSkillList.add(s);
+                } else {
+                    categories.get(s).forEach((e) => unqSkillList.add(e));
                 }
             }
         });
@@ -765,9 +770,9 @@ export class DicePickerDialog extends FormApplication {
         const array = [...unqSkillList].map((id) => {
             return {
                 id: id,
-                label: this.actorIsPc
-                    ? game.i18n.localize(`l5r5e.skills.${CONFIG.l5r5e.skills.get(id)}.${id}`)
-                    : game.i18n.localize(`l5r5e.skills.${id}.title`),
+                label: this.useCategory
+                    ? game.i18n.localize(`l5r5e.skills.${id}.title`)
+                    : game.i18n.localize(`l5r5e.skills.${CONFIG.l5r5e.skills.get(id)}.${id}`),
             };
         });
         array.sort((a, b) => a.label.localeCompare(b.label));

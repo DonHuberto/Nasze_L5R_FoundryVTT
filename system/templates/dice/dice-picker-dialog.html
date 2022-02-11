@@ -21,27 +21,21 @@
             <td class="skill">
                 {{#if data.skill.name}}
                     {{#if data.skill.list}}
-                        {{#if actorIsPc}}
+                        {{^if useCategory}}
                             <label>{{localizeSkill data.skill.cat 'title'}}</label>
-                            <select class="attribute-dtype" name="skill">
-                                {{#select data.skill.id}}
-                                {{#each data.skill.list as |item|}}
-                                    <option value="{{item.id}}">{{item.label}}</option>
-                                {{/each}}
-                                {{/select}}
-                            </select>
-                        {{else}}
-                            <select class="attribute-dtype" name="skill">
-                                {{#select data.skill.cat}}
-                                {{#each data.skill.list as |item|}}
-                                    <option value="{{item.id}}">{{item.label}}</option>
-                                {{/each}}
-                                {{/select}}
-                            </select>
                         {{/if}}
+                        <select class="attribute-dtype" name="skill">
+                            {{#select data.skill.id}}
+                            {{#select data.skill.cat}}
+                            {{#each data.skill.list as |item|}}
+                                <option value="{{item.id}}">{{item.label}}</option>
+                            {{/each}}
+                            {{/select}}
+                            {{/select}}
+                        </select>
                     {{else}}
                         <label>{{localizeSkill data.skill.cat 'title'}}</label>
-                        {{#if actorIsPc}}
+                        {{^if useCategory}}
                         <div>
                             <label>{{data.skill.name}}</label>
                         </div>
