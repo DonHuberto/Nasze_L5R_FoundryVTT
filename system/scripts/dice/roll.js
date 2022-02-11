@@ -13,6 +13,7 @@ export class RollL5r5e extends Roll {
             skillId: "",
             skillCatId: "",
             actor: null,
+            targetTokenId: null,
             difficulty: 2,
             difficultyHidden: false,
             voidPointUsed: false,
@@ -250,6 +251,7 @@ export class RollL5r5e extends Roll {
         if (!this._evaluated) {
             await this.roll();
         }
+        console.log(this.l5r5e);
 
         // Define chat data
         const chatData = {

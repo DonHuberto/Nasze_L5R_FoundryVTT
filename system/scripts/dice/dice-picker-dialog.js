@@ -41,6 +41,7 @@ export class DicePickerDialog extends FormApplication {
             value: 2,
             hidden: false,
             addVoidPoint: false,
+            targetTokenId: null,
         },
         useVoidPoint: false,
         isInitiativeRoll: false,
@@ -528,6 +529,7 @@ export class DicePickerDialog extends FormApplication {
             roll.l5r5e.difficultyHidden = this.object.difficulty.hidden;
             roll.l5r5e.voidPointUsed = this.object.useVoidPoint;
             roll.l5r5e.skillAssistance = this.object.skill.assistance;
+            roll.l5r5e.targetTokenId = this.object.difficulty.targetTokenId;
 
             await roll.roll();
             message = await roll.toMessage();
@@ -611,21 +613,21 @@ export class DicePickerDialog extends FormApplication {
     }
 
     /**
-     * Return the actor who have the min/max value for this property
+     * Return the token actor who have the min/max value for this property
      * @param  {string}       property Property name (vigilance, strife.value)
      * @param  {boolean|null} isMin    Null: single target, Min/Max: get the actor who have the max value
-     * @return {ActorL5r5e|null}
+     * @return {TokenDocument|null}
      * @private
      */
-    static _getTargetActorFromSelection(property, isMin = null) {
+    static _getTargetTokenFromSelection(property, isMin = null) {
         if (game.user.targets.size < 1) {
             return null;
         }
 
-        let targetActor;
+        let targetToken;
         if (isMin === null) {
             // only one target, get the first element
-            targetActor = Array.from(game.user.targets).values().next()?.value.document.actor;
+            targetToken = Array.from(game.user.targets).values().next()?.value.document.actor;
         } else {
             // Group (Min/Max)
             const targetGrp = Array.from(game.user.targets).reduce(
@@ -642,16 +644,16 @@ export class DicePickerDialog extends FormApplication {
                     }
 
                     if ((isMin && value < acc.value) || (!isMin && value > acc.value)) {
-                        acc.actor = targetActor;
+                        acc.actor = tgt.document;
                         acc.value = value;
                     }
                     return acc;
                 },
                 { actor: null, value: 0 }
             );
-            targetActor = targetGrp.actor;
+            targetToken = targetGrp.actor;
         }
-        return targetActor;
+        return targetToken;
     }
 
     /**
@@ -686,15 +688,20 @@ export class DicePickerDialog extends FormApplication {
             }
 
             // Define which actor is needed for the difficulty
-            let targetActor;
+            let targetActor = null;
+            let targetTokenId = null;
             if (infos[1] === "S") {
                 targetActor = this._actor;
             } else if (game.user.targets.size > 0) {
                 // Between the targets
-                targetActor = DicePickerDialog._getTargetActorFromSelection(
+                const targetToken = DicePickerDialog._getTargetTokenFromSelection(
                     infos[4] || infos[2],
                     !infos[3] ? null : infos[3] === "min"
                 );
+                if (targetToken) {
+                    targetActor = targetToken.actor;
+                    targetTokenId = targetToken.data._id;
+                }
             }
             // Wrong syntax or no target set, do manual TN
             if (!targetActor) {
@@ -713,6 +720,7 @@ export class DicePickerDialog extends FormApplication {
             if (infos[1] === "T") {
                 this.difficultyHidden = true;
                 this._difficultyHiddenIsLock.option = true;
+                this.object.difficulty.targetTokenId = targetTokenId;
             }
         }
 

@@ -1,7 +1,7 @@
 # Changelog
 
 ## 1.7.0 - DiceRoller for Techniques & Npc Generator
-- NPC Sheet : Added generator feature (demeanor, clan and families names courteously authorized by Edge).
+- NPC Sheet : Added random generator feature (demeanor, clan and families names courteously authorized by Edge).
 - PC/NPC sheet:
     - Added the ability to techniques, with a skill set, to open the DicePicker with presets values.
     - Some can interact with targets, but do the default difficulty if none.
