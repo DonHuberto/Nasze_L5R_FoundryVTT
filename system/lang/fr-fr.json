@@ -251,6 +251,7 @@
             "age": "Age",
             "marital_status": {
                 "title": "État civil",
+                "partner": "Partenaire",
                 "married": "Marié(e)",
                 "betrothed": "Fiancé(e)",
                 "unmarried": "Célibataire",

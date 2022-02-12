@@ -123,7 +123,7 @@ export class CharacterGenerator {
 
     /**
      * Return a random value for this array
-     * @param array
+     * @param  {String[]} array
      * @return {String}
      * @private
      */
@@ -133,8 +133,8 @@ export class CharacterGenerator {
 
     /**
      * Return a random value between min and max
-     * @param {number} min
-     * @param {number} max
+     * @param  {number} min
+     * @param  {number} max
      * @return {number}
      * @private
      */
@@ -144,7 +144,7 @@ export class CharacterGenerator {
 
     /**
      * Always return a number between 1 and 5
-     * @param {number} number
+     * @param  {number} number
      * @return {number}
      */
     static sanitizeMinMax(number) {
@@ -153,8 +153,8 @@ export class CharacterGenerator {
 
     /**
      * Return a Item from this pack (by id if provided, or random otherwise)
-     * @param {string} packName
-     * @param {string} id
+     * @param  {string} packName
+     * @param  {string} id
      * @return {Promise<Document|undefined>}
      * @private
      */
@@ -175,7 +175,7 @@ export class CharacterGenerator {
 
     /**
      * Generate and return a family name for this clan
-     * @param {string} clanName
+     * @param  {string} clanName
      * @return {string}
      * @private
      */
@@ -193,12 +193,12 @@ export class CharacterGenerator {
     }
 
     /**
-     * Generate and return a full name
+     * Generate and return a firstname
      * @return {Promise<string>}
      */
-    async getRandomizedName() {
-        let table = `Japanese names (${this.isFemale ? "Female" : "Male"})`;
-        switch (this.data.clan) {
+    static async getRandomizedFirstname(isFemale, clan) {
+        let table = `Japanese names (${isFemale ? "Female" : "Male"})`;
+        switch (clan) {
             case "ivory_kingdoms":
                 table = "Ivory Kingdoms names";
                 break;
@@ -212,7 +212,7 @@ export class CharacterGenerator {
         const randomNames = await game.l5r5e.HelpersL5r5e.drawManyFromPack("l5r5e.core-name-tables", table, 1, {
             displayChat: false,
         });
-        return this.data.family + " " + (randomNames?.results[0]?.data.text || "");
+        return randomNames?.results[0]?.data.text || "";
     }
 
     /**
@@ -241,9 +241,38 @@ export class CharacterGenerator {
     }
 
     /**
+     * Generate the marital partner
+     * @param  {string}  maritalStatus unmarried|betrothed|married|widowed
+     * @param  {number}  avgRingsValue
+     * @param  {string}  clan
+     * @param  {string}  family
+     * @param  {boolean} isFemale
+     * @return {Promise<{age: number, name: string, clan: string, family: string, female: boolean}>}
+     */
+    static async genMaritalPartner(maritalStatus, avgRingsValue, clan, family, isFemale) {
+        const alreadyMerged = maritalStatus !== "betrothed";
+        const partner = {
+            age: CharacterGenerator.genAge(avgRingsValue),
+            clan: "",
+            family: "",
+            female: Math.random() > 0.9 ? isFemale : !isFemale,
+            name: "",
+        };
+
+        partner.clan =
+            alreadyMerged || Math.random() > 0.7
+                ? clan
+                : CharacterGenerator._getRandomArrayValue(Array.from(CONFIG.l5r5e.families.keys()));
+
+        partner.family = alreadyMerged ? family : CharacterGenerator._getRandomFamily(partner.clan);
+        partner.name = await CharacterGenerator.getRandomizedFirstname(partner.female, partner.clan);
+        return partner;
+    }
+
+    /**
      * Generate Honor, Glory and Status values
-     * @param {number} age
-     * @param {string} clan
+     * @param  {number} age
+     * @param  {string} clan
      * @return {{honor: number, glory: number, status: number}}
      */
     static genSocialStanding(age, clan) {
@@ -271,16 +300,16 @@ export class CharacterGenerator {
     /**
      * Modify the current actor datas with selected options
      *
-     * @param {ActorL5r5e} actor                 Actor object
-     * @param {Object}     generate
-     * @param {boolean}    generate.name          If true generate a new name
-     * @param {boolean}    generate.identity      If true generate Clan, Gender, Age, Marital status
-     * @param {boolean}    generate.attributes    If true generate Rings, attributes, skills and confrontation ranks
-     * @param {boolean}    generate.demeanor      If true generate Demeanor and rings affinities
-     * @param {boolean}    generate.peculiarities If true generate Advantage and Disadvantage
-     * @param {boolean}    generate.items         If true generate Armor, Weapons and Items
-     * @param {boolean}    generate.techniques    If true generate Shuji, Katas...
-     * @param {boolean}    generate.narrative     If true generate Narrative and fluff
+     * @param  {ActorL5r5e} actor                 Actor object
+     * @param  {Object}     generate
+     * @param  {boolean}    generate.name          If true generate a new name
+     * @param  {boolean}    generate.identity      If true generate Clan, Gender, Age, Marital status
+     * @param  {boolean}    generate.attributes    If true generate Rings, attributes, skills and confrontation ranks
+     * @param  {boolean}    generate.demeanor      If true generate Demeanor and rings affinities
+     * @param  {boolean}    generate.peculiarities If true generate Advantage and Disadvantage
+     * @param  {boolean}    generate.items         If true generate Armor, Weapons and Items
+     * @param  {boolean}    generate.techniques    If true generate Shuji, Katas...
+     * @param  {boolean}    generate.narrative     If true generate Narrative and fluff
      * @return {Promise<Object>}
      */
     async toActor(
@@ -297,6 +326,7 @@ export class CharacterGenerator {
         }
     ) {
         const actorDatas = actor.data.data;
+        const isNpc = actor.type === "npc";
 
         // Need to set some required values
         this.data.age = actorDatas.identity.age || CharacterGenerator.genAge(this.data.avgRingsValue);
@@ -308,13 +338,19 @@ export class CharacterGenerator {
         actorDatas.identity.female = this.isFemale;
 
         // Name
-        const newName = generate.name ? await this.getRandomizedName() : actor.data.name;
+        let newName = actor.data.name;
+        if (generate.name) {
+            newName =
+                this.data.family +
+                " " +
+                (await CharacterGenerator.getRandomizedFirstname(this.isFemale, this.data.clan));
+        }
 
         // Identity
         if (generate.identity) {
             actorDatas.identity.age = CharacterGenerator.genAge(this.data.avgRingsValue);
             actorDatas.identity.marital_status = CharacterGenerator.genMaritalStatus(this.data.age);
-            this._generateNotes(actorDatas);
+            await this._generateNotes(actorDatas);
         }
 
         // Img (only if system defaults)
@@ -330,7 +366,7 @@ export class CharacterGenerator {
         // Generate attributes & Social Standing
         if (generate.attributes) {
             // Generate attributes (rings, attributes, skills, confrontation ranks)
-            this._generateAttributes(actorDatas);
+            this._generateAttributes(isNpc, actorDatas);
 
             // Social Standing
             const social = CharacterGenerator.genSocialStanding(this.data.age, this.data.clan);
@@ -340,7 +376,7 @@ export class CharacterGenerator {
         }
 
         // Demeanor (npc only)
-        if (generate.demeanor && actor.type === "npc") {
+        if (isNpc && generate.demeanor) {
             this._generateDemeanor(actorDatas);
         }
 
@@ -369,7 +405,7 @@ export class CharacterGenerator {
             }
         }
 
-        // TODO Narrative
+        // Narrative
         if (generate.narrative) {
             this._generateNarrative(actorDatas);
         }
@@ -381,14 +417,15 @@ export class CharacterGenerator {
             data: actorDatas,
         };
     }
-    //<editor-fold desc="toActor generators">
 
+    //<editor-fold desc="toActor generators">
     /**
      * Generate attributes (rings, attributes, skills, confrontation ranks)
+     * @param {boolean}           isNpc
      * @param {DocumentData.data} actorDatas
      * @private
      */
-    _generateAttributes(actorDatas) {
+    _generateAttributes(isNpc, actorDatas) {
         const stats = { min: 5, max: 1 };
 
         // Rings
@@ -405,12 +442,16 @@ export class CharacterGenerator {
         game.l5r5e.ActorL5r5e.computeDerivedAttributes(actorDatas);
 
         // Skills
-        Object.keys(actorDatas.skills).forEach(
-            (skillName) => (actorDatas.skills[skillName] = Math.floor(Math.random() * stats.max))
-        );
+        if (isNpc) {
+            Object.keys(actorDatas.skills).forEach(
+                (skillName) => (actorDatas.skills[skillName] = Math.floor(Math.random() * stats.max))
+            );
+        } else {
+            // TODO PC skills
+        }
 
         // Confrontation ranks (npc only)
-        if (actorDatas.conflict_rank) {
+        if (isNpc) {
             actorDatas.conflict_rank.martial = this.data.avgRingsValue + actorDatas.skills.martial;
             actorDatas.conflict_rank.social = this.data.avgRingsValue + actorDatas.skills.social;
         }
@@ -439,8 +480,8 @@ export class CharacterGenerator {
 
     /**
      * Generate Advantages and Disadvantages
-     * @param {ActorL5r5e} actor
-     * @param {DocumentData[]} newItemsData
+     * @param  {ActorL5r5e} actor
+     * @param  {DocumentData[]} newItemsData
      * @return {Promise<void>}
      * @private
      */
@@ -462,8 +503,8 @@ export class CharacterGenerator {
 
     /**
      * Generate Armor, Weapons, Items
-     * @param {ActorL5r5e} actor
-     * @param {DocumentData[]} newItemsData
+     * @param  {ActorL5r5e} actor
+     * @param  {DocumentData[]} newItemsData
      * @return {Promise<void>}
      * @private
      */
@@ -507,8 +548,8 @@ export class CharacterGenerator {
 
     /**
      * Generate Techniques
-     * @param {ActorL5r5e} actor
-     * @param {DocumentData[]} newItemsData
+     * @param  {ActorL5r5e} actor
+     * @param  {DocumentData[]} newItemsData
      * @return {Promise<void>}
      * @private
      */
@@ -592,11 +633,8 @@ export class CharacterGenerator {
 
             // Minimum skill required (npc only for now)
             if (!!cfg.skill && actor.data.data.skills[cfg.skill.grp_name] < cfg.skill.value_min) {
-                console.log("1");
                 continue;
             }
-
-            console.log("2");
 
             // Check probabilities to have more than min qty
             let qtyMax = cfg.qty?.min ?? 0;
@@ -612,7 +650,6 @@ export class CharacterGenerator {
                 } while (item && item.data.data.rank > avgrv);
 
                 if (item) {
-                    // console.log('adding', pack, item.data.name);
                     newItemsData.push(foundry.utils.duplicate(item.data));
                 }
             } // fr qty
@@ -621,12 +658,13 @@ export class CharacterGenerator {
 
     /**
      * Fill notes with some values that don't appear in sheet
-     * @param {DocumentData.data} actorDatas
+     * @param  {DocumentData.data} actorDatas
+     * @return {Promise<void>}
      * @private
      */
-    _generateNotes(actorDatas) {
+    async _generateNotes(actorDatas) {
         actorDatas.notes =
-            `<p>${game.i18n.localize("l5r5e.social.age")}: ${this.data.age}</p>` +
+            `${game.i18n.localize("l5r5e.social.age")}: ${this.data.age}</p>` +
             `<p>${game.i18n.localize("l5r5e.social.gender.title")}: ${game.i18n.localize(
                 "l5r5e.social.gender." + this.data.gender
             )}</p>` +
@@ -634,6 +672,26 @@ export class CharacterGenerator {
             `<p>${game.i18n.localize("l5r5e.social.marital_status.title")}: ${game.i18n.localize(
                 "l5r5e.social.marital_status." + this.data.maritalStatus
             )}</p>`;
+
+        // Define partner identity
+        if (this.data.maritalStatus !== "unmarried") {
+            const partner = await CharacterGenerator.genMaritalPartner(
+                this.data.maritalStatus,
+                this.data.avgRingsValue,
+                this.data.clan,
+                this.data.family,
+                this.isFemale
+            );
+
+            actorDatas.notes +=
+                "<p>" +
+                `${game.i18n.localize("l5r5e.social.marital_status.partner")}:` +
+                ` ${partner.family} ${partner.name}` +
+                ` (${partner.age}, ${game.i18n.localize(
+                    "l5r5e.social.gender." + (partner.female ? "female" : "male")
+                )})` +
+                "</p>";
+        }
     }
 
     /**
@@ -642,6 +700,7 @@ export class CharacterGenerator {
      * @private
      */
     _generateNarrative(actorDatas) {
+        // TODO generateNarrative
         // actorDatas.description = '';
     }
     //</editor-fold>

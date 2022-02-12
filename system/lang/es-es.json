@@ -251,6 +251,7 @@
             "age": "Age",
             "marital_status": {
                 "title": "Marital Status",
+                "partner": "Partner",
                 "married": "Married",
                 "betrothed": "Betrothed",
                 "unmarried": "Unmarried",
