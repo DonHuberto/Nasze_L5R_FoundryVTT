@@ -16,12 +16,17 @@
                 {{/if}}
             </li>
             <li class="chat-profil-element">
+                {{localize 'l5r5e.chatdices.difficulty'}}
                 {{#if l5r5e.difficultyHidden}}
-                    {{localize 'l5r5e.chatdices.difficulty_hidden'}}
+                    {{#if isGM}}
+                        ?{{l5r5e.difficulty}}?
+                    {{else}}
+                        {{localize 'l5r5e.chatdices.difficulty_hidden'}}
+                    {{/if}}
                 {{else}}
-                    {{localize 'l5r5e.chatdices.difficulty'}} {{l5r5e.difficulty}}
+                    {{l5r5e.difficulty}}
                 {{/if}}
-                <br />
+                <br>
                 {{#if l5r5e.voidPointUsed}}
                     <i class="i_void" title="{{localize 'l5r5e.chatdices.void_point_used'}}"></i>
                 {{/if}}

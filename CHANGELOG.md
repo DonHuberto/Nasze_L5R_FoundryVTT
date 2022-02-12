@@ -9,6 +9,9 @@
     - Notes : Techniques in sheet need to be re-imported from the compendium or manually updated for this to work.
 - Compendiums :
     - Techniques : Added difficulty and skill values (not all techniques).
+- DicePicker :
+  - Added TN hidden difficulty visibility for GM.
+  - Added a selection for techniques with skill list.
 
 Syntaxe quick explanation :
 - Difficulty can be :

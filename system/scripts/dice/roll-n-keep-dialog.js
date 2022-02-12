@@ -231,6 +231,7 @@ export class RollnKeepDialog extends FormApplication {
 
         return {
             ...super.getData(options),
+            isGM: game.user.isGM,
             cssClass: this.options.classes.join(" "),
             data: this.object,
             l5r5e: this.roll.l5r5e,

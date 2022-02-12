@@ -686,7 +686,7 @@ export class DicePickerDialog extends FormApplication {
             // 2: "vigilance"
             // 3: "max"
             // 4: "statusRank"
-            const infos = difficulty.match(CONFIG.l5r5e.techniqueDifficulty);
+            const infos = difficulty.match(CONFIG.l5r5e.regex.techniqueDifficulty);
             if (!infos) {
                 console.log("L5R5E | Fail to parse difficulty", difficulty);
                 return false;
@@ -721,12 +721,16 @@ export class DicePickerDialog extends FormApplication {
                 return false;
             }
 
+            // Before difficultyHiddenIsLock
+            this.difficulty = difficulty;
+
             // Hide npc stats on target
             if (infos[1] === "T") {
                 this.difficultyHidden = true;
                 this._difficultyHiddenIsLock.option = true;
                 this.object.difficulty.targetTokenId = targetTokenId;
             }
+            return true;
         }
 
         // finally
