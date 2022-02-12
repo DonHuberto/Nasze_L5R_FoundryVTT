@@ -686,7 +686,7 @@ export class DicePickerDialog extends FormApplication {
             // 2: "vigilance"
             // 3: "max"
             // 4: "statusRank"
-            const infos = difficulty.match(/^@([TS]):([^|]+?)(?:\|(min|max)(?:\(([^)]+?)\))?)?$/);
+            const infos = difficulty.match(CONFIG.l5r5e.techniqueDifficulty);
             if (!infos) {
                 console.log("L5R5E | Fail to parse difficulty", difficulty);
                 return false;

@@ -16,6 +16,10 @@ L5R5E.xp = {
     techniqueCost: 3,
 };
 
+L5R5E.regex = {
+    techniqueDifficulty: /^@([TS]):([^|]+?)(?:\|(min|max)(?:\(([^)]+?)\))?)?$/,
+};
+
 L5R5E.initiativeSkills = {
     intrigue: "sentiment",
     duel: "meditation",
