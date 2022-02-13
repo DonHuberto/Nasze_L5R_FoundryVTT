@@ -9,22 +9,23 @@ export class RollL5r5e extends Roll {
         super(formula, data, options);
 
         this.l5r5e = {
-            stance: "",
-            skillId: "",
-            skillCatId: "",
             actor: null,
-            targetTokenId: null,
-            difficulty: 2,
-            difficultyHidden: false,
-            voidPointUsed: false,
-            keepLimit: null,
-            isInitiativeRoll: false,
-            skillAssistance: 0,
-            initialFormula: null,
             dicesTypes: {
                 std: false,
                 l5r: false,
             },
+            difficulty: 2,
+            difficultyHidden: false,
+            history: null,
+            initialFormula: null,
+            isInitiativeRoll: false,
+            keepLimit: null,
+            rnkEnded: false,
+            skillAssistance: 0,
+            skillCatId: "",
+            skillId: "",
+            stance: "",
+            strifeApplied: 0,
             summary: {
                 totalSuccess: 0,
                 totalBonus: 0,
@@ -33,12 +34,12 @@ export class RollL5r5e extends Roll {
                 opportunity: 0,
                 strife: 0,
             },
-            history: null,
-            rnkEnded: false,
+            targetTokenId: null,
+            voidPointUsed: false,
         };
 
         // Parse flavor for stance and skillId
-        const flavors = Array.from(formula.matchAll(/\d+d(s|r)\[([^\]]+)\]/gmu));
+        const flavors = Array.from(formula.matchAll(/\d+d([sr])\[([^\]]+)\]/gmu));
         flavors.forEach((res) => {
             if (res[1] === "r" && !!res[2] && this.l5r5e.stance === "") {
                 this.l5r5e.stance = res[2];

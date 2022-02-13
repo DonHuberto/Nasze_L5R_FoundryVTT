@@ -132,6 +132,7 @@
             "swap_drop_here": "Modifier",
             "keep_drop_here": "Garder",
             "bt_validate": "Finaliser cette étape",
+            "bt_strife": "Appliquer le conflit",
             "undo": "[GM] Annuler les choix de la dernière étape"
         },
         "gm_toolbox": {

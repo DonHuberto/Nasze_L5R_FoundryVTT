@@ -132,6 +132,7 @@
             "swap_drop_here": "Swap",
             "keep_drop_here": "Keep",
             "bt_validate": "Finalize this step",
+            "bt_strife": "Apply strife",
             "undo": "[GM] Undo the last step choices"
         },
         "gm_toolbox": {

@@ -132,6 +132,7 @@
             "swap_drop_here": "Cambiar cara",
             "keep_drop_here": "Guardar",
             "bt_validate": "Terminar este paso",
+            "bt_strife": "Apply strife",
             "undo": "[GM] Deshacer los últimos cambios"
         },
         "gm_toolbox": {

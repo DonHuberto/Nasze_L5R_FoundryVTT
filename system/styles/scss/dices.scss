@@ -237,6 +237,24 @@
             flex-wrap: wrap;
             display: flex;
         }
+        .form-group {
+            width: 100%;
+            .form-fields {
+                flex: 1;
+                &:nth-child(2) {
+                    flex: 3;
+                    input {
+                        flex: 3;
+                    }
+                    i {
+                        flex: unset;
+                    }
+                }
+            }
+            .range-value {
+                width: 2rem;
+            }
+        }
     }
 
     .profil {

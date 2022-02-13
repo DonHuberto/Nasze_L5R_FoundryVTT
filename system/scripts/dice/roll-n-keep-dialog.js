@@ -32,6 +32,7 @@ export class RollnKeepDialog extends FormApplication {
      */
     object = {
         currentStep: 0,
+        strifeApplied: 0,
         submitDisabled: false,
         swapDiceFaces: {
             rings: [],
@@ -225,7 +226,7 @@ export class RollnKeepDialog extends FormApplication {
             const kept = this._getKeepCount(this.object.currentStep);
             this.object.submitDisabled = kept < 1 || kept > this.roll.l5r5e.keepLimit;
         } else if (!this.object.dicesList[this.object.currentStep]) {
-            this.options.editable = false;
+            this.options.editable = this.roll.l5r5e.summary.strife > 0;
             this.options.classes.push("finalized");
         }
 
@@ -675,6 +676,28 @@ export class RollnKeepDialog extends FormApplication {
             return;
         }
 
+        // Last step strife choice
+        if (this.roll?.l5r5e?.rnkEnded && formData.strifeApplied !== undefined) {
+            // Apply strife to actor
+            const strifeApplied = Math.min(this.roll.l5r5e.summary.strife, Math.max(0, formData.strifeApplied));
+            const actorMod = strifeApplied - this.roll.l5r5e.strifeApplied;
+            if (actorMod !== 0) {
+                await this.roll.l5r5e.actor.update({
+                    data: {
+                        strife: {
+                            value: Math.max(0, this.roll.l5r5e.actor.data.data.strife.value + actorMod),
+                        },
+                    },
+                });
+            }
+
+            // Update the roll & send to chat
+            this.roll.l5r5e.strifeApplied = strifeApplied;
+            await this._rebuildRoll(false);
+            await this._toChatMessage();
+            return this.close();
+        }
+
         // Discard all dices without a choice for the current step
         this._forceChoiceForDiceWithoutOne(RollnKeepDialog.CHOICES.discard);
 
@@ -690,8 +713,8 @@ export class RollnKeepDialog extends FormApplication {
         // Send the new roll in chat and delete the old message
         await this._toChatMessage();
 
-        // If a next step exist, rerender, else close
-        if (this.object.dicesList[this.object.currentStep]) {
+        // If a next step exist or strife, rerender, else close
+        if (this.object.dicesList[this.object.currentStep] || this.roll.l5r5e.summary.strife > 0) {
             return this.render(false);
         }
         return this.close();

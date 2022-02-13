@@ -38,7 +38,7 @@
     </header>
     <section class="rnk-ct">
         {{!-- Body --}}
-        {{#if options.editable}}
+        {{^if l5r5e.rnkEnded}}
             {{!-- Face Rings --}}
             <fieldset class="dropbox swap">
                 <legend class="section-header">
@@ -137,6 +137,20 @@
                     </tr>
                 {{/each}}
             </table>
+            {{!-- Strife selection --}}
+            {{#if l5r5e.summary.strife}}
+            <div class="form-group" style="width: 100%;">
+                <div class="form-fields"></div>
+                <div class="form-fields">
+                    <input type="range" name="strifeApplied" data-dtype="Number" value="{{l5r5e.strifeApplied}}" min="0" max="{{l5r5e.summary.strife}}" step="1">
+                    <span class="range-value">{{l5r5e.strifeApplied}}</span> <i class="i_strife"></i>
+                </div>
+                <div class="form-fields"></div>
+            </div>
+            <button id="finalize" name="finalize" type="button" {{#if data.submitDisabled}}disabled{{/if}}>
+                {{ localize 'l5r5e.roll_n_keep.bt_strife' }} <i class="fas fa-arrow-circle-right"></i>
+            </button>
+            {{/if}}
         {{/if}}
     </section>
 </form>

@@ -632,7 +632,7 @@ export class DicePickerDialog extends FormApplication {
         let targetToken;
         if (isMin === null) {
             // only one target, get the first element
-            targetToken = Array.from(game.user.targets).values().next()?.value.document.actor;
+            targetToken = Array.from(game.user.targets).values().next()?.value.document;
         } else {
             // Group (Min/Max)
             const targetGrp = Array.from(game.user.targets).reduce(

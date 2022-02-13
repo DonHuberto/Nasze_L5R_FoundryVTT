@@ -10,8 +10,10 @@
 - Compendiums :
     - Techniques : Added difficulty and skill values (not all techniques).
 - DicePicker :
-  - Added TN hidden difficulty visibility for GM.
+  - Added TN hidden difficulty visibility for GM (ex: ?2?).
   - Added a selection for techniques with skill list.
+- RnK :
+  - Added ability to apply the strife to the actor on final step. The chat message show the value taken in gray aside the total strife.
 
 Syntaxe quick explanation :
 - Difficulty can be :
