@@ -218,24 +218,27 @@ export class RollnKeepDialog extends FormApplication {
      * @return {Object}
      */
     getData(options = null) {
+        const rollData = this.roll.l5r5e;
+
         // Disable submit / edition
         this.options.classes = this.options.classes.filter((e) => e !== "finalized");
         this.object.submitDisabled = false;
 
         if (this._checkKeepCount(this.object.currentStep)) {
             const kept = this._getKeepCount(this.object.currentStep);
-            this.object.submitDisabled = kept < 1 || kept > this.roll.l5r5e.keepLimit;
+            this.object.submitDisabled = kept < 1 || kept > rollData.keepLimit;
         } else if (!this.object.dicesList[this.object.currentStep]) {
-            this.options.editable = this.roll.l5r5e.summary.strife > 0;
+            this.options.editable = rollData.summary.strife > 0;
             this.options.classes.push("finalized");
         }
 
         return {
             ...super.getData(options),
             isGM: game.user.isGM,
+            showStrifeBt: rollData.summary.strife > 0 && rollData.actor,
             cssClass: this.options.classes.join(" "),
             data: this.object,
-            l5r5e: this.roll.l5r5e,
+            l5r5e: rollData,
         };
     }
 
@@ -681,7 +684,7 @@ export class RollnKeepDialog extends FormApplication {
             // Apply strife to actor
             const strifeApplied = Math.min(this.roll.l5r5e.summary.strife, Math.max(0, formData.strifeApplied));
             const actorMod = strifeApplied - this.roll.l5r5e.strifeApplied;
-            if (actorMod !== 0) {
+            if (actorMod !== 0 && this.roll.l5r5e.actor) {
                 await this.roll.l5r5e.actor.update({
                     data: {
                         strife: {
@@ -689,12 +692,10 @@ export class RollnKeepDialog extends FormApplication {
                         },
                     },
                 });
+                // Update the roll & send to chat
+                this.roll.l5r5e.strifeApplied = strifeApplied;
+                await this._toChatMessage();
             }
-
-            // Update the roll & send to chat
-            this.roll.l5r5e.strifeApplied = strifeApplied;
-            await this._rebuildRoll(false);
-            await this._toChatMessage();
             return this.close();
         }
 

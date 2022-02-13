@@ -252,7 +252,6 @@ export class RollL5r5e extends Roll {
         if (!this._evaluated) {
             await this.roll();
         }
-        console.log(this.l5r5e);
 
         // Define chat data
         const chatData = {
@@ -261,8 +260,9 @@ export class RollL5r5e extends Roll {
             user: chatOptions.user,
             isPublicRoll: !isPrivate,
             tooltip: isPrivate ? "" : await this.getTooltip({ from: "render" }),
-            total: isPrivate ? "?" : Math.round(this._total * 100) / 100,
-            data: this.data,
+            total: isPrivate ? "?" : this.total,
+            //data: this.data,
+            profileImg: this.l5r5e.actor?.img ? this.l5r5e.actor?.img : "icons/svg/mystery-man.svg",
             l5r5e: isPrivate
                 ? {}
                 : {
@@ -309,12 +309,15 @@ export class RollL5r5e extends Roll {
             messageData = ChatMessage.applyRollMode(messageData, rMode);
         }
 
+        // Force the content to avoid weird foundry behaviour
+        const content = this.l5r5e.dicesTypes.l5r ? await this.render({}) : this.total;
+
         // Prepare chat data
         messageData = foundry.utils.mergeObject(
             {
                 user: game.user.id,
                 type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-                content: this._total,
+                content,
                 sound: CONFIG.sounds.dice,
                 speaker: {
                     actor: this.l5r5e.actor?.id || null,
@@ -330,7 +333,6 @@ export class RollL5r5e extends Roll {
         const message = await ChatMessage.implementation.create(messageData, {
             rollMode: rMode,
             temporary: !create,
-            isL5r5eTemplate: true,
         });
         return create ? message : message.data;
     }

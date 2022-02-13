@@ -3,8 +3,9 @@
 ## 1.7.0 - DiceRoller for Techniques & Npc Generator
 - NPC Sheet :
   - Added a random generator feature (Demeanor, Clan and Families names courteously authorized by Edge).
+  - This is random by design, don't expect clan logic in values.
 - PC/NPC sheet:
-    - Added the ability to techniques, with a skill set, to open the DicePicker with presets values.
+    - Added the ability for technique with a skill set, to open the DicePicker with presets values.
     - Some can interact with targets, but do the default difficulty if none.
     - Notes : Techniques in sheet need to be re-imported from the compendium or manually updated for this to work.
 - Compendiums :
@@ -13,25 +14,25 @@
   - Added TN hidden difficulty visibility for GM (ex: ?2?).
   - Added a selection for techniques with skill list.
 - RnK :
-  - Added ability to apply the strife to the actor on final step. The chat message show the value taken in gray aside the total strife.
+  - Added ability to directly apply the strife to the actor on final step. The chat message show the value taken in gray aside the total strife.
 
-Syntaxe quick explanation :
+Technique syntaxe "quick" explanation :
 - Difficulty can be :
   - Number : 1-9
   - Or specific syntaxe "@`S`:`prop1`" or "@`T`:`prop1`|`max`" or "@`T`:`prop1`|`max`(`prop2`)" :
     - `@` fixed, trigger the parser
     - `T` or `S` : `T`arget or `S`elf, define the actor to get the value.
-    - `prop1` / `prop2` : Can be any property in `actor` or `actor.data.data`.
+    - `prop1` / `prop2` : Can be any property in `actor` or `actor.data.data`. Limitations: currently no `size` or `distance` (range).
     - `|` separator, optional if no min/max.
     - `min` or `max` : Between the selected targets search for the min/max of `prop2`. If no `prop2` found, take `prop1` as `prop2` (irrelevant for `@S`).
     - `(prop2)` : define the property for the actor selection in multiple target, can be omitted if same as `prop1`.
     - Exemples :
       - `@S:vigilance` : Difficulty will be my own vigilance
       - `@T:vigilance|min` : Difficulty will be the vigilance from the target with the minimum vigilance (implicit) value. it's the same to wrote `@T:vigilance|min(vigilance)`.
-      - `@T:vigilance|max(statusRank)` : Difficulty will be the vigilance from the target with the maximum statusRank value
+      - `@T:vigilance|max(statusRank)` : Difficulty will be the vigilance from the target with the maximum `statusRank` value.
 - Skill can be :
-  - Skill id : `melee`, `fitness`...
-  - Skill category id : `scholar`, `martial`...
+  - SkillId : `melee`, `fitness`...
+  - SkillCategoryId : `scholar`, `martial`...
   - Or both in list, coma separated.
   - Ids are english names in lower case, see `config.js / L5R5E.skills` for the list.
   - Exemples :

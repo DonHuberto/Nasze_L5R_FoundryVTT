@@ -5,7 +5,7 @@
     <div class="l5r5e profil">
         <header class="part-header flexrow chat-profil">
             <span class="chat-profil-element">
-                <img class="profile-img" src="{{#if l5r5e.actor.img}}{{l5r5e.actor.img}}{{else}}icons/svg/mystery-man.svg{{/if}}" data-edit="img" alt="{{#if l5r5e.actor.name}}{{l5r5e.actor.name}}{{else}}mystery-man{{/if}}" />
+                <img class="profile-img" src="{{profileImg}}" data-edit="img" alt="{{#if l5r5e.actor.name}}{{l5r5e.actor.name}}{{else}}mystery-man{{/if}}" />
             </span>
 
             <span class="chat-profil-element">
@@ -106,7 +106,7 @@
         </div>
 
         {{{tooltip}}}
-        <h4 class="l5r5e dice-total dice-total-std">{{total}}</h4>
+        <h4 class="l5r5e dice-total dice-total-std">{{{total}}}</h4>
         {{/if}}
     </div>
 

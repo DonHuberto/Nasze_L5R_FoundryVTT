@@ -820,7 +820,6 @@ export class HelpersL5r5e {
 
         // execute a function when someone clicks in the document
         html.on("focusout", (e) => {
-            console.log("aaaaaaaaaa");
             closeAllLists(e.target);
         });
     }
