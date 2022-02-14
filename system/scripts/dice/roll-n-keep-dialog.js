@@ -411,7 +411,8 @@ export class RollnKeepDialog extends FormApplication {
      * @private
      */
     async _applyChoices() {
-        const nextStep = this.object.currentStep + 1;
+        let haveSwap = false;
+        let nextStep = this.object.currentStep + 1;
         const haveReroll = this._haveChoice(this.object.currentStep, RollnKeepDialog.CHOICES.reroll);
 
         // Foreach kept dices, apply choices
@@ -420,16 +421,17 @@ export class RollnKeepDialog extends FormApplication {
             if (!die) {
                 return;
             }
+
+            const currentRow = this.object.dicesList[this.object.currentStep][idx];
+
             switch (die.choice) {
                 case RollnKeepDialog.CHOICES.keep:
                     if (haveReroll) {
                         // Reroll line add all kept into a new line
                         this._initializeDicesListStep(nextStep);
-                        this.object.dicesList[nextStep][idx] = duplicate(
-                            this.object.dicesList[this.object.currentStep][idx]
-                        );
+                        this.object.dicesList[nextStep][idx] = foundry.utils.duplicate(currentRow);
                         this.object.dicesList[nextStep][idx].choice = RollnKeepDialog.CHOICES.nothing;
-                        this.object.dicesList[this.object.currentStep][idx].choice = RollnKeepDialog.CHOICES.discard;
+                        currentRow.choice = RollnKeepDialog.CHOICES.discard;
                     } else if (game.l5r5e[die.type].FACES[die.face].explosive) {
                         // Exploding dice : add a new dice in the next step
                         if (!newRolls[die.type]) {
@@ -449,22 +451,36 @@ export class RollnKeepDialog extends FormApplication {
 
                 case RollnKeepDialog.CHOICES.swap:
                     // FaceSwap : add a new dice with selected face in next step
+                    haveSwap = true;
                     this._initializeDicesListStep(nextStep);
                     this.object.dicesList[nextStep][idx] = {
-                        type: this.object.dicesList[this.object.currentStep][idx].type,
-                        face: this.object.dicesList[this.object.currentStep][idx].newFace,
+                        type: currentRow.type,
+                        face: currentRow.newFace,
                         choice: RollnKeepDialog.CHOICES.keep,
                     };
-                    delete this.object.dicesList[this.object.currentStep][idx].newFace;
+
+                    // Swapped to an exploding face : add the roll
+                    if (game.l5r5e[currentRow.type].FACES[currentRow.newFace].explosive) {
+                        if (!newRolls[currentRow.type]) {
+                            newRolls[currentRow.type] = 0;
+                        }
+                        newRolls[currentRow.type] += 1;
+                    }
+
+                    delete currentRow.newFace;
                     break;
             }
         });
 
         // If new rolls, roll and add them
         if (Object.keys(newRolls).length > 0) {
+            if (haveSwap) {
+                nextStep++;
+            }
             const newRollsResults = await this._newRoll(newRolls);
             this._initializeDicesListStep(nextStep);
-            this.object.dicesList[this.object.currentStep].forEach((die, idx) => {
+
+            const applyNewRolls = (die, idx) => {
                 if (!die) {
                     return;
                 }
@@ -476,7 +492,13 @@ export class RollnKeepDialog extends FormApplication {
                 ) {
                     this.object.dicesList[nextStep][idx] = newRollsResults[die.type].shift();
                 }
-            });
+            };
+
+            this.object.dicesList[this.object.currentStep].forEach(applyNewRolls);
+            if (haveSwap) {
+                this.object.dicesList[nextStep - 1].forEach(applyNewRolls);
+                this.object.currentStep++;
+            }
         }
     }
 
