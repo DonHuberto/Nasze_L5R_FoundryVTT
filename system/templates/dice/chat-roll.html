@@ -38,6 +38,13 @@
     </div>
     {{/if}}
 
+    {{#if l5r5e.targetInfos}}
+    <div class="l5r5e target">
+        <div class="profile"><img class="profile-img" src="{{l5r5e.targetInfos.img}}" alt="{{l5r5e.targetInfos.name}}" /></div>
+        <div class="name"> &nbsp; {{l5r5e.targetInfos.name}}</div>
+    </div>
+    {{/if}}
+
     <div class="l5r5e dice-formula">{{#if l5r5e.initialFormula}}{{l5r5e.initialFormula}}{{else}}{{formula}}{{/if}}</div>
 
     <div class="l5r5e dice-result">

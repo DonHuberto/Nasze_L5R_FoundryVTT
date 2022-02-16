@@ -34,7 +34,7 @@ export class RollL5r5e extends Roll {
                 opportunity: 0,
                 strife: 0,
             },
-            targetTokenId: null,
+            targetInfos: null,
             voidPointUsed: false,
         };
 

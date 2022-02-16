@@ -221,6 +221,19 @@ export class TwentyQuestionsDialog extends FormApplication {
             await this.object.toActor(this.actor, flattenObject(this.cache));
             await this.close({ submit: true, force: true });
         });
+
+        // Autocomplete
+        game.l5r5e.HelpersL5r5e.autocomplete(html, "step1.clan", game.l5r5e.HelpersL5r5e.getLocalizedClansList());
+        game.l5r5e.HelpersL5r5e.autocomplete(
+            html,
+            "step2.family",
+            CONFIG.l5r5e.families.get(
+                Object.entries(game.i18n.translations.l5r5e.clans).find(
+                    ([k, v]) => v === this.object.data.step1.clan
+                )?.[0]
+            )
+        );
+        game.l5r5e.HelpersL5r5e.autocomplete(html, "step3.roles", game.l5r5e.HelpersL5r5e.getLocalizedRolesList(), ",");
     }
 
     /**

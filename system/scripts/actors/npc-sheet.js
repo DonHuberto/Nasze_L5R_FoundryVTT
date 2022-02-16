@@ -52,4 +52,30 @@ export class NpcSheetL5r5e extends BaseCharacterSheetL5r5e {
 
         return sheetData;
     }
+
+    /**
+     * Subscribe to events from the sheet.
+     * @param {jQuery} html HTML content of the sheet.
+     */
+    activateListeners(html) {
+        super.activateListeners(html);
+
+        // *** Everything below here is only needed if the sheet is editable ***
+        if (!this.isEditable) {
+            return;
+        }
+
+        // Autocomplete
+        game.l5r5e.HelpersL5r5e.autocomplete(
+            html,
+            "data.attitude",
+            CONFIG.l5r5e.demeanorList.map((e) => {
+                let modifiers = [];
+                Object.entries(e.mod).forEach(([k, v]) => {
+                    modifiers.push(`${game.i18n.localize(`l5r5e.rings.${k}`)} ${v}`);
+                });
+                return game.i18n.localize(`l5r5e.demeanor.${e.id}`) + ` (${modifiers.join(", ")})`;
+            })
+        );
+    }
 }

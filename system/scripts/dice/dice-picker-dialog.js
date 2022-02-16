@@ -41,8 +41,8 @@ export class DicePickerDialog extends FormApplication {
             value: 2,
             hidden: false,
             addVoidPoint: false,
-            targetTokenId: null,
         },
+        targetInfos: null,
         useVoidPoint: false,
         isInitiativeRoll: false,
     };
@@ -534,7 +534,7 @@ export class DicePickerDialog extends FormApplication {
             roll.l5r5e.difficultyHidden = this.object.difficulty.hidden;
             roll.l5r5e.voidPointUsed = this.object.useVoidPoint;
             roll.l5r5e.skillAssistance = this.object.skill.assistance;
-            roll.l5r5e.targetTokenId = this.object.difficulty.targetTokenId;
+            roll.l5r5e.targetInfos = this.object.targetInfos;
 
             await roll.roll();
             message = await roll.toMessage();
@@ -694,18 +694,17 @@ export class DicePickerDialog extends FormApplication {
 
             // Define which actor is needed for the difficulty
             let targetActor = null;
-            let targetTokenId = null;
+            let targetToken = null;
             if (infos[1] === "S") {
                 targetActor = this._actor;
             } else if (game.user.targets.size > 0) {
                 // Between the targets
-                const targetToken = DicePickerDialog._getTargetTokenFromSelection(
+                targetToken = DicePickerDialog._getTargetTokenFromSelection(
                     infos[4] || infos[2],
                     !infos[3] ? null : infos[3] === "min"
                 );
                 if (targetToken) {
                     targetActor = targetToken.actor;
-                    targetTokenId = targetToken.data._id;
                 }
             }
             // Wrong syntax or no target set, do manual TN
@@ -728,7 +727,10 @@ export class DicePickerDialog extends FormApplication {
             if (infos[1] === "T") {
                 this.difficultyHidden = true;
                 this._difficultyHiddenIsLock.option = true;
-                this.object.difficulty.targetTokenId = targetTokenId;
+                this.object.targetInfos = {
+                    img: targetToken.data.img,
+                    name: targetToken.data.name,
+                };
             }
             return true;
         }

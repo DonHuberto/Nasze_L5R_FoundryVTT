@@ -83,7 +83,6 @@
         "region": "Region",
         "upbringing": "Upbringing",
         "school": "School",
-        "roles": "Roles",
         "distinctions": "Distinctions",
         "distinctionstip": "Reroll up to two dice of your choice when a distinction helps you on a check.",
         "adversities": "Adversities",
@@ -553,6 +552,16 @@
             "peculiarities": "Advantages and Disadvantages",
             "items": "Armure, Armes, et Objets",
             "narrative": "Narrative (Description)"
+        },
+        "roles": {
+            "title": "Roles",
+            "artisan": "Artisan",
+            "bushi": "Bushi",
+            "courtier": "Courtier",
+            "monk": "Monk",
+            "sage": "Sage",
+            "shinobi": "Shinobi",
+            "shugenja": "Shugenja"
         },
         "clans": {
             "title": "Clans",

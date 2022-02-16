@@ -198,5 +198,8 @@
         .next {
             margin: 2rem 0 4rem;
         }
+        .autocomplete {
+            width: calc(100% - 2px);
+        }
     }
 }

@@ -2,82 +2,6 @@
  * L5R Character generator base object
  */
 export class CharacterGenerator {
-    //<editor-fold desc="Config Datas">
-    static demeanorList = [
-        { id: "adaptable", mod: { fire: 2, earth: -2 } },
-        { id: "adaptable", mod: { water: 2, earth: -2 } },
-        { id: "aggressive", mod: { fire: 2, air: -2 } },
-        { id: "aggressive", mod: { fire: 2, water: -2 } },
-        { id: "ambitious", mod: { fire: 2, water: -2 } },
-        { id: "amiable", mod: { air: 2, earth: -2 } },
-        { id: "analytical", mod: { fire: 2, air: -2 } },
-        { id: "angry", mod: { fire: 2, air: -2 } },
-        { id: "arrogant", mod: { fire: 2, water: -2 } },
-        { id: "assertive", mod: { earth: 2, air: -2 } },
-        { id: "assertive", mod: { earth: 2, air: 2 } },
-        { id: "beguiling", mod: { air: 2, earth: -2 } },
-        { id: "beguiling", mod: { fire: 2, earth: -2 } },
-        { id: "bitter", mod: { fire: 2, air: -2 } },
-        { id: "bold", mod: { fire: 1, earth: -1 } },
-        { id: "calculating", mod: { air: 2, fire: -2 } },
-        { id: "calm", mod: { fire: 2, air: -2 } },
-        { id: "capricious", mod: { air: 2, earth: -2 } },
-        { id: "cautious", mod: { air: 2, earth: -2 } },
-        { id: "clever", mod: { air: 2, earth: -2 } },
-        { id: "confused", mod: { fire: 1, void: 1, air: -2 } },
-        { id: "courageous", mod: { air: 2, earth: -2 } },
-        { id: "cowardly", mod: { earth: 2, fire: -2 } },
-        { id: "curious", mod: { earth: 1, void: -2 } },
-        { id: "curious", mod: { fire: 1, void: 1, air: -2 } },
-        { id: "dependable", mod: { fire: 1, water: 1, earth: -2 } },
-        { id: "detached", mod: { earth: 1, fire: 1, void: -2 } },
-        { id: "disheartened", mod: { fire: 1, earth: -1 } },
-        { id: "enraged", mod: { air: 1, fire: -2 } },
-        { id: "feral", mod: { air: 2, fire: -2 } },
-        { id: "fickle", mod: { fire: 2, air: -2 } },
-        { id: "fierce", mod: { fire: 2, earth: -2 } },
-        { id: "flighty", mod: { air: 2, fire: -2 } },
-        { id: "flighty", mod: { water: 2, fire: -2 } },
-        { id: "flippant", mod: { fire: 2, air: -2 } },
-        { id: "friendly", mod: { fire: 1, earth: -2, water: -2 } },
-        { id: "gruff", mod: { water: 2, earth: -2 } },
-        { id: "hungry", mod: { fire: 2, air: -2 } },
-        { id: "intense", mod: { air: 2, water: -2 } },
-        { id: "intense", mod: { fire: 2, water: -2 } },
-        { id: "intimidating", mod: { fire: 2, air: -2 } },
-        { id: "irritable", mod: { fire: 2, air: -1, water: -1 } },
-        { id: "loyal", mod: { air: 1, earth: -2, fire: -2 } },
-        { id: "loyal", mod: { water: 2, fire: -2 } },
-        { id: "mischievous", mod: { fire: 2, air: -2 } },
-        { id: "mischievous", mod: { air: 2, earth: -2 } },
-        { id: "mischievous", mod: { earth: 2, fire: -2 } },
-        { id: "morose", mod: { water: 2, fire: -2 } },
-        { id: "nurturing", mod: { earth: 2, fire: -2 } },
-        { id: "obstinate", mod: { earth: 2, air: -2 } },
-        { id: "obstinate", mod: { water: 2, air: -2 } },
-        { id: "opportunistic", mod: { water: 2, fire: -2 } },
-        { id: "passionate", mod: { earth: 2, air: -2 } },
-        { id: "playful", mod: { earth: 2, water: -2 } },
-        { id: "playful", mod: { fire: 1, air: 1, void: -2 } },
-        { id: "power_hungry", mod: { fire: 2, earth: -2 } },
-        { id: "proud", mod: { fire: 2, earth: -2 } },
-        { id: "restrained", mod: { earth: 2, air: -2 } },
-        { id: "scheming", mod: { air: 2, void: -2 } },
-        { id: "serene", mod: { fire: 2, void: -2 } },
-        { id: "serene", mod: { void: 2, fire: -2 } },
-        { id: "serious", mod: { fire: 2, earth: -2 } },
-        { id: "shrewd", mod: { air: 2, fire: -2 } },
-        { id: "stubborn", mod: { earth: 2, water: -2 } },
-        { id: "suspicious", mod: { air: 2, earth: -2 } },
-        { id: "teasing", mod: { air: 2, earth: -2 } },
-        { id: "territorial", mod: { fire: 2, air: -2 } },
-        { id: "uncertain", mod: { air: 2, fire: -2 } },
-        { id: "unenthused", mod: { earth: 2, fire: -2 } },
-        { id: "vain", mod: { earth: 2, air: -2 } },
-        { id: "wary", mod: { earth: 2, fire: -2 } },
-    ];
-    //</editor-fold>
-
     /**
      * Payload Object
      */
@@ -464,7 +388,7 @@ export class CharacterGenerator {
      */
     _generateDemeanor(actorDatas) {
         // demeanor { id: "adaptable", mod: { fire: 2, earth: -2 } },
-        const demeanor = CharacterGenerator._getRandomArrayValue(CharacterGenerator.demeanorList);
+        const demeanor = CharacterGenerator._getRandomArrayValue(CONFIG.l5r5e.demeanorList);
         actorDatas.attitude = game.i18n.localize("l5r5e.demeanor." + demeanor.id);
         actorDatas.rings_affinities = foundry.utils.mergeObject(
             {

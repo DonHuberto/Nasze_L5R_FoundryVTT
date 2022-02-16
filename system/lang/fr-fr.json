@@ -82,8 +82,7 @@
         "family": "Famille",
         "region": "Région",
         "upbringing": "Education",
-        "school": "Ecole",
-        "roles": "Rôles",
+        "school": "École",
         "distinctions": "Aptitudes",
         "distinctionstip": "Lorsque vous effectuez un test auquel s'applique une aptitude, vous pouvez relancer jusqu'à 2 dés.",
         "adversities": "Coups du sort",
@@ -553,6 +552,16 @@
             "peculiarities": "Avantages et désavantages",
             "items": "Armure, Armes, et Objets",
             "narrative": "Narration (Description)"
+        },
+        "roles": {
+            "title": "Rôles",
+            "artisan": "Artisan",
+            "bushi": "Bushi",
+            "courtier": "Courtisan",
+            "monk": "Moine",
+            "sage": "Sage",
+            "shinobi": "Shinobi",
+            "shugenja": "Shugenja"
         },
         "clans": {
             "title": "Clans",

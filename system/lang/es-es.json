@@ -83,7 +83,6 @@
         "region": "Region",
         "upbringing": "Educación",
         "school": "Escuela",
-        "roles": "Funciones",
         "distinctions": "Distinciones",
         "distinctionstip": "Puedes volver a lanzar hasta dos dados si una distinción te ayuda en la tirada.",
         "adversities": "Adversidades",
@@ -553,6 +552,16 @@
             "peculiarities": "Advantages and Disadvantages",
             "items": "Armure, Armes, et Objets",
             "narrative": "Narrative (Description)"
+        },
+        "roles": {
+            "title": "Funciones",
+            "artisan": "Artisan",
+            "bushi": "Bushi",
+            "courtier": "Courtier",
+            "monk": "Monk",
+            "sage": "Sage",
+            "shinobi": "Shinobi",
+            "shugenja": "Shugenja"
         },
         "clans": {
             "title": "Clans",

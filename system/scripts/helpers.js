@@ -80,6 +80,24 @@ export class HelpersL5r5e {
     }
 
     /**
+     * Return the list of Clans
+     * @return {string[]}
+     */
+    static getLocalizedClansList() {
+        return Object.entries(game.i18n.translations.l5r5e.clans)
+            .filter(([k, v]) => k !== "title")
+            .map(([k, v]) => v);
+    }
+
+    /**
+     * Return the list of Roles
+     * @return {string[]}
+     */
+    static getLocalizedRolesList() {
+        return CONFIG.l5r5e.roles.map((e) => game.i18n.localize(`l5r5e.roles.${e}`));
+    }
+
+    /**
      * Return the target object on a drag n drop event, or null if not found
      * @param {DragEvent} event
      * @return {Promise<null>}
@@ -720,8 +738,11 @@ export class HelpersL5r5e {
      * @param {jQuery}   html HTML content of the sheet.
      * @param {string}   name Html name of the input
      * @param {string[]} list Array of string to display
+     * @param {string}   sep  (optional) Separator
      */
-    static autocomplete(html, name, list = []) {
+    static autocomplete(html, name, list = [], sep = "") {
+        return; // TODO tmp disabled
+        /*
         const inp = document.getElementsByName(name)?.[0];
         if (list.length < 1) {
             return;
@@ -741,9 +762,18 @@ export class HelpersL5r5e {
         inp.addEventListener("input", (inputEvent) => {
             closeAllLists();
 
-            const val = inputEvent.target.value;
+            let val = inputEvent.target.value.trim();
             if (!val) {
                 return false;
+            }
+
+            // separator
+            let previous = [val];
+            let currentIdx = 0;
+            if (sep) {
+                currentIdx = (val.substring(0, inputEvent.target.selectionStart).match(new RegExp(`[${sep}]`, "g")) || []).length;
+                previous = val.split(sep);
+                val = previous[currentIdx].trim();
             }
 
             currentFocus = -1;
@@ -772,7 +802,8 @@ export class HelpersL5r5e {
                         if (!list[selectedIndex]) {
                             return;
                         }
-                        inp.value = list[selectedIndex];
+                        previous[currentIdx] = list[selectedIndex];
+                        inp.value = previous.map(e => e.trim()).join(sep + " ");
                         closeAllLists();
                     });
                     listDiv.appendChild(choiceDiv);
@@ -822,5 +853,6 @@ export class HelpersL5r5e {
         html.on("focusout", (e) => {
             closeAllLists(e.target);
         });
+        */
     }
 }
