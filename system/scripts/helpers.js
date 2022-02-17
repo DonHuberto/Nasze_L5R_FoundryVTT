@@ -90,6 +90,18 @@ export class HelpersL5r5e {
     }
 
     /**
+     * Return the list of Schools (from compendium)
+     * @return {string[]}
+     */
+    static getSchoolsList() {
+        const comp = game.packs.get("l5r5e.core-journal-school-curriculum");
+        if (!comp) {
+            return [];
+        }
+        return Array.from(comp.index).map((v) => v.name);
+    }
+
+    /**
      * Return the list of Roles
      * @return {string[]}
      */
@@ -725,12 +737,16 @@ export class HelpersL5r5e {
     }
 
     /**
-     * Return the string without accents
+     * Return the string simplified for comparaison
      * @param  {string} str
      * @return {string}
      */
-    static noAccents(str) {
-        return str.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
+    static normalize(str) {
+        return str
+            .normalize("NFKD")
+            .replace(/[\u0300-\u036f]/g, "") // remove accents
+            .replace(/[\W]/g, " ") // remove non word things
+            .toLowerCase();
     }
 
     /**
@@ -741,13 +757,16 @@ export class HelpersL5r5e {
      * @param {string}   sep  (optional) Separator
      */
     static autocomplete(html, name, list = [], sep = "") {
-        return; // TODO tmp disabled
-        /*
+        /* // TODO tmp disabled
         const inp = document.getElementsByName(name)?.[0];
         if (list.length < 1) {
             return;
         }
         let currentFocus;
+
+        // Add wrapper class to the parent node of the input
+        inp.classList.add("autocomplete");
+        inp.parentNode.classList.add("autocomplete-wrapper");
 
         const closeAllLists = (elmnt = null) => {
             const collection = document.getElementsByClassName("autocomplete-items");
@@ -788,8 +807,8 @@ export class HelpersL5r5e {
 
             list.forEach((value, index) => {
                 if (
-                    HelpersL5r5e.noAccents(value.substring(0, val.length).toLowerCase()) ===
-                    HelpersL5r5e.noAccents(val.toLowerCase())
+                    HelpersL5r5e.normalize(value.substring(0, val.length)) ===
+                    HelpersL5r5e.normalize(val)
                 ) {
                     const choiceDiv = document.createElement("DIV");
                     choiceDiv.setAttribute("data-id", index);
@@ -853,6 +872,6 @@ export class HelpersL5r5e {
         html.on("focusout", (e) => {
             closeAllLists(e.target);
         });
-        */
+        //*/
     }
 }

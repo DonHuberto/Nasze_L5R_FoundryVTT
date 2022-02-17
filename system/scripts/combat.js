@@ -40,7 +40,7 @@ export class CombatL5r5e extends Combat {
             const combatant = game.combat.combatants.find((c) => c.id === combatantId);
 
             // Skip non character types (army)
-            if (!["character", "npc"].includes(combatant.actor.data.type)) {
+            if (!combatant.actor.isCharacter) {
                 updatedCombatants.push({
                     _id: combatant.id,
                     initiative: 0,

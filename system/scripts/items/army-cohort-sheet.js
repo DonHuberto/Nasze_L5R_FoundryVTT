@@ -112,7 +112,7 @@ export class ArmyCohortSheetL5r5e extends ItemSheetL5r5e {
      * @private
      */
     async _updateLinkedActorData(actor) {
-        if (!actor || actor.documentName !== "Actor" || !["character", "npc"].includes(actor.data?.type)) {
+        if (!actor || actor.documentName !== "Actor" || !actor.isCharacter) {
             console.warn("L5R5E | Wrong actor type", actor?.data?.type, actor);
             return;
         }

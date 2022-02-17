@@ -93,6 +93,12 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
         );
         game.l5r5e.HelpersL5r5e.autocomplete(
             html,
+            "data.identity.school",
+            game.l5r5e.HelpersL5r5e.getSchoolsList(),
+            ","
+        );
+        game.l5r5e.HelpersL5r5e.autocomplete(
+            html,
             "data.identity.roles",
             game.l5r5e.HelpersL5r5e.getLocalizedRolesList(),
             ","

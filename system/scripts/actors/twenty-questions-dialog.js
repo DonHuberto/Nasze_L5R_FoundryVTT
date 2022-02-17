@@ -233,6 +233,7 @@ export class TwentyQuestionsDialog extends FormApplication {
                 )?.[0]
             )
         );
+        game.l5r5e.HelpersL5r5e.autocomplete(html, "step3.school", game.l5r5e.HelpersL5r5e.getSchoolsList(), ",");
         game.l5r5e.HelpersL5r5e.autocomplete(html, "step3.roles", game.l5r5e.HelpersL5r5e.getLocalizedRolesList(), ",");
     }
 

@@ -196,7 +196,7 @@ export class GmToolbox extends FormApplication {
 
         for await (const actor of game.actors.contents) {
             // Only characters types
-            if (!["character", "npc"].includes(actor.data.type)) {
+            if (!actor.isCharacter) {
                 continue;
             }
 

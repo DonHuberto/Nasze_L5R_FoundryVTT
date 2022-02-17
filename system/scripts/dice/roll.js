@@ -5,38 +5,41 @@ export class RollL5r5e extends Roll {
     static CHAT_TEMPLATE = "dice/chat-roll.html";
     static TOOLTIP_TEMPLATE = "dice/tooltip.html";
 
+    /**
+     * Specific data for L5R
+     */
+    l5r5e = {
+        actor: null,
+        dicesTypes: {
+            std: false,
+            l5r: false,
+        },
+        difficulty: 2,
+        difficultyHidden: false,
+        history: null,
+        initialFormula: null,
+        isInitiativeRoll: false,
+        keepLimit: null,
+        rnkEnded: false,
+        skillAssistance: 0,
+        skillCatId: "",
+        skillId: "",
+        stance: "",
+        strifeApplied: 0,
+        summary: {
+            totalSuccess: 0,
+            totalBonus: 0,
+            success: 0,
+            explosive: 0,
+            opportunity: 0,
+            strife: 0,
+        },
+        targetInfos: null,
+        voidPointUsed: false,
+    };
+
     constructor(formula, data = {}, options = {}) {
         super(formula, data, options);
-
-        this.l5r5e = {
-            actor: null,
-            dicesTypes: {
-                std: false,
-                l5r: false,
-            },
-            difficulty: 2,
-            difficultyHidden: false,
-            history: null,
-            initialFormula: null,
-            isInitiativeRoll: false,
-            keepLimit: null,
-            rnkEnded: false,
-            skillAssistance: 0,
-            skillCatId: "",
-            skillId: "",
-            stance: "",
-            strifeApplied: 0,
-            summary: {
-                totalSuccess: 0,
-                totalBonus: 0,
-                success: 0,
-                explosive: 0,
-                opportunity: 0,
-                strife: 0,
-            },
-            targetInfos: null,
-            voidPointUsed: false,
-        };
 
         // Parse flavor for stance and skillId
         const flavors = Array.from(formula.matchAll(/\d+d([sr])\[([^\]]+)\]/gmu));
@@ -48,10 +51,33 @@ export class RollL5r5e extends Roll {
                 this.l5r5e.skillId = res[2];
             }
         });
+
+        // Target Infos : get the 1st selected target
+        const targetToken = Array.from(game.user.targets).values().next()?.value?.document;
+        if (targetToken) {
+            this.targetInfos = targetToken;
+        }
     }
 
+    /**
+     * Set actor
+     * @param {ActorL5r5e} actor
+     */
     set actor(actor) {
         this.l5r5e.actor = actor instanceof Actor && actor.isOwner ? actor : null;
+    }
+
+    /**
+     * Set Target Infos (Name, Img)
+     * @param {TokenDocument} targetToken
+     */
+    set targetInfos(targetToken) {
+        this.l5r5e.targetInfos = targetToken
+            ? {
+                  img: targetToken.data.img,
+                  name: targetToken.data.name,
+              }
+            : null;
     }
 
     /**

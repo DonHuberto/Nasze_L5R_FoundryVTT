@@ -139,6 +139,12 @@ export class DicePickerDialog extends FormApplication {
             this.skillCatId = options.skillCatId;
         }
 
+        // Target Infos : get the 1st selected target
+        const targetToken = Array.from(game.user.targets).values().next()?.value?.document;
+        if (targetToken) {
+            this.targetInfos = targetToken;
+        }
+
         // Difficulty
         if (!options.difficulty || !this.parseDifficulty(options.difficulty)) {
             this.difficulty = game.settings.get("l5r5e", "initiative-difficulty-value");
@@ -167,7 +173,7 @@ export class DicePickerDialog extends FormApplication {
 
     /**
      * Set actor
-     * @param actor
+     * @param {ActorL5r5e} actor
      */
     set actor(actor) {
         if (!actor || !(actor instanceof Actor) || !actor.isOwner) {
@@ -178,12 +184,25 @@ export class DicePickerDialog extends FormApplication {
     }
 
     /**
+     * Set Target Infos (Name, Img)
+     * @param {TokenDocument} targetToken
+     */
+    set targetInfos(targetToken) {
+        this.object.targetInfos = targetToken
+            ? {
+                  img: targetToken.data.img,
+                  name: targetToken.data.name,
+              }
+            : null;
+    }
+
+    /**
      * Set ring preset
      * @param ringId
      */
     set ringId(ringId) {
         this.object.ring.id = CONFIG.l5r5e.stances.includes(ringId) ? ringId : "void";
-        this.object.ring.value = this._actor.data.data.rings[this.object.ring.id];
+        this.object.ring.value = this._actor.data.data.rings?.[this.object.ring.id] || 1;
     }
 
     /**
@@ -322,7 +341,9 @@ export class DicePickerDialog extends FormApplication {
             actor: this._actor,
             useCategory: this.useCategory,
             canUseVoidPoint:
-                this.object.difficulty.addVoidPoint || !this._actor || this._actor.data.data.void_points.value > 0,
+                this.object.difficulty.addVoidPoint ||
+                !this._actor ||
+                (this._actor.isCharacter && this._actor.data.data.void_points.value > 0),
             disableSubmit: this.object.skill.value < 1 && this.object.ring.value < 1,
             difficultyHiddenIsLock: this._difficultyHiddenIsLock.gm || this._difficultyHiddenIsLock.option,
         };
@@ -632,13 +653,13 @@ export class DicePickerDialog extends FormApplication {
         let targetToken;
         if (isMin === null) {
             // only one target, get the first element
-            targetToken = Array.from(game.user.targets).values().next()?.value.document;
+            targetToken = Array.from(game.user.targets).values().next()?.value?.document;
         } else {
             // Group (Min/Max)
             const targetGrp = Array.from(game.user.targets).reduce(
                 (acc, tgt) => {
                     const targetActor = tgt.document.actor;
-                    if (!["character", "npc"].includes(targetActor.type)) {
+                    if (!targetActor.isCharacter) {
                         return acc;
                     }
 
@@ -727,10 +748,7 @@ export class DicePickerDialog extends FormApplication {
             if (infos[1] === "T") {
                 this.difficultyHidden = true;
                 this._difficultyHiddenIsLock.option = true;
-                this.object.targetInfos = {
-                    img: targetToken.data.img,
-                    name: targetToken.data.name,
-                };
+                this.targetInfos = targetToken;
             }
             return true;
         }

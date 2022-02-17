@@ -125,7 +125,7 @@ export class ActorL5r5e extends Actor {
     prepareData() {
         super.prepareData();
 
-        if (["character", "npc"].includes(this.data.type)) {
+        if (this.isCharacter) {
             const data = this.data.data;
 
             // No automation for npc as they cheat in stats
@@ -233,6 +233,14 @@ export class ActorL5r5e extends Actor {
     }
 
     /**
+     * Return true if this actor is a PC or NPC
+     * @return {boolean}
+     */
+    get isCharacter() {
+        return ["character", "npc"].includes(this.data.type);
+    }
+
+    /**
      * Return true if a weapon is equipped
      * @return {boolean}
      */
@@ -261,7 +269,7 @@ export class ActorL5r5e extends Actor {
      * @return {boolean}
      */
     get isPrepared() {
-        if (!["character", "npc"].includes(this.data.type)) {
+        if (!this.isCharacter) {
             return false;
         }
 
@@ -285,7 +293,7 @@ export class ActorL5r5e extends Actor {
      * @return {number|null}
      */
     get statusRank() {
-        if (!["character", "npc"].includes(this.data.type)) {
+        if (!this.isCharacter) {
             return null;
         }
         return Math.floor(this.data.data.social.status / 10);
@@ -296,7 +304,7 @@ export class ActorL5r5e extends Actor {
      * @return {number|null}
      */
     get intrigueRank() {
-        if (!["character", "npc"].includes(this.data.type)) {
+        if (!this.isCharacter) {
             return null;
         }
         return this.data.type === "npc" ? this.data.data.conflict_rank.social : this.data.data.identity.school_rank;
@@ -307,7 +315,7 @@ export class ActorL5r5e extends Actor {
      * @return {number|null}
      */
     get martialRank() {
-        if (!["character", "npc"].includes(this.data.type)) {
+        if (!this.isCharacter) {
             return null;
         }
         return this.data.type === "npc" ? this.data.data.conflict_rank.martial : this.data.data.identity.school_rank;

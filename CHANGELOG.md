@@ -15,6 +15,8 @@
     - Added a selection for techniques with skill list.
 - RnK :
     - Added ability to directly apply the strife to the actor on final step. The chat message show the value taken in gray aside the total strife.
+- Roll chat message :
+    - Added Target information.
 
 Technique syntaxe "quick" explanation :
 - Difficulty can be :
