@@ -8,8 +8,10 @@
     - Added the ability for technique with a skill set, to open the DicePicker with presets values.
     - Some can interact with targets, but do the default difficulty if none.
     - Notes : Techniques in sheet need to be re-imported from the compendium or manually updated for this to work.
-- Compendiums :
-    - Techniques : Added difficulty and skill values (not all techniques).
+    - Trying an autocomplete on some fields : clan, family, school, roles, demeanor.
+- Techniques Sheet & Compendiums :
+    - Added difficulty and skill values (not to all techniques).
+    - Trying an autocomplete on skill(id) field.
 - DicePicker :
     - Added TN hidden difficulty visibility for GM (ex: ?2?).
     - Added a selection for techniques with skill list.
@@ -26,12 +28,12 @@ Technique syntaxe "quick" explanation :
         - `T` or `S` : `T`arget or `S`elf, define the actor to get the value.
         - `prop1` / `prop2` : Can be any property in `actor` or `actor.data.data`. Limitations: currently no `size` or `distance` (range).
         - `|` separator, optional if no min/max.
-        - `min` or `max` : Between the selected targets search for the min/max of `prop2`. If no `prop2` found, take `prop1` as `prop2` (irrelevant for `@S`).
+        - `min` or `max` : Between the selected targets, search for the min/max of `prop2`. If no `prop2` provided, take `prop1` as `prop2` (irrelevant for `@S`).
         - `(prop2)` : define the property for the actor selection in multiple target, can be omitted if same as `prop1`.
         - Exemples :
-            - `@S:vigilance` : Difficulty will be my own vigilance
-            - `@T:vigilance|min` : Difficulty will be the vigilance from the target with the minimum vigilance (implicit) value. it's the same to wrote `@T:vigilance|min(vigilance)`.
-            - `@T:vigilance|max(statusRank)` : Difficulty will be the vigilance from the target with the maximum `statusRank` value.
+            - `@S:vigilance` : Difficulty will be my own `vigilance`.
+            - `@T:vigilance|min` : Difficulty will be the `vigilance` from the target with the minimum vigilance (implicit) value. it's the same to wrote `@T:vigilance|min(vigilance)`.
+            - `@T:vigilance|max(statusRank)` : Difficulty will be the `vigilance` from the target with the maximum `statusRank` value.
 - Skill can be :
     - SkillId : `melee`, `fitness`...
     - SkillCategoryId : `scholar`, `martial`...

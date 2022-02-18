@@ -49,6 +49,31 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
     }
 
     /**
+     * Listen to html elements
+     * @param {jQuery} html HTML content of the sheet.
+     * @override
+     */
+    activateListeners(html) {
+        super.activateListeners(html);
+
+        // *** Everything below here is only needed if the sheet is editable ***
+        if (!this.isEditable) {
+            return;
+        }
+
+        // Autocomplete
+        game.l5r5e.HelpersL5r5e.autocomplete(
+            html,
+            "data.skill",
+            Array.from(game.l5r5e.HelpersL5r5e.getCategoriesSkillsList()).reduce((acc, [cat, skills]) => {
+                acc.push(cat, ...skills);
+                return acc;
+            }, []),
+            ","
+        );
+    }
+
+    /**
      * Sanitize the technique difficulty
      * @param  {string} str
      * @return {string}

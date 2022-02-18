@@ -750,16 +750,15 @@ export class HelpersL5r5e {
     }
 
     /**
-     * Autocomplete method
+     * Autocomplete for an input, from array values
      * @param {jQuery}   html HTML content of the sheet.
      * @param {string}   name Html name of the input
      * @param {string[]} list Array of string to display
      * @param {string}   sep  (optional) Separator
      */
     static autocomplete(html, name, list = [], sep = "") {
-        /* // TODO tmp disabled
         const inp = document.getElementsByName(name)?.[0];
-        if (list.length < 1) {
+        if (!inp || list.length < 1) {
             return;
         }
         let currentFocus;
@@ -777,6 +776,18 @@ export class HelpersL5r5e {
             }
         };
 
+        // Abort submit on change in foundry form
+        inp.addEventListener("change", (e) => {
+            if (e.doSubmit) {
+                closeAllLists();
+                $(inp).parent().submit();
+                return true;
+            }
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        });
+
         // execute a function when someone writes in the text field
         inp.addEventListener("input", (inputEvent) => {
             closeAllLists();
@@ -790,7 +801,9 @@ export class HelpersL5r5e {
             let previous = [val];
             let currentIdx = 0;
             if (sep) {
-                currentIdx = (val.substring(0, inputEvent.target.selectionStart).match(new RegExp(`[${sep}]`, "g")) || []).length;
+                currentIdx = (
+                    val.substring(0, inputEvent.target.selectionStart).match(new RegExp(`[${sep}]`, "g")) || []
+                ).length;
                 previous = val.split(sep);
                 val = previous[currentIdx].trim();
             }
@@ -806,10 +819,7 @@ export class HelpersL5r5e {
             inputEvent.target.parentNode.appendChild(listDiv);
 
             list.forEach((value, index) => {
-                if (
-                    HelpersL5r5e.normalize(value.substring(0, val.length)) ===
-                    HelpersL5r5e.normalize(val)
-                ) {
+                if (HelpersL5r5e.normalize(value.substring(0, val.length)) === HelpersL5r5e.normalize(val)) {
                     const choiceDiv = document.createElement("DIV");
                     choiceDiv.setAttribute("data-id", index);
                     choiceDiv.innerHTML = `<strong>${value.substring(0, val.length)}</strong>${value.substring(
@@ -822,8 +832,11 @@ export class HelpersL5r5e {
                             return;
                         }
                         previous[currentIdx] = list[selectedIndex];
-                        inp.value = previous.map(e => e.trim()).join(sep + " ");
-                        closeAllLists();
+                        inp.value = previous.map((e) => e.trim()).join(sep + " ");
+
+                        const changeEvt = new Event("change");
+                        changeEvt.doSubmit = true;
+                        inp.dispatchEvent(changeEvt);
                     });
                     listDiv.appendChild(choiceDiv);
                 }
@@ -868,10 +881,11 @@ export class HelpersL5r5e {
             } //swi
         });
 
-        // execute a function when someone clicks in the document
-        html.on("focusout", (e) => {
-            closeAllLists(e.target);
-        });
-        //*/
+        // Close all list when click in the document (1st autocomplete only)
+        if (html.find(".autocomplete").length <= 1) {
+            html[0].addEventListener("click", (e) => {
+                closeAllLists(e.target);
+            });
+        }
     }
 }
