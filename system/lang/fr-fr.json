@@ -249,6 +249,7 @@
                 "intrigue": "Intrigue"
             },
             "age": "Age",
+            "children": "Enfants",
             "marital_status": {
                 "title": "État civil",
                 "partner": "Partenaire",

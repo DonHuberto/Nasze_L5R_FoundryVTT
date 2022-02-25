@@ -3,6 +3,11 @@
  */
 export class CharacterGenerator {
     /**
+     * Base age (minimal)
+     */
+    static baseAge = 15;
+
+    /**
      * Payload Object
      */
     data = {
@@ -10,7 +15,7 @@ export class CharacterGenerator {
         clan: "random",
         family: "",
         gender: "male",
-        age: 15,
+        age: CharacterGenerator.baseAge,
         maritalStatus: "",
     };
 
@@ -145,7 +150,10 @@ export class CharacterGenerator {
      * @return {number}
      */
     static genAge(avgRingsValue) {
-        return CharacterGenerator._randomInt(15, avgRingsValue * 10 + 15);
+        return CharacterGenerator._randomInt(
+            CharacterGenerator.baseAge,
+            avgRingsValue * 10 + CharacterGenerator.baseAge
+        );
     }
 
     /**
@@ -191,6 +199,36 @@ export class CharacterGenerator {
         partner.family = alreadyMerged ? family : CharacterGenerator._getRandomFamily(partner.clan);
         partner.name = await CharacterGenerator.getRandomizedFirstname(partner.female, partner.clan);
         return partner;
+    }
+
+    /**
+     * Generate children
+     * @param  {number} age  Current npc age
+     * @param  {string} clan Current npc clan
+     * @return {Promise<string[]>}
+     */
+    static async genChildren(age, clan) {
+        const childs = [];
+
+        let ageLoop = Math.max(0, age - CharacterGenerator.baseAge - 1);
+        while (ageLoop > 0) {
+            const childAge = CharacterGenerator._randomInt(1, ageLoop);
+
+            if (Math.random() > 0.66) {
+                const childIsFemale = Math.random() > 0.5;
+                const childName = await CharacterGenerator.getRandomizedFirstname(childIsFemale, clan);
+
+                childs.push(
+                    `${childName} (${childAge}, ${game.i18n.localize(
+                        "l5r5e.social.gender." + (childIsFemale ? "female" : "male")
+                    )})`
+                );
+            }
+
+            ageLoop -= childAge + 1;
+        }
+
+        return childs;
     }
 
     /**
@@ -615,6 +653,12 @@ export class CharacterGenerator {
                     "l5r5e.social.gender." + (partner.female ? "female" : "male")
                 )})` +
                 "</p>";
+
+            // Childs
+            const childs = await CharacterGenerator.genChildren(Math.min(this.data.age, partner.age), this.data.clan);
+            if (childs.length > 0) {
+                actorDatas.notes += `<p>${game.i18n.localize("l5r5e.social.children")}: ${childs.join(", ")}</p>`;
+            }
         }
     }
 
