@@ -6,18 +6,18 @@
         <ul>
             <li>
                 {{#ifCond data.data.advancement_type '==' 'ring' }}
-                    <strong>{{localize 'l5r5e.rings.title'}}</strong> : {{localizeRing data.data.ring}}
+                    <strong>{{localize 'l5r5e.rings.label'}}</strong> : {{localizeRing data.data.ring}}
                 {{else}}
-                    <strong>{{localize 'l5r5e.skill'}}</strong> : {{localizeSkillId data.data.skill}}
+                    <strong>{{localize 'l5r5e.skills.label'}}</strong> : {{localizeSkillId data.data.skill}}
                 {{/ifCond}}
             </li>
             <li><strong>{{localize 'l5r5e.advancements.curriculum'}}</strong> : {{localizeYesNo data.data.in_curriculum}}</li>
             <li><strong>{{localize 'l5r5e.advancements.spent'}}</strong> : {{data.data.xp_used}}</li>
-            <li><strong>{{localize 'l5r5e.rank'}}</strong> : {{data.data.rank}}</li>
-            <li><strong>{{localize 'l5r5e.bought_at_rank'}}</strong> : {{data.data.bought_at_rank}}</li>
+            <li><strong>{{localize 'l5r5e.sheets.rank'}}</strong> : {{data.data.rank}}</li>
+            <li><strong>{{localize 'l5r5e.sheets.bought_at_rank'}}</strong> : {{data.data.bought_at_rank}}</li>
         </ul>
         {{!--item-infos--}}
-        <p><strong>{{localize 'l5r5e.description'}}</strong> : {{{data.data.description}}}</p>
-        <p><strong>{{localize 'l5r5e.book_reference'}}</strong> : {{data.data.book_reference}}</p>
+        <p><strong>{{localize 'l5r5e.sheets.description'}}</strong> : {{{data.data.description}}}</p>
+        <p><strong>{{localize 'l5r5e.sheets.book_reference'}}</strong> : {{data.data.book_reference}}</p>
     </section>
 </div>

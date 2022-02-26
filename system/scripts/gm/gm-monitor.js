@@ -20,7 +20,7 @@ export class GmMonitor extends FormApplication {
             id: "l5r5e-gm-monitor",
             classes: ["l5r5e", "gm-monitor"],
             template: CONFIG.l5r5e.paths.templates + "gm/gm-monitor.html",
-            title: game.i18n.localize("l5r5e.gm_monitor.title"),
+            title: game.i18n.localize("l5r5e.gm.monitor.title"),
             width: 800,
             height: 300,
             resizable: true,
@@ -40,7 +40,7 @@ export class GmMonitor extends FormApplication {
 
         // Switch view Characters/Armies
         buttons.unshift({
-            label: game.i18n.localize("l5r5e.gm_monitor.switch_view"),
+            label: game.i18n.localize("l5r5e.gm.monitor.switch_view"),
             class: "switch-view",
             icon: "fas fa-users",
             onclick: () =>

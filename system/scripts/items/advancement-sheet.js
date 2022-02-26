@@ -7,7 +7,7 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
     /**
      * Sub Types of advancements
      */
-    static types = { ring: "l5r5e.rings.title", skill: "l5r5e.skill" }; // others have theirs own xp count
+    static types = { ring: "l5r5e.rings.label", skill: "l5r5e.skills.label" }; // others have theirs own xp count
 
     /** @override */
     static get defaultOptions() {

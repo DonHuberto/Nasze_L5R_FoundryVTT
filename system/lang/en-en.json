@@ -44,6 +44,7 @@
     },
     "l5r5e": {
         "global": {
+            "edge_translation_disclaimer": "",
             "add": "Add",
             "edit": "Edit",
             "delete_confirm": "Are you sure you want to delete '{name}' ?",
@@ -51,114 +52,120 @@
             "send_to_chat": "To Chat",
             "locked": "Locked",
             "unlocked": "Unlocked",
-            "edge_translation_disclaimer": ""
+            "random": "Random"
         },
         "logo": {
             "title": "Need help?",
-            "content": "Follow the guide :",
-            "edge": "Go to the Edge-Studio website",
-            "drivethrurpg": "Buy a PDF of the game...",
-            "discord": "FoundryVTT Official Discord",
             "src": "systems/l5r5e/assets/l5r-logo.webp",
             "alt": "Online Help",
-            "edge-info": "your browser will open the EDGE STUDIO website",
-            "edge-link": "https://edge-studio.net/",
-            "drivethrurpg-info": "your browser will open the DriveThruRpg site of Edge Studio",
-            "drivethrurpg-link": "https://www.drivethrurpg.com/browse/pub/17946/EDGE-Studio",
-            "discord-info": "Your browser will open on the official Foundry discord",
-            "discord-link": "https://discordapp.com/invite/DDBZUDf"
+            "content": "Follow the guide :",
+            "edge": {
+                "title": "Go to the Edge-Studio website",
+                "info": "your browser will open the EDGE STUDIO website",
+                "link": "https://edge-studio.net/"
+            },
+            "drivethrurpg": {
+                "title": "Buy a PDF of the game...",
+                "info": "your browser will open the DriveThruRpg site of Edge Studio",
+                "link": "https://www.drivethrurpg.com/browse/pub/17946/EDGE-Studio"
+            },
+            "discord": {
+                "title": "FoundryVTT Official Discord",
+                "info": "Your browser will open on the official Foundry discord",
+                "link": "https://discordapp.com/invite/DDBZUDf"
+            }
         },
         "rings": {
             "title": "Rings",
+            "label": "Ring",
             "earth": "Earth",
             "air": "Air",
             "water": "Water",
             "fire": "Fire",
             "void": "Void"
         },
-        "narrative": "Narrative",
-        "experience": "Experience",
-        "clan": "Clan",
-        "family": "Family",
-        "region": "Region",
-        "upbringing": "Upbringing",
-        "school": "School",
-        "distinctions": "Distinctions",
-        "distinctionstip": "Reroll up to two dice of your choice when a distinction helps you on a check.",
-        "adversities": "Adversities",
-        "adversitiestip": "Reroll two dice containing Success or Explosive Success symbols when an adversity hinders you on a check. If you fail, gain 1 Void point.",
-        "anxieties": "Anxieties",
-        "anxietiestip": "After performing a check related to your anxiety, receive 3 strife. Then, gain 1 Void point (limit once per scene).",
-        "passions": "Passions",
-        "passionstip": "After performing a check related to your passion, remove 3 strife.",
-        "personality": "Personality",
-        "description": "Description",
-        "bought_at_rank": "Bought at rank",
-        "effects": "Effects",
-        "types": "Types",
-        "book_reference": "Reference",
-        "value": "Value",
-        "rarity": "Rarity",
-        "chatdices": {
-            "successes": "Successes",
-            "explosives": "Explosions",
-            "opportunities": "Opportunities",
-            "strife": "Strife",
-            "difficulty": "TN",
-            "difficulty_hidden": "???",
-            "dicepicker": "Dice Picker",
-            "void_point_used": "Void point used",
-            "assistance_used": "Skill assistance used",
-            "roll_n_keep": "Roll & Keep",
-            "initiative_roll": "Initiative roll",
-            "success_text": "Success!",
-            "bonus_text": "bonus successes",
-            "fail_text": "Fail!"
+        "sheets": {
+            "narrative": "Narrative",
+            "experience": "Experience",
+            "family": "Family",
+            "region": "Region",
+            "upbringing": "Upbringing",
+            "school": "School",
+            "description": "Description",
+            "bought_at_rank": "Bought at rank",
+            "types": "Types",
+            "book_reference": "Reference",
+            "value": "Value",
+            "rarity": "Rarity",
+            "quantity": "Quantity",
+            "weight": "Weight",
+            "properties": "Properties",
+            "linked_property": "linked Property",
+            "removed_properties": "Cancel",
+            "notes": "Notes",
+            "inventory": "Inventory",
+            "equipment": "Equipment",
+            "rank": "Rank",
+            "name": "Name"
         },
-        "dicepicker": {
-            "difficulty_title": "Difficulty",
-            "difficulty_hidden_label": "Hide TN",
-            "use_void_point_label": "Spend a",
-            "void_point_tooltip": "Void point",
-            "skill_assistance_label": "Assistance",
-            "roll_label": "Roll",
-            "bt_add_macro": "Add a macro"
+        "dice": {
+            "chat": {
+                "successes": "Successes",
+                "explosives": "Explosions",
+                "opportunities": "Opportunities",
+                "strife": "Strife",
+                "difficulty": "TN",
+                "difficulty_hidden": "???",
+                "void_point_used": "Void point used",
+                "assistance_used": "Skill assistance used",
+                "roll_n_keep": "Roll & Keep",
+                "initiative_roll": "Initiative roll",
+                "success_text": "Success!",
+                "bonus_text": "bonus successes",
+                "fail_text": "Fail!"
+            },
+            "dicepicker": {
+                "title": "Dice Picker",
+                "difficulty_title": "Difficulty",
+                "difficulty_hidden_label": "Hide TN",
+                "use_void_point_label": "Spend a",
+                "void_point_tooltip": "Void point",
+                "skill_assistance_label": "Assistance",
+                "roll_label": "Roll",
+                "bt_add_macro": "Add a macro"
+            },
+            "roll_n_keep": {
+                "title": "Roll & Keep",
+                "discard_drop_here": "Discard",
+                "reroll_drop_here": "Re-roll",
+                "swap_drop_here": "Swap",
+                "keep_drop_here": "Keep",
+                "max": "Max",
+                "bt_validate": "Finalize this step",
+                "bt_strife": "Apply strife",
+                "undo": "[GM] Undo the last step choices"
+            }
         },
-        "roll_n_keep": {
-            "title": "L5R Roll & Keep",
-            "discard_drop_here": "Discard",
-            "reroll_drop_here": "Re-roll",
-            "swap_drop_here": "Swap",
-            "keep_drop_here": "Keep",
-            "bt_validate": "Finalize this step",
-            "bt_strife": "Apply strife",
-            "undo": "[GM] Undo the last step choices"
+        "gm": {
+            "toolbox": {
+                "title": "GM ToolBox",
+                "difficulty_hidden": "Change difficulty visibility",
+                "difficulty": "Change difficulty (right click: add, left: subtract, middle: TN 2)",
+                "sleep": "Comfortable rest for all characters (Remove Water x2 fatigue. Right click: assigned characters only. Left: All actors)",
+                "sleep_info": "The characters had a good night's sleep.",
+                "scene_end": "End of scene (Conflict and Fatigue half reset for all characters. Right click: assigned characters only. Left: All actors)",
+                "scene_end_info": "The tension of the scene finally drops.",
+                "reset_void": "Start of the game: Reset the players' void points (Right click: assigned characters only. Left: All actors",
+                "reset_void_info": "Void points have been attributed."
+            },
+            "monitor": {
+                "title": "GM Monitor",
+                "switch_view": "Switch View",
+                "honor_glory_status": "H/G/S",
+                "focus_vigilance": "Foc./Vig.",
+                "mouse_control": "Right click +1, left: -1, middle: reset to 0"
+            }
         },
-        "gm_toolbox": {
-            "title": "GM ToolBox",
-            "difficulty_hidden": "Change difficulty visibility",
-            "difficulty": "Change difficulty (right click: add, left: subtract, middle: TN 2)",
-            "sleep": "Comfortable rest for all characters (Remove Water x2 fatigue. Right click: assigned characters only. Left: All actors)",
-            "sleep_info": "The characters had a good night's sleep.",
-            "scene_end": "End of scene (Conflict and Fatigue half reset for all characters. Right click: assigned characters only. Left: All actors)",
-            "scene_end_info": "The tension of the scene finally drops.",
-            "reset_void": "Start of the game: Reset the players' void points (Right click: assigned characters only. Left: All actors",
-            "reset_void_info": "Void points have been attributed."
-        },
-        "gm_monitor": {
-            "title": "GM Monitor",
-            "switch_view": "Switch View",
-            "honor_glory_status": "H/G/S",
-            "focus_vigilance": "Foc./Vig.",
-            "mouse_control": "Right click +1, left: -1, middle: reset to 0"
-        },
-        "max": "Max",
-        "current": "Current",
-        "quantity": "Quantity",
-        "weight": "Weight",
-        "properties": "Properties",
-        "linked_property": "linked Property",
-        "removed_properties": "Cancel",
         "weapons": {
             "title": "Weapons",
             "damage": "Damage",
@@ -182,7 +189,6 @@
         "items": {
             "title": "Items"
         },
-        "feats": "Feats",
         "techniques": {
             "title": "Techniques",
             "not_allowed": "Your character does not use this type of technique.",
@@ -210,20 +216,12 @@
                 "anxiety": "Anxiety"
             }
         },
-        "skill": "Skill",
-        "level": "Level",
-        "approaches": "Approaches",
-        "notes": "Notes",
-        "inventory": "Inventory",
         "money": {
             "title": "Personal money",
             "koku": "Koku",
             "bu": "Bu",
             "zeni": "Zeni"
         },
-        "equipment": "Equipment",
-        "rank": "Rank",
-        "name": "Name",
         "social": {
             "title": "Social Standing",
             "honor": "Honor",
@@ -266,6 +264,7 @@
         },
         "skills": {
             "title": "Skills",
+            "label": "Skill",
             "artisan": {
                 "title": "Artisan",
                 "aesthetics": "Aesthetics",
@@ -541,7 +540,6 @@
                 "generchar_errors": "Clear errors before continuing!"
             }
         },
-        "random": "Random",
         "char_generator": {
             "title": "Character Generator",
             "head_bt_title": "Char. Generator",
@@ -566,6 +564,7 @@
         },
         "clans": {
             "title": "Clans",
+            "label": "Clan",
             "imperial": "Imperial",
             "crab": "Crab",
             "crane": "Crane",

@@ -44,6 +44,7 @@
     },
     "l5r5e": {
         "global": {
+            "edge_translation_disclaimer": "",
             "add": "Ajouter",
             "edit": "Modifier",
             "delete_confirm": "Etes-vous sûr de vouloir supprimer '{name}' ?",
@@ -51,114 +52,120 @@
             "send_to_chat": "Vers Conv.",
             "locked": "Verrouillé",
             "unlocked": "Déverrouillé",
-            "edge_translation_disclaimer": ""
+            "random": "Aléatoire"
         },
         "logo": {
             "title": "Besoin d'aide ?",
-            "content": "Suivez le guide :",
-            "edge": "Accéder au site de Edge Studio.",
-            "drivethrurpg": "Acheter un PDF du jeu ?",
-            "discord": "Rejoignez le Discord Francophone",
             "src": "systems/l5r5e/assets/l5r-logo.webp",
             "alt": "Aide en Ligne",
-            "edge-info": "Votre navigateur va ouvrir le site de Edge Studio.",
-            "edge-link": "https://edge-studio.net/",
-            "drivethrurpg-info": "Votre navigateur va ouvrir le site DriveThruRpg de Edge Studio.",
-            "drivethrurpg-link": "https://www.drivethrurpg.com/browse/pub/17946/EDGE-Studio",
-            "discord-info": "Votre navigateur va ouvrir le discord francophone de foundry.",
-            "discord-link": "https://discord.gg/pPSDNJk"
+            "content": "Suivez le guide :",
+            "edge": {
+                "title": "Accéder au site de Edge Studio.",
+                "info": "Votre navigateur va ouvrir le site de Edge Studio.",
+                "link": "https://edge-studio.net/"
+            },
+            "drivethrurpg": {
+                "title": "Acheter un PDF du jeu ?",
+                "info": "Votre navigateur va ouvrir le site DriveThruRpg de Edge Studio.",
+                "link": "https://www.drivethrurpg.com/browse/pub/17946/EDGE-Studio"
+            },
+            "discord": {
+                "title": "Rejoignez le Discord Francophone",
+                "info": "Votre navigateur va ouvrir le discord francophone de foundry.",
+                "link": "https://discord.gg/pPSDNJk"
+            }
         },
         "rings": {
             "title": "Anneaux",
+            "label": "Anneau",
             "earth": "Terre",
             "air": "Air",
             "water": "Eau",
             "fire": "Feu",
             "void": "Vide"
         },
-        "narrative": "Mode Narratif",
-        "experience": "Expérience",
-        "clan": "Clan",
-        "family": "Famille",
-        "region": "Région",
-        "upbringing": "Education",
-        "school": "École",
-        "distinctions": "Aptitudes",
-        "distinctionstip": "Lorsque vous effectuez un test auquel s'applique une aptitude, vous pouvez relancer jusqu'à 2 dés.",
-        "adversities": "Coups du sort",
-        "adversitiestip": " lorsque vous effectuez un test auquel s'applique un coup du sort, vous relancez jusqu'à 2 dés dont le résultat contient Succès ou Succès explosif. Vous regagnez 1 point de Vide si vous ratez ce test.",
-        "anxieties": "Défaillances",
-        "anxietiestip": "Lorsque vous effectuez un test auquel s'applique une défaillance, vous recevez 2 points de Conflit. S'il s'agit de la première fois dans la scène, vous regagnez 1 point de Vide.",
-        "passions": "Passions",
-        "passionstip": "Lorsque vous effectuez un test auquel s'applique une passion, éliminez 3 points de Conflit.",
-        "personality": "Personnalité",
-        "description": "Description",
-        "bought_at_rank": "Acheté au rang",
-        "effects": "Effets",
-        "types": "Types",
-        "book_reference": "Référence",
-        "value": "Valeur",
-        "rarity": "Rareté",
-        "chatdices": {
-            "successes": "Succès",
-            "explosives": "Explosifs",
-            "opportunities": "Aubaines",
-            "strife": "Conflits",
-            "difficulty": "ND",
-            "difficulty_hidden": "???",
-            "dicepicker": "Dice Picker",
-            "void_point_used": "Point de vide utilisé",
-            "assistance_used": "Assistance de compétence utilisée",
-            "roll_n_keep": "Roll & Keep",
-            "initiative_roll": "Jet d'initiative",
-            "success_text": "Succès !",
-            "bonus_text": "succès bonus",
-            "fail_text": "Échec !"
+        "sheets": {
+            "narrative": "Mode Narratif",
+            "experience": "Expérience",
+            "family": "Famille",
+            "region": "Région",
+            "upbringing": "Education",
+            "school": "École",
+            "description": "Description",
+            "bought_at_rank": "Acheté au rang",
+            "types": "Types",
+            "book_reference": "Référence",
+            "value": "Valeur",
+            "rarity": "Rareté",
+            "quantity": "Quantité",
+            "weight": "Poids",
+            "properties": "Propriétés",
+            "linked_property": "Propriété liée",
+            "removed_properties": "Annule",
+            "notes": "Notes",
+            "inventory": "Inventaire",
+            "equipment": "Équipement",
+            "rank": "Rang",
+            "name": "Nom"
         },
-        "dicepicker": {
-            "difficulty_title": "Difficulté",
-            "difficulty_hidden_label": "ND Caché",
-            "use_void_point_label": "Dépenser un",
-            "void_point_tooltip": "Point de Vide",
-            "skill_assistance_label": "Assistance",
-            "roll_label": "Lancer",
-            "bt_add_macro": "Ajouter une macro"
+        "dice": {
+            "chat": {
+                "successes": "Succès",
+                "explosives": "Explosifs",
+                "opportunities": "Aubaines",
+                "strife": "Conflits",
+                "difficulty": "ND",
+                "difficulty_hidden": "???",
+                "void_point_used": "Point de vide utilisé",
+                "assistance_used": "Assistance de compétence utilisée",
+                "roll_n_keep": "Roll & Keep",
+                "initiative_roll": "Jet d'initiative",
+                "success_text": "Succès !",
+                "bonus_text": "succès bonus",
+                "fail_text": "Échec !"
+            },
+            "dicepicker": {
+                "title": "Dice Picker",
+                "difficulty_title": "Difficulté",
+                "difficulty_hidden_label": "ND Caché",
+                "use_void_point_label": "Dépenser un",
+                "void_point_tooltip": "Point de Vide",
+                "skill_assistance_label": "Assistance",
+                "roll_label": "Lancer",
+                "bt_add_macro": "Ajouter une macro"
+            },
+            "roll_n_keep": {
+                "title": "Roll & Keep",
+                "discard_drop_here": "Abandonner",
+                "reroll_drop_here": "Relancer",
+                "swap_drop_here": "Modifier",
+                "keep_drop_here": "Garder",
+                "max": "Max",
+                "bt_validate": "Finaliser cette étape",
+                "bt_strife": "Appliquer le conflit",
+                "undo": "[GM] Annuler les choix de la dernière étape"
+            }
         },
-        "roll_n_keep": {
-            "title": "L5R Roll & Keep",
-            "discard_drop_here": "Abandonner",
-            "reroll_drop_here": "Relancer",
-            "swap_drop_here": "Modifier",
-            "keep_drop_here": "Garder",
-            "bt_validate": "Finaliser cette étape",
-            "bt_strife": "Appliquer le conflit",
-            "undo": "[GM] Annuler les choix de la dernière étape"
+        "gm": {
+            "toolbox": {
+                "title": "GM ToolBox",
+                "difficulty_hidden": "Modifier la visibilité de la difficulté",
+                "difficulty": "Modifier la difficulté (Clic Droit: ajout, Gauche: soustraction, Milieu: ND 2)",
+                "sleep": "Repos confortable pour tous les personnages (Enlève Eau x2 de fatigue. Clic Droit: Personnages contrôlés uniquement. Gauche: Tous)",
+                "sleep_info": "Les personnages ont passé une bonne nuit de sommeil.",
+                "scene_end": "Fin de scène (Conflit et Fatigue à moitié pour tous les personnages dont la valeur dépasse ce seuil. Clic Droit: Personnages contrôlés uniquement. Gauche: Tous)",
+                "scene_end_info": "La tension de la scène retombe enfin",
+                "reset_void": "Début de partie : Réinitialiser les points du vide des joueurs (Clic Droit: Personnages contrôlés uniquement. Gauche: Tous)",
+                "reset_void_info": "Les points du vide ont été attribués"
+            },
+            "monitor": {
+                "title": "GM Monitor",
+                "switch_view": "Switch View",
+                "honor_glory_status": "H/G/S",
+                "focus_vigilance": "Att./Vig.",
+                "mouse_control": "Click Droit +1, Gauche: -1, Milieu: Remise à 0"
+            }
         },
-        "gm_toolbox": {
-            "title": "GM ToolBox",
-            "difficulty_hidden": "Modifier la visibilité de la difficulté",
-            "difficulty": "Modifier la difficulté (Clic Droit: ajout, Gauche: soustraction, Milieu: ND 2)",
-            "sleep": "Repos confortable pour tous les personnages (Enlève Eau x2 de fatigue. Clic Droit: Personnages contrôlés uniquement. Gauche: Tous)",
-            "sleep_info": "Les personnages ont passé une bonne nuit de sommeil.",
-            "scene_end": "Fin de scène (Conflit et Fatigue à moitié pour tous les personnages dont la valeur dépasse ce seuil. Clic Droit: Personnages contrôlés uniquement. Gauche: Tous)",
-            "scene_end_info": "La tension de la scène retombe enfin",
-            "reset_void": "Début de partie : Réinitialiser les points du vide des joueurs (Clic Droit: Personnages contrôlés uniquement. Gauche: Tous)",
-            "reset_void_info": "Les points du vide ont été attribués"
-        },
-        "gm_monitor": {
-            "title": "GM Monitor",
-            "switch_view": "Switch View",
-            "honor_glory_status": "H/G/S",
-            "focus_vigilance": "Att./Vig.",
-            "mouse_control": "Click Droit +1, Gauche: -1, Milieu: Remise à 0"
-        },
-        "max": "Max",
-        "current": "Actuel",
-        "quantity": "Quantité",
-        "weight": "Poids",
-        "properties": "Propriétés",
-        "linked_property": "Propriété liée",
-        "removed_properties": "Annule",
         "weapons": {
             "title": "Armement",
             "damage": "Dégâts de base (DDB)",
@@ -182,7 +189,6 @@
         "items": {
             "title": "Objets"
         },
-        "feats": "Prouesses",
         "techniques": {
             "title": "Techniques",
             "not_allowed": "Votre personnage n'utilise pas ce type de technique.",
@@ -210,20 +216,12 @@
                 "anxiety": "Défaillance"
             }
         },
-        "skill": "Compétence",
-        "level": "Niveau",
-        "approaches": "Approches",
-        "notes": "Notes",
-        "inventory": "Inventaire",
         "money": {
             "title": "Fortune",
             "koku": "Koku",
             "bu": "Bu",
             "zeni": "Zeni"
         },
-        "equipment": "Équipement",
-        "rank": "Rang",
-        "name": "Nom",
         "social": {
             "title": "Position Sociale",
             "honor": "Honneur",
@@ -266,6 +264,7 @@
         },
         "skills": {
             "title": "Compétences",
+            "label": "Compétence",
             "artisan": {
                 "title": "Artisanales",
                 "aesthetics": "Esthétique",
@@ -541,7 +540,6 @@
                 "generchar_errors": "Corriger les erreurs pour poursuivre !"
             }
         },
-        "random": "Aléatoire",
         "char_generator": {
             "title": "Générateur de personnage",
             "head_bt_title": "Générateur",
@@ -566,6 +564,7 @@
         },
         "clans": {
             "title": "Clans",
+            "label": "Clan",
             "imperial": "Impérial",
             "crab": "Crabe",
             "crane": "Grue",

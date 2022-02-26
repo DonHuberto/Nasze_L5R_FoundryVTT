@@ -59,7 +59,7 @@
         {{!-- Second line--}}
         <tr>
             <td>
-                {{localize "l5r5e.dicepicker.difficulty_title"}}
+                {{localize "l5r5e.dice.dicepicker.difficulty_title"}}
             </td>
             <td>
                 {{localize "l5r5e.rings.title"}}
@@ -75,7 +75,7 @@
                 {{#if data.difficulty.hidden}}
                 <label>
                     <input type="checkbox" id="diff_add_void_point" name="difficulty.addVoidPoint" value="1" {{checked data.difficulty.addVoidPoint}} />
-                    +1 <i class="i_void" title="{{localize 'l5r5e.dicepicker.void_point_tooltip'}}"></i>
+                    +1 <i class="i_void" title="{{localize 'l5r5e.dice.dicepicker.void_point_tooltip'}}"></i>
                 </label>
                 {{else}}
                 <div id="difficulty_picker">
@@ -144,7 +144,7 @@
                 {{^if difficultyHiddenIsLock}}
                 <label>
                     <input type="checkbox" id="diff_hidden" name="difficulty.hidden" value="1" {{checked data.difficulty.hidden}} />
-                    {{localize 'l5r5e.dicepicker.difficulty_hidden_label'}}
+                    {{localize 'l5r5e.dice.dicepicker.difficulty_hidden_label'}}
                 </label>
                 {{/if}}
             </td>
@@ -152,7 +152,7 @@
                 {{#if canUseVoidPoint}}
                     <label>
                         <input type="checkbox" id="use_void_point" name="useVoidPoint" value="1" {{checked data.useVoidPoint}} />
-                        {{localize 'l5r5e.dicepicker.use_void_point_label'}} <i class="i_void" title="{{localize 'l5r5e.dicepicker.void_point_tooltip'}}"></i>
+                        {{localize 'l5r5e.dice.dicepicker.use_void_point_label'}} <i class="i_void" title="{{localize 'l5r5e.dice.dicepicker.void_point_tooltip'}}"></i>
                     </label>
                 {{/if}}
             </td>
@@ -162,7 +162,7 @@
                 </div>
 
                 <div class="third">
-                    <i class="i_skill"></i> {{localize 'l5r5e.dicepicker.skill_assistance_label'}}
+                    <i class="i_skill"></i> {{localize 'l5r5e.dice.dicepicker.skill_assistance_label'}}
                     <div class="dice-container">
                         <img src="systems/l5r5e/assets/dices/default/3d/blank.png" alt="1" />
                         <div class="dice-value">
@@ -178,7 +178,7 @@
         </tr>
         <tr>
             <td colspan="3">
-                <button name="roll" type="submit" {{#if disableSubmit}}disabled{{/if}}>{{localize 'l5r5e.dicepicker.roll_label'}} <i class='fas fa-arrow-circle-right'></i></button>
+                <button name="roll" type="submit" {{#if disableSubmit}}disabled{{/if}}>{{localize 'l5r5e.dice.dicepicker.roll_label'}} <i class='fas fa-arrow-circle-right'></i></button>
             </td>
         </tr>
     </table>

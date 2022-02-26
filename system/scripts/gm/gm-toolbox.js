@@ -19,7 +19,7 @@ export class GmToolbox extends FormApplication {
             id: "l5r5e-gm-toolbox",
             classes: ["l5r5e", "gm-toolbox"],
             template: CONFIG.l5r5e.paths.templates + "gm/gm-toolbox.html",
-            title: game.i18n.localize("l5r5e.gm_toolbox.title"),
+            title: game.i18n.localize("l5r5e.gm.toolbox.title"),
             left: x - 627,
             top: y - 98,
             closeOnSubmit: false,
@@ -247,7 +247,7 @@ export class GmToolbox extends FormApplication {
         }
 
         ui.notifications.info(
-            ` <i class="fas fa-user${isAll ? "s" : ""}"></i> ` + game.i18n.localize(`l5r5e.gm_toolbox.${type}_info`)
+            ` <i class="fas fa-user${isAll ? "s" : ""}"></i> ` + game.i18n.localize(`l5r5e.gm.toolbox.${type}_info`)
         );
     }
 }

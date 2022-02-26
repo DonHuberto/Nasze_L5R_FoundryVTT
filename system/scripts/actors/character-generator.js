@@ -630,7 +630,9 @@ export class CharacterGenerator {
             `<p>${game.i18n.localize("l5r5e.social.gender.title")}: ${game.i18n.localize(
                 "l5r5e.social.gender." + this.data.gender
             )}</p>` +
-            `<p>${game.i18n.localize("l5r5e.clan")}: ${game.i18n.localize("l5r5e.clans." + this.data.clan)}</p>` +
+            `<p>${game.i18n.localize("l5r5e.clans.label")}: ${game.i18n.localize(
+                "l5r5e.clans." + this.data.clan
+            )}</p>` +
             `<p>${game.i18n.localize("l5r5e.social.marital_status.title")}: ${game.i18n.localize(
                 "l5r5e.social.marital_status." + this.data.maritalStatus
             )}</p>`;

@@ -81,10 +81,10 @@ L5R5E.skills.set("survival", "trade");
 
 // *** Symbols ***
 L5R5E.symbols = new Map();
-L5R5E.symbols.set("(op)", { class: "i_opportunity", label: "l5r5e.chatdices.opportunities" });
-L5R5E.symbols.set("(su)", { class: "i_success", label: "l5r5e.chatdices.successes" });
-L5R5E.symbols.set("(ex)", { class: "i_explosive", label: "l5r5e.chatdices.explosives" });
-L5R5E.symbols.set("(st)", { class: "i_strife", label: "l5r5e.chatdices.strife" });
+L5R5E.symbols.set("(op)", { class: "i_opportunity", label: "l5r5e.dice.chat.opportunities" });
+L5R5E.symbols.set("(su)", { class: "i_success", label: "l5r5e.dice.chat.successes" });
+L5R5E.symbols.set("(ex)", { class: "i_explosive", label: "l5r5e.dice.chat.explosives" });
+L5R5E.symbols.set("(st)", { class: "i_strife", label: "l5r5e.dice.chat.strife" });
 L5R5E.symbols.set("(ring)", { class: "i_ring", label: "l5r5e.rings.title" });
 L5R5E.symbols.set("(skill)", { class: "i_skill", label: "l5r5e.skills.title" });
 

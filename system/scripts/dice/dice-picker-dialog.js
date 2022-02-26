@@ -56,7 +56,7 @@ export class DicePickerDialog extends FormApplication {
             id: "l5r5e-dice-picker-dialog",
             classes: ["l5r5e", "dice-picker-dialog"],
             template: CONFIG.l5r5e.paths.templates + "dice/dice-picker-dialog.html",
-            title: "L5R Dice Roller",
+            title: game.i18n.localize("l5r5e.dice.dicepicker.title"),
             actor: null,
             ringId: null,
             skillId: "",
@@ -73,7 +73,7 @@ export class DicePickerDialog extends FormApplication {
         let buttons = super._getHeaderButtons();
 
         buttons.unshift({
-            label: game.i18n.localize("l5r5e.dicepicker.bt_add_macro"),
+            label: game.i18n.localize("l5r5e.dice.dicepicker.bt_add_macro"),
             class: "bt-add-macro",
             icon: "fas fa-star",
             onclick: async () => {
@@ -317,7 +317,7 @@ export class DicePickerDialog extends FormApplication {
      * @type {String}
      */
     get title() {
-        return `L5R Dice Roller` + (this._actor ? " - " + this._actor.data.name : "");
+        return game.i18n.localize("l5r5e.dice.dicepicker.title") + (this._actor ? " - " + this._actor.data.name : "");
     }
 
     /**
@@ -730,7 +730,7 @@ export class DicePickerDialog extends FormApplication {
             }
             // Wrong syntax or no target set, do manual TN
             if (!targetActor) {
-                console.log("L5R5E | Fail to get actor from target selection");
+                console.log("L5R5E | Fail to get actor from target selection, or no target selected");
                 return false;
             }
 

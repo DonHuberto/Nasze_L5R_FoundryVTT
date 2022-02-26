@@ -81,7 +81,7 @@ export class CombatL5r5e extends Combat {
                 let roll;
                 let rnkMessage;
                 const flavor =
-                    game.i18n.localize("l5r5e.chatdices.initiative_roll") +
+                    game.i18n.localize("l5r5e.dice.chat.initiative_roll") +
                     " (" +
                     game.i18n.localize(`l5r5e.conflict.initiative.prepared_${isPrepared}`) +
                     ")";

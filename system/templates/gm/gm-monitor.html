@@ -4,15 +4,15 @@
     <table>
         <thead>
             <th class="img"></th>
-            <th class="name">{{localize 'l5r5e.name'}}</th>
+            <th class="name">{{localize 'l5r5e.sheets.name'}}</th>
             <th class="stance"><i class="i_earth"></i></th>
             <th class="prepared"><i class="fas prepared-icon-true"></i></th>
             <th class="weapon"><i class="fas fa-fan"></i></th>
             <th class="armor"><i class="fas fa-user-shield"></i></th>
-            <th class="rank">{{localize 'l5r5e.rank'}}</th>
+            <th class="rank">{{localize 'l5r5e.sheets.rank'}}</th>
             <th class="fatigue">{{localize 'l5r5e.attributes.fatigue'}}</th>
             <th class="strife">{{localize 'l5r5e.attributes.strife'}}</th>
-            <th class="vigilance">{{localize 'l5r5e.gm_monitor.focus_vigilance'}}</th>
+            <th class="vigilance">{{localize 'l5r5e.gm.monitor.focus_vigilance'}}</th>
             <th class="void"><i class="i_void"></i></th>
             <th class=""></th>
             <th class=""></th>
@@ -56,13 +56,13 @@
                 </p>
             </td>
             <td>
-                <a title="{{localize 'l5r5e.gm_monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="fatigue" class="actor-modify-control">
+                <a title="{{localize 'l5r5e.gm.monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="fatigue" class="actor-modify-control">
                     <span class="{{#ifCond actor.data.data.fatigue.value '>' actor.data.data.fatigue.max}}badvalue{{/ifCond}}">{{actor.data.data.fatigue.value}}</span>
                     / {{actor.data.data.fatigue.max}}
                 </a>
             </td>
             <td>
-                <a title="{{localize 'l5r5e.gm_monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="strife" class="actor-modify-control">
+                <a title="{{localize 'l5r5e.gm.monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="strife" class="actor-modify-control">
                     <span class="{{#ifCond actor.data.data.strife.value '>' actor.data.data.strife.max}}badvalue{{/ifCond}}">{{actor.data.data.strife.value}}</span>
                     / {{actor.data.data.strife.max}}
                 </a>
@@ -72,7 +72,7 @@
                 / {{#if actor.data.data.is_compromised}}<span class="badvalue">1</span>{{else}}{{actor.data.data.vigilance}}{{/if}}
             </td>
             <td>
-                <a title="{{localize 'l5r5e.gm_monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="void_points" class="actor-modify-control">
+                <a title="{{localize 'l5r5e.gm.monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="void_points" class="actor-modify-control">
                     {{actor.data.data.void_points.value}}
                     / {{actor.data.data.void_points.max}}
                 </a>
@@ -88,11 +88,11 @@
     <table>
         <thead>
             <th class="img"></th>
-            <th class="name">{{localize 'l5r5e.name'}}</th>
+            <th class="name">{{localize 'l5r5e.sheets.name'}}</th>
             <th class="warlord">{{localize 'l5r5e.army.warlord'}}</th>
             <th class="casualties"><i class="fas fa-user-injured" title="{{localize 'l5r5e.army.battle_readiness.casualties'}}"></i> / <i class="fas fa-fist-raised" title="{{localize 'l5r5e.army.battle_readiness.strength'}}"></i></th>
             <th class="panic"><i class="fas fa-ghost" title="{{localize 'l5r5e.army.battle_readiness.panic'}}"></i> / <i class="fas fa-user-friends" title="{{localize 'l5r5e.army.battle_readiness.discipline'}}"></i></th>
-            <th class="commander">{{localize 'l5r5e.army.commander'}} {{localize 'l5r5e.gm_monitor.honor_glory_status'}}</th>
+            <th class="commander">{{localize 'l5r5e.army.commander'}} {{localize 'l5r5e.gm.monitor.honor_glory_status'}}</th>
             <th class=""></th>
             <th class=""></th>
         </thead>
@@ -109,13 +109,13 @@
                 {{/if}}
             </td>
             <td>
-                <a title="{{localize 'l5r5e.gm_monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="casualties" class="actor-modify-control">
+                <a title="{{localize 'l5r5e.gm.monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="casualties" class="actor-modify-control">
                     <span class="{{#ifCond actor.data.data.battle_readiness.casualties_strength.value '>' actor.data.data.battle_readiness.casualties_strength.max}}badvalue{{/ifCond}}">{{actor.data.data.battle_readiness.casualties_strength.value}}</span>
                      / {{actor.data.data.battle_readiness.casualties_strength.max}}
                  </a>
              </td>
             <td>
-                <a title="{{localize 'l5r5e.gm_monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="panic" class="actor-modify-control">
+                <a title="{{localize 'l5r5e.gm.monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="panic" class="actor-modify-control">
                     <span class="{{#ifCond actor.data.data.battle_readiness.panic_discipline.value '>' actor.data.data.battle_readiness.panic_discipline.max}}badvalue{{/ifCond}}">{{actor.data.data.battle_readiness.panic_discipline.value}}</span>
                     / {{actor.data.data.battle_readiness.panic_discipline.max}}
                 </a>

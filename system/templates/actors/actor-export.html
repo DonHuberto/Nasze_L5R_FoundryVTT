@@ -10,10 +10,10 @@
         {{!-- Sheet Header --}}
         <ul>
             {{!-- Identity --}}
-            <li>{{#ifCond data.data.template '==' 'pow'}}{{localize 'l5r5e.region'}}{{else}}{{localize 'l5r5e.clan'}}{{/ifCond}} : {{data.data.identity.clan}}</li>
-            <li>{{#ifCond data.data.template '==' 'pow'}}{{localize 'l5r5e.upbringing'}}{{else}}{{localize 'l5r5e.family'}}{{/ifCond}} : {{data.data.identity.family}}</li>
-            <li>{{localize 'l5r5e.rank'}}  : {{data.data.identity.school_rank}}</li>
-            <li>{{localize 'l5r5e.school'}} : {{data.data.identity.school}}</li>
+            <li>{{#ifCond data.data.template '==' 'pow'}}{{localize 'l5r5e.sheets.region'}}{{else}}{{localize 'l5r5e.clans.label'}}{{/ifCond}} : {{data.data.identity.clan}}</li>
+            <li>{{#ifCond data.data.template '==' 'pow'}}{{localize 'l5r5e.sheets.upbringing'}}{{else}}{{localize 'l5r5e.sheets.family'}}{{/ifCond}} : {{data.data.identity.family}}</li>
+            <li>{{localize 'l5r5e.sheets.rank'}}  : {{data.data.identity.school_rank}}</li>
+            <li>{{localize 'l5r5e.sheets.school'}} : {{data.data.identity.school}}</li>
             <li>{{localize 'l5r5e.roles'}} : {{data.data.identity.roles}}</li>
 
             {{!-- Social --}}
@@ -40,8 +40,8 @@
             <li>{{#ifCond data.data.template '==' 'pow'}}{{localize 'l5r5e.social.past'}}{{else}}{{localize 'l5r5e.social.giri'}}{{/ifCond}} : {{data.data.social.giri}}</li>
             <li>{{localize 'l5r5e.social.bushido_tenets.paramount'}} : {{data.data.social.bushido_tenets.paramount}}</li>
             <li>{{localize 'l5r5e.social.bushido_tenets.less_significant'}} : {{data.data.social.bushido_tenets.less_significant}}</li>
-            <li>{{localize 'l5r5e.description' }} : {{{data.data.description}}}</li>
-            <li>{{localize 'l5r5e.notes' }} : {{{data.data.notes}}}</li>
+            <li>{{localize 'l5r5e.sheets.description' }} : {{{data.data.description}}}</li>
+            <li>{{localize 'l5r5e.sheets.notes' }} : {{{data.data.notes}}}</li>
         </ul>
 
 {{!-- a faire : Spé Skill/Ecoles pour les pnj --}}
@@ -125,7 +125,7 @@
 
         {{!-- Inventory Tab --}}
         {{!-- items list --}}
-        <h2>{{localize 'l5r5e.equipment'}}</h2>
+        <h2>{{localize 'l5r5e.sheets.equipment'}}</h2>
         <ul>
             <li>{{localize 'l5r5e.money.title'}} : {{data.data.money.koku}} {{localize 'l5r5e.money.koku'}} / {{data.data.money.bu}} {{localize 'l5r5e.money.bu'}} / {{data.data.money.zeni}} {{localize 'l5r5e.money.zeni'}}</li>
             {{#each data.splitItemsList as |cat type|}}
@@ -156,7 +156,7 @@
 
 
         {{!-- Experience Tab --}}
-        <h2>{{localize 'l5r5e.experience'}}</h2>
+        <h2>{{localize 'l5r5e.sheets.experience'}}</h2>
         <ul>
             <li>{{localize 'l5r5e.advancements.total'}} : {{data.data.xp_total}}</li>
             <li>{{localize 'l5r5e.advancements.spent'}} : {{data.data.xp_spent}}</li>
@@ -164,16 +164,16 @@
         </ul>
 
         {{!-- School progression --}}
-        <h2>{{#if data.data.identity.school_curriculum_journal.name}}{{data.data.identity.school_curriculum_journal.name}}{{else}}{{localize 'l5r5e.school'}}{{/if}}</h2>
+        <h2>{{#if data.data.identity.school_curriculum_journal.name}}{{data.data.identity.school_curriculum_journal.name}}{{else}}{{localize 'l5r5e.sheets.school'}}{{/if}}</h2>
         <table>
             <tr>
-                <th>{{localize 'l5r5e.name'}}</th>
-                <th>{{localize 'l5r5e.school'}}</th>
+                <th>{{localize 'l5r5e.sheets.name'}}</th>
+                <th>{{localize 'l5r5e.sheets.school'}}</th>
                 <th>{{localize 'l5r5e.advancements.spent'}}</th>
-                <th>{{localize 'l5r5e.rank'}}</th>
+                <th>{{localize 'l5r5e.sheets.rank'}}</th>
             </tr>
             {{#each data.advancementsListByRank as |rankObject|}}
-                <tr><th colspan="4">{{localize 'l5r5e.rank'}} {{rankObject.rank}}</th></tr>
+                <tr><th colspan="4">{{localize 'l5r5e.sheets.rank'}} {{rankObject.rank}}</th></tr>
                 {{#each rankObject.list as |advancement|}}
                 <tr>
                     <td>{{advancement.name}}</td>
@@ -190,9 +190,9 @@
         <h2>{{localize 'l5r5e.advancements.title'}}</h2>
         <table>
             <tr>
-                <th>{{localize 'l5r5e.name'}}</th>
+                <th>{{localize 'l5r5e.sheets.name'}}</th>
                 <th>{{localize 'l5r5e.advancements.spent'}}</th>
-                <th>{{localize 'l5r5e.rank'}}</th>
+                <th>{{localize 'l5r5e.sheets.rank'}}</th>
             </tr>
             {{#each data.advancementsOthers as |advancement|}}
                 <tr>

@@ -85,7 +85,7 @@ export class HelpersL5r5e {
      */
     static getLocalizedClansList() {
         return Object.entries(game.i18n.translations.l5r5e.clans)
-            .filter(([k, v]) => k !== "title")
+            .filter(([k, v]) => !["title", "label"].includes(k))
             .map(([k, v]) => v);
     }
 

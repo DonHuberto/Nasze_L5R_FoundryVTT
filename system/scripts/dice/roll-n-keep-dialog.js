@@ -50,7 +50,7 @@ export class RollnKeepDialog extends FormApplication {
             id: "l5r5e-roll-n-keep-dialog",
             classes: ["l5r5e", "roll-n-keep-dialog"],
             template: CONFIG.l5r5e.paths.templates + "dice/roll-n-keep-dialog.html",
-            title: game.i18n.localize("l5r5e.roll_n_keep.title"),
+            title: game.i18n.localize("l5r5e.dice.roll_n_keep.title"),
             closeOnSubmit: false,
         });
     }
@@ -255,7 +255,7 @@ export class RollnKeepDialog extends FormApplication {
             // Add Context menu to rollback choices
             new ContextMenu(html, ".l5r5e.profil", [
                 {
-                    name: game.i18n.localize("l5r5e.roll_n_keep.undo"),
+                    name: game.i18n.localize("l5r5e.dice.roll_n_keep.undo"),
                     icon: '<i class="fas fa-undo"></i>',
                     callback: () => this._undoLastStepChoices(),
                 },

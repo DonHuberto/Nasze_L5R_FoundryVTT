@@ -34,8 +34,8 @@
         "TypeAdvancement": "Mejora",
         "TypeTitle": "Título",
         "TypeBond": "Vínculo",
-        "TypeSignatureScroll": "Pergamino especial",
-        "TypeItemPattern": "Patrón de objeto",
+        "TypeSignature_scroll": "Pergamino especial",
+        "TypeItem_pattern": "Patrón de objeto",
         "TypeArmy_fortification": "Fortificación",
         "TypeArmy_cohort": "Cohorte"
     },
@@ -44,6 +44,7 @@
     },
     "l5r5e": {
         "global": {
+            "edge_translation_disclaimer": "Edge Studio nos da su permiso para ofrecer este módulo a la comunidad, pero tanto los textos así como los códigos que lo constituyen no tienen su aprobación explícita.",
             "add": "Añadir",
             "edit": "Editar",
             "delete_confirm": "¿Estás seguro de que quieres borrar '{name}' ?",
@@ -51,114 +52,120 @@
             "send_to_chat": "To Chat",
             "locked": "Locked",
             "unlocked": "Unlocked",
-            "edge_translation_disclaimer": "Edge Studio nos da su permiso para ofrecer este módulo a la comunidad, pero tanto los textos así como los códigos que lo constituyen no tienen su aprobación explícita."
+            "random": "Random"
         },
         "logo": {
             "títle": "¿Necesitas ayuda?",
-            "content": "Sigue la guía :",
-            "edge": "Ir a la página web de Edge-Studio",
-            "drivethrurpg": "¿Comprar un PDF del juego?",
-            "discord": "Discord oficial de FoundryVTT",
             "src": "systems/l5r5e/assets/l5r-logo.webp",
             "alt": "Ayuda en línea",
-            "edge-info": "Tu navegador abrirá la página web de EDGE STUDIO",
-            "edge-link": "https://edge-studio.net/",
-            "drivethrurpg-info": "tu navegador abrirá el sitio DriveThruRpg de Edge Studio",
-            "drivethrurpg-link": "https://www.drivethrurpg.com/browse/pub/17946/EDGE-Studio",
-            "discord-info": "Su navegador se abrirá el discord oficial de Foundry",
-            "discord-link": "https://discordapp.com/invite/DDBZUDf"
+            "content": "Sigue la guía :",
+            "edge": {
+                "title": "Ir a la página web de Edge-Studio",
+                "info": "Tu navegador abrirá la página web de EDGE STUDIO",
+                "link": "https://edge-studio.net/"
+            },
+            "drivethrurpg": {
+                "title": "¿Comprar un PDF del juego?",
+                "info": "tu navegador abrirá el sitio DriveThruRpg de Edge Studio",
+                "link": "https://www.drivethrurpg.com/browse/pub/17946/EDGE-Studio"
+            },
+            "discord": {
+                "title": "Discord oficial de FoundryVTT",
+                "info": "Su navegador se abrirá el discord oficial de Foundry",
+                "link": "https://discordapp.com/invite/DDBZUDf"
+            }
         },
         "rings": {
             "title": "Anillos",
+            "label": "Anillo",
             "earth": "Tierra",
             "air": "Aire",
             "water": "Agua",
             "fire": "Fuego",
             "void": "Vacío"
         },
-        "narrative": "Narrativa",
-        "experience": "Experiencia",
-        "clan": "Clan",
-        "family": "Familia",
-        "region": "Region",
-        "upbringing": "Educación",
-        "school": "Escuela",
-        "distinctions": "Distinciones",
-        "distinctionstip": "Puedes volver a lanzar hasta dos dados si una distinción te ayuda en la tirada.",
-        "adversities": "Adversidades",
-        "adversitiestip": "Vuelve a lanzar dos dados con Éxito o Éxito relanzable si una adversidad influye en tu tirada. Si fallas, ganas 1 punto de Vacío.",
-        "anxieties": "Ansiedades",
-        "anxietiestip": "Tras realizar una tirada relacionada con tu ansiedad, recibes 3 puntos de Conflicto. Luego ganas 1 punto de Vacío (limitado a 1 por escena).",
-        "passions": "Pasiones",
-        "passionstip": "Después de efectuar una tirada relacionada con tu pasión, descarta tres puntos de Conflicto.",
-        "personality": "Personalidad",
-        "description": "Descripción",
-        "bought_at_rank": "Adquirido en rango",
-        "effects": "Efectos",
-        "types": "Tipos",
-        "book_reference": "Referencia",
-        "value": "Valor",
-        "rarity": "Rareza",
-        "chatdices": {
-            "successes": "Éxitos",
-            "explosives": "Relanzables",
-            "opportunities": "Oportunidades",
-            "strife": "Conflictos",
-            "difficulty": "NO",
-            "difficulty_hidden": "???",
-            "dicepicker": "Dice Picker",
-            "void_point_used": "Punto de Vacío utilizado",
-            "assistance_used": "Asistencia de habilidad utilizada",
-            "roll_n_keep": "Tirar y guardar",
-            "initiative_roll": "Tirada de Iniciativa",
-            "success_text": "¡Éxito!",
-            "bonus_text": "Éxitos adicionales",
-            "fail_text": "¡Fallo!"
+        "sheets": {
+            "narrative": "Narrativa",
+            "experience": "Experiencia",
+            "family": "Familia",
+            "region": "Region",
+            "upbringing": "Educación",
+            "school": "Escuela",
+            "description": "Descripción",
+            "bought_at_rank": "Adquirido en rango",
+            "types": "Tipos",
+            "book_reference": "Referencia",
+            "value": "Valor",
+            "rarity": "Rareza",
+            "quantity": "Cantidad",
+            "weight": "Peso",
+            "properties": "Propiedades",
+            "linked_property": "Propiedad vínculada",
+            "removed_properties": "Anula",
+            "notes": "Notas",
+            "inventory": "Inventario",
+            "equipment": "Equipo",
+            "rank": "Rango",
+            "name": "Nombre"
         },
-        "dicepicker": {
-            "difficulty_title": "Dificultad",
-            "difficulty_hidden_label": "Ocultar NO",
-            "use_void_point_label": "Gasta un",
-            "void_point_tooltip": "Punto de vacío",
-            "skill_assistance_label": "Asistencia",
-            "roll_label": "Tirar",
-            "bt_add_macro": "Añadir una macro"
+        "dice": {
+            "chat": {
+                "successes": "Éxitos",
+                "explosives": "Relanzables",
+                "opportunities": "Oportunidades",
+                "strife": "Conflictos",
+                "difficulty": "NO",
+                "difficulty_hidden": "???",
+                "void_point_used": "Punto de Vacío utilizado",
+                "assistance_used": "Asistencia de habilidad utilizada",
+                "roll_n_keep": "Tirar y guardar",
+                "initiative_roll": "Tirada de Iniciativa",
+                "success_text": "¡Éxito!",
+                "bonus_text": "Éxitos adicionales",
+                "fail_text": "¡Fallo!"
+            },
+            "dicepicker": {
+                "title": "Dice Picker",
+                "difficulty_title": "Dificultad",
+                "difficulty_hidden_label": "Ocultar NO",
+                "use_void_point_label": "Gasta un",
+                "void_point_tooltip": "Punto de vacío",
+                "skill_assistance_label": "Asistencia",
+                "roll_label": "Tirar",
+                "bt_add_macro": "Añadir una macro"
+            },
+            "roll_n_keep": {
+                "title": "Tirar y guardar",
+                "discard_drop_here": "Descartar",
+                "reroll_drop_here": "Relanzar",
+                "swap_drop_here": "Cambiar cara",
+                "keep_drop_here": "Guardar",
+                "max": "Máx",
+                "bt_validate": "Terminar este paso",
+                "bt_strife": "Apply strife",
+                "undo": "[GM] Deshacer los últimos cambios"
+            }
         },
-        "roll_n_keep": {
-            "title": "L5A Tirar y guardar",
-            "discard_drop_here": "Descartar",
-            "reroll_drop_here": "Relanzar",
-            "swap_drop_here": "Cambiar cara",
-            "keep_drop_here": "Guardar",
-            "bt_validate": "Terminar este paso",
-            "bt_strife": "Apply strife",
-            "undo": "[GM] Deshacer los últimos cambios"
+        "gm": {
+            "toolbox": {
+                "title": "GM ToolBox",
+                "difficulty_hidden": "Cambiar la dificultad visible",
+                "difficulty": "Cambiar dificultad (derecha: añadir, izquierda: sustraer, central: NO 2)",
+                "sleep": "Descanso confortable para todos los personajes (Eliminar fatiga = Agua x2. (Click derecho: sólo a los personajes seleccionados. Izquierdo: a todos los actores)",
+                "sleep_info": "Los personajes han dormido bien.",
+                "scene_end": "Final de la escena (El Conflicto y la Fatiga de los personajes se reduce hasta la mitad del máximo del valor (Click derecho: sólo a los personajes seleccionados. Izquierdo: a todos los actores)",
+                "scene_end_info": "La tensión de la escena por fin disminuye.",
+                "reset_void": "Comienzo de la partida: Resetea los puntos de Vacío de los jugadores (Click derecho: sólo a los personajes seleccionados. Izquierdo: a todos los actores)",
+                "reset_void_info": "Se han adjudicado los puntos de Vacío."
+            },
+            "monitor": {
+                "title": "Pantalla del DJ",
+                "switch_view": "Cambiar vista",
+                "honor_glory_status": "H/G/E",
+                "focus_vigilance": "Con./Ale.",
+                "mouse_control": "Right click +1, left: -1, middle: reset to 0"
+            }
         },
-        "gm_toolbox": {
-            "title": "GM ToolBox",
-            "difficulty_hidden": "Cambiar la dificultad visible",
-            "difficulty": "Cambiar dificultad (derecha: añadir, izquierda: sustraer, central: NO 2)",
-            "sleep": "Descanso confortable para todos los personajes (Eliminar fatiga = Agua x2. (Click derecho: sólo a los personajes seleccionados. Izquierdo: a todos los actores)",
-            "sleep_info": "Los personajes han dormido bien.",
-            "scene_end": "Final de la escena (El Conflicto y la Fatiga de los personajes se reduce hasta la mitad del máximo del valor (Click derecho: sólo a los personajes seleccionados. Izquierdo: a todos los actores)",
-            "scene_end_info": "La tensión de la escena por fin disminuye.",
-            "reset_void": "Comienzo de la partida: Resetea los puntos de Vacío de los jugadores (Click derecho: sólo a los personajes seleccionados. Izquierdo: a todos los actores)",
-            "reset_void_info": "Se han adjudicado los puntos de Vacío."
-        },
-        "gm_monitor": {
-            "title": "Pantalla del DJ",
-            "switch_view": "Cambiar vista",
-            "honor_glory_status": "H/G/E",
-            "focus_vigilance": "Con./Ale.",
-            "mouse_control": "Right click +1, left: -1, middle: reset to 0"
-        },
-        "max": "Máx",
-        "current": "Actuales",
-        "quantity": "Cantidad",
-        "weight": "Peso",
-        "properties": "Propiedades",
-        "linked_property": "Propiedad vínculada",
-        "removed_properties": "Anula",
         "weapons": {
             "title": "Armas",
             "damage": "Daño",
@@ -182,12 +189,11 @@
         "items": {
             "title": "Objetos"
         },
-        "feats": "Logros",
         "techniques": {
             "title": "Técnicas",
-            "type": "Técnicas permitidas",
             "not_allowed": "Tu personaje no puede utilizar este tipo de técnica.",
             "only_one": "Tu personaje sólo puede poseer una de estas técnicas.",
+            "type": "Técnicas permitidas",
             "kata": "Kata",
             "kiho": "Kihõ",
             "inversion": "Inversion",
@@ -210,20 +216,12 @@
                 "anxiety": "Ansiedad"
             }
         },
-        "skill": "Habilidad",
-        "level": "Nivel",
-        "approaches": "Planteamientos",
-        "notes": "Notas",
-        "inventory": "Inventario",
         "money": {
             "title": "Dinero personal",
             "koku": "Koku",
             "bu": "Bu",
             "zeni": "Zeni"
         },
-        "equipment": "Equipo",
-        "rank": "Rango",
-        "name": "Nombre",
         "social": {
             "title": "Posición Social",
             "honor": "Honor",
@@ -266,6 +264,7 @@
         },
         "skills": {
             "title": "Habilidades",
+            "label": "Habilidad",
             "artisan": {
                 "title": "Artesanales",
                 "aesthetics": "Estética",
@@ -541,7 +540,6 @@
                 "generchar_errors": "¡Borrar los errores antes de continuar!"
             }
         },
-        "random": "Random",
         "char_generator": {
             "title": "Character Generator",
             "head_bt_title": "Char. Generator",
@@ -566,6 +564,7 @@
         },
         "clans": {
             "title": "Clans",
+            "label": "Clan",
             "imperial": "Imperial",
             "crab": "Crab",
             "crane": "Crane",

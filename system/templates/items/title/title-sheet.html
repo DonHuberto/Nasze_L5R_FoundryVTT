@@ -11,11 +11,11 @@
                 <input class="select-on-focus" type="number" name="data.xp_cost" value="{{data.data.xp_cost}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
-                {{localize 'l5r5e.rank'}}
+                {{localize 'l5r5e.sheets.rank'}}
                 <input class="select-on-focus" type="number" name="data.rank" value="{{data.data.rank}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
-                {{localize 'l5r5e.bought_at_rank'}}
+                {{localize 'l5r5e.sheets.bought_at_rank'}}
                 <input class="select-on-focus" type="number" name="data.bought_at_rank" value="{{data.data.bought_at_rank}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
         </article>
@@ -25,7 +25,7 @@
     <section class="sheet-body">
         {{!-- Sheet Navigation --}}
         <nav class="sheet-tabs tabs" data-group="primary">
-            <a class="item" data-tab="infos">{{ localize "l5r5e.description" }}</a>
+            <a class="item" data-tab="infos">{{ localize "l5r5e.sheets.description" }}</a>
             <a class="item" data-tab="experience">{{ localize "l5r5e.advancements.title" }}</a>
         </nav>
 
@@ -40,10 +40,10 @@
                 <table>
                     <thead class="flex">
                     <tr class="flexrow row">
-                        <th class="name">{{localize 'l5r5e.name'}}</th>
+                        <th class="name">{{localize 'l5r5e.sheets.name'}}</th>
                         <th class="curriculum"><i class="fas fa-graduation-cap"></i></th>
                         <th class="xp">{{localize 'l5r5e.advancements.spent'}}</th>
-                        <th class="rank">{{localize 'l5r5e.rank'}}</th>
+                        <th class="rank">{{localize 'l5r5e.sheets.rank'}}</th>
                         {{#if editable}}
                             <th class="actions"></th>
                         {{/if}}

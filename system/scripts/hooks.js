@@ -32,7 +32,7 @@ export default class HooksL5r5e {
 
         // ***** UI *****
         // Add title on button dice icon
-        $(".chat-control-icon")[0].title = game.i18n.localize("l5r5e.chatdices.dicepicker");
+        $(".chat-control-icon")[0].title = game.i18n.localize("l5r5e.dice.dicepicker.title");
 
         // Open Help dialog on clic on logo
         $("#logo")
@@ -179,10 +179,10 @@ export default class HooksL5r5e {
                             (document.data.data.ring ? ` class="i_${document.data.data.ring}"` : ``) +
                             `>` +
                             (document.data.data.rarity
-                                ? `${game.i18n.localize("l5r5e.rarity")} ${document.data.data.rarity}`
+                                ? `${game.i18n.localize("l5r5e.sheets.rarity")} ${document.data.data.rarity}`
                                 : "") +
                             (document.data.data.rank
-                                ? game.i18n.localize("l5r5e.rank") + " " + document.data.data.rank
+                                ? game.i18n.localize("l5r5e.sheets.rank") + " " + document.data.data.rank
                                 : "") +
                             `</i>`
                     );
