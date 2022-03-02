@@ -542,7 +542,7 @@
         {
             "id": "Lute",
             "name": "Luth",
-            "category": "Armes improvisées",
+            "category": "improvised weapon",
             "grip_1": "",
             "grip_2": "Dégâts +1 / Dangerosité +1",
             "description": "",

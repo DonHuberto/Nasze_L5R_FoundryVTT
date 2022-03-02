@@ -9,7 +9,7 @@
         {
             "id": "Animal Bond",
             "name": "Animaux",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Livre de Règles p.111"
         },
@@ -51,7 +51,7 @@
         {
             "id": "Fashion",
             "name": "Mode",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Livre de Règles p.113"
         },
@@ -114,14 +114,14 @@
         {
             "id": "Secrets",
             "name": "Secrets",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Livre de Règles p.115"
         },
         {
             "id": "Stories",
             "name": "Contes",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Livre de Règles p.112"
         },
@@ -142,14 +142,14 @@
         {
             "id": "Wordplay",
             "name": "Jeux de mots",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Livre de Règles p.113"
         },
         {
             "id": "Bathing",
             "name": "Bains",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Les Royaumes Célestes"
         },
@@ -163,7 +163,7 @@
         {
             "id": "Kabuki",
             "name": "Kabuki (WIP)",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Les Royaumes Célestes"
         },
@@ -191,21 +191,21 @@
         {
             "id": "Decorum",
             "name": "Décorum",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Les Cours de Pierre p.100"
         },
         {
             "id": "Pot Stirrer",
             "name": "Fauteur de trouble",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Les Cours de Pierre p.101"
         },
         {
             "id": "City [Choose One]",
             "name": "Cité [au choix]",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "L’Empire d’Émeraude p.244"
         },
@@ -219,7 +219,7 @@
         {
             "id": "Gourmet",
             "name": "Gourmet",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "L’Empire d’Émeraude p.244"
         },
@@ -254,7 +254,7 @@
         {
             "id": "Honest Work",
             "name": "Travail honnête",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "La Voie des Vagues p.71"
         },

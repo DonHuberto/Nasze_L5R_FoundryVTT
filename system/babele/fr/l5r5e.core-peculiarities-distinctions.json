@@ -65,7 +65,7 @@
         {
             "id": "Dangerous Allure",
             "name": "Beauté fatale",
-            "types": "Physique, Relations",
+            "types": "Relations, Physique",
             "description": "",
             "book_reference": "Livre de Règles p.102"
         },
@@ -79,35 +79,35 @@
         {
             "id": "Famously Honest",
             "name": "Notoirement honnête",
-            "types": "Relations, Renommée",
+            "types": "Renommée, Relations",
             "description": "",
             "book_reference": "Livre de Règles p.107"
         },
         {
             "id": "Famously Lucky",
             "name": "Notoirement chanceux",
-            "types": "Relations, Renommée",
+            "types": "Renommée, Relations",
             "description": "",
             "book_reference": "Livre de Règles p.106"
         },
         {
             "id": "Famously Reliable",
             "name": "Notoirement fiable",
-            "types": "Relations, Renommée",
+            "types": "Renommée, Relations",
             "description": "",
             "book_reference": "Livre de Règles p.107"
         },
         {
             "id": "Famously Successful",
             "name": "Notoirement efficace",
-            "types": "Relations, Renommée",
+            "types": "Renommée, Relations",
             "description": "",
             "book_reference": "Livre de Règles p.106"
         },
         {
             "id": "Famously Wealthy",
             "name": "Notoirement riche",
-            "types": "Relations, Renommée",
+            "types": "Renommée, Relations",
             "description": "",
             "book_reference": "Livre de Règles p.107"
         },
@@ -128,7 +128,7 @@
         {
             "id": "Indomitable Will",
             "name": "Volonté indomptable",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Livre de Règles p.110"
         },
@@ -247,14 +247,14 @@
         {
             "id": "Quick Reflexes",
             "name": "Réflexes fulgurants",
-            "types": "Physique, Relations",
+            "types": "Relations, Physique",
             "description": "",
             "book_reference": "Livre de Règles p.109"
         },
         {
             "id": "Seasoned",
             "name": "Aguerri",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Livre de Règles p.101"
         },
@@ -275,7 +275,7 @@
         {
             "id": "Subtle Observer",
             "name": "Observateur subtil",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Livre de Règles p.107"
         },
@@ -296,7 +296,7 @@
         {
             "id": "Famously Kind",
             "name": "Famously Kind (WIP)",
-            "types": "Relations, Renommée",
+            "types": "Renommée, Relations",
             "description": "",
             "book_reference": "Les Royaumes Célestes"
         },
@@ -317,7 +317,7 @@
         {
             "id": "Famously Neutral",
             "name": "Notoirement impartial",
-            "types": "Relations, Renommée",
+            "types": "Renommée, Relations",
             "description": "",
             "book_reference": "Les Cours de Pierre p.99"
         },
@@ -331,7 +331,7 @@
         {
             "id": "Animal Trainer",
             "name": "Dresseur",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "L’Empire d’Émeraude p.242"
         },
@@ -373,7 +373,7 @@
         {
             "id": "Hero of [Village]",
             "name": "Héros de [Village]",
-            "types": "Relations, Renommée",
+            "types": "Renommée, Relations",
             "description": "",
             "book_reference": "L’Empire d’Émeraude p.243"
         },
@@ -387,7 +387,7 @@
         {
             "id": "Ardent Leader",
             "name": "Chef ardent",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "La Voie des Vagues p.69"
         },
@@ -408,7 +408,7 @@
         {
             "id": "Scrounger",
             "name": "Profiteur",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "La Voie des Vagues p.70"
         },
@@ -422,7 +422,7 @@
         {
             "id": "Urbane and Worldly",
             "name": "Baroudeur bienséant",
-            "types": "Physique, Relations",
+            "types": "Relations, Physique",
             "description": "",
             "book_reference": "La Voie des Vagues p.69"
         },
@@ -464,7 +464,7 @@
         {
             "id": "Guiding Ancestor",
             "name": "Guiding Ancestor (WIP)",
-            "types": "Spiritual",
+            "types": "Spirituel",
             "description": "",
             "book_reference": "Les Champs de la Victoire"
         },
@@ -478,7 +478,7 @@
         {
             "id": "Passion for [Foreign Performing Art Form]",
             "name": "Talent pour [une forme d’art étrangère]",
-            "types": "Relations, Renommée",
+            "types": "Renommée, Relations",
             "description": "",
             "book_reference": "La Voie des Vagues p.70"
         }

@@ -23,7 +23,7 @@
         {
             "id": "Cynicism",
             "name": "Cynisme",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Livre de Règles p.131"
         },
@@ -37,7 +37,7 @@
         {
             "id": "Delusions of Grandeur",
             "name": "Mégalomanie",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Livre de Règles p.134"
         },
@@ -128,7 +128,7 @@
         {
             "id": "Softheartedness",
             "name": "Cœur tendre",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Livre de Règles p.131"
         },
@@ -142,14 +142,14 @@
         {
             "id": "Conspiracy",
             "name": "Conspiracy (WIP)",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Les Royaumes Célestes"
         },
         {
             "id": "Omen of Bad Luck",
             "name": "Omen of Bad Luck (WIP)",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Les Royaumes Célestes"
         },
@@ -163,14 +163,14 @@
         {
             "id": "Vanity",
             "name": "Vanity (WIP)",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Les Royaumes Célestes"
         },
         {
             "id": "Isolation",
             "name": "Isolement",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Les Cours de Pierre p.103"
         },
@@ -205,14 +205,14 @@
         {
             "id": "Loathing for Peasants",
             "name": "Aversion pour les paysans",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "L’Empire d’Émeraude p.248"
         },
         {
             "id": "Loneliness",
             "name": "Autophobie",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "L’Empire d’Émeraude p.249"
         },
@@ -268,14 +268,14 @@
         {
             "id": "Belligerent",
             "name": "Belligerent (WIP)",
-            "types": "Interpersonal",
+            "types": "Relations",
             "description": "",
             "book_reference": "Les Champs de la Victoire"
         },
         {
             "id": "Braggart",
             "name": "Braggart (WIP)",
-            "types": "Interpersonal",
+            "types": "Relations",
             "description": "",
             "book_reference": "Les Champs de la Victoire"
         }

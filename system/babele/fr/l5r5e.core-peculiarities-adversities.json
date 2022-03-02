@@ -65,7 +65,7 @@
         {
             "id": "Daikoku’s Curse",
             "name": "Malédiction de Daikoku",
-            "types": "Relations, Spiritualité",
+            "types": "Relations",
             "description": "",
             "book_reference": "Livre de Règles p.123"
         },
@@ -86,7 +86,7 @@
         {
             "id": "Discomfiting Countenance",
             "name": "Aspect déconcertant",
-            "types": "Physique, Relations",
+            "types": "Relations, Physique",
             "description": "",
             "book_reference": "Livre de Règles p.117"
         },
@@ -163,7 +163,7 @@
         {
             "id": "Gaijin Name, Culture, or Appearance",
             "name": "Nom, culture ou apparence gaijin",
-            "types": "Mental et relations (Culture) ou<br>physique (Apparence), Relations (Nom)",
+            "types": "Relations (Culture) ou Physique (Apparance), Relations (Nom), Mental",
             "description": "",
             "book_reference": "Livre de Règles p.126"
         },
@@ -240,7 +240,7 @@
         {
             "id": "Maimed Visage",
             "name": "Défiguré",
-            "types": "Physique, Relations, Séquelle",
+            "types": "Relations, Physique, Séquelle",
             "description": "",
             "book_reference": "Livre de Règles p.119"
         },
@@ -254,7 +254,7 @@
         {
             "id": "Muteness",
             "name": "Mutisme",
-            "types": "Physique ou mental, Relations, Séquelle",
+            "types": "Relations, Physique ou Mental, Séquelle",
             "description": "",
             "book_reference": "Livre de Règles p.126"
         },
@@ -450,7 +450,7 @@
         {
             "id": "Despise in [City]",
             "name": "Méprisé à [une ville]",
-            "types": "Relations, Renommée",
+            "types": "Renommée, Relations",
             "description": "",
             "book_reference": "L’Empire d’Émeraude p.247"
         },
@@ -485,21 +485,21 @@
         {
             "id": "Many Mouths",
             "name": "Des bouches à nourrir",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "La Voie des Vagues p.71"
         },
         {
             "id": "Horrible Scar",
             "name": "Horrible cicatrice",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "La Voie des Vagues p.72"
         },
         {
             "id": "Pursued by [Individual or Group]",
             "name": "Poursuivi par [un individu ou un groupe]",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "La Voie des Vagues p.73"
         },
@@ -513,7 +513,7 @@
         {
             "id": "Stained Lineage",
             "name": "Lignée entachée",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "La Voie des Vagues p.72"
         },
@@ -548,14 +548,14 @@
         {
             "id": "Demon Wound",
             "name": "Blessure de démon",
-            "types": "Spirituel, Séquelle",
+            "types": "Séquelle, Spirituel",
             "description": "",
             "book_reference": "L’Outremonde p.97"
         },
         {
             "id": "Shadowlands Taint [Kansen Whispers]",
             "name": "Souillure de l’Outremonde (Murmures des Kansen)",
-            "types": "Malédiction, Mentale",
+            "types": "Malédiction, Mental",
             "description": "",
             "book_reference": "L’Outremonde p.99"
         },
@@ -569,14 +569,14 @@
         {
             "id": "Sailor’s Tongue",
             "name": "Parler du marin",
-            "types": "Mental, Relations",
+            "types": "Relations, Mental",
             "description": "",
             "book_reference": "Le Clan de la Mante p.7"
         },
         {
             "id": "Blood Feud",
             "name": "Blood Feud (WIP)",
-            "types": "Interpersonal, Social",
+            "types": "Relations, Social",
             "description": "",
             "book_reference": "Les Champs de la Victoire"
         }
