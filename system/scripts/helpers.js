@@ -147,7 +147,7 @@ export class HelpersL5r5e {
             // Named pack
             if (!document) {
                 // If no pack passed, but it's a core item, we know the pack to get it
-                if (!pack && id.substr(0, 7) === "L5RCore") {
+                if (!pack && id.substring(0, 7) === "L5RCore") {
                     pack = HelpersL5r5e.getPackNameForCoreItem(id);
                 }
 
@@ -167,12 +167,6 @@ export class HelpersL5r5e {
             // Unknown pack object, iterate all packs
             if (!document) {
                 for (const comp of game.packs) {
-                    // TODO Bug with babele if "comp.getDocument(id)" return null...
-                    const babeleFix = (await comp.getIndex()).some((e) => e.id === id);
-                    if (!babeleFix) {
-                        continue;
-                    }
-
                     const tmpData = await comp.getDocument(id);
                     if (tmpData) {
                         document = HelpersL5r5e.createDocumentFromCompendium({ type, data: tmpData });

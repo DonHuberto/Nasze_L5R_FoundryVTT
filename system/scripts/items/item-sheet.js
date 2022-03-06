@@ -45,7 +45,15 @@ export class ItemSheetL5r5e extends BaseItemSheetL5r5e {
                     sheetData.data.propertiesList.push(gameProp);
                     props.push({ id: gameProp.id, name: gameProp.name });
                 } else {
-                    console.warn(`L5R5E | Unknown property id[${property.id}]`);
+                    // Item not found
+                    console.warn(`L5R5E | Unknown property id[${property.id}], name[${property.name}]`);
+                    sheetData.data.propertiesList.push({
+                        id: property.id,
+                        name: property.name,
+                        type: "property",
+                        img: "systems/l5r5e/assets/icons/items/property.svg",
+                        removed: true,
+                    });
                 }
             }
             sheetData.data.data.properties = props;

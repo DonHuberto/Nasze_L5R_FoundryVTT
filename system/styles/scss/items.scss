@@ -20,6 +20,9 @@
                 line-height: 1rem;
                 color: $l5r5e-bold;
             }
+            .removed {
+                text-decoration-line: line-through;
+            }
             .item-edit,
             .item-delete,
             .item-equip,

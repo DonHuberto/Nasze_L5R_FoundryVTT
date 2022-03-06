@@ -19,6 +19,9 @@
     - Added ability to directly apply the strife to the actor on final step. The chat message show the value taken in gray aside the total strife.
 - Roll chat message :
     - Added Target information.
+- Properties sheet:
+  - Fixed loading properties from custom compendiums.
+  - Added a line strike on removed/unknown property and ability to remove them.
 
 Technique syntaxe "quick" explanation :
 - Difficulty can be :
