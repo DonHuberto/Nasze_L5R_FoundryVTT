@@ -22,6 +22,7 @@
 - Properties sheet:
   - Fixed loading properties from custom compendiums.
   - Added a line strike on removed/unknown property and ability to remove them.
+- Fixed svg height/width for firefox.
 
 Technique syntaxe "quick" explanation :
 - Difficulty can be :
