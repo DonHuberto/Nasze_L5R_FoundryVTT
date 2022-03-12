@@ -263,14 +263,16 @@ i.i_shugenja:before {
 i.i_ring {
     content: "";
     background: transparent url("../assets/dices/default/ring_blank.svg") no-repeat 0 center;
+    background-size: 1rem;
     display: inline-block;
     height: 1rem;
-    width: 0.75rem;
+    width: 1rem;
 }
 // Skill
 i.i_skill {
     content: "";
     background: transparent url("../assets/dices/default/skill_blank.svg") no-repeat 0 0;
+    background-size: 1rem;
     display: inline-block;
     height: 1rem;
     width: 1rem;

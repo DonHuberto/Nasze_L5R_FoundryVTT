@@ -1,11 +1,11 @@
-<li class="skill-category-wrapper skill-category-content">
+<li class="skill-category-wrapper skill-category-content toggle-on-click" data-toggle="toggle-skill-category-{{categoryId}}">
     <h4 class="section-header">{{localizeSkill categoryId 'title'}}</h4>
-    <ul class="skill-category-skills-list">
+    <ul class="skill-category-skills-list toggle-skill-category-{{categoryId}} {{#ifCond data.storeInfos 'includes' (concat 'toggle-skill-category-' categoryId)}}toggle-hidden{{/ifCond}}">
         {{#each category as |skill id|}}
             {{> 'systems/l5r5e/templates/actors/character/skill.html' categoryId=../categoryId skill=skill skillId=id data=../data}}
         {{/each}}
     </ul>
-    <ul class="skill-category-ring-actions">
+    <ul class="skill-category-ring-actions toggle-skill-category-{{categoryId}} {{#ifCond data.storeInfos 'includes' (concat 'toggle-skill-category-' categoryId)}}toggle-hidden{{/ifCond}}">
         <li name="air" class="air"><i class="i_air"></i> {{localizeSkill categoryId 'air'}} </li>
         <li name="earth" class="earth"><i class="i_earth"></i> {{localizeSkill categoryId 'earth'}} </li>
         <li name="fire" class="fire"><i class="i_fire"></i> {{localizeSkill categoryId 'fire'}} </li>

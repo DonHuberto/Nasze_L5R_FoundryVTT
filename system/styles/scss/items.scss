@@ -493,17 +493,6 @@
                 padding: 0;
             }
         }
-        .toggle-active {
-            height: 6rem;
-            overflow-y: auto;
-            scrollbar-width: thin;
-            border: 1px solid $l5r5e-title;
-        }
-        p {
-            &.toggle-active {
-                padding: 0.25rem;
-            }
-        }
         &:hover,
         &:active {
             .item-description {
@@ -524,7 +513,7 @@
             display: none;
             height: auto;
         }
-        .toggle-active {
+        .stance-active {
             display: block;
             height: auto;
             border: 0 none;
@@ -534,7 +523,7 @@
                 height: auto;
                 border: 0 none;
             }
-            .toggle-active {
+            .stance-active {
                 display: block;
             }
         }

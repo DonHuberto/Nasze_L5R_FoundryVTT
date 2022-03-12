@@ -442,7 +442,12 @@ export class HelpersL5r5e {
         html.find(".toggle-on-click").on("click", (event) => {
             const elmt = $(event.currentTarget).data("toggle");
             const tgt = html.find("." + elmt);
-            tgt.toggleClass("toggle-active");
+            tgt.toggleClass("toggle-hidden");
+
+            const appId = $(event.currentTarget).closest(".window-app").attr("id");
+            if (appId) {
+                game.l5r5e.storage.toggleKey(appId, elmt.toString());
+            }
         });
 
         // Compendium folder link

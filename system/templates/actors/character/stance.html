@@ -3,5 +3,5 @@
         {{localizeRing ringId}}
         <input id="stance_{{ringId}}" type="radio" name="data.stance" value="{{ringId}}" {{radioChecked ringId stance}}/>
     </label>
-    <p class="item-description {{#ifCond ringId '==' stance}}toggle-active{{/ifCond}}">{{localizeStanceTip ringId}}</p>
+    <p class="item-description {{#ifCond ringId '==' stance}}stance-active{{/ifCond}}">{{localizeStanceTip ringId}}</p>
 </li>

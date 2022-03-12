@@ -4,7 +4,10 @@
 - NPC Sheet :
     - Added a random generator feature (Demeanor, Clan and Families names courteously authorized by Edge).
     - This is random by design, don't expect clan logic in values.
-- PC/NPC sheet:
+- PC sheet :
+    - Added collapsible skill group.
+- PC/NPC sheet :
+    - Added a volatile storage to keep collapsible (Skills/Inventory) in theirs state on sheet update.
     - Added the ability for technique with a skill set, to open the DicePicker with presets values.
     - Some can interact with targets, but do the default difficulty if none.
     - Notes : Techniques in sheet need to be re-imported from the compendium or manually updated for this to work.

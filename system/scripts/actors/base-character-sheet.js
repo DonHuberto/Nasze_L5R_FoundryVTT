@@ -31,6 +31,9 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
         // Split Items by types
         sheetData.data.splitItemsList = this._splitItems(sheetData);
 
+        // Store infos for this app (collapsible)
+        sheetData.data.storeInfos = game.l5r5e.storage.getAppKeys(this.id);
+
         return sheetData;
     }
 

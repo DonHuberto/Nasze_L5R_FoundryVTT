@@ -58,6 +58,12 @@ export const RegisterHandlebars = function () {
         return a === b ? new Handlebars.SafeString('checked="checked"') : "";
     });
 
+    // Concatenation
+    Handlebars.registerHelper("concat", function (...objects) {
+        objects.pop(); // remove this function call
+        return objects.join("");
+    });
+
     // Add a setter
     Handlebars.registerHelper("setVar", function (varName, varValue, options) {
         options.data.root[varName] = varValue;

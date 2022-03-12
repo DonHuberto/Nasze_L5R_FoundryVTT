@@ -42,6 +42,7 @@ import { BaseJournalSheetL5r5e } from "./journals/base-journal-sheet.js";
 import { MigrationL5r5e } from "./migration.js";
 import { GmToolbox } from "./gm/gm-toolbox.js";
 import { GmMonitor } from "./gm/gm-monitor.js";
+import { Storage } from "./storage.js";
 
 /* ------------------------------------ */
 /* Initialize system                    */
@@ -91,6 +92,7 @@ Hooks.once("init", async () => {
         GmToolbox,
         GmMonitor,
         HelpDialog,
+        storage: new Storage(),
         sockets: new SocketHandlerL5r5e(),
         migrations: MigrationL5r5e,
     };
