@@ -99,9 +99,9 @@ export class CharacterGeneratorDialog extends FormApplication {
         return {
             ...super.getData(options),
             isNpc: this.actor.type === "npc",
-            clanList: [{ id: "random", label: game.i18n.localize("l5r5e.random") }, ...clans],
+            clanList: [{ id: "random", label: game.i18n.localize("l5r5e.global.random") }, ...clans],
             genderList: [
-                { id: "random", label: game.i18n.localize("l5r5e.random") },
+                { id: "random", label: game.i18n.localize("l5r5e.global.random") },
                 { id: "male", label: game.i18n.localize("l5r5e.social.gender.male") },
                 { id: "female", label: game.i18n.localize("l5r5e.social.gender.female") },
             ],

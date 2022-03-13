@@ -125,11 +125,11 @@ L5R5E.symbols.set("(shugenja)", { class: "i_shugenja", label: "" });
 L5R5E.families = new Map();
 // Majors
 L5R5E.families.set("imperial", ["Miya", "Otomo", "Seppun"]);
-L5R5E.families.set("crab", ["Hida", "Kaiu", "Hiruma", "Yasuki", "Kuni"]);
+L5R5E.families.set("crab", ["Hida", "Hiruma", "Kaiu", "Kuni", "Yasuki"]);
 L5R5E.families.set("crane", ["Asahina", "Daidoji", "Doji", "Kakita"]);
-L5R5E.families.set("dragon", ["Kitsuki", "Mirumoto", "Togashi"]);
+L5R5E.families.set("dragon", ["Agasha", "Kitsuki", "Mirumoto", "Togashi"]);
 L5R5E.families.set("lion", ["Akodo", "Ikoma", "Kitsu", "Matsu"]);
-L5R5E.families.set("phoenix", ["Agasha", "Asako", "Isawa", "Shiba"]);
+L5R5E.families.set("phoenix", ["Asako", "Isawa", "Shiba", "Kaito"]);
 L5R5E.families.set("scorpion", ["Bayushi", "Shosuro", "Soshi", "Yogo"]);
 L5R5E.families.set("unicorn", ["Ide", "Iuchi", "Moto", "Shinjo", "Utaku"]);
 // Minors

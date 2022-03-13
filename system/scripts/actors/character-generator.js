@@ -93,13 +93,17 @@ export class CharacterGenerator {
             console.log(`L5R5E | Pack not found[${packName}]`);
             return;
         }
+        let document;
         if (id) {
-            return comp.getDocument(id);
+            document = await comp.getDocument(id);
+        } else {
+            if (!comp.indexed) {
+                await comp.getDocuments();
+            }
+            document = comp.getDocument(CharacterGenerator._getRandomArrayValue(Array.from(comp.keys())));
         }
-        if (!comp.indexed) {
-            await comp.getDocuments();
-        }
-        return comp.getDocument(CharacterGenerator._getRandomArrayValue(Array.from(comp.keys())));
+        await game.l5r5e.HelpersL5r5e.refreshItemProperties(document);
+        return document;
     }
 
     /**
