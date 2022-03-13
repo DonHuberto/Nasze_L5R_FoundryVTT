@@ -75,6 +75,8 @@ i.i_rituals,
 i.i_shuji,
 i.i_invocations,
 i.i_kata,
+i.i_inversion,
+i.i_mantra,
 i.i_imperial,
 i.i_crab,
 i.i_crane,
@@ -188,6 +190,16 @@ i.i_rituals:before {
 i.i_shuji:before {
     content: "\E905";
     color: $l5r5e-shuji;
+}
+// Inversion
+i.i_inversion:before {
+    content: "\E91E";
+    color: $l5r5e-inversion;
+}
+// Mantra
+i.i_mantra:before {
+    content: "\E91F";
+    color: $l5r5e-mantra;
 }
 
 // -- Clans
