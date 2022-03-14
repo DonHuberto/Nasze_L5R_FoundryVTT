@@ -103,6 +103,7 @@ L5R5E.symbols.set("(shuji)", { class: "i_shuji", label: "l5r5e.techniques.shuji"
 L5R5E.symbols.set("(inversion)", { class: "i_inversion", label: "l5r5e.techniques.inversion" });
 L5R5E.symbols.set("(invocation)", { class: "i_invocations", label: "l5r5e.techniques.invocation" });
 L5R5E.symbols.set("(kata)", { class: "i_kata", label: "l5r5e.techniques.kata" });
+L5R5E.symbols.set("(mantra)", { class: "i_mantra", label: "l5r5e.techniques.mantra" });
 L5R5E.symbols.set("(prereq)", { class: "i_prerequisite_exemption", label: "l5r5e.advancements.curriculum" });
 
 L5R5E.symbols.set("(imperial)", { class: "i_imperial", label: "" });
