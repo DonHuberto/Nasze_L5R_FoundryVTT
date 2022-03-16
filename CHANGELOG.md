@@ -25,6 +25,8 @@
 - Properties sheet:
   - Fixed loading properties from custom compendiums.
   - Added a line strike on removed/unknown property and ability to remove them.
+- Added Inversion and Mantra icon and tag symbols (thanks to TesserWract).
+- Fixed linked actor image compatibility with Tokenizer.
 - Fixed svg height/width for firefox.
 
 Technique syntaxe "quick" explanation :

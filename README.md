@@ -1,4 +1,4 @@
-# Legend of the Five Rings (5th Edition) by [Edge Studio](https://edge-studio.net/)
+# Legend of the Five Rings (5th Edition) authorized by [Edge Studio](https://edge-studio.net/)
 
 ![Banner Legend of the Five Rings](./l5rBan.jpg)
 [![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fl5r5e&colorB=4aa94a)](https://forge-vtt.com/bazaar#package=l5r5e)

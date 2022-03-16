@@ -100,10 +100,12 @@ export class ActorL5r5e extends Actor {
 
         // Only on linked Actor
         if (!!data["token.actorLink"] || (data["token.actorLink"] === undefined && this.data.token.actorLink)) {
-            // Update the token name/image if the sheet name/image changed, but only if they was previously the same
+            // Update the token name/image if the sheet name/image changed, but only if
+            // they was previously the same, and token img was not set in same time
             ["name", "img"].forEach((fieldName) => {
                 if (
                     data[fieldName] &&
+                    !data["token." + fieldName] &&
                     this.data[fieldName] === this.data.token[fieldName] &&
                     this.data[fieldName] !== data[fieldName]
                 ) {
