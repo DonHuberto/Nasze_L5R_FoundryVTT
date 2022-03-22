@@ -27,8 +27,11 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
         sheetData.data.techniquesList = game.l5r5e.HelpersL5r5e.getTechniquesList({ types });
 
         // Sanitize Difficulty and Skill list
-        sheetData.data.data.skill = TechniqueSheetL5r5e.formatSkillList(sheetData.data.data.skill);
         sheetData.data.data.difficulty = TechniqueSheetL5r5e.formatDifficulty(sheetData.data.data.difficulty);
+        sheetData.data.data.skill = game.l5r5e.HelpersL5r5e.translateSkillsList(
+            TechniqueSheetL5r5e.formatSkillList(sheetData.data.data.skill.split(",")),
+            false
+        ).join(", ");
 
         return sheetData;
     }
@@ -41,9 +44,19 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
      * @override
      */
     async _updateObject(event, formData) {
+        // Change the image according to the type if this is already the case
+        if (
+            formData["data.technique_type"] &&
+            formData.img === `${CONFIG.l5r5e.paths.assets}icons/techs/${this.object.data.data.technique_type}.svg`
+        ) {
+            formData.img = `${CONFIG.l5r5e.paths.assets}icons/techs/${formData["data.technique_type"]}.svg`;
+        }
+
         // Sanitize Difficulty and Skill list
-        formData["data.skill"] = TechniqueSheetL5r5e.formatSkillList(formData["data.skill"]);
         formData["data.difficulty"] = TechniqueSheetL5r5e.formatDifficulty(formData["data.difficulty"]);
+        formData["data.skill"] = TechniqueSheetL5r5e.formatSkillList(
+            game.l5r5e.HelpersL5r5e.translateSkillsList(formData["data.skill"].split(","), true)
+        ).join(",");
 
         return super._updateObject(event, formData);
     }
@@ -64,11 +77,24 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
         // Autocomplete
         game.l5r5e.HelpersL5r5e.autocomplete(
             html,
+            "data.difficulty",
+            [
+                "@T:intrigueRank",
+                "@T:focus",
+                "@T:martialRank",
+                "@T:statusRank|max",
+                "@T:strife.value|max",
+                "@T:vigilance",
+                "@T:vigilance|max",
+                "@T:vigilance|min",
+                "@T:vigilance|max(@T:statusRank)",
+            ],
+            ","
+        );
+        game.l5r5e.HelpersL5r5e.autocomplete(
+            html,
             "data.skill",
-            Array.from(game.l5r5e.HelpersL5r5e.getCategoriesSkillsList()).reduce((acc, [cat, skills]) => {
-                acc.push(cat, ...skills);
-                return acc;
-            }, []),
+            Object.values(game.l5r5e.HelpersL5r5e.getSkillsTranslationMap(false)),
             ","
         );
     }
@@ -87,8 +113,8 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
 
     /**
      * Sanitize the technique skill list
-     * @param  {string} skillList
-     * @return {string}
+     * @param  {string[]} skillList
+     * @return {string[]}
      */
     static formatSkillList(skillList) {
         if (!skillList) {
@@ -98,18 +124,18 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
 
         // List categories
         const unqCatList = new Set();
-        skillList.split(",").forEach((s) => {
-            s = s.trim();
-            if (categories.has(s)) {
+        skillList.forEach((s) => {
+            s = s?.trim();
+            if (!!s && categories.has(s)) {
                 unqCatList.add(s);
             }
         });
 
         // List skill (not include in cat)
         const unqSkillList = new Set();
-        skillList.split(",").forEach((s) => {
-            s = s.trim();
-            if (CONFIG.l5r5e.skills.has(s)) {
+        skillList.forEach((s) => {
+            s = s?.trim();
+            if (!!s && CONFIG.l5r5e.skills.has(s)) {
                 const cat = CONFIG.l5r5e.skills.get(s);
                 if (!unqCatList.has(cat)) {
                     unqSkillList.add(s);
@@ -117,6 +143,6 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
             }
         });
 
-        return [...unqCatList, ...unqSkillList].join(",");
+        return [...unqCatList, ...unqSkillList];
     }
 }

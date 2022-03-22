@@ -14,7 +14,7 @@
     - Trying an autocomplete on some fields : clan, family, school, roles, demeanor.
 - Techniques Sheet & Compendiums :
     - Added difficulty and skill values (not to all techniques).
-    - Trying an autocomplete on skill(id) field.
+    - Trying an autocomplete on skill field.
 - DicePicker :
     - Added TN hidden difficulty visibility for GM (ex: ?2?).
     - Added a selection for techniques with skill list.
@@ -26,6 +26,7 @@
   - Fixed loading properties from custom compendiums.
   - Added a line strike on removed/unknown property and ability to remove them.
 - Added Inversion and Mantra icon and tag symbols (thanks to TesserWract).
+- Fixed image following the technique_type on technique sheet.
 - Fixed linked actor image compatibility with Tokenizer.
 - Fixed svg height/width for firefox.
 
@@ -44,10 +45,9 @@ Technique syntaxe "quick" explanation :
             - `@T:vigilance|min` : Difficulty will be the `vigilance` from the target with the minimum vigilance (implicit) value. it's the same to wrote `@T:vigilance|min(vigilance)`.
             - `@T:vigilance|max(statusRank)` : Difficulty will be the `vigilance` from the target with the maximum `statusRank` value.
 - Skill can be :
-    - SkillId : `melee`, `fitness`...
-    - SkillCategoryId : `scholar`, `martial`...
+    - Skill : `melee`, `fitness`...
+    - SkillCategory : `scholar`, `martial`...
     - Or both in list, coma separated.
-    - Ids are english names in lower case, see `config.js / L5R5E.skills` for the list.
     - Exemples :
         - `theology`
         - `melee,ranged,unarmed`

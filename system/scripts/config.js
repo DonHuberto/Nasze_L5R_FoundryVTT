@@ -152,7 +152,7 @@ L5R5E.families.set("qamarist", []);
 L5R5E.families.set("ujik", []);
 
 // *** demeanor ***
-L5R5E.demeanorList = [
+L5R5E.demeanors = [
     { id: "adaptable", mod: { fire: 2, earth: -2 } },
     { id: "adaptable", mod: { water: 2, earth: -2 } },
     { id: "aggressive", mod: { fire: 2, air: -2 } },

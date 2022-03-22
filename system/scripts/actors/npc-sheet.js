@@ -69,7 +69,7 @@ export class NpcSheetL5r5e extends BaseCharacterSheetL5r5e {
         game.l5r5e.HelpersL5r5e.autocomplete(
             html,
             "data.attitude",
-            CONFIG.l5r5e.demeanorList.map((e) => {
+            CONFIG.l5r5e.demeanors.map((e) => {
                 let modifiers = [];
                 Object.entries(e.mod).forEach(([k, v]) => {
                     modifiers.push(`${game.i18n.localize(`l5r5e.rings.${k}`)} ${v}`);

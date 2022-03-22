@@ -430,7 +430,7 @@ export class CharacterGenerator {
      */
     _generateDemeanor(actorDatas) {
         // demeanor { id: "adaptable", mod: { fire: 2, earth: -2 } },
-        const demeanor = CharacterGenerator._getRandomArrayValue(CONFIG.l5r5e.demeanorList);
+        const demeanor = CharacterGenerator._getRandomArrayValue(CONFIG.l5r5e.demeanors);
         actorDatas.attitude = game.i18n.localize("l5r5e.demeanor." + demeanor.id);
         actorDatas.rings_affinities = foundry.utils.mergeObject(
             {
