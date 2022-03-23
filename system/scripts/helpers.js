@@ -59,34 +59,6 @@ export class HelpersL5r5e {
     }
 
     /**
-     * Get a flat map for skill translation
-     * @param  {boolean} bToSkillId if true flip props/values
-     * @return {Object}
-     */
-    static getSkillsTranslationMap(bToSkillId) {
-        let map = Array.from(CONFIG.l5r5e.skills).reduce((acc, [id, cat]) => {
-            acc[id] = game.i18n.localize(`l5r5e.skills.${cat}.${id}`);
-            acc[cat] = game.i18n.localize(`l5r5e.skills.${cat}.title`);
-            return acc;
-        }, {});
-        if (bToSkillId) {
-            map = Object.entries(map).reduce((obj, [key, value]) => ({ ...obj, [value]: key }), {});
-        }
-        return map;
-    }
-
-    /**
-     * Translate a list of skill and category
-     * @param  {string[]}   aIn
-     * @param  {boolean} bToSkillId
-     * @return {string[]}
-     */
-    static translateSkillsList(aIn, bToSkillId) {
-        const map = HelpersL5r5e.getSkillsTranslationMap(bToSkillId);
-        return aIn.map((skill) => map[skill.trim()]);
-    }
-
-    /**
      * Get Techniques for List / Select
      * @param types           core|school|title|custom
      * @param displayInTypes  null|true|false
@@ -773,7 +745,8 @@ export class HelpersL5r5e {
             .normalize("NFKD")
             .replace(/[\u0300-\u036f]/g, "") // remove accents
             .replace(/[\W]/g, " ") // remove non word things
-            .toLowerCase();
+            .toLowerCase()
+            .trim();
     }
 
     /**

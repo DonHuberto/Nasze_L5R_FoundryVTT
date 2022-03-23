@@ -28,7 +28,7 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
 
         // Sanitize Difficulty and Skill list
         sheetData.data.data.difficulty = TechniqueSheetL5r5e.formatDifficulty(sheetData.data.data.difficulty);
-        sheetData.data.data.skill = game.l5r5e.HelpersL5r5e.translateSkillsList(
+        sheetData.data.data.skill = TechniqueSheetL5r5e.translateSkillsList(
             TechniqueSheetL5r5e.formatSkillList(sheetData.data.data.skill.split(",")),
             false
         ).join(", ");
@@ -55,7 +55,7 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
         // Sanitize Difficulty and Skill list
         formData["data.difficulty"] = TechniqueSheetL5r5e.formatDifficulty(formData["data.difficulty"]);
         formData["data.skill"] = TechniqueSheetL5r5e.formatSkillList(
-            game.l5r5e.HelpersL5r5e.translateSkillsList(formData["data.skill"].split(","), true)
+            TechniqueSheetL5r5e.translateSkillsList(formData["data.skill"].split(","), true)
         ).join(",");
 
         return super._updateObject(event, formData);
@@ -94,7 +94,7 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
         game.l5r5e.HelpersL5r5e.autocomplete(
             html,
             "data.skill",
-            Object.values(game.l5r5e.HelpersL5r5e.getSkillsTranslationMap(false)),
+            Object.values(TechniqueSheetL5r5e.getSkillsTranslationMap(false)),
             ","
         );
     }
@@ -109,6 +109,35 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
             return "";
         }
         return str;
+    }
+
+    /**
+     * Get a flat map for skill translation
+     * @param  {boolean} bToSkillId if true flip props/values
+     * @return {Object}
+     */
+    static getSkillsTranslationMap(bToSkillId) {
+        return Array.from(CONFIG.l5r5e.skills).reduce((acc, [id, cat]) => {
+            if (bToSkillId) {
+                acc[game.l5r5e.HelpersL5r5e.normalize(game.i18n.localize(`l5r5e.skills.${cat}.${id}`))] = id;
+                acc[game.l5r5e.HelpersL5r5e.normalize(game.i18n.localize(`l5r5e.skills.${cat}.title`))] = cat;
+            } else {
+                acc[id] = game.i18n.localize(`l5r5e.skills.${cat}.${id}`);
+                acc[cat] = game.i18n.localize(`l5r5e.skills.${cat}.title`);
+            }
+            return acc;
+        }, {});
+    }
+
+    /**
+     * Translate a list of skill and category
+     * @param  {string[]}   aIn
+     * @param  {boolean} bToSkillId
+     * @return {string[]}
+     */
+    static translateSkillsList(aIn, bToSkillId) {
+        const map = TechniqueSheetL5r5e.getSkillsTranslationMap(bToSkillId);
+        return aIn.map((skill) => map[game.l5r5e.HelpersL5r5e.normalize(skill)]);
     }
 
     /**
