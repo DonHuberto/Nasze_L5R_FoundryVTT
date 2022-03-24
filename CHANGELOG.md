@@ -29,6 +29,7 @@
 - Fixed image following the technique_type on technique sheet.
 - Fixed linked actor image compatibility with Tokenizer.
 - Fixed svg height/width for firefox.
+- Compendiums : Removed the Phoenix image on "Ishiken Initiate School" school techniques.
 
 Technique syntaxe "quick" explanation :
 - Difficulty can be :
