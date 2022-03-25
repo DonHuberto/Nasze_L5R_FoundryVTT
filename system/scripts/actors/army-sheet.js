@@ -34,7 +34,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
         if (data.commander_actor_id) {
             const commander = game.actors.get(data.commander_actor_id);
             if (commander) {
-                this._updateLinkedActorData("commander", commander);
+                this._updateLinkedActorData("commander", commander, true);
             } else {
                 this._removeLinkedActorData("commander");
             }
@@ -42,7 +42,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
         if (data.warlord_actor_id) {
             const warlord = game.actors.get(data.warlord_actor_id);
             if (warlord) {
-                this._updateLinkedActorData("warlord", warlord);
+                this._updateLinkedActorData("warlord", warlord, true);
             } else {
                 this._removeLinkedActorData("warlord");
             }
@@ -196,7 +196,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
         }
 
         const droppedActor = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
-        return this._updateLinkedActorData(type, droppedActor);
+        return this._updateLinkedActorData(type, droppedActor, false);
     }
 
     /**
@@ -219,39 +219,49 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
 
     /**
      * Update actor datas for this army sheet
-     * @param {string}     type  commander|warlord
-     * @param {ActorL5r5e} actor actor object
+     * @param {string}     type   commander|warlord
+     * @param {ActorL5r5e} actor  actor object
+     * @param {boolean}    isInit If it's initialization process
      * @return {Promise<abstract.Document>}
      * @private
      */
-    async _updateLinkedActorData(type, actor) {
+    async _updateLinkedActorData(type, actor, isInit = false) {
         if (!actor || actor.documentName !== "Actor" || !actor.isCharacter) {
             console.warn("L5R5E | Wrong actor type", actor?.data?.type, actor);
             return;
         }
 
+        const actorPath = `${CONFIG.l5r5e.paths.assets}icons/actors/`;
         const actorData = {};
         switch (type) {
             case "commander":
-                actorData.commander = actor.data.name;
-                actorData.commander_actor_id = actor.data._id;
-                actorData.commander_standing = {
-                    honor: actor.data.data.social.honor,
-                    glory: actor.data.data.social.glory,
-                    status: actor.data.data.social.status,
-                };
+                actorData["data.commander"] = actor.data.name;
+                actorData["data.commander_actor_id"] = actor.data._id;
+                actorData["data.commander_standing.honor"] = actor.data.data.social.honor;
+                actorData["data.commander_standing.glory"] = actor.data.data.social.glory;
+                actorData["data.commander_standing.status"] = actor.data.data.social.status;
+
+                // Replace the image by commander's image
+                if (
+                    !isInit &&
+                    this.actor.data.img !== actor.data.img &&
+                    ![`${actorPath}character.svg`, `${actorPath}npc.svg`].includes(actor.data.img)
+                ) {
+                    actorData["img"] = actor.data.img;
+                    actorData["token.img"] = actor.data.token.img;
+                }
                 break;
 
             case "warlord":
-                actorData.warlord = actor.data.name;
-                actorData.warlord_actor_id = actor.data._id;
+                actorData["data.warlord"] = actor.data.name;
+                actorData["data.warlord_actor_id"] = actor.data._id;
                 break;
 
             default:
                 console.warn("L5R5E | Unknown type", type);
                 return;
         }
-        return this.actor.update({ data: actorData });
+        return this.actor.update(actorData);
     }
 
     /**

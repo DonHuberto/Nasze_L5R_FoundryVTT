@@ -6,6 +6,8 @@
     - This is random by design, don't expect clan logic in values.
 - PC sheet :
     - Added collapsible skill group.
+- Army sheet :
+    - Image and token now follow the commander's on drop.
 - PC/NPC sheet :
     - Added a volatile storage to keep collapsible (Skills/Inventory) in theirs state on sheet update.
     - Added the ability for technique with a skill set, to open the DicePicker with presets values.
