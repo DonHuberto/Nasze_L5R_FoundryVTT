@@ -314,6 +314,7 @@ export class RollnKeepDialog extends FormApplication {
                 }
 
                 current.newFace = diceNewFace;
+                this._forceChoiceForDiceWithoutOne(RollnKeepDialog.CHOICES.keep);
                 break;
             }
 
@@ -363,19 +364,25 @@ export class RollnKeepDialog extends FormApplication {
      */
     _checkKeepCount(step) {
         return (
-            !this._haveChoice(step, RollnKeepDialog.CHOICES.reroll) &&
-            (step === 0 || this._haveChoice(step - 1, RollnKeepDialog.CHOICES.reroll))
+            !this._haveChoice(step, [RollnKeepDialog.CHOICES.reroll, RollnKeepDialog.CHOICES.swap]) &&
+            (step === 0 || this._haveChoice(step - 1, [RollnKeepDialog.CHOICES.reroll, RollnKeepDialog.CHOICES.swap]))
         );
     }
 
     /**
      * Return true if this choice exist in the current step
+     * @param {number}          currentStep
+     * @param {string|string[]} choices
+     * @return {boolean}
      * @private
      */
-    _haveChoice(currentStep, choice) {
+    _haveChoice(currentStep, choices) {
+        if (!Array.isArray(choices)) {
+            choices = [choices];
+        }
         return (
             this.object.dicesList[currentStep] &&
-            this.object.dicesList[currentStep].some((e) => !!e && e.choice === choice)
+            this.object.dicesList[currentStep].some((e) => !!e && choices.includes(e.choice))
         );
     }
 
@@ -412,9 +419,11 @@ export class RollnKeepDialog extends FormApplication {
      * @private
      */
     async _applyChoices() {
-        let haveSwap = false;
         let nextStep = this.object.currentStep + 1;
-        const haveReroll = this._haveChoice(this.object.currentStep, RollnKeepDialog.CHOICES.reroll);
+        const haveReroll = this._haveChoice(this.object.currentStep, [
+            RollnKeepDialog.CHOICES.reroll,
+            RollnKeepDialog.CHOICES.swap,
+        ]);
 
         // Foreach kept dices, apply choices
         const newRolls = {};
@@ -452,22 +461,12 @@ export class RollnKeepDialog extends FormApplication {
 
                 case RollnKeepDialog.CHOICES.swap:
                     // FaceSwap : add a new dice with selected face in next step
-                    haveSwap = true;
                     this._initializeDicesListStep(nextStep);
                     this.object.dicesList[nextStep][idx] = {
                         type: currentRow.type,
                         face: currentRow.newFace,
-                        choice: RollnKeepDialog.CHOICES.keep,
+                        choice: RollnKeepDialog.CHOICES.nothing,
                     };
-
-                    // Swapped to an exploding face : add the roll
-                    if (game.l5r5e[currentRow.type].FACES[currentRow.newFace].explosive) {
-                        if (!newRolls[currentRow.type]) {
-                            newRolls[currentRow.type] = 0;
-                        }
-                        newRolls[currentRow.type] += 1;
-                    }
-
                     delete currentRow.newFace;
                     break;
             }
@@ -475,13 +474,10 @@ export class RollnKeepDialog extends FormApplication {
 
         // If new rolls, roll and add them
         if (Object.keys(newRolls).length > 0) {
-            if (haveSwap) {
-                nextStep++;
-            }
             const newRollsResults = await this._newRoll(newRolls);
             this._initializeDicesListStep(nextStep);
 
-            const applyNewRolls = (die, idx) => {
+            this.object.dicesList[this.object.currentStep].forEach((die, idx) => {
                 if (!die) {
                     return;
                 }
@@ -493,13 +489,7 @@ export class RollnKeepDialog extends FormApplication {
                 ) {
                     this.object.dicesList[nextStep][idx] = newRollsResults[die.type].shift();
                 }
-            };
-
-            this.object.dicesList[this.object.currentStep].forEach(applyNewRolls);
-            if (haveSwap) {
-                this.object.dicesList[nextStep - 1].forEach(applyNewRolls);
-                this.object.currentStep++;
-            }
+            });
         }
     }
 
@@ -574,7 +564,9 @@ export class RollnKeepDialog extends FormApplication {
     async _rebuildRoll(forceKeep = false) {
         // Get all kept dices + new (choice null)
         const diceList = this.object.dicesList.reduce((acc, step, stepIdx) => {
-            const haveReroll = stepIdx > 0 && this._haveChoice(stepIdx - 1, RollnKeepDialog.CHOICES.reroll);
+            const haveReroll =
+                stepIdx > 0 &&
+                this._haveChoice(stepIdx - 1, [RollnKeepDialog.CHOICES.reroll, RollnKeepDialog.CHOICES.swap]);
             step.forEach((die, idx) => {
                 if (
                     !!die &&

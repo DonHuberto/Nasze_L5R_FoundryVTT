@@ -22,6 +22,9 @@
     - Added a selection for techniques with skill list.
 - RnK :
     - Added ability to directly apply the strife to the actor on final step. The chat message show the value taken in gray aside the total strife.
+    - Changed the way the swap is handled, that now work the same as the reroll.
+      - You need to keep them after the step was validated.
+      - This way you can do step by step for disadvantages, advantages, techniques swaps...
 - Roll chat message :
     - Added Target information.
 - Properties sheet:
