@@ -357,6 +357,16 @@ export class TwentyQuestionsDialog extends FormApplication {
      * @override
      */
     async _updateObject(event, formData) {
+        // Clan tag trim if autocomplete in school name
+        if (
+            formData["autoCompleteListName"] === "step3.school" &&
+            formData["autoCompleteListSelectedIndex"] >= 0 &&
+            !!formData["step1.clan"] &&
+            formData["step3.school"].indexOf(` [${formData["step1.clan"]}]`) !== -1
+        ) {
+            formData["step3.school"] = formData["step3.school"].replace(` [${formData["step1.clan"]}]`, "");
+        }
+
         // Check "Or" conditions
         formData["step7.social_add_glory"] = formData["step7.skill"] === "none" ? 5 : 0;
 
