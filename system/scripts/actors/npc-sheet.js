@@ -70,12 +70,35 @@ export class NpcSheetL5r5e extends BaseCharacterSheetL5r5e {
             html,
             "data.attitude",
             CONFIG.l5r5e.demeanors.map((e) => {
-                let modifiers = [];
+                const modifiers = [];
                 Object.entries(e.mod).forEach(([k, v]) => {
                     modifiers.push(`${game.i18n.localize(`l5r5e.rings.${k}`)} ${v}`);
                 });
                 return game.i18n.localize(`l5r5e.demeanor.${e.id}`) + ` (${modifiers.join(", ")})`;
             })
         );
+    }
+
+    /**
+     * Update the actor.
+     * @param event
+     * @param formData
+     */
+    _updateObject(event, formData) {
+        // Redo the demeanor to set the rings data
+        if (formData["autoCompleteListName"] === "data.attitude" && formData["autoCompleteListSelectedIndex"] >= 0) {
+            const demeanor = CONFIG.l5r5e.demeanors[formData["autoCompleteListSelectedIndex"]] || null;
+            if (demeanor) {
+                formData["data.attitude"] = game.i18n.localize(`l5r5e.demeanor.${demeanor.id}`);
+                CONFIG.l5r5e.stances.forEach((ring) => {
+                    formData[`data.rings_affinities.${ring}`] = 0;
+                });
+                Object.entries(demeanor.mod).forEach(([k, v]) => {
+                    formData[`data.rings_affinities.${k}`] = v;
+                });
+            }
+        }
+
+        return super._updateObject(event, formData);
     }
 }

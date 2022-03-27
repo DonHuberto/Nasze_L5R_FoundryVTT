@@ -118,6 +118,13 @@ export class BaseSheetL5r5e extends ActorSheet {
      * @override
      */
     async _updateObject(event, formData) {
+        // Remove autocomplete list name/index if exist
+        if (formData["autoCompleteListName"] || formData["autoCompleteListSelectedIndex"]) {
+            delete formData["autoCompleteListName"];
+            delete formData["autoCompleteListSelectedIndex"];
+        }
+
+        // Symbols
         ["data.notes", "data.description"].forEach((name) => {
             if (!formData[name]) {
                 return;

@@ -780,6 +780,12 @@ export class HelpersL5r5e {
         inp.addEventListener("change", (e) => {
             if (e.doSubmit) {
                 closeAllLists();
+                if (e.autoCompleteSelectedIndex) {
+                    $(inp).prepend(
+                        `<input type="hidden" name="autoCompleteListName" value="${name}">` +
+                            `<input type="hidden" name="autoCompleteListSelectedIndex" value="${e.autoCompleteSelectedIndex}">`
+                    );
+                }
                 $(inp).parent().submit();
                 return true;
             }
@@ -836,6 +842,7 @@ export class HelpersL5r5e {
 
                         const changeEvt = new Event("change");
                         changeEvt.doSubmit = true;
+                        changeEvt.autoCompleteSelectedIndex = selectedIndex;
                         inp.dispatchEvent(changeEvt);
                     });
                     listDiv.appendChild(choiceDiv);
