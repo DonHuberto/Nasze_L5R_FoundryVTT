@@ -5,7 +5,7 @@
     - Added a random generator feature (Demeanor, Clan and Families names courteously authorized by Edge).
     - This is random by design, don't expect clan logic in values.
 - PC sheet :
-    - Added collapsible skill group.
+    - Added collapsible skill/techniques groupes.
 - Army sheet :
     - Image and token now follow the commander's on drop.
 - PC/NPC sheet :
