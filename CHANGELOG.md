@@ -3,7 +3,8 @@
 ## 1.7.0 - DiceRoller for Techniques & Npc Generator
 - NPC Sheet :
     - Added a random generator feature (Demeanor, Clan and Families names courteously authorized by Edge).
-    - This is random by design, don't expect clan logic in values.
+      - This is random by design, don't expect clan/school logic in values.
+    - Added collapsible techniques groupes.
 - PC sheet :
     - Added collapsible skill/techniques groupes.
 - Army sheet :

@@ -180,6 +180,19 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
      * @param formData
      */
     _updateObject(event, formData) {
+        // Clan tag trim if autocomplete in school name
+        if (
+            formData["autoCompleteListName"] === "data.identity.school" &&
+            formData["autoCompleteListSelectedIndex"] >= 0 &&
+            !!formData["data.identity.clan"] &&
+            formData["data.identity.school"].indexOf(` [${formData["data.identity.clan"]}]`) !== -1
+        ) {
+            formData["data.identity.school"] = formData["data.identity.school"].replace(
+                ` [${formData["data.identity.clan"]}]`,
+                ""
+            );
+        }
+
         // Store money in Zeni
         if (formData["data.money.koku"] || formData["data.money.bu"] || formData["data.money.zeni"]) {
             formData["data.zeni"] = this._moneyToZeni(

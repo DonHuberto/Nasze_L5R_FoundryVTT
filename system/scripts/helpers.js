@@ -768,7 +768,7 @@ export class HelpersL5r5e {
         inp.parentNode.classList.add("autocomplete-wrapper");
 
         const closeAllLists = (elmnt = null) => {
-            const collection = document.getElementsByClassName("autocomplete-items");
+            const collection = document.getElementsByClassName("autocomplete-list");
             for (let item of collection) {
                 if (!elmnt || (elmnt !== item && elmnt !== inp)) {
                     item.parentNode.removeChild(item);
@@ -819,7 +819,7 @@ export class HelpersL5r5e {
             // create a DIV element that will contain the items (values)
             const listDiv = document.createElement("DIV");
             listDiv.setAttribute("id", inputEvent.target.id + "autocomplete-list");
-            listDiv.setAttribute("class", "autocomplete-items");
+            listDiv.setAttribute("class", "autocomplete-list");
 
             // append the DIV element as a child of the autocomplete container
             inputEvent.target.parentNode.appendChild(listDiv);
@@ -851,8 +851,8 @@ export class HelpersL5r5e {
         });
 
         // execute a function presses a key on the keyboard
-        inp.addEventListener("keydown", function (e) {
-            const collection = document.getElementById(this.id + "autocomplete-list")?.getElementsByTagName("div");
+        inp.addEventListener("keydown", (e) => {
+            const collection = document.getElementById(e.target.id + "autocomplete-list")?.getElementsByTagName("div");
             if (!collection) {
                 return;
             }
@@ -891,7 +891,16 @@ export class HelpersL5r5e {
         // Close all list when click in the document (1st autocomplete only)
         if (html.find(".autocomplete").length <= 1) {
             html[0].addEventListener("click", (e) => {
-                closeAllLists(e.target);
+                const collection = document
+                    .getElementById(e.target.id + "autocomplete-list")
+                    ?.getElementsByTagName("div");
+                if (collection !== undefined) {
+                    const changeEvt = new Event("change");
+                    changeEvt.doSubmit = true;
+                    inp.dispatchEvent(changeEvt);
+                } else {
+                    closeAllLists(e.target);
+                }
             });
         }
     }

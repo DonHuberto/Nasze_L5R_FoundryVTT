@@ -16,12 +16,14 @@
     {{#each data.splitTechniquesList as |list technique|}}
         <fieldset class="section-header flexrow">
             <legend class="technique-controls">
-                {{localize (localize 'l5r5e.techniques.{technique}' technique=technique)}}
+                <span class="technique-controls toggle-on-click" data-toggle="toggle-technique-category-{{technique}}">
+                    {{localize (localize 'l5r5e.techniques.{technique}' technique=technique)}}
+                </span>
                 {{#ifCond ../data.editable_not_soft_locked '&&' (lookup ../data.data.techniques technique)}}
                     <a data-item-type="technique" class="technique-control item-add" data-tech-type="{{technique}}" title="{{localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a>
                 {{/ifCond}}
             </legend>
-            <ul class="item-list">
+            <ul class="item-list toggle-technique-category-{{technique}} {{#ifCond ../data.storeInfos 'includes' (concat 'toggle-technique-category-' technique)}}toggle-hidden{{/ifCond}}">
                 {{#each list as |item id|}}
                     {{> 'systems/l5r5e/templates/items/technique/technique-entry.html' technique=item editable=../../data.editable_not_soft_locked}}
                 {{/each}}
