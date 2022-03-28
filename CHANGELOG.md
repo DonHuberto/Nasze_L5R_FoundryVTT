@@ -1,7 +1,7 @@
 # Changelog
 Date format : day/month/year
 
-## 1.7.0 - 28/03/2022 - DiceRoller for Techniques & Npc Generator
+## 1.7.0 - 28/03/2022 - Strife, DiceRoller for Techniques & Npc Generator
 - NPC Sheet :
     - Added a random generator feature (Demeanor, Clan and Families names courteously authorized by Edge).
       - This is random by design, don't expect clan/school logic in values.

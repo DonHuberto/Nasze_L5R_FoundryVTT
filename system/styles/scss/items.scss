@@ -369,6 +369,11 @@
                     width: 100%;
                 }
             }
+            .stats {
+                input[type="text"] {
+                    text-align: center;
+                }
+            }
             .value {
                 flex: 0 0 calc(25% - 0.5rem);
             }
