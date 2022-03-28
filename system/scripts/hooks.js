@@ -31,9 +31,6 @@ export default class HooksL5r5e {
         }
 
         // ***** UI *****
-        // Add title on button dice icon
-        $(".chat-control-icon")[0].title = game.i18n.localize("l5r5e.dice.dicepicker.title");
-
         // Open Help dialog on clic on logo
         $("#logo")
             .on("click", () => new game.l5r5e.HelpDialog().render(true))
@@ -50,10 +47,22 @@ export default class HooksL5r5e {
      * SidebarTab
      */
     static renderSidebarTab(app, html, data) {
-        // Add button on dice icon
-        html.find(".chat-control-icon").click(async () => {
-            new game.l5r5e.DicePickerDialog().render();
-        });
+        switch (app.tabName) {
+            case "chat":
+                // Add button on dice icon
+                html.find(".chat-control-icon").click(async () => new game.l5r5e.DicePickerDialog().render());
+
+                // Add title on button dice icon
+                html.find(".chat-control-icon")[0].title = game.i18n.localize("l5r5e.dice.dicepicker.title");
+                break;
+
+            case "settings":
+                // Add Changelog link
+                html.find("#game-details .system").append(
+                    `<p><a href="${game.system.data.url}/-/blob/master/CHANGELOG.md" target="_blank">Changelog</a></p>`
+                );
+                break;
+        }
     }
 
     /**

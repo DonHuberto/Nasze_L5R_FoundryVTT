@@ -1,6 +1,7 @@
 # Changelog
+Date format : day/month/year
 
-## 1.7.0 - DiceRoller for Techniques & Npc Generator
+## 1.7.0 - 28/03/2022 - DiceRoller for Techniques & Npc Generator
 - NPC Sheet :
     - Added a random generator feature (Demeanor, Clan and Families names courteously authorized by Edge).
       - This is random by design, don't expect clan/school logic in values.
@@ -60,12 +61,12 @@ Technique syntaxe "quick" explanation :
         - `melee,ranged,unarmed`
         - `martial,fitness,performance`
 
-## 1.6.1 - Little Bugfixes
+## 1.6.1 - 13/02/2022 - Little Bugfixes
 - PC sheet : fixed the "Complete this rank" button who stayed hidden in experience tab.
 - GmMonitor : fixed a bug with render when the list was emptied.
 - Combat : fixed a null error when sometimes the combatant actor is null.
 
-## 1.6.0 - QoL & SoftLock
+## 1.6.0 - 11/02/2022 - QoL & SoftLock
 - PC/NPC/Armies sheet:
   - Added SoftLock functionality.
   - Added a new button bar for system specific buttons to reduce elements in headers.
@@ -79,14 +80,14 @@ Technique syntaxe "quick" explanation :
   - Inversion techniques : Updated xp cost from 3 to 6.
 - Spanish language updated thanks to Alejandro Barranquero.
 
-## 1.5.0 - FoundryVTT v9 Compatibility
+## 1.5.0 - 09/01/2022 - FoundryVTT v9 Compatibility
 - Updated the System to FoundryVTT v9.
 - Thanks to Perkuns for his help with the CSS for this v9 release.
 - Fixed armies in combat tracker.
 - Fixed "traditional-japanese-man.svg" and "traditional-japanese-woman.svg" headers for firefox (x/y/width/height).
 - Trying to fix advancements behavior, who sometime left point on the old choice.
 
-## 1.4.0 - Armies & French PoW
+## 1.4.0 - 19/12/2021 - Armies & French PoW
 - Added Army (Actor), Cohort (Item) and Fortification (Item) sheets.
 - Actor Sheet (PC, NPC, Army) : Added the ability to Drag n Drop an actor's image.
 - GM monitor :
@@ -111,10 +112,10 @@ Technique syntaxe "quick" explanation :
 - New NPC changed from "minion" to "adversary" by default.
 - 20Q : Fixed line break in techniques label list.
 
-## 1.3.5 - DsN hotfix
+## 1.3.5 - 11/10/2021 - DsN hotfix
 - Fixed a bug introduced by DiceSoNice 4.2.1 : context in "diceSoNiceRollStart" hook rebuild data and lost what we needed. The consequence is 3d dice flood a lot in RnK.
 
-## 1.3.4 - Compendiums Update
+## 1.3.4 - 15/09/2021 - Compendiums Update
 - Fixed a bug with sheet item drop introduced in previous version.
 - Added FoV English Opportunities usage.
 - Compendiums :
@@ -127,7 +128,7 @@ Technique syntaxe "quick" explanation :
     - FoV Title : "Elemental Guard" (duplicate) to "Elemental Legionnaire".
     - PoW Mastery : "Divine Protection" (duplicate) to "Tower of Ivory".
 
-## 1.3.3 - Send'n'Watch
+## 1.3.3 - 23/08/2021 - Send'n'Watch
 - GM toolbox changes :
   - Added "Reset void point" and "Gm Monitor" buttons.
   - "Reset void point", "Sleep" and "Scene End" now use left clic to target only assigned characters, and right clic to do all actors.
@@ -161,7 +162,7 @@ Technique syntaxe "quick" explanation :
 - Minor fixe on editable state.
 - Updated compatibility to Foundry VTT v0.8.9
 
-## 1.3.2 - Ronin's Bubble
+## 1.3.2 - 14/07/2021 - Ronin's Bubble
 - Added a tooltip on hover with all information for items, and removed all these silly moving description (which made me crazy).
 - Added PoW Revised 20Q (for old Ronin, just modify the template in 20Q to change the character sheet fields).
 - Added Bushido tenets on Social tab in sheet for all (I think this is useful for players, and it's in Core rulebook so... why this is not by default ;) ).
@@ -175,7 +176,7 @@ Technique syntaxe "quick" explanation :
 - Fixed school compendium: "Kuni Warden School" from "Scorpion" to "Crab".
 - Fixed some Pdf Copy-Paste error in school cursus that make L instead of I : Lkoma/Lsawa/Luchi...
 
-## 1.3.1 - Empty Sheet Scholar Helper
+## 1.3.1 - 16/06/2021 - Empty Sheet Scholar Helper
 - Added English/French Journal Compendiums for School Curriculums.
 - Added English/French Curriculums in description for Titles.
 - Added English Compendiums for Field of Victory (thanks to mdosantos).
@@ -189,7 +190,7 @@ Technique syntaxe "quick" explanation :
 - Fixed the issue #23 "Token image does not save". Now we reflect the change on the token name/image only if it's a linked actor and if the token/sheet have the same values.
 - Fixed the "unlink actor data" who still change the Actor Data when editing an unlinked token.
 
-## 1.3.0 - Foundry 0.8 Compatibility
+## 1.3.0 - 02/06/2021 - Foundry 0.8 Compatibility
 __! Be certain to carefully back up any critical user data before installing this update !__
 - Updated the System to the new version of Foundry VTT (a lot of things broke).
 - NPC can now have strengths/weaknesses with all rings.
@@ -214,11 +215,11 @@ __! Be certain to carefully back up any critical user data before installing thi
 - QoL : When DiceSoNice is enabled, the display of the RnK dialog is delayed by 2s before show-up.
 - Others minor optimizations (ex: 20q saving multiple item at once).
 
-## 1.2.1 - Praised be Firefox
+## 1.2.1 - 18/02/2021 - Praised be Firefox
 - Fix dice swap on firefox that overflowed on the top and bottom of the RnK dialog
 - Fix new items list on firefox who deformed the sheets
 
-## 1.2.0 - Roll n Keep
+## 1.2.0 - 17/02/2021 - Roll n Keep
 - Added Roll n Keep 1st iteration !
   - Ability to Keep, Discard, Re-roll and Swap:
     - Keep: Keep the die for the next step, if it's an explosive one, automatically roll a new die
@@ -246,7 +247,7 @@ __! Be certain to carefully back up any critical user data before installing thi
 - Added Tabs on NPC sheets
 - New styles for dice results
 
-## 1.1.2 - One Compendium to bring them all
+## 1.1.2 - 28/01/2021 - One Compendium to bring them all
 - Added compendiums (Thanks to Stéfano Fara for the English version !) Partial for French as PoW and CR are not translated yet
   - Shadowlands
   - Emerald Empire
@@ -261,11 +262,11 @@ __! Be certain to carefully back up any critical user data before installing thi
 - Minion can now choose a stance and if they are prepared
 - Other minors fix
 
-## 1.1.1 - The Huns War
+## 1.1.1 - 21/01/2021 - The Huns War
 - Fix Minion initiative
 - Fix textarea ninjo/giri
 
-## 1.1.0 - Initiative first !
+## 1.1.0 - 20/01/2021 - Initiative first !
 - Added initiative system :
   - Now use the score rule (the real one if you prefer)
   - Added global modifiers for Characters, Adversary and Minons in the combat tracker : Confrontation types, Prepared
@@ -287,7 +288,7 @@ __! Be certain to carefully back up any critical user data before installing thi
 - 20Q Pushed the step3 item's limit to 20 (10 previous)
 - Added System migration stuff
 
-## 1.0.0 - First public release
+## 1.0.0 - 12/01/2021 - First public release
 - Removed the 0ds if no skill point
 - Added initiative roll (only tactics for the moment)
 - Change color of keikogi and add on compendium
