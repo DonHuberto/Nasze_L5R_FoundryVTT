@@ -79,6 +79,14 @@ export class RollnKeepDialog extends FormApplication {
     }
 
     /**
+     * Return true if this actor has right on this roll
+     * @return {boolean}
+     */
+    get isOwner() {
+        return this._message?.isAuthor || this._message?._roll.l5r5e.actor?.isOwner || this._message?.isOwner || false;
+    }
+
+    /**
      * Create the Roll n Keep dialog
      * @param {number} messageId
      * @param {FormApplicationOptions} options
@@ -86,9 +94,7 @@ export class RollnKeepDialog extends FormApplication {
     constructor(messageId, options = {}) {
         super({}, options);
         this.message = game.messages.get(messageId);
-
-        this.options.editable =
-            this._message?.isAuthor || this._message?._roll.l5r5e.actor?.isOwner || this._message?.isOwner || false;
+        this.options.editable = this.isOwner;
 
         this._initializeDiceFaces();
         this._initializeHistory();
@@ -228,7 +234,7 @@ export class RollnKeepDialog extends FormApplication {
             const kept = this._getKeepCount(this.object.currentStep);
             this.object.submitDisabled = kept < 1 || kept > rollData.keepLimit;
         } else if (!this.object.dicesList[this.object.currentStep]) {
-            this.options.editable = rollData.summary.strife > 0;
+            this.options.editable = this.isOwner && rollData.summary.strife > 0;
             this.options.classes.push("finalized");
         }
 
@@ -765,7 +771,7 @@ export class RollnKeepDialog extends FormApplication {
                 return e;
             });
 
-        this.options.editable = true;
+        this.options.editable = this.isOwner;
         await this._rebuildRoll(true);
         await this._toChatMessage();
         return this.render(false);
