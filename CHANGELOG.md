@@ -1,6 +1,10 @@
 # Changelog
 Date format : day/month/year
 
+## 1.7.1 - ??/04/2022 - Spring fixes
+- PC/NPC sheet :
+    - Fixed technique with a skill set, in a title, now open the DicePicker as intended.
+
 ## 1.7.0 - 28/03/2022 - Strife, DiceRoller for Techniques & Npc Generator
 - NPC Sheet :
     - Added a random generator feature (Demeanor, Clan and Families names courteously authorized by Edge).

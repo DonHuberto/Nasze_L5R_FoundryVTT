@@ -613,12 +613,12 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
      * @param {Event} event
      * @private
      */
-    _openDicePickerForTechnique(event) {
+    async _openDicePickerForTechnique(event) {
         event.preventDefault();
         event.stopPropagation();
 
-        const itemId = $(event.currentTarget).data("item-id") || null;
-        const item = this.actor.items.get(itemId);
+        // Required for tech in titles, search in sub items
+        const item = await game.l5r5e.HelpersL5r5e.getEmbedItemByEvent(event, this.actor);
         if (!item || item.type !== "technique" || !item.data.data.skill) {
             return;
         }
