@@ -3,36 +3,38 @@ Date format : day/month/year
 
 ## 1.7.1 - ??/04/2022 - Spring fixes
 - PC/NPC sheet :
-    - Fixed technique with a skill set, in a title, now open the DicePicker as intended.
+  - Fixed technique with a skill set, in a title, now open the DicePicker as intended.
+- Roll/DP/RnK :
+  - Fixed the way an actor is lightweight and re-construct from chat message. This fix minions npc sync with multiple token (missing context).
 
 ## 1.7.0 - 28/03/2022 - Strife, DiceRoller for Techniques & Npc Generator
 - NPC Sheet :
-    - Added a random generator feature (Demeanor, Clan and Families names courteously authorized by Edge).
-      - This is random by design, don't expect clan/school logic in values.
-    - Added collapsible techniques groupes.
+  - Added a random generator feature (Demeanor, Clan and Families names courteously authorized by Edge).
+    - This is random by design, don't expect clan/school logic in values.
+  - Added collapsible techniques groupes.
 - PC sheet :
-    - Added collapsible skill/techniques groupes.
+  - Added collapsible skill/techniques groupes.
 - Army sheet :
-    - Image and token now follow the commander's on drop.
+  - Image and token now follow the commander's on drop.
 - PC/NPC sheet :
-    - Added a volatile storage to keep collapsible (Skills/Inventory) in theirs state on sheet update.
-    - Added the ability for technique with a skill set, to open the DicePicker with presets values.
-    - Some can interact with targets, but do the default difficulty if none.
-    - Notes : Techniques in sheet need to be re-imported from the compendium or manually updated for this to work.
-    - Trying an autocomplete on some fields : clan, family, school, roles, demeanor.
+  - Added a volatile storage to keep collapsible (Skills/Inventory) in theirs state on sheet update.
+  - Added the ability for technique with a skill set, to open the DicePicker with presets values.
+  - Some can interact with targets, but do the default difficulty if none.
+  - Notes : Techniques in sheet need to be re-imported from the compendium or manually updated for this to work.
+  - Trying an autocomplete on some fields : clan, family, school, roles, demeanor.
 - Techniques Sheet & Compendiums :
-    - Added difficulty and skill values (not to all techniques).
-    - Trying an autocomplete on skill field.
+  - Added difficulty and skill values (not to all techniques).
+  - Trying an autocomplete on skill field.
 - DicePicker :
-    - Added TN hidden difficulty visibility for GM (ex: ?2?).
-    - Added a selection for techniques with skill list.
+  - Added TN hidden difficulty visibility for GM (ex: ?2?).
+  - Added a selection for techniques with skill list.
 - RnK :
-    - Added ability to directly apply the strife to the actor on final step. The chat message show the value taken in gray aside the total strife.
-    - Changed the way the swap is handled, that now work the same as the reroll.
-      - You need to keep them after the step was validated.
-      - This way you can do step by step for disadvantages, advantages, techniques swaps...
+  - Added ability to directly apply the strife to the actor on final step. The chat message show the value taken in gray aside the total strife.
+  - Changed the way the swap is handled, that now work the same as the reroll.
+    - You need to keep them after the step was validated.
+    - This way you can do step by step for disadvantages, advantages, techniques swaps...
 - Roll chat message :
-    - Added Target information.
+  - Added Target information.
 - Properties sheet:
   - Fixed loading properties from custom compendiums.
   - Added a line strike on removed/unknown property and ability to remove them.
@@ -44,26 +46,26 @@ Date format : day/month/year
 
 Technique syntaxe "quick" explanation :
 - Difficulty can be :
-    - Number : 1-9
-    - Or specific syntaxe "@`S`:`prop1`" or "@`T`:`prop1`|`max`" or "@`T`:`prop1`|`max`(`prop2`)" :
-        - `@` fixed, trigger the parser
-        - `T` or `S` : `T`arget or `S`elf, define the actor to get the value.
-        - `prop1` / `prop2` : Can be any property in `actor` or `actor.data.data`. Limitations: currently no `size`, `distance` (range) or computation (a+b).
-        - `|` separator, optional if no min/max.
-        - `min` or `max` : Between the selected targets, search for the min/max of `prop2`. If no `prop2` provided, take `prop1` as `prop2` (irrelevant for `@S`).
-        - `(prop2)` : define the property for the actor selection in multiple target, can be omitted if same as `prop1`.
-        - Exemples :
-            - `@S:vigilance` : Difficulty will be my own `vigilance`.
-            - `@T:vigilance|min` : Difficulty will be the `vigilance` from the target with the minimum vigilance (implicit) value. it's the same to wrote `@T:vigilance|min(vigilance)`.
-            - `@T:vigilance|max(statusRank)` : Difficulty will be the `vigilance` from the target with the maximum `statusRank` value.
-- Skill can be :
-    - Skill : `melee`, `fitness`...
-    - SkillCategory : `scholar`, `martial`...
-    - Or both in list, coma separated.
+  - Number : 1-9
+  - Or specific syntaxe "@`S`:`prop1`" or "@`T`:`prop1`|`max`" or "@`T`:`prop1`|`max`(`prop2`)" :
+    - `@` fixed, trigger the parser
+    - `T` or `S` : `T`arget or `S`elf, define the actor to get the value.
+    - `prop1` / `prop2` : Can be any property in `actor` or `actor.data.data`. Limitations: currently no `size`, `distance` (range) or computation (a+b).
+    - `|` separator, optional if no min/max.
+    - `min` or `max` : Between the selected targets, search for the min/max of `prop2`. If no `prop2` provided, take `prop1` as `prop2` (irrelevant for `@S`).
+    - `(prop2)` : define the property for the actor selection in multiple target, can be omitted if same as `prop1`.
     - Exemples :
-        - `theology`
-        - `melee,ranged,unarmed`
-        - `martial,fitness,performance`
+      - `@S:vigilance` : Difficulty will be my own `vigilance`.
+      - `@T:vigilance|min` : Difficulty will be the `vigilance` from the target with the minimum vigilance (implicit) value. it's the same to wrote `@T:vigilance|min(vigilance)`.
+      - `@T:vigilance|max(statusRank)` : Difficulty will be the `vigilance` from the target with the maximum `statusRank` value.
+- Skill can be :
+  - Skill : `melee`, `fitness`...
+  - SkillCategory : `scholar`, `martial`...
+  - Or both in list, coma separated.
+  - Exemples :
+    - `theology`
+    - `melee,ranged,unarmed`
+    - `martial,fitness,performance`
 
 ## 1.6.1 - 13/02/2022 - Little Bugfixes
 - PC sheet : fixed the "Complete this rank" button who stayed hidden in experience tab.

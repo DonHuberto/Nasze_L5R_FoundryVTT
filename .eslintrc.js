@@ -29,6 +29,7 @@ module.exports = {
     },
     globals: {
         foundry: "readonly",
+        TokenDocument: "readonly",
         AudioHelper: "readonly",
         Collection: "readonly",
         Hooks: "readonly",

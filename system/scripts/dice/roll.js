@@ -370,13 +370,25 @@ export class RollL5r5e extends Roll {
         roll.data = foundry.utils.duplicate(data.data);
         roll.l5r5e = foundry.utils.duplicate(data.l5r5e);
 
-        // get real Actor object
+        // Get real Actor object
         if (data.l5r5e.actor) {
             if (data.l5r5e.actor instanceof game.l5r5e.ActorL5r5e) {
-                // duplicate break the object, relink it
+                // Duplicate break the object, relink it
                 roll.l5r5e.actor = data.l5r5e.actor;
-            } else {
-                // only id, get the object
+            } else if (data.l5r5e.actor.uuid) {
+                // Only uuid, get the object
+                let actor;
+                let tmpItem = game.l5r5e.HelpersL5r5e.fromUuidNoPack(data.l5r5e.actor.uuid);
+                if (tmpItem instanceof Actor) {
+                    actor = tmpItem;
+                } else if (tmpItem instanceof TokenDocument) {
+                    actor = tmpItem.actor;
+                }
+                if (actor) {
+                    roll.l5r5e.actor = actor;
+                }
+            } else if (data.l5r5e.actor.id) {
+                // Compat old chat message : only id
                 const actor = game.actors.get(data.l5r5e.actor.id);
                 if (actor) {
                     roll.l5r5e.actor = actor;
@@ -398,9 +410,9 @@ export class RollL5r5e extends Roll {
         json.l5r5e = foundry.utils.duplicate(this.l5r5e);
 
         // lightweight the Actor
-        if (json.l5r5e.actor) {
+        if (json.l5r5e.actor && this.l5r5e.actor?.uuid) {
             json.l5r5e.actor = {
-                id: json.l5r5e.actor._id, // method "id" not exist in json, need to use "_id" here
+                uuid: this.l5r5e.actor.uuid,
             };
         }
 

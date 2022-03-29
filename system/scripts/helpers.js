@@ -110,6 +110,36 @@ export class HelpersL5r5e {
     }
 
     /**
+     * Retrieve a Document by its Universally Unique Identifier (uuid).
+     * Exactly the same as fromUuid but without Compendium as it need async.
+     * @param {string} uuid   The uuid of the Document to retrieve
+     * @return {Document|null}
+     */
+    static fromUuidNoPack(uuid) {
+        let parts = uuid.split(".");
+        let doc;
+
+        if (parts[0] === "Compendium") {
+            // Compendium Documents need asynchronous
+            return null;
+        } else {
+            // World Documents
+            const [docName, docId] = parts.slice(0, 2);
+            parts = parts.slice(2);
+            const collection = CONFIG[docName].collection.instance;
+            doc = collection.get(docId);
+        }
+
+        // Embedded Documents
+        while (doc && parts.length > 1) {
+            const [embeddedName, embeddedId] = parts.slice(0, 2);
+            doc = doc.getEmbeddedDocument(embeddedName, embeddedId);
+            parts = parts.slice(2);
+        }
+        return doc || null;
+    }
+
+    /**
      * Return the target object on a drag n drop event, or null if not found
      * @param {DragEvent} event
      * @return {Promise<null>}
