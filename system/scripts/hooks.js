@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 export default class HooksL5r5e {
     /**
      * Do anything after initialization but before ready
