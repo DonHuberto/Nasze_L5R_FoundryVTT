@@ -268,6 +268,30 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
         return this.actor.createEmbeddedDocuments("Item", [itemData]);
     }
 
+    /** @inheritdoc */
+    _onDragStart(event) {
+        // Patch Owned Items
+        const li = event.currentTarget;
+        if (li.dataset.itemParentId && li.dataset.itemId) {
+            const item = this.actor.items.get(li.dataset.itemParentId)?.items.get(li.dataset.itemId);
+            if (item) {
+                const dragData = {
+                    actorId: this.actor.id,
+                    sceneId: this.actor.isToken ? canvas.scene?.id : null,
+                    tokenId: this.actor.isToken ? this.actor.token.id : null,
+                    pack: this.actor.pack,
+                    type: "Item",
+                    data: foundry.utils.duplicate(item.data),
+                };
+                dragData.data.data.parent_id = null;
+                event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
+                return;
+            }
+        }
+        // Else regular
+        super._onDragStart(event);
+    }
+
     /**
      * Subscribe to events from the sheet.
      * @param {jQuery} html HTML content of the sheet.

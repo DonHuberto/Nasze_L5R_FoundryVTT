@@ -1,4 +1,4 @@
-<li class="item technique flexcol" data-item-id="{{technique._id}}">
+<li class="item technique flexcol" data-item-id="{{technique._id}}" {{#if technique.data.parent_id.item_id}}data-item-parent-id="{{technique.data.parent_id.item_id}}"{{/if}}>
     <ul class="item-header technique-controls">
         <li class="item-img"><img src="{{technique.img}}" title="{{technique.name}}" width="32px" height="32px"/></li>
         <li class="item-name l5r5e-tooltip {{#if technique.data.skill}}dice-picker-tech{{/if}}" data-item-id="{{technique._id}}" {{#if technique.data.parent_id.item_id}}data-item-parent-id="{{technique.data.parent_id.item_id}}"{{/if}}>{{technique.name}}</li>
