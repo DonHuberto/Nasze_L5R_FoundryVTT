@@ -58,7 +58,7 @@ export default class HooksL5r5e {
             case "settings":
                 // Add Changelog link
                 html.find("#game-details .system").append(
-                    `<p><a href="${game.system.data.url}/-/blob/master/CHANGELOG.md" target="_blank">Changelog</a></p>`
+                    `<p><a href="${game.system.data.changelog}" target="_blank">Changelog</a></p>`
                 );
                 break;
         }

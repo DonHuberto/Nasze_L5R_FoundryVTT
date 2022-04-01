@@ -1,11 +1,12 @@
 # Changelog
 Date format : day/month/year
 
-## 1.7.1 - ??/04/2022 - Spring fixes
+## 1.7.1 - 01/04/2022 - Spring fixes
 - PC/NPC sheet :
   - Fixed technique with a skill set, in a title, now open the DicePicker as intended.
 - Roll/DP/RnK :
   - Fixed the way an actor is lightweight and re-construct from chat message. This fix minions npc sync with multiple token (missing context).
+- Added "changelog" and "readme" properties in system.json
 
 ## 1.7.0 - 28/03/2022 - Strife, DiceRoller for Techniques & Npc Generator
 - NPC Sheet :
@@ -39,6 +40,7 @@ Date format : day/month/year
   - Fixed loading properties from custom compendiums.
   - Added a line strike on removed/unknown property and ability to remove them.
 - Added Inversion and Mantra icon and tag symbols (thanks to TesserWract).
+- Added a Changelog link in system tab.
 - Fixed image following the technique_type on technique sheet.
 - Fixed linked actor image compatibility with Tokenizer.
 - Fixed svg height/width for firefox.
