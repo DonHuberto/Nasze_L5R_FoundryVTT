@@ -1,6 +1,9 @@
 # Changelog
 Date format : day/month/year
 
+## 1.7.2 - ??/04/2022 - ?
+- Added 179 Japanese' style villages name table.
+
 ## 1.7.1 - 01/04/2022 - Spring fixes
 - PC/NPC sheet :
   - Fixed technique with a skill set, in a title, now open the DicePicker as intended.
