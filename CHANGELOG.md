@@ -1,8 +1,9 @@
 # Changelog
 Date format : day/month/year
 
-## 1.7.2 - ??/04/2022 - ?
+## 1.7.2 - ??/??/2022 - ?
 - Added 179 Japanese' style villages name table.
+- Fixed : Missing translation for EN and ES - "Armors, Weapons, and Items" in Npc Generator dialog.
 
 ## 1.7.1 - 01/04/2022 - Spring fixes
 - PC/NPC sheet :
