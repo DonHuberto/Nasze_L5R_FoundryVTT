@@ -4,6 +4,11 @@ Date format : day/month/year
 ## 1.7.2 - ??/??/2022 - ?
 - Added 179 Japanese' style villages name table.
 - Fixed : Missing translation for EN and ES - "Armors, Weapons, and Items" in Npc Generator dialog.
+- Compendium : Updated Weapon Names and Grips, thanks to TesserWract :
+  - Added "N/A" to invalid weapon grips.
+  - Grips with more than one quality and/or style now use a more consistent format: "(style): Quality 1, Quality 2, ..."
+  - Renamed "Tinbe-Rochin" to "Rochin" as the DB entry is for the single item rather than the item pair.
+  - Added macrons to relevant weapon names.
 
 ## 1.7.1 - 01/04/2022 - Spring fixes
 - PC/NPC sheet :
