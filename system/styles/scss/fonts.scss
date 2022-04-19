@@ -78,6 +78,7 @@ i.i_kata,
 i.i_inversion,
 i.i_mantra,
 i.i_imperial,
+i.i_ronin,
 i.i_crab,
 i.i_crane,
 i.i_dragon,
@@ -104,49 +105,49 @@ i.i_skill {
 // -- Dices
 // Strife
 i.i_strife:before {
-    content: "\E91B";
+    content: "\E91E";
     color: $red-dice;
 }
 // Success
 i.i_success:before {
-    content: "\E91C";
+    content: "\E91F";
     color: $red-dice;
 }
 // Explosive
 i.i_explosive:before {
-    content: "\E91D";
+    content: "\E920";
     color: $red-dice;
 }
 // Opportunity
 i.i_opportunity:before {
-    content: "\E91A";
+    content: "\E91D";
     color: $red-dice;
 }
 
 // -- Rings
 // Earth
 i.i_earth:before {
-    content: "\E90C";
+    content: "\E90E";
     color: $l5r5e-earth;
 }
 // Air
 i.i_air:before {
-    content: "\E90B";
+    content: "\E90D";
     color: $l5r5e-air;
 }
 // Water
 i.i_water:before {
-    content: "\E90A";
+    content: "\E90C";
     color: $l5r5e-water;
 }
 // Fire
 i.i_fire:before {
-    content: "\E908";
+    content: "\E90A";
     color: $l5r5e-fire;
 }
 // Void
 i.i_void:before {
-    content: "\E909";
+    content: "\E90B";
     color: $l5r5e-void;
 }
 
@@ -193,81 +194,86 @@ i.i_shuji:before {
 }
 // Inversion
 i.i_inversion:before {
-    content: "\E91E";
+    content: "\E908";
     color: $l5r5e-inversion;
 }
 // Mantra
 i.i_mantra:before {
-    content: "\E91F";
+    content: "\E909";
     color: $l5r5e-mantra;
 }
 
 // -- Clans
 // Crab
 i.i_crab:before {
-    content: "\E914";
+    content: "\E916";
     color: $l5r5e-crab;
 }
 // Crane
 i.i_crane:before {
-    content: "\E915";
+    content: "\E917";
     color: $l5r5e-crane;
 }
 // Dragon
 i.i_dragon:before {
-    content: "\E916";
+    content: "\E918";
     color: $l5r5e-dragon;
 }
 // Lion
 i.i_lion:before {
-    content: "\E90E";
+    content: "\E910";
     color: $l5r5e-lion;
 }
 // Mantis
 i.i_mantis:before {
-    content: "\E90F";
+    content: "\E911";
     color: $l5r5e-mantis;
 }
 // Phoenix
 i.i_phoenix:before {
-    content: "\E910";
+    content: "\E912";
     color: $l5r5e-phoenix;
 }
 // Scorpion
 i.i_scorpion:before {
-    content: "\E911";
+    content: "\E913";
     color: $l5r5e-scorpion;
 }
 // Tortoise
 i.i_tortoise:before {
-    content: "\E912";
+    content: "\E914";
     color: $l5r5e-tortoise;
 }
 // Unicorn
 i.i_unicorn:before {
-    content: "\E913";
+    content: "\E915";
     color: $l5r5e-unicorn;
 }
 // Imperial
 i.i_imperial:before {
-    content: "\E90D";
+    content: "\E90F";
     color: $l5r5e-imperial;
+}
+// Ronin
+i.i_ronin:before {
+    content: "\E919";
+    color: $l5r5e-ronin;
 }
 
 // -- Titles
 // Bushi
 i.i_bushi:before {
-    content: "\E917";
+    content: "\E91A";
     color: $l5r5e-bushi;
 }
 // Courtier
 i.i_courtier:before {
-    content: "\E918";
+    content: "\E91B";
     color: $l5r5e-courtier;
 }
 // Shugenja
 i.i_shugenja:before {
-    content: "\E919";
+    content: "\E91C";
     color: $l5r5e-shugenja;
 }
 
