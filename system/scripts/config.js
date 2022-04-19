@@ -107,6 +107,7 @@ L5R5E.symbols.set("(mantra)", { class: "i_mantra", label: "l5r5e.techniques.mant
 L5R5E.symbols.set("(prereq)", { class: "i_prerequisite_exemption", label: "l5r5e.advancements.curriculum" });
 
 L5R5E.symbols.set("(imperial)", { class: "i_imperial", label: "" });
+L5R5E.symbols.set("(ronin)", { class: "i_ronin", label: "" });
 L5R5E.symbols.set("(crab)", { class: "i_crab", label: "" });
 L5R5E.symbols.set("(crane)", { class: "i_crane", label: "" });
 L5R5E.symbols.set("(dragon)", { class: "i_dragon", label: "" });
