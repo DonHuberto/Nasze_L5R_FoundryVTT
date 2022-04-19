@@ -30,7 +30,7 @@
             {{#each data.data.properties as |property idx|}}{{#ifCond idx '>' 0}}, {{/ifCond}}{{property.name}}{{/each}}
         </p>
         {{!--item-infos--}}
-        <p><strong>{{localize 'l5r5e.sheets.description'}}</strong> : {{{data.data.description}}}</p>
+        <p><strong>{{localize 'l5r5e.sheets.description'}}</strong> : {{{enrichHTML data.data.description}}}</p>
         <p><strong>{{localize 'l5r5e.sheets.book_reference'}}</strong> : {{data.data.book_reference}}</p>
     </section>
 </div>

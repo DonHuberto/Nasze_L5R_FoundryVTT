@@ -17,7 +17,7 @@
             <li><strong>{{localize 'l5r5e.sheets.bought_at_rank'}}</strong> : {{data.data.bought_at_rank}}</li>
         </ul>
         {{!--item-infos--}}
-        <p><strong>{{localize 'l5r5e.sheets.description'}}</strong> : {{{data.data.description}}}</p>
+        <p><strong>{{localize 'l5r5e.sheets.description'}}</strong> : {{{enrichHTML data.data.description}}}</p>
         <p><strong>{{localize 'l5r5e.sheets.book_reference'}}</strong> : {{data.data.book_reference}}</p>
     </section>
 </div>

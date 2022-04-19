@@ -200,6 +200,12 @@ Hooks.once("init", async () => {
         makeDefault: true,
     });
 
+    // Override enrichHTML for Symbol replacement
+    const oldEnrichHTML = TextEditor.prototype.constructor.enrichHTML;
+    TextEditor.prototype.constructor.enrichHTML = function (content, options = {}) {
+        return HelpersL5r5e.convertSymbols(oldEnrichHTML.call(this, content, options), true);
+    };
+
     // Override the default Token _drawBar function to allow fatigue bar reversing.
     Token.prototype._drawBar = function (number, bar, data) {
         const reverseBar = data.attribute === "fatigue" && game.settings.get("l5r5e", "token-reverseFatigueBar");

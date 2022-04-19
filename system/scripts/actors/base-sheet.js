@@ -104,6 +104,7 @@ export class BaseSheetL5r5e extends ActorSheet {
      * @override
      */
     activateEditor(name, options = {}, initialContent = "") {
+        // Symbols Compatibility with old compendium modules (PRE l5r v1.7.2)
         if (["data.notes", "data.description"].includes(name) && initialContent) {
             initialContent = game.l5r5e.HelpersL5r5e.convertSymbols(initialContent, false);
         }
@@ -123,14 +124,6 @@ export class BaseSheetL5r5e extends ActorSheet {
             delete formData["autoCompleteListName"];
             delete formData["autoCompleteListSelectedIndex"];
         }
-
-        // Symbols
-        ["data.notes", "data.description"].forEach((name) => {
-            if (!formData[name]) {
-                return;
-            }
-            formData[name] = game.l5r5e.HelpersL5r5e.convertSymbols(formData[name], true);
-        });
         return super._updateObject(event, formData);
     }
 

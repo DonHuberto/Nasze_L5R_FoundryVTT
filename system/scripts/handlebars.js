@@ -47,7 +47,7 @@ export const RegisterHandlebars = function () {
     /* ------------------------------------ */
     /* Utility                              */
     /* ------------------------------------ */
-    // Json - Display a object in textarea (for debug)
+    // Json - Display an object in textarea (for debug)
     Handlebars.registerHelper("json", function (...objects) {
         objects.pop(); // remove this function call
         return new Handlebars.SafeString(objects.map((e) => `<textarea>${JSON.stringify(e)}</textarea>`));
@@ -62,6 +62,11 @@ export const RegisterHandlebars = function () {
     Handlebars.registerHelper("concat", function (...objects) {
         objects.pop(); // remove this function call
         return objects.join("");
+    });
+
+    // enrichHTML
+    Handlebars.registerHelper("enrichHTML", function (text, options = {}) {
+        return TextEditor.enrichHTML(text, options);
     });
 
     // Add a setter

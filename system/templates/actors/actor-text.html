@@ -6,6 +6,6 @@
     </header>
     <section class="sheet-body">
         {{#if data.img}}<p><img src="{{data.img}}" title="{{data.name}}" /></p>{{/if}}
-        {{#if data.data.description}}<p>{{{data.data.description}}}</p>{{/if}}
+        {{#if data.data.description}}<p>{{{enrichHTML data.data.description}}}</p>{{/if}}
     </section>
 </div>

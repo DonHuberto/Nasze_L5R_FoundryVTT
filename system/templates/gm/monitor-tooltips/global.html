@@ -17,5 +17,5 @@
         <li><b>{{localize 'l5r5e.social.glory'}}</b> : <span class="{{#ifCond actorData.social.glory '>' 64}}goodvalue{{/ifCond}}{{#ifCond actorData.social.glory '<' 20}}badvalue{{/ifCond}}">{{actorData.social.glory}}</span></li>
         <li><b>{{localize 'l5r5e.social.status'}}</b> : {{actorData.social.status}}</li>
     </ul>
-    <p>{{{actorData.description}}}</p>
+    <p>{{{enrichHTML actorData.description}}}</p>
 </section>

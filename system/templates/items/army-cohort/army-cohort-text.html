@@ -13,9 +13,9 @@
             <li><strong>{{localize 'l5r5e.army.battle_readiness.discipline'}}</strong> : {{data.data.battle_readiness.panic_discipline.max}}</li>
         </ul>
         {{!-- abilities --}}
-        <p><strong>{{localize 'l5r5e.army.cohort.abilities'}}</strong> : {{{data.data.abilities}}}</p>
+        <p><strong>{{localize 'l5r5e.army.cohort.abilities'}}</strong> : {{{enrichHTML data.data.abilities}}}</p>
         {{!--item-infos--}}
-        <p><strong>{{localize 'l5r5e.sheets.description'}}</strong> : {{{data.data.description}}}</p>
+        <p><strong>{{localize 'l5r5e.sheets.description'}}</strong> : {{{enrichHTML data.data.description}}}</p>
         <p><strong>{{localize 'l5r5e.sheets.book_reference'}}</strong> : {{data.data.book_reference}}</p>
     </section>
 </div>

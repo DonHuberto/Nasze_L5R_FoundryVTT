@@ -7,7 +7,7 @@
     <section class="sheet-body">
         <p>
             {{#if data.content}}
-                {{{data.content}}}
+                {{{enrichHTML data.content}}}
             {{else}}
                 {{#if data.img}}<img src="{{data.img}}" title="{{data.name}}" />{{/if}}
             {{/if}}
