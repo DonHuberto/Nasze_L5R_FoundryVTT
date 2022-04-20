@@ -202,6 +202,12 @@
             "name": "Procédé du Coeur du vent de Kökejin",
             "description": "",
             "book_reference": "La Voie des Vagues p.117"
+        },
+        {
+            "id": "Agasha Pattern",
+            "name": "Agasha Pattern (WIP)",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
         }
     ]
 }
