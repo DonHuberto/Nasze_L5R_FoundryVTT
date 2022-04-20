@@ -193,6 +193,13 @@
             "system": "l5r5e"
         },
         {
+            "name": "core-celestial-implement-boons",
+            "label": "Celestial Implement Boons",
+            "path": "packs/core-celestial-implement-boons.db",
+            "entity": "Item",
+            "system": "l5r5e"
+        },
+        {
             "name": "core-journal-school-curriculum",
             "label": "School Curriculum",
             "path": "packs/core-journal-school-curriculum.db",

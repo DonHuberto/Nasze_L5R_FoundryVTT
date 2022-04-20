@@ -6,8 +6,9 @@ Date format : day/month/year
 - Added Rōnin icon tag symbol (thanks to TesserWract).
 - Fixed : Missing translation for EN and ES - "Armors, Weapons, and Items" in Npc Generator dialog.
 - Compendiums :
-  - Added CR missing "Agasha Pattern" Pattern and Property.
-  - Updated Weapon Names and Grips, thanks to TesserWract :
+  - Added CR missing "Agasha Pattern" Pattern and Property (Thanks to KitCat).
+  - Added "Celestial Implement Boons" compendium (Thanks to TesserWract)
+  - Updated Weapon Names and Grips (Thanks to TesserWract) :
     - Added "N/A" to invalid weapon grips.
     - Grips with more than one quality and/or style now use a more consistent format: "(style): Quality 1, Quality 2, ..."
     - Renamed "Tinbe-Rochin" to "Rochin" as the DB entry is for the single item rather than the item pair.

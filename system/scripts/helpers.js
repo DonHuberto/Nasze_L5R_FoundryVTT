@@ -322,6 +322,7 @@ export class HelpersL5r5e {
 
         core.set("Arm", "l5r5e.core-armors");
         core.set("Bon", "l5r5e.core-bonds");
+        core.set("Boo", "l5r5e.core-celestial-implement-boons");
         core.set("Itp", "l5r5e.core-item-patterns");
         core.set("Ite", "l5r5e.core-items");
         core.set("Pro", "l5r5e.core-properties");
