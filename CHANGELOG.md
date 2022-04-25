@@ -1,9 +1,10 @@
 # Changelog
 Date format : day/month/year
 
-## 1.7.2 - ??/??/2022 - ?
+## 1.8.0 - ??/??/2022 - Compendiums Update
 - Added 179 Japanese' style villages name table.
-- Added Rōnin icon tag symbol (thanks to TesserWract).
+- Added Rōnin icon and tag symbol (Thanks to TesserWract).
+- Added a different view for hidden roll in ChatMessage (GM/Players).
 - Fixed : Missing translation for EN and ES - "Armors, Weapons, and Items" in Npc Generator dialog.
 - Compendiums :
   - Added CR missing "Agasha Pattern" Pattern and Property (Thanks to KitCat).

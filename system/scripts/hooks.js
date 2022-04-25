@@ -68,10 +68,17 @@ export default class HooksL5r5e {
      * Chat Message
      */
     static renderChatMessage(message, html, data) {
-        // Add a extra CSS class to roll
         if (message.isRoll) {
+            // Add an extra CSS class to roll
             html.addClass("roll");
             html.on("click", ".chat-dice-rnk", game.l5r5e.RollnKeepDialog.onChatAction.bind(this));
+
+            // Remove specific elements
+            if (game.user.isGM) {
+                html.find(".player-only").remove();
+            } else {
+                html.find(".gm-only").remove();
+            }
         }
     }
 

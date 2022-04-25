@@ -22,10 +22,9 @@
 
             <span class="chat-profil-element">
                 {{#if l5r5e.difficultyHidden}}
-                    {{localize 'l5r5e.dice.chat.difficulty'}} {{localize 'l5r5e.dice.chat.difficulty_hidden'}}
-                {{else}}
-                    {{localize 'l5r5e.dice.chat.difficulty'}} {{l5r5e.difficulty}}
+                    <span class="player-only">{{localize 'l5r5e.dice.chat.difficulty'}} {{localize 'l5r5e.dice.chat.difficulty_hidden'}}</span>
                 {{/if}}
+                <span class="{{#if l5r5e.difficultyHidden}}gm-only{{/if}}">{{localize 'l5r5e.dice.chat.difficulty'}} {{l5r5e.difficulty}}</span>
                 <br>
                 {{#if l5r5e.voidPointUsed}}
                     <i class="i_void" title="{{localize 'l5r5e.dice.chat.void_point_used'}}"></i>
@@ -86,18 +85,17 @@
 
             {{!-- Result text --}}
             {{#if ../l5r5e.difficultyHidden}}
-                <div class="l5r5e dice-result-rnk unknown">
+                <div class="l5r5e dice-result-rnk unknown player-only">
                     {{totalSuccess}} {{localize 'l5r5e.dice.chat.successes'}}
                 </div>
-            {{else}}
-                <div class="l5r5e dice-result-rnk {{#ifCond totalSuccess '>=' ../l5r5e.difficulty}}success{{else}}fail{{/ifCond}}">
-                    {{#ifCond totalSuccess '>=' ../l5r5e.difficulty}}
-                        {{localize "l5r5e.dice.chat.success_text"}} <i title="{{totalBonus}} {{localize 'l5r5e.dice.chat.successes'}}">({{totalBonus}} {{localize "l5r5e.dice.chat.bonus_text"}})</i>
-                    {{else}}
-                        {{localize "l5r5e.dice.chat.fail_text"}}
-                    {{/ifCond}}
-                </div>
             {{/if}}
+            <div class="l5r5e dice-result-rnk {{#ifCond totalSuccess '>=' ../l5r5e.difficulty}}success{{else}}fail{{/ifCond}} {{#if ../l5r5e.difficultyHidden}}gm-only{{/if}}">
+                {{#ifCond totalSuccess '>=' ../l5r5e.difficulty}}
+                    {{localize "l5r5e.dice.chat.success_text"}} <i title="{{totalBonus}} {{localize 'l5r5e.dice.chat.successes'}}">({{totalBonus}} {{localize "l5r5e.dice.chat.bonus_text"}})</i>
+                {{else}}
+                    {{localize "l5r5e.dice.chat.fail_text"}}
+                {{/ifCond}}
+            </div>
             {{/l5r5e.summary}}
         </div>
         {{/if}}
