@@ -1,7 +1,7 @@
 # Changelog
 Date format : day/month/year
 
-## 1.8.0 - ??/??/2022 - Compendiums Update
+## 1.8.0 - ??/??/2022 - QoL & Compendiums Update
 - Added 179 Japanese' style villages name table.
 - Added Rōnin icon and tag symbol (Thanks to TesserWract).
 - Added a different view for hidden roll in ChatMessage (GM/Players).

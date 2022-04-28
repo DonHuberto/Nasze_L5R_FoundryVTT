@@ -22,9 +22,9 @@
 
             <span class="chat-profil-element">
                 {{#if l5r5e.difficultyHidden}}
-                    <span class="player-only">{{localize 'l5r5e.dice.chat.difficulty'}} {{localize 'l5r5e.dice.chat.difficulty_hidden'}}</span>
+                    <span class="player-only" title="{{localize 'l5r5e.dice.dicepicker.difficulty_hidden_label'}}">{{localize 'l5r5e.dice.chat.difficulty'}} {{localize 'l5r5e.dice.chat.difficulty_hidden'}}</span>
                 {{/if}}
-                <span class="{{#if l5r5e.difficultyHidden}}gm-only{{/if}}">{{localize 'l5r5e.dice.chat.difficulty'}} {{l5r5e.difficulty}}</span>
+                <span class="{{#if l5r5e.difficultyHidden}}gm-only{{/if}}">{{localize 'l5r5e.dice.chat.difficulty'}} {{l5r5e.difficulty}} {{#if l5r5e.difficultyHidden}}<i class="fas fa-eye-slash" title="{{localize 'l5r5e.dice.dicepicker.difficulty_hidden_label'}}"></i>{{/if}}</span>
                 <br>
                 {{#if l5r5e.voidPointUsed}}
                     <i class="i_void" title="{{localize 'l5r5e.dice.chat.void_point_used'}}"></i>
