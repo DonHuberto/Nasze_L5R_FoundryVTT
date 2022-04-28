@@ -19,9 +19,9 @@
                 {{localize 'l5r5e.dice.chat.difficulty'}}
                 {{#if l5r5e.difficultyHidden}}
                     {{#if isGM}}
-                        ?{{l5r5e.difficulty}}?
+                        {{l5r5e.difficulty}} <i class="fas fa-eye-slash" title="{{localize 'l5r5e.dice.dicepicker.difficulty_hidden_label'}}"></i>
                     {{else}}
-                        {{localize 'l5r5e.dice.chat.difficulty_hidden'}}
+                        <span title="{{localize 'l5r5e.dice.dicepicker.difficulty_hidden_label'}}">{{localize 'l5r5e.dice.chat.difficulty_hidden'}}</span>
                     {{/if}}
                 {{else}}
                     {{l5r5e.difficulty}}
