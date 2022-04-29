@@ -106,21 +106,21 @@ L5R5E.symbols.set("(kata)", { class: "i_kata", label: "l5r5e.techniques.kata" })
 L5R5E.symbols.set("(mantra)", { class: "i_mantra", label: "l5r5e.techniques.mantra" });
 L5R5E.symbols.set("(prereq)", { class: "i_prerequisite_exemption", label: "l5r5e.advancements.curriculum" });
 
-L5R5E.symbols.set("(imperial)", { class: "i_imperial", label: "" });
-L5R5E.symbols.set("(ronin)", { class: "i_ronin", label: "" });
-L5R5E.symbols.set("(crab)", { class: "i_crab", label: "" });
-L5R5E.symbols.set("(crane)", { class: "i_crane", label: "" });
-L5R5E.symbols.set("(dragon)", { class: "i_dragon", label: "" });
-L5R5E.symbols.set("(lion)", { class: "i_lion", label: "" });
-L5R5E.symbols.set("(mantis)", { class: "i_mantis", label: "" });
-L5R5E.symbols.set("(phoenix)", { class: "i_phoenix", label: "" });
-L5R5E.symbols.set("(scorpion)", { class: "i_scorpion", label: "" });
-L5R5E.symbols.set("(tortoise)", { class: "i_tortoise", label: "" });
-L5R5E.symbols.set("(unicorn)", { class: "i_unicorn", label: "" });
+L5R5E.symbols.set("(imperial)", { class: "i_imperial", label: "l5r5e.clans.imperial" });
+L5R5E.symbols.set("(ronin)", { class: "i_ronin", label: "l5r5e.clans.ronin" });
+L5R5E.symbols.set("(crab)", { class: "i_crab", label: "l5r5e.clans.crab" });
+L5R5E.symbols.set("(crane)", { class: "i_crane", label: "l5r5e.clans.crane" });
+L5R5E.symbols.set("(dragon)", { class: "i_dragon", label: "l5r5e.clans.dragon" });
+L5R5E.symbols.set("(lion)", { class: "i_lion", label: "l5r5e.clans.lion" });
+L5R5E.symbols.set("(mantis)", { class: "i_mantis", label: "l5r5e.clans.mantis" });
+L5R5E.symbols.set("(phoenix)", { class: "i_phoenix", label: "l5r5e.clans.phoenix" });
+L5R5E.symbols.set("(scorpion)", { class: "i_scorpion", label: "l5r5e.clans.scorpion" });
+L5R5E.symbols.set("(tortoise)", { class: "i_tortoise", label: "l5r5e.clans.tortoise" });
+L5R5E.symbols.set("(unicorn)", { class: "i_unicorn", label: "l5r5e.clans.unicorn" });
 
-L5R5E.symbols.set("(bushi)", { class: "i_bushi", label: "" });
-L5R5E.symbols.set("(courtier)", { class: "i_courtier", label: "" });
-L5R5E.symbols.set("(shugenja)", { class: "i_shugenja", label: "" });
+L5R5E.symbols.set("(bushi)", { class: "i_bushi", label: "l5r5e.roles.bushi" });
+L5R5E.symbols.set("(courtier)", { class: "i_courtier", label: "l5r5e.roles.courtier" });
+L5R5E.symbols.set("(shugenja)", { class: "i_shugenja", label: "l5r5e.roles.shugenja" });
 
 // *** Clans and Families ***
 L5R5E.families = new Map();

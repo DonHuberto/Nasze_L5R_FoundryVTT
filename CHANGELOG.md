@@ -1,10 +1,10 @@
 # Changelog
 Date format : day/month/year
 
-## 1.8.0 - ??/??/2022 - QoL & Compendiums Update
-- Added 179 Japanese' style villages name table.
-- Added Rōnin icon and tag symbol (Thanks to TesserWract).
-- Added a different view for hidden roll in ChatMessage (GM/Players).
+## 1.8.0 - 29/04/2022 - QoL & Compendiums Update
+- Added 179 Japanese villages name table.
+- Added Rōnin icon and tag symbol `(ronin)` (Thanks to TesserWract).
+- Added a different view for GM and Players for hidden roll in ChatMessage.
 - Fixed : Missing translation for EN and ES - "Armors, Weapons, and Items" in Npc Generator dialog.
 - Compendiums :
   - Added CR missing "Agasha Pattern" Pattern and Property (Thanks to KitCat).
@@ -14,7 +14,7 @@ Date format : day/month/year
     - Grips with more than one quality and/or style now use a more consistent format: "(style): Quality 1, Quality 2, ..."
     - Renamed "Tinbe-Rochin" to "Rochin" as the DB entry is for the single item rather than the item pair.
     - Added macrons to relevant weapon names.
-- Refactor the way of symbols was handled, now compatible with "monks enhanced journal".
+- Refactor the way of symbols was handled, now compatible with "monks enhanced journal" module.
 
 ## 1.7.1 - 01/04/2022 - Spring fixes
 - PC/NPC sheet :
