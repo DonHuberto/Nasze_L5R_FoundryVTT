@@ -359,6 +359,8 @@ export class GmMonitor extends FormApplication {
             actorData: data,
             advantages: adv,
             disadvantages: dis,
+            suffix: data.template === "pow" ? "_pow" : "",
+            actor_type: actor.data.type,
         });
     }
 
