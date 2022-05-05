@@ -1,6 +1,9 @@
 # Changelog
 Date format : day/month/year
 
+## 1.8.1 - ??/??/2022 - ???
+- Restricted symbols to lower-case only, ex : (air) work, (Air) will not (#36).
+
 ## 1.8.0 - 29/04/2022 - QoL & Compendiums Update
 - Added 179 Japanese villages name table.
 - Added Rōnin icon and tag symbol `(ronin)` (Thanks to TesserWract).

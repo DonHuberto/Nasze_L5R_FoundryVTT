@@ -293,7 +293,7 @@ export class HelpersL5r5e {
         CONFIG.l5r5e.symbols.forEach((cfg, tag) => {
             if (toSymbol) {
                 text = text.replace(
-                    new RegExp(HelpersL5r5e.escapeRegExp(tag), "gi"),
+                    new RegExp(HelpersL5r5e.escapeRegExp(tag), "g"),
                     `<i class="${cfg.class}" title="${game.i18n.localize(cfg.label)}"></i>`
                 );
             } else {
