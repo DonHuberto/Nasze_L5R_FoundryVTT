@@ -1,6 +1,7 @@
 /* Global */
 @import "../scss/colors";
 @import "../scss/global";
+@import "../scss/compatibility-modules";
 @import "../scss/fonts";
 @import "../scss/cursors";
 @import "../scss/dices";
@@ -15,5 +16,5 @@
     @import "../scss/rings";
     @import "../scss/skills";
     @import "../scss/items";
-    @import "../scss/twentyquestions";
+    @import "../scss/twenty-questions";
 }

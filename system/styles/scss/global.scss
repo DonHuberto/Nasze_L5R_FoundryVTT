@@ -363,15 +363,3 @@ a.compendium-link {
         color: #0096ff;
     }
 }
-
-// Fix for "search anywhere" draggable icon
-.window-draggable-handle {
-    z-index: 20 !important;
-}
-
-// Fix forien-quest
-#forien-quest-log .window-content,
-#forien-quest-log-form .window-content,
-.window-app.forien-quest-preview .window-content {
-    overflow: initial;
-}
