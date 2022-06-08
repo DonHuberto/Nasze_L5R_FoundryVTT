@@ -6,7 +6,7 @@ body {
     }
     &:not(.background) {
         background: url("../assets/imgs/bg-table.webp") no-repeat;
-        background-size: auto;
+        background-size: cover;
     }
 }
 

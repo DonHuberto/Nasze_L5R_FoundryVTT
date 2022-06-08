@@ -4,6 +4,7 @@ Date format : day/month/year
 ## 1.8.1 - ??/??/2022 - ???
 - Added a restriction on symbols, they are now lower-case only, ex : (air) work, (Air) will not (#36).
 - Added some 20q questions in GM monitor global tooltip (q14, q15, q20) for quick access.
+- Fixed css for body>background-size from auto to cover, for blank scene (Thx to Sasmira)
 
 ## 1.8.0 - 29/04/2022 - QoL & Compendiums Update
 - Added 179 Japanese villages name table.
