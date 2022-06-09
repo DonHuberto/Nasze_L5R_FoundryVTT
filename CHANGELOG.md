@@ -1,11 +1,12 @@
 # Changelog
 Date format : day/month/year
 
-## 1.8.1 - ??/??/2022 - ???
+## 1.8.1 - 09/06/2022 - Small bugfixes
 - Added a restriction on symbols, they are now lower-case only, ex : (air) work, (Air) will not (#36).
 - Added some 20q questions in GM monitor global tooltip (q14, q15, q20) for quick access.
 - Fixed css for body>background-size from auto to cover, for blank scene (Thx to Sasmira).
 - Fixed css for header buttons in maximized state for "OneJournal" module.
+- Updated System manifest property "manifestPlusVersion" to 1.2.0, and added screenshots in media section.
 
 ## 1.8.0 - 29/04/2022 - QoL & Compendiums Update
 - Added 179 Japanese villages name table.

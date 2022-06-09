@@ -10,13 +10,14 @@
     "version": "1.8.1",
     "minimumCoreVersion": "9",
     "compatibleCoreVersion": "9",
-    "manifestPlusVersion": "1.0.0",
+    "manifestPlusVersion": "1.2.0",
     "socket": true,
     "author": "Team L5R",
     "authors": [
         {
             "name": "Vlyan",
-            "discord": "Vlyan#6771"
+            "discord": "Vlyan#6771",
+            "ko-fi": "vlyan"
         },
         {
             "name": "Mandar",
@@ -264,6 +265,38 @@
             "lang": "es",
             "name": "Spanish (Spain)",
             "path": "lang/es-es.json"
+        }
+    ],
+    "media": [
+        {
+            "type": "screenshot",
+            "url": "https://gitlab.com/teaml5r/l5r5e/-/raw/master/screenshoots/login.jpg?raw=true",
+            "caption": "Login screen"
+        },
+        {
+            "type": "screenshot",
+            "url": "https://gitlab.com/teaml5r/l5r5e/-/raw/master/screenshoots/roll.jpg?raw=true",
+            "caption": "DicePicker and Roll and Keep"
+        },
+        {
+            "type": "screenshot",
+            "url": "https://gitlab.com/teaml5r/l5r5e/-/raw/master/screenshoots/school.jpg?raw=true",
+            "caption": "Experience and School"
+        },
+        {
+            "type": "screenshot",
+            "url": "https://gitlab.com/teaml5r/l5r5e/-/raw/master/screenshoots/sheet_pc.jpg?raw=true",
+            "caption": "PC sheet"
+        },
+        {
+            "type": "screenshot",
+            "url": "https://gitlab.com/teaml5r/l5r5e/-/raw/master/screenshoots/sheet_npc_army.jpg?raw=true",
+            "caption": "NPC and Army sheets"
+        },
+        {
+            "type": "screenshot",
+            "url": "https://gitlab.com/teaml5r/l5r5e/-/raw/master/screenshoots/compendiums.jpg?raw=true",
+            "caption": "Compendiums"
         }
     ]
 }
