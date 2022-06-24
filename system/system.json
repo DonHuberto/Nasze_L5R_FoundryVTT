@@ -265,6 +265,11 @@
             "lang": "es",
             "name": "Spanish (Spain)",
             "path": "lang/es-es.json"
+        },
+        {
+            "lang": "it",
+            "name": "Italian (Italy)",
+            "path": "lang/it-it.json"
         }
     ],
     "media": [
