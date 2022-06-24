@@ -1,6 +1,11 @@
 # Changelog
 Date format : day/month/year
 
+## 1.8.2 - 24/06/2022 - Unofficial Italian translation
+- Added Unofficial Italian translation (Corebook only for compendiums), all thanks to EldritchTranslator.
+- Added French translation for Tables.
+- Fixed : Translated table names broke the macros. We are now using IDs to avoid that in "L5R5E Macros" compendium.
+
 ## 1.8.1 - 09/06/2022 - Small bugfixes
 - Added a restriction on symbols, they are now lower-case only, ex : (air) work, (Air) will not (#36).
 - Added some 20q questions in GM monitor global tooltip (q14, q15, q20) for quick access.

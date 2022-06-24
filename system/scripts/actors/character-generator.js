@@ -130,16 +130,16 @@ export class CharacterGenerator {
      * @return {Promise<string>}
      */
     static async getRandomizedFirstname(isFemale, clan) {
-        let table = `Japanese names (${isFemale ? "Female" : "Male"})`;
+        let table = `L5RCoreTblJpNam${isFemale ? "F" : "M"}`;
         switch (clan) {
             case "ivory_kingdoms":
-                table = "Ivory Kingdoms names";
+                table = "aTVXI5Y5t7cBfyUE";
                 break;
             case "qamarist":
-                table = "Qamarist names";
+                table = "bXaEmt72GLUeoyzz";
                 break;
             case "ujik":
-                table = "Ujik names";
+                table = "d9lU98NE8G2YuN48";
                 break;
         }
         const randomNames = await game.l5r5e.HelpersL5r5e.drawManyFromPack("l5r5e.core-name-tables", table, 1, {

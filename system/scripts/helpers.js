@@ -745,7 +745,7 @@ export class HelpersL5r5e {
     /**
      * Shortcut method to draw names to chat (private) from a table in compendium without importing it
      * @param {String} pack                Compendium name
-     * @param {String} tableName           Table name in this compendium
+     * @param {String} tableName           Table name/id in this compendium
      * @param {String} retrieve            How many draw we do
      * @param {object} opt                 drawMany config option object
      * @return {Promise<{RollTableDraw}>}  The drawn results
@@ -758,7 +758,7 @@ export class HelpersL5r5e {
         }
         await comp.getDocuments();
 
-        const table = await comp.getName(tableName);
+        const table = await (/^[a-zA-Z0-9]{16}$/.test(tableName) ? comp.get(tableName) : comp.getName(tableName));
         if (!table) {
             console.log(`L5R5E | Table not found[${tableName}]`, comp, table);
             return;
