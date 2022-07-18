@@ -24,7 +24,7 @@ export class MigrationL5r5e {
      * @return {Promise<void>} A Promise which resolves once the migration is completed
      */
     static async migrateWorld(options = { force: false }) {
-        if (!game.user.isGM) {
+        if (!game.user.isFirstGM) {
             return;
         }
 

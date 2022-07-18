@@ -16,6 +16,13 @@ export default class HooksL5r5e {
      * Do anything once the system is ready
      */
     static async ready() {
+        // If multiple GM connected, tag the 1st alive, useful for some traitements
+        Object.defineProperty(game.user, "isFirstGM", {
+            get: function () {
+                return game.user.isGM && game.user.id === game.users.find((u) => u.active && u.isGM)?.id;
+            },
+        });
+
         // Migration stuff
         if (game.l5r5e.migrations.needUpdate(game.l5r5e.migrations.NEEDED_VERSION)) {
             game.l5r5e.migrations.migrateWorld({ force: false });

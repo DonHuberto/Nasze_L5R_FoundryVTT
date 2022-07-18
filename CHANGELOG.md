@@ -1,6 +1,10 @@
 # Changelog
 Date format : day/month/year
 
+## 1.9.0 - ??/??/2022 - Foundry v10 Compatibility
+- Updated the System to FoundryVTT v10.
+- Added a `game.user.isFirstGM` property for some traitements (socket and migration) to prevent multiple executions with multiple GM connected.
+
 ## 1.8.2 - 24/06/2022 - Unofficial Italian translation
 - Added Unofficial Italian translation (Corebook only for compendiums), all thanks to EldritchTranslator.
 - Added French translation for Tables.

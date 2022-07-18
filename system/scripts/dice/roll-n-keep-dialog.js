@@ -676,7 +676,7 @@ export class RollnKeepDialog extends FormApplication {
 
         // Delete old chat message related to this series
         if (game.settings.get("l5r5e", "rnk-deleteOldMessage")) {
-            if (game.user.isGM) {
+            if (game.user.isFirstGM) {
                 const message = game.messages.get(msgOldId);
                 if (message) {
                     message.delete();
