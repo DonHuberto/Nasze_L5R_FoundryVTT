@@ -91,7 +91,7 @@ export class GmMonitor extends FormApplication {
             actors = game.actors.filter((e) => ids.includes(e.id));
         } else {
             // If empty add pc with owner
-            actors = game.actors.filter((actor) => actor.data.type === "character" && actor.hasPlayerOwner);
+            actors = game.actors.filter((actor) => actor.type === "character" && actor.hasPlayerOwner);
             this._saveActorsIds();
         }
 
@@ -120,9 +120,9 @@ export class GmMonitor extends FormApplication {
      * @return {Object}
      * @override
      */
-    getData(options = null) {
+    async getData(options = null) {
         return {
-            ...super.getData(options),
+            ...(await super.getData(options)),
             data: {
                 ...this.object,
                 actors: this.object.actors.filter((e) =>
@@ -197,12 +197,13 @@ export class GmMonitor extends FormApplication {
         if (!json) {
             return;
         }
+
         const data = JSON.parse(json);
-        if (!data || data.type !== "Actor" || !data.id || !!this.object.actors.find((e) => e.id === data.id)) {
+        if (!data || data.type !== "Actor" || !data.uuid || !!this.object.actors.find((a) => a.uuid === data.uuid)) {
             return;
         }
 
-        const actor = game.actors.find((e) => e.id === data.id);
+        const actor = game.actors.find((a) => a.uuid === data.uuid);
         if (!actor) {
             return;
         }
@@ -275,8 +276,7 @@ export class GmMonitor extends FormApplication {
         const add = event.which === 2 ? -999 : event.which === 1 ? 1 : -1;
 
         // Stance
-        let stanceIdx =
-            CONFIG.l5r5e.stances.findIndex((s) => s === actor.data.data.stance) + (event.which === 1 ? 1 : -1);
+        let stanceIdx = CONFIG.l5r5e.stances.findIndex((s) => s === actor.system.stance) + (event.which === 1 ? 1 : -1);
         if (stanceIdx < 0) {
             stanceIdx = CONFIG.l5r5e.stances.length - 1;
         } else if (stanceIdx > CONFIG.l5r5e.stances.length - 1) {
@@ -287,40 +287,40 @@ export class GmMonitor extends FormApplication {
         switch (type) {
             // *** Characters ***
             case "fatigue":
-                updateData["data.fatigue.value"] = Math.max(0, actor.data.data.fatigue.value + add);
+                updateData["system.fatigue.value"] = Math.max(0, actor.system.fatigue.value + add);
                 break;
 
             case "strife":
-                updateData["data.strife.value"] = Math.max(0, actor.data.data.strife.value + add);
+                updateData["system.strife.value"] = Math.max(0, actor.system.strife.value + add);
                 break;
 
             case "void_points":
-                updateData["data.void_points.value"] = Math.min(
-                    actor.data.data.void_points.max,
-                    Math.max(0, actor.data.data.void_points.value + add)
+                updateData["system.void_points.value"] = Math.min(
+                    actor.system.void_points.max,
+                    Math.max(0, actor.system.void_points.value + add)
                 );
                 break;
 
             case "stance":
-                updateData["data.stance"] = CONFIG.l5r5e.stances[stanceIdx];
+                updateData["system.stance"] = CONFIG.l5r5e.stances[stanceIdx];
                 break;
 
             case "prepared":
-                updateData["data.prepared"] = !actor.data.data.prepared;
+                updateData["system.prepared"] = !actor.system.prepared;
                 break;
 
             // *** Armies ***
             case "casualties":
-                updateData["data.battle_readiness.casualties_strength.value"] = Math.max(
+                updateData["system.battle_readiness.casualties_strength.value"] = Math.max(
                     0,
-                    actor.data.data.battle_readiness.casualties_strength.value + add
+                    actor.system.battle_readiness.casualties_strength.value + add
                 );
                 break;
 
             case "panic":
-                updateData["data.battle_readiness.panic_discipline.value"] = Math.max(
+                updateData["system.battle_readiness.panic_discipline.value"] = Math.max(
                     0,
-                    actor.data.data.battle_readiness.panic_discipline.value + add
+                    actor.system.battle_readiness.panic_discipline.value + add
                 );
                 break;
 
@@ -328,7 +328,7 @@ export class GmMonitor extends FormApplication {
                 console.warn("L5R5E | Unsupported type", type);
                 break;
         }
-        if (!foundry.utils.isObjectEmpty(updateData)) {
+        if (!foundry.utils.isEmpty(updateData)) {
             await actor.update(updateData);
             this.render(false);
         }
@@ -336,52 +336,52 @@ export class GmMonitor extends FormApplication {
 
     /**
      * Get tooltips information for this character
-     * @param {BaseSheetL5r5e} actor
+     * @param {ActorL5r5e} actor
      * @return {string}
      * @private
      */
     async _getTooltipGlobal(actor) {
-        const data = actor.data.data;
+        const actorData = (await actor.sheet?.getData()?.data) || actor;
 
         // Peculiarities
         const pec = actor.items.filter((e) => e.type === "peculiarity");
         const adv = pec
-            .filter((e) => ["distinction", "passion"].includes(e.data.data.peculiarity_type))
+            .filter((e) => ["distinction", "passion"].includes(e.system.peculiarity_type))
             .map((e) => e.name)
             .join(", ");
         const dis = pec
-            .filter((e) => ["adversity", "anxiety"].includes(e.data.data.peculiarity_type))
+            .filter((e) => ["adversity", "anxiety"].includes(e.system.peculiarity_type))
             .map((e) => e.name)
             .join(", ");
 
         // *** Template ***
         return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor-tooltips/global.html`, {
-            actorData: data,
+            actorData: actorData,
             advantages: adv,
             disadvantages: dis,
-            suffix: data.template === "pow" ? "_pow" : "",
-            actor_type: actor.data.type,
+            suffix: actorData.system.template === "pow" ? "_pow" : "",
+            actor_type: actor.type,
         });
     }
 
     /**
-     * Get tooltips informations for this army
-     * @param {BaseSheetL5r5e} actor
+     * Get tooltips information for this army
+     * @param {ActorL5r5e} actor
      * @return {string}
      * @private
      */
     async _getTooltipArmiesGlobal(actor) {
-        const actorData = (await actor.sheet?.getData()) || actor.data;
+        const actorData = (await actor.sheet?.getData()?.data) || actor;
 
         // *** Template ***
         return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor-tooltips/global-armies.html`, {
-            actorData: actorData.data,
+            actorData: actorData,
         });
     }
 
     /**
-     * Get weapons informations for this actor
-     * @param {BaseSheetL5r5e} actor
+     * Get weapons information for this actor
+     * @param {ActorL5r5e} actor
      * @return {string}
      * @private
      */
@@ -397,12 +397,12 @@ export class GmMonitor extends FormApplication {
 
         // Readied Weapons
         const readied = actor.items
-            .filter((e) => e.type === "weapon" && e.data.data.equipped && !!e.data.data.readied)
+            .filter((e) => e.type === "weapon" && e.system.equipped && !!e.system.readied)
             .map((e) => display(e));
 
         // Equipped Weapons
         const sheathed = actor.items
-            .filter((e) => e.type === "weapon" && e.data.data.equipped && !e.data.data.readied)
+            .filter((e) => e.type === "weapon" && e.system.equipped && !e.system.readied)
             .map((e) => display(e));
 
         // *** Template ***
@@ -413,20 +413,20 @@ export class GmMonitor extends FormApplication {
     }
 
     /**
-     * Get armors informations for this actor
-     * @param {BaseSheetL5r5e} actor
+     * Get armors information for this actor
+     * @param {ActorL5r5e} actor
      * @return {string}
      * @private
      */
     async _getTooltipArmors(actor) {
         // Equipped Armors
         const armors = actor.items
-            .filter((e) => e.type === "armor" && e.data.data.equipped)
+            .filter((e) => e.type === "armor" && e.system.equipped)
             .map(
                 (e) =>
                     e.name +
-                    ` (<i class="fas fa-tint">${e.data.data.armor.physical}</i>` +
-                    ` / <i class="fas fa-bolt">${e.data.data.armor.supernatural}</i>)`
+                    ` (<i class="fas fa-tint">${e.system.armor.physical}</i>` +
+                    ` / <i class="fas fa-bolt">${e.system.armor.supernatural}</i>)`
             );
 
         // *** Template ***

@@ -1,4 +1,4 @@
-<div class="{{cssClass}}" data-actor-id="{{actor.data._id}}" data-item-id="{{data._id}}">
+<div class="{{cssClass}}" data-actor-id="{{actor._id}}" data-item-id="{{data._id}}">
     <header class="card-header">
         <h2 class="item-name">
             {{#ifCond data.img '&&' data.content}}<img src="{{data.img}}" title="{{data.name}}" />{{/ifCond}} {{data.name}}
@@ -7,7 +7,7 @@
     <section class="sheet-body">
         <p>
             {{#if data.content}}
-                {{{enrichHTML data.content}}}
+                {{{data.content}}}
             {{else}}
                 {{#if data.img}}<img src="{{data.img}}" title="{{data.name}}" />{{/if}}
             {{/if}}

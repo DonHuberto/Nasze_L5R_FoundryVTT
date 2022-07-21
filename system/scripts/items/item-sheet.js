@@ -27,6 +27,11 @@ export class ItemSheetL5r5e extends BaseItemSheetL5r5e {
         // Prepare Properties (id/name => object)
         await this._prepareProperties(sheetData);
 
+        // Editors enrichment
+        sheetData.data.enrichedHtml = {
+            description: await TextEditor.enrichHTML(sheetData.data.system.description, { async: true }),
+        };
+
         return sheetData;
     }
 
@@ -37,9 +42,9 @@ export class ItemSheetL5r5e extends BaseItemSheetL5r5e {
     async _prepareProperties(sheetData) {
         sheetData.data.propertiesList = [];
 
-        if (Array.isArray(sheetData.data.data.properties)) {
+        if (Array.isArray(sheetData.data.system.properties)) {
             const props = [];
-            for (const property of sheetData.data.data.properties) {
+            for (const property of sheetData.data.system.properties) {
                 const gameProp = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack({ id: property.id, type: "Item" });
                 if (gameProp) {
                     sheetData.data.propertiesList.push(gameProp);
@@ -56,7 +61,7 @@ export class ItemSheetL5r5e extends BaseItemSheetL5r5e {
                     });
                 }
             }
-            sheetData.data.data.properties = props;
+            sheetData.data.system.properties = props;
         }
     }
 
@@ -114,15 +119,15 @@ export class ItemSheetL5r5e extends BaseItemSheetL5r5e {
         }
 
         // Specific ItemPattern's drop, get the associated props instead
-        if (item.data.type === "item_pattern" && item.data.data.linked_property_id) {
+        if (item.type === "item_pattern" && item.system.linked_property_id) {
             item = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack({
-                id: item.data.data.linked_property_id,
+                id: item.system.linked_property_id,
                 type: "Item",
             });
         }
 
         // Final object has to be a property
-        if (item.data.type !== "property") {
+        if (item.type !== "property") {
             return;
         }
 
@@ -136,27 +141,27 @@ export class ItemSheetL5r5e extends BaseItemSheetL5r5e {
      * @private
      */
     _addProperty(item) {
-        if (!Array.isArray(this.document.data.data.properties)) {
-            this.document.data.data.properties = [];
+        if (!Array.isArray(this.document.system.properties)) {
+            this.document.system.properties = [];
         }
 
-        if (this.document.data.data.properties.findIndex((p) => p.id === item.id) !== -1) {
+        if (this.document.system.properties.findIndex((p) => p.id === item.id) !== -1) {
             return;
         }
 
-        this.document.data.data.properties.push({ id: item.id, name: item.name });
+        this.document.system.properties.push({ id: item.id, name: item.name });
 
         // This props remove others ?
-        if (Array.isArray(item.data.data.properties) && item.data.data.properties.length > 0) {
-            const idsToRemove = item.data.data.properties.map((e) => e.id);
-            this.document.data.data.properties = this.document.data.data.properties.filter(
+        if (Array.isArray(item.system.properties) && item.system.properties.length > 0) {
+            const idsToRemove = item.system.properties.map((e) => e.id);
+            this.document.system.properties = this.document.system.properties.filter(
                 (p) => !idsToRemove.includes(p.id)
             );
         }
 
         this.document.update({
-            data: {
-                properties: this.document.data.data.properties,
+            system: {
+                properties: this.document.system.properties,
             },
         });
     }
@@ -171,21 +176,21 @@ export class ItemSheetL5r5e extends BaseItemSheetL5r5e {
         event.preventDefault();
         event.stopPropagation();
 
-        if (!Array.isArray(this.document.data.data.properties)) {
+        if (!Array.isArray(this.document.system.properties)) {
             return;
         }
 
         const id = $(event.currentTarget).parents(".property").data("propertyId");
-        const tmpProps = this.document.data.data.properties.find((p) => p.id === id);
+        const tmpProps = this.document.system.properties.find((p) => p.id === id);
         if (!tmpProps) {
             return;
         }
 
         const callback = async () => {
-            this.document.data.data.properties = this.document.data.data.properties.filter((p) => p.id !== id);
+            this.document.system.properties = this.document.system.properties.filter((p) => p.id !== id);
             this.document.update({
-                data: {
-                    properties: this.document.data.data.properties,
+                system: {
+                    properties: this.document.system.properties,
                 },
             });
         };

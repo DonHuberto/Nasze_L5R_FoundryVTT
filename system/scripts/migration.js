@@ -42,8 +42,8 @@ export class MigrationL5r5e {
         // Migrate World Actors
         for (let actor of game.actors.contents) {
             try {
-                const updateData = MigrationL5r5e._migrateActorData(actor.data, options);
-                if (!foundry.utils.isObjectEmpty(updateData)) {
+                const updateData = MigrationL5r5e._migrateActorData(actor, options);
+                if (!foundry.utils.isEmpty(updateData)) {
                     console.log(`L5R5E | Migrating Actor entity ${actor.name}`);
                     await actor.update(updateData);
                 }
@@ -57,7 +57,7 @@ export class MigrationL5r5e {
         for (let item of game.items.contents) {
             try {
                 const updateData = MigrationL5r5e._migrateItemData(item.data, options);
-                if (!foundry.utils.isObjectEmpty(updateData)) {
+                if (!foundry.utils.isEmpty(updateData)) {
                     console.log(`L5R5E | Migrating Item entity ${item.name}`);
                     await item.update(updateData);
                 }
@@ -71,7 +71,7 @@ export class MigrationL5r5e {
         for (let scene of game.scenes.contents) {
             try {
                 const updateData = MigrationL5r5e._migrateSceneData(scene.data, options);
-                if (!foundry.utils.isObjectEmpty(updateData)) {
+                if (!foundry.utils.isEmpty(updateData)) {
                     console.log(`L5R5E | Migrating Scene entity ${scene.name}`);
                     await scene.update(updateData);
                     // If we do not do this, then synthetic token actors remain in cache
@@ -97,7 +97,7 @@ export class MigrationL5r5e {
             const updatedChatList = [];
             for (let message of game.collections.get("ChatMessage")) {
                 const updateData = MigrationL5r5e._migrateChatMessage(message.data, options);
-                if (!foundry.utils.isObjectEmpty(updateData)) {
+                if (!foundry.utils.isEmpty(updateData)) {
                     updateData["_id"] = message.data._id;
                     updatedChatList.push(updateData);
                 }
@@ -156,7 +156,7 @@ export class MigrationL5r5e {
                         updateData = MigrationL5r5e._migrateSceneData(ent.data);
                         break;
                 }
-                if (foundry.utils.isObjectEmpty(updateData)) {
+                if (foundry.utils.isEmpty(updateData)) {
                     continue;
                 }
 
@@ -231,7 +231,7 @@ export class MigrationL5r5e {
      */
     static _migrateActorData(actor, options = { force: false }) {
         const updateData = {};
-        const actorData = actor.data;
+        const actorData = actor.system;
 
         // We need to be careful for unlinked tokens, only the diff is store in "data".
         // ex no diff : actor = {type: "npc"}, actorData = undefined
@@ -243,16 +243,17 @@ export class MigrationL5r5e {
         if (options?.force || MigrationL5r5e.needUpdate("1.1.0")) {
             // Add "Prepared" in actor
             if (actorData.prepared === undefined) {
-                updateData["data.prepared"] = true;
+                updateData["system.prepared"] = true;
             }
 
             // NPC are now without autostats, we need to save the value
             if (actor.type === "npc") {
                 if (actorData.endurance < 1) {
-                    updateData["data.endurance"] = (Number(actorData.rings.earth) + Number(actorData.rings.fire)) * 2;
-                    updateData["data.composure"] = (Number(actorData.rings.earth) + Number(actorData.rings.water)) * 2;
-                    updateData["data.focus"] = Number(actorData.rings.air) + Number(actorData.rings.fire);
-                    updateData["data.vigilance"] = Math.ceil(
+                    updateData["system.endurance"] = (Number(actorData.rings.earth) + Number(actorData.rings.fire)) * 2;
+                    updateData["system.composure"] =
+                        (Number(actorData.rings.earth) + Number(actorData.rings.water)) * 2;
+                    updateData["system.focus"] = Number(actorData.rings.air) + Number(actorData.rings.fire);
+                    updateData["system.vigilance"] = Math.ceil(
                         (Number(actorData.rings.air) + Number(actorData.rings.water)) / 2
                     );
                 }
@@ -264,18 +265,18 @@ export class MigrationL5r5e {
         if (options?.force || MigrationL5r5e.needUpdate("1.3.0")) {
             // PC/NPC removed notes useless props "value"
             if (actorData.notes?.value) {
-                updateData["data.notes"] = actorData.notes.value;
+                updateData["system.notes"] = actorData.notes.value;
             }
 
             // NPC have now more thant a Strength and a Weakness
             if (actor.type === "npc" && actorData.rings_affinities?.strength) {
                 const aff = actorData.rings_affinities;
-                updateData["data.rings_affinities." + aff.strength.ring] = aff.strength.value;
-                updateData["data.rings_affinities." + aff.weakness.ring] = aff.weakness.value;
+                updateData["system.rings_affinities." + aff.strength.ring] = aff.strength.value;
+                updateData["system.rings_affinities." + aff.weakness.ring] = aff.weakness.value;
 
                 // Delete old keys
-                updateData["data.rings_affinities.-=strength"] = null;
-                updateData["data.rings_affinities.-=weakness"] = null;
+                updateData["system.rings_affinities.-=strength"] = null;
+                updateData["system.rings_affinities.-=weakness"] = null;
             }
         }
         // ***** End of 1.3.0 *****

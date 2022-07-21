@@ -79,11 +79,19 @@ export class RollnKeepDialog extends FormApplication {
     }
 
     /**
+     * Current (first) Roll in ChatMessage
+     * @returns {RollL5r5e}
+     */
+    get messageRoll() {
+        return this._message?.rolls?.[0] || null;
+    }
+
+    /**
      * Return true if this actor has right on this roll
      * @return {boolean}
      */
     get isOwner() {
-        return this._message?.isAuthor || this._message?._roll.l5r5e.actor?.isOwner || this._message?.isOwner || false;
+        return this._message?.isAuthor || this.messageRoll.l5r5e.actor?.isOwner || this._message?.isOwner || false;
     }
 
     /**
@@ -137,7 +145,7 @@ export class RollnKeepDialog extends FormApplication {
         }
 
         // Get the roll
-        this.roll = game.l5r5e.RollL5r5e.fromData(this._message._roll);
+        this.roll = game.l5r5e.RollL5r5e.fromData(this.messageRoll);
 
         // Already history
         if (Array.isArray(this.roll.l5r5e.history)) {
@@ -223,7 +231,7 @@ export class RollnKeepDialog extends FormApplication {
      * @param options
      * @return {Object}
      */
-    getData(options = null) {
+    async getData(options = null) {
         const rollData = this.roll.l5r5e;
 
         // Disable submit / edition
@@ -239,7 +247,7 @@ export class RollnKeepDialog extends FormApplication {
         }
 
         return {
-            ...super.getData(options),
+            ...(await super.getData(options)),
             isGM: game.user.isGM,
             showChoices: options.editable && !rollData.rnkEnded,
             showStrifeBt: options.editable && rollData.summary.strife > 0 && rollData.actor?.isCharacter,
@@ -707,9 +715,9 @@ export class RollnKeepDialog extends FormApplication {
             const actorMod = strifeApplied - this.roll.l5r5e.strifeApplied;
             if (actorMod !== 0 && this.roll.l5r5e.actor?.isCharacter) {
                 await this.roll.l5r5e.actor.update({
-                    data: {
+                    system: {
                         strife: {
-                            value: Math.max(0, this.roll.l5r5e.actor.data.data.strife.value + actorMod),
+                            value: Math.max(0, this.roll.l5r5e.actor.system.strife.value + actorMod),
                         },
                     },
                 });

@@ -7,7 +7,7 @@
     </legend>
     <ul class="item-list">
         {{#each actor.items as |item id|}}
-            {{#ifCond (ifCond item.type '==' 'armor') '&&' (ifCond item.data.data.equipped '==' true)}}
+            {{#ifCond (ifCond item.type '==' 'armor') '&&' (ifCond item.system.equipped '==' true)}}
                 {{> 'systems/l5r5e/templates/items/armor/armor-entry.html' armor=item id=id editable=../data.editable_not_soft_locked }}
             {{/ifCond}}
         {{/each}}

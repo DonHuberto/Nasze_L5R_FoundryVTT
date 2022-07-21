@@ -66,6 +66,7 @@ export const RegisterHandlebars = function () {
 
     // enrichHTML
     Handlebars.registerHelper("enrichHTML", function (text, options = {}) {
+        options.async = false;
         return TextEditor.enrichHTML(text, options);
     });
 

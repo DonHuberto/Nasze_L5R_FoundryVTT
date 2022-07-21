@@ -69,7 +69,7 @@ export class CharacterGeneratorDialog extends FormApplication {
      * Try to get values from actor to initialize the generator
      */
     initializeFromActor() {
-        const actorDatas = this.actor.data.data;
+        const actorDatas = this.actor.system;
 
         // Identity
         this.object.clan = actorDatas.identity.clan || "random";
@@ -97,7 +97,7 @@ export class CharacterGeneratorDialog extends FormApplication {
             label: game.i18n.localize("l5r5e.clans." + e),
         }));
         return {
-            ...super.getData(options),
+            ...(await super.getData(options)),
             isNpc: this.actor.type === "npc",
             clanList: [{ id: "random", label: game.i18n.localize("l5r5e.global.random") }, ...clans],
             genderList: [

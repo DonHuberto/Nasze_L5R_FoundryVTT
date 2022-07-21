@@ -27,9 +27,9 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
         sheetData.data.techniquesList = game.l5r5e.HelpersL5r5e.getTechniquesList({ types });
 
         // Sanitize Difficulty and Skill list
-        sheetData.data.data.difficulty = TechniqueSheetL5r5e.formatDifficulty(sheetData.data.data.difficulty);
-        sheetData.data.data.skill = TechniqueSheetL5r5e.translateSkillsList(
-            TechniqueSheetL5r5e.formatSkillList(sheetData.data.data.skill.split(",")),
+        sheetData.data.system.difficulty = TechniqueSheetL5r5e.formatDifficulty(sheetData.data.system.difficulty);
+        sheetData.data.system.skill = TechniqueSheetL5r5e.translateSkillsList(
+            TechniqueSheetL5r5e.formatSkillList(sheetData.data.system.skill.split(",")),
             false
         ).join(", ");
 
@@ -46,16 +46,16 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
     async _updateObject(event, formData) {
         // Change the image according to the type if this is already the case
         if (
-            formData["data.technique_type"] &&
-            formData.img === `${CONFIG.l5r5e.paths.assets}icons/techs/${this.object.data.data.technique_type}.svg`
+            formData["system.technique_type"] &&
+            formData.img === `${CONFIG.l5r5e.paths.assets}icons/techs/${this.object.system.technique_type}.svg`
         ) {
-            formData.img = `${CONFIG.l5r5e.paths.assets}icons/techs/${formData["data.technique_type"]}.svg`;
+            formData.img = `${CONFIG.l5r5e.paths.assets}icons/techs/${formData["system.technique_type"]}.svg`;
         }
 
         // Sanitize Difficulty and Skill list
-        formData["data.difficulty"] = TechniqueSheetL5r5e.formatDifficulty(formData["data.difficulty"]);
-        formData["data.skill"] = TechniqueSheetL5r5e.formatSkillList(
-            TechniqueSheetL5r5e.translateSkillsList(formData["data.skill"].split(","), true)
+        formData["system.difficulty"] = TechniqueSheetL5r5e.formatDifficulty(formData["system.difficulty"]);
+        formData["system.skill"] = TechniqueSheetL5r5e.formatSkillList(
+            TechniqueSheetL5r5e.translateSkillsList(formData["system.skill"].split(","), true)
         ).join(",");
 
         return super._updateObject(event, formData);
@@ -77,7 +77,7 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
         // Autocomplete
         game.l5r5e.HelpersL5r5e.autocomplete(
             html,
-            "data.difficulty",
+            "system.difficulty",
             [
                 "@T:intrigueRank",
                 "@T:focus",
@@ -93,7 +93,7 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
         );
         game.l5r5e.HelpersL5r5e.autocomplete(
             html,
-            "data.skill",
+            "system.skill",
             Object.values(TechniqueSheetL5r5e.getSkillsTranslationMap(false)),
             ","
         );

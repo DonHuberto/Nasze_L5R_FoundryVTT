@@ -31,9 +31,9 @@ export class HelpDialog extends FormApplication {
      * @param options
      * @return {Object}
      */
-    getData(options = null) {
+    async getData(options = null) {
         return {
-            ...super.getData(options),
+            ...(await super.getData(options)),
         };
     }
 

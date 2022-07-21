@@ -4,7 +4,7 @@ export class ItemL5r5e extends Item {
      * @returns {Collection<BaseItem>}
      */
     get items() {
-        return this.data.data.items || new Map();
+        return this.system.items || new Map();
     }
 
     /**
@@ -12,7 +12,7 @@ export class ItemL5r5e extends Item {
      * @return {Actor|null}
      */
     get actor() {
-        return super.actor || game.actors.get(this.data.data.parent_id?.actor_id) || null;
+        return super.actor || game.actors.get(this.system.parent_id?.actor_id) || null;
     }
 
     /**
@@ -29,13 +29,13 @@ export class ItemL5r5e extends Item {
     /**
      * Update this Document using incremental data, saving it to the database.
      * @see {@link Document.updateDocuments}
-     * @param {object} [data={}]                  Differential update data which modifies the existing values of this document data
+     * @param {object} [data={}]                         Differential update data which modifies the existing values of this document data
      * @param {DocumentModificationContext} [context={}] Additional context which customizes the update workflow
-     * @returns {Promise<Document>}               The updated Document instance
+     * @returns {Promise<Document>}                      The updated Document instance
      */
     async update(data = {}, context = {}) {
         // Regular
-        if (!this.data.data.parent_id) {
+        if (!this.system.parent_id) {
             return super.update(data, context);
         }
 
@@ -47,19 +47,21 @@ export class ItemL5r5e extends Item {
         }
 
         // Merge (DocumentData cannot be set)
-        const result = foundry.utils.mergeObject(this.data, foundry.utils.expandObject(data));
+        const result = foundry.utils.mergeObject(this, foundry.utils.expandObject(data));
+        console.log(result); // TODO TMP
+
         if (result.name) {
-            this.data.name = result.name;
+            this.name = result.name;
         }
         if (result.img) {
-            this.data.img = result.img;
+            this.img = result.img;
         }
         if (result.data) {
-            this.data.data = result.data;
+            this.data = result.data; // todo tmp check this!
         }
 
         // Update
-        await parentItem.updateEmbedItem(this.data.toObject(false));
+        await parentItem.updateEmbedItem(this.toObject(false));
 
         // Return new value for sheet
         return new Promise((resolve) => resolve(this));
@@ -70,9 +72,9 @@ export class ItemL5r5e extends Item {
         super.prepareData();
 
         // Prepare Embed items
-        if (!(this.data.data.items instanceof Map)) {
-            const itemsData = Array.isArray(this.data.data.items) ? this.data.data.items : [];
-            this.data.data.items = new Map();
+        if (!(this.system.items instanceof Map)) {
+            const itemsData = Array.isArray(this.system.items) ? this.system.items : [];
+            this.system.items = new Map();
 
             itemsData.forEach((item) => {
                 this.addEmbedItem(item, { save: false, newId: false, addBonusToActor: false });
@@ -80,16 +82,16 @@ export class ItemL5r5e extends Item {
         }
 
         // Sanitize some values
-        switch (this.data.type) {
+        switch (this.type) {
             case "armor":
-                this.data.data.armor.physical = this.data.data.armor.physical || 0;
-                this.data.data.armor.supernatural = this.data.data.armor.supernatural || 0;
+                this.system.armor.physical = this.system.armor.physical || 0;
+                this.system.armor.supernatural = this.system.armor.supernatural || 0;
                 break;
 
             case "weapon":
-                this.data.data.range = this.data.data.range || 0;
-                this.data.data.damage = this.data.data.damage || 0;
-                this.data.data.deadliness = this.data.data.deadliness || 0;
+                this.system.range = this.system.range || 0;
+                this.system.damage = this.system.damage || 0;
+                this.system.deadliness = this.system.deadliness || 0;
                 break;
         }
     }
@@ -103,8 +105,8 @@ export class ItemL5r5e extends Item {
         const parent = {
             item_id: this.id,
         };
-        if (this.actor?.data?._id) {
-            parent.actor_id = this.actor.data._id;
+        if (this.actor?._id) {
+            parent.actor_id = this.actor._id;
         }
         return parent;
     }
@@ -114,7 +116,7 @@ export class ItemL5r5e extends Item {
      * @return {ItemL5r5e|null}
      */
     getItemFromParentId() {
-        const parentIds = this.data.data.parent_id;
+        const parentIds = this.system.parent_id;
         let parentItem;
 
         if (parentIds?.actor_id) {
@@ -134,12 +136,12 @@ export class ItemL5r5e extends Item {
      * @return {Promise<string|null>}
      */
     async renderTextTemplate() {
-        const data = (await this.sheet?.getData()) || this;
-        if (data instanceof ItemL5r5e) {
+        const sheetData = (await this.sheet?.getData()) || this;
+        if (sheetData instanceof ItemL5r5e) {
             await game.l5r5e.HelpersL5r5e.refreshItemProperties(this);
         }
         const type = this.type.replace("_", "-"); // ex: item_pattern
-        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}items/${type}/${type}-text.html`, data);
+        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}items/${type}/${type}-text.html`, sheetData);
         if (!tpl) {
             return null;
         }
@@ -148,7 +150,7 @@ export class ItemL5r5e extends Item {
 
     // ***** Embedded items management *****
     /**
-     * Shortcut for this.data.data.items.get
+     * Shortcut for this.items.get
      * @param id
      * @return {ItemL5r5e|null}
      */
@@ -176,17 +178,17 @@ export class ItemL5r5e extends Item {
 
         // New id
         if (newId) {
-            item.data._id = foundry.utils.randomID();
+            item._id = foundry.utils.randomID();
         }
 
         // Copy the parent permission to the sub item
-        item.data.permission = this.data.permission;
+        item.ownership = this.ownership;
 
         // Tag parent (flags won't work as we have no id in db)
-        item.data.data.parent_id = this.getParentsIds();
+        item.system.parent_id = this.getParentsIds();
 
         // Object
-        this.data.data.items.set(item.data._id, item);
+        this.system.items.set(item._id, item);
 
         // Add bonus to actor
         if (addBonusToActor) {
@@ -199,7 +201,7 @@ export class ItemL5r5e extends Item {
         if (save) {
             await this.saveEmbedItems();
         }
-        return item.data._id;
+        return item._id;
     }
 
     /**
@@ -220,21 +222,21 @@ export class ItemL5r5e extends Item {
      * @return {Promise<void>}
      */
     async deleteEmbedItem(id, { save = true, removeBonusFromActor = true } = {}) {
-        if (!this.data.data.items.has(id)) {
+        if (!this.system.items.has(id)) {
             return;
         }
 
         // Remove bonus from actor
         if (removeBonusFromActor) {
             const actor = this.actor;
-            const item = this.data.data.items.get(id);
+            const item = this.system.items.get(id);
             if (item instanceof Item && actor instanceof Actor) {
                 actor.removeBonus(item);
             }
         }
 
         // Remove the embed item
-        this.data.data.items.delete(id);
+        this.system.items.delete(id);
 
         if (save) {
             await this.saveEmbedItems();
@@ -247,8 +249,8 @@ export class ItemL5r5e extends Item {
      */
     async generateNewIdsForAllEmbedItems() {
         // Clear olds ids
-        const oldItems = Array.from(this.data.data.items);
-        this.data.data.items = new Map();
+        const oldItems = Array.from(this.system.items);
+        this.system.items = new Map();
 
         // Re-add with new ids
         oldItems.forEach(([id, item]) => {
@@ -264,7 +266,7 @@ export class ItemL5r5e extends Item {
      */
     async saveEmbedItems() {
         await this.update({
-            "data.items": Array.from(this.data.data.items).map(([id, item]) => item.data.toObject(false)),
+            "system.items": Array.from(this.system.items).map(([id, item]) => item.toObject(false)),
         });
         this.sheet.render(false);
     }

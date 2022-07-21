@@ -34,7 +34,7 @@
         {{!-- Skills Tab --}}
         <article class="tab skills" data-group="primary" data-tab="skills">
             <ul class="skills-wrapper">
-                {{#each data.data.skills as |category id|}}
+                {{#each data.system.skills as |category id|}}
                     {{> 'systems/l5r5e/templates/actors/character/category.html' category=category categoryId=id data=../data}}
                 {{/each}}
             </ul>

@@ -67,7 +67,7 @@ export class GmToolbox extends FormApplication {
         // TODO better implementation needed : see KeyboardManager._onEscape(event, up, modifiers)
         // This windows is always open, so esc key is stuck at step 2 : Object.keys(ui.windows).length > 0
         // Case 3 (GM) - release controlled objects
-        if (canvas?.ready && game.user.isGM && Object.keys(canvas.activeLayer._controlled).length) {
+        if (canvas?.ready && game.user.isGM && Object.keys(canvas.activeLayer.controlled).length) {
             canvas.activeLayer.releaseAll();
         } else {
             // Case 4 - toggle the main menu
@@ -102,9 +102,9 @@ export class GmToolbox extends FormApplication {
      * @return {Object}
      * @override
      */
-    getData(options = null) {
+    async getData(options = null) {
         return {
-            ...super.getData(options),
+            ...(await super.getData(options)),
             data: this.object,
         };
     }
@@ -201,46 +201,46 @@ export class GmToolbox extends FormApplication {
             }
 
             // Manage left/right button
-            if (!isAll && (actor.data.type !== "character" || !actor.hasPlayerOwner)) {
+            if (!isAll && (actor.type !== "character" || !actor.hasPlayerOwner)) {
                 continue;
             }
 
             switch (type) {
                 case "sleep":
                     // Remove 'water x2' fatigue points
-                    actor.data.data.fatigue.value = Math.max(
+                    actor.system.fatigue.value = Math.max(
                         0,
-                        actor.data.data.fatigue.value - Math.ceil(actor.data.data.rings.water * 2)
+                        actor.system.fatigue.value - Math.ceil(actor.system.rings.water * 2)
                     );
                     break;
 
                 case "scene_end":
                     // If more than half the value => roundup half conflit & fatigue
-                    actor.data.data.fatigue.value = Math.min(
-                        actor.data.data.fatigue.value,
-                        Math.ceil(actor.data.data.fatigue.max / 2)
+                    actor.system.fatigue.value = Math.min(
+                        actor.system.fatigue.value,
+                        Math.ceil(actor.system.fatigue.max / 2)
                     );
-                    actor.data.data.strife.value = Math.min(
-                        actor.data.data.strife.value,
-                        Math.ceil(actor.data.data.strife.max / 2)
+                    actor.system.strife.value = Math.min(
+                        actor.system.strife.value,
+                        Math.ceil(actor.system.strife.max / 2)
                     );
                     break;
 
                 case "reset_void":
-                    actor.data.data.void_points.value = Math.ceil(actor.data.data.void_points.max / 2);
+                    actor.system.void_points.value = Math.ceil(actor.system.void_points.max / 2);
                     break;
             }
 
             await actor.update({
-                data: {
+                system: {
                     fatigue: {
-                        value: actor.data.data.fatigue.value,
+                        value: actor.system.fatigue.value,
                     },
                     strife: {
-                        value: actor.data.data.strife.value,
+                        value: actor.system.strife.value,
                     },
                     void_points: {
-                        value: actor.data.data.void_points.value,
+                        value: actor.system.void_points.value,
                     },
                 },
             });

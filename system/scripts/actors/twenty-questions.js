@@ -191,10 +191,10 @@ export class TwentyQuestions {
      * Initialize data from a actor
      */
     fromActor(actor) {
-        const actorDatas = actor.data.data;
+        const actorDatas = actor.system;
 
         // already 20q struct ?
-        if (!foundry.utils.isObjectEmpty(actorDatas.twenty_questions)) {
+        if (!foundry.utils.isEmpty(actorDatas.twenty_questions)) {
             this.data = {
                 ...this.data,
                 ...actorDatas.twenty_questions,
@@ -220,14 +220,14 @@ export class TwentyQuestions {
         this.data.step6.social_ninjo = actorDatas.social.ninjo;
         this.data.step8.tenet_paramount = actorDatas.social.bushido_tenets.paramount;
         this.data.step8.tenet_less_significant = actorDatas.social.bushido_tenets.less_significant;
-        this.data.step19.firstname = actor.data.name.replace(/^(?:\w+\s+)?(.+)$/gi, "$1") || "";
+        this.data.step19.firstname = actor.name.replace(/^(?:\w+\s+)?(.+)$/gi, "$1") || "";
     }
 
     /**
      * Fill a actor data from this object
      */
     async toActor(actor, itemsCache) {
-        const actorDatas = actor.data.data;
+        const actorDatas = actor.system;
         const formData = this.data;
 
         this.data.generated = true;
@@ -304,7 +304,7 @@ export class TwentyQuestions {
         });
 
         // Clear and add items to actor
-        const deleteIds = actor.data.items.map((e) => e.id);
+        const deleteIds = actor.items.map((e) => e.id);
         if (deleteIds.length > 0) {
             await actor.deleteEmbeddedDocuments("Item", deleteIds);
         }
@@ -330,7 +330,7 @@ export class TwentyQuestions {
         // Update actor
         await actor.update({
             name: ((formData.template !== "pow" ? formData.step2.family + " " : "") + formData.step19.firstname).trim(),
-            data: actorDatas,
+            system: actorDatas,
         });
     }
 

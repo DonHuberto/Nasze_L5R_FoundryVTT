@@ -59,6 +59,8 @@ button {
             background-position: center;
             background-size: 100%;
             border-radius: 100%;
+            color: black;
+
             &.fa-comments {
                 background-image: url("../assets/ui/sidebar/chat.svg");
                 &:before {

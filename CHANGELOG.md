@@ -83,7 +83,7 @@ Technique syntaxe "quick" explanation :
   - Or specific syntaxe "@`S`:`prop1`" or "@`T`:`prop1`|`max`" or "@`T`:`prop1`|`max`(`prop2`)" :
     - `@` fixed, trigger the parser
     - `T` or `S` : `T`arget or `S`elf, define the actor to get the value.
-    - `prop1` / `prop2` : Can be any property in `actor` or `actor.data.data`. Limitations: currently no `size`, `distance` (range) or computation (a+b).
+    - `prop1` / `prop2` : Can be any property in `actor` or `actor.system`. Limitations: currently no `size`, `distance` (range) or computation (a+b).
     - `|` separator, optional if no min/max.
     - `min` or `max` : Between the selected targets, search for the min/max of `prop2`. If no `prop2` provided, take `prop1` as `prop2` (irrelevant for `@S`).
     - `(prop2)` : define the property for the actor selection in multiple target, can be omitted if same as `prop1`.

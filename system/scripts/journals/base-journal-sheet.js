@@ -50,7 +50,7 @@ export class BaseJournalSheetL5r5e extends JournalSheet {
         if (initialContent) {
             initialContent = game.l5r5e.HelpersL5r5e.convertSymbols(initialContent, false);
         }
-        super.activateEditor(name, options, initialContent);
+        return super.activateEditor(name, options, initialContent);
     }
 
     /**

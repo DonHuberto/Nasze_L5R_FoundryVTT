@@ -24,7 +24,7 @@ export class NpcSheetL5r5e extends BaseCharacterSheetL5r5e {
      */
     _getL5rHeaderButtons() {
         const buttons = super._getL5rHeaderButtons();
-        if (!this.isEditable || this.actor.limited || this.actor.data.data.soft_locked) {
+        if (!this.isEditable || this.actor.limited || this.actor.system.soft_locked) {
             return buttons;
         }
 
@@ -41,11 +41,11 @@ export class NpcSheetL5r5e extends BaseCharacterSheetL5r5e {
     }
 
     /** @inheritdoc */
-    getData(options = {}) {
-        const sheetData = super.getData();
+    async getData(options = {}) {
+        const sheetData = await super.getData();
 
         // NPC Subtypes
-        sheetData.data.data.types = NpcSheetL5r5e.types.map((e) => ({
+        sheetData.data.types = NpcSheetL5r5e.types.map((e) => ({
             id: e,
             label: game.i18n.localize("l5r5e.character_types." + e),
         }));

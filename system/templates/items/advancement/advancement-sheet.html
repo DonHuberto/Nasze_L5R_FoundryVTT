@@ -7,17 +7,17 @@
     <section class="sheet-body">
         {{!-- Attributes Tab --}}
         <article class="attributes" data-group="primary" data-tab="attributes">
-            <select name="data.advancement_type" id="advancement_type">
-                {{#select data.data.advancement_type}}
+            <select name="system.advancement_type" id="advancement_type">
+                {{#select data.system.advancement_type}}
                     {{#each data.subTypesList as |label type|}}
                         <option value="{{type}}">{{localize label}}</option>
                     {{/each}}
                 {{/select}}
             </select>
 
-            {{#ifCond data.data.advancement_type '==' 'ring'}}
-            <select name="data.ring" id="advancement_ring">
-                {{#select data.data.ring}}
+            {{#ifCond data.system.advancement_type '==' 'ring'}}
+            <select name="system.ring" id="advancement_ring">
+                {{#select data.system.ring}}
                     {{#each data.ringsList as |obj|}}
                         <option value="{{obj.id}}">{{obj.label}}</option>
                     {{/each}}
@@ -25,10 +25,10 @@
             </select>
             {{/ifCond}}
 
-            {{#ifCond data.data.advancement_type '==' 'skill'}}
-                <select name="data.skill" id="advancement_skill">
+            {{#ifCond data.system.advancement_type '==' 'skill'}}
+                <select name="system.skill" id="advancement_skill">
                     <option value="">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
-                    {{#select data.data.skill}}
+                    {{#select data.system.skill}}
                         {{#each data.skillsList as |skills catId|}}
                         <optgroup label="{{localizeSkill catId 'title'}}">
                             {{#each skills as |obj|}}
@@ -40,20 +40,20 @@
                 </select>
             {{/ifCond}}
             <label class="cursus attribute-value checkbox">
-                <input type="checkbox" name="data.in_curriculum" {{checked data.data.in_curriculum}} />
+                <input type="checkbox" name="system.in_curriculum" {{checked data.system.in_curriculum}} />
                 {{localize 'l5r5e.advancements.curriculum'}}
             </label>
             <label class="attribute">
                 {{localize 'l5r5e.advancements.spent'}}
-                <input class="select-on-focus" type="number" name="data.xp_used" value="{{data.data.xp_used}}" data-dtype="Number" min="0" placeholder="0"/>
+                <input class="select-on-focus" type="number" name="system.xp_used" value="{{data.system.xp_used}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
                 {{localize 'l5r5e.sheets.rank'}}
-                <input class="select-on-focus" type="number" name="data.rank" value="{{data.data.rank}}" data-dtype="Number" min="0" placeholder="0"/>
+                <input class="select-on-focus" type="number" name="system.rank" value="{{data.system.rank}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
             <label class="attribute">
                 {{localize 'l5r5e.sheets.bought_at_rank'}}
-                <input class="select-on-focus" type="number" name="data.bought_at_rank" value="{{data.data.bought_at_rank}}" data-dtype="Number" min="0" placeholder="0"/>
+                <input class="select-on-focus" type="number" name="system.bought_at_rank" value="{{data.system.bought_at_rank}}" data-dtype="Number" min="0" placeholder="0"/>
             </label>
         </article>
         {{> 'systems/l5r5e/templates/items/item/item-infos.html'}}

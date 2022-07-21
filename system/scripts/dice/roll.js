@@ -74,8 +74,8 @@ export class RollL5r5e extends Roll {
     set targetInfos(targetToken) {
         this.l5r5e.targetInfos = targetToken
             ? {
-                  img: targetToken.data.img,
-                  name: targetToken.data.name,
+                  img: targetToken.img,
+                  name: targetToken.name,
               }
             : null;
     }
@@ -378,7 +378,7 @@ export class RollL5r5e extends Roll {
             } else if (data.l5r5e.actor.uuid) {
                 // Only uuid, get the object
                 let actor;
-                let tmpItem = game.l5r5e.HelpersL5r5e.fromUuidNoPack(data.l5r5e.actor.uuid);
+                const tmpItem = fromUuidSync(data.l5r5e.actor.uuid);
                 if (tmpItem instanceof Actor) {
                     actor = tmpItem;
                 } else if (tmpItem instanceof TokenDocument) {

@@ -145,7 +145,7 @@ export class TwentyQuestionsDialog extends FormApplication {
         const skillsListStep7 = this._getSkillZero(skillsList, skillsPoints, "step7.skill");
         const skillsListStep17 = this._getSkillZero(skillsList, skillsPoints, "step17.skill");
         return {
-            ...super.getData(options),
+            ...(await super.getData(options)),
             ringsList: game.l5r5e.HelpersL5r5e.getRingsList(),
             skillsList,
             skillsListStep7,
@@ -260,20 +260,20 @@ export class TwentyQuestionsDialog extends FormApplication {
             // Get item
             const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
             if (item.documentName !== "Item" || !item) {
-                console.warn(`L5R5E | Forbidden item for this drop zone ${type} : ${item.data.type}`);
+                console.warn(`L5R5E | Forbidden item for this drop zone ${type} : ${item.type}`);
                 return;
             }
 
             // Specific step18_heritage, all item/tech allowed
             if (stepKey === "step18.heritage_item") {
-                type = item.data.type;
+                type = item.type;
             }
 
             if (
-                (type !== "item" && item.data.type !== type) ||
-                (type === "item" && !["item", "weapon", "armor"].includes(item.data.type))
+                (type !== "item" && item.type !== type) ||
+                (type === "item" && !["item", "weapon", "armor"].includes(item.type))
             ) {
-                console.warn(`L5R5E | Forbidden item for this drop zone ${type} : ${item.data.type}`);
+                console.warn(`L5R5E | Forbidden item for this drop zone ${type} : ${item.type}`);
                 return;
             }
 
@@ -284,13 +284,13 @@ export class TwentyQuestionsDialog extends FormApplication {
                 case "technique":
                     // School Ability
                     if (stepKey === "step3.school_ability") {
-                        if (item.data.data.technique_type !== "school_ability") {
+                        if (item.system.technique_type !== "school_ability") {
                             console.warn(
-                                `L5R5E | This technique is not a school ability : ${item.data.data.technique_type}`
+                                `L5R5E | This technique is not a school ability : ${item.system.technique_type}`
                             );
                             return;
                         }
-                    } else if (!this.object.data.step3.allowed_techniques?.[item.data.data.technique_type]) {
+                    } else if (!this.object.data.step3.allowed_techniques?.[item.system.technique_type]) {
                         // Tech not allowed
                         ui.notifications.info(game.i18n.localize("l5r5e.techniques.not_allowed"));
                         return;
@@ -300,38 +300,38 @@ export class TwentyQuestionsDialog extends FormApplication {
                 case "peculiarity":
                     switch (stepKey) {
                         case "step9.distinction":
-                            if (item.data.data.peculiarity_type !== "distinction") {
-                                console.warn("L5R5E | Wrong type", item.data.data.peculiarity_type);
+                            if (item.system.peculiarity_type !== "distinction") {
+                                console.warn("L5R5E | Wrong type", item.system.peculiarity_type);
                                 return;
                             }
                             break;
                         case "step10.adversity":
-                            if (item.data.data.peculiarity_type !== "adversity") {
-                                console.warn("L5R5E | Wrong type", item.data.data.peculiarity_type);
+                            if (item.system.peculiarity_type !== "adversity") {
+                                console.warn("L5R5E | Wrong type", item.system.peculiarity_type);
                                 return;
                             }
                             break;
                         case "step11.passion":
-                            if (item.data.data.peculiarity_type !== "passion") {
-                                console.warn("L5R5E | Wrong type", item.data.data.peculiarity_type);
+                            if (item.system.peculiarity_type !== "passion") {
+                                console.warn("L5R5E | Wrong type", item.system.peculiarity_type);
                                 return;
                             }
                             break;
                         case "step12.anxiety":
-                            if (item.data.data.peculiarity_type !== "anxiety") {
-                                console.warn("L5R5E | Wrong type", item.data.data.peculiarity_type);
+                            if (item.system.peculiarity_type !== "anxiety") {
+                                console.warn("L5R5E | Wrong type", item.system.peculiarity_type);
                                 return;
                             }
                             break;
                         case "step13.advantage":
-                            if (!["distinction", "passion"].includes(item.data.data.peculiarity_type)) {
-                                console.warn("L5R5E | Wrong type", item.data.data.peculiarity_type);
+                            if (!["distinction", "passion"].includes(item.system.peculiarity_type)) {
+                                console.warn("L5R5E | Wrong type", item.system.peculiarity_type);
                                 return;
                             }
                             break;
                         case "step13.disadvantage":
-                            if (!["adversity", "anxiety"].includes(item.data.data.peculiarity_type)) {
-                                console.warn("L5R5E | Wrong type", item.data.data.peculiarity_type);
+                            if (!["adversity", "anxiety"].includes(item.system.peculiarity_type)) {
+                                console.warn("L5R5E | Wrong type", item.system.peculiarity_type);
                                 return;
                             }
                             break;
@@ -391,9 +391,9 @@ export class TwentyQuestionsDialog extends FormApplication {
         this.summary = this.object.validateForm();
 
         // Store this form datas in actor
-        this.actor.data.data.twenty_questions = this.object.data;
+        this.actor.system.twenty_questions = this.object.data;
         await this.actor.update({
-            data: {
+            system: {
                 template: formData["template"],
                 twenty_questions: this.object.data,
             },

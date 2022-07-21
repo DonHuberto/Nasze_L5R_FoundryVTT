@@ -1,4 +1,4 @@
-<div class="{{cssClass}}" data-actor-id="{{actor.data._id}}" data-item-id="{{data._id}}">
+<div class="{{cssClass}}" data-actor-id="{{actor._id}}" data-item-id="{{data._id}}">
     <header class="card-header">
         <h2 class="item-name"><img src="{{data.img}}" title="{{data.name}}" /> {{data.name}}</h2>
     </header>
@@ -7,11 +7,11 @@
             {{!--cancelled properties--}}
             <li>
                 <strong>{{localize 'l5r5e.sheets.removed_properties'}}</strong> :
-                {{#each data.data.properties as |property idx|}}{{#ifCond idx '>' 0}}, {{/ifCond}}{{property.name}}{{/each}}
+                {{#each data.system.properties as |property idx|}}{{#ifCond idx '>' 0}}, {{/ifCond}}{{property.name}}{{/each}}
             </li>
         </ul>
         {{!--item-infos--}}
-        <p><strong>{{localize 'l5r5e.sheets.description'}}</strong> : {{{enrichHTML data.data.description}}}</p>
-        <p><strong>{{localize 'l5r5e.sheets.book_reference'}}</strong> : {{data.data.book_reference}}</p>
+        <p><strong>{{localize 'l5r5e.sheets.description'}}</strong> : {{{data.enrichedHtml.description}}}</p>
+        <p><strong>{{localize 'l5r5e.sheets.book_reference'}}</strong> : {{data.system.book_reference}}</p>
     </section>
 </div>

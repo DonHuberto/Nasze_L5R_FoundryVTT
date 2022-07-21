@@ -180,7 +180,7 @@ export class DicePickerDialog extends FormApplication {
             return;
         }
         this._actor = actor;
-        this.ringId = this._actor.data.data.stance;
+        this.ringId = this._actor.system.stance;
     }
 
     /**
@@ -190,8 +190,8 @@ export class DicePickerDialog extends FormApplication {
     set targetInfos(targetToken) {
         this.object.targetInfos = targetToken
             ? {
-                  img: targetToken.data.img,
-                  name: targetToken.data.name,
+                  img: targetToken.img,
+                  name: targetToken.name,
               }
             : null;
     }
@@ -202,7 +202,7 @@ export class DicePickerDialog extends FormApplication {
      */
     set ringId(ringId) {
         this.object.ring.id = CONFIG.l5r5e.stances.includes(ringId) ? ringId : "void";
-        this.object.ring.value = this._actor.data.data.rings?.[this.object.ring.id] || 1;
+        this.object.ring.value = this._actor.system.rings?.[this.object.ring.id] || 1;
     }
 
     /**
@@ -268,15 +268,15 @@ export class DicePickerDialog extends FormApplication {
         if (!this._actor) {
             return;
         }
-        switch (this._actor.data.type) {
+        switch (this._actor.type) {
             case "character":
-                this.object.skill.value = this._actor.data.data.skills[skillCatId]?.[this.object.skill.id] || 0;
+                this.object.skill.value = this._actor.system.skills[skillCatId]?.[this.object.skill.id] || 0;
                 this.object.skill.defaultValue = this.object.skill.value;
                 break;
 
             case "npc":
                 // Skill value is in categories for npc
-                this.object.skill.value = this._actor.data.data.skills[skillCatId] || 0;
+                this.object.skill.value = this._actor.system.skills[skillCatId] || 0;
                 this.object.skill.defaultValue = this.object.skill.value;
                 break;
         }
@@ -317,7 +317,7 @@ export class DicePickerDialog extends FormApplication {
      * @type {String}
      */
     get title() {
-        return game.i18n.localize("l5r5e.dice.dicepicker.title") + (this._actor ? " - " + this._actor.data.name : "");
+        return game.i18n.localize("l5r5e.dice.dicepicker.title") + (this._actor ? " - " + this._actor.name : "");
     }
 
     /**
@@ -325,7 +325,7 @@ export class DicePickerDialog extends FormApplication {
      * @return {boolean}
      */
     get useCategory() {
-        return !!this._actor && this._actor.data?.type === "npc";
+        return !!this._actor && this._actor.type === "npc";
     }
 
     /**
@@ -333,9 +333,9 @@ export class DicePickerDialog extends FormApplication {
      * @param options
      * @return {Object}
      */
-    getData(options = null) {
+    async getData(options = null) {
         return {
-            ...super.getData(options),
+            ...(await super.getData(options)),
             ringsList: game.l5r5e.HelpersL5r5e.getRingsList(this._actor),
             data: this.object,
             actor: this._actor,
@@ -343,7 +343,7 @@ export class DicePickerDialog extends FormApplication {
             canUseVoidPoint:
                 this.object.difficulty.addVoidPoint ||
                 !this._actor ||
-                (this._actor.isCharacter && this._actor.data.data.void_points.value > 0),
+                (this._actor.isCharacter && this._actor.system.void_points.value > 0),
             disableSubmit: this.object.skill.value < 1 && this.object.ring.value < 1,
             difficultyHiddenIsLock: this._difficultyHiddenIsLock.gm || this._difficultyHiddenIsLock.option,
         };
@@ -485,7 +485,7 @@ export class DicePickerDialog extends FormApplication {
 
         // Update Actor
         if (this._actor) {
-            const actorData = foundry.utils.duplicate(this._actor.data.data);
+            const actorData = foundry.utils.duplicate(this._actor.system);
 
             // Update the actor stance on initiative only
             if (this.object.isInitiativeRoll) {
@@ -503,10 +503,10 @@ export class DicePickerDialog extends FormApplication {
             }
 
             // Update actor if needed
-            const updateDiff = foundry.utils.diffObject(this._actor.data.data, actorData);
+            const updateDiff = foundry.utils.diffObject(this._actor.system, actorData);
             if (Object.keys(updateDiff).length > 0) {
                 await this._actor.update({
-                    data: foundry.utils.diffObject(this._actor.data.data, actorData),
+                    system: updateDiff,
                 });
             }
         }
@@ -588,7 +588,7 @@ export class DicePickerDialog extends FormApplication {
             this.object.useVoidPoint &&
             !this.object.difficulty.addVoidPoint &&
             !!this._actor &&
-            this._actor.data.data.void_points.value < 1
+            this._actor.system.void_points.value < 1
         ) {
             this.object.useVoidPoint = false;
             this._quantityChange("ring", -1);
@@ -619,7 +619,7 @@ export class DicePickerDialog extends FormApplication {
 
         let command = `new game.l5r5e.DicePickerDialog(${JSON.stringify(params)}).render(true);`;
 
-        let macro = game.macros.contents.find((m) => m.data.name === name && m.data.command === command);
+        let macro = game.macros.contents.find((m) => m.name === name && m.command === command);
         if (!macro) {
             macro = await Macro.create({
                 name: name,
@@ -631,7 +631,7 @@ export class DicePickerDialog extends FormApplication {
         }
 
         // Search if already in player hotbar
-        if (Object.values(game.user.data.hotbar).includes(macro.id)) {
+        if (Object.values(game.user.hotbar).includes(macro.id)) {
             return;
         }
 
@@ -663,7 +663,7 @@ export class DicePickerDialog extends FormApplication {
                         return acc;
                     }
 
-                    const targetData = targetActor.data.data;
+                    const targetData = targetActor.system;
                     const value = targetActor[property] || targetData[property] || null;
                     if (!value) {
                         return acc;
@@ -734,8 +734,8 @@ export class DicePickerDialog extends FormApplication {
                 return false;
             }
 
-            // Check in actor.<prop> or actor.data.data.<prop>
-            difficulty = targetActor[infos[2]] || targetActor.data.data[infos[2]] || null;
+            // Check in actor.<prop> or actor.system.<prop>
+            difficulty = targetActor[infos[2]] || targetActor.system[infos[2]] || null;
             if (difficulty < 1) {
                 console.log("L5R5E | Fail to parse difficulty from target");
                 return false;

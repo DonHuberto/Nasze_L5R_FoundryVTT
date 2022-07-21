@@ -17,6 +17,7 @@ module.exports = {
         "import/extensions": "off",
         "class-methods-use-this": "off",
         // Personal Preference
+        // "operator-linebreak": ["error", "before"], // prettier bug
         "linebreak-style": "off",
         "no-mixed-operators": "off",
         "no-param-reassign": "off",
@@ -419,7 +420,7 @@ module.exports = {
         filterObject: "readonly",
         flattenObject: "readonly",
         expandObject: "readonly",
-        isObjectEmpty: "readonly",
+        isEmpty: "readonly",
         mergeObject: "readonly",
         diffObject: "readonly",
         hasProperty: "readonly",
@@ -438,6 +439,7 @@ module.exports = {
         saveDataToFile: "readonly",
         readTextFromFile: "readonly",
         fromUuid: "readonly",
+        fromUuidSync: "readonly",
         _handleMouseWheelInputChange: "readonly",
         getTemplate: "readonly",
         loadTemplates: "readonly",

@@ -62,10 +62,10 @@ export class BaseItemSheetL5r5e extends ItemSheet {
      */
     activateEditor(name, options = {}, initialContent = "") {
         // Symbols Compatibility with old compendium modules (PRE l5r v1.7.2)
-        if (name === "data.description" && initialContent) {
+        if (name === "system.description" && initialContent) {
             initialContent = game.l5r5e.HelpersL5r5e.convertSymbols(initialContent, false);
         }
-        super.activateEditor(name, options, initialContent);
+        return super.activateEditor(name, options, initialContent);
     }
 
     /**

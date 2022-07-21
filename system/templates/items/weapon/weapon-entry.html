@@ -3,9 +3,9 @@
         <li class="item-img"><img src="{{weapon.img}}" title="{{weapon.name}}" width="32px" height="32px"/></li>
         <li class="item-name dice-picker l5r5e-tooltip" data-item-id="{{weapon.id}}" data-weapon-id="{{weapon.id}}">{{weapon.name}}</li>
         <li class="icon-stat-container">
-            <i class="fas fa-arrows-alt-h" title="{{localize 'l5r5e.weapons.range'}}"> {{weapon.data.data.range}}</i>
-            <i class="fas fa-tint" title="{{localize 'l5r5e.weapons.damage'}}"> {{weapon.data.data.damage}}</i>
-            <i class="fas fa-skull" title="{{localize 'l5r5e.weapons.deadliness'}}"> {{weapon.data.data.deadliness}}</i>
+            <i class="fas fa-arrows-alt-h" title="{{localize 'l5r5e.weapons.range'}}"> {{weapon.system.range}}</i>
+            <i class="fas fa-tint" title="{{localize 'l5r5e.weapons.damage'}}"> {{weapon.system.damage}}</i>
+            <i class="fas fa-skull" title="{{localize 'l5r5e.weapons.deadliness'}}"> {{weapon.system.deadliness}}</i>
         </li>
         {{#if editable}}
         <li data-item-id="{{weapon.id}}" class="item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>
@@ -14,9 +14,9 @@
     </ul>
     <ul class="item-properties">
         <li class="equip-readied-control" data-item-id="{{weapon.id}}" data-type="readied">
-            <i class="i_readied fa{{^if weapon.data.data.readied}}r{{/if}} fa-check-circle" title="{{#if weapon.data.data.readied}}{{localize 'l5r5e.weapons.readied'}}{{else}}{{localize 'l5r5e.weapons.sheathed'}}{{/if}}"></i>
+            <i class="i_readied fa{{^if weapon.system.readied}}r{{/if}} fa-check-circle" title="{{#if weapon.system.readied}}{{localize 'l5r5e.weapons.readied'}}{{else}}{{localize 'l5r5e.weapons.sheathed'}}{{/if}}"></i>
         </li>
-        {{#each weapon.data.data.properties as |property|}}
+        {{#each weapon.system.properties as |property|}}
             <li class="l5r5e-tooltip" data-property-id="{{property.id}}">{{{property.name}}}</li>
         {{/each}}
     </ul>

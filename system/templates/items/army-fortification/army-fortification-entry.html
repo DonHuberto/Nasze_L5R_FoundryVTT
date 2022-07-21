@@ -3,8 +3,8 @@
         <li class="item-img"><img src="{{fortification.img}}" title="{{fortification.name}}" width="32px" height="32px"/></li>
         <li class="item-name l5r5e-tooltip" data-item-id="{{fortification._id}}">{{fortification.name}}</li>
         <li class="icon-stat-container">
-            <i class="fas fa-skull" title="{{localize 'l5r5e.army.fortification.difficulty'}}"> {{fortification.data.difficulty}}</i>
-            <i class="fas fa-dungeon" title="{{localize 'l5r5e.army.fortification.attrition_reduction'}}"> {{fortification.data.attrition_reduction}}</i>
+            <i class="fas fa-skull" title="{{localize 'l5r5e.army.fortification.difficulty'}}"> {{fortification.system.difficulty}}</i>
+            <i class="fas fa-dungeon" title="{{localize 'l5r5e.army.fortification.attrition_reduction'}}"> {{fortification.system.attrition_reduction}}</i>
         </li>
         {{#if editable}}
         <li data-item-id="{{fortification._id}}" class="item-edit" title="{{localize 'l5r5e.global.edit'}}"><i class="fas fa-edit"></i></li>

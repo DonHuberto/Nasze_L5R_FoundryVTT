@@ -11,7 +11,7 @@ export class HelpersL5r5e {
         return CONFIG.l5r5e.stances.map((e) => ({
             id: e,
             label: game.i18n.localize(`l5r5e.rings.${e}`),
-            value: actor?.data?.data?.rings?.[e] || 1,
+            value: actor?.system?.rings?.[e] || 1,
         }));
     }
 
@@ -110,36 +110,6 @@ export class HelpersL5r5e {
     }
 
     /**
-     * Retrieve a Document by its Universally Unique Identifier (uuid).
-     * Exactly the same as fromUuid but without Compendium as it need async.
-     * @param {string} uuid   The uuid of the Document to retrieve
-     * @return {Document|null}
-     */
-    static fromUuidNoPack(uuid) {
-        let parts = uuid.split(".");
-        let doc;
-
-        if (parts[0] === "Compendium") {
-            // Compendium Documents need asynchronous
-            return null;
-        } else {
-            // World Documents
-            const [docName, docId] = parts.slice(0, 2);
-            parts = parts.slice(2);
-            const collection = CONFIG[docName].collection.instance;
-            doc = collection.get(docId);
-        }
-
-        // Embedded Documents
-        while (doc && parts.length > 1) {
-            const [embeddedName, embeddedId] = parts.slice(0, 2);
-            doc = doc.getEmbeddedDocument(embeddedName, embeddedId);
-            parts = parts.slice(2);
-        }
-        return doc || null;
-    }
-
-    /**
      * Return the target object on a drag n drop event, or null if not found
      * @param {DragEvent} event
      * @return {Promise<null>}
@@ -156,23 +126,30 @@ export class HelpersL5r5e {
 
     /**
      * Return the object from Game or Pack by his ID, or null if not found
-     * @param {string}      id
-     * @param {string}      type     Type (Item, JournalEntry...)
+     * @param {string}      uuid     "Item.5qI6SU85VSFqji8W"
+     * @param {string}      id       "5qI6SU85VSFqji8W"
+     * @param {string}      type     Type ("Item", "JournalEntry"...)
      * @param {any[]|null}  data     Plain data
      * @param {string|null} pack     Pack name
      * @param {string|null} parentId Used to avoid an infinite loop in properties if set
      * @return {Promise<null>}
      */
-    static async getObjectGameOrPack({ id, type, data = null, pack = null, parentId = null }) {
+    static async getObjectGameOrPack({ uuid, id, type, data = null, pack = null, parentId = null }) {
         let document = null;
 
         try {
             // Direct Object
             if (data?._id) {
                 document = HelpersL5r5e.createDocumentFromCompendium({ type, data });
-            } else if (!id || !type) {
+            } else if (!uuid && (!id || !type)) {
                 return null;
             }
+
+            // UUID
+            if (!document && !!uuid) {
+                document = await fromUuid(uuid);
+            }
+            // TODO need to migrate to UUID
 
             // Named pack
             if (!document) {
@@ -207,8 +184,8 @@ export class HelpersL5r5e {
             // Final
             if (document) {
                 // Flag the source GUID
-                if (document.uuid && !document.getFlag("core", "sourceId")) {
-                    document.data.update({ "flags.core.sourceId": document.uuid });
+                if (document.uuid && !document.pack && !document.getFlag("core", "sourceId")) {
+                    document.updateSource({ "flags.core.sourceId": document.uuid });
                 }
 
                 // Care to infinite loop in properties
@@ -263,13 +240,13 @@ export class HelpersL5r5e {
      * @return {Promise<void>}
      */
     static async refreshItemProperties(document) {
-        if (document.data?.data?.properties && typeof Babele !== "undefined") {
-            document.data.data.properties = await Promise.all(
-                document.data.data.properties.map(async (property) => {
+        if (document.system?.properties && typeof Babele !== "undefined") {
+            document.system.properties = await Promise.all(
+                document.system.properties.map(async (property) => {
                     const gameProp = await HelpersL5r5e.getObjectGameOrPack({
                         id: property.id,
                         type: "Item",
-                        parentId: document.data?._id || 1,
+                        parentId: document._id || 1,
                     });
                     if (gameProp) {
                         return { id: gameProp.id, name: gameProp.name };
@@ -279,7 +256,7 @@ export class HelpersL5r5e {
                     return property;
                 })
             );
-            document.data.update({ "data.properties": document.data.data.properties });
+            document.updateSource({ "system.properties": document.system.properties });
         }
     }
 
@@ -447,13 +424,13 @@ export class HelpersL5r5e {
         }
 
         itemsList.forEach((item) => {
-            let xp = parseInt(item.data.xp_used_total || item.data.xp_used || 0);
+            let xp = parseInt(item.system.xp_used_total || item.system.xp_used || 0);
 
             // Full  price
             xp_used_total += xp;
 
             // if not in curriculum, xp spent /2 for this item
-            if (!item.data.in_curriculum && xp > 0) {
+            if (!item.system.in_curriculum && xp > 0) {
                 xp = Math.ceil(xp / 2);
             }
 
@@ -626,8 +603,8 @@ export class HelpersL5r5e {
 
         // Create the link
         let link = null;
-        if (object.data.flags.core?.sourceId) {
-            link = object.data.flags.core?.sourceId.replace(/(\w+)\.(.+)/, "@$1[$2]");
+        if (object.flags.core?.sourceId) {
+            link = object.flags.core?.sourceId.replace(/(\w+)\.(.+)/, "@$1[$2]");
             if (!HelpersL5r5e.isLinkValid(link)) {
                 link = null;
             }
@@ -661,7 +638,7 @@ export class HelpersL5r5e {
 
         // Get a matched World document
         // "@Item[L5RCoreIte000042]{Amigasa}"
-        if (CONST.ENTITY_TYPES.includes(type)) {
+        if (CONST.DOCUMENT_TYPES.includes(type)) {
             const collection = game.collections.get(type);
             const document = /^[a-zA-Z0-9]{16}$/.test(target) ? collection.get(target) : collection.getName(target);
             return !!document;

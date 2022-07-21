@@ -10,35 +10,35 @@
             {{!-- battle readiness --}}
             <label class="attribute army-cohort-types">
                 {{localize 'l5r5e.army.battle_readiness.casualties'}}
-                <input class="select-on-focus" type="number" name="data.battle_readiness.casualties_strength.value" value="{{data.data.battle_readiness.casualties_strength.value}}" data-dtype="Number"/>
+                <input class="select-on-focus" type="number" name="system.battle_readiness.casualties_strength.value" value="{{data.system.battle_readiness.casualties_strength.value}}" data-dtype="Number"/>
             </label>
             <label class="attribute army-cohort-types">
                 {{localize 'l5r5e.army.battle_readiness.strength'}}
-                <input class="select-on-focus" type="number" name="data.battle_readiness.casualties_strength.max" value="{{data.data.battle_readiness.casualties_strength.max}}" data-dtype="Number"/>
+                <input class="select-on-focus" type="number" name="system.battle_readiness.casualties_strength.max" value="{{data.system.battle_readiness.casualties_strength.max}}" data-dtype="Number"/>
             </label>
             <label class="attribute army-cohort-types">
                 {{localize 'l5r5e.army.battle_readiness.panic'}}
-                <input class="select-on-focus" type="number" name="data.battle_readiness.panic_discipline.value" value="{{data.data.battle_readiness.panic_discipline.value}}" data-dtype="Number"/>
+                <input class="select-on-focus" type="number" name="system.battle_readiness.panic_discipline.value" value="{{data.system.battle_readiness.panic_discipline.value}}" data-dtype="Number"/>
             </label>
             <label class="attribute army-cohort-types">
                 {{localize 'l5r5e.army.battle_readiness.discipline'}}
-                <input class="select-on-focus" type="number" name="data.battle_readiness.panic_discipline.max" value="{{data.data.battle_readiness.panic_discipline.max}}" data-dtype="Number"/>
+                <input class="select-on-focus" type="number" name="system.battle_readiness.panic_discipline.max" value="{{data.system.battle_readiness.panic_discipline.max}}" data-dtype="Number"/>
             </label>
 
             <label class="attribute army-cohort-types flx50">
-                {{^if data.data.leader_actor_id}}<i class="fa fa-sign-in-alt" aria-hidden="true"></i> {{/if}}{{localize 'l5r5e.army.cohort.leader'}}
-                {{#if data.data.leader_actor_id}}
+                {{^if data.system.leader_actor_id}}<i class="fa fa-sign-in-alt" aria-hidden="true"></i> {{/if}}{{localize 'l5r5e.army.cohort.leader'}}
+                {{#if data.system.leader_actor_id}}
                 <div>
-                    <span data-actor-id="{{data.data.leader_actor_id}}" class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span>
-                    <a data-actor-id="{{data.data.leader_actor_id}}" class="open-sheet-actor-id">{{data.data.leader}}</a>
+                    <span data-actor-id="{{data.system.leader_actor_id}}" class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span>
+                    <a data-actor-id="{{data.system.leader_actor_id}}" class="open-sheet-actor-id">{{data.system.leader}}</a>
                 </div>
                 {{else}}
-                    <input class="select-on-focus" type="text" name="data.leader" value="{{data.data.leader}}" data-dtype="String"/>
+                    <input class="select-on-focus" type="text" name="system.leader" value="{{data.system.leader}}" data-dtype="String"/>
                 {{/if}}
             </label>
             <label class="attribute army-cohort-types flx50">
                 {{localize 'l5r5e.sheets.equipment'}}
-                <input class="select-on-focus" type="text" name="data.equipment" value="{{data.data.equipment}}" data-dtype="String"/>
+                <input class="select-on-focus" type="text" name="system.equipment" value="{{data.system.equipment}}" data-dtype="String"/>
             </label>
         </article>
 
@@ -52,7 +52,7 @@
         <article class="tab abilities" data-group="primary" data-tab="abilities">
             <fieldset class="attribute army-cohort-types flx100">
                     <legend class="text-block-header">{{localize 'l5r5e.army.cohort.abilities'}}</legend>
-                {{editor content=data.data.abilities target="data.abilities" button=true owner=owner editable=editable}}
+                {{editor data.enrichedHtml.abilities target="system.abilities" button=true owner=owner editable=editable}}
             </fieldset>
         </article>
 

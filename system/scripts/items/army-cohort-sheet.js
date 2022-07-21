@@ -27,7 +27,7 @@ export class ArmyCohortSheetL5r5e extends ItemSheetL5r5e {
      * @private
      */
     _initialize() {
-        const data = this.object.data.data;
+        const data = this.object.system;
 
         // update linked actor datas
         if (data.leader_actor_id) {
@@ -41,6 +41,20 @@ export class ArmyCohortSheetL5r5e extends ItemSheetL5r5e {
     }
 
     /**
+     * @return {Object|Promise}
+     */
+    async getData(options = {}) {
+        const sheetData = await super.getData(options);
+
+        // Editors enrichment
+        sheetData.data.enrichedHtml.abilities = await TextEditor.enrichHTML(sheetData.data.system.abilities, {
+            async: true,
+        });
+
+        return sheetData;
+    }
+
+    /**
      * Activate a named TinyMCE text editor
      * @param {string} name             The named data field which the editor modifies.
      * @param {object} options          TinyMCE initialization options passed to TextEditor.create
@@ -49,10 +63,10 @@ export class ArmyCohortSheetL5r5e extends ItemSheetL5r5e {
      */
     activateEditor(name, options = {}, initialContent = "") {
         // Symbols Compatibility with old compendium modules (PRE l5r v1.7.2)
-        if (name === "data.abilities" && initialContent) {
+        if (name === "system.abilities" && initialContent) {
             initialContent = game.l5r5e.HelpersL5r5e.convertSymbols(initialContent, false);
         }
-        super.activateEditor(name, options, initialContent);
+        return super.activateEditor(name, options, initialContent);
     }
 
     /**
@@ -100,15 +114,15 @@ export class ArmyCohortSheetL5r5e extends ItemSheetL5r5e {
      */
     async _updateLinkedActorData(actor) {
         if (!actor || actor.documentName !== "Actor" || !actor.isCharacter) {
-            console.warn("L5R5E | Wrong actor type", actor?.data?.type, actor);
+            console.warn("L5R5E | Wrong actor type", actor?.type, actor);
             return;
         }
 
         return this.object.update({
-            img: actor.data.img,
-            data: {
-                leader: actor.data.name,
-                leader_actor_id: actor.data._id,
+            img: actor.img,
+            system: {
+                leader: actor.name,
+                leader_actor_id: actor._id,
             },
         });
     }
@@ -120,7 +134,7 @@ export class ArmyCohortSheetL5r5e extends ItemSheetL5r5e {
      */
     async _removeLinkedActor() {
         return this.object.update({
-            data: {
+            system: {
                 leader_actor_id: null,
             },
         });

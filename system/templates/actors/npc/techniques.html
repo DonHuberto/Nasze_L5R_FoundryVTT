@@ -7,7 +7,7 @@
         <i>{{localize 'l5r5e.techniques.type'}}</i>
         {{#each data.techniquesList as |technique|}}
             <label>
-                <input type="checkbox" name="data.techniques.{{technique.id}}" {{checked (lookup ../data.data.techniques technique.id)}} {{^if ../data.editable_not_soft_locked}}disabled{{/if}} />
+                <input type="checkbox" name="system.techniques.{{technique.id}}" {{checked (lookup ../data.system.techniques technique.id)}} {{^if ../data.editable_not_soft_locked}}disabled{{/if}} />
                 {{technique.label}}
             </label>
         {{/each}}
@@ -19,7 +19,7 @@
                 <span class="technique-controls toggle-on-click" data-toggle="toggle-technique-category-{{technique}}">
                     {{localize (localize 'l5r5e.techniques.{technique}' technique=technique)}}
                 </span>
-                {{#ifCond ../data.editable_not_soft_locked '&&' (lookup ../data.data.techniques technique)}}
+                {{#ifCond ../data.editable_not_soft_locked '&&' (lookup ../data.system.techniques technique)}}
                     <a data-item-type="technique" class="technique-control item-add" data-tech-type="{{technique}}" title="{{localize 'l5r5e.global.add'}}"><i class="fas fa-plus"></i></a>
                 {{/ifCond}}
             </legend>
@@ -40,7 +40,7 @@
         </legend>
         <ul class="item-list">
             {{#each actor.items as |scroll id|}}
-                {{#ifCond scroll.data.type '==' 'signature_scroll'}}
+                {{#ifCond scroll.type '==' 'signature_scroll'}}
                     {{> 'systems/l5r5e/templates/items/signature-scroll/signature-scroll-entry.html' scroll=scroll id=id editable=../data.editable_not_soft_locked}}
                 {{/ifCond}}
             {{/each}}

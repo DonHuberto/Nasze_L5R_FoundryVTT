@@ -145,10 +145,6 @@
         <ul>
         {{#each actor.items as |pattern|}}
             {{#ifCond pattern.data.type '==' 'item_pattern'}}
-
-{{!-- json pattern.data --}}
-{{!-- voir pkoi : data.linkedProperty.name --}}
-
                 <li>{{> 'systems/l5r5e/templates/items/item-pattern/item-pattern-text.html' data=pattern.data editable=../options.editable}}</li>
             {{/ifCond}}
         {{/each}}

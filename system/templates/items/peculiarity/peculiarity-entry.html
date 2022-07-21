@@ -7,9 +7,9 @@
             <li data-item-id="{{peculiarity.id}}" class="item-control item-delete" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></li>
         {{/if}}
     </ul>
-    {{#if peculiarity.data.data.types}}
+    {{#if peculiarity.system.types}}
     <ul class="item-properties">
-        <li>{{peculiarity.data.data.types}}</li>
+        <li>{{peculiarity.system.types}}</li>
     </ul>
     {{/if}}
 </li>

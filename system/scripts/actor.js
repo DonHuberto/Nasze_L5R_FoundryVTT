@@ -16,12 +16,12 @@ export class ActorL5r5e extends Actor {
             data.img = `${CONFIG.l5r5e.paths.assets}icons/actors/${data.type}.svg`;
         }
 
-        // Some tweak on actors token
-        data.token = data.token || {};
+        // Some tweak on actors prototypeToken
+        data.prototypeToken = data.prototypeToken || {};
         switch (data.type) {
             case "character":
                 foundry.utils.mergeObject(
-                    data.token,
+                    data.prototypeToken,
                     {
                         // vision: true,
                         // dimSight: 30,
@@ -41,7 +41,7 @@ export class ActorL5r5e extends Actor {
 
             case "npc":
                 foundry.utils.mergeObject(
-                    data.token,
+                    data.prototypeToken,
                     {
                         actorLink: true,
                         disposition: 0, // neutral
@@ -58,7 +58,7 @@ export class ActorL5r5e extends Actor {
 
             case "army":
                 foundry.utils.mergeObject(
-                    data.token,
+                    data.prototypeToken,
                     {
                         actorLink: true,
                         disposition: 0, // neutral
@@ -94,22 +94,25 @@ export class ActorL5r5e extends Actor {
         context.pack = this.pack;
 
         // NPC switch between types : Linked actor for Adversary, unlinked for Minion
-        if (!!data["data.type"] && this.data.type === "npc" && data["data.type"] !== this.data.data.type) {
-            data["token.actorLink"] = data["data.type"] === "adversary";
+        if (!!data["system.type"] && this.type === "npc" && data["system.type"] !== this.system.type) {
+            data["prototypeToken.actorLink"] = data["system.type"] === "adversary";
         }
 
         // Only on linked Actor
-        if (!!data["token.actorLink"] || (data["token.actorLink"] === undefined && this.data.token.actorLink)) {
+        if (
+            !!data["prototypeToken.actorLink"] ||
+            (data["prototypeToken.actorLink"] === undefined && this.prototypeToken?.actorLink)
+        ) {
             // Update the token name/image if the sheet name/image changed, but only if
             // they was previously the same, and token img was not set in same time
-            ["name", "img"].forEach((fieldName) => {
+            Object.entries({ name: "name", img: "texture.src" }).forEach(([dataProp, TknProp]) => {
                 if (
-                    data[fieldName] &&
-                    !data["token." + fieldName] &&
-                    this.data[fieldName] === this.data.token[fieldName] &&
-                    this.data[fieldName] !== data[fieldName]
+                    data[dataProp] &&
+                    !data["prototypeToken." + TknProp] &&
+                    this[dataProp] === foundry.utils.getProperty(this.prototypeToken, TknProp) &&
+                    this[dataProp] !== data[dataProp]
                 ) {
-                    data["token." + fieldName] = data[fieldName];
+                    data["prototypeToken." + TknProp] = data[dataProp];
                 }
             });
         }
@@ -128,36 +131,37 @@ export class ActorL5r5e extends Actor {
         super.prepareData();
 
         if (this.isCharacter) {
-            const data = this.data.data;
+            const system = this.system;
 
             // No automation for npc as they cheat in stats
-            if (this.data.type === "character") {
-                ActorL5r5e.computeDerivedAttributes(data);
+            if (this.type === "character") {
+                ActorL5r5e.computeDerivedAttributes(system);
             }
 
             // Attributes bars
-            data.fatigue.max = data.endurance;
-            data.strife.max = data.composure;
-            data.void_points.max = data.rings.void;
+            system.fatigue.max = system.endurance;
+            system.strife.max = system.composure;
+            system.void_points.max = system.rings.void;
 
             // if compromise, vigilance = 1
-            data.is_compromised = data.strife.value > data.strife.max;
+            system.is_compromised = system.strife.value > system.strife.max;
 
             // Make sure void points are never greater than max
-            if (data.void_points.value > data.void_points.max) {
-                data.void_points.value = data.void_points.max;
+            if (system.void_points.value > system.void_points.max) {
+                system.void_points.value = system.void_points.max;
             }
         }
     }
 
     /**
      * Set derived attributes (endurance, composure, focus, vigilance) from rings values
+     * @param {Object} system
      */
-    static computeDerivedAttributes(data) {
-        data.endurance = (Number(data.rings.earth) + Number(data.rings.fire)) * 2;
-        data.composure = (Number(data.rings.earth) + Number(data.rings.water)) * 2;
-        data.focus = Number(data.rings.air) + Number(data.rings.fire);
-        data.vigilance = Math.ceil((Number(data.rings.air) + Number(data.rings.water)) / 2);
+    static computeDerivedAttributes(system) {
+        system.endurance = (Number(system.rings.earth) + Number(system.rings.fire)) * 2;
+        system.composure = (Number(system.rings.earth) + Number(system.rings.water)) * 2;
+        system.focus = Number(system.rings.air) + Number(system.rings.fire);
+        system.vigilance = Math.ceil((Number(system.rings.air) + Number(system.rings.water)) / 2);
     }
 
     /**
@@ -187,8 +191,8 @@ export class ActorL5r5e extends Actor {
      */
     async _updateActorFromAdvancement(item, isAdd) {
         if (item && item.type === "advancement") {
-            const actor = foundry.utils.duplicate(this.data.data);
-            const itemData = item.data.data;
+            const actor = foundry.utils.duplicate(this.system);
+            const itemData = item.system;
             if (itemData.advancement_type === "ring") {
                 // Ring
                 if (isAdd) {
@@ -216,7 +220,7 @@ export class ActorL5r5e extends Actor {
 
             // Update Actor
             await this.update({
-                data: foundry.utils.diffObject(this.data.data, actor),
+                system: foundry.utils.diffObject(this.system, actor),
             });
         }
     }
@@ -226,8 +230,8 @@ export class ActorL5r5e extends Actor {
      * @return {Promise<string|null>}
      */
     async renderTextTemplate() {
-        const data = (await this.sheet?.getData()) || this;
-        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}actors/actor-text.html`, data);
+        const sheetData = (await this.sheet?.getData()) || this;
+        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}actors/actor-text.html`, sheetData);
         if (!tpl) {
             return null;
         }
@@ -239,7 +243,7 @@ export class ActorL5r5e extends Actor {
      * @return {boolean}
      */
     get isCharacter() {
-        return ["character", "npc"].includes(this.data.type);
+        return ["character", "npc"].includes(this.type);
     }
 
     /**
@@ -247,7 +251,7 @@ export class ActorL5r5e extends Actor {
      * @return {boolean}
      */
     get haveWeaponEquipped() {
-        return this.items.some((e) => e.type === "weapon" && !!e.data.data.equipped);
+        return this.items.some((e) => e.type === "weapon" && !!e.system.equipped);
     }
 
     /**
@@ -255,7 +259,7 @@ export class ActorL5r5e extends Actor {
      * @return {boolean}
      */
     get haveWeaponReadied() {
-        return this.items.some((e) => e.type === "weapon" && !!e.data.data.equipped && !!e.data.data.readied);
+        return this.items.some((e) => e.type === "weapon" && !!e.system.equipped && !!e.system.readied);
     }
 
     /**
@@ -263,7 +267,7 @@ export class ActorL5r5e extends Actor {
      * @return {boolean}
      */
     get haveArmorEquipped() {
-        return this.items.some((e) => e.type === "armor" && !!e.data.data.equipped);
+        return this.items.some((e) => e.type === "armor" && !!e.system.equipped);
     }
 
     /**
@@ -282,9 +286,9 @@ export class ActorL5r5e extends Actor {
         };
 
         // Prepared is a boolean or if null we get the info in the actor
-        let isPrepared = this.data.type === "character" ? cfg.character : cfg[this.data.data.type];
+        let isPrepared = this.type === "character" ? cfg.character : cfg[this.system.type];
         if (isPrepared === "null") {
-            isPrepared = this.data.data.prepared ? "true" : "false";
+            isPrepared = this.system.prepared ? "true" : "false";
         }
 
         return isPrepared;
@@ -298,7 +302,7 @@ export class ActorL5r5e extends Actor {
         if (!this.isCharacter) {
             return null;
         }
-        return Math.floor(this.data.data.social.status / 10);
+        return Math.floor(this.system.social.status / 10);
     }
 
     /**
@@ -309,7 +313,7 @@ export class ActorL5r5e extends Actor {
         if (!this.isCharacter) {
             return null;
         }
-        return this.data.type === "npc" ? this.data.data.conflict_rank.social : this.data.data.identity.school_rank;
+        return this.type === "npc" ? this.system.conflict_rank.social : this.system.identity.school_rank;
     }
 
     /**
@@ -320,6 +324,6 @@ export class ActorL5r5e extends Actor {
         if (!this.isCharacter) {
             return null;
         }
-        return this.data.type === "npc" ? this.data.data.conflict_rank.martial : this.data.data.identity.school_rank;
+        return this.type === "npc" ? this.system.conflict_rank.martial : this.system.identity.school_rank;
     }
 }

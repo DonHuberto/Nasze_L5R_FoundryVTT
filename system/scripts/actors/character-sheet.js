@@ -41,14 +41,14 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
     /**
      * Commons datas
      */
-    getData(options = {}) {
-        const sheetData = super.getData(options);
+    async getData(options = {}) {
+        const sheetData = await super.getData(options);
 
         // Min rank = 1
-        this.actor.data.data.identity.school_rank = Math.max(1, this.actor.data.data.identity.school_rank);
+        this.actor.system.identity.school_rank = Math.max(1, this.actor.system.identity.school_rank);
 
         // Split Money
-        sheetData.data.data.money = this._zeniToMoney(this.actor.data.data.zeni);
+        sheetData.data.system.money = this._zeniToMoney(this.actor.system.zeni);
 
         // Split school advancements by rank, and calculate xp spent and add it to total
         this._prepareSchoolAdvancement(sheetData);
@@ -57,8 +57,8 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
         this._prepareOthersAdvancement(sheetData);
 
         // Total
-        sheetData.data.data.xp_saved = Math.floor(
-            parseInt(sheetData.data.data.xp_total) - parseInt(sheetData.data.data.xp_spent)
+        sheetData.data.system.xp_saved = Math.floor(
+            parseInt(sheetData.data.system.xp_total) - parseInt(sheetData.data.system.xp_spent)
         );
 
         return sheetData;
@@ -87,7 +87,7 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
             "data.identity.family",
             CONFIG.l5r5e.families.get(
                 Object.entries(game.i18n.translations.l5r5e.clans).find(
-                    ([k, v]) => v === this.actor.data.data.identity.clan
+                    ([k, v]) => v === this.actor.system.identity.clan
                 )?.[0]
             )
         );
@@ -118,7 +118,7 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
         // TODO class "Active" Bug on load, dunno why :/
         this._tabs
             .find((e) => e._navSelector === ".advancements-tabs")
-            .activate("advancement_rank_" + (this.actor.data.data.identity.school_rank || 0));
+            .activate("advancement_rank_" + (this.actor.system.identity.school_rank || 0));
     }
 
     /**
@@ -126,14 +126,14 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
      */
     _prepareSchoolAdvancement(sheetData) {
         const adv = [];
-        sheetData.data.data.xp_spent = 0;
+        sheetData.data.system.xp_spent = 0;
         sheetData.items
             .filter((item) => ["peculiarity", "technique", "advancement"].includes(item.type))
             .forEach((item) => {
                 const { xp_used_total, xp_used } = game.l5r5e.HelpersL5r5e.getItemsXpCost(item);
-                sheetData.data.data.xp_spent += xp_used_total;
+                sheetData.data.system.xp_spent += xp_used_total;
 
-                const rank = Math.max(0, item.data.bought_at_rank);
+                const rank = Math.max(0, item.system.bought_at_rank);
                 if (!adv[rank]) {
                     adv[rank] = {
                         rank: rank,
@@ -162,16 +162,16 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
         );
 
         // Sort by rank desc
-        sheetData.data.advancementsOthers.sort((a, b) => (b.data.rank || 0) - (a.data.rank || 0));
+        sheetData.data.advancementsOthers.sort((a, b) => (b.system.rank || 0) - (a.system.rank || 0));
 
         // Total xp spent in curriculum & total
         sheetData.data.advancementsOthersTotalXp = sheetData.data.advancementsOthers.reduce(
-            (acc, item) => acc + parseInt(item.data.xp_used_total || item.data.xp_used || 0),
+            (acc, item) => acc + parseInt(item.system.xp_used_total || item.system.xp_used || 0),
             0
         );
 
         // Update the total spent
-        sheetData.data.data.xp_spent += sheetData.data.advancementsOthersTotalXp;
+        sheetData.data.system.xp_spent += sheetData.data.advancementsOthersTotalXp;
     }
 
     /**
@@ -182,39 +182,39 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
     _updateObject(event, formData) {
         // Clan tag trim if autocomplete in school name
         if (
-            formData["autoCompleteListName"] === "data.identity.school" &&
+            formData["autoCompleteListName"] === "system.identity.school" &&
             formData["autoCompleteListSelectedIndex"] >= 0 &&
-            !!formData["data.identity.clan"] &&
-            formData["data.identity.school"].indexOf(` [${formData["data.identity.clan"]}]`) !== -1
+            !!formData["system.identity.clan"] &&
+            formData["system.identity.school"].indexOf(` [${formData["system.identity.clan"]}]`) !== -1
         ) {
-            formData["data.identity.school"] = formData["data.identity.school"].replace(
-                ` [${formData["data.identity.clan"]}]`,
+            formData["system.identity.school"] = formData["system.identity.school"].replace(
+                ` [${formData["system.identity.clan"]}]`,
                 ""
             );
         }
 
         // Store money in Zeni
-        if (formData["data.money.koku"] || formData["data.money.bu"] || formData["data.money.zeni"]) {
-            formData["data.zeni"] = this._moneyToZeni(
-                formData["data.money.koku"] || 0,
-                formData["data.money.bu"] || 0,
-                formData["data.money.zeni"] || 0
+        if (formData["system.money.koku"] || formData["system.money.bu"] || formData["system.money.zeni"]) {
+            formData["system.zeni"] = this._moneyToZeni(
+                formData["system.money.koku"] || 0,
+                formData["system.money.bu"] || 0,
+                formData["system.money.zeni"] || 0
             );
             // Remove fake money object
-            delete formData["data.money.koku"];
-            delete formData["data.money.bu"];
-            delete formData["data.money.zeni"];
+            delete formData["system.money.koku"];
+            delete formData["system.money.bu"];
+            delete formData["system.money.zeni"];
         }
 
         // Save computed values
-        const currentData = this.object.data.data;
-        formData["data.focus"] = currentData.focus;
-        formData["data.vigilance"] = currentData.vigilance;
-        formData["data.endurance"] = currentData.endurance;
-        formData["data.composure"] = currentData.composure;
-        formData["data.fatigue.max"] = currentData.fatigue.max;
-        formData["data.strife.max"] = currentData.strife.max;
-        formData["data.void_points.max"] = currentData.void_points.max;
+        const currentData = this.object.system;
+        formData["system.focus"] = currentData.focus;
+        formData["system.vigilance"] = currentData.vigilance;
+        formData["system.endurance"] = currentData.endurance;
+        formData["system.composure"] = currentData.composure;
+        formData["system.fatigue.max"] = currentData.fatigue.max;
+        formData["system.strife.max"] = currentData.strife.max;
+        formData["system.void_points.max"] = currentData.void_points.max;
 
         return super._updateObject(event, formData);
     }
@@ -276,10 +276,10 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
             mod = Math.floor(mod * CONFIG.l5r5e.money[type === "koku" ? 0 : 1]);
         }
 
-        this.actor.data.data.zeni = +this.actor.data.data.zeni + mod;
+        this.actor.system.zeni = +this.actor.system.zeni + mod;
         this.actor.update({
-            data: {
-                zeni: this.actor.data.data.zeni,
+            system: {
+                zeni: this.actor.system.zeni,
             },
         });
         this.render(false);
@@ -294,11 +294,11 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
         event.preventDefault();
         event.stopPropagation();
 
-        this.actor.data.data.identity.school_rank = this.actor.data.data.identity.school_rank + 1;
+        this.actor.system.identity.school_rank = this.actor.system.identity.school_rank + 1;
         await this.actor.update({
-            data: {
+            system: {
                 identity: {
-                    school_rank: this.actor.data.data.identity.school_rank,
+                    school_rank: this.actor.system.identity.school_rank,
                 },
             },
         });
@@ -314,7 +314,7 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
         event.preventDefault();
         event.stopPropagation();
 
-        const actorJournal = this.actor.data.data.identity.school_curriculum_journal;
+        const actorJournal = this.actor.system.identity.school_curriculum_journal;
         if (!actorJournal.id) {
             return;
         }

@@ -291,7 +291,7 @@ export class CharacterGenerator {
             narrative: true,
         }
     ) {
-        const actorDatas = actor.data.data;
+        const actorDatas = actor.system;
         const isNpc = actor.type === "npc";
 
         // Need to set some required values
@@ -304,7 +304,7 @@ export class CharacterGenerator {
         actorDatas.identity.female = this.isFemale;
 
         // Name
-        let newName = actor.data.name;
+        let newName = actor.name;
         if (generate.name) {
             newName =
                 this.data.family +
@@ -325,9 +325,9 @@ export class CharacterGenerator {
             `${folder}/npc.svg`,
             `${folder}/traditional-japanese-man.svg`,
             `${folder}/traditional-japanese-woman.svg`,
-        ].includes(actor.data.img)
+        ].includes(actor.img)
             ? `${folder}/traditional-japanese-${this.isFemale ? "woman" : "man"}.svg`
-            : actor.data.img;
+            : actor.img;
 
         // Generate attributes & Social Standing
         if (generate.attributes) {
@@ -453,7 +453,7 @@ export class CharacterGenerator {
      */
     async _generatePeculiarities(actor, newItemsData) {
         // Clear actor peculiarities
-        const deleteIds = actor.data.items.filter((e) => e.type === "peculiarity").map((e) => e.id);
+        const deleteIds = actor.items.filter((e) => e.type === "peculiarity").map((e) => e.id);
         if (deleteIds.length > 0) {
             await actor.deleteEmbeddedDocuments("Item", deleteIds);
         }
@@ -476,7 +476,7 @@ export class CharacterGenerator {
      */
     async _generateItems(actor, newItemsData) {
         // Clear actor items
-        const deleteIds = actor.data.items.filter((e) => ["armor", "weapon", "item"].includes(e.type)).map((e) => e.id);
+        const deleteIds = actor.items.filter((e) => ["armor", "weapon", "item"].includes(e.type)).map((e) => e.id);
         if (deleteIds.length > 0) {
             await actor.deleteEmbeddedDocuments("Item", deleteIds);
         }
@@ -521,7 +521,7 @@ export class CharacterGenerator {
      */
     async _generateTechniques(actor, newItemsData) {
         // Clear actor items
-        const deleteIds = actor.data.items.filter((e) => e.type === "technique").map((e) => e.id);
+        const deleteIds = actor.items.filter((e) => e.type === "technique").map((e) => e.id);
         if (deleteIds.length > 0) {
             await actor.deleteEmbeddedDocuments("Item", deleteIds);
         }
@@ -598,7 +598,7 @@ export class CharacterGenerator {
             const cfg = techCfg[pack];
 
             // Minimum skill required (npc only for now)
-            if (!!cfg.skill && actor.data.data.skills[cfg.skill.grp_name] < cfg.skill.value_min) {
+            if (!!cfg.skill && actor.system.skills[cfg.skill.grp_name] < cfg.skill.value_min) {
                 continue;
             }
 
@@ -613,9 +613,10 @@ export class CharacterGenerator {
                 let item;
                 do {
                     item = await CharacterGenerator._getItemFromPack(`l5r5e.core-techniques-${pack}`);
-                } while (item && item.data.data.rank > avgrv);
+                } while (item && item.system.rank > avgrv);
 
                 if (item) {
+                    console.log(item); //todo tmp check this!
                     newItemsData.push(foundry.utils.duplicate(item.data));
                 }
             } // fr qty

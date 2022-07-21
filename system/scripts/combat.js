@@ -54,10 +54,10 @@ export class CombatL5r5e extends Combat {
             }
 
             // Shortcut to data
-            const data = combatant.actor.data.data;
+            const data = combatant.actor.system;
 
             // Prepared is a boolean or if null we get the info in the actor sheet
-            const isPc = combatant.actor.data.type === "character";
+            const isPc = combatant.actor.type === "character";
             const isPrepared = combatant.actor.isPrepared;
 
             // A character’s initiative value is based on their state of preparedness when the conflict began.
@@ -145,17 +145,15 @@ export class CombatL5r5e extends Combat {
         // if tie : sort by honor, less honorable first
         if (a.initiative === b.initiative) {
             // skip if no actor or if armies
-            if (!a.actor || !b.actor || a.actor.data.type === "army" || b.actor.data.type === "army") {
+            if (!a.actor || !b.actor || a.actor.type === "army" || b.actor.type === "army") {
                 return 0;
             }
 
             // if tie again : Character > Adversary > Minion
-            if (a.actor.data.data.social.honor === b.actor.data.data.social.honor) {
-                return (
-                    CombatL5r5e._getWeightByActorType(a.actor.data) - CombatL5r5e._getWeightByActorType(b.actor.data)
-                );
+            if (a.actor.system.social.honor === b.actor.system.social.honor) {
+                return CombatL5r5e._getWeightByActorType(a.actor) - CombatL5r5e._getWeightByActorType(b.actor);
             }
-            return a.actor.data.data.social.honor - b.actor.data.data.social.honor;
+            return a.actor.system.social.honor - b.actor.system.social.honor;
         }
         return b.initiative - a.initiative;
     }
@@ -165,6 +163,6 @@ export class CombatL5r5e extends Combat {
      * @private
      */
     static _getWeightByActorType(data) {
-        return data.type === "npc" ? (data.data.type === "minion" ? 3 : 2) : 1;
+        return data.type === "npc" ? (data.type === "minion" ? 3 : 2) : 1;
     }
 }

@@ -4,11 +4,11 @@
         <legend class="text-block-header">{{localize 'l5r5e.social.title'}}</legend>
         <label class="attribute-label">
             {{localize 'l5r5e.social.ninjo'}}
-            <textarea type="text" name="data.social.ninjo" {{^if data.editable_not_soft_locked}}disabled{{/if}}>{{data.data.social.ninjo}}</textarea>
+            <textarea type="text" name="system.social.ninjo" {{^if data.editable_not_soft_locked}}disabled{{/if}}>{{data.system.social.ninjo}}</textarea>
         </label>
         <label class="attribute-label">
             {{localize 'l5r5e.social.giri'}} / {{localize 'l5r5e.social.past'}}
-            <textarea type="text" name="data.social.giri" {{^if data.editable_not_soft_locked}}disabled{{/if}}>{{data.data.social.giri}}</textarea>
+            <textarea type="text" name="system.social.giri" {{^if data.editable_not_soft_locked}}disabled{{/if}}>{{data.system.social.giri}}</textarea>
         </label>
     </fieldset>
     {{!-- Bushido Tenets --}}
@@ -16,11 +16,11 @@
         <legend class="text-block-header">{{localize 'l5r5e.social.bushido_tenets.title'}}</legend>
         <label class="attribute-label">
             {{localize 'l5r5e.social.bushido_tenets.paramount'}}
-            <textarea type="text" name="data.social.bushido_tenets.paramount" {{^if data.editable_not_soft_locked}}disabled{{/if}}>{{data.data.social.bushido_tenets.paramount}}</textarea>
+            <textarea type="text" name="system.social.bushido_tenets.paramount" {{^if data.editable_not_soft_locked}}disabled{{/if}}>{{data.system.social.bushido_tenets.paramount}}</textarea>
         </label>
         <label class="attribute-label">
             {{localize 'l5r5e.social.bushido_tenets.less_significant'}}
-            <textarea type="text" name="data.social.bushido_tenets.less_significant" {{^if data.editable_not_soft_locked}}disabled{{/if}}>{{data.data.social.bushido_tenets.less_significant}}</textarea>
+            <textarea type="text" name="system.social.bushido_tenets.less_significant" {{^if data.editable_not_soft_locked}}disabled{{/if}}>{{data.system.social.bushido_tenets.less_significant}}</textarea>
         </label>
     </fieldset>
 </div>
@@ -35,7 +35,7 @@
         </legend>
         <ul class="item-list">
             {{#each actor.items as |item id|}}
-                {{#ifCond '["distinction","passion"]' 'includes' item.data.data.peculiarity_type}}
+                {{#ifCond '["distinction","passion"]' 'includes' item.system.peculiarity_type}}
                     {{> 'systems/l5r5e/templates/items/peculiarity/peculiarity-entry.html' peculiarity=item id=id editable=../data.editable_not_soft_locked}}
                 {{/ifCond}}
             {{/each}}
@@ -51,7 +51,7 @@
         </legend>
         <ul class="item-list">
             {{#each actor.items as |item id|}}
-            {{#ifCond '["adversity","anxiety"]' 'includes' item.data.data.peculiarity_type}}
+            {{#ifCond '["adversity","anxiety"]' 'includes' item.system.peculiarity_type}}
                     {{> 'systems/l5r5e/templates/items/peculiarity/peculiarity-entry.html' peculiarity=item id=id editable=../data.editable_not_soft_locked}}
                 {{/ifCond}}
             {{/each}}
@@ -67,7 +67,7 @@
         </legend>
         <ul class="item-list">
             {{#each actor.items as |bond id|}}
-                {{#ifCond bond.data.type '==' 'bond'}}
+                {{#ifCond bond.type '==' 'bond'}}
                     {{> 'systems/l5r5e/templates/items/bond/bond-entry.html' bond=bond id=id editable=../data.editable_not_soft_locked}}
                 {{/ifCond}}
             {{/each}}
@@ -78,11 +78,11 @@
     {{!-- Description (public) --}}
     <fieldset class="narrative-description">
         <legend class="text-block-header">{{localize 'l5r5e.sheets.description' }}</legend>
-        {{editor content=data.data.description target="data.description" button=true editable=options.editable}}
+        {{editor data.enrichedHtml.description target="system.description" button=true editable=options.editable}}
     </fieldset>
     {{!-- Notes (private) --}}
     <fieldset class="narrative-note">
         <legend class="text-block-header">{{localize 'l5r5e.sheets.notes' }}</legend>
-        {{editor content=data.data.notes target="data.notes" button=true editable=options.editable}}
+        {{editor data.enrichedHtml.notes target="system.notes" button=true editable=options.editable}}
     </fieldset>
 </div>

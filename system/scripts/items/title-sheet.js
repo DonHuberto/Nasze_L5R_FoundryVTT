@@ -22,12 +22,12 @@ export class TitleSheetL5r5e extends ItemSheetL5r5e {
         const sheetData = await super.getData(options);
 
         // Prepare OwnedItems
-        sheetData.data.embedItemsList = this._prepareEmbedItems(sheetData.data.data.items);
+        sheetData.data.embedItemsList = this._prepareEmbedItems(sheetData.data.system.items);
 
         // Automatically compute the total xp cost (full price) and XP in title (cursus, some halved prices)
         const { xp_used_total, xp_used } = game.l5r5e.HelpersL5r5e.getItemsXpCost(sheetData.data.embedItemsList);
-        sheetData.data.data.xp_used_total = xp_used_total;
-        sheetData.data.data.xp_used = xp_used;
+        sheetData.data.system.xp_used_total = xp_used_total;
+        sheetData.data.system.xp_used = xp_used;
 
         return sheetData;
     }
@@ -41,11 +41,11 @@ export class TitleSheetL5r5e extends ItemSheetL5r5e {
     _prepareEmbedItems(itemsMap) {
         let itemsList = itemsMap;
         if (itemsMap instanceof Map) {
-            itemsList = Array.from(itemsMap).map(([id, item]) => item.data);
+            itemsList = Array.from(itemsMap).map(([id, item]) => item);
         }
 
         // Sort by rank desc
-        itemsList.sort((a, b) => (b.data.rank || 0) - (a.data.rank || 0));
+        itemsList.sort((a, b) => (b.system.rank || 0) - (a.system.rank || 0));
 
         return itemsList;
     }
@@ -63,16 +63,16 @@ export class TitleSheetL5r5e extends ItemSheetL5r5e {
 
         // Check item type and subtype
         let item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
-        if (!item || item.documentName !== "Item" || !["technique", "advancement"].includes(item.data.type)) {
+        if (!item || item.documentName !== "Item" || !["technique", "advancement"].includes(item.type)) {
             return;
         }
 
-        const data = item.data.toObject(false);
+        const data = item.toObject(false);
 
         // Check xp for techs
-        if (item.data.type === "technique") {
-            data.data.xp_cost = data.data.xp_cost > 0 ? data.data.xp_cost : CONFIG.l5r5e.xp.techniqueCost;
-            data.data.xp_used = data.data.xp_cost;
+        if (item.type === "technique") {
+            data.system.xp_cost = data.system.xp_cost > 0 ? data.system.xp_cost : CONFIG.l5r5e.xp.techniqueCost;
+            data.system.xp_used = data.system.xp_cost;
         }
 
         this.document.addEmbedItem(data);
@@ -146,7 +146,7 @@ export class TitleSheetL5r5e extends ItemSheetL5r5e {
         }
 
         // Switch the state and update
-        item.data.data.in_curriculum = !item.data.data.in_curriculum;
+        item.system.in_curriculum = !item.system.in_curriculum;
         return this.document.updateEmbedItem(item);
     }
 }

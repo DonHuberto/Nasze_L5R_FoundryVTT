@@ -28,7 +28,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
      * @private
      */
     _initialize() {
-        const data = this.object.data.data;
+        const data = this.object.system;
 
         // update linked actor datas
         if (data.commander_actor_id) {
@@ -79,10 +79,13 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
      */
     activateEditor(name, options = {}, initialContent = "") {
         // Symbols Compatibility with old compendium modules (PRE l5r v1.7.2)
-        if (["data.army_abilities", "data.supplies_logistics", "data.past_battles"].includes(name) && initialContent) {
+        if (
+            ["system.army_abilities", "system.supplies_logistics", "system.past_battles"].includes(name) &&
+            initialContent
+        ) {
             initialContent = game.l5r5e.HelpersL5r5e.convertSymbols(initialContent, false);
         }
-        super.activateEditor(name, options, initialContent);
+        return super.activateEditor(name, options, initialContent);
     }
 
     /**
@@ -100,7 +103,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
         // Casualties/Panic +/-
         html.find(".addsub-control").on("click", this._modifyCasualtiesOrPanic.bind(this));
 
-        if (this.actor.data.data.soft_locked) {
+        if (this.actor.system.soft_locked) {
             return;
         }
 
@@ -109,11 +112,18 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
     }
 
     /** @inheritdoc */
-    getData(options = {}) {
-        const sheetData = super.getData(options);
+    async getData(options = {}) {
+        const sheetData = await super.getData(options);
 
         // Split Items by types
         sheetData.data.splitItemsList = this._splitItems(sheetData);
+
+        // Editors enrichment
+        for (const name of ["army_abilities", "supplies_logistics", "past_battles"]) {
+            sheetData.data.enrichedHtml[name] = await TextEditor.enrichHTML(sheetData.data.system[name], {
+                async: true,
+            });
+        }
 
         return sheetData;
     }
@@ -143,15 +153,15 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
      */
     async _onDrop(event) {
         // *** Everything below here is only needed if the sheet is editable ***
-        if (!this.isEditable || this.actor.data.data.soft_locked) {
+        if (!this.isEditable || this.actor.system.soft_locked) {
             return;
         }
 
         const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
-        if (!item || item.documentName !== "Item" || !["army_cohort", "army_fortification"].includes(item.data.type)) {
+        if (!item || item.documentName !== "Item" || !["army_cohort", "army_fortification"].includes(item.type)) {
             // actor dual trigger...
             if (item?.documentName !== "Actor") {
-                console.warn("L5R5E | Characters items are not allowed", item?.data?.type, item);
+                console.warn("L5R5E | Characters items are not allowed", item?.type, item);
             }
             return;
         }
@@ -162,7 +172,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
             return;
         }
 
-        let itemData = item.data.toObject(true);
+        let itemData = item.toObject(true);
 
         // Finally, create the embed
         return this.actor.createEmbeddedDocuments("Item", [itemData]);
@@ -175,7 +185,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
      */
     async _onDropActors(type, event) {
         // *** Everything below here is only needed if the sheet is editable ***
-        if (!this.isEditable || this.actor.data.data.soft_locked) {
+        if (!this.isEditable || this.actor.system.soft_locked) {
             return;
         }
 
@@ -211,7 +221,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
      */
     async _updateLinkedActorData(type, actor, isInit = false) {
         if (!actor || actor.documentName !== "Actor" || !actor.isCharacter) {
-            console.warn("L5R5E | Wrong actor type", actor?.data?.type, actor);
+            console.warn("L5R5E | Wrong actor type", actor?.type, actor);
             return;
         }
 
@@ -219,26 +229,26 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
         const actorData = {};
         switch (type) {
             case "commander":
-                actorData["data.commander"] = actor.data.name;
-                actorData["data.commander_actor_id"] = actor.data._id;
-                actorData["data.commander_standing.honor"] = actor.data.data.social.honor;
-                actorData["data.commander_standing.glory"] = actor.data.data.social.glory;
-                actorData["data.commander_standing.status"] = actor.data.data.social.status;
+                actorData["system.commander"] = actor.name;
+                actorData["system.commander_actor_id"] = actor._id;
+                actorData["system.commander_standing.honor"] = actor.system.social.honor;
+                actorData["system.commander_standing.glory"] = actor.system.social.glory;
+                actorData["system.commander_standing.status"] = actor.system.social.status;
 
                 // Replace the image by commander's image
                 if (
                     !isInit &&
-                    this.actor.data.img !== actor.data.img &&
-                    ![`${actorPath}character.svg`, `${actorPath}npc.svg`].includes(actor.data.img)
+                    this.actor.img !== actor.img &&
+                    ![`${actorPath}character.svg`, `${actorPath}npc.svg`].includes(actor.img)
                 ) {
-                    actorData["img"] = actor.data.img;
-                    actorData["token.img"] = actor.data.token.img;
+                    actorData["img"] = actor.img;
+                    actorData["prototypeToken.texture.src"] = actor.prototypeToken.texture.src;
                 }
                 break;
 
             case "warlord":
-                actorData["data.warlord"] = actor.data.name;
-                actorData["data.warlord_actor_id"] = actor.data._id;
+                actorData["system.warlord"] = actor.name;
+                actorData["system.warlord_actor_id"] = actor._id;
                 break;
 
             default:
@@ -269,7 +279,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
                 console.warn("L5R5E | Unknown type", type);
                 return;
         }
-        return this.actor.update({ data: actorData });
+        return this.actor.update({ system: actorData });
     }
 
     /**
@@ -290,13 +300,10 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
         switch (type) {
             case "casualties":
                 await this.actor.update({
-                    data: {
+                    system: {
                         battle_readiness: {
                             casualties_strength: {
-                                value: Math.max(
-                                    0,
-                                    this.actor.data.data.battle_readiness.casualties_strength.value + mod
-                                ),
+                                value: Math.max(0, this.actor.system.battle_readiness.casualties_strength.value + mod),
                             },
                         },
                     },
@@ -305,10 +312,10 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
 
             case "panic":
                 await this.actor.update({
-                    data: {
+                    system: {
                         battle_readiness: {
                             panic_discipline: {
-                                value: Math.max(0, this.actor.data.data.battle_readiness.panic_discipline.value + mod),
+                                value: Math.max(0, this.actor.system.battle_readiness.panic_discipline.value + mod),
                             },
                         },
                     },

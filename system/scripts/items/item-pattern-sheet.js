@@ -33,15 +33,15 @@ export class ItemPatternSheetL5r5e extends ItemSheetL5r5e {
      * @return {Promise<null|{name, id}>}
      */
     async getLinkedProperty(sheetData) {
-        if (sheetData.data.data.linked_property_id) {
+        if (sheetData.data.system.linked_property_id) {
             const linkedProperty = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack({
-                id: sheetData.data.data.linked_property_id,
+                id: sheetData.data.system.linked_property_id,
                 type: "Item",
             });
             if (linkedProperty) {
                 return {
-                    id: linkedProperty.data._id,
-                    name: linkedProperty.data.name,
+                    id: linkedProperty._id,
+                    name: linkedProperty.name,
                 };
             }
         }
@@ -77,15 +77,15 @@ export class ItemPatternSheetL5r5e extends ItemSheetL5r5e {
 
         // Only property allowed here
         let item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
-        if (!item || item.documentName !== "Item" || item.data.type !== "property") {
+        if (!item || item.documentName !== "Item" || item.type !== "property") {
             return;
         }
 
         // Set the new property, and update
-        this.document.data.data.linked_property_id = item.id;
+        this.document.system.linked_property_id = item.id;
         this.document.update({
-            data: {
-                linked_property_id: this.document.data.data.linked_property_id,
+            system: {
+                linked_property_id: this.document.system.linked_property_id,
             },
         });
     }
@@ -102,18 +102,18 @@ export class ItemPatternSheetL5r5e extends ItemSheetL5r5e {
 
         let name;
         const linkedProperty = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack({
-            id: this.document.data.data.linked_property_id,
+            id: this.document.system.linked_property_id,
             type: "Item",
         });
         if (linkedProperty) {
-            name = linkedProperty.data.name;
+            name = linkedProperty.name;
         }
 
         const callback = async () => {
-            this.document.data.data.linked_property_id = null;
+            this.document.system.linked_property_id = null;
             this.document.update({
-                data: {
-                    linked_property_id: this.document.data.data.linked_property_id,
+                system: {
+                    linked_property_id: this.document.system.linked_property_id,
                 },
             });
         };

@@ -65,7 +65,7 @@ export default class HooksL5r5e {
             case "settings":
                 // Add Changelog link
                 html.find("#game-details .system").append(
-                    `<p><a href="${game.system.data.changelog}" target="_blank">Changelog</a></p>`
+                    `<p><a href="${game.system.changelog}" target="_blank">Changelog</a></p>`
                 );
                 break;
         }
@@ -198,13 +198,13 @@ export default class HooksL5r5e {
                 if (["weapon", "armor", "item", "peculiarity", "technique", "peculiarity"].includes(document.type)) {
                     html.find(`[data-document-id="${document.id}"]`).append(
                         `<i` +
-                            (document.data.data.ring ? ` class="i_${document.data.data.ring}"` : ``) +
+                            (document.system.ring ? ` class="i_${document.system.ring}"` : ``) +
                             `>` +
-                            (document.data.data.rarity
-                                ? `${game.i18n.localize("l5r5e.sheets.rarity")} ${document.data.data.rarity}`
+                            (document.system.rarity
+                                ? `${game.i18n.localize("l5r5e.sheets.rarity")} ${document.system.rarity}`
                                 : "") +
-                            (document.data.data.rank
-                                ? game.i18n.localize("l5r5e.sheets.rank") + " " + document.data.data.rank
+                            (document.system.rank
+                                ? game.i18n.localize("l5r5e.sheets.rank") + " " + document.system.rank
                                 : "") +
                             `</i>`
                     );

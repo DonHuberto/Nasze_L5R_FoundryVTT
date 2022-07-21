@@ -7,7 +7,7 @@
     </h3>
     <ul class="item-list inventory-item-list-{{type}} {{#ifCond ../data.storeInfos 'includes' (concat 'inventory-item-list-' type)}}toggle-hidden{{/ifCond}}">
         {{#each cat as |item id|}}
-            {{> 'systems/l5r5e/templates/items/item/item-entry.html' item=item id=id editable=../../options.editable soft_locked=../../data.data.soft_locked}}
+            {{> 'systems/l5r5e/templates/items/item/item-entry.html' item=item id=id editable=../../options.editable soft_locked=../../data.system.soft_locked}}
         {{/each}}
     </ul>
 {{/each}}

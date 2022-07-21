@@ -2,22 +2,22 @@
     <legend>{{localize 'l5r5e.sheets.experience'}}</legend>
     <label class="attribute-label">
         {{localize 'l5r5e.advancements.total'}}
-        <input class="centered-input select-on-focus" type="number" name="data.xp_total" value="{{data.data.xp_total}}" data-dtype="Number" min="0" placeholder="0" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
+        <input class="centered-input select-on-focus" type="number" name="system.xp_total" value="{{data.system.xp_total}}" data-dtype="Number" min="0" placeholder="0" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
     </label>
     <label class="attribute-label">
         {{localize 'l5r5e.advancements.spent'}}
-        <input class="centered-input select-on-focus" type="number" name="data.xp_spent" value="{{data.data.xp_spent}}" data-dtype="Number" min="0" placeholder="0" disabled/>
+        <input class="centered-input select-on-focus" type="number" name="system.xp_spent" value="{{data.system.xp_spent}}" data-dtype="Number" min="0" placeholder="0" disabled/>
     </label>
     <label class="attribute-label">
         {{localize 'l5r5e.advancements.saved'}}
-        <input class="centered-input select-on-focus" type="number" name="data.xp_saved" value="{{data.data.xp_saved}}" data-dtype="Number" min="0" placeholder="0" disabled/>
+        <input class="centered-input select-on-focus" type="number" name="system.xp_saved" value="{{data.system.xp_saved}}" data-dtype="Number" min="0" placeholder="0" disabled/>
     </label>
 </fieldset>
 {{!-- School progession --}}
 <fieldset class="advancement advancements-body">
     <legend class="tools">
-        {{#if data.data.identity.school_curriculum_journal.id}}
-            <a class="school-journal-link"><i class="fas fa-file-alt"></i></a> {{data.data.identity.school_curriculum_journal.name}}
+        {{#if data.system.identity.school_curriculum_journal.id}}
+            <a class="school-journal-link"><i class="fas fa-file-alt"></i></a> {{data.system.identity.school_curriculum_journal.name}}
         {{else}}
             <i class="fas fa-question-circle" title="{{localize 'l5r5e.advancements.school_curriculum_journal'}}"></i> {{localize 'l5r5e.sheets.school'}}
         {{/if}}
@@ -56,8 +56,8 @@
                         <th>{{localize 'l5r5e.advancements.total_xp_spent'}} : {{rankObject.spent.total}}</th>
                     </tr>
                     {{#if ../data.editable_not_soft_locked}}
-                        {{#ifCond ../data.data.identity.school_rank '<' 6}}
-                            {{#ifCond (ifCond ../data.data.identity.school_rank '==' rankObject.rank) '&&' (ifCond rankObject.spent.curriculum '>=' rankObject.goal)}}
+                        {{#ifCond ../data.system.identity.school_rank '<' 6}}
+                            {{#ifCond (ifCond ../data.system.identity.school_rank '==' rankObject.rank) '&&' (ifCond rankObject.spent.curriculum '>=' rankObject.goal)}}
                                 <tr class="tfoot flexrow row tab" data-group="advancements" data-tab="advancement_rank_{{rankObject.rank}}">
                                     <th>
                                         <button type="button" name="validate-curriculum">

@@ -202,8 +202,8 @@ Hooks.once("init", async () => {
 
     // Override enrichHTML for Symbol replacement
     const oldEnrichHTML = TextEditor.prototype.constructor.enrichHTML;
-    TextEditor.prototype.constructor.enrichHTML = function (content, options = {}) {
-        return HelpersL5r5e.convertSymbols(oldEnrichHTML.call(this, content, options), true);
+    TextEditor.prototype.constructor.enrichHTML = async function (content, options = {}) {
+        return HelpersL5r5e.convertSymbols(await oldEnrichHTML.call(this, content, options), true);
     };
 
     // Override the default Token _drawBar function to allow fatigue bar reversing.
@@ -223,7 +223,7 @@ Hooks.once("init", async () => {
 
         // Enlarge the bar for large tokens
         let h = Math.max(canvas.dimensions.size / 12, 8);
-        if (this.data.height >= 2) {
+        if (this.height >= 2) {
             h *= 1.6;
         }
 

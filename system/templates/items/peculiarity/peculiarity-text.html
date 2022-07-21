@@ -1,33 +1,33 @@
-<div class="{{cssClass}}" data-actor-id="{{actor.data._id}}" data-item-id="{{data._id}}">
+<div class="{{cssClass}}" data-actor-id="{{actor._id}}" data-item-id="{{data._id}}">
     <header class="card-header">
         <h2 class="item-name"><img src="{{data.img}}" title="{{data.name}}" /> {{data.name}}</h2>
     </header>
     <section class="sheet-body">
         <ul>
             <li>
-                <strong>{{localize 'l5r5e.rings.label'}}</strong> : {{localizeRing data.data.ring}}
+                <strong>{{localize 'l5r5e.rings.label'}}</strong> : {{localizeRing data.system.ring}}
             </li>
             <li>
-                <strong>{{localize 'l5r5e.sheets.types'}}</strong> : {{localize (localize 'l5r5e.peculiarities.types.{type}' type=data.data.peculiarity_type)}}
+                <strong>{{localize 'l5r5e.sheets.types'}}</strong> : {{localize (localize 'l5r5e.peculiarities.types.{type}' type=data.system.peculiarity_type)}}
             </li>
             <li>
-                <strong>{{localize 'l5r5e.advancements.curriculum'}}</strong> : {{localizeYesNo data.data.in_curriculum}}
+                <strong>{{localize 'l5r5e.advancements.curriculum'}}</strong> : {{localizeYesNo data.system.in_curriculum}}
             </li>
             <li>
-                <strong>{{localize 'l5r5e.advancements.spent'}}</strong> : {{data.data.xp_used}}
+                <strong>{{localize 'l5r5e.advancements.spent'}}</strong> : {{data.system.xp_used}}
             </li>
             <li>
-                <strong>{{localize 'l5r5e.sheets.rank'}}</strong> : {{data.data.rank}}
+                <strong>{{localize 'l5r5e.sheets.rank'}}</strong> : {{data.system.rank}}
             </li>
             <li>
-                <strong>{{localize 'l5r5e.sheets.bought_at_rank'}}</strong> : {{data.data.bought_at_rank}}
+                <strong>{{localize 'l5r5e.sheets.bought_at_rank'}}</strong> : {{data.system.bought_at_rank}}
             </li>
             <li>
-                <strong>{{localize 'l5r5e.sheets.types'}}</strong> : {{data.data.types}}
+                <strong>{{localize 'l5r5e.sheets.types'}}</strong> : {{data.system.types}}
             </li>
         </ul>
         {{!--item-infos--}}
-        <p><strong>{{localize 'l5r5e.sheets.description'}}</strong> : {{{enrichHTML data.data.description}}}</p>
-        <p><strong>{{localize 'l5r5e.sheets.book_reference'}}</strong> : {{data.data.book_reference}}</p>
+        <p><strong>{{localize 'l5r5e.sheets.description'}}</strong> : {{{data.enrichedHtml.description}}}</p>
+        <p><strong>{{localize 'l5r5e.sheets.book_reference'}}</strong> : {{data.system.book_reference}}</p>
     </section>
 </div>

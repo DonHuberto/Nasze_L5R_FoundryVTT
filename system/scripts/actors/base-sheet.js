@@ -29,16 +29,16 @@ export class BaseSheetL5r5e extends ActorSheet {
         if (this.isEditable && !this.actor.limited) {
             // Lock/Unlock
             buttons.unshift({
-                label: `l5r5e.global.${this.actor.data.data.soft_locked ? "" : "un"}locked`,
+                label: `l5r5e.global.${this.actor.system.soft_locked ? "" : "un"}locked`,
                 class: "l5r-softlock",
-                icon: this.actor.data.data.soft_locked ? "fas fa-lock" : "fas fa-unlock",
+                icon: this.actor.system.soft_locked ? "fas fa-lock" : "fas fa-unlock",
                 onclick: () =>
                     game.l5r5e.HelpersL5r5e.debounce(
                         "lock-" + this.object.id,
                         () => {
                             this.actor.update({
-                                data: {
-                                    soft_locked: !this.actor.data.data.soft_locked,
+                                system: {
+                                    soft_locked: !this.actor.system.soft_locked,
                                 },
                             });
                         },
@@ -66,8 +66,8 @@ export class BaseSheetL5r5e extends ActorSheet {
     }
 
     /** @inheritdoc */
-    getData(options = {}) {
-        const sheetData = super.getData(options);
+    async getData(options = {}) {
+        const sheetData = await super.getData(options);
 
         // System Header Buttons
         sheetData.l5rHeaderButtons = this._getL5rHeaderButtons();
@@ -79,8 +79,14 @@ export class BaseSheetL5r5e extends ActorSheet {
             return a.name.localeCompare(b.name);
         });
 
+        // Editors enrichment
+        sheetData.data.enrichedHtml = {
+            description: await TextEditor.enrichHTML(sheetData.data.system.description, { async: true }),
+            notes: await TextEditor.enrichHTML(sheetData.data.system.notes, { async: true }),
+        };
+
         // Shortcut for some tests
-        sheetData.data.editable_not_soft_locked = sheetData.editable && !sheetData.data.data.soft_locked;
+        sheetData.data.editable_not_soft_locked = sheetData.editable && !sheetData.data.system.soft_locked;
 
         return sheetData;
     }
@@ -105,10 +111,10 @@ export class BaseSheetL5r5e extends ActorSheet {
      */
     activateEditor(name, options = {}, initialContent = "") {
         // Symbols Compatibility with old compendium modules (PRE l5r v1.7.2)
-        if (["data.notes", "data.description"].includes(name) && initialContent) {
+        if (["system.notes", "system.description"].includes(name) && initialContent) {
             initialContent = game.l5r5e.HelpersL5r5e.convertSymbols(initialContent, false);
         }
-        super.activateEditor(name, options, initialContent);
+        return super.activateEditor(name, options, initialContent);
     }
 
     /**

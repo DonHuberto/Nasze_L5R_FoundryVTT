@@ -19,8 +19,8 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
     }
 
     /** @inheritdoc */
-    getData(options = {}) {
-        const sheetData = super.getData(options);
+    async getData(options = {}) {
+        const sheetData = await super.getData(options);
 
         sheetData.data.stances = CONFIG.l5r5e.stances;
         sheetData.data.techniquesList = game.l5r5e.HelpersL5r5e.getTechniquesList({ displayInTypes: true });
@@ -58,31 +58,31 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
         sheetData.items.forEach((item) => {
             switch (item.type) {
                 case "technique":
-                    if (!out[item.data.technique_type]) {
+                    if (!out[item.system.technique_type]) {
                         console.warn(
-                            `L5R5E | Empty or unknown technique type[${item.data.technique_type}] forced to "kata" in item id[${item._id}], name[${item.name}]`
+                            `L5R5E | Empty or unknown technique type[${item.system.technique_type}] forced to "kata" in item id[${item._id}], name[${item.name}]`
                         );
-                        item.data.technique_type = "kata";
+                        item.system.technique_type = "kata";
                     }
-                    out[item.data.technique_type].push(item);
+                    out[item.system.technique_type].push(item);
                     break;
 
                 case "title":
                     // Embed technique in titles
-                    Array.from(item.data.items).forEach(([id, embedItem]) => {
-                        if (embedItem.data.type === "technique") {
-                            if (!out[embedItem.data.data.technique_type]) {
+                    Array.from(item.system.items).forEach(([id, embedItem]) => {
+                        if (embedItem.type === "technique") {
+                            if (!out[embedItem.system.technique_type]) {
                                 console.warn(
-                                    `L5R5E | Empty or unknown technique type[${embedItem.data.data.technique_type}] forced to "kata" in item id[${id}], name[${embedItem.data.name}], parent: id[${item._id}], name[${item.name}]`
+                                    `L5R5E | Empty or unknown technique type[${embedItem.system.technique_type}] forced to "kata" in item id[${id}], name[${embedItem.name}], parent: id[${item._id}], name[${item.name}]`
                                 );
-                                embedItem.data.data.technique_type = "kata";
+                                embedItem.system.technique_type = "kata";
                             }
-                            out[embedItem.data.data.technique_type].push(embedItem.data);
+                            out[embedItem.system.technique_type].push(embedItem);
                         }
                     });
 
                     // If unlocked, add the "title_ability" as technique (or always displayed for npc)
-                    if (item.data.xp_used >= item.data.xp_cost || this.document.type === "npc") {
+                    if (item.system.xp_used >= item.system.xp_cost || this.document.type === "npc") {
                         out["title_ability"].push(item);
                     }
                     break;
@@ -91,17 +91,17 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
 
         // Remove unused techs
         Object.keys(out).forEach((tech) => {
-            if (out[tech].length < 1 && !sheetData.data.data.techniques[tech] && !schoolTechniques.includes(tech)) {
+            if (out[tech].length < 1 && !sheetData.data.system.techniques[tech] && !schoolTechniques.includes(tech)) {
                 delete out[tech];
             }
         });
 
         // Manage school add button
-        sheetData.data.data.techniques["school_ability"] = out["school_ability"].length === 0;
-        sheetData.data.data.techniques["mastery_ability"] = out["mastery_ability"].length === 0;
+        sheetData.data.system.techniques["school_ability"] = out["school_ability"].length === 0;
+        sheetData.data.system.techniques["mastery_ability"] = out["mastery_ability"].length === 0;
 
         // Always display "school_ability", but display a empty "mastery_ability" field only if rank >= 5
-        if (sheetData.data.data.identity?.school_rank < 5 && out["mastery_ability"].length === 0) {
+        if (sheetData.data.system.identity?.school_rank < 5 && out["mastery_ability"].length === 0) {
             delete out["mastery_ability"];
         }
 
@@ -134,56 +134,59 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
      */
     async _onDrop(event) {
         // *** Everything below here is only needed if the sheet is editable ***
-        if (!this.isEditable || this.actor.data.data.soft_locked) {
+        if (!this.isEditable || this.actor.system.soft_locked) {
+            console.log("LR5E | Not editable");
             return;
         }
 
         // Check item type and subtype
         const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
-        if (!item || !["Item", "JournalEntry"].includes(item.documentName) || item.data.type === "property") {
+        if (!item || !["Item", "JournalEntry"].includes(item.documentName) || item.type === "property") {
+            console.log(`LR5E | Wrong subtype ${item?.type}`, item);
             return;
         }
 
         // Specific curriculum journal drop
         if (item.documentName === "JournalEntry") {
             // npc does not have this
-            if (!this.actor.data.data.identity?.school_curriculum_journal) {
+            if (!this.actor.system.identity?.school_curriculum_journal) {
+                console.log("LR5E | NPC won't go to school :'(");
                 return;
             }
-            this.actor.data.data.identity.school_curriculum_journal = {
-                id: item.data._id,
-                name: item.data.name,
+            this.actor.system.identity.school_curriculum_journal = {
+                id: item._id,
+                name: item.name,
                 pack: item.pack || null,
             };
             await this.actor.update({
-                data: {
+                system: {
                     identity: {
-                        school_curriculum_journal: this.actor.data.data.identity.school_curriculum_journal,
+                        school_curriculum_journal: this.actor.system.identity.school_curriculum_journal,
                     },
                 },
             });
             return;
         }
 
-        // Dropped a item with same "id" as one owned
-        if (this.actor.data.items) {
+        // Dropped an item with same "id" as one owned
+        if (this.actor.items) {
             // Exit if we already owned exactly this id (drag a personal item on our own sheet)
             if (
-                this.actor.data.items.some((embedItem) => {
+                this.actor.items.some((embedItem) => {
                     // Search in children
                     if (embedItem.items instanceof Map && embedItem.items.has(item.data._id)) {
                         return true;
                     }
-                    return embedItem.data._id === item.data._id;
+                    return embedItem._id === item._id;
                 })
             ) {
                 return;
             }
 
             // Add quantity instead if they have (id is different so use type and name)
-            if (item.data.data.quantity) {
-                const tmpItem = this.actor.data.items.find(
-                    (embedItem) => embedItem.name === item.data.name && embedItem.type === item.data.type
+            if (item.system.quantity) {
+                const tmpItem = this.actor.items.find(
+                    (embedItem) => embedItem.name === item.name && embedItem.type === item.type
                 );
                 if (tmpItem && this._modifyQuantity(tmpItem.id, 1)) {
                     return;
@@ -197,13 +200,13 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
             return;
         }
 
-        let itemData = item.data.toObject(true);
+        let itemData = item.toObject(true);
 
         // Item subtype specific
         switch (itemData.type) {
             case "army_cohort":
             case "army_fortification":
-                console.warn("L5R5E | Army items are not allowed", item?.data?.type, item);
+                console.warn("L5R5E | Army items are not allowed", item?.type, item);
                 return;
 
             case "advancement":
@@ -216,24 +219,22 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
                 await item.generateNewIdsForAllEmbedItems();
 
                 // Add embed advancements bonus
-                for (let [embedId, embedItem] of item.data.data.items) {
+                for (let [embedId, embedItem] of item.system.items) {
                     if (embedItem.data.type === "advancement") {
                         await this.actor.addBonus(embedItem);
                     }
                 }
 
                 // refresh data
-                itemData = item.data.toObject(true);
+                itemData = item.toObject(true);
                 break;
 
             case "technique":
                 // School_ability and mastery_ability, allow only 1 per type
-                if (CONFIG.l5r5e.techniques.get(itemData.data.technique_type)?.type === "school") {
+                if (CONFIG.l5r5e.techniques.get(itemData.system.technique_type)?.type === "school") {
                     if (
                         Array.from(this.actor.items).some((e) => {
-                            return (
-                                e.type === "technique" && e.data.data.technique_type === itemData.data.technique_type
-                            );
+                            return e.type === "technique" && e.system.technique_type === itemData.system.technique_type;
                         })
                     ) {
                         ui.notifications.info(game.i18n.localize("l5r5e.techniques.only_one"));
@@ -241,27 +242,27 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
                     }
 
                     // No cost for schools
-                    itemData.data.xp_cost = 0;
-                    itemData.data.xp_used = 0;
-                    itemData.data.in_curriculum = true;
+                    itemData.system.xp_cost = 0;
+                    itemData.system.xp_used = 0;
+                    itemData.system.in_curriculum = true;
                 } else {
                     // Check if technique is allowed for this character
-                    if (!game.user.isGM && !this.actor.data.data.techniques[itemData.data.technique_type]) {
+                    if (!game.user.isGM && !this.actor.system.techniques[itemData.system.technique_type]) {
                         ui.notifications.info(game.i18n.localize("l5r5e.techniques.not_allowed"));
                         return;
                     }
 
                     // Verify cost
-                    itemData.data.xp_cost =
-                        itemData.data.xp_cost > 0 ? itemData.data.xp_cost : CONFIG.l5r5e.xp.techniqueCost;
-                    itemData.data.xp_used = itemData.data.xp_cost;
+                    itemData.system.xp_cost =
+                        itemData.system.xp_cost > 0 ? itemData.system.xp_cost : CONFIG.l5r5e.xp.techniqueCost;
+                    itemData.system.xp_used = itemData.system.xp_cost;
                 }
                 break;
         }
 
         // Modify the bought at rank to the current actor rank
-        if (itemData.data.bought_at_rank !== undefined && this.actor.data.data.identity?.school_rank) {
-            itemData.data.bought_at_rank = this.actor.data.data.identity.school_rank;
+        if (itemData.system.bought_at_rank !== undefined && this.actor.system.identity?.school_rank) {
+            itemData.system.bought_at_rank = this.actor.system.identity.school_rank;
         }
 
         // Finally create the embed
@@ -332,10 +333,10 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
         event.preventDefault();
         event.stopPropagation();
 
-        this.actor.data.data.prepared = !this.actor.data.data.prepared;
+        this.actor.system.prepared = !this.actor.system.prepared;
         this.actor.update({
-            data: {
-                prepared: this.actor.data.data.prepared,
+            system: {
+                prepared: this.actor.system.prepared,
             },
         });
         this.render(false);
@@ -367,26 +368,26 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
         const item = this.actor.items.get(created[0].id);
 
         // Assign current school rank to the new adv/tech
-        if (this.actor.data.data.identity?.school_rank) {
-            item.data.data.bought_at_rank = this.actor.data.data.identity.school_rank;
-            if (["advancement", "technique"].includes(item.data.type)) {
-                item.data.data.rank = this.actor.data.data.identity.school_rank;
+        if (this.actor.system.identity?.school_rank) {
+            item.system.bought_at_rank = this.actor.system.identity.school_rank;
+            if (["advancement", "technique"].includes(item.type)) {
+                item.system.rank = this.actor.system.identity.school_rank;
             }
         }
 
-        switch (item.data.type) {
+        switch (item.type) {
             case "item": // no break
             case "armor": // no break
             case "weapon":
-                item.data.data.equipped = isEquipped;
+                item.system.equipped = isEquipped;
                 break;
 
             case "technique": {
                 // If technique, select the current sub-type
                 if (CONFIG.l5r5e.techniques.get(techniqueType)) {
-                    item.data.name = game.i18n.localize(`l5r5e.techniques.${techniqueType}`);
-                    item.data.img = `${CONFIG.l5r5e.paths.assets}icons/techs/${techniqueType}.svg`;
-                    item.data.data.technique_type = techniqueType;
+                    item.name = game.i18n.localize(`l5r5e.techniques.${techniqueType}`);
+                    item.img = `${CONFIG.l5r5e.paths.assets}icons/techs/${techniqueType}.svg`;
+                    item.system.technique_type = techniqueType;
                 }
                 break;
             }
@@ -496,8 +497,8 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
         const item = this.actor.items.get(itemId);
         if (item.type !== "item") {
             item.update({
-                data: {
-                    in_curriculum: !item.data.data.in_curriculum,
+                system: {
+                    in_curriculum: !item.system.in_curriculum,
                 },
             });
         }
@@ -510,10 +511,10 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
     _modifyQuantity(itemId, add) {
         const tmpItem = this.actor.items.get(itemId);
         if (tmpItem) {
-            tmpItem.data.data.quantity = Math.max(1, tmpItem.data.data.quantity + add);
+            tmpItem.system.quantity = Math.max(1, tmpItem.system.quantity + add);
             tmpItem.update({
-                data: {
-                    quantity: tmpItem.data.data.quantity,
+                system: {
+                    quantity: tmpItem.system.quantity,
                 },
             });
             return true;
@@ -539,9 +540,9 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
         switch (type) {
             case "fatigue":
                 await this.actor.update({
-                    data: {
+                    system: {
                         fatigue: {
-                            value: Math.max(0, this.actor.data.data.fatigue.value + mod),
+                            value: Math.max(0, this.actor.system.fatigue.value + mod),
                         },
                     },
                 });
@@ -549,9 +550,9 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
 
             case "strife":
                 await this.actor.update({
-                    data: {
+                    system: {
                         strife: {
-                            value: Math.max(0, this.actor.data.data.strife.value + mod),
+                            value: Math.max(0, this.actor.system.strife.value + mod),
                         },
                     },
                 });
@@ -579,20 +580,20 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
 
         const itemId = $(event.currentTarget).data("item-id");
         const tmpItem = this.actor.items.get(itemId);
-        if (!tmpItem || tmpItem.data.data[type] === undefined) {
+        if (!tmpItem || tmpItem.system[type] === undefined) {
             return;
         }
 
-        tmpItem.data.data[type] = !tmpItem.data.data[type];
+        tmpItem.system[type] = !tmpItem.system[type];
         const data = {
-            equipped: tmpItem.data.data.equipped,
+            equipped: tmpItem.system.equipped,
         };
         // Only weapons
-        if (tmpItem.data.data.readied !== undefined) {
-            data.readied = tmpItem.data.data.readied;
+        if (tmpItem.system.readied !== undefined) {
+            data.readied = tmpItem.system.readied;
         }
 
-        tmpItem.update({ data });
+        tmpItem.update({ system: data });
     }
 
     /**

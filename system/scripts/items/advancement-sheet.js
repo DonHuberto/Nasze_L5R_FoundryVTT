@@ -41,9 +41,9 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
             return;
         }
 
-        // const currentType = this.object.data.data.advancement_type;
-        const currentRing = this.object.data.data.ring;
-        const currentSkill = this.object.data.data.skill;
+        // const currentType = this.object.system.advancement_type;
+        const currentRing = this.object.system.ring;
+        const currentSkill = this.object.system.skill;
 
         html.find("#advancement_type").on("change", (event) => {
             $(event.target).prop("disabled", true);
@@ -78,9 +78,9 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
      * @private
      */
     async _updateChoice(oldChoice, newChoice) {
-        let xp_used = this.object.data.data.xp_used;
-        let name = this.object.data.name;
-        let img = this.object.data.img;
+        let xp_used = this.object.system.xp_used;
+        let name = this.object.name;
+        let img = this.object.img;
 
         // Modify image to reflect choice
         if (newChoice.ring) {
@@ -96,7 +96,7 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
         // Object embed in actor ?
         const actor = this.document.actor;
         if (actor) {
-            const actorData = foundry.utils.duplicate(actor.data.data);
+            const actorData = foundry.utils.duplicate(actor.system);
             let skillCatId = null;
 
             // Old choices
@@ -132,7 +132,7 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
 
             // Update Actor
             await actor.update({
-                data: foundry.utils.diffObject(actor.data.data, actorData),
+                system: foundry.utils.diffObject(actor.system, actorData),
             });
         }
 
@@ -140,7 +140,7 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
         await this.object.update({
             name: name,
             img: img,
-            data: {
+            system: {
                 xp_used: xp_used,
             },
         });
