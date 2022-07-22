@@ -85,10 +85,7 @@ export class ArmyCohortSheetL5r5e extends ItemSheetL5r5e {
         html.find(".actor-remove-control").on("click", (event) => {
             event.preventDefault();
             event.stopPropagation();
-            const id = $(event.currentTarget).data("actor-id");
-            if (id) {
-                this._removeLinkedActor();
-            }
+            this._removeLinkedActor();
         });
     }
 

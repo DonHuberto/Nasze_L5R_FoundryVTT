@@ -7,7 +7,7 @@
     </div>
     {{!-- Sheet Header --}}
     <header class="sheet-header">
-        <img class="profile-img dragndrop-actor-id pointer" src="{{data.img}}" {{#if data.editable_not_soft_locked}}data-edit="img"{{/if}} data-actor-id="{{actor.id}}" draggable="true" title="{{data.name}}"/>
+        <img class="profile-img dragndrop-actor-uuid pointer" src="{{data.img}}" {{#if data.editable_not_soft_locked}}data-edit="img"{{/if}} data-actor-uuid="{{actor.uuid}}" draggable="true" title="{{data.name}}"/>
         <div class="header-fields identity-wrapper">
             <h1 class="charname"><input name="name" type="text" value="{{data.name}}" placeholder="Name" {{^if data.editable_not_soft_locked}}disabled{{/if}}/></h1>
             <div class="readiness">

@@ -48,7 +48,6 @@ export class ItemL5r5e extends Item {
 
         // Merge (DocumentData cannot be set)
         const result = foundry.utils.mergeObject(this, foundry.utils.expandObject(data));
-        console.log(result); // TODO TMP
 
         if (result.name) {
             this.name = result.name;
@@ -56,8 +55,8 @@ export class ItemL5r5e extends Item {
         if (result.img) {
             this.img = result.img;
         }
-        if (result.data) {
-            this.data = result.data; // todo tmp check this!
+        if (result.system) {
+            this.system = result.system;
         }
 
         // Update

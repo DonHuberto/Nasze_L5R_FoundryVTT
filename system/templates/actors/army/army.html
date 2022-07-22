@@ -4,7 +4,7 @@
         <p class="warlord-name">
             {{#if data.system.warlord_actor_id}}
                 <label>
-                    <a data-actor-id="{{data.system.warlord_actor_id}}" class="open-sheet-actor-id">{{data.system.warlord}}</a>
+                    <a data-actor-id="{{data.system.warlord_actor_id}}" class="open-sheet-from-uuid">{{data.system.warlord}}</a>
                     {{#if data.editable_not_soft_locked}}
                     <span data-actor-id="{{actor.id}}" data-type="warlord" class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span>
                     {{/if}}
@@ -29,7 +29,7 @@
         <div class="warlord-name">
             {{#if data.system.commander_actor_id}}
                 <label>
-                    <a data-actor-id="{{data.system.commander_actor_id}}" class="open-sheet-actor-id">{{data.system.commander}}</a>
+                    <a data-actor-id="{{data.system.commander_actor_id}}" class="open-sheet-from-uuid">{{data.system.commander}}</a>
                     {{#if data.editable_not_soft_locked}}
                     <span data-actor-id="{{actor.id}}" data-type="commander" class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span>
                     {{/if}}

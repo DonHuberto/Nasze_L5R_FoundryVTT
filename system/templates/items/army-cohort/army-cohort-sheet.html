@@ -29,8 +29,8 @@
                 {{^if data.system.leader_actor_id}}<i class="fa fa-sign-in-alt" aria-hidden="true"></i> {{/if}}{{localize 'l5r5e.army.cohort.leader'}}
                 {{#if data.system.leader_actor_id}}
                 <div>
-                    <span data-actor-id="{{data.system.leader_actor_id}}" class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span>
-                    <a data-actor-id="{{data.system.leader_actor_id}}" class="open-sheet-actor-id">{{data.system.leader}}</a>
+                    <span class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span>
+                    <a data-actor-id="{{data.system.leader_actor_id}}" class="open-sheet-from-uuid">{{data.system.leader}}</a>
                 </div>
                 {{else}}
                     <input class="select-on-focus" type="text" name="system.leader" value="{{data.system.leader}}" data-dtype="String"/>

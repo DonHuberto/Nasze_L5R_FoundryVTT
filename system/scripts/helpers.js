@@ -470,16 +470,18 @@ export class HelpersL5r5e {
         });
 
         // Ability to drag n drop an actor
-        html.find(".dragndrop-actor-id").on("dragstart", (event) => {
+        html.find(".dragndrop-actor-uuid").on("dragstart", (event) => {
+            // Compatibility actor-id (armies sheets)
             const actorId = $(event.currentTarget).data("actor-id");
-            if (!actorId) {
+            const actorUuid = $(event.currentTarget).data("actor-uuid");
+            if (!actorId && !actorUuid) {
                 return;
             }
             event.originalEvent.dataTransfer.setData(
                 "text/plain",
                 JSON.stringify({
                     type: "Actor",
-                    id: actorId,
+                    uuid: actorUuid ? actorUuid : `Actor.${actorId}`, // TODO fix for v10 uuid required, remove use of id in futur
                 })
             );
         });
@@ -494,15 +496,19 @@ export class HelpersL5r5e {
         });
 
         // Open actor sheet
-        html.find(".open-sheet-actor-id").on("click", (event) => {
+        html.find(".open-sheet-from-uuid").on("click", async (event) => {
             event.preventDefault();
             event.stopPropagation();
-
-            const id = $(event.currentTarget).data("actor-id");
-            if (!id) {
+            const uuid = $(event.currentTarget).data("uuid");
+            const actorId = $(event.currentTarget).data("actor-id");
+            if (!uuid && !actorId) {
                 return;
             }
-            game.actors.get(id)?.sheet?.render(true);
+            if (actorId) {
+                // Compatibility actor-id (armies sheets)
+                game.actors.get(actorId)?.sheet?.render(true);
+            }
+            (await fromUuid(uuid))?.sheet?.render(true);
         });
     }
 
