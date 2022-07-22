@@ -157,10 +157,10 @@
                 flex: 0 0 calc(40% - 2rem);
                 margin: 0.25rem;
             }
-            select[name="data.skill"],
-            select[name="data.ring"],
-            select[name="data.peculiarity_type"],
-            select[name="data.technique_type"] {
+            select[name="system.skill"],
+            select[name="system.ring"],
+            select[name="system.peculiarity_type"],
+            select[name="system.technique_type"] {
                 flex: 0 0 calc(40% - 0.5rem);
                 margin: 0.25rem;
             }
@@ -170,8 +170,8 @@
                 flex: 1 1 auto;
                 margin: 0.5rem 0.25rem 0.25rem;
             }
-            select[name="data.advancement_type"],
-            select[name="data.skill"] {
+            select[name="system.advancement_type"],
+            select[name="system.skill"] {
                 text-transform: capitalize;
             }
             .type {
@@ -198,7 +198,7 @@
                     margin-bottom: 0.25rem;
                 }
             }
-            input[name="data.zeni"] {
+            input[name="system.zeni"] {
                 width: 7rem;
                 float: right;
             }
@@ -234,7 +234,7 @@
             .reference {
                 flex: 0 0 calc(100% - 0.5rem);
                 margin: 0.5rem 0.25rem;
-                input[name="data.book_reference"] {
+                input[name="system.book_reference"] {
                     float: right;
                     width: 70%;
                 }
