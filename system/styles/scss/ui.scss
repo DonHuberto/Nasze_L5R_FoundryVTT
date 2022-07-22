@@ -59,7 +59,13 @@ button {
             background-position: center;
             background-size: 100%;
             border-radius: 100%;
-            color: black;
+
+            // v10 FA6+ color need to be set
+            &.fa-swords,
+            &.fa-user,
+            &.fa-cards {
+                color: black;
+            }
 
             &.fa-comments {
                 background-image: url("../assets/ui/sidebar/chat.svg");
