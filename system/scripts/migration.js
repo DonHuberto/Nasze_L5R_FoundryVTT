@@ -34,7 +34,7 @@ export class MigrationL5r5e {
 
         // Warn the users
         ui.notifications.info(
-            `Applying L5R5e System Migration for version ${game.system.data.version}.` +
+            `Applying L5R5e System Migration for version ${game.system.version}.` +
                 ` Please be patient and do not close your game or shut down your server.`,
             { permanent: true }
         );
@@ -56,7 +56,7 @@ export class MigrationL5r5e {
         // Migrate World Items
         for (let item of game.items.contents) {
             try {
-                const updateData = MigrationL5r5e._migrateItemData(item.data, options);
+                const updateData = MigrationL5r5e._migrateItemData(item, options);
                 if (!foundry.utils.isEmpty(updateData)) {
                     console.log(`L5R5E | Migrating Item entity ${item.name}`);
                     await item.update(updateData);
@@ -70,7 +70,7 @@ export class MigrationL5r5e {
         // Migrate Actor Override Tokens
         for (let scene of game.scenes.contents) {
             try {
-                const updateData = MigrationL5r5e._migrateSceneData(scene.data, options);
+                const updateData = MigrationL5r5e._migrateSceneData(scene, options);
                 if (!foundry.utils.isEmpty(updateData)) {
                     console.log(`L5R5E | Migrating Scene entity ${scene.name}`);
                     await scene.update(updateData);
@@ -96,9 +96,9 @@ export class MigrationL5r5e {
         try {
             const updatedChatList = [];
             for (let message of game.collections.get("ChatMessage")) {
-                const updateData = MigrationL5r5e._migrateChatMessage(message.data, options);
+                const updateData = MigrationL5r5e._migrateChatMessage(message, options);
                 if (!foundry.utils.isEmpty(updateData)) {
-                    updateData["_id"] = message.data._id;
+                    updateData["_id"] = message._id;
                     updatedChatList.push(updateData);
                 }
             }
@@ -113,8 +113,8 @@ export class MigrationL5r5e {
         }
 
         // Set the migration as complete
-        await game.settings.set("l5r5e", "systemMigrationVersion", game.system.data.version);
-        ui.notifications.info(`L5R5e System Migration to version ${game.system.data.version} completed!`, {
+        await game.settings.set("l5r5e", "systemMigrationVersion", game.system.version);
+        ui.notifications.info(`L5R5e System Migration to version ${game.system.version} completed!`, {
             permanent: true,
         });
     }
@@ -147,13 +147,13 @@ export class MigrationL5r5e {
 
                 switch (entity) {
                     case "Actor":
-                        updateData = MigrationL5r5e._migrateActorData(ent.data);
+                        updateData = MigrationL5r5e._migrateActorData(ent);
                         break;
                     case "Item":
-                        updateData = MigrationL5r5e._migrateItemData(ent.data);
+                        updateData = MigrationL5r5e._migrateItemData(ent);
                         break;
                     case "Scene":
-                        updateData = MigrationL5r5e._migrateSceneData(ent.data);
+                        updateData = MigrationL5r5e._migrateSceneData(ent);
                         break;
                 }
                 if (foundry.utils.isEmpty(updateData)) {
@@ -161,7 +161,7 @@ export class MigrationL5r5e {
                 }
 
                 // Add the entry, if data was changed
-                updateData["_id"] = ent.data._id;
+                updateData["_id"] = ent._id;
                 updateDatasList.push(updateData);
 
                 console.log(`L5R5E | Migrating ${entity} entity ${ent.name} in Compendium ${pack.collection}`);
@@ -291,7 +291,7 @@ export class MigrationL5r5e {
      */
     static cleanActorData(actorData) {
         const model = game.system.model.Actor[actorData.type];
-        actorData.data = foundry.utils.filterObject(actorData.data, model);
+        actorData = foundry.utils.filterObject(actorData, model);
         return actorData;
     }
 

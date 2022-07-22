@@ -1,7 +1,7 @@
 # Legend of the Five Rings (5th Edition) authorized by [Edge Studio](https://edge-studio.net/)
 
 ![Banner Legend of the Five Rings](./l5rBan.jpg)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a-☕%20Coffee-red)](https://ko-fi.com/vlyan)
+[![Buy Me a Coffee](./tags-bymecoffee.svg)](https://ko-fi.com/vlyan)
 [![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fl5r5e&colorB=4aa94a)](https://forge-vtt.com/bazaar#package=l5r5e)
 [![Foundry Hub Endorsements](https://img.shields.io/endpoint?logoColor=white&url=https%3A%2F%2Fwww.foundryvtt-hub.com%2Fwp-json%2Fhubapi%2Fv1%2Fpackage%2Fl5r5e%2Fshield%2Fendorsements)](https://www.foundryvtt-hub.com/package/l5r5e/)
 [![Foundry Hub Comments](https://img.shields.io/endpoint?logoColor=white&url=https%3A%2F%2Fwww.foundryvtt-hub.com%2Fwp-json%2Fhubapi%2Fv1%2Fpackage%2Fl5r5e%2Fshield%2Fcomments)](https://www.foundryvtt-hub.com/package/l5r5e/)

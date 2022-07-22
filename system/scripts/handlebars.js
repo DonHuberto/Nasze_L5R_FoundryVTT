@@ -64,12 +64,6 @@ export const RegisterHandlebars = function () {
         return objects.join("");
     });
 
-    // enrichHTML
-    Handlebars.registerHelper("enrichHTML", function (text, options = {}) {
-        options.async = false;
-        return TextEditor.enrichHTML(text, options);
-    });
-
     // Add a setter
     Handlebars.registerHelper("setVar", function (varName, varValue, options) {
         options.data.root[varName] = varValue;
@@ -77,8 +71,8 @@ export const RegisterHandlebars = function () {
 
     /**
      * Utility conditional, usable in nested expression
-     * {{#ifCond (ifCond advancement.type '==' 'technique') '||' (ifCond item.data.technique_type '==' 'kata')}}
-     * {{#ifCond '["distinction","passion"]' 'includes' item.data.peculiarity_type}}
+     * {{#ifCond (ifCond advancement.type '==' 'technique') '||' (ifCond item.system.technique_type '==' 'kata')}}
+     * {{#ifCond '["distinction","passion"]' 'includes' item.system.peculiarity_type}}
      */
     Handlebars.registerHelper("ifCond", function (a, operator, b, options) {
         let result = false;

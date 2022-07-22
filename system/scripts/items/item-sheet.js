@@ -114,7 +114,7 @@ export class ItemSheetL5r5e extends BaseItemSheetL5r5e {
         }
 
         // If we are a property, the child id need to be different to parent
-        if (this.item.type === "property" && this.item.id === item.data._id) {
+        if (this.item.type === "property" && this.item.id === item._id) {
             return;
         }
 

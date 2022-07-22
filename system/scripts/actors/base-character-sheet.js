@@ -248,10 +248,10 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
                     itemData.system.in_curriculum = true;
                 } else {
                     // Check if technique is allowed for this character
-                    if (!game.user.isGM && !this.actor.system.techniques[itemData.system.technique_type]) {
-                        ui.notifications.info(game.i18n.localize("l5r5e.techniques.not_allowed"));
-                        return;
-                    }
+                    // if (!game.user.isGM && !this.actor.system.techniques[itemData.system.technique_type]) {
+                    //     ui.notifications.info(game.i18n.localize("l5r5e.techniques.not_allowed"));
+                    //     return;
+                    // }
 
                     // Verify cost
                     itemData.system.xp_cost =
