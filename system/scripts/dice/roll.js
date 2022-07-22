@@ -74,7 +74,7 @@ export class RollL5r5e extends Roll {
     set targetInfos(targetToken) {
         this.l5r5e.targetInfos = targetToken
             ? {
-                  img: targetToken.img,
+                  img: targetToken.texture.src || null,
                   name: targetToken.name,
               }
             : null;
@@ -287,8 +287,7 @@ export class RollL5r5e extends Roll {
             isPublicRoll: !isPrivate,
             tooltip: isPrivate ? "" : await this.getTooltip({ from: "render" }),
             total: isPrivate ? "?" : this.total,
-            //data: this.data,
-            profileImg: this.l5r5e.actor?.img ? this.l5r5e.actor?.img : "icons/svg/mystery-man.svg",
+            profileImg: this.l5r5e.actor?.img || "icons/svg/mystery-man.svg",
             l5r5e: isPrivate
                 ? {}
                 : {

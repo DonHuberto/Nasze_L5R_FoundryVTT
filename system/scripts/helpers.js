@@ -129,7 +129,7 @@ export class HelpersL5r5e {
      * @param {string}      uuid     "Item.5qI6SU85VSFqji8W"
      * @param {string}      id       "5qI6SU85VSFqji8W"
      * @param {string}      type     Type ("Item", "JournalEntry"...)
-     * @param {any[]|null}  data     Plain data
+     * @param {any[]|null}  data     Plain document data
      * @param {string|null} pack     Pack name
      * @param {string|null} parentId Used to avoid an infinite loop in properties if set
      * @return {Promise<null>}

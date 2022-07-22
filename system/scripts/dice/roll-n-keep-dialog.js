@@ -548,8 +548,8 @@ export class RollnKeepDialog extends FormApplication {
                 roll,
                 game.user,
                 true,
-                this._message.data.whisper.length === 0 ? null : this._message.data.whisper,
-                this._message.data.blind
+                this._message.whisper.length === 0 ? null : this._message.whisper,
+                this._message.blind
             );
         }
 
@@ -657,7 +657,7 @@ export class RollnKeepDialog extends FormApplication {
         if (this.roll.l5r5e.isInitiativeRoll) {
             let msgOptions = {
                 rnkRoll: this.roll,
-                rollMode: game.l5r5e.HelpersL5r5e.getRollMode(this._message.data),
+                rollMode: game.l5r5e.HelpersL5r5e.getRollMode(this._message),
             };
 
             await this.roll.l5r5e.actor.rollInitiative({
@@ -673,7 +673,7 @@ export class RollnKeepDialog extends FormApplication {
             // Send it to chat, switch to new message
             this.message = await this.roll.toMessage(
                 {},
-                { rollMode: game.l5r5e.HelpersL5r5e.getRollMode(this._message.data) }
+                { rollMode: game.l5r5e.HelpersL5r5e.getRollMode(this._message) }
             );
         }
 

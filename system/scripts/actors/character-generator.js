@@ -100,7 +100,7 @@ export class CharacterGenerator {
             if (!comp.indexed) {
                 await comp.getDocuments();
             }
-            document = comp.getDocument(CharacterGenerator._getRandomArrayValue(Array.from(comp.keys())));
+            document = comp.getDocument(CharacterGenerator._getRandomArrayValue(Array.from(comp.index.keys())));
         }
         await game.l5r5e.HelpersL5r5e.refreshItemProperties(document);
         return document;
@@ -145,7 +145,7 @@ export class CharacterGenerator {
         const randomNames = await game.l5r5e.HelpersL5r5e.drawManyFromPack("l5r5e.core-name-tables", table, 1, {
             displayChat: false,
         });
-        return randomNames?.results[0]?.data.text || "";
+        return randomNames?.results[0]?.text || "";
     }
 
     /**
@@ -387,8 +387,8 @@ export class CharacterGenerator {
     //<editor-fold desc="toActor generators">
     /**
      * Generate attributes (rings, attributes, skills, confrontation ranks)
-     * @param {boolean}           isNpc
-     * @param {DocumentData.data} actorDatas
+     * @param {boolean}             isNpc
+     * @param {DocumentData.system} actorDatas
      * @private
      */
     _generateAttributes(isNpc, actorDatas) {
@@ -425,7 +425,7 @@ export class CharacterGenerator {
 
     /**
      * Generate Demeanor (npc only)
-     * @param {DocumentData.data} actorDatas
+     * @param {DocumentData.system} actorDatas
      * @private
      */
     _generateDemeanor(actorDatas) {
@@ -462,7 +462,7 @@ export class CharacterGenerator {
         for (const pack of ["adversities", "distinctions", "passions", "anxieties"]) {
             const item = await CharacterGenerator._getItemFromPack(`l5r5e.core-peculiarities-${pack}`);
             if (item) {
-                newItemsData.push(foundry.utils.duplicate(item.data));
+                newItemsData.push(foundry.utils.duplicate(item));
             }
         }
     }
@@ -506,7 +506,7 @@ export class CharacterGenerator {
             for (const itemId of itemCfg[pack]) {
                 const item = await CharacterGenerator._getItemFromPack(`l5r5e.core-${pack}`, itemId);
                 if (item) {
-                    newItemsData.push(foundry.utils.duplicate(item.data));
+                    newItemsData.push(foundry.utils.duplicate(item));
                 }
             }
         }
@@ -616,8 +616,7 @@ export class CharacterGenerator {
                 } while (item && item.system.rank > avgrv);
 
                 if (item) {
-                    console.log(item); //todo tmp check this!
-                    newItemsData.push(foundry.utils.duplicate(item.data));
+                    newItemsData.push(foundry.utils.duplicate(item));
                 }
             } // fr qty
         } // fr techCfg
@@ -625,7 +624,7 @@ export class CharacterGenerator {
 
     /**
      * Fill notes with some values that don't appear in sheet
-     * @param  {DocumentData.data} actorDatas
+     * @param  {DocumentData.system} actorDatas
      * @return {Promise<void>}
      * @private
      */
@@ -671,7 +670,7 @@ export class CharacterGenerator {
 
     /**
      * Generate Narrative fluff
-     * @param {DocumentData.data} actorDatas
+     * @param {DocumentData.system} actorDatas
      * @private
      */
     _generateNarrative(actorDatas) {

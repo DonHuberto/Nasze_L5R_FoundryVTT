@@ -174,12 +174,13 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
             if (
                 this.actor.items.some((embedItem) => {
                     // Search in children
-                    if (embedItem.items instanceof Map && embedItem.items.has(item.data._id)) {
+                    if (embedItem.items instanceof Map && embedItem.items.has(item._id)) {
                         return true;
                     }
                     return embedItem._id === item._id;
                 })
             ) {
+                console.log("LR5E | This item already exist in this actor", item.uuid);
                 return;
             }
 
@@ -220,7 +221,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
 
                 // Add embed advancements bonus
                 for (let [embedId, embedItem] of item.system.items) {
-                    if (embedItem.data.type === "advancement") {
+                    if (embedItem.type === "advancement") {
                         await this.actor.addBonus(embedItem);
                     }
                 }
@@ -277,14 +278,10 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
             const item = this.actor.items.get(li.dataset.itemParentId)?.items.get(li.dataset.itemId);
             if (item) {
                 const dragData = {
-                    actorId: this.actor.id,
-                    sceneId: this.actor.isToken ? canvas.scene?.id : null,
-                    tokenId: this.actor.isToken ? this.actor.token.id : null,
-                    pack: this.actor.pack,
                     type: "Item",
-                    data: foundry.utils.duplicate(item.data),
+                    data: foundry.utils.duplicate(item),
                 };
-                dragData.data.data.parent_id = null;
+                dragData.data.system.parent_id = null;
                 event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
                 return;
             }
@@ -450,7 +447,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
         }
 
         // Remove 1 qty if possible
-        if (tmpItem.data.data.quantity > 1 && this._modifyQuantity(tmpItem.id, -1)) {
+        if (tmpItem.system.quantity > 1 && this._modifyQuantity(tmpItem.id, -1)) {
             return;
         }
 
@@ -463,8 +460,8 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
 
                 case "title":
                     // Remove embed advancements bonus
-                    for (let [embedId, embedItem] of tmpItem.data.data.items) {
-                        if (embedItem.data.type === "advancement") {
+                    for (let [embedId, embedItem] of tmpItem.system.items) {
+                        if (embedItem.type === "advancement") {
                             await this.actor.removeBonus(embedItem);
                         }
                     }
@@ -603,7 +600,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
     _getWeaponSkillId(weaponId) {
         const item = this.actor.items.get(weaponId);
         if (!!item && item.type === "weapon") {
-            return item.data.data.skill;
+            return item.system.skill;
         }
         return null;
     }
@@ -644,11 +641,11 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
 
         // Required for tech in titles, search in sub items
         const item = await game.l5r5e.HelpersL5r5e.getEmbedItemByEvent(event, this.actor);
-        if (!item || item.type !== "technique" || !item.data.data.skill) {
+        if (!item || item.type !== "technique" || !item.system.skill) {
             return;
         }
 
-        const itemData = item.data.data;
+        const itemData = item.system;
         new game.l5r5e.DicePickerDialog({
             actor: this.actor,
             ringId: itemData.ring || null,

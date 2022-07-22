@@ -190,7 +190,7 @@ export class DicePickerDialog extends FormApplication {
     set targetInfos(targetToken) {
         this.object.targetInfos = targetToken
             ? {
-                  img: targetToken.img,
+                  img: targetToken.texture.src || null,
                   name: targetToken.name,
               }
             : null;
