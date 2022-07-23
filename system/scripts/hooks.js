@@ -87,6 +87,17 @@ export default class HooksL5r5e {
                 html.find(".gm-only").remove();
             }
         }
+
+        // Compendium folder link
+        html.find(".compendium-link").on("click", (event) => {
+            const packId = $(event.currentTarget).data("pack");
+            if (packId) {
+                const pack = game.packs.get(packId);
+                if (pack) {
+                    pack.render(true);
+                }
+            }
+        });
     }
 
     /**
