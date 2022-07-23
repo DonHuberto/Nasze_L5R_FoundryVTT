@@ -75,8 +75,8 @@
             "id": "Nodachi",
             "name": "Nodachi",
             "category": "Sabres",
-            "grip_1": "",
-            "grip_2": "N/A",
+            "grip_1": "N/A",
+            "grip_2": "",
             "description": "",
             "book_reference": "Livre de Règles p.233"
         },
@@ -589,7 +589,7 @@
             "name": "Rame de bateau",
             "category": "Armes improvisées",
             "grip_1": "",
-            "grip_2": "Dégâts +2, Dangerosité +3",
+            "grip_2": "Dégâts +1, Dangerosité +3",
             "description": "",
             "book_reference": "La Voie des Vagues p.112"
         },

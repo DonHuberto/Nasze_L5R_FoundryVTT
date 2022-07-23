@@ -54,11 +54,12 @@ export class BaseJournalSheetL5r5e extends JournalSheet {
     }
 
     /**
-     * Subscribe to events from the sheet.
-     * @param {jQuery} html HTML content of the sheet.
+     * Activate listeners after page content has been injected.
+     * @protected
      */
-    activateListeners(html) {
-        super.activateListeners(html);
+    _activatePageListeners() {
+        super._activatePageListeners();
+        const html = this.element;
 
         // Commons
         game.l5r5e.HelpersL5r5e.commonListeners(html);

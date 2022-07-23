@@ -313,12 +313,12 @@ export class TwentyQuestions {
         const newItemsData = [];
         Object.values(itemsCache).forEach((types) => {
             types.forEach((item) => {
-                const itemData = foundry.utils.duplicate(item.data);
-                if (itemData.data?.bought_at_rank) {
-                    itemData.data.bought_at_rank = 0;
+                const itemData = foundry.utils.duplicate(item);
+                if (itemData.system?.bought_at_rank) {
+                    itemData.system.bought_at_rank = 0;
                 }
-                if (itemData.data?.xp_spent) {
-                    itemData.data.xp_spent = 0;
+                if (itemData.system?.xp_spent) {
+                    itemData.system.xp_spent = 0;
                 }
                 newItemsData.push(itemData);
             });
