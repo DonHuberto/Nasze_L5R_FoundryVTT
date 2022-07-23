@@ -1,15 +1,15 @@
 <div class="{{cssClass}}" data-actor-id="{{actor._id}}" data-item-id="{{data._id}}">
     <header class="card-header">
         <h2 class="item-name">
-            {{#ifCond data.img '&&' data.content}}<img src="{{data.img}}" title="{{data.name}}" />{{/ifCond}} {{data.name}}
+            {{#ifCond data.src '&&' data.text.content}}<img src="{{data.src}}" title="{{data.name}}" />{{/ifCond}} {{data.name}}
         </h2>
     </header>
     <section class="sheet-body">
         <p>
-            {{#if data.content}}
-                {{{data.content}}}
+            {{#if data.text.content}}
+                {{{data.text.content}}}
             {{else}}
-                {{#if data.img}}<img src="{{data.img}}" title="{{data.name}}" />{{/if}}
+                {{#if data.src}}<img src="{{data.src}}" title="{{data.name}}" />{{/if}}
             {{/if}}
         </p>
     </section>

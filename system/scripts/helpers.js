@@ -597,32 +597,37 @@ export class HelpersL5r5e {
 
     /**
      * Send the description of this Item to chat
-     * @param {JournalL5r5e|ItemSheetL5r5e} object
+     * @param {JournalL5r5e|ItemL5r5e} document
      * @return {Promise<*>}
      */
-    static async sendToChat(object) {
+    static async sendToChat(document) {
         // Get the html
-        const tpl = await object.renderTextTemplate();
+        const tpl = await document.renderTextTemplate();
         if (!tpl) {
             return;
         }
 
+        // Get the JournalEntryPage instead of JournalEntry
+        if (document.documentName === "JournalEntry") {
+            document = document.getCurrentPage();
+        }
+
         // Create the link
         let link = null;
-        if (object.flags.core?.sourceId) {
-            link = object.flags.core?.sourceId.replace(/(\w+)\.(.+)/, "@$1[$2]");
+        if (document.flags.core?.sourceId) {
+            link = document.flags.core?.sourceId.replace(/(\w+)\.(.+)/, "@$1[$2]");
             if (!HelpersL5r5e.isLinkValid(link)) {
                 link = null;
             }
         }
-        if (!link && object.pack) {
-            link = `@Compendium[${object.pack}.${object.id}]{${object.name}}`;
+        if (!link && document.pack) {
+            link = `@Compendium[${document.pack}.${document.id}]{${document.name}}`;
             if (!HelpersL5r5e.isLinkValid(link)) {
                 link = null;
             }
         }
-        if (!link && !object.actor) {
-            link = object.link;
+        if (!link && !document.actor) {
+            link = document.link;
             if (!HelpersL5r5e.isLinkValid(link)) {
                 link = null;
             }

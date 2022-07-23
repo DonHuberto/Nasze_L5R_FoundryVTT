@@ -8,10 +8,19 @@ export class JournalL5r5e extends JournalEntry {
      */
     async renderTextTemplate() {
         const data = (await this.sheet?.getData()) || this;
-        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}journal/journal-text.html`, data);
-        if (!tpl) {
-            return null;
-        }
-        return tpl;
+        const pageData = data.pages[0];
+
+        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}journal/journal-text.html`, {
+            data: pageData,
+        });
+        return tpl || null;
+    }
+
+    /**
+     * Return the Current JournalEntryPage
+     * @return JournalEntryPage
+     */
+    getCurrentPage() {
+        return Array.from(this.pages)[this.sheet?.pageIndex || 0] || null;
     }
 }
