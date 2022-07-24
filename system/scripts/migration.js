@@ -10,12 +10,12 @@ export class MigrationL5r5e {
 
     /**
      * Return true if the version need some updates
-     * @param {string} version
+     * @param {string} version Version number to contest against the current version
      * @return {boolean}
      */
     static needUpdate(version) {
         const currentVersion = game.settings.get("l5r5e", "systemMigrationVersion");
-        return currentVersion && foundry.utils.isNewerVersion(version, currentVersion);
+        return !currentVersion || foundry.utils.isNewerVersion(version, currentVersion);
     }
 
     /**
@@ -44,11 +44,11 @@ export class MigrationL5r5e {
             try {
                 const updateData = MigrationL5r5e._migrateActorData(actor, options);
                 if (!foundry.utils.isEmpty(updateData)) {
-                    console.log(`L5R5E | Migrating Actor entity ${actor.name}`);
+                    console.log(`L5R5E | Migrating Actor document ${actor.name}[${actor._id}]`);
                     await actor.update(updateData);
                 }
             } catch (err) {
-                err.message = `L5R5E | Failed L5R5e system migration for Actor ${actor.name}: ${err.message}`;
+                err.message = `L5R5E | Failed L5R5e system migration for Actor ${actor.name}[${actor._id}]: ${err.message}`;
                 console.error(err);
             }
         }
@@ -58,11 +58,11 @@ export class MigrationL5r5e {
             try {
                 const updateData = MigrationL5r5e._migrateItemData(item, options);
                 if (!foundry.utils.isEmpty(updateData)) {
-                    console.log(`L5R5E | Migrating Item entity ${item.name}`);
+                    console.log(`L5R5E | Migrating Item document ${item.name}[${item._id}]`);
                     await item.update(updateData);
                 }
             } catch (err) {
-                err.message = `L5R5E | Failed L5R5e system migration for Item ${item.name}: ${err.message}`;
+                err.message = `L5R5E | Failed L5R5e system migration for Item ${item.name}[${item._id}]: ${err.message}`;
                 console.error(err);
             }
         }
@@ -72,21 +72,21 @@ export class MigrationL5r5e {
             try {
                 const updateData = MigrationL5r5e._migrateSceneData(scene, options);
                 if (!foundry.utils.isEmpty(updateData)) {
-                    console.log(`L5R5E | Migrating Scene entity ${scene.name}`);
+                    console.log(`L5R5E | Migrating Scene document ${scene.name}[${scene._id}]`);
                     await scene.update(updateData);
                     // If we do not do this, then synthetic token actors remain in cache
                     // with the un-updated actorData.
                     scene.tokens.contents.forEach((t) => (t._actor = null));
                 }
             } catch (err) {
-                err.message = `L5R5E | Failed L5R5e system migration for Scene ${scene.name}: ${err.message}`;
+                err.message = `L5R5E | Failed L5R5e system migration for Scene ${scene.name}[${scene._id}]: ${err.message}`;
                 console.error(err);
             }
         }
 
         // Migrate World Compendium Packs
         for (let pack of game.packs) {
-            if (pack.metadata.package !== "world" || !["Actor", "Item", "Scene"].includes(pack.metadata.entity)) {
+            if (pack.metadata.packageType !== "world" || !["Actor", "Item", "Scene"].includes(pack.metadata.type)) {
                 continue;
             }
             await MigrationL5r5e._migrateCompendium(pack, options);
@@ -104,7 +104,7 @@ export class MigrationL5r5e {
             }
             // Save all the modified entries at once
             if (updatedChatList.length > 0) {
-                console.log(`L5R5E | Migrating ${updatedChatList.length} ChatMessage entities`);
+                console.log(`L5R5E | Migrating ${updatedChatList.length} ChatMessage documents`);
                 await ChatMessage.updateDocuments(updatedChatList);
             }
         } catch (err) {
@@ -120,17 +120,13 @@ export class MigrationL5r5e {
     }
 
     /**
-     * Apply migration rules to all Entities within a single Compendium pack
-     * @param {Compendium} pack
+     * Apply migration rules to all documents within a single Compendium pack
+     * @param {CompendiumCollection} pack
      * @param options
      * @return {Promise}
      */
     static async _migrateCompendium(pack, options = { force: false }) {
-        const entity = pack.metadata.entity;
-        if (!["Actor", "Item", "Scene"].includes(entity)) {
-            return;
-        }
-
+        const docType = pack.metadata.type;
         const wasLocked = pack.locked;
         try {
             // Unlock the pack for editing
@@ -142,18 +138,18 @@ export class MigrationL5r5e {
 
             // Iterate over compendium entries - applying fine-tuned migration functions
             const updateDatasList = [];
-            for (let ent of documents) {
+            for (let doc of documents) {
                 let updateData = {};
 
-                switch (entity) {
+                switch (docType) {
                     case "Actor":
-                        updateData = MigrationL5r5e._migrateActorData(ent);
+                        updateData = MigrationL5r5e._migrateActorData(doc);
                         break;
                     case "Item":
-                        updateData = MigrationL5r5e._migrateItemData(ent);
+                        updateData = MigrationL5r5e._migrateItemData(doc);
                         break;
                     case "Scene":
-                        updateData = MigrationL5r5e._migrateSceneData(ent);
+                        updateData = MigrationL5r5e._migrateSceneData(doc);
                         break;
                 }
                 if (foundry.utils.isEmpty(updateData)) {
@@ -161,10 +157,12 @@ export class MigrationL5r5e {
                 }
 
                 // Add the entry, if data was changed
-                updateData["_id"] = ent._id;
+                updateData["_id"] = doc._id;
                 updateDatasList.push(updateData);
 
-                console.log(`L5R5E | Migrating ${entity} entity ${ent.name} in Compendium ${pack.collection}`);
+                console.log(
+                    `L5R5E | Migrating ${docType} document ${doc.name}[${doc._id}] in Compendium ${pack.collection}`
+                );
             }
 
             // Save the modified entries
@@ -173,20 +171,20 @@ export class MigrationL5r5e {
             }
         } catch (err) {
             // Handle migration failures
-            err.message = `L5R5E | Failed system migration for entities ${entity} in pack ${pack.collection}: ${err.message}`;
+            err.message = `L5R5E | Failed system migration for documents ${docType} in pack ${pack.collection}: ${err.message}`;
             console.error(err);
         }
 
         // Apply the original locked status for the pack
-        pack.configure({ locked: wasLocked });
-        console.log(`L5R5E | Migrated all ${entity} contents from Compendium ${pack.collection}`);
+        await pack.configure({ locked: wasLocked });
+        console.log(`L5R5E | Migrated all ${docType} contents from Compendium ${pack.collection}`);
     }
 
     /**
-     * Migrate a single Scene entity to incorporate changes to the data model of it's actor data overrides
+     * Migrate a single Scene document to incorporate changes to the data model of its actor data overrides
      * Return an Object of updateData to be applied
-     * @param {Object} scene  The Scene data to Update
-     * @param options
+     * @param  {Scene} scene  The Scene data to Update
+     * @param  options
      * @return {Object}       The updateData to apply
      */
     static _migrateSceneData(scene, options = { force: false }) {
@@ -223,38 +221,37 @@ export class MigrationL5r5e {
     }
 
     /**
-     * Migrate a single Actor entity to incorporate latest data model changes
+     * Migrate a single Actor document to incorporate latest data model changes
      * Return an Object of updateData to be applied
-     * @param {Actor} actor   The actor to Update
-     * @param options
-     * @return {Object}       The updateData to apply
+     * @param  {ActorL5r5e|Object} actor The actor, or the TokenDocument.actorData to Update
+     * @param  options
+     * @return {Object} The updateData to apply
      */
     static _migrateActorData(actor, options = { force: false }) {
         const updateData = {};
-        const actorData = actor.system;
+        const system = actor.system;
 
-        // We need to be careful for unlinked tokens, only the diff is store in "data".
+        // We need to be careful with unlinked tokens, only the diff is store in "actorData".
         // ex no diff : actor = {type: "npc"}, actorData = undefined
-        if (!actorData) {
+        if (!system) {
             return updateData;
         }
 
         // ***** Start of 1.1.0 *****
         if (options?.force || MigrationL5r5e.needUpdate("1.1.0")) {
             // Add "Prepared" in actor
-            if (actorData.prepared === undefined) {
+            if (system.prepared === undefined) {
                 updateData["system.prepared"] = true;
             }
 
             // NPC are now without autostats, we need to save the value
             if (actor.type === "npc") {
-                if (actorData.endurance < 1) {
-                    updateData["system.endurance"] = (Number(actorData.rings.earth) + Number(actorData.rings.fire)) * 2;
-                    updateData["system.composure"] =
-                        (Number(actorData.rings.earth) + Number(actorData.rings.water)) * 2;
-                    updateData["system.focus"] = Number(actorData.rings.air) + Number(actorData.rings.fire);
+                if (system.endurance < 1) {
+                    updateData["system.endurance"] = (Number(system.rings.earth) + Number(system.rings.fire)) * 2;
+                    updateData["system.composure"] = (Number(system.rings.earth) + Number(system.rings.water)) * 2;
+                    updateData["system.focus"] = Number(system.rings.air) + Number(system.rings.fire);
                     updateData["system.vigilance"] = Math.ceil(
-                        (Number(actorData.rings.air) + Number(actorData.rings.water)) / 2
+                        (Number(system.rings.air) + Number(system.rings.water)) / 2
                     );
                 }
             }
@@ -264,13 +261,13 @@ export class MigrationL5r5e {
         // ***** Start of 1.3.0 *****
         if (options?.force || MigrationL5r5e.needUpdate("1.3.0")) {
             // PC/NPC removed notes useless props "value"
-            if (actorData.notes?.value) {
-                updateData["system.notes"] = actorData.notes.value;
+            if (system.notes?.value) {
+                updateData["system.notes"] = system.notes.value;
             }
 
-            // NPC have now more thant a Strength and a Weakness
-            if (actor.type === "npc" && actorData.rings_affinities?.strength) {
-                const aff = actorData.rings_affinities;
+            // NPC have now more than a Strength and a Weakness
+            if (actor.type === "npc" && system.rings_affinities?.strength) {
+                const aff = system.rings_affinities;
                 updateData["system.rings_affinities." + aff.strength.ring] = aff.strength.value;
                 updateData["system.rings_affinities." + aff.weakness.ring] = aff.weakness.value;
 
@@ -285,19 +282,8 @@ export class MigrationL5r5e {
     }
 
     /**
-     * Scrub an Actor's system data, removing all keys which are not explicitly defined in the system template
-     * @param {Object} actorData The data object for an Actor
-     * @return {Object}          The scrubbed Actor data
-     */
-    static cleanActorData(actorData) {
-        const model = game.system.model.Actor[actorData.type];
-        actorData = foundry.utils.filterObject(actorData, model);
-        return actorData;
-    }
-
-    /**
-     * Migrate a single Item entity to incorporate latest data model changes
-     * @param item
+     * Migrate a single Item document to incorporate latest data model changes
+     * @param {ItemL5r5e} item
      * @param options
      */
     static _migrateItemData(item, options = { force: false }) {
@@ -306,8 +292,8 @@ export class MigrationL5r5e {
     }
 
     /**
-     * Migrate a single Item entity to incorporate latest data model changes
-     * @param {ChatMessageData} message
+     * Migrate a single Item document to incorporate latest data model changes
+     * @param {ChatMessage} message
      * @param options
      */
     static _migrateChatMessage(message, options = { force: false }) {
