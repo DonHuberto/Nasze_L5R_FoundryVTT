@@ -35,9 +35,13 @@ export class CombatL5r5e extends Combat {
         const skillCat = CONFIG.l5r5e.skills.get(skillId);
 
         // Get score for each combatant
+        const networkActors = [];
         const updatedCombatants = [];
         for (const combatantId of ids) {
             const combatant = game.combat.combatants.find((c) => c.id === combatantId);
+            if (!combatant || !combatant.actor || combatant.isDefeated) {
+                continue;
+            }
 
             // Skip non character types (army)
             if (!combatant.actor.isCharacter) {
@@ -48,13 +52,33 @@ export class CombatL5r5e extends Combat {
                 continue;
             }
 
-            // Skip if combatant already have an initiative value
-            if (!messageOptions.rerollInitiative && (!combatant || !combatant.actor)) {
-                return;
-            }
+            // Shortcut to system
+            const actorSystem = combatant.actor.system;
 
-            // Shortcut to data
-            const data = combatant.actor.system;
+            // DicePicker management
+            // formula is empty on the fist call (combat tab buttons)
+            // only select if a player is active for this actor
+            if (
+                !formula &&
+                !combatant.initiative &&
+                combatant.hasPlayerOwner &&
+                combatant.players.some((u) => u.active && !u.isGM)
+            ) {
+                if (game.user.isGM) {
+                    // Open the DP on player side
+                    networkActors.push(combatant.actor);
+                } else {
+                    // Open the DP locally
+                    new game.l5r5e.DicePickerDialog({
+                        actor: combatant.actor,
+                        skillId: skillId,
+                        difficulty: cfg.difficulty,
+                        difficultyHidden: cfg.difficultyHidden,
+                        isInitiativeRoll: true,
+                    }).render(true);
+                }
+                continue;
+            }
 
             // Prepared is a boolean or if null we get the info in the actor sheet
             const isPc = combatant.actor.type === "character";
@@ -64,18 +88,19 @@ export class CombatL5r5e extends Combat {
             // If the character was ready for the conflict, their base initiative value is their focus attribute.
             // If the character was unprepared (such as when surprised), their base initiative value is their vigilance attribute.
             // Minion NPCs can generate initiative value without a check, using their focus or vigilance attribute
-            let initiative = isPrepared === "true" ? data.focus : data.is_compromised ? 1 : data.vigilance;
+            let initiative =
+                isPrepared === "true" ? actorSystem.focus : actorSystem.is_compromised ? 1 : actorSystem.vigilance;
 
             // Roll only for PC and Adversary
-            if (isPc || data.type === "adversary") {
+            if (isPc || actorSystem.type === "adversary") {
                 // Roll formula
+                const createFormula = [];
                 if (!formula) {
-                    const createFormula = [`${data.rings[data.stance]}dr`];
-                    const skillValue = isPc ? data.skills[skillCat][skillId] : data.skills[skillCat];
+                    createFormula.push(`${actorSystem.rings[actorSystem.stance]}dr`);
+                    const skillValue = isPc ? actorSystem.skills[skillCat][skillId] : actorSystem.skills[skillCat];
                     if (skillValue > 0) {
                         createFormula.push(`${skillValue}ds`);
                     }
-                    formula = createFormula.join("+");
                 }
 
                 let roll;
@@ -92,10 +117,10 @@ export class CombatL5r5e extends Combat {
                     rnkMessage = await roll.toMessage({ flavor }, { rollMode: messageOptions.rollMode || null });
                 } else {
                     // Regular
-                    roll = new game.l5r5e.RollL5r5e(formula);
+                    roll = new game.l5r5e.RollL5r5e(formula ?? createFormula.join("+"));
                     roll.actor = combatant.actor;
                     roll.l5r5e.isInitiativeRoll = true;
-                    roll.l5r5e.stance = data.stance;
+                    roll.l5r5e.stance = actorSystem.stance;
                     roll.l5r5e.skillId = skillId;
                     roll.l5r5e.skillCatId = skillCat;
                     roll.l5r5e.difficulty =
@@ -127,6 +152,20 @@ export class CombatL5r5e extends Combat {
             updatedCombatants.push({
                 _id: combatant.id,
                 initiative: initiative,
+            });
+        }
+
+        // If any network actor users to notify
+        if (!foundry.utils.isEmpty(networkActors)) {
+            console.log(networkActors);
+            game.l5r5e.sockets.openDicePicker({
+                actors: networkActors,
+                dpOptions: {
+                    skillId: skillId,
+                    difficulty: cfg.difficulty,
+                    difficultyHidden: cfg.difficultyHidden,
+                    isInitiativeRoll: true,
+                },
             });
         }
 
@@ -162,7 +201,7 @@ export class CombatL5r5e extends Combat {
      * Basic weight system for sorting Character > Adversary > Minion
      * @private
      */
-    static _getWeightByActorType(data) {
-        return data.type === "npc" ? (data.type === "minion" ? 3 : 2) : 1;
+    static _getWeightByActorType(actor) {
+        return actor.type === "npc" ? (actor.type === "minion" ? 3 : 2) : 1;
     }
 }

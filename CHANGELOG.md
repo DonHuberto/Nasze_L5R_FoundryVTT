@@ -3,8 +3,60 @@ Date format : day/month/year
 
 ## 1.9.0 - ??/??/2022 - Foundry v10 Compatibility
 - Updated the System to FoundryVTT v10.
-- Removed restriction on technique types on drop (Sheet and 20Q).
+- Removed restriction on technique types when dropping a technique (Sheet and 20Q).
 - Added a `game.user.isFirstGM` property for some traitements (socket and migration) to prevent multiple executions with multiple GM connected.
+- Updated the initiative behaviour, he now open the DicePicker for connected players.
+- Added socket API `openDicePicker` to remotely open the DicePicker (see usage below).
+
+### OpenDicePicker API usage
+#### Fitness skill roll for the all combat targets
+```js
+game.l5r5e.sockets.openDicePicker({
+    actors: Array.from(game.user.targets).map(t => t.document.actor),
+    dpOptions: {
+        skillId: 'fitness',
+        difficulty: 3,
+    }
+});
+```
+
+#### Initiative roll (skirmish) for all player's character who are in combat tracker
+```js
+game.l5r5e.sockets.openDicePicker({
+    actors: game.combat.combatants.filter(c => c.hasPlayerOwner && !c.isDefeated && !c.initiative).map(c => c.actor),
+    dpOptions: {
+        skillId: 'tactics',
+        difficulty: 1,
+        isInitiativeRoll: true,
+    }
+});
+```
+
+#### Melee skill roll with "fire" ring, pre-selected for all the selected tokens
+```js
+game.l5r5e.sockets.openDicePicker({
+    actors: canvas.tokens.controlled.map(t => t.actor),
+    dpOptions: {
+        ringId: 'fire',
+        skillId: 'melee',
+        difficulty: 2,
+    }
+});
+```
+
+#### Skill roll with skill list for all active players (but GM)
+```js
+game.l5r5e.sockets.openDicePicker({
+    users: game.users.players.filter(u => u.active && u.hasPlayerOwner),
+    dpOptions: {
+        ringId: 'water',
+        skillId: 'unarmed',
+        skillsList: 'melee,ranged,unarmed',
+        difficulty: 3,
+        difficultyHidden: true,
+    }
+});
+```
 
 ## 1.8.2 - 24/06/2022 - Unofficial Italian translation
 - Added Unofficial Italian translation (Corebook only for compendiums), all thanks to EldritchTranslator.

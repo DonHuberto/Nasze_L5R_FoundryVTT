@@ -66,6 +66,13 @@ export class DicePickerDialog extends FormApplication {
     }
 
     /**
+     * Define a unique and dynamic element ID for the rendered application
+     */
+    get id() {
+        return `l5r5e-dice-picker-dialog-${this._actor?.id ?? "no-actor"}`;
+    }
+
+    /**
      * Add a create macro button on top of sheet
      * @override
      */
@@ -177,6 +184,7 @@ export class DicePickerDialog extends FormApplication {
      */
     set actor(actor) {
         if (!actor || !(actor instanceof Actor) || !actor.isOwner) {
+            console.log("L5R5E | DP | Actor rejected", actor);
             return;
         }
         this._actor = actor;
@@ -709,7 +717,7 @@ export class DicePickerDialog extends FormApplication {
             // 4: "statusRank"
             const infos = difficulty.match(CONFIG.l5r5e.regex.techniqueDifficulty);
             if (!infos) {
-                console.log("L5R5E | Fail to parse difficulty", difficulty);
+                console.log("L5R5E | DP | Fail to parse difficulty", difficulty);
                 return false;
             }
 
@@ -730,14 +738,14 @@ export class DicePickerDialog extends FormApplication {
             }
             // Wrong syntax or no target set, do manual TN
             if (!targetActor) {
-                console.log("L5R5E | Fail to get actor from target selection, or no target selected");
+                console.log("L5R5E | DP | Fail to get actor from target selection, or no target selected");
                 return false;
             }
 
             // Check in actor.<prop> or actor.system.<prop>
             difficulty = targetActor[infos[2]] || targetActor.system[infos[2]] || null;
             if (difficulty < 1) {
-                console.log("L5R5E | Fail to parse difficulty from target");
+                console.log("L5R5E | DP | Fail to parse difficulty from target");
                 return false;
             }
 
