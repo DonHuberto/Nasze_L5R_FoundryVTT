@@ -157,7 +157,6 @@ export class CombatL5r5e extends Combat {
 
         // If any network actor users to notify
         if (!foundry.utils.isEmpty(networkActors)) {
-            console.log(networkActors);
             game.l5r5e.sockets.openDicePicker({
                 actors: networkActors,
                 dpOptions: {

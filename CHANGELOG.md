@@ -2,8 +2,9 @@
 Date format : day/month/year
 
 ## 1.9.0 - ??/??/2022 - Foundry v10 Compatibility
+__! Be certain to carefully back up any critical user data before installing this update !__
 - Updated the System to FoundryVTT v10.
-- Removed restriction on technique types when dropping a technique (Sheet and 20Q).
+- Removed restriction on technique types when dropping a technique (Sheet and 20Q. #39).
 - Added a `game.user.isFirstGM` property for some traitements (socket and migration) to prevent multiple executions with multiple GM connected.
 - Updated the initiative behaviour, he now open the DicePicker for connected players.
 - Added socket API `openDicePicker` to remotely open the DicePicker (see usage below).
