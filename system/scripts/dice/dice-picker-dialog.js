@@ -45,6 +45,7 @@ export class DicePickerDialog extends FormApplication {
         targetInfos: null,
         useVoidPoint: false,
         isInitiativeRoll: false,
+        itemUuid: null,
     };
 
     /**
@@ -107,8 +108,9 @@ export class DicePickerDialog extends FormApplication {
      *   difficulty        number (0-9)
      *   difficultyHidden  boolean
      *   isInitiativeRoll  boolean
+     *   itemUuid          string
      *
-     * @param options actor, actorId, ringId, actorName, skillId, skillCatId, difficulty, difficultyHidden, isInitiativeRoll
+     * @param options actor, actorId, ringId, actorName, skillId, skillCatId, difficulty, difficultyHidden, isInitiativeRoll, itemUuid
      */
     constructor(options = {}) {
         super({}, options);
@@ -165,6 +167,11 @@ export class DicePickerDialog extends FormApplication {
 
         // InitiativeRoll
         this.object.isInitiativeRoll = !!options.isInitiativeRoll;
+
+        // Item UUID (weapon/technique)
+        if (options.itemUuid) {
+            this.object.itemUuid = options.itemUuid;
+        }
     }
 
     /**
@@ -533,11 +540,12 @@ export class DicePickerDialog extends FormApplication {
             // Initiative roll
             let msgOptions = {
                 skillId: this.object.skill.id,
+                itemUuid: this.object.itemUuid,
+                rnkMessage: null,
                 difficulty: this.object.difficulty.value,
-                difficultyHidden: this.object.difficulty.hidden,
                 useVoidPoint: this.object.useVoidPoint,
                 skillAssistance: this.object.skill.assistance,
-                rnkMessage: null,
+                difficultyHidden: this.object.difficulty.hidden,
             };
 
             await this._actor.rollInitiative({
@@ -558,12 +566,13 @@ export class DicePickerDialog extends FormApplication {
             roll.actor = this._actor;
             roll.l5r5e.stance = this.object.ring.id;
             roll.l5r5e.skillId = this.object.skill.id;
+            roll.l5r5e.itemUuid = this.object.itemUuid;
             roll.l5r5e.skillCatId = this.object.skill.cat;
             roll.l5r5e.difficulty = this.object.difficulty.value;
-            roll.l5r5e.difficultyHidden = this.object.difficulty.hidden;
+            roll.l5r5e.targetInfos = this.object.targetInfos;
             roll.l5r5e.voidPointUsed = this.object.useVoidPoint;
             roll.l5r5e.skillAssistance = this.object.skill.assistance;
-            roll.l5r5e.targetInfos = this.object.targetInfos;
+            roll.l5r5e.difficultyHidden = this.object.difficulty.hidden;
 
             await roll.roll();
             message = await roll.toMessage();

@@ -6,6 +6,7 @@ __! Be certain to carefully back up any critical user data before installing thi
 - Updated the System to FoundryVTT v10.
 - Removed restriction on technique types when dropping a technique (Sheet and 20Q. #39).
 - Added a `game.user.isFirstGM` property for some traitements (socket and migration) to prevent multiple executions with multiple GM connected.
+- Added `itemUuid` to Roll/RnK for technique and weapons to be readable in ChatMessage (use `fromUuid()` / `fromUuidSync()` to get the object).
 - Updated the initiative behaviour, he now open the DicePicker for connected players.
 - Added socket API `openDicePicker` to remotely open the DicePicker (see usage below).
 

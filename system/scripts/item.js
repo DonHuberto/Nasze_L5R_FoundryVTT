@@ -16,6 +16,44 @@ export class ItemL5r5e extends Item {
     }
 
     /**
+     * A Universally Unique Identifier (uuid) for this Document instance patched for embedded items on items
+     * @type {string}
+     * @memberof ClientDocumentMixin#
+     */
+    get uuid() {
+        const uuid = [];
+        const parents = this.system.parent_id;
+
+        if (parents?.item_id) {
+            if (parents?.actor_id) {
+                uuid.push(`Actor.${parents.actor_id}`);
+            }
+            uuid.push(`Item.${parents.item_id}`);
+        }
+        uuid.push(super.uuid);
+
+        return uuid.join(".");
+    }
+
+    /**
+     * Obtain a reference to the Array of source data within the data object for a certain embedded Document name
+     *
+     * TODO probably useless if we can add "items" in metadata.embedded, but no clue how to.
+     *
+     * @param {string} embeddedName   The name of the embedded Document type
+     * @return {Collection}           The Collection instance of embedded Documents of the requested type
+     */
+    getEmbeddedCollection(embeddedName) {
+        const collectionName = embeddedName === "Item" ? "items" : this.constructor.metadata.embedded[embeddedName];
+        if (!collectionName) {
+            throw new Error(
+                `${embeddedName} is not a valid embedded Document within the ${this.documentName} Document`
+            );
+        }
+        return this[collectionName];
+    }
+
+    /**
      * Create a new entity using provided input data
      * @override
      */

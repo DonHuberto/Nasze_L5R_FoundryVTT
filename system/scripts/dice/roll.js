@@ -25,6 +25,7 @@ export class RollL5r5e extends Roll {
         skillCatId: "",
         skillId: "",
         stance: "",
+        itemUuid: null,
         strifeApplied: 0,
         summary: {
             totalSuccess: 0,
@@ -359,7 +360,7 @@ export class RollL5r5e extends Roll {
             rollMode: rMode,
             temporary: !create,
         });
-        return create ? message : message.data;
+        return message;
     }
 
     /** @override */

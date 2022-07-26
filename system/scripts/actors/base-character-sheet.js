@@ -594,15 +594,21 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
     }
 
     /**
-     * Get the skillId for this weaponId
+     * Get the skillId and uuid for this weaponId
      * @private
      */
-    _getWeaponSkillId(weaponId) {
-        const item = this.actor.items.get(weaponId);
-        if (!!item && item.type === "weapon") {
-            return item.system.skill;
+    _getWeaponInfos(weaponId) {
+        if (!weaponId) {
+            return null;
         }
-        return null;
+        const item = this.actor.items.get(weaponId);
+        if (!item || item.type !== "weapon") {
+            return null;
+        }
+        return {
+            uuid: item.uuid,
+            skill: item.system.skill,
+        };
     }
 
     /**
@@ -614,19 +620,15 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
         event.preventDefault();
         event.stopPropagation();
         const li = $(event.currentTarget);
-        let skillId = li.data("skill") || null;
-
-        const weaponId = li.data("weapon-id") || null;
-        if (weaponId) {
-            skillId = this._getWeaponSkillId(weaponId);
-        }
+        const weapon = this._getWeaponInfos(li.data("weapon-id") || null);
 
         new game.l5r5e.DicePickerDialog({
             ringId: li.data("ring") || null,
-            skillId: skillId,
+            skillId: weapon?.skill || li.data("skill") || null,
             skillCatId: li.data("skillcat") || null,
             isInitiativeRoll: li.data("initiative") || false,
             actor: this.actor,
+            itemUuid: weapon?.uuid,
         }).render(true);
     }
 
@@ -651,6 +653,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
             ringId: itemData.ring || null,
             difficulty: itemData.difficulty || null,
             skillsList: itemData.skill || null,
+            itemUuid: item.uuid,
         }).render(true);
     }
 }
