@@ -54,6 +54,12 @@
             "unlocked": "Sbloccato",
             "random": "Casuale"
         },
+        "settings": {
+            "wiki": {
+                "title": "Wiki",
+                "link": "https://gitlab.com/teaml5r/l5r5e/-/wikis/home"
+            }
+        },
         "logo": {
             "title": "Bisogno di aiuto?",
             "src": "systems/l5r5e/assets/l5r-logo.webp",

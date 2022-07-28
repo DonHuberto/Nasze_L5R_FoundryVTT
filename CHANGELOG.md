@@ -4,11 +4,12 @@ Date format : day/month/year
 ## 1.9.0 - ??/??/2022 - Foundry v10 Compatibility
 __! Be certain to carefully back up any critical user data before installing this update !__
 - Updated the System to FoundryVTT v10.
-- Removed restriction on technique types when dropping a technique (Sheet and 20Q. #39).
-- Added a `game.user.isFirstGM` property for some traitements (socket and migration) to prevent multiple executions with multiple GM connected.
-- Added `itemUuid` to Roll/RnK for technique and weapons to be readable in ChatMessage (use `fromUuid()` / `fromUuidSync()` to get the object).
 - Updated the initiative behaviour, he now open the DicePicker for connected players.
+- Added a `game.user.isFirstGM` property for some traitements (socket and migration) to prevent multiple executions with multiple GM connected.
 - Added socket API `openDicePicker` to remotely open the DicePicker (see usage below).
+- Added `itemUuid` to Roll/RnK for technique and weapons to be readable in ChatMessage (use `fromUuid()` / `fromUuidSync()` to get the object).
+- Added wiki link in system tab.
+- Removed restriction on technique types when dropping a technique (Sheet and 20Q. #39).
 
 ### OpenDicePicker API usage
 #### Fitness skill roll for the all combat targets
@@ -142,7 +143,7 @@ Technique syntaxe "quick" explanation :
     - `|` separator, optional if no min/max.
     - `min` or `max` : Between the selected targets, search for the min/max of `prop2`. If no `prop2` provided, take `prop1` as `prop2` (irrelevant for `@S`).
     - `(prop2)` : define the property for the actor selection in multiple target, can be omitted if same as `prop1`.
-    - Exemples :
+    - Examples :
       - `@S:vigilance` : Difficulty will be my own `vigilance`.
       - `@T:vigilance|min` : Difficulty will be the `vigilance` from the target with the minimum vigilance (implicit) value. it's the same to wrote `@T:vigilance|min(vigilance)`.
       - `@T:vigilance|max(statusRank)` : Difficulty will be the `vigilance` from the target with the maximum `statusRank` value.
@@ -150,7 +151,7 @@ Technique syntaxe "quick" explanation :
   - Skill : `melee`, `fitness`...
   - SkillCategory : `scholar`, `martial`...
   - Or both in list, coma separated.
-  - Exemples :
+  - Examples :
     - `theology`
     - `melee,ranged,unarmed`
     - `martial,fitness,performance`

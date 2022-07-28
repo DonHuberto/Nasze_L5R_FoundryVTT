@@ -22,7 +22,7 @@ game.l5r5e.sockets.refreshAppId(applicationId);
 
 
 ## updateMessageIdAndRefresh
-Change the message in the selected application windows, and rerender the application to force the refresh. Used in RnK.
+Change the message in the selected application windows, and re-render the application to force the refresh. Used in RnK.
 
 Usage :
 ```js
@@ -31,18 +31,20 @@ game.l5r5e.sockets.refreshAppId(applicationId, messageId);
 
 
 ## openDicePicker
-Remotely open the DicePicker (DP) on targetted Users/Actors if they are active users. Used in initiative roll.
+_Added in v1.9.0_
+
+Remotely open the DicePicker (DP) on targeted Users/Actors if they are active users. Used in initiative roll.
 
 Arguments :
 
-| Property  | Type    | Notes / Exemples                                                           |
+| Property  | Type    | Notes / Examples                                                           |
 |-----------|---------|----------------------------------------------------------------------------|
 | users     | User[]  | Users list to trigger the DP (will be reduce to `id` for network perf.)    |
 | actors    | Actor[] | Actors list to trigger the DP (will be reduce to `uuid` for network perf.) |
 | dpOptions | Object  | Any [DicePickerDialog.options](dicepicker.md#constructor-options)          |
 
 
-### Exemples
+### Examples
 
 #### Fitness skill roll for the all combat targets
 ```js

@@ -11,7 +11,7 @@ You are free to contribute and propose corrections, modifications after fork. Tr
 2. Use `npm ci` to install the dependence.
 3. Create a link from `<repo>/system` to your foundry system data (by default `%localappdata%/FoundryVTT/data/systems/l5r5e`).
 
-Windows exemple (modify the target and source directories, and run this in administrator) :
+Windows example (modify the target and source directories, and run this in administrator) :
 ```bash
 mklink /D /J "%localappdata%/FoundryVTT/data/systems/l5r5e" "D:/Projects/FVTT/l5r5e/system"
 ```

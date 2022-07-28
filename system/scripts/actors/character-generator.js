@@ -531,7 +531,7 @@ export class CharacterGenerator {
         /**
          * Techs config
          *
-         * exemple: {
+         * example: {
          *   probability: .7,
          *     skill: {
          *     grp_name: "scholar",

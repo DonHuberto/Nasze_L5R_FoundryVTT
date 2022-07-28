@@ -65,7 +65,10 @@ export default class HooksL5r5e {
             case "settings":
                 // Add Changelog link
                 html.find("#game-details .system").append(
-                    `<p><a href="${game.system.changelog}" target="_blank">Changelog</a></p>`
+                    `<p><a href="${game.system.changelog}" target="_blank">Changelog</a>` +
+                        ` <a href="${game.i18n.localize(
+                            "l5r5e.settings.wiki.link"
+                        )}" target="_blank">${game.i18n.localize("l5r5e.settings.wiki.title")}</a></p>`
                 );
                 break;
         }

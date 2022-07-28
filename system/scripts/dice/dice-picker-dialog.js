@@ -191,7 +191,7 @@ export class DicePickerDialog extends FormApplication {
      */
     set actor(actor) {
         if (!actor || !(actor instanceof Actor) || !actor.isOwner) {
-            console.log("L5R5E | DP | Actor rejected", actor);
+            console.info("L5R5E | DP | Actor rejected", actor);
             return;
         }
         this._actor = actor;
@@ -702,7 +702,7 @@ export class DicePickerDialog extends FormApplication {
     /**
      * Parse the difficulty from technique
      *
-     * Exemples :
+     * Examples :
      * "@S:vigilance"
      * "@T:vigilance"
      * "@T:vigilance|min"
