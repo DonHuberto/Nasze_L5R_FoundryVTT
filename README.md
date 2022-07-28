@@ -11,23 +11,8 @@ This is a game system for [Foundry Virtual Tabletop](https://foundryvtt.com/) pr
 This version is authorized by Edge Studio, all texts, images and copyrights are the property of their respective owners.
 
 
-## Installation
-### With Search (recommended)
-1. Open FoundryVTT.
-2. In the `Game Systems` tab, clic `Install system`.
-3. Search `L5R`, on the line `Legend of the Five Rings (5th Edition)`, clic `Install`.
-
-### With the manifest
-1. Open FoundryVTT.
-2. In the `Game Systems` tab, clic `Install system`.
-3. Copy this link and use it in the `Manifest URL`, then clic `Install`.
-> https://gitlab.com/teaml5r/l5r5e/-/raw/master/system/system.json
-
-### Recommended modules
-- `Babele` required for non english compendium translation: https://gitlab.com/riccisi/foundryvtt-babele
-- `Dice so Nice` for 3D dices : https://gitlab.com/riccisi/foundryvtt-dice-so-nice
-- `Small Legend of the 5 Rings Tools` Tools for L5R : https://foundryvtt.com/packages/l5r-dragruler
-- `Search Anywhere` https://gitlab.com/riccisi/foundryvtt-search-anywhere (don't spent too much time searching the right technique)
+## Installation & Recommended modules
+See the [Wiki page - Installation](https://gitlab.com/teaml5r/l5r5e/-/wikis/users/install.md) for detail.
 
 
 ## Current L5R team (alphabetical order)
@@ -50,10 +35,9 @@ This version is authorized by Edge Studio, all texts, images and copyrights are 
 
 
 ## Contribute
-You are free to contribute and propose corrections, modifications after fork. Try to respect 3 rules:
-1. Make sure you are up to date with the referent branch (most of the time the `dev` branch).
-2. Clear and precise commit messages allow a quick review of the code.
-3. If possible, limit yourself to one Feature per Merge request so as not to block the process.
+You are free to contribute and propose corrections, modifications after fork.
+
+See the [Wiki page - System helping (Contribute)](https://gitlab.com/teaml5r/l5r5e/-/wikis/dev/system-helping.md) for detail.
 
 
 
@@ -62,29 +46,11 @@ Il s'agit d'un système de jeu pour [Foundry Virtual Tabletop](https://foundryvt
 Cette version est autorisée par Edge Studio, tous les textes, images et droits d'auteur reviennent à leurs propriétaires respectifs.
 
 
-## Installation
-### Avec la Recherche (recommandé)
-1. Ouvrir FoundryVTT.
-2. Dans l'onglet `Game Systems`, cliquer sur `Install system`.
-3. Chercher `L5R`, sur la ligne de `Legend of the Five Rings (5th Edition)`, cliquer `Install`.
+## Installation & Modules recommandés
+Le wiki en français est disponible à cette adresse :
+> https://foundryvtt.wiki/fr/systemes/l5r
 
-### With the manifest
-1. Ouvrir FoundryVTT.
-2. Dans l'onglet `Game Systems`, cliquer sur `Install system`.
-3. Copier ce lien et coller le dans `Manifest URL`, puis cliquer sur `Install`.
-> https://gitlab.com/teaml5r/l5r5e/-/raw/master/system/system.json
-
-### Modules requis pour le français
-Pour traduire les éléments de base de FoundryVTT (interface), il vous faut installer et activer le module suivant :
-> https://gitlab.com/baktov.sugar/foundryvtt-lang-fr-fr
-
-La traduction du système fonctionne directement, cependant les compendiums nécessitent d'installer et activer le module Babele pour être traduit :
-> https://gitlab.com/riccisi/foundryvtt-babele
-
-### Modules recommandés
-- `Dice so Nice` pour avoir des dés 3D : https://gitlab.com/riccisi/foundryvtt-dice-so-nice
-- `Small Legend of the 5 Rings Tools` Des outils supplémentaires pour L5R : https://foundryvtt.com/packages/l5r-dragruler
-- `Search Anywhere` pour ne pas perdre top de temps à chercher une technique : https://gitlab.com/riccisi/foundryvtt-search-anywhere
+La liste des modules recommandés mise à jour est aussi disponible sur le [Wiki - Installation](https://gitlab.com/teaml5r/l5r5e/-/wikis/users/install.md#modules) (en anglais).
 
 
 ## Nous rejoindre
@@ -112,10 +78,10 @@ La traduction du système fonctionne directement, cependant les compendiums néc
 
 
 ## Contribuer
-Vous êtes libre de contribuer et proposer après fork des corrections, modifications. Essayez de respecter 3 règles :
-1. Assurez-vous de bien être à jour par rapport à la branche référente.
-2. Des messages de commit clair et précis permettent une relecture rapide du code.
-3. Limitez-vous si possible à une Feature par demande de Merge pour ne pas bloquer le processus.
+Vous êtes libre de contribuer et proposer après fork des corrections, modifications.
+
+Voir la [page du Wiki - System helping (Contribute)](https://gitlab.com/teaml5r/l5r5e/-/wikis/dev/system-helping.md) pour le détail (en anglais).
+
 
 
 # Screenshots
