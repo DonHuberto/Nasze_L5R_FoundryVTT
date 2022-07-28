@@ -190,8 +190,11 @@ export class DicePickerDialog extends FormApplication {
      * @param {ActorL5r5e} actor
      */
     set actor(actor) {
-        if (!actor || !(actor instanceof Actor) || !actor.isOwner) {
-            console.info("L5R5E | DP | Actor rejected", actor);
+        if (!actor) {
+            return;
+        }
+        if (actor instanceof Actor || !actor.isOwner) {
+            console.warn("L5R5E | DP | Actor rejected : Not a valid Actor instance or permission was denied", actor);
             return;
         }
         this._actor = actor;

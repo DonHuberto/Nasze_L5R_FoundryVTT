@@ -12,7 +12,7 @@ game.l5r5e.sockets.deleteChatMessage(messageId);
 
 
 ## refreshAppId
-Refresh a application windows by it's `htmlId` (not `windowsId`). Used in RnK.
+Refresh an application windows by his `id` (not `appId`). Used in RnK.
 <br>Ex : `l5r5e-twenty-questions-dialog-kZHczAFghMNYFRWe`, not `65`.
 
 Usage :

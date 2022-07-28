@@ -25,6 +25,7 @@ export class GmToolbox extends FormApplication {
             closeOnSubmit: false,
             submitOnClose: false,
             submitOnChange: true,
+            minimizable: false,
         });
     }
 

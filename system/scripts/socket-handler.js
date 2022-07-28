@@ -61,7 +61,7 @@ export class SocketHandlerL5r5e {
     }
 
     /**
-     * Refresh a app by it's htmlId, not windowsId (ex "l5r5e-twenty-questions-dialog-kZHczAFghMNYFRWe", not "65")
+     * Refresh an app by his "id", not "appId" (ex "l5r5e-twenty-questions-dialog-kZHczAFghMNYFRWe", not "65")
      *
      * Usage : game.l5r5e.sockets.refreshAppId(appId);
      *

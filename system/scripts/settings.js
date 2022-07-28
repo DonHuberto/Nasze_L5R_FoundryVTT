@@ -77,6 +77,7 @@ export const RegisterSettings = function () {
             if (game.settings.get("l5r5e", "initiative-setTn1OnTypeChange")) {
                 game.settings.set("l5r5e", "initiative-difficulty-value", 1);
             }
+            ui.combat.render(true);
         },
     });
     game.settings.register("l5r5e", "initiative-prepared-character", {

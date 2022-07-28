@@ -145,7 +145,6 @@ export default class HooksL5r5e {
         }
 
         // Buttons Listeners
-        // TODO event for multiple GM
         html.find(".encounter-control").on("click", (event) => {
             event.preventDefault();
             event.stopPropagation();
@@ -153,9 +152,7 @@ export default class HooksL5r5e {
             if (!encounterTypeList.includes(encounter)) {
                 return;
             }
-            game.settings
-                .set("l5r5e", "initiative-encounter", encounter)
-                .then(() => HooksL5r5e._gmCombatBar(app, html, data));
+            game.settings.set("l5r5e", "initiative-encounter", encounter);
         });
 
         html.find(".prepared-control").on("mousedown", (event) => {
@@ -171,9 +168,7 @@ export default class HooksL5r5e {
                 true: rev ? "null" : "false",
                 null: rev ? "false" : "true",
             };
-            game.settings
-                .set("l5r5e", `initiative-prepared-${preparedId}`, nextValue[prepared[preparedId]])
-                .then(() => HooksL5r5e._gmCombatBar(app, html, data));
+            game.settings.set("l5r5e", `initiative-prepared-${preparedId}`, nextValue[prepared[preparedId]]);
         });
     }
 
