@@ -187,6 +187,12 @@ export class RollL5r5e extends Roll {
      * @override
      */
     get total() {
+        // Return null to trigger the L5R template.
+        // This beak inline roll, but as we need RnK to really resolve the roll, this is acceptable...
+        if (this.l5r5e.dicesTypes.l5r) {
+            return null;
+        }
+
         if (!this._evaluated) {
             return null;
         }
@@ -199,15 +205,15 @@ export class RollL5r5e extends Roll {
         }
 
         // Add L5R summary
-        if (this.l5r5e.dicesTypes.l5r) {
-            const summary = this.l5r5e.summary;
-            total +=
-                (this.l5r5e.dicesTypes.std ? " | " : "") +
-                ["success", "explosive", "opportunity", "strife"]
-                    .map((props) => (summary[props] > 0 ? `<i class="i_${props}"></i> ${summary[props]}` : null))
-                    .filter((c) => !!c)
-                    .join(" | ");
-        }
+        // if (this.l5r5e.dicesTypes.l5r) {
+        //     const summary = this.l5r5e.summary;
+        //     total +=
+        //         (this.l5r5e.dicesTypes.std ? " | " : "") +
+        //         ["success", "explosive", "opportunity", "strife"]
+        //             .map((props) => (summary[props] > 0 ? `<i class="i_${props}"></i> ${summary[props]}` : null))
+        //             .filter((c) => !!c)
+        //             .join(" | ");
+        // }
         return total;
     }
 
@@ -356,11 +362,10 @@ export class RollL5r5e extends Roll {
         messageData.roll = this;
 
         // Either create the message or just return the chat data
-        const message = await ChatMessage.implementation.create(messageData, {
+        return ChatMessage.implementation.create(messageData, {
             rollMode: rMode,
             temporary: !create,
         });
-        return message;
     }
 
     /** @override */

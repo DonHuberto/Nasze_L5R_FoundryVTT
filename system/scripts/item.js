@@ -21,16 +21,18 @@ export class ItemL5r5e extends Item {
      * @memberof ClientDocumentMixin#
      */
     get uuid() {
-        const uuid = [];
         const parents = this.system.parent_id;
-
-        if (parents?.item_id) {
-            if (parents?.actor_id) {
-                uuid.push(`Actor.${parents.actor_id}`);
-            }
-            uuid.push(`Item.${parents.item_id}`);
+        if (!parents?.item_id) {
+            return super.uuid;
         }
-        uuid.push(super.uuid);
+
+        // Embedded item
+        const uuid = [];
+        if (parents?.actor_id) {
+            uuid.push(`Actor.${parents.actor_id}`);
+        }
+        uuid.push(`Item.${parents.item_id}`);
+        uuid.push(`Item.${this._id}`);
 
         return uuid.join(".");
     }
