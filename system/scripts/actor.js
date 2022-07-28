@@ -6,22 +6,22 @@ export class ActorL5r5e extends Actor {
      * Create a new entity using provided input data
      * @override
      */
-    static async create(data, options = {}) {
-        // if (!Object.keys(data).includes("type")) {
+    static async create(docData, options = {}) {
+        // if (!Object.keys(docData).includes("type")) {
         //     data.type = "character";
         // }
 
         // Replace default image
-        if (data.img === undefined) {
-            data.img = `${CONFIG.l5r5e.paths.assets}icons/actors/${data.type}.svg`;
+        if (docData.img === undefined) {
+            docData.img = `${CONFIG.l5r5e.paths.assets}icons/actors/${docData.type}.svg`;
         }
 
         // Some tweak on actors prototypeToken
-        data.prototypeToken = data.prototypeToken || {};
-        switch (data.type) {
+        docData.prototypeToken = docData.prototypeToken || {};
+        switch (docData.type) {
             case "character":
                 foundry.utils.mergeObject(
-                    data.prototypeToken,
+                    docData.prototypeToken,
                     {
                         // vision: true,
                         // dimSight: 30,
@@ -41,7 +41,7 @@ export class ActorL5r5e extends Actor {
 
             case "npc":
                 foundry.utils.mergeObject(
-                    data.prototypeToken,
+                    docData.prototypeToken,
                     {
                         actorLink: true,
                         disposition: 0, // neutral
@@ -58,7 +58,7 @@ export class ActorL5r5e extends Actor {
 
             case "army":
                 foundry.utils.mergeObject(
-                    data.prototypeToken,
+                    docData.prototypeToken,
                     {
                         actorLink: true,
                         disposition: 0, // neutral
@@ -73,20 +73,20 @@ export class ActorL5r5e extends Actor {
                 );
                 break;
         }
-        await super.create(data, options);
+        await super.create(docData, options);
     }
 
     /**
      * Entity-specific actions that should occur when the Entity is updated
      * @override
      */
-    async update(data = {}, context = {}) {
+    async update(docData = {}, context = {}) {
         // fix foundry v0.8.8 (config token=object, update=flat array)
-        data = foundry.utils.flattenObject(data);
+        docData = foundry.utils.flattenObject(docData);
 
         // Need a _id
-        if (!data["_id"]) {
-            data["_id"] = this.id;
+        if (!docData["_id"]) {
+            docData["_id"] = this.id;
         }
 
         // Context informations (needed for unlinked token update)
@@ -94,31 +94,31 @@ export class ActorL5r5e extends Actor {
         context.pack = this.pack;
 
         // NPC switch between types : Linked actor for Adversary, unlinked for Minion
-        if (!!data["system.type"] && this.type === "npc" && data["system.type"] !== this.system.type) {
-            data["prototypeToken.actorLink"] = data["system.type"] === "adversary";
+        if (!!docData["system.type"] && this.type === "npc" && docData["system.type"] !== this.system.type) {
+            docData["prototypeToken.actorLink"] = docData["system.type"] === "adversary";
         }
 
         // Only on linked Actor
         if (
-            !!data["prototypeToken.actorLink"] ||
-            (data["prototypeToken.actorLink"] === undefined && this.prototypeToken?.actorLink)
+            !!docData["prototypeToken.actorLink"] ||
+            (docData["prototypeToken.actorLink"] === undefined && this.prototypeToken?.actorLink)
         ) {
             // Update the token name/image if the sheet name/image changed, but only if
             // they was previously the same, and token img was not set in same time
             Object.entries({ name: "name", img: "texture.src" }).forEach(([dataProp, TknProp]) => {
                 if (
-                    data[dataProp] &&
-                    !data["prototypeToken." + TknProp] &&
+                    docData[dataProp] &&
+                    !docData["prototypeToken." + TknProp] &&
                     this[dataProp] === foundry.utils.getProperty(this.prototypeToken, TknProp) &&
-                    this[dataProp] !== data[dataProp]
+                    this[dataProp] !== docData[dataProp]
                 ) {
-                    data["prototypeToken." + TknProp] = data[dataProp];
+                    docData["prototypeToken." + TknProp] = docData[dataProp];
                 }
             });
         }
 
         // Now using updateDocuments
-        return Actor.updateDocuments([data], context).then(() => {
+        return Actor.updateDocuments([docData], context).then(() => {
             // Notify the "Gm Monitor" if this actor is watched
             if (game.settings.get("l5r5e", "gm-monitor-actors").find((e) => e === this.id)) {
                 game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor");

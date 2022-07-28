@@ -100,7 +100,7 @@ export class DicePickerDialog extends FormApplication {
      * Options :
      *   actor             A instance of actor (game.user.character, canvas.tokens.controlled[0].actor, ...)
      *   actorId           string (AbYgKrNwWeAxa9jT)
-     *   actorName         string (Isawa Aki) Careful this is case sensitive
+     *   actorName         string (Isawa Aki) Careful this is case-sensitive
      *   ringId            string (fire)
      *   skillId           string (design)
      *   skillCatId        string (artisan)
@@ -193,7 +193,7 @@ export class DicePickerDialog extends FormApplication {
         if (!actor) {
             return;
         }
-        if (actor instanceof Actor || !actor.isOwner) {
+        if (!(actor instanceof Actor) || !actor.isOwner) {
             console.warn("L5R5E | DP | Actor rejected : Not a valid Actor instance or permission was denied", actor);
             return;
         }
