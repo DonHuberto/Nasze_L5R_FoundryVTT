@@ -55,8 +55,38 @@ export default class HooksL5r5e {
     static renderSidebarTab(app, html, data) {
         switch (app.tabName) {
             case "chat":
-                // Add button on dice icon
-                html.find(".chat-control-icon").click(async () => new game.l5r5e.DicePickerDialog().render());
+                // Add DP on dice icon
+                html.find(`.chat-control-icon`).on("mousedown", async (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    switch (event.which) {
+                        case 1:
+                            // Left clic - Local DP
+                            new game.l5r5e.DicePickerDialog().render();
+                            break;
+                        case 3:
+                            // Right clic - Players DP
+                            if (game.user.isGM) {
+                                game.l5r5e.HelpersL5r5e.debounce(
+                                    "gm-request-dp",
+                                    () => {
+                                        game.l5r5e.sockets.openDicePicker({
+                                            users: game.users.players.filter((u) => u.active && u.hasPlayerOwner),
+                                            dpOptions: {
+                                                skillsList: "artisan,martial,scholar,social,trade",
+                                            },
+                                        });
+                                        ui.notifications.info(
+                                            game.i18n.localize("l5r5e.dice.dicepicker.gm_request_dp_to_players")
+                                        );
+                                    },
+                                    3000,
+                                    true
+                                )();
+                            }
+                            break;
+                    }
+                });
 
                 // Add title on button dice icon
                 html.find(".chat-control-icon")[0].title = game.i18n.localize("l5r5e.dice.dicepicker.title");

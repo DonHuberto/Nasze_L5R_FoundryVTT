@@ -7,6 +7,9 @@ __! Be certain to carefully back up any critical user data before installing thi
 - Updated the initiative behaviour, he now open the DicePicker for connected players.
 - Added a `game.user.isFirstGM` property for some traitements (socket and migration) to prevent multiple executions with multiple GM connected.
 - Added socket API `openDicePicker` to remotely open the DicePicker (see usage below).
+- Added a distinction when clicking on the dice icon on Chat tab :
+  - Left clic, open the DP locally (as usual).
+  - Right clic (GM only), now open the DP for players with all skill list.
 - Added `itemUuid` to Roll/RnK for technique and weapons to be readable in ChatMessage (use `fromUuid()` / `fromUuidSync()` to get the object).
 - Added wiki link in system tab.
 - Removed restriction on technique types when dropping a technique (Sheet and 20Q. #39).

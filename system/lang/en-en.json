@@ -138,7 +138,8 @@
                 "void_point_tooltip": "Void point",
                 "skill_assistance_label": "Assistance",
                 "roll_label": "Roll",
-                "bt_add_macro": "Add a macro"
+                "bt_add_macro": "Add a macro",
+                "gm_request_dp_to_players": "Roll request sent to players"
             },
             "roll_n_keep": {
                 "title": "Roll & Keep",

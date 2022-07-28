@@ -138,7 +138,8 @@
                 "void_point_tooltip": "Point de Vide",
                 "skill_assistance_label": "Assistance",
                 "roll_label": "Lancer",
-                "bt_add_macro": "Ajouter une macro"
+                "bt_add_macro": "Ajouter une macro",
+                "gm_request_dp_to_players": "Demande de jet envoyée aux joueurs"
             },
             "roll_n_keep": {
                 "title": "Roll & Keep",

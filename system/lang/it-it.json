@@ -138,7 +138,8 @@
                 "void_point_tooltip": "Punto Vuoto",
                 "skill_assistance_label": "Aiuto",
                 "roll_label": "Tira",
-                "bt_add_macro": "Aggiungi una macro"
+                "bt_add_macro": "Aggiungi una macro",
+                "gm_request_dp_to_players": "Roll request sent to players"
             },
             "roll_n_keep": {
                 "title": "Tira e Tieni",
