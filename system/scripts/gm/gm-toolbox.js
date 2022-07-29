@@ -20,7 +20,7 @@ export class GmToolbox extends FormApplication {
             classes: ["l5r5e", "gm-toolbox"],
             template: CONFIG.l5r5e.paths.templates + "gm/gm-toolbox.html",
             title: game.i18n.localize("l5r5e.gm.toolbox.title"),
-            left: x - 627,
+            left: x - 630,
             top: y - 98,
             closeOnSubmit: false,
             submitOnClose: false,

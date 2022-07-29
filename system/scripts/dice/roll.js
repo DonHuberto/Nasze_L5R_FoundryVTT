@@ -356,8 +356,6 @@ export class RollL5r5e extends Roll {
         );
         messageData.roll = this;
 
-        console.log("toMessage", messageData); //todo tmp
-
         // Either create the message or just return the chat data
         return ChatMessage.implementation.create(messageData, {
             rollMode: rMode,
