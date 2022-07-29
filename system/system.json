@@ -11,7 +11,7 @@
     "version": "1.9.0",
     "compatibility": {
         "minimum": 10,
-        "verified": "10.275"
+        "verified": "10.276"
     },
     "manifestPlusVersion": "1.2.0",
     "socket": true,

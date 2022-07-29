@@ -19,13 +19,13 @@ export class RollL5r5e extends Roll {
         history: null,
         initialFormula: null,
         isInitiativeRoll: false,
+        item: null,
         keepLimit: null,
         rnkEnded: false,
         skillAssistance: 0,
         skillCatId: "",
         skillId: "",
         stance: "",
-        itemUuid: null,
         strifeApplied: 0,
         summary: {
             totalSuccess: 0,
@@ -35,7 +35,7 @@ export class RollL5r5e extends Roll {
             opportunity: 0,
             strife: 0,
         },
-        targetInfos: null,
+        target: null,
         voidPointUsed: false,
     };
 
@@ -56,7 +56,7 @@ export class RollL5r5e extends Roll {
         // Target Infos : get the 1st selected target
         const targetToken = Array.from(game.user.targets).values().next()?.value?.document;
         if (targetToken) {
-            this.targetInfos = targetToken;
+            this.target = targetToken;
         }
     }
 
@@ -72,13 +72,8 @@ export class RollL5r5e extends Roll {
      * Set Target Infos (Name, Img)
      * @param {TokenDocument} targetToken
      */
-    set targetInfos(targetToken) {
-        this.l5r5e.targetInfos = targetToken
-            ? {
-                  img: targetToken.texture.src || null,
-                  name: targetToken.name,
-              }
-            : null;
+    set target(targetToken) {
+        this.l5r5e.target = targetToken || null;
     }
 
     /**
@@ -361,6 +356,8 @@ export class RollL5r5e extends Roll {
         );
         messageData.roll = this;
 
+        console.log("toMessage", messageData); //todo tmp
+
         // Either create the message or just return the chat data
         return ChatMessage.implementation.create(messageData, {
             rollMode: rMode,
@@ -401,6 +398,34 @@ export class RollL5r5e extends Roll {
             }
         }
 
+        // Get real Item object
+        if (data.l5r5e.item) {
+            if (data.l5r5e.item instanceof game.l5r5e.ItemL5r5e) {
+                // Duplicate break the object, relink it
+                roll.l5r5e.item = data.l5r5e.item;
+            } else if (data.l5r5e.item.uuid) {
+                // Only uuid, get the object
+                const tmpItem = fromUuidSync(data.l5r5e.item.uuid);
+                if (tmpItem) {
+                    roll.l5r5e.item = tmpItem;
+                }
+            }
+        }
+
+        // Get real Target object
+        if (data.l5r5e.target) {
+            if (data.l5r5e.target instanceof TokenDocument) {
+                // Duplicate break the object, relink it
+                roll.l5r5e.target = data.l5r5e.target;
+            } else if (data.l5r5e.target.uuid) {
+                // Only uuid, get the object
+                const tmpItem = fromUuidSync(data.l5r5e.target.uuid);
+                if (tmpItem) {
+                    roll.l5r5e.target = tmpItem;
+                }
+            }
+        }
+
         return roll;
     }
 
@@ -414,10 +439,24 @@ export class RollL5r5e extends Roll {
         json.data = foundry.utils.duplicate(this.data);
         json.l5r5e = foundry.utils.duplicate(this.l5r5e);
 
-        // lightweight the Actor
+        // Lightweight the Actor
         if (json.l5r5e.actor && this.l5r5e.actor?.uuid) {
             json.l5r5e.actor = {
                 uuid: this.l5r5e.actor.uuid,
+            };
+        }
+
+        // Lightweight the Item
+        if (json.l5r5e.item && this.l5r5e.item?.uuid) {
+            json.l5r5e.item = {
+                uuid: this.l5r5e.item.uuid,
+            };
+        }
+
+        // Lightweight the Target Token
+        if (json.l5r5e.target && this.l5r5e.target?.uuid) {
+            json.l5r5e.target = {
+                uuid: this.l5r5e.target.uuid,
             };
         }
 

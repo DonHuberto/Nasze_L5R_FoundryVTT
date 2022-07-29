@@ -12,7 +12,7 @@ difficulty: 2,
 difficultyHidden: false,
 history: null,           // Stored data of the RnK, can be big
 initialFormula: null,    // The initial formula use in DP
-itemUuid: null,          // technique or weapon uuid
+item: null,              // technique or weapon object
 isInitiativeRoll: false,
 keepLimit: null,         // Max number of dice to keep
 rnkEnded: false,         // false if the player can modify the roll.
@@ -29,6 +29,6 @@ summary: {
     opportunity: 0,
     strife: 0,
 },
-targetInfos: null,       // "img" and "name" of the target if any
+target: null,            // Target object (TokenDocument)
 voidPointUsed: false,    // if a void point as been used for this roll
 ```

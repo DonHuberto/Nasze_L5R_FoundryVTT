@@ -11,7 +11,7 @@ export class CombatL5r5e extends Combat {
     /**
      * Roll initiative for one or multiple Combatants within the Combat entity
      * @param {string|string[]} ids     A Combatant id or Array of ids for which to roll
-     * @param {string|null} [formula]   A non-default initiative formula to roll. Otherwise the system default is used.
+     * @param {string|null} [formula]   A non-default initiative formula to roll. Otherwise, the system default is used.
      * @param {boolean} [updateTurn]    Update the Combat turn after adding new initiative scores to keep the turn on
      *                                  the same Combatant.
      * @param {object} [messageOptions] Additional options with which to customize created Chat Messages
@@ -118,6 +118,7 @@ export class CombatL5r5e extends Combat {
                 } else {
                     // Regular
                     roll = new game.l5r5e.RollL5r5e(formula ?? createFormula.join("+"));
+                    roll.item = messageOptions.item;
                     roll.actor = combatant.actor;
                     roll.l5r5e.isInitiativeRoll = true;
                     roll.l5r5e.stance = actorSystem.stance;

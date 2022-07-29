@@ -5,10 +5,24 @@
 export class DicePickerDialog extends FormApplication {
     /**
      * Current Actor
-     * @type {Actor}
+     * @type {ActorL5r5e}
      * @private
      */
     _actor = null;
+
+    /**
+     * Current used Item (Technique, Weapon)
+     * @type {ItemL5r5e}
+     * @private
+     */
+    _item = null;
+
+    /**
+     * Current Target (Token)
+     * @type {TokenDocument}
+     * @private
+     */
+    _target = null;
 
     /**
      * If GM or Constructor set to hidden, lock the player choice, so he cannot look the TN
@@ -42,10 +56,8 @@ export class DicePickerDialog extends FormApplication {
             hidden: false,
             addVoidPoint: false,
         },
-        targetInfos: null,
         useVoidPoint: false,
         isInitiativeRoll: false,
-        itemUuid: null,
     };
 
     /**
@@ -98,19 +110,21 @@ export class DicePickerDialog extends FormApplication {
      * ex: new game.l5r5e.DicePickerDialog({skillId: 'aesthetics', ringId: 'water', actor: game.user.character}).render(true);
      *
      * Options :
-     *   actor             A instance of actor (game.user.character, canvas.tokens.controlled[0].actor, ...)
-     *   actorId           string (AbYgKrNwWeAxa9jT)
-     *   actorName         string (Isawa Aki) Careful this is case-sensitive
-     *   ringId            string (fire)
-     *   skillId           string (design)
-     *   skillCatId        string (artisan)
-     *   skillsList        string[] (artisan,fitness)
-     *   difficulty        number (0-9)
-     *   difficultyHidden  boolean
-     *   isInitiativeRoll  boolean
-     *   itemUuid          string
+     *   actor             {Actor}         Any `Actor` object instance. Ex : `game.user.character`, `canvas.tokens.controlled[0].actor`
+     *   actorId           {string}        This is the `id` not the `uuid` of an actor. Ex : "AbYgKrNwWeAxa9jT"
+     *   actorName         {string}        Careful this is case-sensitive. Ex : "Isawa Aki"
+     *   difficulty        {number}        `1` to `9`
+     *   difficultyHidden  {boolean}       If `true`, hide the difficulty and lock the view for the player.
+     *   isInitiativeRoll  {boolean}       `true` if this is an initiative roll
+     *   item              {Item}          The object of technique or weapon used for this roll.
+     *   itemUuid          {string}        The `uuid` of technique or weapon used for this roll. Can be anything retrieved by `fromUuid()` or `fromUuidSync()`
+     *   ringId            {string}        If not provided, take the current stance of the actor if any. Ex : "fire", "water"
+     *   skillId           {string}        Skill `id`. Ex : "design", "aesthetics", "courtesy"
+     *   skillCatId        {string}        Skill category `id`. Ex : "artisan", "scholar"
+     *   skillsList        {string[]}      `skillId`/`skillCatId` list coma separated. Allow the player to select the skill used in a select. Ex : "artisan,design"
+     *   target            {TokenDocument} The targeted Token
      *
-     * @param options actor, actorId, ringId, actorName, skillId, skillCatId, difficulty, difficultyHidden, isInitiativeRoll, itemUuid
+     * @param options actor, actorId, actorName, difficulty, difficultyHidden, isInitiativeRoll, item, itemUuid, ringId, skillId, skillCatId, skillsList, target
      */
     constructor(options = {}) {
         super({}, options);
@@ -148,10 +162,16 @@ export class DicePickerDialog extends FormApplication {
             this.skillCatId = options.skillCatId;
         }
 
-        // Target Infos : get the 1st selected target
-        const targetToken = Array.from(game.user.targets).values().next()?.value?.document;
-        if (targetToken) {
-            this.targetInfos = targetToken;
+        // Target Infos
+        if (options.target) {
+            this.target = options.target;
+        }
+        if (!this._target) {
+            // Get the 1st selected target
+            const targetToken = Array.from(game.user.targets).values().next()?.value?.document;
+            if (targetToken) {
+                this.target = targetToken;
+            }
         }
 
         // Difficulty
@@ -168,9 +188,11 @@ export class DicePickerDialog extends FormApplication {
         // InitiativeRoll
         this.object.isInitiativeRoll = !!options.isInitiativeRoll;
 
-        // Item UUID (weapon/technique)
-        if (options.itemUuid) {
-            this.object.itemUuid = options.itemUuid;
+        // Item (weapon/technique)
+        if (options.item) {
+            this.item = options.item;
+        } else if (options.itemUuid) {
+            this.item = fromUuidSync(options.itemUuid);
         }
     }
 
@@ -202,16 +224,36 @@ export class DicePickerDialog extends FormApplication {
     }
 
     /**
-     * Set Target Infos (Name, Img)
+     * Set used item
+     * @param {ItemL5r5e} item
+     */
+    set item(item) {
+        if (!item) {
+            return;
+        }
+        if (!(item instanceof Item) || !item.isOwner) {
+            console.warn("L5R5E | DP | Item rejected : Not a valid Item instance or permission was denied", item);
+            return;
+        }
+        this._item = item;
+    }
+
+    /**
+     * Set Target Infos object
      * @param {TokenDocument} targetToken
      */
-    set targetInfos(targetToken) {
-        this.object.targetInfos = targetToken
-            ? {
-                  img: targetToken.texture.src || null,
-                  name: targetToken.name,
-              }
-            : null;
+    set target(targetToken) {
+        if (!targetToken) {
+            return;
+        }
+        if (!(targetToken instanceof TokenDocument) || !targetToken.isOwner) {
+            console.warn(
+                "L5R5E | DP | target rejected : Not a valid TokenDocument instance or permission was denied",
+                targetToken
+            );
+            return;
+        }
+        this._target = targetToken;
     }
 
     /**
@@ -542,8 +584,8 @@ export class DicePickerDialog extends FormApplication {
         if (this.object.isInitiativeRoll) {
             // Initiative roll
             let msgOptions = {
+                item: this._item,
                 skillId: this.object.skill.id,
-                itemUuid: this.object.itemUuid,
                 rnkMessage: null,
                 difficulty: this.object.difficulty.value,
                 useVoidPoint: this.object.useVoidPoint,
@@ -567,12 +609,12 @@ export class DicePickerDialog extends FormApplication {
             const roll = await new game.l5r5e.RollL5r5e(formula.join("+"));
 
             roll.actor = this._actor;
+            roll.l5r5e.item = this._item;
+            roll.l5r5e.target = this._target;
             roll.l5r5e.stance = this.object.ring.id;
             roll.l5r5e.skillId = this.object.skill.id;
-            roll.l5r5e.itemUuid = this.object.itemUuid;
             roll.l5r5e.skillCatId = this.object.skill.cat;
             roll.l5r5e.difficulty = this.object.difficulty.value;
-            roll.l5r5e.targetInfos = this.object.targetInfos;
             roll.l5r5e.voidPointUsed = this.object.useVoidPoint;
             roll.l5r5e.skillAssistance = this.object.skill.assistance;
             roll.l5r5e.difficultyHidden = this.object.difficulty.hidden;
@@ -768,7 +810,7 @@ export class DicePickerDialog extends FormApplication {
             if (infos[1] === "T") {
                 this.difficultyHidden = true;
                 this._difficultyHiddenIsLock.option = true;
-                this.targetInfos = targetToken;
+                this.target = targetToken;
             }
             return true;
         }

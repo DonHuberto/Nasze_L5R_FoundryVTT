@@ -9,8 +9,10 @@ __! Be certain to carefully back up any critical user data before installing thi
 - Added socket API `openDicePicker` to remotely open the DicePicker (see usage below).
 - Added a distinction when clicking on the dice icon on Chat tab :
   - Left clic, open the DP locally (as usual).
-  - Right clic (GM only), now open the DP for players with all skill list.
-- Added `itemUuid` to Roll/RnK for technique and weapons to be readable in ChatMessage (use `fromUuid()` / `fromUuidSync()` to get the object).
+  - Right clic (GM only), now open the DP for players with all skills in list.
+- Added `itemUuid`/`item` to DP and `item` in RnK/Roll for the technique or weapon used to be readable in ChatMessage.
+- Changed `targetInfos` (`name`/`img`) to `target` (`TokenDocument`) on DP/RnK/Roll for better access to the related token.
+- Added @UUID link on target and weapon/technique in ChatMessage.
 - Added wiki link in system tab.
 - Removed restriction on technique types when dropping a technique (Sheet and 20Q. #39).
 - Fixed sync between GM for Combat tracker `initiative encounter type` and `initiative prepared`.
