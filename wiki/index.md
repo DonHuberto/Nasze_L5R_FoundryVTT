@@ -11,6 +11,7 @@
 
 ## For developers
 - [System helping (Contribute)](dev/system-helping.md)
+- [Snippets](dev/snippets.md)
 - [Sockets API](dev/sockets.md)
 - [DicePicker (DP)](dev/dicepicker.md)
 - [Roll n Keep (RnK)](dev/rnk.md)

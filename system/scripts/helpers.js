@@ -597,7 +597,7 @@ export class HelpersL5r5e {
 
     /**
      * Send the description of this Item to chat
-     * @param {JournalL5r5e|ItemL5r5e} document
+     * @param {BaseSheetL5r5e|JournalL5r5e|ItemL5r5e} document
      * @return {Promise<*>}
      */
     static async sendToChat(document) {
@@ -773,7 +773,7 @@ export class HelpersL5r5e {
      * @param {jQuery}   html HTML content of the sheet.
      * @param {string}   name Html name of the input
      * @param {string[]} list Array of string to display
-     * @param {string}   sep  (optional) Separator
+     * @param {string}   sep  Separator (optional, default "")
      */
     static autocomplete(html, name, list = [], sep = "") {
         const inp = document.getElementsByName(name)?.[0];
