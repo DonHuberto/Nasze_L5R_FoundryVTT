@@ -16,6 +16,8 @@ __! Be certain to carefully back up any critical user data before installing thi
 - Added wiki link in system tab.
 - Removed restriction on technique types when dropping a technique (Sheet and 20Q. #39).
 - Fixed sync between GM for Combat tracker `initiative encounter type` and `initiative prepared`.
+- Compendiums :
+  - Updated Blessed Treasure/Concealed Horror/Nemuranai.
 
 ### OpenDicePicker API usage
 #### Fitness skill roll for the all combat targets

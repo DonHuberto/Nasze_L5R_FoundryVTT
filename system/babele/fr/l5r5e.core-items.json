@@ -582,12 +582,6 @@
             "book_reference": "Les Champs de la Victoire"
         },
         {
-            "id": "The Five Akodo Daggers [Blessed Treasure]",
-            "name": "The Five Akodo Daggers [Blessed Treasure] (WIP)",
-            "description": "",
-            "book_reference": "Les Champs de la Victoire"
-        },
-        {
             "id": "Leadership Scrolls [Blessed Treasure]",
             "name": "Leadership Scrolls [Blessed Treasure] (WIP)",
             "description": "",
@@ -630,10 +624,10 @@
             "book_reference": "L’Outremonde p.113"
         },
         {
-            "id": "Kishu: The Oni-Cutting Sword [Blessed Treasure]",
-            "name": "Kishu : Le sabre Tranche-oni [Trésor Béni]",
+            "id": "The blade with no name: Ancestral sword of the Dragon [Blessed Treasure]",
+            "name": "The blade with no name: Ancestral sword of the Dragon [Blessed Treasure] (WIP)",
             "description": "",
-            "book_reference": "L’Outremonde p.113"
+            "book_reference": "Les Royaumes Célestes"
         },
         {
             "id": "Obsidian Ink [Blessed Treasure]",

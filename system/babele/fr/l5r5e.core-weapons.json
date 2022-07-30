@@ -853,6 +853,105 @@
             "grip_2": "N/A",
             "description": "",
             "book_reference": "Livre de Règles p.327"
+        },
+        {
+            "id": "Kishu: The Oni-Cutting Sword [Blessed Treasure]",
+            "name": "Kishu : Le sabre Tranche-oni [Trésor Béni]",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "N/A",
+            "description": "",
+            "book_reference": "L’Outremonde p.113"
+        },
+        {
+            "id": "Chikara: Ancestral sword of the Crab [Blessed Treasure]",
+            "name": "Chikara: Ancestral sword of the Crab [Blessed Treasure] (WIP)",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "N/A",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Shukujo: Ancestral sword of the Crane [Blessed Treasure]",
+            "name": "Shukujo: Ancestral sword of the Crane [Blessed Treasure] (WIP)",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "N/A",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Shori: Ancestral sword of the Lion [Blessed Treasure]",
+            "name": "Shori: Ancestral sword of the Lion [Blessed Treasure] (WIP)",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "Dangerosité +1",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Ofushikai: Ancestral sword of the Phoenix [Blessed Treasure]",
+            "name": "Ofushikai: Ancestral sword of the Phoenix [Blessed Treasure] (WIP)",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Itsuwari: Ancestral sword of the Scorpion [Blessed Treasure]",
+            "name": "Itsuwari: Ancestral sword of the Scorpion [Blessed Treasure] (WIP)",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "Dangerosité +1",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Hayai: Ancestral sword of the Unicorn [Blessed Treasure]",
+            "name": "Hayai: Ancestral sword of the Unicorn [Blessed Treasure] (WIP)",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "N/A",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Kiro: The lost ancestral sword of the Ki-Rin [Concealed Horror]",
+            "name": "Kiro: The lost ancestral sword of the Ki-Rin [Concealed Horror] (WIP)",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "N/A",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Kunshu: Ancestral sword of the hantei [Blessed Treasure]",
+            "name": "Kunshu: Ancestral sword of the hantei [Blessed Treasure] (WIP)",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "Dangerosité +1",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Mizutsumi [Blessed Treasure]",
+            "name": "Mizutsumi [Blessed Treasure] (WIP)",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "Dangerosité +2",
+            "description": "",
+            "book_reference": "Celestial Realms - Deathly Turns"
+        },
+        {
+            "id": "The Five Akodo Daggers [Blessed Treasure]",
+            "name": "The Five Akodo Daggers [Blessed Treasure] (WIP)",
+            "category": "Armes de Poing",
+            "grip_1": "",
+            "grip_2": "Dangerosité +2",
+            "description": "",
+            "book_reference": "Les Champs de la Victoire"
         }
     ]
 }
