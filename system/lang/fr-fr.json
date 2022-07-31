@@ -128,7 +128,8 @@
                 "initiative_roll": "Jet d'initiative",
                 "success_text": "Succès !",
                 "bonus_text": "succès bonus",
-                "fail_text": "Échec !"
+                "fail_text": "Échec !",
+                "unknown_target": "Cible inconnue"
             },
             "dicepicker": {
                 "title": "Dice Picker",

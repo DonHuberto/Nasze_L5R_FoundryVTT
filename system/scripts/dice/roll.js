@@ -290,6 +290,9 @@ export class RollL5r5e extends Roll {
             tooltip: isPrivate ? "" : await this.getTooltip({ from: "render" }),
             total: isPrivate ? "?" : this.total,
             profileImg: this.l5r5e.actor?.img || "icons/svg/mystery-man.svg",
+            noTargetDisclosure:
+                this.l5r5e.item?.system?.difficulty?.startsWith("@T:") &&
+                /\|m(in|ax)/.test(this.l5r5e.item.system.difficulty),
             l5r5e: isPrivate
                 ? {}
                 : {

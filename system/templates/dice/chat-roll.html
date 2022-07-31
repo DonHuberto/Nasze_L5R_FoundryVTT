@@ -38,10 +38,16 @@
     {{/if}}
 
     {{#if l5r5e.target.uuid}}
-    <div class="l5r5e target">
+    <div class="l5r5e target {{#if noTargetDisclosure}}gm-only{{/if}}">
         <div class="profile"><img class="profile-img" src="{{l5r5e.target.texture.src}}" alt="{{l5r5e.target.name}}" /></div>
         <div class="name"> &nbsp; @UUID[{{l5r5e.target.actor.uuid}}]&#123;{{l5r5e.target.name}}&#125;</div>
     </div>
+    {{#if noTargetDisclosure}}
+        <div class="l5r5e target player-only">
+            <div class="profile"><img class="profile-img" src="icons/svg/mystery-man.svg" alt="{{localize 'l5r5e.dice.chat.unknown_target'}}" /></div>
+            <div class="name"> &nbsp; {{localize 'l5r5e.dice.chat.unknown_target'}}</div>
+        </div>
+    {{/if}}
     {{/if}}
 
     {{#if l5r5e.item.uuid}}

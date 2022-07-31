@@ -128,7 +128,8 @@
                 "initiative_roll": "Tiro Iniziativa",
                 "success_text": "Successo!",
                 "bonus_text": "successi bonus",
-                "fail_text": "Fallimento!"
+                "fail_text": "Fallimento!",
+                "unknown_target": "Unknown target"
             },
             "dicepicker": {
                 "title": "Selezione dadi",

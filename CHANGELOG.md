@@ -7,6 +7,7 @@ __! Be certain to carefully back up any critical user data before installing thi
 - Updated the initiative behaviour, he now open the DicePicker for connected players.
 - Added a `game.user.isFirstGM` property for some traitements (socket and migration) to prevent multiple executions with multiple GM connected.
 - Added socket API `openDicePicker` to remotely open the DicePicker (see usage below).
+- Added chat distinction for roll using target (`@T:`) with `min` or `max` for non disclose the target to players.
 - Added a distinction when clicking on the dice icon on Chat tab :
   - Left clic, open the DP locally (as usual).
   - Right clic (GM only), now open the DP for players with all skills in list.

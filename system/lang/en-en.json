@@ -128,7 +128,8 @@
                 "initiative_roll": "Initiative roll",
                 "success_text": "Success!",
                 "bonus_text": "bonus successes",
-                "fail_text": "Fail!"
+                "fail_text": "Fail!",
+                "unknown_target": "Unknown target"
             },
             "dicepicker": {
                 "title": "Dice Picker",

@@ -128,7 +128,8 @@
                 "initiative_roll": "Tirada de Iniciativa",
                 "success_text": "¡Éxito!",
                 "bonus_text": "Éxitos adicionales",
-                "fail_text": "¡Fallo!"
+                "fail_text": "¡Fallo!",
+                "unknown_target": "Unknown target"
             },
             "dicepicker": {
                 "title": "Dice Picker",
