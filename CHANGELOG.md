@@ -4,7 +4,7 @@ Date format : day/month/year
 ## 1.9.0 - ??/??/2022 - Foundry v10 Compatibility
 __! Be certain to carefully back up any critical user data before installing this update !__
 - Updated the System to FoundryVTT v10.
-- Updated the initiative behaviour, he now open the DicePicker for connected players.
+- Updated the initiative behaviour, he now open the DicePicker for PC and Adversaries locally or remotely.
 - Added a `game.user.isFirstGM` property for some traitements (socket and migration) to prevent multiple executions with multiple GM connected.
 - Added socket API `openDicePicker` to remotely open the DicePicker (see usage below).
 - Added chat distinction for roll using target (`@T:`) with `min` or `max` for non disclose the target to players.

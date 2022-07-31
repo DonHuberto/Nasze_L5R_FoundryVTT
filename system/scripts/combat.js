@@ -52,37 +52,10 @@ export class CombatL5r5e extends Combat {
                 continue;
             }
 
-            // Shortcut to system
-            const actorSystem = combatant.actor.system;
-
-            // DicePicker management
-            // formula is empty on the fist call (combat tab buttons)
-            // only select if a player is active for this actor
-            if (
-                !formula &&
-                !combatant.initiative &&
-                combatant.hasPlayerOwner &&
-                combatant.players.some((u) => u.active && !u.isGM)
-            ) {
-                if (game.user.isGM) {
-                    // Open the DP on player side
-                    networkActors.push(combatant.actor);
-                } else {
-                    // Open the DP locally
-                    new game.l5r5e.DicePickerDialog({
-                        actor: combatant.actor,
-                        skillId: skillId,
-                        difficulty: cfg.difficulty,
-                        difficultyHidden: cfg.difficultyHidden,
-                        isInitiativeRoll: true,
-                    }).render(true);
-                }
-                continue;
-            }
-
             // Prepared is a boolean or if null we get the info in the actor sheet
             const isPc = combatant.actor.type === "character";
             const isPrepared = combatant.actor.isPrepared;
+            const actorSystem = combatant.actor.system;
 
             // A character’s initiative value is based on their state of preparedness when the conflict began.
             // If the character was ready for the conflict, their base initiative value is their focus attribute.
@@ -93,6 +66,30 @@ export class CombatL5r5e extends Combat {
 
             // Roll only for PC and Adversary
             if (isPc || actorSystem.type === "adversary") {
+                // DicePicker management
+                // formula is empty on the fist call (combat tab buttons)
+                if (!formula && !combatant.initiative) {
+                    // if a player is currently active for this actor
+                    const havePlayer = combatant.players.some((u) => u.active);
+                    const isMyCharacter = combatant.players.some((u) => u._id === game.user.id);
+
+                    if (game.user.isGM && havePlayer && !isMyCharacter) {
+                        // Open the DP on player side
+                        networkActors.push(combatant.actor);
+                        continue;
+                    } else if (isMyCharacter || (game.user.isGM && !havePlayer)) {
+                        // Open the DP locally
+                        new game.l5r5e.DicePickerDialog({
+                            actor: combatant.actor,
+                            skillId: skillId,
+                            difficulty: cfg.difficulty,
+                            difficultyHidden: cfg.difficultyHidden,
+                            isInitiativeRoll: true,
+                        }).render(true);
+                        continue;
+                    }
+                }
+
                 // Roll formula
                 const createFormula = [];
                 if (!formula) {
@@ -137,7 +134,7 @@ export class CombatL5r5e extends Combat {
                     rnkMessage = await roll.toMessage({ flavor });
                 }
 
-                // Ugly but work... i need the new message
+                // Ugly but work... I need the new message
                 if (ids.length === 1) {
                     messageOptions.rnkMessage = rnkMessage;
                 }
