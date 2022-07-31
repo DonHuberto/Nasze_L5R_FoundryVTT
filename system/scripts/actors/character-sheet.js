@@ -79,12 +79,12 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
         // Autocomplete
         game.l5r5e.HelpersL5r5e.autocomplete(
             html,
-            "data.identity.clan",
+            "system.identity.clan",
             game.l5r5e.HelpersL5r5e.getLocalizedClansList()
         );
         game.l5r5e.HelpersL5r5e.autocomplete(
             html,
-            "data.identity.family",
+            "system.identity.family",
             CONFIG.l5r5e.families.get(
                 Object.entries(game.i18n.translations.l5r5e.clans).find(
                     ([k, v]) => v === this.actor.system.identity.clan
@@ -93,13 +93,13 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
         );
         game.l5r5e.HelpersL5r5e.autocomplete(
             html,
-            "data.identity.school",
+            "system.identity.school",
             game.l5r5e.HelpersL5r5e.getSchoolsList(),
             ","
         );
         game.l5r5e.HelpersL5r5e.autocomplete(
             html,
-            "data.identity.roles",
+            "system.identity.roles",
             game.l5r5e.HelpersL5r5e.getLocalizedRolesList(),
             ","
         );

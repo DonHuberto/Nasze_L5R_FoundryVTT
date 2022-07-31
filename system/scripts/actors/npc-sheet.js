@@ -68,7 +68,7 @@ export class NpcSheetL5r5e extends BaseCharacterSheetL5r5e {
         // Autocomplete
         game.l5r5e.HelpersL5r5e.autocomplete(
             html,
-            "data.attitude",
+            "system.attitude",
             CONFIG.l5r5e.demeanors.map((e) => {
                 const modifiers = [];
                 Object.entries(e.mod).forEach(([k, v]) => {
@@ -86,15 +86,15 @@ export class NpcSheetL5r5e extends BaseCharacterSheetL5r5e {
      */
     _updateObject(event, formData) {
         // Redo the demeanor to set the rings data
-        if (formData["autoCompleteListName"] === "data.attitude" && formData["autoCompleteListSelectedIndex"] >= 0) {
+        if (formData["autoCompleteListName"] === "system.attitude" && formData["autoCompleteListSelectedIndex"] >= 0) {
             const demeanor = CONFIG.l5r5e.demeanors[formData["autoCompleteListSelectedIndex"]] || null;
             if (demeanor) {
-                formData["data.attitude"] = game.i18n.localize(`l5r5e.demeanor.${demeanor.id}`);
+                formData["system.attitude"] = game.i18n.localize(`l5r5e.demeanor.${demeanor.id}`);
                 CONFIG.l5r5e.stances.forEach((ring) => {
-                    formData[`data.rings_affinities.${ring}`] = 0;
+                    formData[`system.rings_affinities.${ring}`] = 0;
                 });
                 Object.entries(demeanor.mod).forEach(([k, v]) => {
-                    formData[`data.rings_affinities.${k}`] = v;
+                    formData[`system.rings_affinities.${k}`] = v;
                 });
             }
         }
