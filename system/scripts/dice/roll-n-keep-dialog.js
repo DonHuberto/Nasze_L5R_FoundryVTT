@@ -250,7 +250,7 @@ export class RollnKeepDialog extends FormApplication {
             ...(await super.getData(options)),
             isGM: game.user.isGM,
             showChoices: options.editable && !rollData.rnkEnded,
-            showStrifeBt: options.editable && rollData.summary.strife > 0 && rollData.actor?.isCharacter,
+            showStrifeBt: options.editable && rollData.summary.strife > 0 && rollData.actor?.isCharacterType,
             cssClass: this.options.classes.join(" "),
             data: this.object,
             l5r5e: rollData,
@@ -713,7 +713,7 @@ export class RollnKeepDialog extends FormApplication {
             // Apply strife to actor
             const strifeApplied = Math.min(this.roll.l5r5e.summary.strife, Math.max(0, formData.strifeApplied));
             const actorMod = strifeApplied - this.roll.l5r5e.strifeApplied;
-            if (actorMod !== 0 && this.roll.l5r5e.actor?.isCharacter) {
+            if (actorMod !== 0 && this.roll.l5r5e.actor?.isCharacterType) {
                 await this.roll.l5r5e.actor.update({
                     system: {
                         strife: {

@@ -220,7 +220,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
      * @private
      */
     async _updateLinkedActorData(type, actor, isInit = false) {
-        if (!actor || actor.documentName !== "Actor" || !actor.isCharacter) {
+        if (!actor || actor.documentName !== "Actor" || !actor.isCharacterType) {
             console.warn("L5R5E | Wrong actor type", actor?.type, actor);
             return;
         }

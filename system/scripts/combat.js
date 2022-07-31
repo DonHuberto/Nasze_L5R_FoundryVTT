@@ -44,7 +44,7 @@ export class CombatL5r5e extends Combat {
             }
 
             // Skip non character types (army)
-            if (!combatant.actor.isCharacter) {
+            if (!combatant.actor.isCharacterType) {
                 updatedCombatants.push({
                     _id: combatant.id,
                     initiative: 0,
@@ -53,7 +53,7 @@ export class CombatL5r5e extends Combat {
             }
 
             // Prepared is a boolean or if null we get the info in the actor sheet
-            const isPc = combatant.actor.type === "character";
+            const isPc = combatant.actor.isCharacter;
             const isPrepared = combatant.actor.isPrepared;
             const actorSystem = combatant.actor.system;
 
@@ -65,7 +65,7 @@ export class CombatL5r5e extends Combat {
                 isPrepared === "true" ? actorSystem.focus : actorSystem.is_compromised ? 1 : actorSystem.vigilance;
 
             // Roll only for PC and Adversary
-            if (isPc || actorSystem.type === "adversary") {
+            if (isPc || combatant.actor.isAdversary) {
                 // DicePicker management
                 // formula is empty on the fist call (combat tab buttons)
                 if (!formula && !combatant.initiative) {
@@ -174,14 +174,14 @@ export class CombatL5r5e extends Combat {
     /**
      * Define how the array of Combatants is sorted in the displayed list of the tracker.
      * This method can be overridden by a system or module which needs to display combatants in an alternative order.
-     * By default sort by initiative, falling back to name
+     * By default, sort by initiative, falling back to name
      * @private
      */
     _sortCombatants(a, b) {
         // if tie : sort by honor, less honorable first
         if (a.initiative === b.initiative) {
             // skip if no actor or if armies
-            if (!a.actor || !b.actor || a.actor.type === "army" || b.actor.type === "army") {
+            if (!a.actor || !b.actor || a.actor.isArmy || b.actor.isArmy) {
                 return 0;
             }
 

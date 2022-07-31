@@ -621,12 +621,29 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
         event.stopPropagation();
         const li = $(event.currentTarget);
         const weapon = this._getWeaponInfos(li.data("weapon-id") || null);
+        const isInitiative = li.data("initiative") || false;
+
+        if (isInitiative) {
+            if (!game.combat) {
+                ui.notifications.warn(game.i18n.localize("COMBAT.NoneActive"));
+                return;
+            }
+            if (!this.actor.canDoInitiativeRoll) {
+                ui.notifications.error(game.i18n.localize("l5r5e.conflict.initiative.already_set"));
+                return;
+            }
+            // Minion specific
+            if (this.actor.isMinion) {
+                this.actor.rollInitiative().then();
+                return;
+            }
+        }
 
         new game.l5r5e.DicePickerDialog({
             ringId: li.data("ring") || null,
             skillId: weapon?.skill || li.data("skill") || null,
             skillCatId: li.data("skillcat") || null,
-            isInitiativeRoll: li.data("initiative") || false,
+            isInitiativeRoll: isInitiative,
             actor: this.actor,
             itemUuid: weapon?.uuid,
         }).render(true);

@@ -125,9 +125,7 @@ export class GmMonitor extends FormApplication {
             ...(await super.getData(options)),
             data: {
                 ...this.object,
-                actors: this.object.actors.filter((e) =>
-                    this.object.view === "armies" ? e.type === "army" : e.type !== "army"
-                ),
+                actors: this.object.actors.filter((a) => (this.object.view === "armies" ? a.isArmy : !a.isArmy)),
             },
         };
     }
@@ -178,7 +176,7 @@ export class GmMonitor extends FormApplication {
                 case "weapons":
                     return this._getTooltipWeapons(actor);
                 case "global":
-                    return actor.type === "army" ? this._getTooltipArmiesGlobal(actor) : this._getTooltipGlobal(actor);
+                    return actor.isArmy ? this._getTooltipArmiesGlobal(actor) : this._getTooltipGlobal(actor);
             }
         });
     }

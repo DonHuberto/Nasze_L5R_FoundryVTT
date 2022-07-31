@@ -197,12 +197,12 @@ export class GmToolbox extends FormApplication {
 
         for await (const actor of game.actors.contents) {
             // Only characters types
-            if (!actor.isCharacter) {
+            if (!actor.isCharacterType) {
                 continue;
             }
 
             // Manage left/right button
-            if (!isAll && (actor.type !== "character" || !actor.hasPlayerOwner)) {
+            if (!isAll && (!actor.isCharacter || !actor.hasPlayerOwner)) {
                 continue;
             }
 

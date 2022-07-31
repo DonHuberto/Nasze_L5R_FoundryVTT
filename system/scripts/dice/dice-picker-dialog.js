@@ -403,7 +403,7 @@ export class DicePickerDialog extends FormApplication {
             canUseVoidPoint:
                 this.object.difficulty.addVoidPoint ||
                 !this._actor ||
-                (this._actor.isCharacter && this._actor.system.void_points.value > 0),
+                (this._actor.isCharacterType && this._actor.system.void_points.value > 0),
             disableSubmit: this.object.skill.value < 1 && this.object.ring.value < 1,
             difficultyHiddenIsLock: this._difficultyHiddenIsLock.gm || this._difficultyHiddenIsLock.option,
         };
@@ -536,8 +536,8 @@ export class DicePickerDialog extends FormApplication {
                 ui.notifications.warn(game.i18n.localize("COMBAT.NoneActive"));
                 return this.close();
             }
-            const combatant = game.combat.combatants.find((c) => c.actor.id === this._actor.id && c.initiative > 0);
-            if (combatant) {
+
+            if (!this._actor.canDoInitiativeRoll) {
                 ui.notifications.error(game.i18n.localize("l5r5e.conflict.initiative.already_set"));
                 return this.close();
             }
@@ -721,7 +721,7 @@ export class DicePickerDialog extends FormApplication {
             const targetGrp = Array.from(game.user.targets).reduce(
                 (acc, tgt) => {
                     const targetActor = tgt.document.actor;
-                    if (!targetActor.isCharacter) {
+                    if (!targetActor.isCharacterType) {
                         return acc;
                     }
 

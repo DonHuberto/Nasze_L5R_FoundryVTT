@@ -130,11 +130,11 @@ export class ActorL5r5e extends Actor {
     prepareData() {
         super.prepareData();
 
-        if (this.isCharacter) {
+        if (this.isCharacterType) {
             const system = this.system;
 
             // No automation for npc as they cheat in stats
-            if (this.type === "character") {
+            if (this.isCharacter) {
                 ActorL5r5e.computeDerivedAttributes(system);
             }
 
@@ -242,8 +242,48 @@ export class ActorL5r5e extends Actor {
      * Return true if this actor is a PC or NPC
      * @return {boolean}
      */
-    get isCharacter() {
+    get isCharacterType() {
         return ["character", "npc"].includes(this.type);
+    }
+
+    /**
+     * Return true if this actor is a Character
+     * @return {boolean}
+     */
+    get isCharacter() {
+        return this.type === "character";
+    }
+
+    /**
+     * Return true if this actor is an Adversary
+     * @return {boolean}
+     */
+    get isAdversary() {
+        return this.type === "npc" && this.system.type === "adversary";
+    }
+
+    /**
+     * Return true if this actor is a Minion
+     * @return {boolean}
+     */
+    get isMinion() {
+        return this.type === "npc" && this.system.type === "minion";
+    }
+
+    /**
+     * Return true if this actor is an Army
+     * @return {boolean}
+     */
+    get isArmy() {
+        return this.type === "army";
+    }
+
+    /**
+     * Return true if this actor can do a initiative roll
+     * @returns {boolean}
+     */
+    get canDoInitiativeRoll() {
+        return game.combat?.combatants.some((c) => c.tokenId === this.token?._id && !c.initiative);
     }
 
     /**
@@ -275,7 +315,7 @@ export class ActorL5r5e extends Actor {
      * @return {boolean}
      */
     get isPrepared() {
-        if (!this.isCharacter) {
+        if (!this.isCharacterType) {
             return false;
         }
 
@@ -286,7 +326,7 @@ export class ActorL5r5e extends Actor {
         };
 
         // Prepared is a boolean or if null we get the info in the actor
-        let isPrepared = this.type === "character" ? cfg.character : cfg[this.system.type];
+        let isPrepared = this.isCharacter ? cfg.character : cfg[this.system.type];
         if (isPrepared === "null") {
             isPrepared = this.system.prepared ? "true" : "false";
         }
@@ -299,7 +339,7 @@ export class ActorL5r5e extends Actor {
      * @return {number|null}
      */
     get statusRank() {
-        if (!this.isCharacter) {
+        if (!this.isCharacterType) {
             return null;
         }
         return Math.floor(this.system.social.status / 10);
@@ -310,7 +350,7 @@ export class ActorL5r5e extends Actor {
      * @return {number|null}
      */
     get intrigueRank() {
-        if (!this.isCharacter) {
+        if (!this.isCharacterType) {
             return null;
         }
         return this.type === "npc" ? this.system.conflict_rank.social : this.system.identity.school_rank;
@@ -321,7 +361,7 @@ export class ActorL5r5e extends Actor {
      * @return {number|null}
      */
     get martialRank() {
-        if (!this.isCharacter) {
+        if (!this.isCharacterType) {
             return null;
         }
         return this.type === "npc" ? this.system.conflict_rank.martial : this.system.identity.school_rank;
