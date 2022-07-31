@@ -1,5 +1,5 @@
 /**
- * Volatile Storage - Store things like collapsible state (refresh kill it)
+ * Client side volatile storage - Store things like collapsible state (refresh kill it)
  */
 export class Storage {
     store = new Map();

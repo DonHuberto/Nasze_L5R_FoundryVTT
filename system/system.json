@@ -40,217 +40,217 @@
             "name": "core-properties",
             "label": "Properties",
             "path": "packs/core-properties.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-techniques-kata",
             "label": "Techniques Kata",
             "path": "packs/core-techniques-kata.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-techniques-kiho",
             "label": "Techniques Kihõ",
             "path": "packs/core-techniques-kiho.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-techniques-inversions",
             "label": "Techniques Inversions",
             "path": "packs/core-techniques-inversions.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-techniques-invocations",
             "label": "Techniques Invocations",
             "path": "packs/core-techniques-invocations.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-techniques-rituals",
             "label": "Techniques Rituals",
             "path": "packs/core-techniques-rituals.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-techniques-shuji",
             "label": "Techniques Shuji",
             "path": "packs/core-techniques-shuji.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-techniques-maho",
             "label": "Techniques Mahõ",
             "path": "packs/core-techniques-maho.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-techniques-ninjutsu",
             "label": "Techniques Ninjutsu",
             "path": "packs/core-techniques-ninjutsu.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-techniques-mantra",
             "label": "Techniques Mantra",
             "path": "packs/core-techniques-mantra.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-techniques-school",
             "label": "School Abilities",
             "path": "packs/core-techniques-school.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-techniques-mastery",
             "label": "Mastery Abilities",
             "path": "packs/core-techniques-mastery.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-items",
             "label": "Items",
             "path": "packs/core-items.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-armors",
             "label": "Armors",
             "path": "packs/core-armors.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-weapons",
             "label": "Weapons",
             "path": "packs/core-weapons.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-peculiarities-distinctions",
             "label": "Distinctions",
             "path": "packs/core-peculiarities-distinctions.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-peculiarities-passions",
             "label": "Passions",
             "path": "packs/core-peculiarities-passions.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-peculiarities-adversities",
             "label": "Adversities",
             "path": "packs/core-peculiarities-adversities.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-peculiarities-anxieties",
             "label": "Anxieties",
             "path": "packs/core-peculiarities-anxieties.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-bonds",
             "label": "Bonds",
             "path": "packs/core-bonds.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-titles",
             "label": "Titles",
             "path": "packs/core-titles.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-item-patterns",
             "label": "Item Patterns",
             "path": "packs/core-item-patterns.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-signature-scrolls",
             "label": "Signature Scrolls",
             "path": "packs/core-signature-scrolls.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-celestial-implement-boons",
             "label": "Celestial Implement Boons",
             "path": "packs/core-celestial-implement-boons.db",
-            "entity": "Item",
+            "type": "Item",
             "system": "l5r5e"
         },
         {
             "name": "core-journal-school-curriculum",
             "label": "School Curriculum",
             "path": "packs/core-journal-school-curriculum.db",
-            "entity": "JournalEntry",
+            "type": "JournalEntry",
             "system": "l5r5e"
         },
         {
             "name": "core-journal-conditions",
             "label": "Conditions",
             "path": "packs/core-journal-conditions.db",
-            "entity": "JournalEntry",
+            "type": "JournalEntry",
             "system": "l5r5e"
         },
         {
             "name": "core-journal-terrain-qualities",
             "label": "Terrain Qualities",
             "path": "packs/core-journal-terrain-qualities.db",
-            "entity": "JournalEntry",
+            "type": "JournalEntry",
             "system": "l5r5e"
         },
         {
             "name": "core-journal-great-clans-presentation",
             "label": "Great Clans Presentation",
             "path": "packs/core-journal-great-clans-presentation.db",
-            "entity": "JournalEntry",
+            "type": "JournalEntry",
             "system": "l5r5e"
         },
         {
             "name": "core-journal-opportunities",
             "label": "Opportunities",
             "path": "packs/core-journal-opportunities.db",
-            "entity": "JournalEntry",
+            "type": "JournalEntry",
             "system": "l5r5e"
         },
         {
             "name": "core-name-tables",
             "label": "Name Tables",
             "path": "packs/core-name-tables.db",
-            "entity": "RollTable",
+            "type": "RollTable",
             "system": "l5r5e"
         },
         {
             "name": "core-macros",
             "label": "L5R5E Macros",
             "path": "packs/core-macros.db",
-            "entity": "Macro",
+            "type": "Macro",
             "system": "l5r5e"
         }
     ],

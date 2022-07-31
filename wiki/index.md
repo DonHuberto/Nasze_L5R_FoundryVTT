@@ -16,3 +16,4 @@
 - [DicePicker (DP)](dev/dicepicker.md)
 - [Roll n Keep (RnK)](dev/rnk.md)
 - [Roll](dev/roll.md)
+- [Storage](dev/storage.md)
