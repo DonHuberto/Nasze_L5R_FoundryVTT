@@ -86,7 +86,10 @@ export const RegisterSettings = function () {
         config: false,
         type: String,
         default: "null",
-        onChange: () => game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor"),
+        onChange: () => {
+            game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor");
+            ui.combat.render(true);
+        },
     });
     game.settings.register("l5r5e", "initiative-prepared-adversary", {
         name: "Initiative NPC adversary are prepared or not",
@@ -94,7 +97,10 @@ export const RegisterSettings = function () {
         config: false,
         type: String,
         default: "null",
-        onChange: () => game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor"),
+        onChange: () => {
+            game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor");
+            ui.combat.render(true);
+        },
     });
     game.settings.register("l5r5e", "initiative-prepared-minion", {
         name: "Initiative NPC minion are prepared or not",
@@ -102,7 +108,10 @@ export const RegisterSettings = function () {
         config: false,
         type: String,
         default: "null",
-        onChange: () => game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor"),
+        onChange: () => {
+            game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor");
+            ui.combat.render(true);
+        },
     });
 
     /* ------------------------------------ */
