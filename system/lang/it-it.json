@@ -177,13 +177,13 @@
         "weapons": {
             "title": "Armi",
             "damage": "Danni",
-            "range": "Portata",
+            "range": "Raggio",
             "stats": "Statistiche",
             "sheathed": "Equipaggiata / Infoderata",
             "readied": "Pronta",
             "category": "Categoria",
-            "deadliness": "Mortalità",
-            "grips": "Grips",
+            "deadliness": "Letalità",
+            "grips": "Impugnatura",
             "1hand": "1 mano",
             "2hand": "2 mani"
         },
@@ -203,12 +203,12 @@
             "only_one": "Il tuo personaggio può avere solo una di questo tipo di tecniche.",
             "type": "Tecniche permesse",
             "kata": "Kata",
-            "kiho": "Kihõ",
+            "kiho": "Kihō",
             "inversion": "Inversione",
             "invocation": "Invocazione",
             "ritual": "Rituale",
             "shuji": "Shuji",
-            "maho": "Mahõ",
+            "maho": "Mahō",
             "ninjutsu": "Ninjutsu",
             "mantra": "Mantra",
             "school_ability": "Abilità di scuola",
@@ -244,7 +244,7 @@
                 "less_significant": "Meno importante"
             },
             "titles": "Titoli",
-            "attitude": "Demeanor:",
+            "attitude": "Archetipo:",
             "advantages": "Distinzioni e Passioni",
             "disadvantages": "Avversità e Ansietà",
             "bonds": "Legami",
@@ -385,16 +385,16 @@
             "total_xp_spent": "Exp spesi",
             "total_xp_curriculum": "Exp spesi nel curriculum",
             "curriculum": "In curriculum",
-            "curriculum_validate": "Complete questo grado",
+            "curriculum_validate": "Completa questo grado",
             "rarity_modifier": "Modificatore rarità",
             "item_pattern": "Item Patterns",
             "signature_scroll": "Signature Scrolls",
-            "school_curriculum_journal": "Trascina il diario del  curriculum sulla scheda per collegarlo"
+            "school_curriculum_journal": "Trascina il diario del curriculum sulla scheda per collegarlo"
         },
         "character_types": {
             "character": "Personaggio giocante",
             "adversary": "Avversario",
-            "minion": "Minion"
+            "minion": "Gregario"
         },
         "army": {
             "warlord": "Signore della guerra",
