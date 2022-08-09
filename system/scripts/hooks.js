@@ -98,7 +98,11 @@ export default class HooksL5r5e {
                     `<p><a href="${game.system.changelog}" target="_blank">Changelog</a>` +
                         ` <a href="${game.i18n.localize(
                             "l5r5e.settings.wiki.link"
-                        )}" target="_blank">${game.i18n.localize("l5r5e.settings.wiki.title")}</a></p>`
+                        )}" target="_blank">${game.i18n.localize("l5r5e.settings.wiki.title")}</a>` +
+                        ` <a href="${game.i18n.localize(
+                            "l5r5e.settings.custom-compendiums.link"
+                        )}" target="_blank">${game.i18n.localize("l5r5e.settings.custom-compendiums.title")}</a>` +
+                        `</p>`
                 );
                 break;
         }

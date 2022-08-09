@@ -55,6 +55,10 @@
             "random": "Random"
         },
         "settings": {
+            "custom-compendiums": {
+                "title": "Compendiums",
+                "link": "https://gitlab.com/teaml5r/l5r5e/-/wikis/users/custom-compendiums.md"
+            },
             "wiki": {
                 "title": "Wiki",
                 "link": "https://gitlab.com/teaml5r/l5r5e/-/wikis/home"
