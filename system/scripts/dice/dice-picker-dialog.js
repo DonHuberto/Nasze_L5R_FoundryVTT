@@ -538,7 +538,9 @@ export class DicePickerDialog extends FormApplication {
             }
 
             if (!this._actor.canDoInitiativeRoll) {
-                ui.notifications.error(game.i18n.localize("l5r5e.conflict.initiative.already_set"));
+                ui.notifications.error(
+                    game.i18n.localize("l5r5e.conflict.initiative.already_set") + ` [${this._actor.name}]`
+                );
                 return this.close();
             }
         }

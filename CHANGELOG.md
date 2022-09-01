@@ -1,108 +1,59 @@
 # Changelog
 Date format : day/month/year
 
-## 1.9.0 - ??/??/2022 - Foundry v10 Compatibility
+## 1.9.0 - 01/09/2022 - Foundry v10 Compatibility
 __! Be certain to carefully back up any critical user data before installing this update !__
 - Updated the System to FoundryVTT v10.
 - Updated the initiative behaviour, he now open the DicePicker for PC and Adversaries locally or remotely.
 - Added a `game.user.isFirstGM` property for some traitements (socket and migration) to prevent multiple executions with multiple GM connected.
-- Added socket API `openDicePicker` to remotely open the DicePicker (see usage below).
+- Added socket API `openDicePicker` to remotely open the DicePicker (see [usage on wiki](https://gitlab.com/teaml5r/l5r5e/-/wikis/dev/sockets.md#opendicepicker)).
 - Added chat distinction for roll using target (`@T:`) with `min` or `max` for non disclose the target to players.
 - Added a distinction when clicking on the dice icon on Chat tab :
   - Left clic, open the DP locally (as usual).
   - Right clic (GM only), now open the DP for players with all skills in list.
 - Added `itemUuid`/`item` to DP and `item` in RnK/Roll for the technique or weapon used to be readable in ChatMessage.
-- Changed `targetInfos` (`name`/`img`) to `target` (`TokenDocument`) on DP/RnK/Roll for better access to the related token.
-- Added @UUID link on target and weapon/technique in ChatMessage.
-- Added wiki link in system tab.
-- Removed restriction on technique types when dropping a technique (Sheet and 20Q. #39).
+- Replaced `targetInfos` (`name`/`img`) to `target` (`TokenDocument`) on DP/RnK/Roll for better access to the related token.
+- Added `@UUID` link on target and weapon/technique in ChatMessage.
+- Added `Wiki` and `Compendium` link in system tab (open wiki page).
+- Removed restriction on technique types when dropping a technique (Sheet and 20Q. see #39).
 - Fixed sync between GM for Combat tracker `initiative encounter type` and `initiative prepared`.
 - Compendiums :
+  - Added `Writ of the Wild` compendiums.
   - Updated Blessed Treasure/Concealed Horror/Nemuranai.
-
-### OpenDicePicker API usage
-#### Fitness skill roll for the all combat targets
-```js
-game.l5r5e.sockets.openDicePicker({
-    actors: Array.from(game.user.targets).map(t => t.document.actor),
-    dpOptions: {
-        skillId: 'fitness',
-        difficulty: 3,
-    }
-});
-```
-
-#### Initiative roll (skirmish) for all player's character who are in combat tracker
-```js
-game.l5r5e.sockets.openDicePicker({
-    actors: game.combat.combatants.filter(c => c.hasPlayerOwner && !c.isDefeated && !c.initiative).map(c => c.actor),
-    dpOptions: {
-        skillId: 'tactics',
-        difficulty: 1,
-        isInitiativeRoll: true,
-    }
-});
-```
-
-#### Melee skill roll with "fire" ring, pre-selected for all the selected tokens
-```js
-game.l5r5e.sockets.openDicePicker({
-    actors: canvas.tokens.controlled.map(t => t.actor),
-    dpOptions: {
-        ringId: 'fire',
-        skillId: 'melee',
-        difficulty: 2,
-    }
-});
-```
-
-#### Skill roll with skill list for all active players (but GM)
-```js
-game.l5r5e.sockets.openDicePicker({
-    users: game.users.players.filter(u => u.active && u.hasPlayerOwner),
-    dpOptions: {
-        ringId: 'water',
-        skillId: 'unarmed',
-        skillsList: 'melee,ranged,unarmed',
-        difficulty: 3,
-        difficultyHidden: true,
-    }
-});
-```
 
 ## 1.8.2 - 24/06/2022 - Unofficial Italian translation
 - Added Unofficial Italian translation (Corebook only for compendiums), all thanks to EldritchTranslator.
 - Added French translation for Tables.
-- Fixed : Translated table names broke the macros. We are now using IDs to avoid that in "L5R5E Macros" compendium.
+- Fixed : Translated table names broke the macros. We are now using IDs to avoid that in `L5R5E Macros` compendium.
 
 ## 1.8.1 - 09/06/2022 - Small bugfixes
 - Added a restriction on symbols, they are now lower-case only, ex : (air) work, (Air) will not (#36).
 - Added some 20q questions in GM monitor global tooltip (q14, q15, q20) for quick access.
 - Fixed css for body>background-size from auto to cover, for blank scene (Thx to Sasmira).
-- Fixed css for header buttons in maximized state for "OneJournal" module.
-- Updated System manifest property "manifestPlusVersion" to 1.2.0, and added screenshots in media section.
+- Fixed css for header buttons in maximized state for `OneJournal` module.
+- Updated System manifest property `manifestPlusVersion` to 1.2.0, and added screenshots in media section.
 
 ## 1.8.0 - 29/04/2022 - QoL & Compendiums Update
 - Added 179 Japanese villages name table.
 - Added Rōnin icon and tag symbol `(ronin)` (Thanks to TesserWract).
 - Added a different view for GM and Players for hidden roll in ChatMessage.
-- Fixed : Missing translation for EN and ES - "Armors, Weapons, and Items" in Npc Generator dialog.
+- Fixed : Missing translation for EN and ES - `Armors, Weapons, and Items` in Npc Generator dialog.
 - Compendiums :
-  - Added CR missing "Agasha Pattern" Pattern and Property (Thanks to KitCat).
-  - Added "Celestial Implement Boons" compendium (Thanks to TesserWract)
+  - Added CR missing `Agasha Pattern` Pattern and Property (Thanks to KitCat).
+  - Added `Celestial Implement Boons` compendium (Thanks to TesserWract)
   - Updated Weapon Names and Grips (Thanks to TesserWract) :
-    - Added "N/A" to invalid weapon grips.
-    - Grips with more than one quality and/or style now use a more consistent format: "(style): Quality 1, Quality 2, ..."
-    - Renamed "Tinbe-Rochin" to "Rochin" as the DB entry is for the single item rather than the item pair.
+    - Added `N/A` to invalid weapon grips.
+    - Grips with more than one quality and/or style now use a more consistent format: `(style): Quality 1, Quality 2, ...`
+    - Renamed `Tinbe-Rochin` to `Rochin` as the DB entry is for the single item rather than the item pair.
     - Added macrons to relevant weapon names.
-- Refactor the way of symbols was handled, now compatible with "monks enhanced journal" module.
+- Refactor the way of symbols was handled, now compatible with `monks enhanced journal` module.
 
 ## 1.7.1 - 01/04/2022 - Spring fixes
 - PC/NPC sheet :
   - Fixed technique with a skill set, in a title, now open the DicePicker as intended.
 - Roll/DP/RnK :
   - Fixed the way an actor is lightweight and re-construct from chat message. This fix minions npc sync with multiple token (missing context).
-- Added "changelog" and "readme" properties in system.json
+- Added `changelog` and `readme` properties in system.json
 
 ## 1.7.0 - 28/03/2022 - Strife, DiceRoller for Techniques & Npc Generator
 - NPC Sheet :
@@ -120,7 +71,7 @@ game.l5r5e.sockets.openDicePicker({
   - Notes : Techniques in sheet need to be re-imported from the compendium or manually updated for this to work.
   - Trying an autocomplete on some fields : clan, family, school, roles, demeanor.
 - Techniques Sheet & Compendiums :
-  - Added difficulty and skill values (not to all techniques).
+  - Added difficulty and skill values (not to all techniques. see [usage on wiki](https://gitlab.com/teaml5r/l5r5e/-/wikis/users/techniques-syntaxe.md)).
   - Trying an autocomplete on skill field.
 - DicePicker :
   - Added TN hidden difficulty visibility for GM (ex: ?2?).
@@ -140,33 +91,10 @@ game.l5r5e.sockets.openDicePicker({
 - Fixed image following the technique_type on technique sheet.
 - Fixed linked actor image compatibility with Tokenizer.
 - Fixed svg height/width for firefox.
-- Compendiums : Removed the Phoenix image on "Ishiken Initiate School" school techniques.
-
-Technique syntaxe "quick" explanation :
-- Difficulty can be :
-  - Number : 1-9
-  - Or specific syntaxe "@`S`:`prop1`" or "@`T`:`prop1`|`max`" or "@`T`:`prop1`|`max`(`prop2`)" :
-    - `@` fixed, trigger the parser
-    - `T` or `S` : `T`arget or `S`elf, define the actor to get the value.
-    - `prop1` / `prop2` : Can be any property in `actor` or `actor.system`. Limitations: currently no `size`, `distance` (range) or computation (a+b).
-    - `|` separator, optional if no min/max.
-    - `min` or `max` : Between the selected targets, search for the min/max of `prop2`. If no `prop2` provided, take `prop1` as `prop2` (irrelevant for `@S`).
-    - `(prop2)` : define the property for the actor selection in multiple target, can be omitted if same as `prop1`.
-    - Examples :
-      - `@S:vigilance` : Difficulty will be my own `vigilance`.
-      - `@T:vigilance|min` : Difficulty will be the `vigilance` from the target with the minimum vigilance (implicit) value. it's the same to wrote `@T:vigilance|min(vigilance)`.
-      - `@T:vigilance|max(statusRank)` : Difficulty will be the `vigilance` from the target with the maximum `statusRank` value.
-- Skill can be :
-  - Skill : `melee`, `fitness`...
-  - SkillCategory : `scholar`, `martial`...
-  - Or both in list, coma separated.
-  - Examples :
-    - `theology`
-    - `melee,ranged,unarmed`
-    - `martial,fitness,performance`
+- Compendiums : Removed the Phoenix image on `Ishiken Initiate School` school techniques.
 
 ## 1.6.1 - 13/02/2022 - Little Bugfixes
-- PC sheet : fixed the "Complete this rank" button who stayed hidden in experience tab.
+- PC sheet : fixed the `Complete this rank` button who stayed hidden in experience tab.
 - GmMonitor : fixed a bug with render when the list was emptied.
 - Combat : fixed a null error when sometimes the combatant actor is null.
 
@@ -188,7 +116,7 @@ Technique syntaxe "quick" explanation :
 - Updated the System to FoundryVTT v9.
 - Thanks to Perkuns for his help with the CSS for this v9 release.
 - Fixed armies in combat tracker.
-- Fixed "traditional-japanese-man.svg" and "traditional-japanese-woman.svg" headers for firefox (x/y/width/height).
+- Fixed `traditional-japanese-man.svg` and `traditional-japanese-woman.svg` headers for firefox (x/y/width/height).
 - Trying to fix advancements behavior, who sometime left point on the old choice.
 
 ## 1.4.0 - 19/12/2021 - Armies & French PoW
@@ -202,44 +130,44 @@ Technique syntaxe "quick" explanation :
 - Compendiums :
   - PoW:
     - Updated all French compendiums from official French translation.
-    - Added missing items pattern : "Spirit of the Qamarist Pattern", "Ghostlands Yodhaniya Pattern" and "Kökejin’s Heart of the Wind Pattern".
-    - Added missing title : "Astradhari".
-    - Added mantras : "Summon Mantra : [One Implement]" and "Countering Mantra".
-    - Fixed : "Urbane and Worldly" advantage was misspelled "Wroldly" (thx to Cernunnos).
-    - Fixed : "Passion for [Foreign Performing Art Form]" from "Passion" to "Distinction" type.
-    - Fixed : "Flowering Deceptions" from "Kata" to "Shuji" type.
-  - Added Hooves (weapon) & Arrows (object)
-  - Added two tables to draw japanese names (1500 males names & 530 females names).
+    - Added missing items pattern : `Spirit of the Qamarist Pattern`, `Ghostlands Yodhaniya Pattern` and `Kökejin’s Heart of the Wind Pattern`.
+    - Added missing title : `Astradhari`.
+    - Added mantras : `Summon Mantra : [One Implement]` and `Countering Mantra`.
+    - Fixed : `Urbane and Worldly` advantage was misspelled `Wroldly` (thx to Cernunnos).
+    - Fixed : `Passion for [Foreign Performing Art Form]` from `Passion` to `Distinction` type.
+    - Fixed : `Flowering Deceptions` from `Kata` to `Shuji` type.
+  - Added `Hooves` (weapon) and `Arrows` (object).
+  - Added two tables to draw japanese names (1500 males names and 530 females names).
   - Added some Macros.
-- Standardization of "great-clans-presentation" pack name to "core-journal-great-clans-presentation".
+- Standardization of `great-clans-presentation` pack name to `core-journal-great-clans-presentation`.
 - SendToChat now check links validity before adding them.
-- New NPC changed from "minion" to "adversary" by default.
+- New NPC changed from `minion` to `adversary` by default.
 - 20Q : Fixed line break in techniques label list.
 
 ## 1.3.5 - 11/10/2021 - DsN hotfix
-- Fixed a bug introduced by DiceSoNice 4.2.1 : context in "diceSoNiceRollStart" hook rebuild data and lost what we needed. The consequence is 3d dice flood a lot in RnK.
+- Fixed a bug introduced by DiceSoNice 4.2.1 : context in `diceSoNiceRollStart` hook rebuild data and lost what we needed. The consequence is 3d dice flood a lot in RnK.
 
 ## 1.3.4 - 15/09/2021 - Compendiums Update
 - Fixed a bug with sheet item drop introduced in previous version.
 - Added FoV English Opportunities usage.
 - Compendiums :
   - New icon for Inversion techniques.
-  - Opportunities "Conflict use" table : the Air entry for the 2 opportunities was replaced by this real text (copy-past error).
-  - Added missing Mantis "Storm Fleet Tide Seer" school techniques : "Storm Surge" and "Eye of the Storm".
+  - Opportunities `Conflict use` table : the Air entry for the 2 opportunities was replaced by this real text (copy-past error).
+  - Added missing Mantis `Storm Fleet Tide Seer` school techniques : `Storm Surge` and `Eye of the Storm`.
   - Added PoW School Curriculum and Titles.
   - Fixed Compendiums entries :
-    - "Asako Inquisitor School [Crab]" to "Asako Inquisitor School [Phoenix]"
-    - FoV Title : "Elemental Guard" (duplicate) to "Elemental Legionnaire".
-    - PoW Mastery : "Divine Protection" (duplicate) to "Tower of Ivory".
+    - `Asako Inquisitor School [Crab]` to `Asako Inquisitor School [Phoenix]`
+    - FoV Title : `Elemental Guard` (duplicate) to `Elemental Legionnaire`.
+    - PoW Mastery : `Divine Protection` (duplicate) to `Tower of Ivory`.
 
 ## 1.3.3 - 23/08/2021 - Send'n'Watch
 - GM toolbox changes :
-  - Added "Reset void point" and "Gm Monitor" buttons.
-  - "Reset void point", "Sleep" and "Scene End" now use left clic to target only assigned characters, and right clic to do all actors.
-- Added "Gm Monitor", a windows to see summaries of actors :
+  - Added `Reset void point` and `Gm Monitor` buttons.
+  - `Reset void point`, `Sleep` and `Scene End` now use left clic to target only assigned characters, and right clic to do all actors.
+- Added `Gm Monitor`, a windows to see summaries of actors :
   - Drop any actor on it to display them.
   - By default, or if the list is empty, all assigned characters will fill it.
-- Added "send to chat" header buttons on sheets for :
+- Added `send to chat` header buttons on sheets for :
   - Item : Image and description
   - Actor : Image and public description
   - Journal : Image and description, or full image if no text, or only description if no image.
@@ -250,14 +178,14 @@ Technique syntaxe "quick" explanation :
 - Added Opportunity usage helper in Journal Compendium (courteously authorized by Edge).
 - Fixed Compendiums entries thanks to TesserWract :
   - Weapons:
-      - Chair, lute, sake bottle and cups, and scroll case use the "Unarmed skill".
+      - Chair, lute, sake bottle and cups, and scroll case use the `Unarmed skill`.
       - Changed the umbrella's stab grip to be 2-handed.
   - School Cursus :
-      - "Utaku Battle Maiden": Replaced "Striking as Air" with "Courtier's Resolve".
+      - `Utaku Battle Maiden`: Replaced `Striking as Air` with `Courtier's Resolve`.
   - Techniques :
-    - "Disappearing World Style": Ring used changed from "air" to "fire".
-    - "Lord Hida's Grip": Added the "(Crab)" prerequisite in title.
-    - "Lord Shiba's Valor": Added the "(Phoenix)" prerequisite in title.
+    - `Disappearing World Style`: Ring used changed from `air` to `fire`.
+    - `Lord Hida's Grip`: Added the `(Crab)` prerequisite in title.
+    - `Lord Shiba's Valor`: Added the `(Phoenix)` prerequisite in title.
 - Fixes for RnK :
   - Visibility mode now should be consistent with the 1st message (public, private, gm...).
   - DiceSoNice will now not show the new dice(s) for explosive in non-public mode.
@@ -274,48 +202,48 @@ Technique syntaxe "quick" explanation :
 - Added English FoV Terrain Compendium.
 - Added PoW Name Tables compendium : Qamarist Names, Ivory Kingdoms Names, Rokugani Names and Ujik Names (courteously authorized by Edge).
 - Added ability to drop a (Curriculum) Journal to have a link in school experience tab.
-- Added properties antagonists (ex : "Sacred" remove "Unholy" on drop). So now properties can have another properties in them.
+- Added properties antagonists (ex : `Sacred` remove `Unholy` on drop). So now properties can have another properties in them.
 - Added a little time saver : when switching between NPC types, now the prototype token is altered this way : Linked actor for Adversary, unlinked for Minion.
 - Fixed roll for RollTable not showing the text in chat.
-- Fixed school compendium: "Kuni Warden School" from "Scorpion" to "Crab".
+- Fixed school compendium: `Kuni Warden School` from `Scorpion` to `Crab`.
 - Fixed some Pdf Copy-Paste error in school cursus that make L instead of I : Lkoma/Lsawa/Luchi...
 
 ## 1.3.1 - 16/06/2021 - Empty Sheet Scholar Helper
 - Added English/French Journal Compendiums for School Curriculums.
 - Added English/French Curriculums in description for Titles.
 - Added English Compendiums for Field of Victory (thanks to mdosantos).
-- Added English "Blessed Treasures" in items for Field of Victory (thanks to PlatFleece)
-- Added English/French "Blessed Treasures" and "Concealed Horror" in items for Shadowlands.
+- Added English `Blessed Treasures` in items for Field of Victory (thanks to PlatFleece)
+- Added English/French `Blessed Treasures` and `Concealed Horror` in items for Shadowlands.
 - Added new icons for titles, links, items pattern and scroll signatures.
 - QoL : Added label for grips in Weapon sheet (thanks to TesserWract).
 - QoL : Added buttons to Add or Subtract money.
-- Fixed the "empty sheet" bug (I hope).
-- Fixed the "bought_at_rank" does not change according to the PC rank value when an Item is drop on a sheet.
-- Fixed the issue #23 "Token image does not save". Now we reflect the change on the token name/image only if it's a linked actor and if the token/sheet have the same values.
-- Fixed the "unlink actor data" who still change the Actor Data when editing an unlinked token.
+- Fixed the `empty sheet` bug (I hope).
+- Fixed the `bought_at_rank` does not change according to the PC rank value when an Item is drop on a sheet.
+- Fixed the issue #23 `Token image does not save`. Now we reflect the change on the token name/image only if it's a linked actor and if the token/sheet have the same values.
+- Fixed the `unlink actor data` who still change the Actor Data when editing an unlinked token.
 
 ## 1.3.0 - 02/06/2021 - Foundry 0.8 Compatibility
 __! Be certain to carefully back up any critical user data before installing this update !__
 - Updated the System to the new version of Foundry VTT (a lot of things broke).
 - NPC can now have strengths/weaknesses with all rings.
-- Added "Title", "Bond", "Signature Scroll" and "Item Pattern":
+- Added `Title`, `Bond`, `Signature Scroll` and `Item Pattern`:
   - The item types.
   - Theirs compendiums entries.
   - A new list in experience tab to not mess with school cursus.
   - Item patterns :
     - Can be dropped on another item to add the associated property.
     - To change the linked property, drop any property on the item pattern sheet.
-- Added an optional "Specificity" technique type to serve as a catch-all.
+- Added an optional `Specificity` technique type to serve as a catch-all.
 - Added Mantis clan compendium entries.
-- Added a "Description" in PC/NPC sheet: this field is used in limited view ("description" are public, "notes" are private).
-- PC/NPC : Removed the "titles" field in social.
-- NPC : Moved the "note" field in social to gain some space, and uniformize with PC.
+- Added a `Description` in PC/NPC sheet: this field is used in limited view (`description` are public, `notes` are private).
+- PC/NPC : Removed the `titles` field in social.
+- NPC : Moved the `note` field in social to gain some space, and uniformize with PC.
 - Fix : rnkMessage not passing on actor object for NPCs (thanks to Bragma).
-- Fix : The "Crescent Moon Style" technique rank from 4 to 2.
+- Fix : The `Crescent Moon Style` technique rank from 4 to 2.
 - Fix : Drop an advancement on a PC/NPC sheet now correctly add the bonus to the Actor (ex Air +1), and the same with remove.
 - QoL : RnK button is now black in chat if no actions are left in roll (new messages only).
 - QoL : Added symbols legend in RnK dialog as reminder.
-- QoL : Added "(x Max)" display in RnK picker for max number of dice to keep (thanks to Bragma).
+- QoL : Added `(x Max)` display in RnK picker for max number of dice to keep (thanks to Bragma).
 - QoL : When DiceSoNice is enabled, the display of the RnK dialog is delayed by 2s before show-up.
 - Others minor optimizations (ex: 20q saving multiple item at once).
 
@@ -337,17 +265,17 @@ __! Be certain to carefully back up any critical user data before installing thi
     - Please note all dice without choice will be discarded for the next step
   - The GM has the ability to undo choices by left-clicking in the status headers
   - Limitation: The roll need to only have L5R dice in it (no mixed regular + L5R)
-- Fix image's behavior on create for all items sub classes
+- Fix image's behavior on create for all items subclasses
 - Click on rings in the PC/PNC sheet now open the DicePicker with the selected ring
 - Added a booster for loading compendium's core items (speed up 20Q)
-- Added confirm dialog on item's deletion (Hold "ctrl" on the click, if you want to bypass it)
-- Added "Sleep" & "Scene End" buttons in "GM ToolBox" (old "difficulty" box)
+- Added confirm dialog on item's deletion (Hold `ctrl` on the click, if you want to bypass it)
+- Added `Sleep` & `Scene End` buttons in `GM ToolBox` (old `difficulty` box)
 - Token's bar:
   - The strife bar is now displayed in red if the actor is compromised
   - Added an option, off by default, to reverse the fatigue's token bar (thanks to Jzrzmy)
 - Added an option, on by default, to set the TN to 1 when the encounter type is selected (Intrigue, Duel, Skirmish or Mass battle)
 - Split Techniques & Items by category in actor sheet (pc & npc) for better readability
-- Armor & Weapon added in the conflict tab now set the "equipped" property by default
+- Armor & Weapon added in the conflict tab now set the `equipped` property by default
 - Added Tabs on NPC sheets
 - New styles for dice results
 
@@ -382,7 +310,7 @@ __! Be certain to carefully back up any critical user data before installing thi
 - Added a GM Dialog Tool for setting global difficulty (TN) value / hidden (with DicePicker live refresh)
 - Compendium now display Ring and Rank if any in list view
 - DicePicker :
-  - Fixed the initial display of "use a void point"
+  - Fixed the initial display of `use a void point`
   - No free void point anymore
 - PC/NPC Sheet :
   - Added a visual indicator for equipped / readied
@@ -429,12 +357,12 @@ __! Be certain to carefully back up any critical user data before installing thi
 - Fix for logo on Firefox
 - Visual fix for Firefox and end 20Q edit
 - Fix for no actor dice picker
-- Added "add a void point" checkbox, and some fixes
+- Added `add a void point` checkbox, and some fixes
 - Added code fr module translation on README.md
 - Babele is better in setup hook ?
 - Added babele french translation into system
 - Removed DicePiker bulk macro as it was unnecessary now
-- Fix for Q13: "skill and disadv" OR "adv"
+- Fix for Q13: `skill and disadv` OR `adv`
 - Added some text for 20Q 2dn dice
 - Stop some missing propagation
 - Fix adv tooltip
@@ -445,12 +373,12 @@ __! Be certain to carefully back up any critical user data before installing thi
 - Fix marge on sheet + fix nav on 20Q + clean imgs
 - 20Q added step18 status, honor and glory for modifier
 - Add BG and first style for 20Q
-- Added class "roll" for roll in chat
+- Added class `roll` for roll in chat
 - Some styles
 - Add style for skill types checkboxes
 - Add roll to global game var
 - Change file to md
-- Added a icon for "void point used" in chat log
+- Added a icon for `void point used` in chat log
 - Fix for 20Q: constructCache only once
 - Fix EN vigilante -> vigilance
 - Update actor for using/get a void point
@@ -466,11 +394,11 @@ __! Be certain to carefully back up any critical user data before installing thi
 - Added (ring) and (skill) symbols
 - Specific case for school_ability and mastery_ability on drop
 - Added convertSymbol for item's desc and actor's notes
-- Fix for "search anywhere" draggable icon
+- Fix for `search anywhere` draggable icon
 - Add ul li style for editor + Adjuste stance + marge on sheets and img
 - Remove effects from template.json for tech
 - Update css for item attribute
-- added pack for "school_ability" and "mastery_ability" techniques
+- added pack for `school_ability` and `mastery_ability` techniques
 - Added school_ability and mastery_ability types for techniques
 - Update on compendiums
 - Fix properties description
@@ -517,7 +445,7 @@ __! Be certain to carefully back up any critical user data before installing thi
 ## 0.5.0 - Testbed
 - Fix last bug on items and update json for 0.5.0 Pre-Release
 - fix using id for toggle
-- removed "for" on label
+- removed `for` on label
 - Update item with js expanded function
 - toggle hook
 - forced render true on macro

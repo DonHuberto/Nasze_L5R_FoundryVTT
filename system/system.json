@@ -11,7 +11,7 @@
     "version": "1.9.0",
     "compatibility": {
         "minimum": 10,
-        "verified": "10.277"
+        "verified": "10.283"
     },
     "manifestPlusVersion": "1.2.0",
     "socket": true,
@@ -31,7 +31,7 @@
             "url": "https://fr.tipeee.com/carter-foundryvtt"
         }
     ],
-    "background": "L5R-Header.webp",
+    "background": "systems/l5r5e/assets/l5r-header.webp",
     "scripts": [],
     "esmodules": ["./scripts/main-l5r5e.js"],
     "styles": ["./styles/l5r5e.css"],

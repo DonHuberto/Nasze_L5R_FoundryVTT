@@ -283,7 +283,9 @@ export class ActorL5r5e extends Actor {
      * @returns {boolean}
      */
     get canDoInitiativeRoll() {
-        return game.combat?.combatants.some((c) => c.tokenId === this.token?._id && !c.initiative);
+        return game.combat?.combatants.some(
+            (c) => !c.initiative && (c.tokenId === this.token?._id || (!this.token && c.actorId === this._id))
+        );
     }
 
     /**
