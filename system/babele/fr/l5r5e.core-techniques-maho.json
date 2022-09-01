@@ -1,8 +1,8 @@
 {
     "label": "Techniques Mahõ",
     "mapping": {
-        "description": "data.description",
-        "book_reference": "data.book_reference"
+        "description": "system.description",
+        "book_reference": "system.book_reference"
     },
     "entries": [
         {

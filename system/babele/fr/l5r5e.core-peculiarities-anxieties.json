@@ -1,9 +1,9 @@
 {
     "label": "Défaillances",
     "mapping": {
-        "types": "data.types",
-        "description": "data.description",
-        "book_reference": "data.book_reference"
+        "types": "system.types",
+        "description": "system.description",
+        "book_reference": "system.book_reference"
     },
     "entries": [
         {
@@ -278,6 +278,27 @@
             "types": "Relations",
             "description": "",
             "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Fear of [Common Creature]",
+            "name": "Fear of [Common Creature] (WIP)",
+            "types": "Mental",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Fear of Mediocrity",
+            "name": "Fear of Mediocrity (WIP)",
+            "types": "Relations, Mental",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Fear of Poison",
+            "name": "Fear of Poison (WIP)",
+            "types": "Mental",
+            "description": "",
+            "book_reference": "Décret de la nature"
         }
     ]
 }

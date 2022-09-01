@@ -1,9 +1,9 @@
 {
     "label": "Liens",
     "mapping": {
-        "description": "data.description",
-        "book_reference": "data.book_reference",
-        "bond_type": "data.bond_type"
+        "description": "system.description",
+        "book_reference": "system.book_reference",
+        "bond_type": "system.bond_type"
     },
     "entries": [
         {

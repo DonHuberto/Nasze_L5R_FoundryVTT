@@ -53,6 +53,11 @@
             "id": "Recessed",
             "name": "Recessed (WIP)",
             "content": "<blockquote>Les Champs de la Victoire</blockquote>"
+        },
+        {
+            "id": "Imbalanced (One or More Elements) Variant",
+            "name": "Imbalanced (One or More Elements) Variant (WIP)",
+            "content": "<blockquote>Décret de la nature</blockquote>"
         }
     ]
 }

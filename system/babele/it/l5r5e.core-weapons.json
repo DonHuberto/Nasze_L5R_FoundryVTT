@@ -1,11 +1,11 @@
 {
     "label": "Armi (WIP)",
     "mapping": {
-        "category": "data.category",
-        "grip_1": "data.grip_1",
-        "grip_2": "data.grip_2",
-        "description": "data.description",
-        "book_reference": "data.book_reference"
+        "category": "system.category",
+        "grip_1": "system.grip_1",
+        "grip_2": "system.grip_2",
+        "description": "system.description",
+        "book_reference": "system.book_reference"
     },
     "entries": [
         {

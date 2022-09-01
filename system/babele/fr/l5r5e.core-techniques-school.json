@@ -1,8 +1,8 @@
 {
     "label": "Capacités d’école",
     "mapping": {
-        "description": "data.description",
-        "book_reference": "data.book_reference"
+        "description": "system.description",
+        "book_reference": "system.book_reference"
     },
     "entries": [
         {
@@ -556,6 +556,42 @@
             "name": "L’oeil de la tempête",
             "description": "",
             "book_reference": "Le Clan de la Mante p.6"
+        },
+        {
+            "id": "May the Spirits Show the Path",
+            "name": "May the Spirits Show the Path (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Laughter Makes the Home",
+            "name": "Laughter Makes the Home (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Bend Perception",
+            "name": "Bend Perception (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Keen Senses",
+            "name": "Keen Senses (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Mind of Calm",
+            "name": "Mind of Calm (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Evolution of the Wilds",
+            "name": "Evolution of the Wilds (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
         }
     ]
 }

@@ -1,8 +1,8 @@
 {
     "label": "Titres",
     "mapping": {
-        "description": "data.description",
-        "book_reference": "data.book_reference"
+        "description": "system.description",
+        "book_reference": "system.book_reference"
     },
     "entries": [
         {
@@ -250,6 +250,30 @@
             "name": "Astradhari",
             "description": "<h2>Cursus</h2><table><tr><td>Compétences Savantes</td><td>Grp. de comp.</td></tr><tr><td>Compétences Martiales</td><td>Grp. de comp.</td></tr><tr><td>Commandement</td><td>Compétence</td></tr><tr><td>Courtoisie</td><td>Compétence</td></tr><tr><td><a class=\"compendium-link\" data-pack=\"l5r5e.core-techniques-rituals\">(ritual) Rituels de rang 1-3</a> (prereq)</td><td>Tech. Grp.</td></tr><tr><td><a class=\"entity-link content-link\" draggable=\"true\" data-uuid=\"Compendium.l5r5e.core-techniques-mantra.L5RCoreMan000001\" data-pack=\"l5r5e.core-techniques-mantra\" data-id=\"L5RCoreMan000001\">(mantra) Mantra de conjuration : [Nom de l’instrument]</a> (prereq)</td><td>Technique</td></tr><tr><td><a class=\"entity-link content-link\" draggable=\"true\" data-uuid=\"Compendium.l5r5e.core-techniques-shuji.L5RCoreShu000011\" data-pack=\"l5r5e.core-techniques-shuji\" data-id=\"L5RCoreShu000011\">(shuji) Courage exemplaire</a> (prereq)</td><td>Technique</td></tr></table>",
             "book_reference": "La Voie des Vagues p.187"
+        },
+        {
+            "id": "Awakened Soul",
+            "name": "Awakened Soul (WIP)",
+            "description": "<h2>Cursus</h2><table><tr><td>Compétences Sociales</td><td>Grp. de comp.</td></tr><tr><td>Compétences Savantes</td><td>Grp. de comp.</td></tr><tr><td>Culture</td><td>Compétence</td></tr><tr><td>Méditation</td><td>Compétence</td></tr><tr><td>Survie</td><td>Compétence</td></tr><tr><td>Théologie</td><td>Compétence</td></tr><tr><td><a class=\"entity-link content-link\" draggable=\"true\" data-uuid=\"Compendium.l5r5e.core-techniques-kiho.L5RCoreKih000038\" data-pack=\"l5r5e.core-techniques-kiho\" data-id=\"L5RCoreKih000038\">(kiho) Eternal Mind’s Gate (WIP)</a> (prereq)</td><td>Technique</td></tr><tr><td><a class=\"entity-link content-link\" draggable=\"true\" data-uuid=\"Compendium.l5r5e.core-techniques-rituals.L5RCoreRit000035\" data-pack=\"l5r5e.core-techniques-rituals\" data-id=\"L5RCoreRit000035\">(ritual) Trance of Lives Past (WIP)</a> (prereq)</td><td>Technique</td></tr></table>",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Forester",
+            "name": "Forester (WIP)",
+            "description": "<h2>Cursus</h2><table><tr><td>Compétences Sociales</td><td>Grp. de comp.</td></tr><tr><td>Compétences Savantes</td><td>Grp. de comp.</td></tr><tr><td>Courtoisie</td><td>Compétence</td></tr><tr><td>Sentiments</td><td>Compétence</td></tr><tr><td>Survie</td><td>Compétence</td></tr><tr><td>Théologie</td><td>Compétence</td></tr><tr><td><a class=\"compendium-link\" data-pack=\"l5r5e.core-techniques-invocations\">(invocation) Invocations de la Terre ou de l’Eau de rang 1-2</a> (prereq)</td><td>Tech. Grp.</td></tr><tr><td><a class=\"compendium-link\" data-pack=\"l5r5e.core-techniques-shuji\">(shuji) Shuji de rang 1-3</a> (prereq)</td><td>Tech. Grp.</td></tr></table>",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Temple Abbot",
+            "name": "Temple Abbot (WIP)",
+            "description": "<h2>Cursus</h2><table><tr><td>Compétences Sociales</td><td>Grp. de comp.</td></tr><tr><td>Compétences Savantes</td><td>Grp. de comp.</td></tr><tr><td>Culture</td><td>Compétence</td></tr><tr><td>Méditation</td><td>Compétence</td></tr><tr><td>Théologie</td><td>Compétence</td></tr><tr><td><a class=\"entity-link content-link\" draggable=\"true\" data-uuid=\"Compendium.l5r5e.core-techniques-rituals.L5RCoreRit000004\" data-pack=\"l5r5e.core-techniques-rituals\" data-id=\"L5RCoreRit000004\">(ritual) Rite de purification</a> (prereq)</td><td>Technique</td></tr><tr><td><a class=\"entity-link content-link\" draggable=\"true\" data-uuid=\"Compendium.l5r5e.core-techniques-kiho.L5RCoreKih000025\" data-pack=\"l5r5e.core-techniques-kiho\" data-id=\"L5RCoreKih000025\">(kiho) Rejuvenating Breath (WIP)</a> (prereq)</td><td>Technique</td></tr><tr><td><a class=\"entity-link content-link\" draggable=\"true\" data-uuid=\"Compendium.l5r5e.core-techniques-shuji.L5RCoreShu000011\" data-pack=\"l5r5e.core-techniques-shuji\" data-id=\"L5RCoreShu000011\">(shuji) Courage exemplaire</a> (prereq)</td><td>Technique</td></tr></table>",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Yōkai Hunter",
+            "name": "Yōkai Hunter (WIP)",
+            "description": "<h2>Cursus</h2><table><tr><td>Compétences Savantes</td><td>Grp. de comp.</td></tr><tr><td>Compétences Martiales</td><td>Grp. de comp.</td></tr><tr><td>Commandement</td><td>Compétence</td></tr><tr><td>Courtoisie</td><td>Compétence</td></tr><tr><td>Survie</td><td>Compétence</td></tr><tr><td><a class=\"entity-link content-link\" draggable=\"true\" data-uuid=\"Compendium.l5r5e.core-techniques-kiho.L5RCoreKih000030\" data-pack=\"l5r5e.core-techniques-kiho\" data-id=\"L5RCoreKih000030\">(kiho) Blistering Retribution (WIP)</a> (prereq)</td><td>Technique</td></tr><tr><td><a class=\"entity-link content-link\" draggable=\"true\" data-uuid=\"Compendium.l5r5e.core-techniques-kata.L5RCoreKat000070\" data-pack=\"l5r5e.core-techniques-kata\" data-id=\"L5RCoreKat000070\">(kata) Swallow’s Dart Style (WIP)</a> (prereq)</td><td>Technique</td></tr><tr><td><a class=\"entity-link content-link\" draggable=\"true\" data-uuid=\"Compendium.l5r5e.core-techniques-kata.L5RCoreKat000071\" data-pack=\"l5r5e.core-techniques-kata\" data-id=\"L5RCoreKat000071\">(kata) Tiger’s Lunge Style (WIP)</a> (prereq)</td><td>Technique</td></tr></table>",
+            "book_reference": "Décret de la nature"
         }
     ]
 }

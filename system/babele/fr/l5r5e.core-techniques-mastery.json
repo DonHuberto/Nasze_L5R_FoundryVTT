@@ -1,8 +1,8 @@
 {
     "label": "Capacités de Maîtrise",
     "mapping": {
-        "description": "data.description",
-        "book_reference": "data.book_reference"
+        "description": "system.description",
+        "book_reference": "system.book_reference"
     },
     "entries": [
         {
@@ -556,6 +556,42 @@
             "name": "Onde de tempête",
             "description": "",
             "book_reference": "Le Clan de la Mante p.6"
+        },
+        {
+            "id": "Whispers of the Kami",
+            "name": "Whispers of the Kami (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Smiling Mountain Tradition",
+            "name": "Smiling Mountain Tradition (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Scaled Hide",
+            "name": "Scaled Hide (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Reflexive Strike",
+            "name": "Reflexive Strike (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "A Master of Study",
+            "name": "A Master of Study (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Born to Survive",
+            "name": "Born to Survive (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
         }
     ]
 }

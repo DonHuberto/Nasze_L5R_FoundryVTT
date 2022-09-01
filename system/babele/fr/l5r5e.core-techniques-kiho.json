@@ -1,8 +1,8 @@
 {
     "label": "Techniques Kihõ",
     "mapping": {
-        "description": "data.description",
-        "book_reference": "data.book_reference"
+        "description": "system.description",
+        "book_reference": "system.book_reference"
     },
     "entries": [
         {
@@ -142,6 +142,96 @@
             "name": "La voie du sabre sans tranchant",
             "description": "",
             "book_reference": "Livre de Règles p.188"
+        },
+        {
+            "id": "Mercy of the Stone Fortune",
+            "name": "Mercy of the Stone Fortune (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Rejuvenating Breath",
+            "name": "Rejuvenating Breath (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Shadow of Ancient Peaks",
+            "name": "Shadow of Ancient Peaks (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Cutting Wind Talons",
+            "name": "Cutting Wind Talons (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Grace of the Gentle Breeze",
+            "name": "Grace of the Gentle Breeze (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Step of the Storm",
+            "name": "Step of the Storm (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Blistering Retribution",
+            "name": "Blistering Retribution (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Dance of Fire",
+            "name": "Dance of Fire (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Volcanic Fist",
+            "name": "Volcanic Fist (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Fist of Spreading Venom",
+            "name": "Fist of Spreading Venom (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "River’s Flowing Stride",
+            "name": "River’s Flowing Stride (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Seeping Ki",
+            "name": "Seeping Ki (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Aura Awareness",
+            "name": "Aura Awareness (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Essence of Stillness",
+            "name": "Essence of Stillness (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Eternal Mind’s Gate",
+            "name": "Eternal Mind’s Gate (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
         }
     ]
 }

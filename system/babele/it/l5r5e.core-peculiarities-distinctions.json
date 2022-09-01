@@ -1,9 +1,9 @@
 {
     "label": "Vantaggi (WIP)",
     "mapping": {
-        "types": "data.types",
-        "description": "data.description",
-        "book_reference": "data.book_reference"
+        "types": "system.types",
+        "description": "system.description",
+        "book_reference": "system.book_reference"
     },
     "entries": [
         {

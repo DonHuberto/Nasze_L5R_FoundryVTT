@@ -1,8 +1,8 @@
 {
     "label": "Techniques Kata",
     "mapping": {
-        "description": "data.description",
-        "book_reference": "data.book_reference"
+        "description": "system.description",
+        "book_reference": "system.book_reference"
     },
     "entries": [
         {
@@ -400,6 +400,90 @@
             "name": "Shattering Tide Style (WIP)",
             "description": "",
             "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Bear’s Swipe Style",
+            "name": "Bear’s Swipe Style (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Serpent’s Twist Style",
+            "name": "Serpent’s Twist Style (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Swallow’s Dart Style",
+            "name": "Swallow’s Dart Style (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Tiger’s Lunge Style",
+            "name": "Tiger’s Lunge Style (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Flexible Grip",
+            "name": "Flexible Grip (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Howling Gale Defense",
+            "name": "Howling Gale Defense (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Heron’s Grasp Style",
+            "name": "Heron’s Grasp Style (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Serow’s Leap Style",
+            "name": "Serow’s Leap Style (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Tumbling Oak Style",
+            "name": "Tumbling Oak Style (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Flight",
+            "name": "Flight (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Razor Bite",
+            "name": "Razor Bite (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Owl’s Swoop Style",
+            "name": "Owl’s Swoop Style (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Skittering Shift",
+            "name": "Skittering Shift (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Tail Sweep",
+            "name": "Tail Sweep (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
         }
     ]
 }

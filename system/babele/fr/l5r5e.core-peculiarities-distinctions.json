@@ -1,9 +1,9 @@
 {
     "label": "Aptitudes",
     "mapping": {
-        "types": "data.types",
-        "description": "data.description",
-        "book_reference": "data.book_reference"
+        "types": "system.types",
+        "description": "system.description",
+        "book_reference": "system.book_reference"
     },
     "entries": [
         {
@@ -481,6 +481,27 @@
             "types": "Renommée, Relations",
             "description": "",
             "book_reference": "La Voie des Vagues p.70"
+        },
+        {
+            "id": "Knowledgeable Wilderness Guide",
+            "name": "Knowledgeable Wilderness Guide (WIP)",
+            "types": "Relations, Spirituel",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Skilled Midwife",
+            "name": "Skilled Midwife (WIP)",
+            "types": "Relations",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Thoughtful Arbiter",
+            "name": "Thoughtful Arbiter (WIP)",
+            "types": "Relations",
+            "description": "",
+            "book_reference": "Décret de la nature"
         }
     ]
 }

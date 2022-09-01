@@ -1,9 +1,9 @@
 {
     "label": "Passions",
     "mapping": {
-        "types": "data.types",
-        "description": "data.description",
-        "book_reference": "data.book_reference"
+        "types": "system.types",
+        "description": "system.description",
+        "book_reference": "system.book_reference"
     },
     "entries": [
         {
@@ -292,6 +292,20 @@
             "types": "Martial, Social",
             "description": "",
             "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Charity",
+            "name": "Charity (WIP)",
+            "types": "Relations, Mental",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Kintsugi",
+            "name": "Kintsugi (WIP)",
+            "types": "Mental, Physique",
+            "description": "",
+            "book_reference": "Décret de la nature"
         }
     ]
 }

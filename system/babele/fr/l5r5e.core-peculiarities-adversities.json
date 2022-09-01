@@ -1,9 +1,9 @@
 {
     "label": "Coups du sort",
     "mapping": {
-        "types": "data.types",
-        "description": "data.description",
-        "book_reference": "data.book_reference"
+        "types": "system.types",
+        "description": "system.description",
+        "book_reference": "system.book_reference"
     },
     "entries": [
         {
@@ -579,6 +579,27 @@
             "types": "Relations, Social",
             "description": "",
             "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Insomniac",
+            "name": "Insomniac (WIP)",
+            "types": "Mental",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Out of Shape",
+            "name": "Out of Shape (WIP)",
+            "types": "Physique",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Stalked by [Creature]",
+            "name": "Stalked by [Creature] (WIP)",
+            "types": "Relations, Mental, Spirituel",
+            "description": "",
+            "book_reference": "Décret de la nature"
         }
     ]
 }

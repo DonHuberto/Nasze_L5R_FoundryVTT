@@ -83,6 +83,31 @@
             "id": "Wounded",
             "name": "Blessé",
             "content": "<blockquote>Livre de Règles p.271</blockquote>"
+        },
+        {
+            "id": "Illness: Oozing Sore Disease",
+            "name": "Illness: Oozing Sore Disease (WIP)",
+            "content": "<blockquote>Décret de la nature</blockquote>"
+        },
+        {
+            "id": "Illness: Gut Sickness",
+            "name": "Illness: Gut Sickness (WIP)",
+            "content": "<blockquote>Décret de la nature</blockquote>"
+        },
+        {
+            "id": "Illness: Coughing Illness",
+            "name": "Illness: Coughing Illness (WIP)",
+            "content": "<blockquote>Décret de la nature</blockquote>"
+        },
+        {
+            "id": "Illness: Unsteady Illness",
+            "name": "Illness: Unsteady Illness (WIP)",
+            "content": "<blockquote>Décret de la nature</blockquote>"
+        },
+        {
+            "id": "Illness: Fire Rash",
+            "name": "Illness: Fire Rash (WIP)",
+            "content": "<blockquote>Décret de la nature</blockquote>"
         }
     ]
 }

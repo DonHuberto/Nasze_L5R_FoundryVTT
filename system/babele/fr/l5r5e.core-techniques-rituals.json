@@ -1,8 +1,8 @@
 {
     "label": "Techniques Rituels",
     "mapping": {
-        "description": "data.description",
-        "book_reference": "data.book_reference"
+        "description": "system.description",
+        "book_reference": "system.book_reference"
     },
     "entries": [
         {
@@ -184,6 +184,36 @@
             "name": "Imbue Thunder (WIP)",
             "description": "",
             "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "Chikushō-dō’s Guile",
+            "name": "Chikushō-dō’s Guile (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Guard Against the Elements",
+            "name": "Guard Against the Elements (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Cunning Snares",
+            "name": "Cunning Snares (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Hunter’s Expertise",
+            "name": "Hunter’s Expertise (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Trance of Lives Past",
+            "name": "Trance of Lives Past (WIP)",
+            "description": "",
+            "book_reference": "Décret de la nature"
         }
     ]
 }
