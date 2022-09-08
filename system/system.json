@@ -7,11 +7,11 @@
     "changelog": "https://gitlab.com/teaml5r/l5r5e/-/blob/master/CHANGELOG.md",
     "license": "https://gitlab.com/teaml5r/l5r5e/-/blob/master/LICENSE.md",
     "manifest": "https://gitlab.com/teaml5r/l5r5e/-/raw/master/system/system.json",
-    "download": "https://gitlab.com/teaml5r/l5r5e/-/jobs/artifacts/v1.9.0/raw/l5r5e.zip?job=build",
-    "version": "1.9.0",
+    "download": "https://gitlab.com/teaml5r/l5r5e/-/jobs/artifacts/v1.9.1/raw/l5r5e.zip?job=build",
+    "version": "1.9.1",
     "compatibility": {
         "minimum": 10,
-        "verified": "10.283"
+        "verified": "10.284"
     },
     "manifestPlusVersion": "1.2.0",
     "socket": true,

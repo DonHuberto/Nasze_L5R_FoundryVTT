@@ -1,7 +1,7 @@
 # Changelog
 Date format : day/month/year
 
-## 1.9.1 - ??/??/2022 - ???
+## 1.9.1 - 08/09/2022 - Advancements Bugfixes
 - Fix for advancements fail to add new items ("_id" readonly error. see #42).
 
 ## 1.9.0 - 01/09/2022 - Foundry v10 Compatibility

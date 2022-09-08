@@ -135,14 +135,14 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
     async _onDrop(event) {
         // *** Everything below here is only needed if the sheet is editable ***
         if (!this.isEditable || this.actor.system.soft_locked) {
-            console.log("LR5E | Not editable");
+            console.log("L5R5E | This sheet is not editable");
             return;
         }
 
         // Check item type and subtype
         const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
         if (!item || !["Item", "JournalEntry"].includes(item.documentName) || item.type === "property") {
-            console.log(`LR5E | Wrong subtype ${item?.type}`, item);
+            console.log(`L5R5E | Wrong subtype ${item?.type}`, item);
             return;
         }
 
@@ -150,7 +150,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
         if (item.documentName === "JournalEntry") {
             // npc does not have this
             if (!this.actor.system.identity?.school_curriculum_journal) {
-                console.log("LR5E | NPC won't go to school :'(");
+                console.log("L5R5E | NPC won't go to school :'(");
                 return;
             }
             this.actor.system.identity.school_curriculum_journal = {
@@ -180,7 +180,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
                     return embedItem._id === item._id;
                 })
             ) {
-                console.log("LR5E | This item already exist in this actor", item.uuid);
+                console.log("L5R5E | This element has been ignored because it already exists in this actor", item.uuid);
                 return;
             }
 
