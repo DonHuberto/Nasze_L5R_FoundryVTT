@@ -216,8 +216,11 @@ export class ItemL5r5e extends Item {
         }
 
         // New id
-        if (newId) {
-            item._id = foundry.utils.randomID();
+        if (newId || !item._id) {
+            // Bypass the readonly for "_id"
+            const tmpData = item.toJSON();
+            tmpData._id = foundry.utils.randomID();
+            item = new ItemL5r5e(tmpData);
         }
 
         // Copy the parent permission to the sub item

@@ -1,6 +1,9 @@
 # Changelog
 Date format : day/month/year
 
+## 1.9.1 - ??/??/2022 - ???
+- Fix for advancements fail to add new items ("_id" readonly error. see #42).
+
 ## 1.9.0 - 01/09/2022 - Foundry v10 Compatibility
 __! Be certain to carefully back up any critical user data before installing this update !__
 - Updated the System to FoundryVTT v10.
