@@ -1,6 +1,9 @@
 # Changelog
 Date format : day/month/year
 
+## 1.9.2 - 09/09/2022 - Advancements Again
+- Fix for advancements ownership (items in items).
+
 ## 1.9.1 - 08/09/2022 - Advancements Bugfixes
 - Fix for advancements fail to add new items ("_id" readonly error. see #42).
 

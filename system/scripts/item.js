@@ -224,7 +224,9 @@ export class ItemL5r5e extends Item {
         }
 
         // Copy the parent permission to the sub item
-        item.ownership = this.ownership;
+        // In v10 actor's items inherit the ownership from the actor, but theirs ownership do not reflect that.
+        // So we must take actor's ownership for sub-item
+        item.ownership = this.actor?.ownership ?? this.ownership;
 
         // Tag parent (flags won't work as we have no id in db)
         item.system.parent_id = this.getParentsIds();
