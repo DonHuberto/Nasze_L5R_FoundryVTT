@@ -602,8 +602,9 @@ button {
 }
 
 // Combat
-#combat {
-    #combat-round {
+#combat,
+#combat-popout {
+    .combat-tracker-header {
         .encounters {
             h3 {
                 font-size: 0.85rem;

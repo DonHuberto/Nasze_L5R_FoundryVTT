@@ -175,7 +175,7 @@ export default class HooksL5r5e {
         if (elmt.length > 0) {
             elmt.replaceWith(tpl);
         } else {
-            html.find("#combat-round").append(tpl);
+            html.find(".combat-tracker-header").append(tpl);
         }
 
         // Buttons Listeners

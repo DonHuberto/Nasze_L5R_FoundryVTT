@@ -1,6 +1,9 @@
 # Changelog
 Date format : day/month/year
 
+## 1.9.3 - 29/09/2022 - Combat Tracker
+- Fix for L5R combat tracker bar who have disappeared.
+
 ## 1.9.2 - 09/09/2022 - Advancements Again
 - Fix for advancements ownership (items in items).
 
