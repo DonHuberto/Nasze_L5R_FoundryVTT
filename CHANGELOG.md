@@ -1,6 +1,9 @@
 # Changelog
 Date format : day/month/year
 
+## 1.9.4 - ??/??/2022 - ?
+- GM Toolbox : Left clic do only actors with an active player as owner.
+
 ## 1.9.3 - 29/09/2022 - Combat Tracker
 - Fix for L5R combat tracker bar who have disappeared.
 

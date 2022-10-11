@@ -279,6 +279,14 @@ export class ActorL5r5e extends Actor {
     }
 
     /**
+     * Return true if this actor have an active player as owner
+     * @returns {boolean}
+     */
+    get hasPlayerOwnerActive() {
+        return game.users.find((u) => !!u.active && u.character?.id === this.id);
+    }
+
+    /**
      * Return true if this actor can do a initiative roll
      * @returns {boolean}
      */

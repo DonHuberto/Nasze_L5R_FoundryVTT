@@ -202,7 +202,7 @@ export class GmToolbox extends FormApplication {
             }
 
             // Manage left/right button
-            if (!isAll && (!actor.isCharacter || !actor.hasPlayerOwner)) {
+            if (!isAll && (!actor.isCharacter || !actor.hasPlayerOwnerActive)) {
                 continue;
             }
 

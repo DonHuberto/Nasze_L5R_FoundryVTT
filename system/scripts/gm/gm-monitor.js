@@ -91,7 +91,7 @@ export class GmMonitor extends FormApplication {
             actors = game.actors.filter((e) => ids.includes(e.id));
         } else {
             // If empty add pc with owner
-            actors = game.actors.filter((actor) => actor.type === "character" && actor.hasPlayerOwner);
+            actors = game.actors.filter((actor) => actor.type === "character" && actor.hasPlayerOwnerActive);
             this._saveActorsIds();
         }
 
