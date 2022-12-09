@@ -1,7 +1,7 @@
 // Requires
 const gulp = require("gulp");
 const prefix = require("gulp-autoprefixer");
-const sass = require("gulp-sass");
+const sass = require("gulp-sass")(require('sass'));
 const browserSync = require("browser-sync");
 
 /* ----------------------------------------- */

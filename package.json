@@ -20,22 +20,16 @@
     "homepage": "https://gitlab.com/teaml5r/l5r5e#readme",
     "devDependencies": {
         "babel-eslint": "^10.1.0",
-        "browser-sync": "^2.23.7",
-        "eslint": "^7.15.0",
-        "eslint-config-prettier": "^6.15.0",
-        "eslint-plugin-prettier": "^3.1.4",
+        "browser-sync": "^2.27.10",
+        "eslint": "^8.27.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.2.1",
         "gulp": "^4.0.2",
-        "gulp-autoprefixer": "^7.0.1",
-        "gulp-sass": "^4.1.0",
-        "husky": "^4.3.0",
+        "gulp-autoprefixer": "^8.0.0",
+        "gulp-sass": "^5.1.0",
         "lint-staged": "^10.5.1",
-        "node-sass": "^4.14.1",
-        "prettier": "^2.1.2"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
+        "sass": "^1.56.1",
+        "prettier": "^2.7.1"
     },
     "lint-staged": {
         "*.js": "eslint --cache --fix",
