@@ -1,7 +1,7 @@
 # Changelog
 Date format : day/month/year
 
-## 1.9.4 - 01/01/2023 - New Year bugfixes
+## 1.9.4 - 31/12/2022 - Last bugfixes of the Year !
 - Fix prepared settings bugs (trackers icons sometimes disappears).
 - GM Toolbox : Left clic do only actors with an active player as owner.
 - Compendiums : Added Celestial Realms missing Titles : `Bond with a spirit` and `Moon cultist`.
