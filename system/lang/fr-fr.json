@@ -374,7 +374,7 @@
                 "mass_battle": "Bataille rangée",
                 "prepared_true": "Prêt(e)",
                 "prepared_false": "Surpris(e)",
-                "prepared_null": "Défini par la fiche de personnage (défaut)",
+                "prepared_actor": "Défini par la fiche de personnage (défaut)",
                 "already_set": "Votre initiative a déjà été tirée"
             }
         },

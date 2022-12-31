@@ -374,7 +374,7 @@
                 "mass_battle": "Battaglia Campale",
                 "prepared_true": "Preparato",
                 "prepared_false": "Sorpreso",
-                "prepared_null": "Definito nella scheda del personaggio (default)",
+                "prepared_actor": "Definito nella scheda del personaggio (default)",
                 "already_set": "La tua Iniziativa è già stata determinata."
             }
         },

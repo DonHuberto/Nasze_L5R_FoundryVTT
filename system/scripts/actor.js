@@ -337,7 +337,7 @@ export class ActorL5r5e extends Actor {
 
         // Prepared is a boolean or if null we get the info in the actor
         let isPrepared = this.isCharacter ? cfg.character : cfg[this.system.type];
-        if (isPrepared === "null") {
+        if (isPrepared === "actor") {
             isPrepared = this.system.prepared ? "true" : "false";
         }
 

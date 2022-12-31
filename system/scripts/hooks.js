@@ -198,9 +198,9 @@ export default class HooksL5r5e {
             }
             const rev = event.which === 3;
             const nextValue = {
-                false: rev ? "true" : "null",
-                true: rev ? "null" : "false",
-                null: rev ? "false" : "true",
+                false: rev ? "true" : "actor",
+                true: rev ? "actor" : "false",
+                actor: rev ? "false" : "true",
             };
             game.settings.set("l5r5e", `initiative-prepared-${preparedId}`, nextValue[prepared[preparedId]]);
         });

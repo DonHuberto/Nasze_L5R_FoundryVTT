@@ -374,7 +374,7 @@
                 "mass_battle": "Mass Battle",
                 "prepared_true": "Prepared",
                 "prepared_false": "Surprised",
-                "prepared_null": "Defined in the character sheet (default)",
+                "prepared_actor": "Defined in the character sheet (default)",
                 "already_set": "Your initiative has already been determined"
             }
         },

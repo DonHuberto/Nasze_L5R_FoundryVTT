@@ -85,7 +85,7 @@ export const RegisterSettings = function () {
         scope: "world",
         config: false,
         type: String,
-        default: "null",
+        default: "actor",
         onChange: () => {
             game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor");
             ui.combat.render(true);
@@ -96,7 +96,7 @@ export const RegisterSettings = function () {
         scope: "world",
         config: false,
         type: String,
-        default: "null",
+        default: "actor",
         onChange: () => {
             game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor");
             ui.combat.render(true);
@@ -107,7 +107,7 @@ export const RegisterSettings = function () {
         scope: "world",
         config: false,
         type: String,
-        default: "null",
+        default: "actor",
         onChange: () => {
             game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor");
             ui.combat.render(true);

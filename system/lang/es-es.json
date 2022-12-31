@@ -374,7 +374,7 @@
                 "mass_battle": "Batalla a gran escala",
                 "prepared_true": "Preparado",
                 "prepared_false": "Sorprendido",
-                "prepared_null": "Definido en la hoja de personaje (por defecto)",
+                "prepared_actor": "Definido en la hoja de personaje (por defecto)",
                 "already_set": "Tu iniciativa ya ha sido establecida."
             }
         },
