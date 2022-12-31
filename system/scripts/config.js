@@ -1,31 +1,27 @@
-export const L5R5E = {};
-
-L5R5E.paths = {
-    assets: `systems/l5r5e/assets/`,
-    templates: `systems/l5r5e/templates/`,
-};
-
-L5R5E.money = [50, 10];
-L5R5E.stances = ["earth", "air", "water", "fire", "void"];
-L5R5E.roles = ["artisan", "bushi", "courtier", "monk", "sage", "shinobi", "shugenja"];
-
-L5R5E.xp = {
-    costPerRank: [0, 20, 24, 32, 44, 60],
-    bondCostPerRank: [0, 3, 4, 6, 8, 10],
-    ringCostMultiplier: 3,
-    skillCostMultiplier: 2,
-    techniqueCost: 3,
-};
-
-L5R5E.regex = {
-    techniqueDifficulty: /^@([TS]):([^|]+?)(?:\|(min|max)(?:\(([^)]+?)\))?)?$/,
-};
-
-L5R5E.initiativeSkills = {
-    intrigue: "sentiment",
-    duel: "meditation",
-    skirmish: "tactics",
-    mass_battle: "command",
+export const L5R5E = {
+    paths: {
+        assets: `systems/l5r5e/assets/`,
+        templates: `systems/l5r5e/templates/`,
+    },
+    money: [50, 10],
+    stances: ["earth", "air", "water", "fire", "void"],
+    roles: ["artisan", "bushi", "courtier", "monk", "sage", "shinobi", "shugenja"],
+    xp: {
+        costPerRank: [0, 20, 24, 32, 44, 60],
+        bondCostPerRank: [0, 3, 4, 6, 8, 10],
+        ringCostMultiplier: 3,
+        skillCostMultiplier: 2,
+        techniqueCost: 3,
+    },
+    regex: {
+        techniqueDifficulty: /^@([TS]):([^|]+?)(?:\|(min|max)(?:\(([^)]+?)\))?)?$/,
+    },
+    initiativeSkills: {
+        intrigue: "sentiment",
+        duel: "meditation",
+        skirmish: "tactics",
+        mass_battle: "command",
+    },
 };
 
 // *** Techniques ***

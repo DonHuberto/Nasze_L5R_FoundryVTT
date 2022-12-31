@@ -274,6 +274,18 @@
             "name": "Yōkai Hunter (WIP)",
             "description": "<h2>Cursus</h2><table><tr><td>Compétences Savantes</td><td>Grp. de comp.</td></tr><tr><td>Compétences Martiales</td><td>Grp. de comp.</td></tr><tr><td>Commandement</td><td>Compétence</td></tr><tr><td>Courtoisie</td><td>Compétence</td></tr><tr><td>Survie</td><td>Compétence</td></tr><tr><td><a class=\"entity-link content-link\" draggable=\"true\" data-uuid=\"Compendium.l5r5e.core-techniques-kiho.L5RCoreKih000030\" data-pack=\"l5r5e.core-techniques-kiho\" data-id=\"L5RCoreKih000030\">(kiho) Blistering Retribution (WIP)</a> (prereq)</td><td>Technique</td></tr><tr><td><a class=\"entity-link content-link\" draggable=\"true\" data-uuid=\"Compendium.l5r5e.core-techniques-kata.L5RCoreKat000070\" data-pack=\"l5r5e.core-techniques-kata\" data-id=\"L5RCoreKat000070\">(kata) Swallow’s Dart Style (WIP)</a> (prereq)</td><td>Technique</td></tr><tr><td><a class=\"entity-link content-link\" draggable=\"true\" data-uuid=\"Compendium.l5r5e.core-techniques-kata.L5RCoreKat000071\" data-pack=\"l5r5e.core-techniques-kata\" data-id=\"L5RCoreKat000071\">(kata) Tiger’s Lunge Style (WIP)</a> (prereq)</td><td>Technique</td></tr></table>",
             "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Bond with a spirit",
+            "name": "Bond with a spirit (WIP)",
+            "description": "<h2>Cursus</h2><table><tr><td>Compétences Savantes</td><td>Grp. de comp.</td></tr><tr><td>Esthétique</td><td>Compétence</td></tr><tr><td>Jeux</td><td>Compétence</td></tr><tr><td>Méditation</td><td>Compétence</td></tr><tr><td><a class=\"compendium-link\" data-pack=\"l5r5e.core-techniques-invocations\">(invocation) Invocations (Eléments de l'esprit) de rang 1</a> (prereq)</td><td>Tech. Grp.</td></tr><tr><td><a class=\"entity-link content-link\" draggable=\"true\" data-uuid=\"Compendium.l5r5e.core-techniques-rituals.L5RCoreRit000002\" data-pack=\"l5r5e.core-techniques-rituals\" data-id=\"L5RCoreRit000002\">(ritual) Communier avec les esprits</a> (prereq)</td><td>Technique</td></tr><tr><td><a class=\"entity-link content-link\" draggable=\"true\" data-uuid=\"Compendium.l5r5e.core-techniques-rituals.L5RCoreRit000022\" data-pack=\"l5r5e.core-techniques-rituals\" data-id=\"L5RCoreRit000022\">(ritual) Blessing of Fertile Fields (WIP)</a> (prereq)</td><td>Technique</td></tr></table>",
+            "book_reference": "Les Royaumes Célestes"
+        },
+        {
+            "id": "Moon cultist",
+            "name": "Moon cultist (WIP)",
+            "description": "<h2>Cursus</h2><table><tr><td>Compétences Savantes</td><td>Grp. de comp.</td></tr><tr><td>Composition</td><td>Compétence</td></tr><tr><td>Courtoisie</td><td>Compétence</td></tr><tr><td>Forme</td><td>Compétence</td></tr><tr><td><a class=\"compendium-link\" data-pack=\"l5r5e.core-techniques-invocations\">(invocation) Invocations de l’Eau de rang 1-2</a></td><td>Tech. Grp.</td></tr><tr><td><a class=\"entity-link content-link\" draggable=\"true\" data-uuid=\"Compendium.l5r5e.core-techniques-invocations.L5RCoreInv000052\" data-pack=\"l5r5e.core-techniques-invocations\" data-id=\"L5RCoreInv000052\">(invocation) Mains des marées</a> (prereq)</td><td>Technique</td></tr><tr><td><a class=\"entity-link content-link\" draggable=\"true\" data-uuid=\"Compendium.l5r5e.core-techniques-rituals.L5RCoreRit000010\" data-pack=\"l5r5e.core-techniques-rituals\" data-id=\"L5RCoreRit000010\">(ritual) Whispers to the Moon (Moon Cultist) (WIP)</a> (prereq)</td><td>Technique</td></tr></table>",
+            "book_reference": "Les Royaumes Célestes"
         }
     ]
 }
