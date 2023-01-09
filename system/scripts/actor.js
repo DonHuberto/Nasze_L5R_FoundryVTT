@@ -138,6 +138,13 @@ export class ActorL5r5e extends Actor {
                 ActorL5r5e.computeDerivedAttributes(system);
             }
 
+            // Modifiers from conditions
+            const modifiers = system.modifiers?.character;
+            system.endurance = system.endurance + (Number(modifiers?.endurance) || 0);
+            system.composure = system.composure + (Number(modifiers?.composure) || 0);
+            system.focus = system.focus + (Number(modifiers?.focus) || 0);
+            system.vigilance = system.vigilance + (Number(modifiers?.vigilance) || 0);
+
             // Attributes bars
             system.fatigue.max = system.endurance;
             system.strife.max = system.composure;
