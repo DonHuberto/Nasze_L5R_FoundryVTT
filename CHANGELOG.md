@@ -1,6 +1,9 @@
 # Changelog
 Date format : day/month/year
 
+## 1.9.5 - 11/01/2023 - Adding Modifiers
+- Characters can now have bonus endurance/composure/focus/vigilance from conditions (thx to Perkuns).
+
 ## 1.9.4 - 31/12/2022 - Last bugfixes of the Year !
 - Fix prepared settings bugs (trackers icons sometimes disappears).
 - GM Toolbox : Left clic do only actors with an active player as owner.
