@@ -8,6 +8,7 @@
 - [Symbols replacement list](users/symbols.md)
 - [Advanced : Techniques skill and difficulty syntaxe](users/techniques-syntaxe.md)
 - [Advanced : Custom Compendiums](users/custom-compendiums.md)
+- [Advanced : Using CUB for modifiers](users/cub-modifiers.md)
 
 ## For developers
 - [System helping (Contribute)](dev/system-helping.md)
