@@ -3,16 +3,16 @@
  * @extends {JournalSheet}
  */
 export class BaseJournalSheetL5r5e extends JournalSheet {
-    // /** @override */
-    // static get defaultOptions() {
-    //     return foundry.utils.mergeObject(super.defaultOptions, {
-    //         classes: ["l5r5e", "sheet", "journal"], // app window-app sheet journal-sheet
-    //         template: CONFIG.l5r5e.paths.templates + "journal/journal-sheet.html",
-    //         width: 520,
-    //         height: 480,
-    //         tabs: [{ navSelector: ".journal-tabs", contentSelector: ".journal-body", initial: "description" }],
-    //     });
-    // }
+    /** @override */
+    static get defaultOptions() {
+        return foundry.utils.mergeObject(super.defaultOptions, {
+            classes: ["sheet", "journal-sheet", "journal-entry", "l5r5e", "sheet", "journal"], // sheet journal-sheet journal-entry
+            // template: CONFIG.l5r5e.paths.templates + "journal/journal-sheet.html",
+            // width: 520,
+            // height: 480,
+            // tabs: [{ navSelector: ".journal-tabs", contentSelector: ".journal-body", initial: "description" }],
+        });
+    }
 
     /**
      * Add the SendToChat button on top of sheet
