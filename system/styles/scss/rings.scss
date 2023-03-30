@@ -29,7 +29,9 @@
             line-height: 0;
             float: right;
         }
-
+        label.stance-active strong {
+            text-decoration: underline 2px;
+        }
         input {
             position: absolute;
             height: 2rem;
