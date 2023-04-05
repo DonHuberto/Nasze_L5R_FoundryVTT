@@ -1,0 +1,8 @@
+<ul class="effects">
+    {{#each actor.effects as |effect|}}
+    <li class="effect-container" title="{{label}}">
+        <div class="effect-icon" style="background-image: url({{effect.icon}})"></div>
+        <div class="effect-name"><label>{{label}}</label></div>
+    </li>
+    {{/each}}
+</ul>
