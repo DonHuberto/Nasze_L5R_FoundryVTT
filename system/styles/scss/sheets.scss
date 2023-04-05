@@ -53,6 +53,37 @@
     .sheet-body {
         flex: 0 0 100%;
         align-items: flex-start;
+        .effects {
+            clear: both;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2px 4px;
+            .effect-container {
+                border: 1px solid #5a6e5a;
+                border-radius: 4px;
+                background-color: rgba(0, 0, 0, 0.4);
+                padding: 3px;
+            }
+            .effect-icon {
+                width: 16px;
+                height: 16px;
+                background-repeat: no-repeat;
+                background-size: contain;
+                float: left;
+            }
+            .effect-name {
+                vertical-align: top;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                color: $white;
+                float: right;
+                margin-left: 4px;
+                font-size: 14px;
+                line-height: 16px;
+                max-width: 140px;
+            }
+        }
     }
     section,
     article {
@@ -904,7 +935,6 @@
             margin: 0.5rem 0 0.5rem 1.5rem;
             padding: 0;
         }
-
     }
 }
 // Lang Adjust.
