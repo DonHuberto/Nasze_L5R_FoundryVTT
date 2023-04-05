@@ -7,27 +7,27 @@
     </div>
     {{!-- Sheet Header --}}
     <header class="sheet-header">
-        <img class="profile-img dragndrop-actor-uuid pointer" src="{{data.img}}" {{#if
-        data.editable_not_soft_locked}}data-edit="img"{{/if}} data-actor-uuid="{{actor.uuid}}" draggable="true"
-        title="{{data.name}}"/>
+        <img class="profile-img dragndrop-actor-uuid pointer" src="{{data.img}}" {{#if data.editable_not_soft_locked}}data-edit="img"{{/if}} data-actor-uuid="{{actor.uuid}}" draggable="true" title="{{data.name}}" />
         <div class="header-fields identity-wrapper">
             <h1 class="charname">
-                <input name="name" type="text" value="{{data.name}}" placeholder="Name" {{^if
-                data.editable_not_soft_locked}}disabled{{/if}}/>
+                <input name="name" type="text" value="{{data.name}}" placeholder="Name" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
             </h1>
             {{> 'systems/l5r5e/templates/actors/character/identity.html'}}
         </div>
         <div class="header-fields">
             <h2>{{localize 'l5r5e.social.title'}}</h2>
             <h2 class="right">{{localize 'l5r5e.attributes.title'}}</h2>
-            {{> 'systems/l5r5e/templates/actors/character/social.html'}} {{>
-            'systems/l5r5e/templates/actors/character/rings.html'}} {{>
-            'systems/l5r5e/templates/actors/character/attributes.html'}}
+            {{> 'systems/l5r5e/templates/actors/character/social.html'}}
+            {{> 'systems/l5r5e/templates/actors/character/rings.html'}}
+            {{> 'systems/l5r5e/templates/actors/character/attributes.html'}}
         </div>
     </header>
     {{!-- Sheet Body --}}
     <section class="sheet-body">
-        {{> 'systems/l5r5e/templates/actors/character/effects.html'}} {{!-- Sheet Tab Navigation --}}
+        {{!-- Active effects --}}
+        {{> 'systems/l5r5e/templates/actors/character/effects.html'}}
+
+        {{!-- Sheet Tab Navigation --}}
         <nav class="sheet-tabs tabs" data-group="primary">
             <a class="item" data-tab="skills">{{localize 'l5r5e.skills.title'}}</a>
             <a class="item" data-tab="narrative">{{localize 'l5r5e.sheets.narrative'}}</a>
@@ -39,8 +39,8 @@
         {{!-- Skills Tab --}}
         <article class="tab skills" data-group="primary" data-tab="skills">
             <ul class="skills-wrapper">
-                {{#each data.system.skills as |category id|}} {{>
-                'systems/l5r5e/templates/actors/character/category.html' category=category categoryId=id data=../data}}
+                {{#each data.system.skills as |category id|}}
+                    {{> 'systems/l5r5e/templates/actors/character/category.html' category=category categoryId=id data=../data}}
                 {{/each}}
             </ul>
             {{> 'systems/l5r5e/templates/actors/character/techniques.html'}}
