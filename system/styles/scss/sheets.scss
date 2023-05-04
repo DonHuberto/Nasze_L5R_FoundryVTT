@@ -23,7 +23,6 @@
     }
     &.actor {
         .sheet-header {
-            height: 26rem;
             h1 {
                 flex: auto;
                 margin: 0 0 0.25rem 0.5rem;
@@ -158,13 +157,9 @@
             }
         }
         .header-fields {
-            position: relative;
-            flex: 0 0 100%;
             h2 {
                 font-family: $font-secondary;
                 font-size: 1rem;
-                float: left;
-                width: 30%;
                 padding: 0.25rem 0.25rem 0;
                 margin: 1rem 20% 0 0;
                 text-align: center;
@@ -265,18 +260,22 @@
                 }
             }
         }
-        .rings {
-            float: left;
+        .mid-wrapper {
+            display: flex;
+        }
+        .side-col {
+            width: 30%;
+        }
+        .central-col {
             width: 40%;
+        }
+        .rings {
             padding: 0;
-            position: relative;
-            top: -1.5rem;
+            margin-top: 1rem;
         }
         .social-content,
         .attributes-wrapper {
             flex: none;
-            float: left;
-            width: 30%;
             flex-wrap: wrap;
             display: flex;
             padding: 0.5rem 0 0 0.25rem;
