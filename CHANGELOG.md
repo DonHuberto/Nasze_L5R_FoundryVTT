@@ -1,10 +1,11 @@
 # Changelog
 Date format : day/month/year
 
-## 1.9.6 - ??/04/2023 - QoL before v11
-- Added effects panel to both pc and npc (thx to Bragma !26).
-- Added a underline on rings to show current stance (thx to Bragma !25).
-- Fix Lists not showing correctly in journal (thx to Bragma #44).
+## 1.9.6 - 14/05/2023 - Bragma's QoL
+All these changes are thanks to Bragma.
+- Added effects panel to both pc and npc (!26).
+- Added a underline on rings to show current stance (!25).
+- Fix Lists not showing correctly in journal (#44).
 
 ## 1.9.5 - 11/01/2023 - Adding Modifiers
 - Characters can now have bonus endurance/composure/focus/vigilance from conditions (thx to Perkuns).
