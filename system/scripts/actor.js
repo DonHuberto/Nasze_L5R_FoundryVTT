@@ -120,7 +120,7 @@ export class ActorL5r5e extends Actor {
         // Now using updateDocuments
         return Actor.updateDocuments([docData], context).then(() => {
             // Notify the "Gm Monitor" if this actor is watched
-            if (game.settings.get("l5r5e", "gm-monitor-actors").find((e) => e === this.id)) {
+            if (game.settings.get(CONFIG.l5r5e.namespace, "gm-monitor-actors").some((uuid) => uuid === this.uuid)) {
                 game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor");
             }
         });
@@ -337,9 +337,9 @@ export class ActorL5r5e extends Actor {
         }
 
         const cfg = {
-            character: game.settings.get("l5r5e", "initiative-prepared-character"),
-            adversary: game.settings.get("l5r5e", "initiative-prepared-adversary"),
-            minion: game.settings.get("l5r5e", "initiative-prepared-minion"),
+            character: game.settings.get(CONFIG.l5r5e.namespace, "initiative-prepared-character"),
+            adversary: game.settings.get(CONFIG.l5r5e.namespace, "initiative-prepared-adversary"),
+            minion: game.settings.get(CONFIG.l5r5e.namespace, "initiative-prepared-minion"),
         };
 
         // Prepared is a boolean or if null we get the info in the actor

@@ -42,7 +42,7 @@ export class GmMonitor extends FormApplication {
         buttons.unshift({
             label: game.i18n.localize("l5r5e.gm.monitor.switch_view"),
             class: "switch-view",
-            icon: "fas fa-users",
+            icon: "fas fa-repeat",
             onclick: () =>
                 game.l5r5e.HelpersL5r5e.debounce(
                     "SwitchView-" + this.object.id,
@@ -50,7 +50,21 @@ export class GmMonitor extends FormApplication {
                         this.object.view = this.object.view === "armies" ? "characters" : "armies";
                         this.render(false);
                     },
-                    1000,
+                    500,
+                    true
+                )(),
+        });
+
+        // Add selected tokens
+        buttons.unshift({
+            label: game.i18n.localize("l5r5e.gm.monitor.add_selected_tokens"),
+            class: "add-selected-token",
+            icon: "fas fa-users",
+            onclick: () =>
+                game.l5r5e.HelpersL5r5e.debounce(
+                    "AddSelectedToken-" + this.object.id,
+                    () => this.#addSelectedTokens(),
+                    500,
                     true
                 )(),
         });
@@ -84,11 +98,19 @@ export class GmMonitor extends FormApplication {
      */
     _initialize() {
         let actors;
-        const ids = game.settings.get("l5r5e", "gm-monitor-actors");
+        const uuidList = game.settings.get(CONFIG.l5r5e.namespace, "gm-monitor-actors");
+        if (uuidList.length > 0) {
+            // Get actors from stored uuids
+            actors = uuidList
+                .map(uuid => {
+                    const doc = fromUuidSync(uuid);
+                    if (doc instanceof TokenDocument) {
+                        return doc.actor;
+                    }
+                    return doc;
+                })
+                .filter(a => !!a); // skip null
 
-        if (ids.length > 0) {
-            // get actors with stored ids
-            actors = game.actors.filter((e) => ids.includes(e.id));
         } else {
             // If empty add pc with owner
             actors = game.actors.filter((actor) => actor.type === "character" && actor.hasPlayerOwnerActive);
@@ -101,6 +123,27 @@ export class GmMonitor extends FormApplication {
         });
 
         this.object.actors = actors;
+    }
+
+    /**
+     * Add selected token on monitor if not already present
+     */
+    #addSelectedTokens() {
+        if (canvas.tokens.controlled.length > 0) {
+            const actors2Add = canvas.tokens.controlled
+                .map(t => t.actor)
+                .filter(t => !!t && !this.object.actors.find((a) => a.uuid === t.uuid));
+
+            if (actors2Add.length < 1) {
+                return;
+            }
+
+            this.object.actors = [
+                ...this.object.actors,
+                ...actors2Add
+            ];
+            this._saveActorsIds().then(() => this.render(false));
+        }
     }
 
     /**
@@ -161,11 +204,11 @@ export class GmMonitor extends FormApplication {
                 return $(event.currentTarget).data("text");
             }
 
-            const id = $(event.currentTarget).data("actor-id");
-            if (!id) {
+            const uuid = $(event.currentTarget).data("actor-uuid");
+            if (!uuid) {
                 return;
             }
-            const actor = this.object.actors.find((e) => e.id === id);
+            const actor = this.object.actors.find((a) => a.uuid === uuid);
             if (!actor) {
                 return;
             }
@@ -201,10 +244,13 @@ export class GmMonitor extends FormApplication {
             return;
         }
 
-        const actor = game.actors.find((a) => a.uuid === data.uuid);
+        const actor = fromUuidSync(data.uuid);
         if (!actor) {
             return;
         }
+
+        // Switch view to current character type
+        this.object.view = actor.isArmy ? "armies" : "characters";
 
         this.object.actors.push(actor);
 
@@ -218,9 +264,9 @@ export class GmMonitor extends FormApplication {
      */
     async _saveActorsIds() {
         return game.settings.set(
-            "l5r5e",
+            CONFIG.l5r5e.namespace,
             "gm-monitor-actors",
-            this.object.actors.map((e) => e.id)
+            this.object.actors.map((a) => a.uuid)
         );
     }
 
@@ -234,12 +280,12 @@ export class GmMonitor extends FormApplication {
         event.preventDefault();
         event.stopPropagation();
 
-        const id = $(event.currentTarget).data("actor-id");
-        if (!id) {
+        const uuid = $(event.currentTarget).data("actor-uuid");
+        if (!uuid) {
             return;
         }
 
-        this.object.actors = this.object.actors.filter((e) => e.id !== id);
+        this.object.actors = this.object.actors.filter((a) => a.uuid !== uuid);
 
         return this._saveActorsIds();
     }
@@ -256,17 +302,17 @@ export class GmMonitor extends FormApplication {
 
         const type = $(event.currentTarget).data("type");
         if (!type) {
-            console.warn("L5R5E | type not set", type);
+            console.warn("L5R5E | GMM | type not set", type);
             return;
         }
-        const id = $(event.currentTarget).data("actor-id");
-        if (!id) {
-            console.warn("L5R5E | actor id not set", type);
+        const uuid = $(event.currentTarget).data("actor-uuid");
+        if (!uuid) {
+            console.warn("L5R5E | GMM | actor uuid not set", type);
             return;
         }
-        const actor = game.actors.get(id);
+        const actor = fromUuidSync(uuid);
         if (!actor) {
-            console.warn("L5R5E | Actor not found", type);
+            console.warn("L5R5E | GMM | Actor not found", type);
             return;
         }
 
@@ -323,7 +369,7 @@ export class GmMonitor extends FormApplication {
                 break;
 
             default:
-                console.warn("L5R5E | Unsupported type", type);
+                console.warn("L5R5E | GMM | Unsupported type", type);
                 break;
         }
         if (!foundry.utils.isEmpty(updateData)) {

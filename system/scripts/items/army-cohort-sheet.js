@@ -111,7 +111,7 @@ export class ArmyCohortSheetL5r5e extends ItemSheetL5r5e {
      */
     async _updateLinkedActorData(actor) {
         if (!actor || actor.documentName !== "Actor" || !actor.isCharacterType) {
-            console.warn("L5R5E | Wrong actor type", actor?.type, actor);
+            console.warn("L5R5E | Army Cohort | Wrong actor type", actor?.type, actor);
             return;
         }
 

@@ -1,6 +1,16 @@
 # Changelog
 Date format : day/month/year
 
+## 1.10.0 - 11/06/2023 - FoundryVTT v11 Compatibility
+__! Be certain to carefully back up any critical user data before installing this update !__
+- Updated the System to FoundryVTT v11.
+- GM Monitor :
+  - Added ability to add unlinked token to GM monitor. Drag and drop from actor's toolbar, or select tokens in scene and click on "Add selected tokens".
+  - Now automatically switch to the corresponding type of the dropped character (Army/Character).
+- Using the new `packFolders` in system manifest.
+  - System compendiums are now in folders for more readability with others modules/worlds compendiums (ex: `L5R5e System` > `Techniques` > `Techniques Kata`).
+  - Please note this is only by default, and you are free to move or rename it after the initial loading.
+
 ## 1.9.6 - 14/05/2023 - Bragma's QoL
 All these changes are thanks to Bragma.
 - Added effects panel to both pc and npc (!26).
@@ -24,7 +34,7 @@ All these changes are thanks to Bragma.
 ## 1.9.1 - 08/09/2022 - Advancements Bugfixes
 - Fix for advancements fail to add new items ("_id" readonly error. see #42).
 
-## 1.9.0 - 01/09/2022 - Foundry v10 Compatibility
+## 1.9.0 - 01/09/2022 - FoundryVTT v10 Compatibility
 __! Be certain to carefully back up any critical user data before installing this update !__
 - Updated the System to FoundryVTT v10.
 - Updated the initiative behaviour, he now open the DicePicker for PC and Adversaries locally or remotely.

@@ -19,28 +19,30 @@
             "Hint": "Aggiunge il tipo 'Speciale' come termine generale."
         }
     },
-    "ACTOR": {
-        "TypeCharacter": "Personaggio Giocante",
-        "TypeNpc": "Personaggio Non Giocante",
-        "TypeArmy": "Esercito"
-    },
-    "ITEM": {
-        "TypeItem": "Oggetto",
-        "TypeArmor": "Armatura",
-        "TypeWeapon": "Arma",
-        "TypeTechnique": "Tecnica",
-        "TypeProperty": "Proprietà",
-        "TypePeculiarity": "Peculiarità",
-        "TypeAdvancement": "Avanzamento",
-        "TypeTitle": "Titolo",
-        "TypeBond": "Legame",
-        "TypeSignature_scroll": "Signature Scroll",
-        "TypeItem_pattern": "Item Pattern",
-        "TypeArmy_fortification": "Fortezza",
-        "TypeArmy_cohort": "Coorte"
-    },
-    "JOURNAL": {
-        "TypeJournal": "Diario"
+    "TYPES": {
+        "Actor": {
+            "character": "Personaggio Giocante",
+            "npc": "Personaggio Non Giocante",
+            "army": "Esercito"
+        },
+        "Item": {
+            "item": "Oggetto",
+            "armor": "Armatura",
+            "weapon": "Arma",
+            "technique": "Tecnica",
+            "property": "Proprietà",
+            "peculiarity": "Peculiarità",
+            "advancement": "Avanzamento",
+            "title": "Titolo",
+            "bond": "Legame",
+            "signature_scroll": "Signature Scroll",
+            "item_pattern": "Item Pattern",
+            "army_fortification": "Fortezza",
+            "army_cohort": "Coorte"
+        },
+        "Journal": {
+            "journal": "Diario"
+        }
     },
     "l5r5e": {
         "global": {
@@ -173,6 +175,7 @@
             "monitor": {
                 "title": "Schermo del GM",
                 "switch_view": "Cambia vista",
+                "add_selected_tokens": "Add selected tokens",
                 "honor_glory_status": "O/G/S",
                 "focus_vigilance": "Foc./Vig.",
                 "mouse_control": "Click destro +1, sinistro: -1, centrale: resetta a 0"

@@ -55,8 +55,8 @@ export class GmToolbox extends FormApplication {
      */
     _initialize() {
         this.object = {
-            difficulty: game.settings.get("l5r5e", "initiative-difficulty-value"),
-            difficultyHidden: game.settings.get("l5r5e", "initiative-difficulty-hidden"),
+            difficulty: game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-value"),
+            difficultyHidden: game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-hidden"),
         };
     }
 
@@ -128,7 +128,7 @@ export class GmToolbox extends FormApplication {
             event.stopPropagation();
             this.object.difficultyHidden = !this.object.difficultyHidden;
             game.settings
-                .set("l5r5e", "initiative-difficulty-hidden", this.object.difficultyHidden)
+                .set(CONFIG.l5r5e.namespace, "initiative-difficulty-hidden", this.object.difficultyHidden)
                 .then(() => this.submit());
         });
 
@@ -150,7 +150,7 @@ export class GmToolbox extends FormApplication {
                     this.object.difficulty = Math.max(0, this.object.difficulty - 1);
                     break;
             }
-            game.settings.set("l5r5e", "initiative-difficulty-value", this.object.difficulty).then(() => this.submit());
+            game.settings.set(CONFIG.l5r5e.namespace, "initiative-difficulty-value", this.object.difficulty).then(() => this.submit());
         });
 
         // Scene End, Sleep, Void Pts

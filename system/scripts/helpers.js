@@ -195,7 +195,7 @@ export class HelpersL5r5e {
                 document.prepareData();
             }
         } catch (err) {
-            console.warn("L5R5E | ", err);
+            console.warn("L5R5E | Helpers | ", err);
         }
         return document;
     }
@@ -227,7 +227,7 @@ export class HelpersL5r5e {
                 break;
 
             default:
-                console.log(`L5R5E | createObjectFromCompendium - Unmanaged type ${type}`);
+                console.log(`L5R5E | Helpers | createObjectFromCompendium - Unmanaged type ${type}`);
                 break;
         } // swi
 
@@ -251,7 +251,7 @@ export class HelpersL5r5e {
                     if (gameProp) {
                         return { id: gameProp.id, name: gameProp.name };
                     } else {
-                        console.warn(`L5R5E | Unknown property id[${property.id}]`);
+                        console.warn(`L5R5E | Helpers | Unknown property id[${property.id}]`);
                     }
                     return property;
                 })
@@ -741,14 +741,14 @@ export class HelpersL5r5e {
     static async drawManyFromPack(pack, tableName, retrieve = 5, opt = { rollMode: "selfroll" }) {
         const comp = await game.packs.get(pack);
         if (!comp) {
-            console.log(`L5R5E | Pack not found[${pack}]`);
+            console.log(`L5R5E | Helpers | Pack not found[${pack}]`);
             return;
         }
         await comp.getDocuments();
 
         const table = await (/^[a-zA-Z0-9]{16}$/.test(tableName) ? comp.get(tableName) : comp.getName(tableName));
         if (!table) {
-            console.log(`L5R5E | Table not found[${tableName}]`, comp, table);
+            console.log(`L5R5E | Helpers | Table not found[${tableName}]`, comp, table);
             return;
         }
         return await table.drawMany(retrieve, opt);
@@ -852,7 +852,7 @@ export class HelpersL5r5e {
                     )}`;
 
                     choiceDiv.addEventListener("click", (clickEvent) => {
-                        const selectedIndex = clickEvent.target.attributes["data-id"].value;
+                        const selectedIndex = clickEvent.target.attributes["data-id"]?.value;
                         if (!list[selectedIndex]) {
                             return;
                         }

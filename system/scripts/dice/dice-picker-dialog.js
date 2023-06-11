@@ -176,7 +176,7 @@ export class DicePickerDialog extends FormApplication {
 
         // Difficulty
         if (!options.difficulty || !this.parseDifficulty(options.difficulty)) {
-            this.difficulty = game.settings.get("l5r5e", "initiative-difficulty-value");
+            this.difficulty = game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-value");
         }
 
         // DifficultyHidden
@@ -201,7 +201,7 @@ export class DicePickerDialog extends FormApplication {
      */
     async refresh() {
         if (this._difficultyHiddenIsLock.option) {
-            this.difficulty = game.settings.get("l5r5e", "initiative-difficulty-value");
+            this.difficulty = game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-value");
             this.difficultyHidden = false;
         }
         this.render(false);
@@ -246,11 +246,8 @@ export class DicePickerDialog extends FormApplication {
         if (!targetToken) {
             return;
         }
-        if (!(targetToken instanceof TokenDocument) || !targetToken.isOwner) {
-            console.warn(
-                "L5R5E | DP | target rejected : Not a valid TokenDocument instance or permission was denied",
-                targetToken
-            );
+        if (!(targetToken instanceof TokenDocument)) {
+            console.warn("L5R5E | DP | target rejected : Not a valid TokenDocument instance", targetToken);
             return;
         }
         this._target = targetToken;
@@ -363,7 +360,7 @@ export class DicePickerDialog extends FormApplication {
      */
     set difficultyHidden(isHidden) {
         // If GM hide, then player choice don't matter
-        this._difficultyHiddenIsLock.gm = game.settings.get("l5r5e", "initiative-difficulty-hidden");
+        this._difficultyHiddenIsLock.gm = game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-hidden");
         if (this._difficultyHiddenIsLock.gm || this._difficultyHiddenIsLock.option) {
             isHidden = true;
         }

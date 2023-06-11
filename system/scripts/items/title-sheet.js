@@ -116,7 +116,7 @@ export class TitleSheetL5r5e extends ItemSheetL5r5e {
         // Create the new Item
         const itemId = await this.document.addEmbedItem(
             new game.l5r5e.ItemL5r5e({
-                name: game.i18n.localize(`ITEM.Type${selectedType.capitalize()}`),
+                name: game.i18n.localize(`TYPES.Item.${selectedType.toLowerCase()}`),
                 type: selectedType,
                 img: `${CONFIG.l5r5e.paths.assets}icons/items/${selectedType}.svg`,
             })

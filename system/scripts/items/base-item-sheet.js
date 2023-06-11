@@ -101,7 +101,7 @@ export class BaseItemSheetL5r5e extends ItemSheet {
         event.preventDefault();
         event.stopPropagation();
         const itemId = $(event.currentTarget).data("item-id");
-        console.warn("L5R5E | TODO ItemSheetL5r5e._addSubItem()", itemId); // TODO _addSubItem Currently not used, title override it
+        console.warn("L5R5E | BIS | TODO ItemSheetL5r5e._addSubItem()", itemId); // TODO _addSubItem Currently not used, title override it
     }
 
     /**

@@ -7,11 +7,11 @@
     "changelog": "https://gitlab.com/teaml5r/l5r5e/-/blob/master/CHANGELOG.md",
     "license": "https://gitlab.com/teaml5r/l5r5e/-/blob/master/LICENSE.md",
     "manifest": "https://gitlab.com/teaml5r/l5r5e/-/raw/master/system/system.json",
-    "download": "https://gitlab.com/teaml5r/l5r5e/-/jobs/artifacts/v1.9.6/raw/l5r5e.zip?job=build",
-    "version": "1.9.6",
+    "download": "https://gitlab.com/teaml5r/l5r5e/-/jobs/artifacts/v1.10.0/raw/l5r5e.zip?job=build",
+    "version": "1.10.0",
     "compatibility": {
-        "minimum": 10,
-        "verified": "10.291"
+        "minimum": 11,
+        "verified": "11.301"
     },
     "manifestPlusVersion": "1.2.0",
     "socket": true,
@@ -33,8 +33,87 @@
     ],
     "background": "systems/l5r5e/assets/l5r-header.webp",
     "scripts": [],
-    "esmodules": ["./scripts/main-l5r5e.js"],
-    "styles": ["./styles/l5r5e.css"],
+    "esmodules": [
+        "./scripts/main-l5r5e.js"
+    ],
+    "styles": [
+        "./styles/l5r5e.css"
+    ],
+    "packFolders": [
+        {
+            "name": "L5R5e System",
+            "color": "#9a0909",
+            "sorting": "m",
+            "folders": [
+                {
+                    "name": "Character related",
+                    "color": "#019806",
+                    "sorting": "m",
+                    "packs": [
+                        "core-peculiarities-distinctions",
+                        "core-peculiarities-passions",
+                        "core-peculiarities-adversities",
+                        "core-peculiarities-anxieties",
+                        "core-bonds",
+                        "core-titles",
+                        "core-journal-school-curriculum",
+                        "core-journal-great-clans-presentation"
+                    ]
+                },
+                {
+                    "name": "Techniques",
+                    "color": "#4b1eb3",
+                    "sorting": "m",
+                    "packs": [
+                        "core-techniques-kata",
+                        "core-techniques-kiho",
+                        "core-techniques-inversions",
+                        "core-techniques-invocations",
+                        "core-techniques-rituals",
+                        "core-techniques-shuji",
+                        "core-techniques-maho",
+                        "core-techniques-ninjutsu",
+                        "core-techniques-mantra",
+                        "core-techniques-school",
+                        "core-techniques-mastery"
+                    ]
+                },
+                {
+                    "name": "Objects related",
+                    "color": "#0985ae",
+                    "sorting": "m",
+                    "packs": [
+                        "core-properties",
+                        "core-item-patterns",
+                        "core-items",
+                        "core-armors",
+                        "core-weapons",
+                        "core-signature-scrolls",
+                        "core-celestial-implement-boons"
+                    ]
+                },
+                {
+                    "name": "Helpers",
+                    "color": "#6b3d1f",
+                    "sorting": "m",
+                    "packs": [
+                        "core-journal-conditions",
+                        "core-journal-terrain-qualities",
+                        "core-journal-opportunities"
+                    ]
+                },
+                {
+                    "name": "Tools",
+                    "color": "#834949",
+                    "sorting": "m",
+                    "packs": [
+                        "core-name-tables",
+                        "core-macros"
+                    ]
+                }
+            ]
+        }
+    ],
     "packs": [
         {
             "name": "core-properties",

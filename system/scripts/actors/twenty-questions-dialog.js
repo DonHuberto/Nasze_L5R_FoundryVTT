@@ -104,19 +104,19 @@ export class TwentyQuestionsDialog extends FormApplication {
             new DragDrop({
                 dragSelector: ".item",
                 dropSelector: ".items",
-                permissions: { dragstart: this._canDragStart.bind(this), drop: this._canDragDrop.bind(this) },
+                permissions: { dragstart: this.isEditable, drop: this.isEditable },
                 callbacks: { dragstart: this._onDragStart.bind(this), drop: this._onDropItem.bind(this, "item") },
             }),
             new DragDrop({
                 dragSelector: ".technique",
                 dropSelector: ".techniques",
-                permissions: { dragstart: this._canDragStart.bind(this), drop: this._canDragDrop.bind(this) },
+                permissions: { dragstart: this.isEditable, drop: this.isEditable },
                 callbacks: { dragstart: this._onDragStart.bind(this), drop: this._onDropItem.bind(this, "technique") },
             }),
             new DragDrop({
                 dragSelector: ".peculiarity",
                 dropSelector: ".peculiarities",
-                permissions: { dragstart: this._canDragStart.bind(this), drop: this._canDragDrop.bind(this) },
+                permissions: { dragstart: this.isEditable, drop: this.isEditable },
                 callbacks: {
                     dragstart: this._onDragStart.bind(this),
                     drop: this._onDropItem.bind(this, "peculiarity"),
@@ -125,7 +125,7 @@ export class TwentyQuestionsDialog extends FormApplication {
             new DragDrop({
                 dragSelector: ".bond",
                 dropSelector: ".bonds",
-                permissions: { dragstart: this._canDragStart.bind(this), drop: this._canDragDrop.bind(this) },
+                permissions: { dragstart: this.isEditable, drop: this.isEditable },
                 callbacks: {
                     dragstart: this._onDragStart.bind(this),
                     drop: this._onDropItem.bind(this, "bond"),
@@ -253,14 +253,14 @@ export class TwentyQuestionsDialog extends FormApplication {
         }
         const stepKey = $(event.target).data("step");
         if (!stepKey) {
-            console.warn("L5R5E | Event stepKey is undefined");
+            console.warn("L5R5E | 20Q | Event stepKey is undefined");
             return;
         }
         try {
             // Get item
             const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
             if (item.documentName !== "Item" || !item) {
-                console.warn(`L5R5E | Forbidden item for this drop zone ${type} : ${item.type}`);
+                console.warn(`L5R5E | 20Q | Forbidden item for this drop zone ${type} : ${item.type}`);
                 return;
             }
 
@@ -273,7 +273,7 @@ export class TwentyQuestionsDialog extends FormApplication {
                 (type !== "item" && item.type !== type) ||
                 (type === "item" && !["item", "weapon", "armor"].includes(item.type))
             ) {
-                console.warn(`L5R5E | Forbidden item for this drop zone ${type} : ${item.type}`);
+                console.warn(`L5R5E | 20Q | Forbidden item for this drop zone ${type} : ${item.type}`);
                 return;
             }
 
@@ -286,7 +286,7 @@ export class TwentyQuestionsDialog extends FormApplication {
                     if (stepKey === "step3.school_ability") {
                         if (item.system.technique_type !== "school_ability") {
                             console.warn(
-                                `L5R5E | This technique is not a school ability : ${item.system.technique_type}`
+                                `L5R5E | 20Q | This technique is not a school ability : ${item.system.technique_type}`
                             );
                             return;
                         }
@@ -301,37 +301,37 @@ export class TwentyQuestionsDialog extends FormApplication {
                     switch (stepKey) {
                         case "step9.distinction":
                             if (item.system.peculiarity_type !== "distinction") {
-                                console.warn("L5R5E | Wrong type", item.system.peculiarity_type);
+                                console.warn(`L5R5E | 20Q | Wrong type given "${item.system.peculiarity_type}" instead of "distinction"`);
                                 return;
                             }
                             break;
                         case "step10.adversity":
                             if (item.system.peculiarity_type !== "adversity") {
-                                console.warn("L5R5E | Wrong type", item.system.peculiarity_type);
+                                console.warn(`L5R5E | 20Q | Wrong type given "${item.system.peculiarity_type}" instead of "adversity"`);
                                 return;
                             }
                             break;
                         case "step11.passion":
                             if (item.system.peculiarity_type !== "passion") {
-                                console.warn("L5R5E | Wrong type", item.system.peculiarity_type);
+                                console.warn(`L5R5E | 20Q | Wrong type given "${item.system.peculiarity_type}" instead of "passion"`);
                                 return;
                             }
                             break;
                         case "step12.anxiety":
                             if (item.system.peculiarity_type !== "anxiety") {
-                                console.warn("L5R5E | Wrong type", item.system.peculiarity_type);
+                                console.warn(`L5R5E | 20Q | Wrong type given "${item.system.peculiarity_type}" instead of "anxiety"`);
                                 return;
                             }
                             break;
                         case "step13.advantage":
                             if (!["distinction", "passion"].includes(item.system.peculiarity_type)) {
-                                console.warn("L5R5E | Wrong type", item.system.peculiarity_type);
+                                console.warn(`L5R5E | 20Q | Wrong type given "${item.system.peculiarity_type}" instead of "distinction" or "passion"`);
                                 return;
                             }
                             break;
                         case "step13.disadvantage":
                             if (!["adversity", "anxiety"].includes(item.system.peculiarity_type)) {
-                                console.warn("L5R5E | Wrong type", item.system.peculiarity_type);
+                                console.warn(`L5R5E | 20Q | Wrong type given "${item.system.peculiarity_type}" instead of "adversity" or "anxiety"`);
                                 return;
                             }
                             break;
@@ -344,7 +344,7 @@ export class TwentyQuestionsDialog extends FormApplication {
 
             this.submit();
         } catch (err) {
-            console.warn("L5R5E | ", err);
+            console.warn("L5R5E | 20Q | ", err);
         }
         return false;
     }
@@ -430,7 +430,7 @@ export class TwentyQuestionsDialog extends FormApplication {
                 }
                 const item = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack({ id: id, type: "Item" });
                 if (!item) {
-                    console.warn(`L5R5E | Unknown item id[${id}]`);
+                    console.warn(`L5R5E | 20Q | Unknown item id[${id}]`);
                     continue;
                 }
                 newStep.push(id);

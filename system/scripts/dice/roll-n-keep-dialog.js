@@ -196,19 +196,10 @@ export class RollnKeepDialog extends FormApplication {
             new DragDrop({
                 dragSelector: ".dice.draggable",
                 dropSelector: ".dropbox",
-                permissions: { dragstart: this._canDragStart.bind(this), drop: this._canDragDrop.bind(this) },
+                permissions: { dragstart: this.isEditable, drop: this.isEditable },
                 callbacks: { dragstart: this._onDragStart.bind(this), drop: this._onDropItem.bind(this) },
             }),
         ];
-    }
-
-    /**
-     * Define whether a user is able to begin a dragstart workflow for a given drag selector
-     * @param selector	The candidate HTML selector for dragging
-     * @return			Can the current user drag this selector?
-     */
-    _canDragStart(selector) {
-        return this.options.editable;
     }
 
     /**
@@ -683,7 +674,7 @@ export class RollnKeepDialog extends FormApplication {
         }
 
         // Delete old chat message related to this series
-        if (game.settings.get("l5r5e", "rnk-deleteOldMessage")) {
+        if (game.settings.get(CONFIG.l5r5e.namespace, "rnk-deleteOldMessage")) {
             if (game.user.isFirstGM) {
                 const message = game.messages.get(msgOldId);
                 if (message) {

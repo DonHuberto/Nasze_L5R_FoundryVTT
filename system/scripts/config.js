@@ -1,7 +1,8 @@
 export const L5R5E = {
+    namespace: "l5r5e",
     paths: {
-        assets: `systems/l5r5e/assets/`,
-        templates: `systems/l5r5e/templates/`,
+        assets: "systems/l5r5e/assets/",
+        templates: "systems/l5r5e/templates/",
     },
     money: [50, 10],
     stances: ["earth", "air", "water", "fire", "void"],

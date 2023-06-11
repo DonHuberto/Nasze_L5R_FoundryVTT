@@ -14,7 +14,7 @@ export class MigrationL5r5e {
      * @return {boolean}
      */
     static needUpdate(version) {
-        const currentVersion = game.settings.get("l5r5e", "systemMigrationVersion");
+        const currentVersion = game.settings.get(CONFIG.l5r5e.namespace, "systemMigrationVersion");
         return !currentVersion || foundry.utils.isNewerVersion(version, currentVersion);
     }
 
@@ -44,11 +44,11 @@ export class MigrationL5r5e {
             try {
                 const updateData = MigrationL5r5e._migrateActorData(actor, options);
                 if (!foundry.utils.isEmpty(updateData)) {
-                    console.log(`L5R5E | Migrating Actor document ${actor.name}[${actor._id}]`);
+                    console.log(`L5R5E | Migration | Migrating Actor document ${actor.name}[${actor._id}]`);
                     await actor.update(updateData);
                 }
             } catch (err) {
-                err.message = `L5R5E | Failed L5R5e system migration for Actor ${actor.name}[${actor._id}]: ${err.message}`;
+                err.message = `L5R5E | Migration | Failed L5R5e system migration for Actor ${actor.name}[${actor._id}]: ${err.message}`;
                 console.error(err);
             }
         }
@@ -58,11 +58,11 @@ export class MigrationL5r5e {
             try {
                 const updateData = MigrationL5r5e._migrateItemData(item, options);
                 if (!foundry.utils.isEmpty(updateData)) {
-                    console.log(`L5R5E | Migrating Item document ${item.name}[${item._id}]`);
+                    console.log(`L5R5E | Migration | Migrating Item document ${item.name}[${item._id}]`);
                     await item.update(updateData);
                 }
             } catch (err) {
-                err.message = `L5R5E | Failed L5R5e system migration for Item ${item.name}[${item._id}]: ${err.message}`;
+                err.message = `L5R5E | Migration | Failed L5R5e system migration for Item ${item.name}[${item._id}]: ${err.message}`;
                 console.error(err);
             }
         }
@@ -72,14 +72,14 @@ export class MigrationL5r5e {
             try {
                 const updateData = MigrationL5r5e._migrateSceneData(scene, options);
                 if (!foundry.utils.isEmpty(updateData)) {
-                    console.log(`L5R5E | Migrating Scene document ${scene.name}[${scene._id}]`);
+                    console.log(`L5R5E | Migration | Migrating Scene document ${scene.name}[${scene._id}]`);
                     await scene.update(updateData);
                     // If we do not do this, then synthetic token actors remain in cache
                     // with the un-updated actorData.
                     scene.tokens.contents.forEach((t) => (t._actor = null));
                 }
             } catch (err) {
-                err.message = `L5R5E | Failed L5R5e system migration for Scene ${scene.name}[${scene._id}]: ${err.message}`;
+                err.message = `L5R5E | Migration | Failed L5R5e system migration for Scene ${scene.name}[${scene._id}]: ${err.message}`;
                 console.error(err);
             }
         }
@@ -104,16 +104,16 @@ export class MigrationL5r5e {
             }
             // Save all the modified entries at once
             if (updatedChatList.length > 0) {
-                console.log(`L5R5E | Migrating ${updatedChatList.length} ChatMessage documents`);
+                console.log(`L5R5E | Migration | Migrating ${updatedChatList.length} ChatMessage documents`);
                 await ChatMessage.updateDocuments(updatedChatList);
             }
         } catch (err) {
-            err.message = `L5R5E | Failed L5R5e system migration for ChatMessage`;
+            err.message = `L5R5E | Migration | Failed L5R5e system migration for ChatMessage`;
             console.error(err);
         }
 
         // Set the migration as complete
-        await game.settings.set("l5r5e", "systemMigrationVersion", game.system.version);
+        await game.settings.set(CONFIG.l5r5e.namespace, "systemMigrationVersion", game.system.version);
         ui.notifications.info(`L5R5e System Migration to version ${game.system.version} completed!`, {
             permanent: true,
         });
@@ -160,9 +160,7 @@ export class MigrationL5r5e {
                 updateData["_id"] = doc._id;
                 updateDatasList.push(updateData);
 
-                console.log(
-                    `L5R5E | Migrating ${docType} document ${doc.name}[${doc._id}] in Compendium ${pack.collection}`
-                );
+                console.log(`L5R5E | Migration | Migrating ${docType} document ${doc.name}[${doc._id}] in Compendium ${pack.collection}`);
             }
 
             // Save the modified entries
@@ -171,13 +169,13 @@ export class MigrationL5r5e {
             }
         } catch (err) {
             // Handle migration failures
-            err.message = `L5R5E | Failed system migration for documents ${docType} in pack ${pack.collection}: ${err.message}`;
+            err.message = `L5R5E | Migration | Failed system migration for documents ${docType} in pack ${pack.collection}: ${err.message}`;
             console.error(err);
         }
 
         // Apply the original locked status for the pack
         await pack.configure({ locked: wasLocked });
-        console.log(`L5R5E | Migrated all ${docType} contents from Compendium ${pack.collection}`);
+        console.log(`L5R5E | Migration | Migrated all ${docType} contents from Compendium ${pack.collection}`);
     }
 
     /**
@@ -191,12 +189,12 @@ export class MigrationL5r5e {
         const tokens = scene.tokens.map((token) => {
             const t = token.toJSON();
             if (!t.actorId || t.actorLink) {
-                t.actorData = {};
+                t.delta = {};
             } else if (!game.actors.has(t.actorId)) {
                 t.actorId = null;
-                t.actorData = {};
+                t.delta = {};
             } else if (!t.actorLink) {
-                const actorData = foundry.utils.duplicate(t.actorData);
+                const actorData = foundry.utils.duplicate(t.delta);
                 actorData.type = token.actor?.type;
                 const update = MigrationL5r5e._migrateActorData(actorData, options);
                 ["items", "effects"].forEach((embeddedName) => {
@@ -204,7 +202,7 @@ export class MigrationL5r5e {
                         return;
                     }
                     const updates = new Map(update[embeddedName].map((u) => [u._id, u]));
-                    t.actorData[embeddedName].forEach((original) => {
+                    t.delta[embeddedName].forEach((original) => {
                         const update = updates.get(original._id);
                         if (update) {
                             foundry.utils.mergeObject(original, update);
@@ -213,7 +211,7 @@ export class MigrationL5r5e {
                     delete update[embeddedName];
                 });
 
-                foundry.utils.mergeObject(t.actorData, update);
+                foundry.utils.mergeObject(t.delta, update);
             }
             return t;
         });
@@ -223,7 +221,7 @@ export class MigrationL5r5e {
     /**
      * Migrate a single Actor document to incorporate latest data model changes
      * Return an Object of updateData to be applied
-     * @param  {ActorL5r5e|Object} actor The actor, or the TokenDocument.actorData to Update
+     * @param  {ActorL5r5e|Object} actor The actor, or the TokenDocument.delta to Update
      * @param  options
      * @return {Object} The updateData to apply
      */

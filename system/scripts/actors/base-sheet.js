@@ -182,7 +182,7 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         const created = await this.actor.createEmbeddedDocuments("Item", [
             {
-                name: game.i18n.localize(`ITEM.Type${type.capitalize()}`),
+                name: game.i18n.localize(`TYPES.Item.${type.toLowerCase()}`),
                 type: type,
                 img: `${CONFIG.l5r5e.paths.assets}icons/items/${type}.svg`,
             },

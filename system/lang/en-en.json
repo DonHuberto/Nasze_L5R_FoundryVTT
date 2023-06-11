@@ -19,28 +19,30 @@
             "Hint": "Add 'Specificity' technique type to serve as a catch-all."
         }
     },
-    "ACTOR": {
-        "TypeCharacter": "Player Character",
-        "TypeNpc": "Non-Player Character",
-        "TypeArmy": "Army"
-    },
-    "ITEM": {
-        "TypeItem": "Item",
-        "TypeArmor": "Armor",
-        "TypeWeapon": "Weapon",
-        "TypeTechnique": "Technique",
-        "TypeProperty": "Property",
-        "TypePeculiarity": "Peculiarity",
-        "TypeAdvancement": "Advancement",
-        "TypeTitle": "Title",
-        "TypeBond": "Bond",
-        "TypeSignature_scroll": "Signature Scroll",
-        "TypeItem_pattern": "Item Pattern",
-        "TypeArmy_fortification": "Fortification",
-        "TypeArmy_cohort": "Cohort"
-    },
-    "JOURNAL": {
-        "TypeJournal": "Journal"
+    "TYPES": {
+        "Actor": {
+            "character": "Player Character",
+            "npc": "Non-Player Character",
+            "army": "Army"
+        },
+        "Item": {
+            "item": "Item",
+            "armor": "Armor",
+            "weapon": "Weapon",
+            "technique": "Technique",
+            "property": "Property",
+            "peculiarity": "Peculiarity",
+            "advancement": "Advancement",
+            "title": "Title",
+            "bond": "Bond",
+            "signature_scroll": "Signature Scroll",
+            "item_pattern": "Item Pattern",
+            "army_fortification": "Fortification",
+            "army_cohort": "Cohort"
+        },
+        "Journal": {
+            "journal": "Journal"
+        }
     },
     "l5r5e": {
         "global": {
@@ -173,6 +175,7 @@
             "monitor": {
                 "title": "GM Monitor",
                 "switch_view": "Switch View",
+                "add_selected_tokens": "Add selected tokens",
                 "honor_glory_status": "H/G/S",
                 "focus_vigilance": "Foc./Vig.",
                 "mouse_control": "Right click +1, left: -1, middle: reset to 0"

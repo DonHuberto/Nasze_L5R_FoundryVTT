@@ -19,28 +19,30 @@
             "Hint": "Ajoute un type de technique 'Particularités' pour servir de fourre-tout."
         }
     },
-    "ACTOR": {
-        "TypeCharacter": "Personnage Joueur",
-        "TypeNpc": "Personnage non Joueur",
-        "TypeArmy": "Armée"
-    },
-    "ITEM": {
-        "TypeItem": "Objet",
-        "TypeArmor": "Armure",
-        "TypeWeapon": "Arme",
-        "TypeTechnique": "Technique",
-        "TypeProperty": "Propriété",
-        "TypePeculiarity": "Particularité",
-        "TypeAdvancement": "Progression",
-        "TypeTitle": "Titre",
-        "TypeBond": "Lien",
-        "TypeSignature_scroll": "Rouleau de marque",
-        "TypeItem_pattern": "Procédé de fabrication",
-        "TypeArmy_fortification": "Fortification",
-        "TypeArmy_cohort": "Régiment"
-    },
-    "JOURNAL": {
-        "TypeJournal": "Journal"
+    "TYPES": {
+        "Actor": {
+            "character": "Personnage Joueur",
+            "npc": "Personnage non Joueur",
+            "army": "Armée"
+        },
+        "Item": {
+            "item": "Objet",
+            "armor": "Armure",
+            "weapon": "Arme",
+            "technique": "Technique",
+            "property": "Propriété",
+            "peculiarity": "Particularité",
+            "advancement": "Progression",
+            "title": "Titre",
+            "bond": "Lien",
+            "signature_scroll": "Rouleau de marque",
+            "item_pattern": "Procédé de fabrication",
+            "army_fortification": "Fortification",
+            "army_cohort": "Régiment"
+        },
+        "Journal": {
+            "journal": "Journal"
+        }
     },
     "l5r5e": {
         "global": {
@@ -95,7 +97,7 @@
             "void": "Vide"
         },
         "sheets": {
-            "narrative": "Mode Narratif",
+            "narrative": "Narratif",
             "experience": "Expérience",
             "family": "Famille",
             "region": "Région",
@@ -173,6 +175,7 @@
             "monitor": {
                 "title": "GM Monitor",
                 "switch_view": "Switch View",
+                "add_selected_tokens": "Ajouter les tokens sélectionnés",
                 "honor_glory_status": "H/G/S",
                 "focus_vigilance": "Att./Vig.",
                 "mouse_control": "Click Droit +1, Gauche: -1, Milieu: Remise à 0"

@@ -161,7 +161,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
         if (!item || item.documentName !== "Item" || !["army_cohort", "army_fortification"].includes(item.type)) {
             // actor dual trigger...
             if (item?.documentName !== "Actor") {
-                console.warn("L5R5E | Characters items are not allowed", item?.type, item);
+                console.warn("L5R5E | AS | Characters items are not allowed", item?.type, item);
             }
             return;
         }
@@ -221,7 +221,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
      */
     async _updateLinkedActorData(type, actor, isInit = false) {
         if (!actor || actor.documentName !== "Actor" || !actor.isCharacterType) {
-            console.warn("L5R5E | Wrong actor type", actor?.type, actor);
+            console.warn("L5R5E | AS | Wrong actor type", actor?.type, actor);
             return;
         }
 
@@ -252,7 +252,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
                 break;
 
             default:
-                console.warn("L5R5E | Unknown type", type);
+                console.warn("L5R5E | AS | Unknown type", type);
                 return;
         }
         return this.actor.update(actorData);
@@ -276,7 +276,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
                 break;
 
             default:
-                console.warn("L5R5E | Unknown type", type);
+                console.warn("L5R5E | AS | Unknown type", type);
                 return;
         }
         return this.actor.update({ system: actorData });
@@ -323,7 +323,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
                 break;
 
             default:
-                console.warn("L5R5E | Unsupported type", type);
+                console.warn("L5R5E | AS | Unsupported type", type);
                 break;
         }
     }

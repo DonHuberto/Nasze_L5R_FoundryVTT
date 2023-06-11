@@ -90,7 +90,7 @@ export class CharacterGenerator {
     static async _getItemFromPack(packName, id = null) {
         const comp = await game.packs.get(packName);
         if (!comp) {
-            console.log(`L5R5E | Pack not found[${packName}]`);
+            console.log(`L5R5E | CG | Pack not found[${packName}]`);
             return;
         }
         let document;

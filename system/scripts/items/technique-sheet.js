@@ -21,7 +21,7 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
 
         // List all available techniques type
         const types = ["core", "school", "title"];
-        if (game.settings.get("l5r5e", "techniques-customs")) {
+        if (game.settings.get(CONFIG.l5r5e.namespace, "techniques-customs")) {
             types.push("custom");
         }
         sheetData.data.techniquesList = game.l5r5e.HelpersL5r5e.getTechniquesList({ types });

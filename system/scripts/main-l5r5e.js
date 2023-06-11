@@ -109,94 +109,94 @@ Hooks.once("init", async () => {
     // ***** Register custom sheets *****
     // Actors
     Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("l5r5e", CharacterSheetL5r5e, {
+    Actors.registerSheet(L5R5E.namespace, CharacterSheetL5r5e, {
         types: ["character"],
-        label: "ACTOR.TypeCharacter",
+        label: "TYPES.Actor.character",
         makeDefault: true,
     });
-    Actors.registerSheet("l5r5e", NpcSheetL5r5e, {
+    Actors.registerSheet(L5R5E.namespace, NpcSheetL5r5e, {
         types: ["npc"],
-        label: "ACTOR.TypeNpc",
+        label: "TYPES.Actor.npc",
         makeDefault: true,
     });
-    Actors.registerSheet("l5r5e", ArmySheetL5r5e, {
+    Actors.registerSheet(L5R5E.namespace, ArmySheetL5r5e, {
         types: ["army"],
-        label: "ACTOR.TypeArmy",
+        label: "TYPES.Actor.army",
         makeDefault: true,
     });
 
     // Items
     Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet("l5r5e", ItemSheetL5r5e, {
+    Items.registerSheet(L5R5E.namespace, ItemSheetL5r5e, {
         types: ["item"],
-        label: "ITEM.TypeItem",
+        label: "TYPES.Item.item",
         makeDefault: true,
     });
-    Items.registerSheet("l5r5e", ArmorSheetL5r5e, {
+    Items.registerSheet(L5R5E.namespace, ArmorSheetL5r5e, {
         types: ["armor"],
-        label: "ITEM.TypeArmor",
+        label: "TYPES.Item.armor",
         makeDefault: true,
     });
-    Items.registerSheet("l5r5e", WeaponSheetL5r5e, {
+    Items.registerSheet(L5R5E.namespace, WeaponSheetL5r5e, {
         types: ["weapon"],
-        label: "ITEM.TypeWeapon",
+        label: "TYPES.Item.weapon",
         makeDefault: true,
     });
-    Items.registerSheet("l5r5e", TechniqueSheetL5r5e, {
+    Items.registerSheet(L5R5E.namespace, TechniqueSheetL5r5e, {
         types: ["technique"],
-        label: "ITEM.TypeTechnique",
+        label: "TYPES.Item.technique",
         makeDefault: true,
     });
-    Items.registerSheet("l5r5e", PropertySheetL5r5e, {
+    Items.registerSheet(L5R5E.namespace, PropertySheetL5r5e, {
         types: ["property"],
-        label: "ITEM.TypeProperty",
+        label: "TYPES.Item.property",
         makeDefault: true,
     });
-    Items.registerSheet("l5r5e", PeculiaritySheetL5r5e, {
+    Items.registerSheet(L5R5E.namespace, PeculiaritySheetL5r5e, {
         types: ["peculiarity"],
-        label: "ITEM.TypePeculiarity",
+        label: "TYPES.Item.peculiarity",
         makeDefault: true,
     });
-    Items.registerSheet("l5r5e", AdvancementSheetL5r5e, {
+    Items.registerSheet(L5R5E.namespace, AdvancementSheetL5r5e, {
         types: ["advancement"],
-        label: "ITEM.TypeAdvancement",
+        label: "TYPES.Item.advancement",
         makeDefault: true,
     });
-    Items.registerSheet("l5r5e", TitleSheetL5r5e, {
+    Items.registerSheet(L5R5E.namespace, TitleSheetL5r5e, {
         types: ["title"],
-        label: "ITEM.TypeTitle",
+        label: "TYPES.Item.title",
         makeDefault: true,
     });
-    Items.registerSheet("l5r5e", BondSheetL5r5e, {
+    Items.registerSheet(L5R5E.namespace, BondSheetL5r5e, {
         types: ["bond"],
-        label: "ITEM.TypeBond",
+        label: "TYPES.Item.bond",
         makeDefault: true,
     });
-    Items.registerSheet("l5r5e", SignatureScrollSheetL5r5e, {
+    Items.registerSheet(L5R5E.namespace, SignatureScrollSheetL5r5e, {
         types: ["signature_scroll"],
-        label: "ITEM.TypeSignature_scroll",
+        label: "TYPES.Item.signature_scroll",
         makeDefault: true,
     });
-    Items.registerSheet("l5r5e", ItemPatternSheetL5r5e, {
+    Items.registerSheet(L5R5E.namespace, ItemPatternSheetL5r5e, {
         types: ["item_pattern"],
-        label: "ITEM.TypeItem_pattern",
+        label: "TYPES.Item.item_pattern",
         makeDefault: true,
     });
-    Items.registerSheet("l5r5e", ArmyCohortSheetL5r5e, {
+    Items.registerSheet(L5R5E.namespace, ArmyCohortSheetL5r5e, {
         types: ["army_cohort"],
-        label: "ITEM.TypeArmy_cohort",
+        label: "TYPES.Item.army_cohort",
         makeDefault: true,
     });
-    Items.registerSheet("l5r5e", ArmyFortificationSheetL5r5e, {
+    Items.registerSheet(L5R5E.namespace, ArmyFortificationSheetL5r5e, {
         types: ["army_fortification"],
-        label: "ITEM.TypeArmy_fortification",
+        label: "TYPES.Item.army_fortification",
         makeDefault: true,
     });
 
     // Journal
     Journal.unregisterSheet("core", JournalSheet);
-    Journal.registerSheet("l5r5e", BaseJournalSheetL5r5e, {
-        label: "JOURNAL.TypeJournal",
+    Journal.registerSheet(L5R5E.namespace, BaseJournalSheetL5r5e, {
+        label: "TYPES.Journal.journal",
         makeDefault: true,
     });
 
@@ -208,7 +208,7 @@ Hooks.once("init", async () => {
 
     // Override the default Token _drawBar function to allow fatigue bar reversing.
     Token.prototype._drawBar = function (number, bar, data) {
-        const reverseBar = data.attribute === "fatigue" && game.settings.get("l5r5e", "token-reverseFatigueBar");
+        const reverseBar = data.attribute === "fatigue" && game.settings.get(L5R5E.namespace, "token-reverseFatigueBar");
 
         // Bar value
         const pct = Math.clamped(Number(data.value), 0, data.max) / data.max;

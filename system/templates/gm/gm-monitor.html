@@ -26,17 +26,17 @@
                 {{#if actor.system.attitude}}<p>({{actor.system.attitude}})</p>{{/if}}
             </td>
             <td>
-                <a data-actor-id="{{actor.id}}" data-type="stance" class="actor-modify-control">
+                <a data-actor-uuid="{{actor.uuid}}" data-type="stance" class="actor-modify-control">
                     <i data-type="text" data-text="<h2>{{localize 'l5r5e.conflict.stance'}} ({{localizeRing actor.system.stance}} - {{lookup actor.system.rings actor.system.stance}})</h2>{{localizeStanceTip actor.system.stance}}" class="i_{{actor.system.stance}} actor-infos-control"></i>
                 </a>
             </td>
             <td>
-                <a data-actor-id="{{actor.id}}" data-type="prepared" class="actor-modify-control">
+                <a data-actor-uuid="{{actor.uuid}}" data-type="prepared" class="actor-modify-control">
                     <i data-type="text" data-text="<h2>{{localize 'l5r5e.conflict.initiative.title'}} : {{localize (localize 'l5r5e.conflict.initiative.prepared_{value}' value=actor.isPrepared)}}</h2>" class="fa fas prepared-icon-{{actor.isPrepared}} {{#ifCond actor.isPrepared '==' 'false'}}badvalue{{/ifCond}} actor-infos-control"></i>
                 </a>
             </td>
-            <td>{{#if actor.haveWeaponEquipped}}<i data-type="weapons" data-actor-id="{{actor.id}}" class="fas fa-fan actor-infos-control {{#if actor.haveWeaponReadied}}badvalue{{/if}}"></i>{{/if}}</td>
-            <td>{{#if actor.haveArmorEquipped}}<i data-type="armors" data-actor-id="{{actor.id}}" class="fas fa-user-shield actor-infos-control"></i>{{/if}}</td>
+            <td>{{#if actor.haveWeaponEquipped}}<i data-type="weapons" data-actor-uuid="{{actor.uuid}}" class="fas fa-fan actor-infos-control {{#if actor.haveWeaponReadied}}badvalue{{/if}}"></i>{{/if}}</td>
+            <td>{{#if actor.haveArmorEquipped}}<i data-type="armors" data-actor-uuid="{{actor.uuid}}" class="fas fa-user-shield actor-infos-control"></i>{{/if}}</td>
             <td>
                 <p>
                     {{#if actor.system.identity.school_rank}}
@@ -56,13 +56,13 @@
                 </p>
             </td>
             <td>
-                <a title="{{localize 'l5r5e.gm.monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="fatigue" class="actor-modify-control">
+                <a title="{{localize 'l5r5e.gm.monitor.mouse_control'}}" data-actor-uuid="{{actor.uuid}}" data-type="fatigue" class="actor-modify-control">
                     <span class="{{#ifCond actor.system.fatigue.value '>' actor.system.fatigue.max}}badvalue{{/ifCond}}">{{actor.system.fatigue.value}}</span>
                     / {{actor.system.fatigue.max}}
                 </a>
             </td>
             <td>
-                <a title="{{localize 'l5r5e.gm.monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="strife" class="actor-modify-control">
+                <a title="{{localize 'l5r5e.gm.monitor.mouse_control'}}" data-actor-uuid="{{actor.uuid}}" data-type="strife" class="actor-modify-control">
                     <span class="{{#ifCond actor.system.strife.value '>' actor.system.strife.max}}badvalue{{/ifCond}}">{{actor.system.strife.value}}</span>
                     / {{actor.system.strife.max}}
                 </a>
@@ -72,13 +72,13 @@
                 / {{#if actor.system.is_compromised}}<span class="badvalue">1</span>{{else}}{{actor.system.vigilance}}{{/if}}
             </td>
             <td>
-                <a title="{{localize 'l5r5e.gm.monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="void_points" class="actor-modify-control">
+                <a title="{{localize 'l5r5e.gm.monitor.mouse_control'}}" data-actor-uuid="{{actor.uuid}}" data-type="void_points" class="actor-modify-control">
                     {{actor.system.void_points.value}}
                     / {{actor.system.void_points.max}}
                 </a>
             </td>
-            <td><i data-actor-id="{{actor.id}}" data-type="global" class="fas fa-question-circle actor-infos-control"></i></td>
-            <td><span data-actor-id="{{actor.id}}" class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span></td>
+            <td><i data-actor-uuid="{{actor.uuid}}" data-type="global" class="fas fa-question-circle actor-infos-control"></i></td>
+            <td><span data-actor-uuid="{{actor.uuid}}" class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span></td>
         </tr>
         {{/each}}
         </tbody>
@@ -109,13 +109,13 @@
                 {{/if}}
             </td>
             <td>
-                <a title="{{localize 'l5r5e.gm.monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="casualties" class="actor-modify-control">
+                <a title="{{localize 'l5r5e.gm.monitor.mouse_control'}}" data-actor-uuid="{{actor.uuid}}" data-type="casualties" class="actor-modify-control">
                     <span class="{{#ifCond actor.system.battle_readiness.casualties_strength.value '>' actor.system.battle_readiness.casualties_strength.max}}badvalue{{/ifCond}}">{{actor.system.battle_readiness.casualties_strength.value}}</span>
                      / {{actor.system.battle_readiness.casualties_strength.max}}
                  </a>
              </td>
             <td>
-                <a title="{{localize 'l5r5e.gm.monitor.mouse_control'}}" data-actor-id="{{actor.id}}" data-type="panic" class="actor-modify-control">
+                <a title="{{localize 'l5r5e.gm.monitor.mouse_control'}}" data-actor-uuid="{{actor.uuid}}" data-type="panic" class="actor-modify-control">
                     <span class="{{#ifCond actor.system.battle_readiness.panic_discipline.value '>' actor.system.battle_readiness.panic_discipline.max}}badvalue{{/ifCond}}">{{actor.system.battle_readiness.panic_discipline.value}}</span>
                     / {{actor.system.battle_readiness.panic_discipline.max}}
                 </a>
@@ -131,8 +131,8 @@
                 / <span class="{{#ifCond actor.system.commander_standing.glory '>' 64}}goodvalue{{/ifCond}}{{#ifCond actor.system.commander_standing.glory '<' 20}}badvalue{{/ifCond}}">{{actor.system.commander_standing.glory}}</span>
                 / {{actor.system.commander_standing.status}}
             </td>
-            <td><i data-actor-id="{{actor.id}}" data-type="global" class="fas fa-question-circle actor-infos-control"></i></td>
-            <td><span data-actor-id="{{actor.id}}" class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span></td>
+            <td><i data-actor-uuid="{{actor.uuid}}" data-type="global" class="fas fa-question-circle actor-infos-control"></i></td>
+            <td><span data-actor-uuid="{{actor.uuid}}" class="actor-remove-control pointer" title="{{localize 'Delete'}}"><i class="fas fa-trash"></i></span></td>
         </tr>
         {{/each}}
         </tbody>

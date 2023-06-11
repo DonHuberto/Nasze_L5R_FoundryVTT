@@ -43,16 +43,13 @@ export class ItemL5r5e extends Item {
      * TODO probably useless if we can add "items" in metadata.embedded, but no clue how to.
      *
      * @param {string} embeddedName   The name of the embedded Document type
-     * @return {Collection}           The Collection instance of embedded Documents of the requested type
+     * @return {DocumentCollection}   The Collection instance of embedded Documents of the requested type
      */
     getEmbeddedCollection(embeddedName) {
-        const collectionName = embeddedName === "Item" ? "items" : this.constructor.metadata.embedded[embeddedName];
-        if (!collectionName) {
-            throw new Error(
-                `${embeddedName} is not a valid embedded Document within the ${this.documentName} Document`
-            );
+        if (embeddedName === "Item") {
+            return this.items;
         }
-        return this[collectionName];
+        return super.getEmbeddedCollection(embeddedName);
     }
 
     /**
@@ -82,7 +79,7 @@ export class ItemL5r5e extends Item {
         // **** Embed Items, need to get the parents ****
         const parentItem = this.getItemFromParentId();
         if (!parentItem) {
-            console.warn(`L5R5E | Embed parentItem not found`);
+            console.warn(`L5R5E | Helpers | Embed parentItem not found`);
             return;
         }
 
@@ -198,7 +195,7 @@ export class ItemL5r5e extends Item {
     }
 
     /**
-     * Add a Embed Item
+     * Add an Embed Item
      * @param {ItemL5r5e} item Object to add
      * @param {boolean} save   if we save in db or not (used internally)
      * @param {boolean} newId  if we change the id
@@ -249,7 +246,7 @@ export class ItemL5r5e extends Item {
     }
 
     /**
-     * Update a Embed Item
+     * Update an Embed Item
      * @param {ItemL5r5e} item Object to add
      * @param {boolean} save   if we save in db or not (used internally)
      * @return {Promise<string>}

@@ -34,7 +34,7 @@ export class SocketHandlerL5r5e {
                     break;
 
                 default:
-                    console.warn(new Error("L5R5E | This socket event is not supported"), payload);
+                    console.warn(new Error("L5R5E | SH | This socket event is not supported"), payload);
                     break;
             }
         });
@@ -54,7 +54,7 @@ export class SocketHandlerL5r5e {
     _onDeleteChatMessage(payload) {
         // Only delete the message if the user is a GM (otherwise it has no real effect)
         // Currently only used in RnK
-        if (!game.user.isFirstGM || !game.settings.get("l5r5e", "rnk-deleteOldMessage")) {
+        if (!game.user.isFirstGM || !game.settings.get(CONFIG.l5r5e.namespace, "rnk-deleteOldMessage")) {
             return;
         }
         game.messages.get(payload.messageId)?.delete();
@@ -118,27 +118,27 @@ export class SocketHandlerL5r5e {
      *   }
      * });
      *
-     * @param {User[]}  users     Users list to trigger the DP (will be reduce to id for network perf.)
-     * @param {Actor[]} actors    Actors list to trigger the DP (will be reduce to uuid for network perf.)
+     * @param {User[]}  users     Users list to trigger the DP (will be reduced to id for network perf.)
+     * @param {Actor[]} actors    Actors list to trigger the DP (will be reduced to uuid for network perf.)
      * @param {Object}  dpOptions Any DicePickerDialog.options
      */
     openDicePicker({ users = [], actors = [], dpOptions = {} }) {
         // At least one user or one actor
         if (foundry.utils.isEmpty(users) && foundry.utils.isEmpty(actors)) {
-            console.error("L5R5E | openDicePicker - 'users' and 'actors' are both empty, use at least one.");
+            console.error("L5R5E | SH | openDicePicker - 'users' and 'actors' are both empty, use at least one.");
             return;
         }
         // Fail if dpOptions.actor* provided
         if (!foundry.utils.isEmpty(dpOptions?.actorName)) {
-            console.error("L5R5E | openDicePicker - Do not use 'dpOptions.actorName', use 'actors' list instead.");
+            console.error("L5R5E | SH | openDicePicker - Do not use 'dpOptions.actorName', use 'actors' list instead.");
             return;
         }
         if (!foundry.utils.isEmpty(dpOptions?.actorId)) {
-            console.error("L5R5E | openDicePicker - Do not use 'dpOptions.actorId', use 'actors' list instead.");
+            console.error("L5R5E | SH | openDicePicker - Do not use 'dpOptions.actorId', use 'actors' list instead.");
             return;
         }
         if (!foundry.utils.isEmpty(dpOptions?.actor)) {
-            console.error("L5R5E | openDicePicker - Do not use 'dpOptions.actor', use 'actors' list instead.");
+            console.error("L5R5E | SH | openDicePicker - Do not use 'dpOptions.actor', use 'actors' list instead.");
             return;
         }
 

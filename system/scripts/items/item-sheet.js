@@ -51,7 +51,7 @@ export class ItemSheetL5r5e extends BaseItemSheetL5r5e {
                     props.push({ id: gameProp.id, name: gameProp.name });
                 } else {
                     // Item not found
-                    console.warn(`L5R5E | Unknown property id[${property.id}], name[${property.name}]`);
+                    console.warn(`L5R5E | IS | Unknown property id[${property.id}], name[${property.name}]`);
                     sheetData.data.propertiesList.push({
                         id: property.id,
                         name: property.name,
@@ -87,11 +87,13 @@ export class ItemSheetL5r5e extends BaseItemSheetL5r5e {
      * @return {DragDrop[]} An array of DragDrop handlers
      */
     _createDragDropHandlers() {
+        // "this.isEditable" fail for tooltips (undefined "this.document")
+        const isEditable = this.options.editable;
         return [
             new DragDrop({
                 dragSelector: ".property",
                 dropSelector: null,
-                permissions: { dragstart: this._canDragStart.bind(this), drop: this._canDragDrop.bind(this) },
+                permissions: { dragstart: isEditable, drop: isEditable },
                 callbacks: { dragstart: this._onDragStart.bind(this), drop: this._onDrop.bind(this) },
             }),
         ];

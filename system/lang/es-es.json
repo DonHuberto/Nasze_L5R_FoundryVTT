@@ -19,28 +19,30 @@
             "Hint": "Add 'Specificity' technique type to serve as a catch-all."
         }
     },
-    "ACTOR": {
-        "TypeCharacter": "Personaje jugador",
-        "TypeNpc": "Personaje no jugador",
-        "TypeArmy": "Ejército"
-    },
-    "ITEM": {
-        "TypeItem": "Objeto",
-        "TypeArmor": "Armadura",
-        "TypeWeapon": "Arma",
-        "TypeTechnique": "Técnica",
-        "TypeProperty": "Propiedad",
-        "TypePeculiarity": "Peculiaridad",
-        "TypeAdvancement": "Mejora",
-        "TypeTitle": "Título",
-        "TypeBond": "Vínculo",
-        "TypeSignature_scroll": "Pergamino especial",
-        "TypeItem_pattern": "Patrón de objeto",
-        "TypeArmy_fortification": "Fortificación",
-        "TypeArmy_cohort": "Cohorte"
-    },
-    "JOURNAL": {
-        "TypeJournal": "Diario"
+    "TYPES": {
+        "Actor": {
+            "character": "Personaje jugador",
+            "npc": "Personaje no jugador",
+            "army": "Ejército"
+        },
+        "Item": {
+            "item": "Objeto",
+            "armor": "Armadura",
+            "weapon": "Arma",
+            "technique": "Técnica",
+            "property": "Propiedad",
+            "peculiarity": "Peculiaridad",
+            "advancement": "Mejora",
+            "title": "Título",
+            "bond": "Vínculo",
+            "signature_scroll": "Pergamino especial",
+            "item_pattern": "Patrón de objeto",
+            "army_fortification": "Fortificación",
+            "army_cohort": "Cohorte"
+        },
+        "Journal": {
+            "journal": "Diario"
+        }
     },
     "l5r5e": {
         "global": {
@@ -173,6 +175,7 @@
             "monitor": {
                 "title": "Pantalla del DJ",
                 "switch_view": "Cambiar vista",
+                "add_selected_tokens": "Add selected tokens",
                 "honor_glory_status": "H/G/E",
                 "focus_vigilance": "Con./Ale.",
                 "mouse_control": "Right click +1, left: -1, middle: reset to 0"

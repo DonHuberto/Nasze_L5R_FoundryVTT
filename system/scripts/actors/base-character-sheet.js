@@ -49,7 +49,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
 
         // Build the list order
         Array.from(CONFIG.l5r5e.techniques)
-            .filter(([id, cfg]) => cfg.type !== "custom" || game.settings.get("l5r5e", "techniques-customs"))
+            .filter(([id, cfg]) => cfg.type !== "custom" || game.settings.get(CONFIG.l5r5e.namespace, "techniques-customs"))
             .forEach(([id, cfg]) => {
                 out[id] = [];
             });
@@ -60,7 +60,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
                 case "technique":
                     if (!out[item.system.technique_type]) {
                         console.warn(
-                            `L5R5E | Empty or unknown technique type[${item.system.technique_type}] forced to "kata" in item id[${item._id}], name[${item.name}]`
+                            `L5R5E | BCS | Empty or unknown technique type[${item.system.technique_type}] forced to "kata" in item id[${item._id}], name[${item.name}]`
                         );
                         item.system.technique_type = "kata";
                     }
@@ -73,7 +73,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
                         if (embedItem.type === "technique") {
                             if (!out[embedItem.system.technique_type]) {
                                 console.warn(
-                                    `L5R5E | Empty or unknown technique type[${embedItem.system.technique_type}] forced to "kata" in item id[${id}], name[${embedItem.name}], parent: id[${item._id}], name[${item.name}]`
+                                    `L5R5E | BCS | Empty or unknown technique type[${embedItem.system.technique_type}] forced to "kata" in item id[${id}], name[${embedItem.name}], parent: id[${item._id}], name[${item.name}]`
                                 );
                                 embedItem.system.technique_type = "kata";
                             }
@@ -135,14 +135,14 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
     async _onDrop(event) {
         // *** Everything below here is only needed if the sheet is editable ***
         if (!this.isEditable || this.actor.system.soft_locked) {
-            console.log("L5R5E | This sheet is not editable");
+            console.log("L5R5E | BCS | This sheet is not editable");
             return;
         }
 
         // Check item type and subtype
         const item = await game.l5r5e.HelpersL5r5e.getDragnDropTargetObject(event);
         if (!item || !["Item", "JournalEntry"].includes(item.documentName) || item.type === "property") {
-            console.log(`L5R5E | Wrong subtype ${item?.type}`, item);
+            console.log(`L5R5E | BCS | Wrong subtype ${item?.type}`, item);
             return;
         }
 
@@ -150,7 +150,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
         if (item.documentName === "JournalEntry") {
             // npc does not have this
             if (!this.actor.system.identity?.school_curriculum_journal) {
-                console.log("L5R5E | NPC won't go to school :'(");
+                console.log("L5R5E | BCS | NPC won't go to school :'(");
                 return;
             }
             this.actor.system.identity.school_curriculum_journal = {
@@ -180,7 +180,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
                     return embedItem._id === item._id;
                 })
             ) {
-                console.log("L5R5E | This element has been ignored because it already exists in this actor", item.uuid);
+                console.log("L5R5E | BCS | This element has been ignored because it already exists in this actor", item.uuid);
                 return;
             }
 
@@ -207,7 +207,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
         switch (itemData.type) {
             case "army_cohort":
             case "army_fortification":
-                console.warn("L5R5E | Army items are not allowed", item?.type, item);
+                console.warn("L5R5E | BCS | Army items are not allowed", item?.type, item);
                 return;
 
             case "advancement":
@@ -354,7 +354,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
 
         const created = await this.actor.createEmbeddedDocuments("Item", [
             {
-                name: game.i18n.localize(`ITEM.Type${type.capitalize()}`),
+                name: game.i18n.localize(`TYPES.Item.${type.toLowerCase()}`),
                 type: type,
                 img: `${CONFIG.l5r5e.paths.assets}icons/items/${type}.svg`,
             },
@@ -556,7 +556,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
                 break;
 
             default:
-                console.warn("L5R5E | Unsupported type", type);
+                console.warn("L5R5E | BCS | Unsupported type", type);
                 break;
         }
     }
