@@ -535,7 +535,7 @@ export class RollnKeepDialog extends FormApplication {
 
         // Show DsN dice for the new roll
         if (game.dice3d !== undefined) {
-            game.dice3d.showForRoll(
+            await game.dice3d.showForRoll(
                 roll,
                 game.user,
                 true,
