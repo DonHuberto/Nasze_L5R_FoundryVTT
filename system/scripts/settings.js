@@ -125,4 +125,24 @@ export const RegisterSettings = function () {
         default: [],
         onChange: () => game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor"),
     });
+
+    /* ------------------------------------ */
+    /* Babele                               */
+    /* ------------------------------------ */
+    const showCustomCompendiumSetting = (typeof Babele !== "undefined");
+    game.settings.register(CONFIG.l5r5e.namespace, "babele-custom-compendium-name", {
+        name: "Custom Compendium Name",
+        hint: "For advanced users that want to change the name of custom compendiums",
+        scope: "world",
+        config: showCustomCompendiumSetting,
+        requiresReload: true,
+        type: String,
+        default: "l5r5e-custom-compendiums",
+        onChange: (value) => {
+            if(!Babele.get().modules.find((module) => module.module === value))
+            {
+                ui.notifications.warn("Unable set Custom Compendium: \"" + value + "\". Is it activated and registered with Babele?", {permanent: true});
+            }
+        }
+    });
 };
