@@ -118,7 +118,7 @@
 
 // Dice Picker
 .dice-picker-dialog {
-    min-width: 600px;
+    min-width: 35rem;
     min-height: auto;
     // Utility
     * {
@@ -225,6 +225,7 @@
         background: none;
         border: none;
         font-size: large;
+        padding: 0;
 
         &-ring {
             color: #f0f0e0;
