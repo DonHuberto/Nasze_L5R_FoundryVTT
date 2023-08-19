@@ -2,6 +2,8 @@
  * Custom system settings register
  */
 export const RegisterSettings = function () {
+    const isBabeleRegistered = (typeof Babele !== "undefined");
+
     /* ------------------------------------ */
     /* User settings                        */
     /* ------------------------------------ */
@@ -35,6 +37,20 @@ export const RegisterSettings = function () {
         config: true,
         type: Boolean,
         default: false,
+    });
+    game.settings.register(CONFIG.l5r5e.namespace, "custom-compendium-name", {
+        name: "SETTINGS.CustomCompendiumName.Title",
+        hint: "SETTINGS.CustomCompendiumName.Hint",
+        scope: "world",
+        config: isBabeleRegistered,
+        requiresReload: true,
+        type: String,
+        default: "l5r5e-custom-compendiums",
+        onChange: (name) => {
+            if (!Babele.get().modules.find((module) => module.module === name)) {
+                ui.notifications.warn(game.i18n.format("SETTINGS.CustomCompendiumName.Notification", { name }), { permanent: true });
+            }
+        }
     });
 
     /* ------------------------------------ */
@@ -124,25 +140,5 @@ export const RegisterSettings = function () {
         type: Array,
         default: [],
         onChange: () => game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor"),
-    });
-
-    /* ------------------------------------ */
-    /* Babele                               */
-    /* ------------------------------------ */
-    const showCustomCompendiumSetting = (typeof Babele !== "undefined");
-    game.settings.register(CONFIG.l5r5e.namespace, "babele-custom-compendium-name", {
-        name: "Custom Compendium Name",
-        hint: "For advanced users that want to change the name of custom compendiums",
-        scope: "world",
-        config: showCustomCompendiumSetting,
-        requiresReload: true,
-        type: String,
-        default: "l5r5e-custom-compendiums",
-        onChange: (value) => {
-            if(!Babele.get().modules.find((module) => module.module === value))
-            {
-                ui.notifications.warn("Unable set Custom Compendium: \"" + value + "\". Is it activated and registered with Babele?", {permanent: true});
-            }
-        }
     });
 };

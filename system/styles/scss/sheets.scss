@@ -1,11 +1,13 @@
 /** Sheets **/
 &.sheet {
-    min-width: 600px;
+    min-width: 37rem;
+
     label {
         &:hover {
             text-shadow: 0 0 2px $red;
         }
     }
+
     .l5r-buttons-bar {
         display: flex;
         flex: 0 0 100%;
@@ -21,6 +23,7 @@
             margin: 0 0 0 8px;
         }
     }
+
     &.actor {
         .sheet-header {
             h1 {
@@ -44,11 +47,13 @@
             font-size: 1rem;
         }
     }
+
     form {
         display: flex;
         flex-wrap: wrap;
         align-content: flex-start;
     }
+
     .sheet-body {
         flex: 0 0 100%;
         align-items: flex-start;
@@ -84,6 +89,7 @@
             }
         }
     }
+
     section,
     article {
         &.tab[data-tab] {
@@ -93,6 +99,7 @@
             }
         }
     }
+
     .sheet-header {
         flex: 0 0 100%;
         align-items: flex-start;
@@ -575,6 +582,7 @@
             }
         }
     }
+
     article {
         background: $l5r5e-white-light;
         padding: 0.5rem;
@@ -740,6 +748,7 @@
             flex: 0 0 calc(50% - 0.5rem);
         }
     }
+
     .xp,
     .money-wrapper {
         flex: 100%;
@@ -758,6 +767,7 @@
             line-height: 13px;
         }
     }
+
     table {
         font-size: 0.85rem;
         color: $black-light;
@@ -824,6 +834,7 @@
             }
         }
     }
+
     .inventory {
         .items-wrapper {
             h3 {
@@ -918,6 +929,7 @@
             }
         }
     }
+
     nav {
         &.sheet-tabs {
             flex: 100%;

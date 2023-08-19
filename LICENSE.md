@@ -1,16 +1,14 @@
-# Copyright (c) CC BY-NC-SA 4.0 2020 - 2021 This System is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+# Copyright (c) CC BY-NC-SA 4.0 2020 - 2023 This System is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 
 By exercising the Licensed Rights (link below), You accept and agree to be bound by the terms and conditions of this Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License ("Public License"). To the extent this Public License may be interpreted as a contract, You are granted the Licensed Rights in consideration of Your acceptance of these terms and conditions, and the Licensor grants You such rights in consideration of benefits the Licensor receives from making the Licensed Material available under these terms and conditions.
 
 https://creativecommons.org/licenses/by-nc-sa/4.0/
 
-
-# Copyright (c) 2018 - 2021 Fantasy Flight Games. Legend of the Five Rings est TM de Fantasy Flight Games.
+# Copyright (c) 2018 - 2023 Fantasy Flight Games. Legend of the Five Rings est TM de Fantasy Flight Games.
 
 All images, texts and contents are the property of their creator / legal owner.
 
-
-# Copyright (c) 2020 - 2021 Foundry Network
+# Copyright (c) 2020 - 2023 Foundry Network
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

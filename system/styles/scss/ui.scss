@@ -32,8 +32,7 @@ button {
     overflow: initial;
     height: calc(100% - 1.1rem);
     top: 0.2rem;
-    width: 320px;
-    min-width: 40px;
+    min-width: 20rem;
     letter-spacing: 0.1rem;
     position: relative;
     margin-right: 0.5rem;
@@ -172,6 +171,9 @@ button {
         }
     }
     &.collapsed {
+        min-width: 0;
+        width: 3rem !important;
+
         #sidebar-tabs {
             > .item {
                 &.active {

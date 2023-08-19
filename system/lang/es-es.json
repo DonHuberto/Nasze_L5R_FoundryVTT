@@ -17,6 +17,11 @@
         "CustomTechniques": {
             "Title": "Use custom techniques",
             "Hint": "Add 'Specificity' technique type to serve as a catch-all."
+        },
+        "CustomCompendiumName": {
+            "Title": "Custom Compendium Name",
+            "Hint": "For advanced users that want to change the name of the custom compendiums (Used to disables the embedded ones).",
+            "Notification": "Unable set Custom Compendium: '{name}'. Is it activated and registered with Babele?"
         }
     },
     "TYPES": {
