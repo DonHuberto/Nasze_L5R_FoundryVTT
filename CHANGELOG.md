@@ -1,10 +1,11 @@
 # Changelog
 Date format : day/month/year
 
-## 1.10.1 - 19/08/2023 - Css fixes
-- Roll-n-Keep dialog now waits for the DiceSoNice animation to finish before displaying the result when re-rolling or exploding dice (Thanks to Litasa. !28).
-- Adding the ability to have a different name on the custom-compendium (thanks to Litasa).
-- Fixes some css issue with font size (#50, #51 and #52, all thanks to Litasa).
+## 1.10.1 - 22/08/2023 - Litasa's fixes
+All these changes are thanks to Litasa.
+- Roll-n-Keep dialog now waits for the DiceSoNice animation to finish before displaying the result when re-rolling or exploding dice (!28).
+- Adding the ability to have a different name for the custom-compendium (needed to disable the system embedded ones).
+- Fixes some CSS issues when the font size is not the default (#50, #51 and #52).
 
 ## 1.10.0 - 11/06/2023 - FoundryVTT v11 Compatibility
 __! Be certain to carefully back up any critical user data before installing this update !__
