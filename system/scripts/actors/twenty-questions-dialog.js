@@ -251,7 +251,7 @@ export class TwentyQuestionsDialog extends FormApplication {
         if (!["item", "technique", "peculiarity", "bond"].includes(type)) {
             return;
         }
-        const stepKey = $(event.target).data("step");
+        const stepKey = $(event.currentTarget).data("step");
         if (!stepKey) {
             console.warn("L5R5E | 20Q | Event stepKey is undefined");
             return;
