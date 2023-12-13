@@ -1,6 +1,12 @@
 # Changelog
 Date format : day/month/year
 
+## 1.11.0 - 13/12/2023 - Little fixes
+- 20Q :
+  - Starting techniques now have a limit of 6 techniques instead of 5 (see Celestial Realms : `Moshi Sun Sentinel School`).
+  - Enable dropping on the 'drop here' label for 20Q (thk to Litasa !34).
+- Compendiums : Added masteries and abilities from Deathly Turns.
+
 ## 1.10.1 - 22/08/2023 - Litasa's fixes
 All these changes are thanks to Litasa.
 - Roll-n-Keep dialog now waits for the DiceSoNice animation to finish before displaying the result when re-rolling or exploding dice (!28).

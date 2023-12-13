@@ -592,6 +592,18 @@
             "name": "Evolution of the Wilds (WIP)",
             "description": "",
             "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Mazoku's Authority",
+            "name": "Mazoku's Authority (WIP)",
+            "description": "",
+            "book_reference": "Celestial Realms - Deathly Turns"
+        },
+        {
+            "id": "Effortless Aim",
+            "name": "Effortless Aim (WIP)",
+            "description": "",
+            "book_reference": "Celestial Realms - Deathly Turns"
         }
     ]
 }

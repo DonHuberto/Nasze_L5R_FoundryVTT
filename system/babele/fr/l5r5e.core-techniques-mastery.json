@@ -592,6 +592,18 @@
             "name": "Born to Survive (WIP)",
             "description": "",
             "book_reference": "Décret de la nature"
+        },
+        {
+            "id": "Hunter of the Supernatural",
+            "name": "Hunter of the Supernatural (WIP)",
+            "description": "",
+            "book_reference": "Celestial Realms - Deathly Turns"
+        },
+        {
+            "id": "An Arrow Loosed",
+            "name": "An Arrow Loosed (WIP)",
+            "description": "",
+            "book_reference": "Celestial Realms - Deathly Turns"
         }
     ]
 }
