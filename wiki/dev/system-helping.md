@@ -18,4 +18,4 @@ mklink /D /J "%localappdata%/FoundryVTT/data/systems/l5r5e" "D:/Projects/FVTT/l5
 
 
 ## Compiling SCSS
-1. Run `npm watch` to watch and compile the `scss` files.
+1. Run `npm run watch` to watch and compile the `scss` files.
