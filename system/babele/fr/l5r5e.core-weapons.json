@@ -952,6 +952,15 @@
             "grip_2": "Dangerosité +2",
             "description": "",
             "book_reference": "Les Champs de la Victoire"
+        },
+        {
+            "id": "The blade with no name: Ancestral sword of the Dragon [Blessed Treasure]",
+            "name": "The blade with no name: Ancestral sword of the Dragon [Blessed Treasure] (WIP)",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes"
         }
     ]
 }

@@ -1,6 +1,9 @@
 # Changelog
 Date format : day/month/year
 
+## 1.11.1 - ??/02/2024 - Compendium fix
+- Moved `The blade with no name: Ancestral sword of the Dragon [Blessed Treasure]` from items to weapons compendium.
+
 ## 1.11.0 - 13/12/2023 - Little fixes
 - 20Q :
   - Starting techniques now have a limit of 6 techniques instead of 5 (see Celestial Realms : `Moshi Sun Sentinel School`).
