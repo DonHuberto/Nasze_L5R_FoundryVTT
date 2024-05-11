@@ -9,9 +9,6 @@ export class SignatureScrollSheetL5r5e extends ItemSheetL5r5e {
         return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["l5r5e", "sheet", "signature-scroll"],
             template: CONFIG.l5r5e.paths.templates + "items/signature-scroll/signature-scroll-sheet.html",
-            width: 520,
-            height: 480,
-            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
         });
     }
 }

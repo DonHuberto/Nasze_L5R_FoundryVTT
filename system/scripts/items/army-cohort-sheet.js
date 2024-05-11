@@ -9,8 +9,6 @@ export class ArmyCohortSheetL5r5e extends ItemSheetL5r5e {
         return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["l5r5e", "sheet", "army-cohort"],
             template: CONFIG.l5r5e.paths.templates + "items/army-cohort/army-cohort-sheet.html",
-            width: 520,
-            height: 520,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "infos" }],
             dragDrop: [{ dragSelector: ".item", dropSelector: null }],
         });

@@ -50,7 +50,7 @@ export class HelpDialog extends FormApplication {
             event.preventDefault();
             event.stopPropagation();
             const name = $(event.currentTarget).data("type");
-            ui.notifications.info(game.i18n.localize(`l5r5e.logo.${name}.info`));
+            ui.notifications.info(`l5r5e.logo.${name}.info`, {localize: true});
             window.open(game.i18n.localize(`l5r5e.logo.${name}.link`), "_blank");
         });
     }

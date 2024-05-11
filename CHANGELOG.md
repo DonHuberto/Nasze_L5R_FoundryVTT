@@ -1,7 +1,8 @@
 # Changelog
 Date format : day/month/year
 
-## 1.11.1 - ??/02/2024 - Compendium fix
+## 1.11.1 - ??/05/2024 - Little fixes again
+- Added ability to players to set their default Item's windows height in settings (#55).
 - Moved `The blade with no name: Ancestral sword of the Dragon [Blessed Treasure]` from items to weapons compendium.
 
 ## 1.11.0 - 13/12/2023 - Little fixes

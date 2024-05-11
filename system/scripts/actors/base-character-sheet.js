@@ -238,7 +238,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
                             return e.type === "technique" && e.system.technique_type === itemData.system.technique_type;
                         })
                     ) {
-                        ui.notifications.info(game.i18n.localize("l5r5e.techniques.only_one"));
+                        ui.notifications.info("l5r5e.techniques.only_one", {localize: true});
                         return;
                     }
 
@@ -249,7 +249,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
                 } else {
                     // Check if technique is allowed for this character
                     // if (!game.user.isGM && !this.actor.system.techniques[itemData.system.technique_type]) {
-                    //     ui.notifications.info(game.i18n.localize("l5r5e.techniques.not_allowed"));
+                    //     ui.notifications.info("l5r5e.techniques.not_allowed", {localize: true});
                     //     return;
                     // }
 
@@ -625,11 +625,11 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
 
         if (isInitiative) {
             if (!game.combat) {
-                ui.notifications.warn(game.i18n.localize("COMBAT.NoneActive"));
+                ui.notifications.warn("COMBAT.NoneActive", {localize: true});
                 return;
             }
             if (!this.actor.canDoInitiativeRoll) {
-                ui.notifications.error(game.i18n.localize("l5r5e.conflict.initiative.already_set"));
+                ui.notifications.error("l5r5e.conflict.initiative.already_set", {localize: true});
                 return;
             }
             // Minion specific

@@ -292,7 +292,7 @@ export class TwentyQuestionsDialog extends FormApplication {
                         }
                         // } else if (!this.object.data.step3.allowed_techniques?.[item.system.technique_type]) {
                         //     // Tech not allowed
-                        //     ui.notifications.info(game.i18n.localize("l5r5e.techniques.not_allowed"));
+                        //     ui.notifications.info("l5r5e.techniques.not_allowed", {localize: true});
                         //     return;
                     }
                     break;

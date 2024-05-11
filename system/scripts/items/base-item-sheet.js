@@ -9,7 +9,7 @@ export class BaseItemSheetL5r5e extends ItemSheet {
             classes: ["l5r5e", "sheet", "item"],
             //template: CONFIG.l5r5e.paths.templates + "items/item/item-sheet.html",
             width: 520,
-            height: 480,
+            height: game.settings.get(CONFIG.l5r5e.namespace, "custom-items-windows-height") || 800,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
         });
     }

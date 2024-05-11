@@ -530,7 +530,7 @@ export class DicePickerDialog extends FormApplication {
         // If initiative roll, check if player already have
         if (this.object.isInitiativeRoll) {
             if (!game.combat) {
-                ui.notifications.warn(game.i18n.localize("COMBAT.NoneActive"));
+                ui.notifications.warn("COMBAT.NoneActive", {localize: true});
                 return this.close();
             }
 
@@ -678,15 +678,15 @@ export class DicePickerDialog extends FormApplication {
             name = name + " - " + this.object.skill.name;
         }
 
-        let command = `new game.l5r5e.DicePickerDialog(${JSON.stringify(params)}).render(true);`;
+        const command = `new game.l5r5e.DicePickerDialog(${JSON.stringify(params)}).render(true);`;
 
-        let macro = game.macros.contents.find((m) => m.name === name && m.command === command);
+        let macro = game.macros.contents.find((m) => m.name === name && m.command === command && m.isAuthor);
         if (!macro) {
             macro = await Macro.create({
-                name: name,
+                name,
                 type: "script",
                 scope: "global",
-                command: command,
+                command,
                 img: this._actor?.img ? this._actor.img : "systems/l5r5e/assets/dices/default/ring_et.svg",
             });
         }

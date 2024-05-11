@@ -54,6 +54,24 @@ export const RegisterSettings = function () {
     });
 
     /* ------------------------------------ */
+    /* Client preferences                   */
+    /* ------------------------------------ */
+    game.settings.register(CONFIG.l5r5e.namespace, "custom-items-windows-height", {
+        name: "SETTINGS.CustomItemsHeight.Title",
+        hint: "SETTINGS.CustomItemsHeight.Hint",
+        scope: "client",
+        config: true,
+        requiresReload: true,
+        type: Number,
+        range: {
+            min: 400,
+            max: 2000,
+            step: 50
+        },
+        default: 800,
+    });
+
+    /* ------------------------------------ */
     /* Update                               */
     /* ------------------------------------ */
     game.settings.register(CONFIG.l5r5e.namespace, "systemMigrationVersion", {

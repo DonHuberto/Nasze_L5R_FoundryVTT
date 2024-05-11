@@ -9,9 +9,6 @@ export class ArmyFortificationSheetL5r5e extends ItemSheetL5r5e {
         return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["l5r5e", "sheet", "army-fortification"],
             template: CONFIG.l5r5e.paths.templates + "items/army-fortification/army-fortification-sheet.html",
-            width: 520,
-            height: 480,
-            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
         });
     }
 }
