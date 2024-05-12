@@ -1,8 +1,9 @@
 # Changelog
 Date format : day/month/year
 
-## 1.11.1 - ??/05/2024 - Little fixes again
+## 1.11.1 - ??/05/2024 - Some QoL
 - Added ability to players to set their default Item's windows height in settings (#55).
+- Macro : Added item icon on hotbar drop (#54).
 - Moved `The blade with no name: Ancestral sword of the Dragon [Blessed Treasure]` from items to weapons compendium.
 
 ## 1.11.0 - 13/12/2023 - Little fixes

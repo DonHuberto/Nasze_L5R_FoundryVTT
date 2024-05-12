@@ -685,9 +685,9 @@ export class DicePickerDialog extends FormApplication {
             macro = await Macro.create({
                 name,
                 type: "script",
-                scope: "global",
+                scope: "actor",
                 command,
-                img: this._actor?.img ? this._actor.img : "systems/l5r5e/assets/dices/default/ring_et.svg",
+                img: this._actor?.img || "systems/l5r5e/assets/dices/default/ring_et.svg",
             });
         }
 

@@ -28,6 +28,14 @@ export default class HooksL5r5e {
             game.l5r5e.migrations.migrateWorld({ force: false }).then();
         }
 
+        // Taken from dnd5 : Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
+        Hooks.on("hotbarDrop", (bar, data, slot) => {
+            if (data.type === "Item") {
+                HooksL5r5e.#createItemMacro(data, slot);
+                return false;
+            }
+        });
+
         // For some reasons, not always really ready, so wait a little
         await new Promise((r) => setTimeout(r, 2000));
 
@@ -76,9 +84,7 @@ export default class HooksL5r5e {
                                                 skillsList: "artisan,martial,scholar,social,trade",
                                             },
                                         });
-                                        ui.notifications.info(
-                                            game.i18n.localize("l5r5e.dice.dicepicker.gm_request_dp_to_players")
-                                        );
+                                        ui.notifications.info("l5r5e.dice.dicepicker.gm_request_dp_to_players", {localize: true});
                                     },
                                     3000,
                                     true
@@ -312,5 +318,36 @@ export default class HooksL5r5e {
         if (message?.rolls?.[0]?.l5r5e?.history) {
             context.blind = true;
         }
+    }
+
+    /**
+     * Attempt to create a macro from the dropped data. Will use an existing macro if one exists.
+     * @param {object} dropData     The dropped data
+     * @param {number} slot         The hotbar slot to use
+     * @returns {Promise}
+     */
+    static async #createItemMacro(dropData, slot) {
+        const itemData = await Item.implementation.fromDropData(dropData);
+        if (!itemData) {
+            console.log("L5R5E | HK | Fail to get itemData", dropData);
+            return null;
+        }
+
+        const macroData = {
+            type: "script",
+            scope: "actor",
+            name: (itemData.actor?.name ? `${itemData.actor?.name} : ` : '') + itemData.name,
+            img: itemData.img,
+            command: `await Hotbar.toggleDocumentSheet("${itemData.uuid}")`,
+        };
+
+        // Assign the macro to the hotbar
+        const macro = game.macros.find((m) =>
+                m.name === macroData.name
+                && m.command === macroData.command
+                && m.isAuthor
+            ) || await Macro.create(macroData);
+
+        await game.user.assignHotbarMacro(macro, slot);
     }
 }

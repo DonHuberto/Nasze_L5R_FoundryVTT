@@ -203,6 +203,11 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
 
         let itemData = item.toObject(true);
 
+        // If from another actor, break the link
+        if (itemData.system.parent_id !== null && itemData.system.parent_id.actor_id !== this.actor._id) {
+            itemData.system.parent_id = null;
+        }
+
         // Item subtype specific
         switch (itemData.type) {
             case "army_cohort":
@@ -247,11 +252,10 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
                     itemData.system.xp_used = 0;
                     itemData.system.in_curriculum = true;
                 } else {
-                    // Check if technique is allowed for this character
-                    // if (!game.user.isGM && !this.actor.system.techniques[itemData.system.technique_type]) {
-                    //     ui.notifications.info("l5r5e.techniques.not_allowed", {localize: true});
-                    //     return;
-                    // }
+                    // Informative message : Check if technique is allowed for this character
+                    if (!game.user.isGM && !this.actor.system.techniques[itemData.system.technique_type]) {
+                        ui.notifications.info("l5r5e.techniques.not_allowed", {localize: true});
+                    }
 
                     // Verify cost
                     itemData.system.xp_cost =
@@ -277,12 +281,10 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
         if (li.dataset.itemParentId && li.dataset.itemId) {
             const item = this.actor.items.get(li.dataset.itemParentId)?.items.get(li.dataset.itemId);
             if (item) {
-                const dragData = {
+                event.dataTransfer.setData("text/plain", JSON.stringify({
                     type: "Item",
-                    data: foundry.utils.duplicate(item),
-                };
-                dragData.data.system.parent_id = null;
-                event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
+                    uuid: item.uuid,
+                }));
                 return;
             }
         }
