@@ -211,7 +211,7 @@ Hooks.once("init", async () => {
         const reverseBar = data.attribute === "fatigue" && game.settings.get(L5R5E.namespace, "token-reverseFatigueBar");
 
         // Bar value
-        const pct = Math.clamped(Number(data.value), 0, data.max) / data.max;
+        const pct = Math.clamp(Number(data.value), 0, data.max) / data.max;
 
         // Modify color
         let color = number === 0 ? [pct / 1.2, 1 - pct, 0] : [0.5 * pct, 0.7 * pct, 0.5 + pct / 2];

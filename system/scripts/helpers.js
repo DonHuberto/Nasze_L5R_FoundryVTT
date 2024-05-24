@@ -705,29 +705,27 @@ export class HelpersL5r5e {
      * @return {(function(...[*]=): void)|*}
      */
     static debounce(id, callback, timeout = 500, leading = false) {
-        /* eslint-disable no-undef */
-        if (!debounce.timeId) {
-            debounce.timeId = {};
+        if (!this.debounce.timeId) {
+            this.debounce.timeId = {};
         }
         return (...args) => {
             if (leading) {
                 // callback will be executed only at the first debounced-function call
-                if (!debounce.timeId[id]) {
+                if (!this.debounce.timeId[id]) {
                     callback.apply(this, args);
                 }
-                clearTimeout(debounce.timeId[id]);
-                debounce.timeId[id] = setTimeout(() => {
-                    debounce.timeId[id] = undefined;
+                clearTimeout(this.debounce.timeId[id]);
+                this.debounce.timeId[id] = setTimeout(() => {
+                    this.debounce.timeId[id] = undefined;
                 }, timeout);
             } else {
                 // callback will only be executed `delay` milliseconds after the last debounced-function call
-                clearTimeout(debounce.timeId[id]);
-                debounce.timeId[id] = setTimeout(() => {
+                clearTimeout(this.debounce.timeId[id]);
+                this.debounce.timeId[id] = setTimeout(() => {
                     callback.apply(this, args);
                 }, timeout);
             }
         };
-        /* eslint-enable no-undef */
     }
 
     /**

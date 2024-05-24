@@ -80,7 +80,7 @@ export class RollL5r5e extends Roll {
      * Execute the Roll, replacing dice and evaluating the total result
      * @override
      **/
-    async evaluate({ minimize = false, maximize = false, async = true } = {}) {
+    async evaluate({ minimize = false, maximize = false } = {}) {
         if (this._evaluated) {
             throw new Error("This Roll object has already been rolled.");
         }
@@ -95,7 +95,7 @@ export class RollL5r5e extends Roll {
         this._total = 0;
 
         // Roll
-        await super.evaluate({ minimize, maximize, async });
+        await super.evaluate({ minimize, maximize });
         this._evaluated = true;
 
         // Save initial formula
@@ -132,7 +132,7 @@ export class RollL5r5e extends Roll {
 
         // Store final outputs
         this.l5r5e.dicesTypes.std = this.dice.some(
-            (term) => term instanceof DiceTerm && !(term instanceof game.l5r5e.L5rBaseDie)
+            (term) => term instanceof foundry.dice.terms.DiceTerm && !(term instanceof game.l5r5e.L5rBaseDie)
         ); // ignore math symbols
         this.l5r5e.dicesTypes.l5r = this.dice.some((term) => term instanceof game.l5r5e.L5rBaseDie);
         summary.totalBonus = Math.max(0, summary.totalSuccess - this.l5r5e.difficulty);
@@ -346,7 +346,6 @@ export class RollL5r5e extends Roll {
         messageData = foundry.utils.mergeObject(
             {
                 user: game.user.id,
-                type: CONST.CHAT_MESSAGE_TYPES.ROLL,
                 content,
                 sound: CONFIG.sounds.dice,
                 speaker: {

@@ -91,7 +91,7 @@ export class RollnKeepDialog extends FormApplication {
      * @return {boolean}
      */
     get isOwner() {
-        return this._message?.isAuthor || this.messageRoll.l5r5e.actor?.isOwner || this._message?.isOwner || false;
+        return this._message?.isAuthor || this.messageRoll?.l5r5e.actor?.isOwner || this._message?.isOwner || false;
     }
 
     /**
