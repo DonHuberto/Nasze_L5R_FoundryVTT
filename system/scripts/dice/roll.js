@@ -327,7 +327,7 @@ export class RollL5r5e extends Roll {
      * This function can either create the ChatMessage directly, or return the data object that will be used to create.
      * @override
      */
-    async toMessage(messageData = {}, { rollMode = null, create = true } = {}) {
+    async toMessage(messageData = {}, { rollMode = null } = {}) {
         // Perform the roll, if it has not yet been rolled
         if (!this._evaluated) {
             await this.evaluate();
@@ -356,12 +356,11 @@ export class RollL5r5e extends Roll {
             },
             messageData
         );
-        messageData.roll = this;
+        messageData.rolls = [this];
 
         // Either create the message or just return the chat data
         return ChatMessage.implementation.create(messageData, {
             rollMode: rMode,
-            temporary: !create,
         });
     }
 

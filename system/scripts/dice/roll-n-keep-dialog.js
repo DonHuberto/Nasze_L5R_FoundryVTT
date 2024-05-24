@@ -145,7 +145,7 @@ export class RollnKeepDialog extends FormApplication {
         }
 
         // Get the roll
-        this.roll = game.l5r5e.RollL5r5e.fromData(this.messageRoll);
+        this.roll = this.messageRoll;
 
         // Already history
         if (Array.isArray(this.roll.l5r5e.history)) {
