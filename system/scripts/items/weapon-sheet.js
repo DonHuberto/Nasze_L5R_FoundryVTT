@@ -18,7 +18,10 @@ export class WeaponSheetL5r5e extends ItemSheetL5r5e {
         // Martial skills only
         sheetData.data.skills = Array.from(CONFIG.l5r5e.skills)
             .filter(([id, cat]) => cat === "martial")
-            .map(([id, cat]) => id);
+            .map(([id, cat]) => ({
+                id,
+                label: "l5r5e.skills." + cat.toLowerCase() + "." + id.toLowerCase(),
+            }));
 
         return sheetData;
     }

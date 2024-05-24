@@ -4,11 +4,7 @@
             <label>{{localize 'l5r5e.clans.label'}}</label>
             <div class="form-fields">
                 <select class="attribute-dtype" name="clan">
-                    {{#select data.clan}}
-                    {{#each clanList as |value|}}
-                        <option value="{{value.id}}">{{value.label}}</option>
-                    {{/each}}
-                    {{/select}}
+                    {{selectOptions clanList selected=data.clan valueAttr='id' labelAttr='label'}}
                 </select>
             </div>
         </div>
@@ -16,11 +12,7 @@
             <label>{{localize 'l5r5e.social.gender.title'}}</label>
             <div class="form-fields">
                 <select class="attribute-dtype" name="gender">
-                    {{#select data.gender}}
-                    {{#each genderList as |value|}}
-                        <option value="{{value.id}}">{{value.label}}</option>
-                    {{/each}}
-                    {{/select}}
+                    {{selectOptions genderList selected=data.gender valueAttr='id' labelAttr='label'}}
                 </select>
             </div>
         </div>

@@ -150,7 +150,10 @@ export class TwentyQuestionsDialog extends FormApplication {
             skillsList,
             skillsListStep7,
             skillsListStep17,
-            noHonorSkillsList: ["commerce", "skulduggery", "medicine", "seafaring", "survival", "labor"],
+            noHonorSkillsList: CONFIG.l5r5e.noHonorSkillsList.map(id => ({
+                id,
+                label: game.i18n.localize("l5r5e.skills." + CONFIG.l5r5e.skills.get(id.toLowerCase()) + "." + id.toLowerCase())
+            })),
             techniquesList: game.l5r5e.HelpersL5r5e.getTechniquesList({ displayInTypes: true }),
             data: this.object.data,
             cache: this.cache,

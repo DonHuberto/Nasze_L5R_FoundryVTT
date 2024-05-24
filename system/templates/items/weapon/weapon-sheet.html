@@ -23,11 +23,7 @@
             <label class="skillType">
                 {{localize 'l5r5e.skills.label'}}
                 <select class="attribute-dtype" name="system.skill">
-                    {{#select data.system.skill}}
-                        {{#each data.skills as |id cat|}}
-                            <option value="{{id}}">{{localizeSkillId id}}</option>
-                        {{/each}}
-                    {{/select}}
+                    {{selectOptions data.skills selected=data.system.skill valueAttr='id' labelAttr='label' localize=true}}
                 </select>
             </label>
             <fieldset class="stats">

@@ -23,6 +23,7 @@ export const L5R5E = {
         skirmish: "tactics",
         mass_battle: "command",
     },
+    noHonorSkillsList: ["commerce", "skulduggery", "medicine", "seafaring", "survival", "labor"],
 };
 
 // *** Techniques ***

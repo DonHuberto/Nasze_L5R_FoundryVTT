@@ -2,11 +2,7 @@
     {{!-- Npc Type (minion / adversary) --}}
     <li>
         <select class="attribute-dtype" name="system.type" {{^if data.editable_not_soft_locked}}disabled{{/if}}>
-            {{#select data.system.type}}
-            {{#each data.types as |t|}}
-                <option value="{{t.id}}">{{t.label}}</option>
-            {{/each}}
-            {{/select}}
+            {{selectOptions data.types selected=data.system.type valueAttr='id' labelAttr='label'}}
         </select>
     </li>
     {{!-- Martial --}}

@@ -8,18 +8,10 @@
         {{!-- Attributes Tab --}}
         <article class="attributes" data-group="primary" data-tab="attributes">
             <select name="system.ring">
-                {{#select data.system.ring}}
-                    {{#each data.ringsList as |obj|}}
-                        <option value="{{obj.id}}">{{obj.label}}</option>
-                    {{/each}}
-                {{/select}}
+                {{selectOptions data.ringsList selected=data.system.ring valueAttr='id' labelAttr='label'}}
             </select>
             <select name="system.technique_type">
-                {{#select data.system.technique_type}}
-                    {{#each data.techniquesList as |obj|}}
-                        <option value="{{obj.id}}">{{obj.label}}</option>
-                    {{/each}}
-                {{/select}}
+                {{selectOptions data.techniquesList selected=data.system.technique_type valueAttr='id' labelAttr='label'}}
             </select>
             <label class="cursus attribute-value checkbox">
                 <input type="checkbox" name="system.in_curriculum" {{checked data.system.in_curriculum}} />

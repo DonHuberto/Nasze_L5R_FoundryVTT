@@ -22,11 +22,7 @@
                 <label>
                     {{localize 'l5r5e.twenty_questions.part0.type'}}
                     <select name="template" class="skill-select">
-                        {{#select data.template}}
-                            {{#each templates as |obj|}}
-                                <option value="{{obj.id}}">{{obj.label}}</option>
-                            {{/each}}
-                        {{/select}}
+                        {{selectOptions templates selected=data.template valueAttr='id' labelAttr='label'}}
                     </select>
                 </label>
                 <br>
@@ -46,12 +42,8 @@
                             <label>
                                 {{localize 'l5r5e.twenty_questions.increase_ring1'}}
                                 <select name="step1.ring" class="ring-select">
-                                    {{#select data.step1.ring}}
                                     <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_ring'}}</option>
-                                    {{#each ringsList as |obj|}}
-                                    <option value="{{obj.id}}">{{obj.label}}</option>
-                                    {{/each}}
-                                    {{/select}}
+                                    {{selectOptions ringsList selected=data.step1.ring valueAttr='id' labelAttr='label'}}
                                 </select>
                             </label>
                         </td>
@@ -59,16 +51,12 @@
                             <label>
                                 {{localize 'l5r5e.twenty_questions.increase_skill1'}}
                                 <select name="step1.skill" class="skill-select">
-                                    {{#select data.step1.skill}}
                                     <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
                                     {{#each skillsList as |skills catId|}}
                                     <optgroup label="{{localizeSkill catId 'title'}}">
-                                        {{#each skills as |obj|}}
-                                        <option value="{{obj.id}}">{{obj.label}}</option>
-                                        {{/each}}
+                                        {{selectOptions skills selected=../data.step1.skill valueAttr='id' labelAttr='label'}}
                                     </optgroup>
                                     {{/each}}
-                                    {{/select}}
                                 </select>
                             </label>
                         </td>
@@ -94,39 +82,27 @@
                         <td class="third">
                             {{localize 'l5r5e.twenty_questions.increase_ring1'}}
                             <select name="step2.ring" class="ring-select">
-                                {{#select data.step2.ring}}
                                 <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_ring'}}</option>
-                                {{#each ringsList as |obj|}}
-                                <option value="{{obj.id}}">{{obj.label}}</option>
-                                {{/each}}
-                                {{/select}}
+                                {{selectOptions ringsList selected=data.step2.ring valueAttr='id' labelAttr='label'}}
                             </select>
                         </td>
                         <td class="third">
                             {{localize 'l5r5e.twenty_questions.increase_skill2'}}
                             <select name="step2.skill1" class="skill-select">
-                                {{#select data.step2.skill1}}
                                 <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
                                 {{#each skillsList as |skills catId|}}
                                 <optgroup label="{{localizeSkill catId 'title'}}">
-                                    {{#each skills as |obj|}}
-                                    <option value="{{obj.id}}">{{obj.label}}</option>
-                                    {{/each}}
+                                    {{selectOptions skills selected=../data.step2.skill1 valueAttr='id' labelAttr='label'}}
                                 </optgroup>
                                 {{/each}}
-                                {{/select}}
                             </select>
                             <select name="step2.skill2" class="skill-select">
-                                {{#select data.step2.skill2}}
                                 <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
                                 {{#each skillsList as |skills catId|}}
                                 <optgroup label="{{localizeSkill catId 'title'}}">
-                                    {{#each skills as |obj|}}
-                                    <option value="{{obj.id}}">{{obj.label}}</option>
-                                    {{/each}}
+                                    {{selectOptions skills selected=../data.step2.skill2 valueAttr='id' labelAttr='label'}}
                                 </optgroup>
                                 {{/each}}
-                                {{/select}}
                             </select>
                         </td>
                         <td class="third">
@@ -160,20 +136,12 @@
                         <td class="fifty">
                             {{localize 'l5r5e.twenty_questions.increase_ring2'}}
                             <select name="step3.ring1" class="ring-select">
-                                {{#select data.step3.ring1}}
                                 <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_ring'}}</option>
-                                {{#each ringsList as |obj|}}
-                                <option value="{{obj.id}}">{{obj.label}}</option>
-                                {{/each}}
-                                {{/select}}
+                                {{selectOptions ringsList selected=data.step3.ring1 valueAttr='id' labelAttr='label'}}
                             </select>
                             <select name="step3.ring2" class="ring-select">
-                                {{#select data.step3.ring2}}
                                 <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_ring'}}</option>
-                                {{#each ringsList as |obj|}}
-                                <option value="{{obj.id}}">{{obj.label}}</option>
-                                {{/each}}
-                                {{/select}}
+                                {{selectOptions ringsList selected=data.step3.ring2 valueAttr='id' labelAttr='label'}}
                             </select>
                             {{localize 'l5r5e.twenty_questions.part2.honor'}}
                             <input type="number" name="step3.social_honor" min="0" max="100" value="{{data.step3.social_honor}}" data-dtype="Number" placeholder="0" />
@@ -181,64 +149,44 @@
                         <td class="fifty">
                             {{localize 'l5r5e.twenty_questions.increase_skill3'}}
                             <select name="step3.skill1" class="skill-select">
-                                {{#select data.step3.skill1}}
                                 <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
                                 {{#each skillsList as |skills catId|}}
                                 <optgroup label="{{localizeSkill catId 'title'}}">
-                                    {{#each skills as |obj|}}
-                                    <option value="{{obj.id}}">{{obj.label}}</option>
-                                    {{/each}}
+                                    {{selectOptions skills selected=../data.step3.skill1 valueAttr='id' labelAttr='label'}}
                                 </optgroup>
                                 {{/each}}
-                                {{/select}}
                             </select>
                             <select name="step3.skill2" class="skill-select">
-                                {{#select data.step3.skill2}}
                                 <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
                                 {{#each skillsList as |skills catId|}}
                                 <optgroup label="{{localizeSkill catId 'title'}}">
-                                    {{#each skills as |obj|}}
-                                    <option value="{{obj.id}}">{{obj.label}}</option>
-                                    {{/each}}
+                                    {{selectOptions skills selected=../data.step3.skill2 valueAttr='id' labelAttr='label'}}
                                 </optgroup>
                                 {{/each}}
-                                {{/select}}
                             </select>
                             <select name="step3.skill3" class="skill-select">
-                                {{#select data.step3.skill3}}
                                 <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
                                 {{#each skillsList as |skills catId|}}
                                 <optgroup label="{{localizeSkill catId 'title'}}">
-                                    {{#each skills as |obj|}}
-                                    <option value="{{obj.id}}">{{obj.label}}</option>
-                                    {{/each}}
+                                    {{selectOptions skills selected=../data.step3.skill3 valueAttr='id' labelAttr='label'}}
                                 </optgroup>
                                 {{/each}}
-                                {{/select}}
                             </select>
                             <select name="step3.skill4" class="skill-select">
-                                {{#select data.step3.skill4}}
                                 <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
                                 {{#each skillsList as |skills catId|}}
                                 <optgroup label="{{localizeSkill catId 'title'}}">
-                                    {{#each skills as |obj|}}
-                                    <option value="{{obj.id}}">{{obj.label}}</option>
-                                    {{/each}}
+                                    {{selectOptions skills selected=../data.step3.skill4 valueAttr='id' labelAttr='label'}}
                                 </optgroup>
                                 {{/each}}
-                                {{/select}}
                             </select>
                             <select name="step3.skill5" class="skill-select">
-                                {{#select data.step3.skill5}}
                                 <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
                                 {{#each skillsList as |skills catId|}}
                                 <optgroup label="{{localizeSkill catId 'title'}}">
-                                    {{#each skills as |obj|}}
-                                    <option value="{{obj.id}}">{{obj.label}}</option>
-                                    {{/each}}
+                                    {{selectOptions skills selected=../data.step3.skill5 valueAttr='id' labelAttr='label'}}
                                 </optgroup>
                                 {{/each}}
-                                {{/select}}
                             </select>
                         </td>
                     </tr>
@@ -271,12 +219,8 @@
                 <label>
                     {{localize 'l5r5e.twenty_questions.increase_ring1'}}
                     <select name="step4.ring" class="ring-select">
-                        {{#select data.step4.ring}}
                         <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_ring'}}</option>
-                        {{#each ringsList as |obj|}}
-                        <option value="{{obj.id}}">{{obj.label}}</option>
-                        {{/each}}
-                        {{/select}}
+                        {{selectOptions ringsList selected=data.step4.ring valueAttr='id' labelAttr='label'}}
                     </select>
                 </label>
                 <button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>
@@ -304,16 +248,12 @@
                         <td class="third">
                             {{localize 'l5r5e.twenty_questions.increase_skill1'}}
                             <select name="step7.skill" class="skill-select">
-                                {{#select data.step7.skill}}
                                 <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
                                 {{#each skillsListStep7 as |skills catId|}}
                                 <optgroup label="{{localizeSkill catId 'title'}}">
-                                    {{#each skills as |obj|}}
-                                    <option value="{{obj.id}}">{{obj.label}}</option>
-                                    {{/each}}
+                                    {{selectOptions skills selected=../data.step7.skill valueAttr='id' labelAttr='label'}}
                                 </optgroup>
                                 {{/each}}
-                                {{/select}}
                             </select>
                         </td>
                         <td class="or">
@@ -332,12 +272,8 @@
                         <td class="third">
                             {{localize 'l5r5e.twenty_questions.increase_skill1'}}
                             <select name="step8.skill" class="skill-select" {{#ifCond data.step8.item.length '>' 0}}disabled{{/ifCond}}>
-                                {{#select data.step8.skill}}
                                 <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
-                                {{#each noHonorSkillsList as |skillId|}}
-                                <option value="{{skillId}}">{{localizeSkillId skillId}}</option>
-                                {{/each}}
-                                {{/select}}
+                                {{selectOptions noHonorSkillsList selected=data.step8.skill valueAttr='id' labelAttr='label'}}
                             </select>
                         </td>
                         <td class="or">
@@ -415,18 +351,14 @@
                             {{localize 'l5r5e.twenty_questions.and'}}
                             {{localize 'l5r5e.twenty_questions.increase_skill1'}}
                             <select name="step13.skill" class="skill-select" {{#ifCond data.step13.advantage.length '>' 0}}disabled{{/ifCond}}>
-                                {{#select data.step13.skill}}
                                 <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
                                 {{#ifCond cache.step13.advantage.length '==' '0'}}
                                 {{#each skillsList as |skills catId|}}
                                 <optgroup label="{{localizeSkill catId 'title'}}">
-                                    {{#each skills as |obj|}}
-                                    <option value="{{obj.id}}">{{obj.label}}</option>
-                                    {{/each}}
+                                    {{selectOptions skills selected=../data.step13.skill valueAttr='id' labelAttr='label'}}
                                 </optgroup>
                                 {{/each}}
                                 {{/ifCond}}
-                                {{/select}}
                             </select>
                         </td>
                         <td class="or">
@@ -478,16 +410,12 @@
                     <label>
                         {{localize 'l5r5e.twenty_questions.increase_skill1'}}
                         <select name="step17.skill" class="skill-select">
-                            {{#select data.step17.skill}}
-                                <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
-                                {{#each skillsListStep17 as |skills catId|}}
-                                    <optgroup label="{{localizeSkill catId 'title'}}">
-                                        {{#each skills as |obj|}}
-                                            <option value="{{obj.id}}">{{obj.label}}</option>
-                                        {{/each}}
-                                    </optgroup>
-                                {{/each}}
-                            {{/select}}
+                            <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
+                            {{#each skillsListStep17 as |skills catId|}}
+                                <optgroup label="{{localizeSkill catId 'title'}}">
+                                    {{selectOptions skills selected=../data.step17.skill valueAttr='id' labelAttr='label'}}
+                                </optgroup>
+                            {{/each}}
                         </select>
                     </label>
                 {{else}}
@@ -538,16 +466,12 @@
                             <td>
                                 {{localize 'l5r5e.twenty_questions.increase_skill1'}}
                                 <select name="step18.skill" class="skill-select">
-                                    {{#select data.step18.skill}}
-                                        <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
-                                        {{#each skillsList as |skills catId|}}
-                                            <optgroup label="{{localizeSkill catId 'title'}}">
-                                                {{#each skills as |obj|}}
-                                                    <option value="{{obj.id}}">{{obj.label}}</option>
-                                                {{/each}}
-                                            </optgroup>
-                                        {{/each}}
-                                    {{/select}}
+                                    <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
+                                    {{#each skillsList as |skills catId|}}
+                                        <optgroup label="{{localizeSkill catId 'title'}}">
+                                            {{selectOptions skills selected=../data.step18.skill valueAttr='id' labelAttr='label'}}
+                                        </optgroup>
+                                    {{/each}}
                                 </select>
                                 {{localize 'l5r5e.twenty_questions.part6.d10r2_drop_items'}}
                                 {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step18.heritage_item stepName='step18.heritage_item' itemType='items' hideDndAt=1}}
@@ -558,16 +482,12 @@
                     <label>
                         {{localize 'l5r5e.twenty_questions.increase_skill1'}}
                         <select name="step17.skill" class="skill-select">
-                            {{#select data.step17.skill}}
-                                <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
-                                {{#each skillsListStep17 as |skills catId|}}
-                                    <optgroup label="{{localizeSkill catId 'title'}}">
-                                        {{#each skills as |obj|}}
-                                            <option value="{{obj.id}}">{{obj.label}}</option>
-                                        {{/each}}
-                                    </optgroup>
-                                {{/each}}
-                            {{/select}}
+                            <option value="none">{{localize 'l5r5e.twenty_questions.choose_one_skill'}}</option>
+                            {{#each skillsListStep17 as |skills catId|}}
+                                <optgroup label="{{localizeSkill catId 'title'}}">
+                                    {{selectOptions skills selected=../data.step17.skill valueAttr='id' labelAttr='label'}}
+                                </optgroup>
+                            {{/each}}
                         </select>
                     </label>
                 {{/ifCond}}

@@ -7,7 +7,11 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
     /**
      * Sub Types of advancements
      */
-    static types = { ring: "l5r5e.rings.label", skill: "l5r5e.skills.label" }; // others have theirs own xp count
+    static types = [
+        { id: "ring", label: "l5r5e.rings.label" },
+        { id: "skill", label: "l5r5e.skills.label" },
+        // others have theirs own xp count
+    ];
 
     /** @override */
     static get defaultOptions() {
@@ -43,29 +47,33 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
         const currentSkill = this.object.system.skill;
 
         html.find("#advancement_type").on("change", (event) => {
-            $(event.target).prop("disabled", true);
-            if ($(event.target).val() === "skill") {
+            const targetEvt = $(event.target);
+            targetEvt.prop("disabled", true);
+
+            if (targetEvt.val() === "skill") {
                 this._updateChoice({ ring: currentRing }, { skill: currentSkill }).then(
-                    $(event.target).prop("disabled", false)
+                    targetEvt.prop("disabled", false)
                 );
-            } else {
+            } else if (targetEvt.val() === "ring") {
                 this._updateChoice({ skill: currentSkill }, { ring: currentRing }).then(
-                    $(event.target).prop("disabled", false)
+                    targetEvt.prop("disabled", false)
                 );
             }
         });
 
         html.find("#advancement_ring").on("change", (event) => {
-            $(event.target).prop("disabled", true);
-            this._updateChoice({ ring: currentRing }, { ring: $(event.target).val() }).then(
-                $(event.target).prop("disabled", false)
+            const targetEvt = $(event.target);
+            targetEvt.prop("disabled", true);
+            this._updateChoice({ ring: currentRing }, { ring: targetEvt.val() }).then(
+                targetEvt.prop("disabled", false)
             );
         });
 
         html.find("#advancement_skill").on("change", (event) => {
-            $(event.target).prop("disabled", true);
-            this._updateChoice({ skill: currentSkill }, { skill: $(event.target).val() }).then(
-                $(event.target).prop("disabled", false)
+            const targetEvt = $(event.target);
+            targetEvt.prop("disabled", true);
+            this._updateChoice({ skill: currentSkill }, { skill: targetEvt.val() }).then(
+                targetEvt.prop("disabled", false)
             );
         });
     }
@@ -141,8 +149,5 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
                 xp_used: xp_used,
             },
         });
-
-        // Re render
-        this.render(false);
     }
 }

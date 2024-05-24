@@ -25,13 +25,11 @@
                             <label>{{localizeSkill data.skill.cat 'title'}}</label>
                         {{/if}}
                         <select class="attribute-dtype" name="skill">
-                            {{#select data.skill.id}}
-                            {{#select data.skill.cat}}
-                            {{#each data.skill.list as |item|}}
-                                <option value="{{item.id}}">{{item.label}}</option>
-                            {{/each}}
-                            {{/select}}
-                            {{/select}}
+                        {{#if useCategory}}
+                            {{selectOptions data.skill.list selected=data.skill.cat valueAttr='id' labelAttr='label'}}
+                        {{else}}
+                            {{selectOptions data.skill.list selected=data.skill.id valueAttr='id' labelAttr='label'}}
+                        {{/if}}
                         </select>
                     {{else}}
                         <label>{{localizeSkill data.skill.cat 'title'}}</label>
