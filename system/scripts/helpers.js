@@ -184,8 +184,8 @@ export class HelpersL5r5e {
             // Final
             if (document) {
                 // Flag the source GUID
-                if (document.uuid && !document.pack && !document.getFlag("core", "sourceId")) {
-                    document.updateSource({ "flags.core.sourceId": document.uuid });
+                if (document.uuid && !document._stats?.compendiumSource) {
+                    document.updateSource({ "_stats.compendiumSource": document.uuid });
                 }
 
                 // Care to infinite loop in properties
@@ -614,8 +614,8 @@ export class HelpersL5r5e {
 
         // Create the link
         let link = null;
-        if (document.flags.core?.sourceId) {
-            link = document.flags.core?.sourceId.replace(/(\w+)\.(.+)/, "@$1[$2]");
+        if (document._stats?.compendiumSource) {
+            link = document._stats.compendiumSource.replace(/(\w+)\.(.+)/, "@$1[$2]");
             if (!HelpersL5r5e.isLinkValid(link)) {
                 link = null;
             }
@@ -644,34 +644,10 @@ export class HelpersL5r5e {
      * @param  {string} link
      * @return {boolean}
      */
-    static isLinkValid(link) {
+    static async isLinkValid(link) {
         const [type, target] = link.replace(/@(\w+)\[([^\]]+)\].*/, "$1|$2").split("|");
-
-        // Get a matched World document
-        // "@Item[L5RCoreIte000042]{Amigasa}"
-        if (CONST.DOCUMENT_TYPES.includes(type)) {
-            const collection = game.collections.get(type);
-            const document = /^[a-zA-Z0-9]{16}$/.test(target) ? collection.get(target) : collection.getName(target);
-            return !!document;
-        }
-
-        // Get a matched Compendium entity
-        // "@Compendium[l5r5e.core-peculiarities-distinctions.L5RCoreDis000002]{Ambidextrie}"
-        if (type === "Compendium") {
-            // Get the linked Entity
-            const [scope, packName, id] = target.split(".");
-            const pack = game.packs.get(`${scope}.${packName}`);
-            if (!pack) {
-                return false;
-            }
-            // If the pack is indexed, check, if not assume it's ok
-            if (pack.index.size) {
-                const index = pack.index.find((i) => i._id === id || i.name === id);
-                return !!index;
-            }
-        }
-
-        return true;
+        const document = await fromUuid(`${type}.${target}`);
+        return !!document;
     }
 
     /**
