@@ -221,7 +221,7 @@ export class TwentyQuestionsDialog extends FormApplication {
             event.preventDefault();
             event.stopPropagation();
             $(event.currentTarget).prop("disabled", true);
-            await this.object.toActor(this.actor, flattenObject(this.cache));
+            await this.object.toActor(this.actor, foundry.utils.flattenObject(this.cache));
             await this.close({ submit: true, force: true });
         });
 
