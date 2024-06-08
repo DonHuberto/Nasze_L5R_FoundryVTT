@@ -1,113 +1,281 @@
 {
     "label": "États préjudiciables",
     "mapping": {
-        "content": "content"
+        "text": "text"
     },
-    "entries": [
-        {
-            "id": "Afflicted",
+    "entries": {
+        "Afflicted": {
             "name": "Tourmenté",
-            "content": "<blockquote>Livre de Règles p.273</blockquote>"
+            "pages": {
+                "Figure: Afflicted": {
+                    "name": "Tourmenté - Image",
+                    "src": "icons/svg/sun.svg"
+                },
+                "Afflicted": {
+                    "name": "Tourmenté",
+                    "text": "<blockquote>Livre de Règles p.273</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Bleeding",
+        "Bleeding": {
             "name": "En sang",
-            "content": "<blockquote>Livre de Règles p.272</blockquote>"
+            "pages": {
+                "Figure: Bleeding": {
+                    "name": "En sang - Image",
+                    "src": "icons/svg/blood.svg"
+                },
+                "Bleeding": {
+                    "name": "En sang",
+                    "text": "<blockquote>Livre de Règles p.272</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Burning",
+        "Burning": {
             "name": "En feu",
-            "content": "<blockquote>Livre de Règles p.272</blockquote>"
+            "pages": {
+                "Figure: Burning": {
+                    "name": "En feu - Image",
+                    "src": "icons/svg/fire.svg"
+                },
+                "Burning": {
+                    "name": "En feu",
+                    "text": "<blockquote>Livre de Règles p.272</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Compromised",
+        "Compromised": {
             "name": "Compromis",
-            "content": "<blockquote>Livre de Règles p.271</blockquote>"
+            "pages": {
+                "Figure: Compromised": {
+                    "name": "Compromis - Image",
+                    "src": "icons/svg/terror.svg"
+                },
+                "Compromised": {
+                    "name": "Compromis",
+                    "text": "<blockquote>Livre de Règles p.271</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Dazed",
+        "Dazed": {
             "name": "Hébété",
-            "content": "<blockquote>Livre de Règles p.272</blockquote>"
+            "pages": {
+                "Figure: Dazed": {
+                    "name": "Hébété - Image",
+                    "src": "icons/svg/eye.svg"
+                },
+                "Dazed": {
+                    "name": "Hébété",
+                    "text": "<blockquote>Livre de Règles p.272</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Disoriented",
+        "Disoriented": {
             "name": "Désorienté",
-            "content": "<blockquote>Livre de Règles p.272</blockquote>"
+            "pages": {
+                "Figure: Disoriented": {
+                    "name": "Désorienté - Image",
+                    "src": "icons/svg/daze.svg"
+                },
+                "Disoriented": {
+                    "name": "Désorienté",
+                    "text": "<blockquote>Livre de Règles p.272</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Dying [X Rounds]",
+        "Dying [X Rounds]": {
             "name": "Mourant (X rounds)",
-            "content": "<blockquote>Livre de Règles p.273</blockquote>"
+            "pages": {
+                "Figure: Dying [X Rounds]": {
+                    "name": "Mourant (X rounds) - Image",
+                    "src": "icons/svg/skull.svg"
+                },
+                "Dying [X Rounds]": {
+                    "name": "Mourant (X rounds)",
+                    "text": "<blockquote>Livre de Règles p.273</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Enraged",
+        "Enraged": {
             "name": "Enragé",
-            "content": "<blockquote>Livre de Règles p.272</blockquote>"
+            "pages": {
+                "Figure: Enraged": {
+                    "name": "Enragé - Image",
+                    "src": "icons/svg/lightning.svg"
+                },
+                "Enraged": {
+                    "name": "Enragé",
+                    "text": "<blockquote>Livre de Règles p.272</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Exhausted",
+        "Exhausted": {
             "name": "Epuisé",
-            "content": "<blockquote>Livre de Règles p.272</blockquote>"
+            "pages": {
+                "Figure: Exhausted": {
+                    "name": "Epuisé - Image",
+                    "src": "icons/svg/sleep.svg"
+                },
+                "Exhausted": {
+                    "name": "Epuisé",
+                    "text": "<blockquote>Livre de Règles p.272</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Immobilized",
+        "Immobilized": {
             "name": "Immobilisé",
-            "content": "<blockquote>Livre de Règles p.272</blockquote>"
+            "pages": {
+                "Figure: Immobilized": {
+                    "name": "Immobilisé - Image",
+                    "src": "icons/svg/net.svg"
+                },
+                "Immobilized": {
+                    "name": "Immobilisé",
+                    "text": "<blockquote>Livre de Règles p.272</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Incapacitated",
+        "Incapacitated": {
             "name": "Hors de combat",
-            "content": "<blockquote>Livre de Règles p.272</blockquote>"
+            "pages": {
+                "Figure: Incapacitated": {
+                    "name": "Hors de combat - Image",
+                    "src": "icons/svg/downgrade.svg"
+                },
+                "Incapacitated": {
+                    "name": "Hors de combat",
+                    "text": "<blockquote>Livre de Règles p.272</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Intoxicated",
+        "Intoxicated": {
             "name": "Ivre",
-            "content": "<blockquote>Livre de Règles p.273</blockquote>"
+            "pages": {
+                "Figure: Intoxicated": {
+                    "name": "Ivre - Image",
+                    "src": "icons/svg/poison.svg"
+                },
+                "Intoxicated": {
+                    "name": "Ivre",
+                    "text": "<blockquote>Livre de Règles p.273</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Prone",
+        "Prone": {
             "name": "A terre",
-            "content": "<blockquote>Livre de Règles p.271</blockquote>"
+            "pages": {
+                "Figure: Prone": {
+                    "name": "A terre - Image",
+                    "src": "icons/svg/falling.svg"
+                },
+                "Prone": {
+                    "name": "A terre",
+                    "text": "<blockquote>Livre de Règles p.271</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Silenced",
+        "Silenced": {
             "name": "Aphone",
-            "content": "<blockquote>Livre de Règles p.271</blockquote>"
+            "pages": {
+                "Figure: Silenced": {
+                    "name": "Aphone - Image",
+                    "src": "icons/svg/silenced.svg"
+                },
+                "Silenced": {
+                    "name": "Aphone",
+                    "text": "<blockquote>Livre de Règles p.271</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Unconscious",
+        "Unconscious": {
             "name": "Inconscient",
-            "content": "<blockquote>Livre de Règles p.273</blockquote>"
+            "pages": {
+                "Figure: Unconscious": {
+                    "name": "Inconscient - Image",
+                    "src": "icons/svg/unconscious.svg"
+                },
+                "Unconscious": {
+                    "name": "Inconscient",
+                    "text": "<blockquote>Livre de Règles p.273</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Wounded",
+        "Wounded": {
             "name": "Blessé",
-            "content": "<blockquote>Livre de Règles p.271</blockquote>"
+            "pages": {
+                "Figure: Wounded": {
+                    "name": "Blessé - Image",
+                    "src": "icons/svg/degen.svg"
+                },
+                "Wounded": {
+                    "name": "Blessé",
+                    "text": "<blockquote>Livre de Règles p.271</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Illness: Oozing Sore Disease",
+        "Illness: Oozing Sore Disease": {
             "name": "Illness: Oozing Sore Disease (WIP)",
-            "content": "<blockquote>Décret de la nature</blockquote>"
+            "pages": {
+                "Figure: Illness: Oozing Sore Disease": {
+                    "name": "Illness: Oozing Sore Disease (WIP) - Image",
+                    "src": "systems/l5r5e/assets/icons/social.svg"
+                },
+                "Illness: Oozing Sore Disease": {
+                    "name": "Illness: Oozing Sore Disease (WIP)",
+                    "text": "<blockquote>Décret de la nature</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Illness: Gut Sickness",
+        "Illness: Gut Sickness": {
             "name": "Illness: Gut Sickness (WIP)",
-            "content": "<blockquote>Décret de la nature</blockquote>"
+            "pages": {
+                "Figure: Illness: Gut Sickness": {
+                    "name": "Illness: Gut Sickness (WIP) - Image",
+                    "src": "systems/l5r5e/assets/icons/social.svg"
+                },
+                "Illness: Gut Sickness": {
+                    "name": "Illness: Gut Sickness (WIP)",
+                    "text": "<blockquote>Décret de la nature</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Illness: Coughing Illness",
+        "Illness: Coughing Illness": {
             "name": "Illness: Coughing Illness (WIP)",
-            "content": "<blockquote>Décret de la nature</blockquote>"
+            "pages": {
+                "Figure: Illness: Coughing Illness": {
+                    "name": "Illness: Coughing Illness (WIP) - Image",
+                    "src": "systems/l5r5e/assets/icons/social.svg"
+                },
+                "Illness: Coughing Illness": {
+                    "name": "Illness: Coughing Illness (WIP)",
+                    "text": "<blockquote>Décret de la nature</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Illness: Unsteady Illness",
+        "Illness: Unsteady Illness": {
             "name": "Illness: Unsteady Illness (WIP)",
-            "content": "<blockquote>Décret de la nature</blockquote>"
+            "pages": {
+                "Figure: Illness: Unsteady Illness": {
+                    "name": "Illness: Unsteady Illness (WIP) - Image",
+                    "src": "systems/l5r5e/assets/icons/social.svg"
+                },
+                "Illness: Unsteady Illness": {
+                    "name": "Illness: Unsteady Illness (WIP)",
+                    "text": "<blockquote>Décret de la nature</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Illness: Fire Rash",
+        "Illness: Fire Rash": {
             "name": "Illness: Fire Rash (WIP)",
-            "content": "<blockquote>Décret de la nature</blockquote>"
+            "pages": {
+                "Figure: Illness: Fire Rash": {
+                    "name": "Illness: Fire Rash (WIP) - Image",
+                    "src": "systems/l5r5e/assets/icons/social.svg"
+                },
+                "Illness: Fire Rash": {
+                    "name": "Illness: Fire Rash (WIP)",
+                    "text": "<blockquote>Décret de la nature</blockquote>"
+                }
+            }
         }
-    ]
+    }
 }

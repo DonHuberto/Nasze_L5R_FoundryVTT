@@ -1,63 +1,151 @@
 {
     "label": "Propriétés de terrain",
     "mapping": {
-        "content": "content"
+        "text": "text"
     },
-    "entries": [
-        {
-            "id": "Dangerous",
+    "entries": {
+        "Dangerous": {
             "name": "Dangereux",
-            "content": "<blockquote>Livre de Règles p.267</blockquote>"
+            "pages": {
+                "Figure: Dangerous": {
+                    "name": "Dangereux - Image",
+                    "src": "icons/svg/trap.svg"
+                },
+                "Dangerous": {
+                    "name": "Dangereux",
+                    "text": "<blockquote>Livre de Règles p.267</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Defiled",
+        "Defiled": {
             "name": "Profané",
-            "content": "<blockquote>Livre de Règles p.267</blockquote>"
+            "pages": {
+                "Figure: Defiled": {
+                    "name": "Profané - Image",
+                    "src": "icons/svg/ruins.svg"
+                },
+                "Defiled": {
+                    "name": "Profané",
+                    "text": "<blockquote>Livre de Règles p.267</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Entangling",
+        "Entangling": {
             "name": "Handicapant",
-            "content": "<blockquote>Livre de Règles p.267</blockquote>"
+            "pages": {
+                "Figure: Entangling": {
+                    "name": "Handicapant - Image",
+                    "src": "icons/svg/lightning.svg"
+                },
+                "Entangling": {
+                    "name": "Handicapant",
+                    "text": "<blockquote>Livre de Règles p.267</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Hallowed (One or More Elements)",
+        "Hallowed (One or More Elements)": {
             "name": "Sanctifié (un ou plusieurs éléments)",
-            "content": "<blockquote>Livre de Règles p.267</blockquote>"
+            "pages": {
+                "Figure: Hallowed (One or More Elements)": {
+                    "name": "Sanctifié (un ou plusieurs éléments) - Image",
+                    "src": "icons/svg/oak.svg"
+                },
+                "Hallowed (One or More Elements)": {
+                    "name": "Sanctifié (un ou plusieurs éléments)",
+                    "text": "<blockquote>Livre de Règles p.267</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Imbalanced (One or More Elements)",
+        "Imbalanced (One or More Elements)": {
             "name": "Déséquilibré (un ou plusieurs éléments)",
-            "content": "<blockquote>Livre de Règles p.267</blockquote>"
+            "pages": {
+                "Figure: Imbalanced (One or More Elements)": {
+                    "name": "Déséquilibré (un ou plusieurs éléments) - Image",
+                    "src": "icons/svg/stoned.svg"
+                },
+                "Imbalanced (One or More Elements)": {
+                    "name": "Déséquilibré (un ou plusieurs éléments)",
+                    "text": "<blockquote>Livre de Règles p.267</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Obscuring",
+        "Obscuring": {
             "name": "Voilé",
-            "content": "<blockquote>Livre de Règles p.267</blockquote>"
+            "pages": {
+                "Figure: Obscuring": {
+                    "name": "Voilé - Image",
+                    "src": "icons/svg/cowled.svg"
+                },
+                "Obscuring": {
+                    "name": "Voilé",
+                    "text": "<blockquote>Livre de Règles p.267</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Confining",
+        "Confining": {
             "name": "Confining (WIP)",
-            "content": "<blockquote>Les Champs de la Victoire</blockquote>"
+            "pages": {
+                "Figure: Confining": {
+                    "name": "Confining (WIP) - Image",
+                    "src": "icons/svg/stone-path.svg"
+                },
+                "Confining": {
+                    "name": "Confining (WIP)",
+                    "text": "<blockquote>Les Champs de la Victoire</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Elevated",
+        "Elevated": {
             "name": "Elevated (WIP)",
-            "content": "<blockquote>Les Champs de la Victoire</blockquote>"
+            "pages": {
+                "Figure: Elevated": {
+                    "name": "Elevated (WIP) - Image",
+                    "src": "icons/svg/up.svg"
+                },
+                "Elevated": {
+                    "name": "Elevated (WIP)",
+                    "text": "<blockquote>Les Champs de la Victoire</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Open",
+        "Open": {
             "name": "Open (WIP)",
-            "content": "<blockquote>Les Champs de la Victoire</blockquote>"
+            "pages": {
+                "Figure: Open": {
+                    "name": "Open (WIP) - Image",
+                    "src": "icons/svg/mountain.svg"
+                },
+                "Open": {
+                    "name": "Open (WIP)",
+                    "text": "<blockquote>Les Champs de la Victoire</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Recessed",
+        "Recessed": {
             "name": "Recessed (WIP)",
-            "content": "<blockquote>Les Champs de la Victoire</blockquote>"
+            "pages": {
+                "Figure: Recessed": {
+                    "name": "Recessed (WIP) - Image",
+                    "src": "icons/svg/down.svg"
+                },
+                "Recessed": {
+                    "name": "Recessed (WIP)",
+                    "text": "<blockquote>Les Champs de la Victoire</blockquote>"
+                }
+            }
         },
-        {
-            "id": "Imbalanced (One or More Elements) Variant",
+        "Imbalanced (One or More Elements) Variant": {
             "name": "Imbalanced (One or More Elements) Variant (WIP)",
-            "content": "<blockquote>Décret de la nature</blockquote>"
+            "pages": {
+                "Figure: Imbalanced (One or More Elements) Variant": {
+                    "name": "Imbalanced (One or More Elements) Variant (WIP) - Image",
+                    "src": "icons/svg/stoned.svg"
+                },
+                "Imbalanced (One or More Elements) Variant": {
+                    "name": "Imbalanced (One or More Elements) Variant (WIP)",
+                    "text": "<blockquote>Décret de la nature</blockquote>"
+                }
+            }
         }
-    ]
+    }
 }

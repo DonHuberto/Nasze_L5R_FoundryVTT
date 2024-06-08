@@ -614,7 +614,10 @@ export class HelpersL5r5e {
 
         // Create the link
         let link = null;
-        if (document._stats?.compendiumSource) {
+        if (!document.actor && HelpersL5r5e.isLinkValid(document.link)) {
+            link = document.link;
+        }
+        if (!link && document._stats?.compendiumSource) {
             link = document._stats.compendiumSource.replace(/(\w+)\.(.+)/, "@$1[$2]");
             if (!HelpersL5r5e.isLinkValid(link)) {
                 link = null;
@@ -622,12 +625,6 @@ export class HelpersL5r5e {
         }
         if (!link && document.pack) {
             link = `@Compendium[${document.pack}.${document.id}]{${document.name}}`;
-            if (!HelpersL5r5e.isLinkValid(link)) {
-                link = null;
-            }
-        }
-        if (!link && !document.actor) {
-            link = document.link;
             if (!HelpersL5r5e.isLinkValid(link)) {
                 link = null;
             }
@@ -646,7 +643,7 @@ export class HelpersL5r5e {
      */
     static async isLinkValid(link) {
         const [type, target] = link.replace(/@(\w+)\[([^\]]+)\].*/, "$1|$2").split("|");
-        const document = await fromUuid(`${type}.${target}`);
+        const document = await fromUuid((type === 'UUID' ? target : `${type}.${target}`));
         return !!document;
     }
 
