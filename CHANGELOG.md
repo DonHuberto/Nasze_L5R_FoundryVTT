@@ -1,10 +1,13 @@
 # Changelog
 Date format : day/month/year
 
-## 1.11.1 - ??/05/2024 - Some QoL
+## 1.12.0 - 09/06/2024 - FoundryVTT v12 Compatibility
+__! Be certain to carefully back up any critical user data before installing this update !__
+- Updated the System to FoundryVTT v12.
 - Added ability to players to set their default Item's windows height in settings (#55).
-- Macro : Added item icon on hotbar drop (#54).
+- Added item's icon on Macro hotbar on drop (#54).
 - Moved `The blade with no name: Ancestral sword of the Dragon [Blessed Treasure]` from items to weapons compendium.
+- Added French translation for "level zero" folders (packFolders).
 
 ## 1.11.0 - 13/12/2023 - Little fixes
 - 20Q :
