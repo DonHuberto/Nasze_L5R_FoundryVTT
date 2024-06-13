@@ -151,35 +151,35 @@
             "name": "Bains",
             "types": "Relations, Mental",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.90"
         },
         {
             "id": "Kyudo",
-            "name": "Kyudo (WIP)",
+            "name": "Kyūdo",
             "types": "Mental, Physique",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.91"
         },
         {
             "id": "Kabuki",
-            "name": "Kabuki (WIP)",
+            "name": "Kabuki",
             "types": "Relations, Mental",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.90"
         },
         {
             "id": "Festivals",
-            "name": "Festivals (WIP)",
+            "name": "Festivals",
             "types": "Mental",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.90"
         },
         {
             "id": "Religious Study",
-            "name": "Religious Study (WIP)",
+            "name": "Culture religieuse",
             "types": "Mental, Spirituel",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.90"
         },
         {
             "id": "Local Flare for {Region}",
@@ -281,17 +281,17 @@
         },
         {
             "id": "Ancestry",
-            "name": "Ancestry (WIP)",
+            "name": "Généalogie",
             "types": "Mental",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.83"
         },
         {
             "id": "Glorious Deeds",
-            "name": "Glorious Deeds (WIP)",
+            "name": "Exploits",
             "types": "Martial, Social",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.83"
         },
         {
             "id": "Charity",

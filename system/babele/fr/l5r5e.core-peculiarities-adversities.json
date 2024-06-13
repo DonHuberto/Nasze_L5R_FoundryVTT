@@ -351,31 +351,31 @@
         },
         {
             "id": "Elemental Deficiency (Air)",
-            "name": "Elemental Deficiency (Air) (WIP)",
+            "name": "Carence élémentaire (Air)",
             "types": "Mental, Physique, Spirituel",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.93"
         },
         {
             "id": "Elemental Deficiency (Earth)",
-            "name": "Elemental Deficiency (Earth) (WIP)",
+            "name": "Carence élémentaire (Terre)",
             "types": "Mental, Physique, Spirituel",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.94"
         },
         {
             "id": "Elemental Deficiency (Fire)",
-            "name": "Elemental Deficiency (Fire) (WIP)",
+            "name": "Carence élémentaire (Feu)",
             "types": "Mental, Physique, Spirituel",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.94"
         },
         {
             "id": "Elemental Deficiency (Water)",
-            "name": "Elemental Deficiency (Water) (WIP)",
+            "name": "Carence élémentaire (Eau)",
             "types": "Mental, Physique, Spirituel",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.93"
         },
         {
             "id": "Lackluster",
@@ -575,10 +575,10 @@
         },
         {
             "id": "Blood Feud",
-            "name": "Blood Feud (WIP)",
+            "name": "Vendetta",
             "types": "Relations, Social",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.83"
         },
         {
             "id": "Insomniac",

@@ -193,57 +193,57 @@
         },
         {
             "id": "Experimental Concotion",
-            "name": "Experimental Concotion (WIP)",
+            "name": "Mélange expérimental",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.80"
         },
         {
             "id": "Favored Counselor",
-            "name": "Favored Counselor (WIP)",
+            "name": "Conseiller favori",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.81"
         },
         {
             "id": "Essence of Emptiness",
-            "name": "Essence of Emptiness (WIP)",
+            "name": "Essence de la vacuité",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.82"
         },
         {
             "id": "Temple of the Heart",
-            "name": "Temple of the Heart (WIP)",
+            "name": "Le coeur est un temple",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.83"
         },
         {
             "id": "The Flower Binds the Room",
-            "name": "The Flower Binds the Room (WIP)",
+            "name": "La fleur complète la pièce",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.84"
         },
         {
             "id": "Walk the Hidden Ways",
-            "name": "Walk the Hidden Ways (WIP)",
+            "name": "Arpenter les voies secrètes",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.85"
         },
         {
             "id": "Rippling Flame",
-            "name": "Rippling Flame (WIP)",
+            "name": "Flamme dansante",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.86"
         },
         {
             "id": "Shadow Assassin",
-            "name": "Shadow Assassin (WIP)",
+            "name": "Ombre assassine",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.87"
         },
         {
             "id": "Master of Beasts",
-            "name": "Master of Beasts (WIP)",
+            "name": "Maître des bêtes",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.88"
         },
         {
             "id": "Strike First, Strike Last",
@@ -493,63 +493,63 @@
         },
         {
             "id": "Soul of Deepest Stones",
-            "name": "Soul of Deepest Stones (WIP)",
+            "name": "L’âme des pierres les plus profondes",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.72"
         },
         {
             "id": "Strike Without Shadow",
-            "name": "Strike Without Shadow (WIP)",
+            "name": "Frappe sans ombre",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.73"
         },
         {
             "id": "Spreading Chaos",
-            "name": "Spreading Chaos (WIP)",
+            "name": "Le chaos se répand",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.74"
         },
         {
             "id": "Unbreakable Resolve",
-            "name": "Unbreakable Resolve (WIP)",
+            "name": "Détermination inébranlable",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.75"
         },
         {
             "id": "Killing Grip",
-            "name": "Killing Grip (WIP)",
+            "name": "Prise mortelle",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.76"
         },
         {
             "id": "Tenacity of the Forge",
-            "name": "Tenacity of the Forge (WIP)",
+            "name": "Ténacité de la forge",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.77"
         },
         {
             "id": "The Herd Flourishes Together",
-            "name": "The Herd Flourishes Together (WIP)",
+            "name": "Le troupeau prospère dans son ensemble",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.78"
         },
         {
             "id": "Attuned Invocation",
-            "name": "Attuned Invocation (WIP)",
+            "name": "Invocation harmonisée",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.79"
         },
         {
             "id": "With the Soul of a Lion",
-            "name": "With the Soul of a Lion (WIP)",
+            "name": "Avec l’âme d’un lion",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.80"
         },
         {
             "id": "Empty Soul Ki",
-            "name": "Empty Soul Ki (WIP)",
+            "name": "Le ki de l’âme vide",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.81"
         },
         {
             "id": "Storm Surge",
@@ -595,15 +595,15 @@
         },
         {
             "id": "Hunter of the Supernatural",
-            "name": "Hunter of the Supernatural (WIP)",
+            "name": "Chasseur du surnaturel",
             "description": "",
-            "book_reference": "Celestial Realms - Deathly Turns"
+            "book_reference": "Celestial Realms - Deathly Turns p.24"
         },
         {
             "id": "An Arrow Loosed",
-            "name": "An Arrow Loosed (WIP)",
+            "name": "Une flèche décochée",
             "description": "",
-            "book_reference": "Celestial Realms - Deathly Turns"
+            "book_reference": "Celestial Realms - Deathly Turns p.25"
         }
     ]
 }

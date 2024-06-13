@@ -205,21 +205,21 @@
         },
         {
             "id": "Omamori (Boon of Jurojin)",
-            "name": "Omamori (Bénédiction de Jurojin)",
+            "name": "Omamori (Bienfait de Jurōjin)",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.97"
         },
         {
             "id": "Omamori (Boon of Kisshoten)",
-            "name": "Omamori (Bénédiction de Kisshoten)",
+            "name": "Omamori (Bienfait de Kisshōten)",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.97"
         },
         {
             "id": "Omamori (Boon of Hotei)",
-            "name": "Omamori (Bénédiction de Hotei)",
+            "name": "Omamori (Bienfait de Hotei)",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.97"
         },
         {
             "id": "Makeup Kit",
@@ -505,87 +505,87 @@
         },
         {
             "id": "Animal Helm",
-            "name": "Animal Helm (WIP)",
+            "name": "Casque animal",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.90"
         },
         {
             "id": "Blasting Powder (1 charge)",
-            "name": "Blasting Powder (1 charge) (WIP)",
+            "name": "Poudre noire (1 charge)",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.91"
         },
         {
             "id": "Battlefield Heirloom",
-            "name": "Battlefield Heirloom (WIP)",
+            "name": "Héritage guerrier",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.90"
         },
         {
             "id": "Battlefield Medical Pack",
-            "name": "Battlefield Medical Pack (WIP)",
+            "name": "Fournitures médicales de terrain",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.90"
         },
         {
             "id": "Brilliant Flare",
-            "name": "Brilliant Flare (WIP)",
+            "name": "Fusée éclairante",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.90"
         },
         {
             "id": "Mempō",
-            "name": "Mempō (WIP)",
+            "name": "Menpō",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.90"
         },
         {
             "id": "Saihai",
-            "name": "Saihai (WIP)",
+            "name": "Saihai",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.91"
         },
         {
             "id": "Sashimono",
-            "name": "Sashimono (WIP)",
+            "name": "Sashimono",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.91"
         },
         {
             "id": "Smoking Pipe",
-            "name": "Smoking Pipe (WIP)",
+            "name": "Pipe",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.91"
         },
         {
             "id": "Tetsubishi",
-            "name": "Tetsubishi (WIP)",
+            "name": "Tetsubishi",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.91"
         },
         {
             "id": "Uma-Jirushi",
-            "name": "Uma-Jirushi (WIP)",
+            "name": "Uma-Jirushi",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.91"
         },
         {
             "id": "Banner of Amaterasu [Blessed Treasure]",
-            "name": "Banner of Amaterasu [Blessed Treasure] (WIP)",
+            "name": "La Bannière d’Amaterasu",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.92"
         },
         {
             "id": "The Claws of the Kitsu [Blessed Treasure]",
-            "name": "The Claws of the Kitsu [Blessed Treasure] (WIP)",
+            "name": "Les Griffes des Kitsu",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.92"
         },
         {
             "id": "Leadership Scrolls [Blessed Treasure]",
-            "name": "Leadership Scrolls [Blessed Treasure] (WIP)",
+            "name": "Rouleaux du Commandement",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.92"
         },
         {
             "id": "The Anvil of Despair [Concealed Horror]",
@@ -634,6 +634,42 @@
             "name": "Flèches",
             "description": "",
             "book_reference": "Livre de Règles"
+        },
+        {
+            "id": "Arrows : Fire-Blossom",
+            "name": "Flèches : Braises ardentes",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes p.97"
+        },
+        {
+            "id": "Arrows : Hamaya",
+            "name": "Flèches : Hamaya",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes p.97"
+        },
+        {
+            "id": "Arrows : Soul-Star",
+            "name": "Flèches : Éclat d’âme",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes p.97"
+        },
+        {
+            "id": "The horagai of Sacred Rains",
+            "name": "Le horagai des Pluies sacrées",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes p.96"
+        },
+        {
+            "id": "Daikoku's Mallet",
+            "name": "Le maillet de Daikoku",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes p.96"
+        },
+        {
+            "id": "Candles of the Moth",
+            "name": "Les chandelles du Clan de la Phalène",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes p.96"
         }
     ]
 }

@@ -141,31 +141,31 @@
         },
         {
             "id": "Conspiracy",
-            "name": "Conspiracy (WIP)",
+            "name": "Conspirations",
             "types": "Relations, Mental",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.91"
         },
         {
             "id": "Omen of Bad Luck",
-            "name": "Omen of Bad Luck (WIP)",
+            "name": "Mauvais augure",
             "types": "Relations, Mental",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.92"
         },
         {
             "id": "Uncleanliness",
-            "name": "Uncleanliness (WIP)",
+            "name": "Maniaque",
             "types": "Mental",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.92"
         },
         {
             "id": "Vanity",
-            "name": "Vanity (WIP)",
+            "name": "Vanité",
             "types": "Relations, Mental",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.92"
         },
         {
             "id": "Isolation",
@@ -267,17 +267,17 @@
         },
         {
             "id": "Belligerent",
-            "name": "Belligerent (WIP)",
+            "name": "Belliqueux",
             "types": "Relations",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.85"
         },
         {
             "id": "Braggart",
-            "name": "Braggart (WIP)",
+            "name": "Vantard",
             "types": "Relations",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.85"
         },
         {
             "id": "Fear of [Common Creature]",

@@ -193,57 +193,57 @@
         },
         {
             "id": "Flesh of the Elements",
-            "name": "Flesh of the Elements (WIP)",
+            "name": "Chair élémentaire",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.80"
         },
         {
             "id": "Soul of Ceremony",
-            "name": "Soul of Ceremony (WIP)",
+            "name": "Cérémonie solennelle",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.81"
         },
         {
             "id": "Way of the Void",
-            "name": "Way of the Void (WIP)",
+            "name": "La voie du Vide",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.82"
         },
         {
             "id": "The Body is a Shrine",
-            "name": "The Body is a Shrine (WIP)",
+            "name": "Le corps est un sanctuaire",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.83"
         },
         {
             "id": "Every Stone Serves",
-            "name": "Every Stone Serves (WIP)",
+            "name": "Chaque pierre a son utilité",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.84"
         },
         {
             "id": "Celestial Alignment",
-            "name": "Celestial Alignment (WIP)",
+            "name": "Alignement céleste",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.85"
         },
         {
             "id": "Blazing Tears of Lady Sun",
-            "name": "Blazing Tears of Lady Sun (WIP)",
+            "name": "Larmes brûlantes de Dame Soleil",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.86"
         },
         {
             "id": "Sudden nightfall",
-            "name": "Sudden nightfall (WIP)",
+            "name": "Nuit soudaine",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.87"
         },
         {
             "id": "Steed of the Kami",
-            "name": "Steed of the Kami (WIP)",
+            "name": "Monture du kami",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.88"
         },
         {
             "id": "Way of the Scorpion",
@@ -493,63 +493,63 @@
         },
         {
             "id": "Stand as the Mountain",
-            "name": "Stand as the Mountain (WIP)",
+            "name": "Robuste comme la montagne",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.72"
         },
         {
             "id": "Drilled Precision",
-            "name": "Drilled Precision (WIP)",
+            "name": "Précision militaire",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.73"
         },
         {
             "id": "Explosive Arrival",
-            "name": "Explosive Arrival (WIP)",
+            "name": "Arrivée explosive",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.74"
         },
         {
             "id": "Thunderous Courage",
-            "name": "Thunderous Courage (WIP)",
+            "name": "Courage retentissant",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.75"
         },
         {
             "id": "Badger's Hold",
-            "name": "Badger's Hold (WIP)",
+            "name": "La prise du blaireau",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.76"
         },
         {
             "id": "Hide of Iron",
-            "name": "Hide of Iron (WIP)",
+            "name": "Peau de fer",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.77"
         },
         {
             "id": "Sympathetic Bearing",
-            "name": "Sympathetic Bearing (WIP)",
+            "name": "Allure sympathique",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.78"
         },
         {
             "id": "Elemental Inspiration",
-            "name": "Elemental Inspiration (WIP)",
+            "name": "Inspiration élémentaire",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.79"
         },
         {
             "id": "One with the Pride",
-            "name": "One with the Pride (WIP)",
+            "name": "Union avec la troupe",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.80"
         },
         {
             "id": "Oath of Sacrifice",
-            "name": "Oath of Sacrifice (WIP)",
+            "name": "Serment de sacrifice",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.81"
         },
         {
             "id": "Eye of the Storm",
@@ -595,15 +595,15 @@
         },
         {
             "id": "Mazoku's Authority",
-            "name": "Mazoku's Authority (WIP)",
+            "name": "Autorité des Mazoku",
             "description": "",
-            "book_reference": "Celestial Realms - Deathly Turns"
+            "book_reference": "Celestial Realms - Deathly Turns p.24"
         },
         {
             "id": "Effortless Aim",
-            "name": "Effortless Aim (WIP)",
+            "name": "Visée fluide",
             "description": "",
-            "book_reference": "Celestial Realms - Deathly Turns"
+            "book_reference": "Celestial Realms - Deathly Turns p.25"
         }
     ]
 }

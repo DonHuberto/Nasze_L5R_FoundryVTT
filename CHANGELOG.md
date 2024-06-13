@@ -1,6 +1,13 @@
 # Changelog
 Date format : day/month/year
 
+## 1.13.0 - ??/06/2024 - Compendium update (mostly french)
+- Updated the names and pages number for the French translation of CR and FoV.
+- Added some missing from CR & CR-DT:
+  - Armors: `The Golden Obi of the Sun Goddess`
+  - Items: `Arrows : Fire-Blossom/Hamaya/Soul-Star`, `The horagai of Sacred Rains`, `Daikoku's Mallet` and `Candles of the Moth`.
+  - Title: `Spirits hunter`.
+
 ## 1.12.0 - 09/06/2024 - FoundryVTT v12 Compatibility
 __! Be certain to carefully back up any critical user data before installing this update !__
 - Updated the System to FoundryVTT v12.

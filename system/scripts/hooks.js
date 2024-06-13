@@ -5,7 +5,7 @@ export default class HooksL5r5e {
     static setup() {
         // Enable embed Babele compendiums only if custom compendium is not found or disabled
         if (
-            typeof Babele !== "undefined" &&
+            game.babele &&
             game.babele.modules.every((module) => module.module !== game.settings.get(CONFIG.l5r5e.namespace, "custom-compendium-name"))
         ) {
             game.babele.setSystemTranslationsDir("babele"); // Since Babele v2.0.7

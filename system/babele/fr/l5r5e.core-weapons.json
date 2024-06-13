@@ -357,7 +357,7 @@
             "grip_1": "",
             "grip_2": "Dangerosité +1",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.98"
         },
         {
             "id": "Whip",
@@ -366,7 +366,7 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.98"
         },
         {
             "id": "Moshi Sun Ax",
@@ -375,7 +375,7 @@
             "grip_1": "",
             "grip_2": "Dégâts +3",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.98"
         },
         {
             "id": "Uchigatana",
@@ -384,7 +384,7 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.98"
         },
         {
             "id": "Shakujō",
@@ -393,7 +393,7 @@
             "grip_1": "",
             "grip_2": "Dégâts +1",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.98"
         },
         {
             "id": "Kusarifundo",
@@ -793,57 +793,57 @@
         },
         {
             "id": "Ichirō Sapper Ax",
-            "name": "Ichirō Sapper Ax (WIP)",
+            "name": "Hache de sapeur Ichirō",
             "category": "Haches",
             "grip_1": "-, (émoussé): Dégâts +2, Dangerosité -3",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.88"
         },
         {
             "id": "Magari Yari",
-            "name": "Magari Yari (WIP)",
+            "name": "Magari Yari",
             "category": "Armes d'Hast",
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.88"
         },
         {
             "id": "Nagae Yari",
-            "name": "Nagae Yari (WIP)",
+            "name": "Nagae Yari",
             "category": "Armes d'Hast",
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.88"
         },
         {
             "id": "Nagamaki",
-            "name": "Nagamaki (WIP)",
+            "name": "Nagamaki",
             "category": "Armes d'Hast",
             "grip_1": "Encombrant",
             "grip_2": "Dégâts +2, Dangerosité +2",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.88"
         },
         {
             "id": "Yoroi-Doshi",
-            "name": "Yoroi-Doshi (WIP)",
+            "name": "Yoroi-Doshi",
             "category": "Armes de Poing",
             "grip_1": "",
             "grip_2": "Dangerosité +3",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.89"
         },
         {
             "id": "Gunbai",
-            "name": "Gunbai (WIP)",
+            "name": "Gunbai",
             "category": "Armes de Poing",
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.90"
         },
         {
             "id": "Hooves",
@@ -865,102 +865,102 @@
         },
         {
             "id": "Chikara: Ancestral sword of the Crab [Blessed Treasure]",
-            "name": "Chikara: Ancestral sword of the Crab [Blessed Treasure] (WIP)",
+            "name": "Chikara : le sabre ancestral du Clan du Crabe [Trésor Béni]",
             "category": "Sabres",
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.99"
         },
         {
             "id": "Shukujo: Ancestral sword of the Crane [Blessed Treasure]",
-            "name": "Shukujo: Ancestral sword of the Crane [Blessed Treasure] (WIP)",
+            "name": "Shukujo : le sabre ancestral du Clan de la Grue [Trésor Béni]",
             "category": "Sabres",
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.100"
         },
         {
             "id": "Shori: Ancestral sword of the Lion [Blessed Treasure]",
-            "name": "Shori: Ancestral sword of the Lion [Blessed Treasure] (WIP)",
+            "name": "Shori : le sabre ancestral du Clan du Lion [Trésor Béni]",
             "category": "Sabres",
             "grip_1": "",
             "grip_2": "Dangerosité +1",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.101"
         },
         {
             "id": "Ofushikai: Ancestral sword of the Phoenix [Blessed Treasure]",
-            "name": "Ofushikai: Ancestral sword of the Phoenix [Blessed Treasure] (WIP)",
+            "name": "Ofushikai : le sabre ancestral du Clan du Phénix [Trésor Béni]",
             "category": "Sabres",
             "grip_1": "",
             "grip_2": "",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.102"
         },
         {
             "id": "Itsuwari: Ancestral sword of the Scorpion [Blessed Treasure]",
-            "name": "Itsuwari: Ancestral sword of the Scorpion [Blessed Treasure] (WIP)",
+            "name": "Itsuwari : le sabre ancestral du Clan du Scorpion [Trésor Béni]",
             "category": "Sabres",
             "grip_1": "",
             "grip_2": "Dangerosité +1",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.103"
         },
         {
             "id": "Hayai: Ancestral sword of the Unicorn [Blessed Treasure]",
-            "name": "Hayai: Ancestral sword of the Unicorn [Blessed Treasure] (WIP)",
+            "name": "Hayai : le sabre ancestral du Clan de la Licorne [Trésor Béni]",
             "category": "Sabres",
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.103"
         },
         {
             "id": "Kiro: The lost ancestral sword of the Ki-Rin [Concealed Horror]",
-            "name": "Kiro: The lost ancestral sword of the Ki-Rin [Concealed Horror] (WIP)",
+            "name": "Kiro : le sabre ancestral disparu de la Ki-Rin",
             "category": "Sabres",
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.104"
         },
         {
             "id": "Kunshu: Ancestral sword of the hantei [Blessed Treasure]",
-            "name": "Kunshu: Ancestral sword of the hantei [Blessed Treasure] (WIP)",
+            "name": "Kunshu : le sabre ancestral des Hantei [Trésor Béni]",
             "category": "Sabres",
             "grip_1": "",
             "grip_2": "Dangerosité +1",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.104"
         },
         {
             "id": "Mizutsumi [Blessed Treasure]",
-            "name": "Mizutsumi [Blessed Treasure] (WIP)",
+            "name": "Mizutsumi [Trésor Béni]",
             "category": "Sabres",
             "grip_1": "",
             "grip_2": "Dangerosité +2",
             "description": "",
-            "book_reference": "Celestial Realms - Deathly Turns"
+            "book_reference": "Celestial Realms - Deathly Turns p.19"
         },
         {
             "id": "The Five Akodo Daggers [Blessed Treasure]",
-            "name": "The Five Akodo Daggers [Blessed Treasure] (WIP)",
+            "name": "Les Cinq Dagues Akodo [Trésor Béni]",
             "category": "Armes de Poing",
             "grip_1": "",
             "grip_2": "Dangerosité +2",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.92"
         },
         {
             "id": "The blade with no name: Ancestral sword of the Dragon [Blessed Treasure]",
-            "name": "The blade with no name: Ancestral sword of the Dragon [Blessed Treasure] (WIP)",
+            "name": "La Lame sans nom: Le sabre ancestral du Clan du Dragon [Trésor Béni]",
             "category": "Sabres",
             "grip_1": "",
             "grip_2": "",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.100"
         }
     ]
 }

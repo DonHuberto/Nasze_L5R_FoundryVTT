@@ -7,99 +7,99 @@
     "entries": [
         {
             "id": "One Within the Void",
-            "name": "One Within the Void (WIP)",
+            "name": "S’unir au Vide",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.115"
         },
         {
             "id": "Sight beyond Existence",
-            "name": "Sight beyond Existence (WIP)",
+            "name": "Voir au-delà de l’existence",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.116"
         },
         {
             "id": "Whispered Blade",
-            "name": "Whispered Blade (WIP)",
+            "name": "Lame murmurée",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.115"
         },
         {
             "id": "Witness the End",
-            "name": "Witness the End (WIP)",
+            "name": "Assister à la fin",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.115"
         },
         {
             "id": "Distance Distorted",
-            "name": "Distance Distorted (WIP)",
+            "name": "Distance déformée",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.116"
         },
         {
             "id": "Ethereal Flicker",
-            "name": "Ethereal Flicker (WIP)",
+            "name": "Lueur éthérée",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.117"
         },
         {
             "id": "The Lotus Bloom",
-            "name": "The Lotus Bloom (WIP)",
+            "name": "Le lotus fleurit",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.117"
         },
         {
             "id": "Hurl from the Stream",
-            "name": "Hurl from the Stream (WIP)",
+            "name": "Extirper des flots",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.118"
         },
         {
             "id": "Moon on the Shifting Sea",
-            "name": "Moon on the Shifting Sea (WIP)",
+            "name": "Reflet de lune sur les vagues",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.118"
         },
         {
             "id": "Shroud in Solitude",
-            "name": "Shroud in Solitude (WIP)",
+            "name": "Drapé de solitude",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.117"
         },
         {
             "id": "Reality Stitch",
-            "name": "Reality Stitch (WIP)",
+            "name": "Réalités entrelacées",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.119"
         },
         {
             "id": "Shattering Caress",
-            "name": "Shattering Caress (WIP)",
+            "name": "Caresse destructrice",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.119"
         },
         {
             "id": "Three Heartbeats",
-            "name": "Three Heartbeats (WIP)",
+            "name": "Trois battements de coeur",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.119"
         },
         {
             "id": "Essence Eternal",
-            "name": "Essence Eternal (WIP)",
+            "name": "Essence éternelle",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.120"
         },
         {
             "id": "Slip the Cycle",
-            "name": "Slip the Cycle (WIP)",
+            "name": "Passer un cycle",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.120"
         },
         {
             "id": "Unweave",
-            "name": "Unweave (WIP)",
+            "name": "Détisser",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.119"
         }
     ]
 }

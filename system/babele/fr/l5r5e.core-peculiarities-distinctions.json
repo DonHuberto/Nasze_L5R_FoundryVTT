@@ -288,24 +288,24 @@
         },
         {
             "id": "Talented Herbalist",
-            "name": "Talented Herbalist (WIP)",
+            "name": "Herboriste talentueux",
             "types": "Mental",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.89"
         },
         {
             "id": "Famously Kind",
-            "name": "Famously Kind (WIP)",
+            "name": "Notoirement gentil",
             "types": "Renommée, Relations",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.89"
         },
         {
             "id": "Portentous Birth",
-            "name": "Portentous Birth (WIP)",
+            "name": "Né sous de bons auspices",
             "types": "Relations, Spirituel",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.89"
         },
         {
             "id": "Affect of Harmlessness",
@@ -463,17 +463,17 @@
         },
         {
             "id": "Guiding Ancestor",
-            "name": "Guiding Ancestor (WIP)",
+            "name": "Conseillé par un ancêtre",
             "types": "Spirituel",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.82"
         },
         {
             "id": "Traditional Adherent",
-            "name": "Traditional Adherent (WIP)",
+            "name": "Traditionaliste",
             "types": "Mental",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.82"
         },
         {
             "id": "Passion for [Foreign Performing Art Form]",

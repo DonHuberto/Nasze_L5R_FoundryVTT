@@ -37,57 +37,57 @@
         },
         {
             "id": "Akodo Pattern",
-            "name": "Akodo Pattern (WIP)",
+            "name": "Procédé Akodo",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.93"
         },
         {
             "id": "Burning Watter Pattern",
-            "name": "Burning Watter Pattern (WIP)",
+            "name": "Procédé de l’eau ardente",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.93"
         },
         {
             "id": "Concealment Pattern",
-            "name": "Concealment Pattern (WIP)",
+            "name": "Procédé de dissimulation",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.93"
         },
         {
             "id": "Deadly Fangs Pattern",
-            "name": "Deadly Fangs Pattern (WIP)",
+            "name": "Procédé des crocs mortels",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.94"
         },
         {
             "id": "Fearsome Snarl Pattern",
-            "name": "Fearsome Snarl Pattern (WIP)",
+            "name": "Procédé du grognement terrifiant",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.94"
         },
         {
             "id": "Ichirō Pattern",
-            "name": "Ichirō Pattern (WIP)",
+            "name": "Procédé Ichirō",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.94"
         },
         {
             "id": "Mountain Silk Pattern",
-            "name": "Mountain Silk Pattern (WIP)",
+            "name": "Procédé de la soie des montagnes",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.94"
         },
         {
             "id": "Screaming Fire Pattern",
-            "name": "Screaming Fire Pattern (WIP)",
+            "name": "Procédé du feu hurlant",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.94"
         },
         {
             "id": "Toriyama's Endurance Pattern",
-            "name": "Toriyama's Endurance Pattern (WIP)",
+            "name": "Procédé de l’endurance de Toriyama",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.94"
         },
         {
             "id": "Spirit of the Qamarist Pattern",
@@ -109,9 +109,9 @@
         },
         {
             "id": "Agasha Pattern",
-            "name": "Agasha Pattern (WIP)",
+            "name": "Le procédé Agasha",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.105"
         }
     ]
 }

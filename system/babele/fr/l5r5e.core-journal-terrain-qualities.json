@@ -83,54 +83,54 @@
             }
         },
         "Confining": {
-            "name": "Confining (WIP)",
+            "name": "Confiné",
             "pages": {
                 "Figure: Confining": {
-                    "name": "Confining (WIP) - Image",
+                    "name": "Confiné - Image",
                     "src": "icons/svg/stone-path.svg"
                 },
                 "Confining": {
-                    "name": "Confining (WIP)",
-                    "text": "<blockquote>Les Champs de la Victoire</blockquote>"
+                    "name": "Confiné",
+                    "text": "<blockquote>Les Champs de la Victoire p.122</blockquote>"
                 }
             }
         },
         "Elevated": {
-            "name": "Elevated (WIP)",
+            "name": "Surélevé",
             "pages": {
                 "Figure: Elevated": {
-                    "name": "Elevated (WIP) - Image",
+                    "name": "Surélevé - Image",
                     "src": "icons/svg/up.svg"
                 },
                 "Elevated": {
-                    "name": "Elevated (WIP)",
-                    "text": "<blockquote>Les Champs de la Victoire</blockquote>"
+                    "name": "Surélevé",
+                    "text": "<blockquote>Les Champs de la Victoire p.122</blockquote>"
                 }
             }
         },
         "Open": {
-            "name": "Open (WIP)",
+            "name": "Ouvert",
             "pages": {
                 "Figure: Open": {
-                    "name": "Open (WIP) - Image",
+                    "name": "Ouvert - Image",
                     "src": "icons/svg/mountain.svg"
                 },
                 "Open": {
-                    "name": "Open (WIP)",
-                    "text": "<blockquote>Les Champs de la Victoire</blockquote>"
+                    "name": "Ouvert",
+                    "text": "<blockquote>Les Champs de la Victoire p.122</blockquote>"
                 }
             }
         },
         "Recessed": {
-            "name": "Recessed (WIP)",
+            "name": "Encaissé",
             "pages": {
                 "Figure: Recessed": {
-                    "name": "Recessed (WIP) - Image",
+                    "name": "Encaissé - Image",
                     "src": "icons/svg/down.svg"
                 },
                 "Recessed": {
-                    "name": "Recessed (WIP)",
-                    "text": "<blockquote>Les Champs de la Victoire</blockquote>"
+                    "name": "Encaissé",
+                    "text": "<blockquote>Les Champs de la Victoire p.122</blockquote>"
                 }
             }
         },

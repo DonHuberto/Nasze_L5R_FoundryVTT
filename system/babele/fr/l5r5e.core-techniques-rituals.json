@@ -37,33 +37,33 @@
         },
         {
             "id": "Blessed Union",
-            "name": "Blessed Union (WIP)",
+            "name": "Union bénite",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.111"
         },
         {
             "id": "Blessing of the Dance",
-            "name": "Blessing of the Dance (WIP)",
+            "name": "Bienfaits de la danse",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.110"
         },
         {
             "id": "Prayer of Protection",
-            "name": "Prayer of Protection (WIP)",
+            "name": "Prière protectrice",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.110"
         },
         {
             "id": "Rite of the Wheel",
-            "name": "Rite of the Wheel (WIP)",
+            "name": "Rite de la roue",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.110"
         },
         {
             "id": "Whispers to the Moon (Moon Cultist)",
-            "name": "Whispers to the Moon (Moon Cultist) (WIP)",
+            "name": "Murmures à la Lune (adepte de Sire Lune)",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.110"
         },
         {
             "id": "Formal Tea Ceremony",
@@ -133,57 +133,57 @@
         },
         {
             "id": "Blessing of Fertile Fields",
-            "name": "Blessing of Fertile Fields (WIP)",
+            "name": "Bénédiction des champs fertiles",
             "description": "",
-            "book_reference": "Les Royaumes Célestes"
+            "book_reference": "Les Royaumes Célestes p.110"
         },
         {
             "id": "Beseech Akodo's Judgment",
-            "name": "Beseech Akodo's Judgment (WIP)",
+            "name": "Implorer le jugement d’Akodo",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.97"
         },
         {
             "id": "Beseech Bayushi's Absolution",
-            "name": "Beseech Bayushi's Absolution (WIP)",
+            "name": "Implorer l’absolution de Bayushi",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.97"
         },
         {
             "id": "Beseech Doji's Wisdom",
-            "name": "Beseech Doji's Wisdom (WIP)",
+            "name": "Implorer la sagesse de Doji",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.96"
         },
         {
             "id": "Beseech Hida's MIght",
-            "name": "Beseech Hida's MIght (WIP)",
+            "name": "Implorer la puissance de Hida",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.96"
         },
         {
             "id": "Beseech Shiba's Calm",
-            "name": "Beseech Shiba's Calm (WIP)",
+            "name": "Implorer le calme de Shiba",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.97"
         },
         {
             "id": "Beseech Shinjo's Empathy",
-            "name": "Beseech Shinjo's Empathy (WIP)",
+            "name": "Implorer l’empathie de Shinjo",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.98"
         },
         {
             "id": "Beseech Togashi's Vision",
-            "name": "Beseech Togashi's Vision (WIP)",
+            "name": "Implorer la vision de Togashi",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.97"
         },
         {
             "id": "Imbue Thunder",
-            "name": "Imbue Thunder (WIP)",
+            "name": "Imprégner de tonnerre",
             "description": "",
-            "book_reference": "Les Champs de la Victoire"
+            "book_reference": "Les Champs de la Victoire p.98"
         },
         {
             "id": "Chikushō-dō’s Guile",

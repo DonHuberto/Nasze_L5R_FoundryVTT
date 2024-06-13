@@ -67,7 +67,7 @@
         },
         {
             "id": "Robes of Judgment",
-            "name": "Robes de jugement",
+            "name": "La tunique du jugement",
             "description": "",
             "book_reference": "Les Royaumes Célestes p.97"
         },
@@ -112,6 +112,12 @@
             "name": "Armure en peau de requin",
             "description": "",
             "book_reference": "Le Clan de la Mante p.9"
+        },
+        {
+            "id": "The Golden Obi of the Sun Goddess [Blessed Treasure]",
+            "name": "L’obi doré de la Déesse Soleil [Trésor Béni]",
+            "description": "",
+            "book_reference": "Les Royaumes Célestes p.97"
         }
     ]
 }
