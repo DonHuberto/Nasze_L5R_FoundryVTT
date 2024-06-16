@@ -2,11 +2,14 @@
 Date format : day/month/year
 
 ## 1.13.0 - ??/06/2024 - Compendium update (mostly french)
-- Updated the names and pages number for the French translation of CR and FoV.
-- Added some missing from CR & CR-DT:
+- Updated the names and pages number from the official French translation of `Celestial Realms` and `Fields of Victory`.
+- Added some missing from `Celestial Realms` and `Celestial Realms - Deathly Turns`:
   - Armors: `The Golden Obi of the Sun Goddess`
   - Items: `Arrows : Fire-Blossom/Hamaya/Soul-Star`, `The horagai of Sacred Rains`, `Daikoku's Mallet` and `Candles of the Moth`.
   - Title: `Spirits hunter`.
+- Fixed some English page reference:
+  - `Lightning Raid` : from `219` to `218` (thx to Etherial).
+  - `Tributaries of Trade` : added `221`.
 
 ## 1.12.0 - 09/06/2024 - FoundryVTT v12 Compatibility
 __! Be certain to carefully back up any critical user data before installing this update !__
