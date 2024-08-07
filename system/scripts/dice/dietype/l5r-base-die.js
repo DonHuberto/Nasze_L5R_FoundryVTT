@@ -1,11 +1,11 @@
 /**
  * L5R5e Base Die
  */
-export class L5rBaseDie extends DiceTerm {
-    /** Need to be override */
+export class L5rBaseDie extends foundry.dice.terms.DiceTerm {
+    /** Need to be overridden */
     static DENOMINATION = "";
 
-    /** Need to be override */
+    /** Need to be overridden */
     static FACES = {};
 
     /** @override */

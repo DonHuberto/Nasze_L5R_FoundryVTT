@@ -5,7 +5,14 @@
     },
     "SETTINGS": {
         "None": "Aucune option",
-        "ReverseFatigueBar": "Inverser la barre de fatigue des token",
+        "ReverseTokenBars": {
+            "Title": "Inverser la barre des tokens",
+            "Hint": "Change l'ordre de remplissage des barres sous les tokens",
+            "None": "Aucun",
+            "Fatigue": "Fatigue uniquement",
+            "Strife": "Conflit uniquement",
+            "Both": "Les deux (Fatigue et Conflit)"
+        },
         "RollNKeep": {
             "DeleteOldMessage": "RnK Supprime le précédent message du chat",
             "DeleteOldMessageHint": "Si coché, on supprime le message précédent pour la série de jets via le RnK"

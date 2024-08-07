@@ -23,13 +23,6 @@ export const RegisterSettings = function () {
         type: Boolean,
         default: true,
     });
-    game.settings.register(CONFIG.l5r5e.namespace, "token-reverseFatigueBar", {
-        name: "SETTINGS.ReverseFatigueBar",
-        scope: "world",
-        config: true,
-        type: Boolean,
-        default: false,
-    });
     game.settings.register(CONFIG.l5r5e.namespace, "techniques-customs", {
         name: "SETTINGS.CustomTechniques.Title",
         hint: "SETTINGS.CustomTechniques.Hint",
@@ -47,7 +40,7 @@ export const RegisterSettings = function () {
         type: String,
         default: "l5r5e-custom-compendiums",
         onChange: (name) => {
-            if (!Babele.get().modules.find((module) => module.module === name)) {
+            if (game.babele && !game.babele.modules.find((module) => module.module === name)) {
                 ui.notifications.warn(game.i18n.format("SETTINGS.CustomCompendiumName.Notification", { name }), { permanent: true });
             }
         }
@@ -69,6 +62,20 @@ export const RegisterSettings = function () {
             step: 50
         },
         default: 800,
+    });
+    game.settings.register(CONFIG.l5r5e.namespace, "token-reverse-token-bars", {
+        name: "SETTINGS.ReverseTokenBars.Title",
+        hint: "SETTINGS.ReverseTokenBars.Hint",
+        scope: "client",
+        config: true,
+        default: "none",
+        choices: {
+            "none": "SETTINGS.ReverseTokenBars.None",
+            "fatigue": "SETTINGS.ReverseTokenBars.Fatigue",
+            "strife": "SETTINGS.ReverseTokenBars.Strife",
+            "both": "SETTINGS.ReverseTokenBars.Both"
+        },
+        type: String,
     });
 
     /* ------------------------------------ */

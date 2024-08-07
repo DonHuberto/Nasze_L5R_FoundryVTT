@@ -5,7 +5,14 @@
     },
     "SETTINGS": {
         "None": "Niente",
-        "ReverseFatigueBar": "Inverti barra della Stanchezza",
+        "ReverseTokenBars": {
+            "Title": "Reverse tokens bar",
+            "Hint": "Change the order in which the bars under the tokens are filled in",
+            "None": "None",
+            "Fatigue": "Fatigue only",
+            "Strife": "Strife",
+            "Both": "Both Fatigue and Strife"
+        },
         "RollNKeep": {
             "DeleteOldMessage": "Il Tira e Tieni cancella il messaggio in chat precedente",
             "DeleteOldMessageHint": "Scegli se mantenere o eliminare il messaggio precedente in una serie di Tira e Tieni"
@@ -22,6 +29,10 @@
             "Title": "Custom Compendium Name",
             "Hint": "For advanced users that want to change the name of the custom compendiums (Used to disables the embedded ones).",
             "Notification": "Unable set Custom Compendium: '{name}'. Is it activated and registered with Babele?"
+        },
+        "CustomItemsHeight": {
+            "Title": "Default items windows height",
+            "Hint": "Set the default height for 'Items' windows types (techniques, weapons...), in pixels"
         }
     },
     "TYPES": {

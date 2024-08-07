@@ -14,7 +14,6 @@
         "verified": "12",
         "maximum": "12"
     },
-    "manifestPlusVersion": "1.2.0",
     "socket": true,
     "authors": [
         {

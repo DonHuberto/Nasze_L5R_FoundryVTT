@@ -5,7 +5,14 @@
     },
     "SETTINGS": {
         "None": "Sin opción",
-        "ReverseFatigueBar": "Invertir la barra de fatiga de los token",
+        "ReverseTokenBars": {
+            "Title": "Reverse tokens bar",
+            "Hint": "Change the order in which the bars under the tokens are filled in",
+            "None": "None",
+            "Fatigue": "Fatigue only",
+            "Strife": "Strife",
+            "Both": "Both Fatigue and Strife"
+        },
         "RollNKeep": {
             "DeleteOldMessage": "TyG Eliminar el mensaje anterior del chat",
             "DeleteOldMessageHint": "Elige si mantener o borrar el mensaje anterior de la serie TyG"
@@ -22,6 +29,10 @@
             "Title": "Custom Compendium Name",
             "Hint": "For advanced users that want to change the name of the custom compendiums (Used to disables the embedded ones).",
             "Notification": "Unable set Custom Compendium: '{name}'. Is it activated and registered with Babele?"
+        },
+        "CustomItemsHeight": {
+            "Title": "Default items windows height",
+            "Hint": "Set the default height for 'Items' windows types (techniques, weapons...), in pixels"
         }
     },
     "TYPES": {

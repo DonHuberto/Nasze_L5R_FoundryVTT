@@ -6,6 +6,9 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.12.2 - ??/08/2024 - ???
+- Modified : The checkbox "reverseFatigueBar" is now a drop-down with `none`/`fatigue`/`strife`/`both`, and is now an client preference.
+
 ## 1.12.1 - 19/06/2024 - Compendium update (mostly french)
 - Updated the names and pages number from the official French translation of `Celestial Realms` and `Fields of Victory`.
 - Added some missing from `Celestial Realms` and `Celestial Realms - Deathly Turns`:
