@@ -232,7 +232,7 @@ export class TwentyQuestionsDialog extends FormApplication {
                 html,
                 "step2.family",
                 CONFIG.l5r5e.families.get(
-                    Object.entries(game.i18n.translations.l5r5e.clans).find(
+                    Object.entries(game.l5r5e.HelpersL5r5e.getLocalizedRawObject("l5r5e.clans")).find(
                         ([k, v]) => v === this.object.data.step1.clan
                     )?.[0]
                 )

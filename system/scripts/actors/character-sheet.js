@@ -86,7 +86,7 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
             html,
             "system.identity.family",
             CONFIG.l5r5e.families.get(
-                Object.entries(game.i18n.translations.l5r5e.clans).find(
+                Object.entries(game.l5r5e.HelpersL5r5e.getLocalizedRawObject("l5r5e.clans")).find(
                     ([k, v]) => v === this.actor.system.identity.clan
                 )?.[0]
             )

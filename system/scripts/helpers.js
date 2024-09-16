@@ -84,7 +84,7 @@ export class HelpersL5r5e {
      * @return {string[]}
      */
     static getLocalizedClansList() {
-        return Object.entries(game.i18n.translations.l5r5e.clans)
+        return Object.entries(game.l5r5e.HelpersL5r5e.getLocalizedRawObject("l5r5e.clans"))
             .filter(([k, v]) => !["title", "label"].includes(k))
             .map(([k, v]) => v);
     }
@@ -99,6 +99,20 @@ export class HelpersL5r5e {
             return [];
         }
         return Array.from(comp.index).map((v) => v.name);
+    }
+
+    /**
+     * Get the raw object from localization, with fallback if the selected language is unknown
+     * @param   {string} key
+     * @returns {*}
+     */
+    static getLocalizedRawObject(key) {
+        let object = foundry.utils.getProperty(game.i18n.translations, key);
+        if (!!object) {
+            return object;
+        }
+        object = foundry.utils.getProperty(game.i18n._fallback, key);
+        return object ?? key;
     }
 
     /**
