@@ -682,6 +682,7 @@ button {
 }
 
 // Compendium
+.compendium,
 .compendium-list {
     .compendium-pack {
         .pack-title {
@@ -695,6 +696,37 @@ button {
             color: rgba(240, 240, 225, 0.75);
         }
     }
+    .ring-filter,
+    .number-filter {
+        .selected {
+            background-image: radial-gradient(closest-side, yellow, transparent);
+        }
+    }
+
+    .ring-filter {       
+        i.i_earth,
+        i.i_fire,
+        i.i_water,
+        i.i_air,
+        i.i_void {
+            line-height: unset; // do not have it rised up
+        }
+    }
+    .directory-item {
+        .ring-rarity-rank {
+            flex: unset
+        }
+    }
+
+    .not-for-players {
+        filter:brightness(0.5);
+    }
+
+    l5r5e-multi-select {
+        select {
+            background: rgba(255, 255, 245, 0.8); // same as the header-search in compendium popout
+        }
+    }
 }
 
 // global tooltip
@@ -704,7 +736,7 @@ button {
     .l5r5e-tooltip-ct,
     &.l5r5e-tooltip-ct {
         visibility: hidden;
-        min-height: 200px;
+        min-height: fit-content;
         width: 600px;
         height: auto;
         max-height: 100%;
@@ -762,6 +794,12 @@ button {
         .badvalue {
             color: #ab2a00;
         }
+        .reference {
+            display: flex;
+            .page_nr {
+                margin-left: 1ch
+            }
+        }
     }
     .card-header img {
         display: inline-block;
@@ -803,6 +841,13 @@ button {
         width: 20px;
         margin: 0;
         padding: 0;
+    }
+    .reference {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    .page_nr {
+        margin-left: 1ch;
     }
 }
 
@@ -932,6 +977,51 @@ button {
         display: none;
     }
 }
+
+l5r5e-multi-select {
+    display: grid;
+    grid-template-columns: minmax(auto, 1fr);
+    select {
+        justify-self: center;
+        width: 100%;
+        height: 100%;
+        text-align-last: center;
+    }
+    .input-element-tags {
+        grid-column-start: 1;
+        grid-column-end: span 3;
+    }
+    select {
+        grid-row: 1;
+    }
+    button {
+        grid-row: 1;
+        line-height: 1;
+    }
+}
+
+l5r5e-multi-select:has( > button.gm) {
+    .input-element-tags {
+        grid-column-end: span 4;
+    }
+}
+
+#client-settings:has( l5r5e-multi-select) {
+    .form-fields:has(l5r5e-multi-select) {
+        order: 3; // Move the multiselect to be below the title and description for nicer ui
+    }
+
+    [data-setting-id="l5r5e.compendium-inofficial-content-for-players"] {
+        // Move the tags and input fields to a similar place as for the multiselect
+        .form-fields {
+            order: 3;
+            .tags {
+                order: 1;
+            }
+        }
+    }
+}
+
 
 .autocomplete-wrapper {
     position: relative;

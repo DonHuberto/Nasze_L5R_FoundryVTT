@@ -198,7 +198,10 @@
         ],
         "templates": {
             "basics": {
-                "book_reference": "",
+                "source_reference": {
+                    "source": "",
+                    "page_nr": 0
+                },
                 "description": "",
                 "parent_id": null,
                 "items": []

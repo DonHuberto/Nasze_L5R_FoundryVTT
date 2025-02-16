@@ -1,3 +1,5 @@
+import { HTML_l5r5e_MultiSelectElement } from "./misc/l5r5e-multiselect.js";
+
 export default class HooksL5r5e {
     /**
      * Do anything after initialization but before ready
@@ -55,6 +57,19 @@ export default class HooksL5r5e {
         if (disclaimer !== "" && disclaimer !== "l5r5e.global.edge_translation_disclaimer") {
             ui.notifications.info(disclaimer);
         }
+
+        // Find all additional source references that is not the official ones:
+        const references = new Set(Object.keys(CONFIG.l5r5e.source_reference));
+        for(let pack of game.packs) {
+            if(pack.metadata.packageType === "system")
+                continue;
+            const documents = await pack.getDocuments();
+            for(let document of documents) {
+                if(document?.system?.source_reference)
+                    references.add(document.system.source_reference.source);
+            }
+        }
+        game.settings.set(CONFIG.l5r5e.namespace, "all-compendium-references", Array.from(references));
     }
 
     /**
@@ -213,48 +228,234 @@ export default class HooksL5r5e {
      */
     static async renderCompendium(app, html, data) {
         if (app.collection.documentName === "Item") {
-            const content = await app.collection.getDocuments();
+            const content = await app.collection.getDocuments();            
+            let sources_in_this_compendium = new Set([]);
+            let filters_to_show = {
+                rank: false,
+                rarity: false,
+                source: false,
+                ring: false,
+            }
 
-            // Add rank filter for techniques
-            if (
-                content[0].type === "technique" &&
-                !["l5r5e.core-techniques-school", "l5r5e.core-techniques-mastery"].includes(data.collection.collection)
-            ) {
-                const rankFilter = (event, rank) => {
-                    html[0].querySelectorAll(".directory-item").forEach((line) => {
-                        $(line).css("display", rank === 0 || $(line)[0].innerText?.endsWith(rank) ? "flex" : "none");
-                    });
-                };
-                const elmt = html.find(".directory-header");
-                if (elmt.length > 0) {
-                    const div = $('<div class="flexrow"></div>');
-                    for (let rank = 0; rank < 6; rank++) {
-                        const bt = $(`<a>${rank === 0 ? "x" : rank}</a>`);
-                        bt.on("click", (event) => rankFilter(event, rank));
-                        div.append(bt);
+            // Add additional data to the entries to make it faster to lookup.
+            // Add Ring/rank/rarity information
+            content.forEach(async (document) => {
+                const entry = html.find(`[data-document-id="${document.id}"]`);
+                if(document.system?.rank) {
+                    entry.data("rank", document.system.rank);
+                    filters_to_show.rank = true;
+                }
+
+                if(document.system?.source_reference) {
+                    sources_in_this_compendium.add(document.system.source_reference.source);
+                    entry.data("source", document.system.source_reference);
+                    filters_to_show.source = true;
+                }
+
+                if(document.system?.ring) {
+                    entry.data("ring", document.system.ring);
+                    filters_to_show.ring = true
+                }
+
+                if(document.system?.rarity) {
+                    entry.data("rarity", document.system.rarity);
+                    filters_to_show.rarity = true;
+                }
+
+                // Add ring/rank/rarity information on the item in the compendium view
+                if(document.system?.ring || document.system?.rarity || document.system?.ring) {
+                    const ring_rarity_rank = await renderTemplate(`${CONFIG.l5r5e.paths.templates}compendium/ring-rarity-rank.html`, document.system);
+                    entry.append(ring_rarity_rank);
+                }
+            });
+
+            //Setup what the player cannot see.
+            const officialcontent = game.settings.get(CONFIG.l5r5e.namespace, "compendium-official-content-for-players");
+            const inofficialcontent = game.settings.get(CONFIG.l5r5e.namespace, "compendium-inofficial-content-for-players");
+            let sources_to_mark_as_innaccessable_to_players = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references")
+            .filter((element) => {
+                if(CONFIG.l5r5e.source_reference[element])
+                    return !officialcontent.includes(element);
+                else
+                    return inofficialcontent.includes(element);
+            });
+
+            // Create the function that will hide/show elements based on various factors
+            const header = html.find(".directory-header");
+            const applyCompendiumFilter = function() {
+                const rank_filter = header.find(".rank-filter").find(".selected").data("rank");
+                const user_filter = header.find("l5r5e-multi-select").val();
+                const ring_filter = header.find(".ring-filter").find(".selected").data("ring");
+                const rarity_filter = header.find(".rarity-filter").find(".selected").data("rarity");
+                $(html).find(".directory-item").each(function() {
+                    const lineSource = $(this).data("source")?.source;
+                    if(lineSource === null || lineSource === undefined)
+                        return; // We might have stuff in the compendium view that does not have a source (folders etc.) Ignore those.
+
+                    let should_show = true;
+                    if(sources_to_mark_as_innaccessable_to_players.includes(lineSource)) {
+                        if(game.user.isGM) {
+                            should_show &= true;
+                            $(this).addClass("not-for-players");
+                            $(this).attr("data-tooltip", game.i18n.localize("l5r5e.compendium.not_for_players"));
+                        }
+                        else {
+                            should_show &= false;
+                        }
                     }
-                    elmt.append(div);
+
+                    if(lineSource === "" && game.settings.get(CONFIG.l5r5e.namespace, "compendium-hide-empty-sources-from-players")) {
+                        if(game.user.isGM) {
+                            should_show &= true;
+                            $(this).addClass("not-for-players");
+                            $(this).attr("data-tooltip", game.i18n.localize("l5r5e.compendium.not_for_players"))
+                        }
+                        else {
+                            should_show &= false;
+                        }
+                    }
+
+                    if(rank_filter) {
+                        should_show &= $(this).data("rank") == rank_filter;
+                    }
+
+                    if(user_filter.length) {
+                        should_show &= user_filter.includes(lineSource);
+                    }
+
+                    if(ring_filter) {
+                        should_show &= $(this).data("ring") == ring_filter
+                    }
+
+                    if(rarity_filter >= 0) {
+                        should_show &= $(this).data("rarity") == rarity_filter
+                    }
+
+                    if(should_show)
+                        $(this).show();
+                    else
+                        $(this).hide();
+                });
+            }
+
+            // Rank filter: Add the HTML element and on click handling
+            if (filters_to_show.rank) {
+                header.append(await renderTemplate(`${CONFIG.l5r5e.paths.templates}compendium/rank-filter.html`, {type: "rank", number:[1,2,3,4,5]}));
+                header.find(".rank-filter").children().each(function() {
+                    $(this).on("click", (event, rank=$(this).data("rank")) => {
+                        const already_selected = $(event.target).hasClass("selected");
+                        $(html).find(".rank-filter").children().each(function() {
+                            $(this).removeClass("selected");
+                        });
+
+                        // Only select valid values
+                        if(rank) {
+                            $(event.target).addClass("selected");
+                        }
+                        // we click the same button to unselect
+                        if(already_selected) {
+                            $(event.target).removeClass("selected");
+                        }
+
+                        applyCompendiumFilter();
+                    });
+                });
+            }
+
+            if(filters_to_show.rarity) {
+                header.append(await renderTemplate(`${CONFIG.l5r5e.paths.templates}compendium/rank-filter.html`, {type: "rarity", number:[0,1,2,3,4,5,6,7,8,9,10]}));
+                header.find(".rarity-filter").children().each(function() {
+                    $(this).on("click", (event, rarity=$(this).data("rarity")) => {
+                        const already_selected = $(event.target).hasClass("selected");
+                        $(html).find(".rarity-filter").children().each(function() {
+                            $(this).removeClass("selected");
+                        });
+
+                        // Only select valid values
+                        if(Number.isInteger(rarity)) {
+                            $(event.target).addClass("selected");
+                        }
+                        // we click the same button to unselect
+                        if(already_selected) {
+                            $(event.target).removeClass("selected");
+                        }
+
+                        applyCompendiumFilter();
+                    });
+                });
+            }
+
+            if(filters_to_show.ring) {
+                header.append(await renderTemplate(`${CONFIG.l5r5e.paths.templates}compendium/ring-filter.html`));
+                header.find(".ring-filter").children().each(function() {
+                    $(this).on("click", (event, ring=$(this).data("ringid")) => {
+                        const already_selected = $(event.target).hasClass("selected");
+                        $(html).find(".ring-filter").children().each(function() {
+                            $(this).removeClass("selected");
+                        });
+
+                        if(ring) { // Do not keep the "reset" button highlighted
+                            $(event.target).addClass("selected");
+                        }
+                        // we click the same button to unselect
+                        if(already_selected) {
+                            $(event.target).removeClass("selected");
+                        }
+
+                        applyCompendiumFilter();
+                    });
+                });
+            }
+
+            if(filters_to_show.source) {
+                // Setup the source select and add it to the document with change callback
+                const selectable_sources = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references")
+                .map((reference) => { 
+                    return { 
+                        disable: !sources_in_this_compendium.has(reference),
+                        source: reference
+                    }
+                })
+                .map((reference) => {
+                    return {
+                        value: reference.source,
+                        label: CONFIG.l5r5e.source_reference[reference.source]?.label ?? reference.source,
+                        translate: true,
+                        group: CONFIG.l5r5e.source_reference[reference.source]?.type.split(",")[0] ?? "Other",
+                        disabled: reference.disable
+                    }
+                });
+
+                const filterSourcesBox = HTML_l5r5e_MultiSelectElement.create({
+                    name: "filter-sources",
+                    options: selectable_sources,
+                    localize: true,
+                });
+                header.append(filterSourcesBox.outerHTML);
+                $("l5r5e-multi-select").on("change", (event) => {
+                    applyCompendiumFilter();
+                });
+
+                // If gm add a extra button to easily filter the content to see the same stuff as a player
+                if(game.user.isGM) {
+                    const buttonHTML = '<button type="button" class="gm" data-tooltip="Apply player filter">Player filter</button>'
+                    $(buttonHTML).appendTo($(header).find("l5r5e-multi-select")).click(function() {
+                        const filter = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references").filter((reference) => {
+                            return !sources_to_mark_as_innaccessable_to_players.includes(reference);
+                        })
+
+                        header.find("l5r5e-multi-select")[0].value = filter.filter((element) => element !== "");
+                    });
                 }
             }
 
-            // Items : add Rarity
-            // Techniques / Peculiarities : add Ring / Rank
-            content.forEach((document) => {
-                if (["weapon", "armor", "item", "peculiarity", "technique", "peculiarity"].includes(document.type)) {
-                    html.find(`[data-document-id="${document.id}"]`).append(
-                        `<i` +
-                            (document.system.ring ? ` class="i_${document.system.ring}"` : ``) +
-                            `>` +
-                            (document.system.rarity
-                                ? `${game.i18n.localize("l5r5e.sheets.rarity")} ${document.system.rarity}`
-                                : "") +
-                            (document.system.rank
-                                ? game.i18n.localize("l5r5e.sheets.rank") + " " + document.system.rank
-                                : "") +
-                            `</i>`
-                    );
-                }
-            });
+            // This is ugly but if we hide the content too early then it won't be hidden for some reason.
+            // Current guess is that the foundry search filter is doing something.
+            // Adding a delay here so that we hide the content. This will fail on slow computers/network...
+            setTimeout(() => {
+                applyCompendiumFilter();
+            }, 250)
+            
             return false;
         }
     }
@@ -318,6 +519,19 @@ export default class HooksL5r5e {
         if (message?.rolls?.[0]?.l5r5e?.history) {
             context.blind = true;
         }
+    }
+
+    static updateCompendium(pack, documents, options, userId) {
+        documents.forEach((document) => {
+            const inc_reference = document?.system?.source_reference?.source;
+            if(inc_reference) {
+                const references = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references");
+                if(!references.includes(inc_reference)) {
+                    references.push(inc_reference);
+                    game.settings.set(CONFIG.l5r5e.namespace, "all-compendium-references", references);
+                }
+            }
+        })
     }
 
     /**

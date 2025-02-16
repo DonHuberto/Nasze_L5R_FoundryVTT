@@ -43,6 +43,10 @@ import { MigrationL5r5e } from "./migration.js";
 import { GmToolbox } from "./gm/gm-toolbox.js";
 import { GmMonitor } from "./gm/gm-monitor.js";
 import { Storage } from "./storage.js";
+// Misc
+import { HTML_l5r5e_MultiSelectElement } from "./misc/l5r5e-multiselect.js";
+
+window.customElements.define(HTML_l5r5e_MultiSelectElement.tagName, HTML_l5r5e_MultiSelectElement);
 
 /* ------------------------------------ */
 /* Initialize system                    */
@@ -257,3 +261,4 @@ Hooks.on("renderChatMessage", (message, html, data) => HooksL5r5e.renderChatMess
 Hooks.on("renderCombatTracker", (app, html, data) => HooksL5r5e.renderCombatTracker(app, html, data));
 Hooks.on("renderCompendium", async (app, html, data) => HooksL5r5e.renderCompendium(app, html, data));
 Hooks.on("diceSoNiceRollStart", (messageId, context) => HooksL5r5e.diceSoNiceRollStart(messageId, context));
+Hooks.on("updateCompendium", (pack, documents, options, userId) => HooksL5r5e.updateCompendium(pack, documents, options, userId));

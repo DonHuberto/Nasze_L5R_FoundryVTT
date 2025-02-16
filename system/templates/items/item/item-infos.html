@@ -4,7 +4,14 @@
         {{editor data.enrichedHtml.description target="system.description" button=true owner=owner editable=editable}}
     </fieldset>
     <label class="reference">
-        {{localize 'l5r5e.sheets.book_reference'}}
-        <input type="text" name="system.book_reference" value="{{data.system.book_reference}}" />
+        {{localize 'l5r5e.sheets.source_reference.reference'}}
+        <input type="text" name="system.source_reference.source" value="{{data.system.source_reference.source}}" list="source_books" />
+        <datalist id="source_books">
+            {{#each source_references as |source|}}
+                <option>{{source}}</option>
+            {{/each}}
+        </datalist>
+        {{localize 'l5r5e.sheets.source_reference.page_abbriviation'}}
+        <input type="number" name="system.source_reference.page_nr" value="{{data.system.source_reference.page_nr}}" />
     </label>
 </article>

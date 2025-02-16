@@ -49,6 +49,7 @@ export const PreloadTemplates = async function () {
         `${tpl}items/item/item-value.html`,
         `${tpl}items/item/item-sheet.html`,
         `${tpl}items/item/item-infos.html`,
+        `${tpl}items/item/item-text-partial-reference.html`,
         `${tpl}items/item/item-text.html`,
         `${tpl}items/item-pattern/item-pattern-entry.html`,
         `${tpl}items/item-pattern/item-pattern-sheet.html`,

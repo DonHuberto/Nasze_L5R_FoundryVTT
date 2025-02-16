@@ -33,6 +33,20 @@
         "CustomItemsHeight": {
             "Title": "Hauteur par défaut des fenêtres d'objets",
             "Hint": "Définir la hauteur par défaut des fenêtres de type Item (techniques, armes...) en pixels"
+        },
+        "Compendium": {
+            "HideEmptySourcesFromPlayers": {
+                "Title": "[Compendium] Hide sources without a reference",
+                "Hint": "Useful for hiding items etc. that are partially done"
+            },
+            "AllowedOfficialSources": {
+                "Title": "[Compendium] Available official resources",
+                "Hint": "Useful if you as a GM want to limit the available official content to only books you own"
+            },
+            "AllowedInOfficialSources": {
+                "Title": "[Compendium] Available inofficial resources",
+                "Hint": "Useful if you have compendiums with custom items mixed with player facing items."
+            }
         }
     },
     "TYPES": {
@@ -71,6 +85,10 @@
             "locked": "Verrouillé",
             "unlocked": "Déverrouillé",
             "random": "Aléatoire"
+        },
+        "multiselect": {
+            "empty_tag": "<blank>",
+            "placeholder": "Filter Sources"
         },
         "settings": {
             "custom-compendiums": {
@@ -122,7 +140,10 @@
             "description": "Description",
             "bought_at_rank": "Acheté au rang",
             "types": "Types",
-            "book_reference": "Référence",
+            "source_reference": {
+                "reference": "Référence",
+                "page_abbriviation": "p."
+            },
             "value": "Valeur",
             "rarity": "Rareté",
             "quantity": "Quantité",
@@ -680,6 +701,42 @@
             "unenthused": "Peu enthousiaste",
             "vain": "Vaine",
             "wary": "Méfiante"
+        },
+        "compendium": {
+            "filter_rank": "Show Rank",
+            "not_for_players": "Not shown to players",
+            "filter": {
+                "rank": "Rank",
+                "rarity": "Rarity",
+                "ring": "Ring"
+            }
+        },
+        "source_reference": {
+            "core_rulebook": "Core Rulebook",
+            "emerald_empire": "Emerald Empire",
+            "shadowlands": "Shadowlands",
+            "court_of_stones": "Court of Stones",
+            "path_of_waves": "Path of Waves",
+            "celestial_realms": "Celestial Realms",
+            "fields_of_victory": "Fields of Victory",
+            "writ_of_the_wild": "Writ of the Wild",
+            "gm_kit": "Game Master's Kit",
+            "beginner_game": "Beginner Game",
+            "the_mantis_clan": "The Mantis Clan",
+            "mask_of_the_oni": "Mask of the Oni",
+            "winters_embrace": "Winder's Embrace",
+            "sins_of_regret": "Sins of Regret",
+            "wheele_of_judgment": "Wheel of Judgment",
+            "blood_of_the_lioness": "Blood of the Lioness",
+            "imperfect_land": "Imperfect Land",
+            "in_the_palace_of_the_emerald_champion": "In the Palace of the Emerald Champion",
+            "the_highwayman": "The Highwayman",
+            "wedding_at_kyotei_castle": "Wedding at Kyotei Castle",
+            "the_knotted_tails": "The Knotted Tails",
+            "cresting_waves": "Cresting Waves",
+            "deathly_turns": "Deathly Turns",
+            "the_scroll_or_the_blade": "The Scroll or the Blade",
+            "legacies_of_war": "Legacies of War"
         }
     }
 }
