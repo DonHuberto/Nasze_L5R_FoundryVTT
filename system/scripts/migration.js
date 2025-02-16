@@ -285,8 +285,24 @@ export class MigrationL5r5e {
      * @param options
      */
     static _migrateItemData(item, options = { force: false }) {
-        // Nothing for now
-        return {};
+        const updateData = {};
+
+        // ***** Start of 1.12.3 *****
+        if (options?.force || MigrationL5r5e.needUpdate("1.12.3")) {
+            if(item.system.book_reference) {
+                const book_reference = item.system.book_reference.match("(.+) p\.(\\d+)");
+                if(book_reference === null) {
+                    console.warn(`L5R5E | Migration | Failed to properly migrate item document ${item.name}[${item._id}]: Could not parse the book_reference`);
+                    updateData["system.source_reference.source"] = item.system.book_reference;
+                    return updateData;
+                }
+                updateData["system.source_reference.source"] = book_reference[1].trim();
+                updateData["system.source_reference.page_nr"] = book_reference[2];
+            }
+        }
+        // ***** End of 1.12.3 *****
+
+        return updateData;
     }
 
     /**

@@ -1,0 +1,17 @@
+{{#if data.enrichedHtml.description}}
+<div class="description">
+    <p><strong>{{localize 'l5r5e.sheets.description'}}</strong> : {{{data.enrichedHtml.description}}}</p>
+</div>
+{{/if}}
+{{#if data.system.source_reference.source}}
+<div class="reference">
+    <div class="source">
+        <p><strong>{{localize 'l5r5e.sheets.source_reference.reference'}}</strong> : {{data.system.source_reference.source}}</p>
+    </div>
+    {{#if data.system.source_reference.page_nr}}
+    <div class="page_nr">
+        <p>{{localize 'l5r5e.sheets.source_reference.page_abbriviation'}}{{data.system.source_reference.page_nr}}</p>
+    </div>
+    {{/if}}
+</div>
+{{/if}}

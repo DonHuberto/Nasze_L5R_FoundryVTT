@@ -7,8 +7,7 @@
             <li><strong>{{localize 'l5r5e.army.fortification.difficulty'}}</strong> : {{data.system.difficulty}}</li>
             <li><strong>{{localize 'l5r5e.army.fortification.attrition_reduction'}}</strong> : {{data.system.attrition_reduction}}</li>
         </ul>
-        {{!--item-infos--}}
-        <p><strong>{{localize 'l5r5e.sheets.description'}}</strong> : {{{data.enrichedHtml.description}}}</p>
-        <p><strong>{{localize 'l5r5e.sheets.book_reference'}}</strong> : {{data.system.book_reference}}</p>
+        
+        {{> 'systems/l5r5e/templates/items/item/item-text-partial-reference.html'}}
     </section>
 </div>

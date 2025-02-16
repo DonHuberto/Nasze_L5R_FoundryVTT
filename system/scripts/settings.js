@@ -1,3 +1,5 @@
+import { l5r5e_SetField } from "./data/l5r5e-setfield.js";
+
 /**
  * Custom system settings register
  */
@@ -44,6 +46,54 @@ export const RegisterSettings = function () {
                 ui.notifications.warn(game.i18n.format("SETTINGS.CustomCompendiumName.Notification", { name }), { permanent: true });
             }
         }
+    });
+
+    /* -------------------------------------- */
+    /* Compendium view Settings (GM only)     */
+    /* -------------------------------------- */
+    // This value is updated wheneveer we add a reference and on boot
+    game.settings.register(CONFIG.l5r5e.namespace, "all-compendium-references", {
+        type: new foundry.data.fields.SetField(new foundry.data.fields.StringField()),
+        default: Object.keys(CONFIG.l5r5e.source_reference),
+        config: false,
+        scope: "world",
+    });
+
+
+    game.settings.register(CONFIG.l5r5e.namespace, "compendium-official-content-for-players", {
+        name: "SETTINGS.Compendium.AllowedOfficialSources.Title",
+        hint: "SETTINGS.Compendium.AllowedOfficialSources.Hint",
+        type: new l5r5e_SetField( {
+            groups: Array.from(new Set(Object.values(CONFIG.l5r5e.source_reference).map(value => (value.type.split(",")).map(value => value.trim())).flat())).concat("Other"),
+            options: Object.values(CONFIG.l5r5e.source_reference).map((reference) => {
+                return {
+                    ...reference,
+                    localize: true,
+                    group: CONFIG.l5r5e.source_reference[reference.value]?.type ?? "Other"
+                };
+            })
+        }),
+        default: [],
+        config: true,
+        scope: "world",
+    });
+
+    game.settings.register(CONFIG.l5r5e.namespace, "compendium-inofficial-content-for-players", {
+        name: "SETTINGS.Compendium.AllowedInOfficialSources.Title",
+        hint: "SETTINGS.Compendium.AllowedInOfficialSources.Hint",
+        type: new foundry.data.fields.SetField(new foundry.data.fields.StringField()),
+        default: [],
+        config: true,
+        scope: "world",
+    });
+
+    game.settings.register(CONFIG.l5r5e.namespace, "compendium-hide-empty-sources-from-players", {
+        name: "SETTINGS.Compendium.HideEmptySourcesFromPlayers.Title",
+        hint: "SETTINGS.Compendium.HideEmptySourcesFromPlayers.Hint",
+        type: Boolean,
+        default: false,
+        config: true,
+        scope: "world",
     });
 
     /* ------------------------------------ */

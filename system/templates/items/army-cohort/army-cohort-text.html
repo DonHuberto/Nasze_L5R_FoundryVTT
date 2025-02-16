@@ -14,8 +14,7 @@
         </ul>
         {{!-- abilities --}}
         <p><strong>{{localize 'l5r5e.army.cohort.abilities'}}</strong> : {{{data.enrichedHtml.abilities}}}</p>
-        {{!--item-infos--}}
-        <p><strong>{{localize 'l5r5e.sheets.description'}}</strong> : {{{data.enrichedHtml.description}}}</p>
-        <p><strong>{{localize 'l5r5e.sheets.book_reference'}}</strong> : {{data.system.book_reference}}</p>
+        
+        {{> 'systems/l5r5e/templates/items/item/item-text-partial-reference.html'}}
     </section>
 </div>

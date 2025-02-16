@@ -24,6 +24,133 @@ export const L5R5E = {
         mass_battle: "command",
     },
     noHonorSkillsList: ["commerce", "skulduggery", "medicine", "seafaring", "survival", "labor"],
+    source_reference: {
+        "core_rulebook": {
+            value: "core_rulebook",
+            label: "l5r5e.source_reference.core_rulebook",
+            type: "Rules"
+        },
+        "emerald_empire": {
+            value: "emerald_empire",
+            label: "l5r5e.source_reference.emerald_empire",
+            type: "Rules"
+        },
+        "shadowlands": {
+            value: "shadowlands",
+            label: "l5r5e.source_reference.shadowlands",
+            type: "Rules"
+        },
+        "court_of_stones": {
+            value: "court_of_stones",
+            label: "l5r5e.source_reference.court_of_stones",
+            type: "Rules"
+        },
+        "path_of_waves": {
+            value: "path_of_waves",
+            label: "l5r5e.source_reference.path_of_waves",
+            type: "Rules"
+        },
+        "celestial_realms": {
+            value: "celestial_realms",
+            label: "l5r5e.source_reference.celestial_realms",
+            type: "Rules"
+        },
+        "fields_of_victory": {
+            value: "fields_of_victory",
+            label: "l5r5e.source_reference.fields_of_victory",
+            type: "Rules"
+        },
+        "writ_of_the_wild": {
+            value: "writ_of_the_wild",
+            label: "l5r5e.source_reference.writ_of_the_wild",
+            type: "Rules"
+        },
+        "gm_kit": {
+            value: "gm_kit",
+            label: "l5r5e.source_reference.gm_kit",
+            type: "Rules"
+        },
+        "beginner_game": {
+            value: "beginner_game",
+            label: "l5r5e.source_reference.beginner_game",
+            type: "Rules"
+        },
+        "the_mantis_clan": {
+            value: "the_mantis_clan",
+            label: "l5r5e.source_reference.the_mantis_clan",
+            type: "Supplement"
+        },
+        "legacies_of_war": {
+            value: "legacies_of_war",
+            label: "l5r5e.source_reference.legacies_of_war",
+            type: "Supplement"
+        },
+        "mask_of_the_oni": {
+            value: "mask_of_the_oni",
+            label: "l5r5e.source_reference.mask_of_the_oni",
+            type: "Adventure"
+        },
+        "winters_embrace": {
+            value: "winters_embrace",
+            label: "l5r5e.source_reference.winters_embrace",
+            type: "Adventure"
+        },
+        "sins_of_regret": {
+            value: "sins_of_regret",
+            label: "l5r5e.source_reference.sins_of_regret",
+            type: "Adventure"
+        },
+        "wheele_of_judgment": {
+            value: "wheele_of_judgment",
+            label: "l5r5e.source_reference.wheele_of_judgment",
+            type: "Adventure"
+        },
+        "blood_of_the_lioness": {
+            value: "blood_of_the_lioness",
+            label: "l5r5e.source_reference.blood_of_the_lioness",
+            type: "Adventure"
+        },
+        "imperfect_land": {
+            value: "imperfect_land",
+            label: "l5r5e.source_reference.imperfect_land",
+            type: "Adventure"
+        },
+        "in_the_palace_of_the_emerald_champion": {
+            value: "in_the_palace_of_the_emerald_champion",
+            label: "l5r5e.source_reference.in_the_palace_of_the_emerald_champion",
+            type: "Adventure"
+        },
+        "the_highwayman": {
+            value: "the_highwayman",
+            label: "l5r5e.source_reference.the_highwayman",
+            type: "Adventure"
+        },
+        "wedding_at_kyotei_castle": {
+            value: "wedding_at_kyotei_castle",
+            label: "l5r5e.source_reference.wedding_at_kyotei_castle",
+            type: "Adventure"
+        },
+        "the_knotted_tails": {
+            value: "the_knotted_tails",
+            label: "l5r5e.source_reference.the_knotted_tails",
+            type: "Adventure"
+        },
+        "cresting_waves": {
+            value: "cresting_waves",
+            label: "l5r5e.source_reference.cresting_waves",
+            type: "Adventure"
+        },
+        "deathly_turns": {
+            value: "deathly_turns",
+            label: "l5r5e.source_reference.deathly_turns",
+            type: "Adventure"
+        },
+        "the_scroll_or_the_blade": {
+            value: "the_scroll_or_the_blade",
+            label: "l5r5e.source_reference.the_scroll_or_the_blade",
+            type: "Adventure"
+        },
+    },
 };
 
 // *** Techniques ***
