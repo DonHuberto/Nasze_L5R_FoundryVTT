@@ -6,7 +6,7 @@ export class MigrationL5r5e {
      * Minimum Version needed for migration stuff to trigger
      * @type {string}
      */
-    static NEEDED_VERSION = "1.3.0";
+    static NEEDED_VERSION = "1.12.3";
 
     /**
      * Return true if the version need some updates
@@ -289,15 +289,21 @@ export class MigrationL5r5e {
 
         // ***** Start of 1.12.3 *****
         if (options?.force || MigrationL5r5e.needUpdate("1.12.3")) {
+            // Splitting book reference & page
             if(item.system.book_reference) {
-                const book_reference = item.system.book_reference.match("(.+) p\.(\\d+)");
-                if(book_reference === null) {
+                const bookReference = item.system.book_reference.match(/^((?!p\.)\D+?)?(?:\s*p\.)?(\d+)?$/);
+                if (!bookReference) {
                     console.warn(`L5R5E | Migration | Failed to properly migrate item document ${item.name}[${item._id}]: Could not parse the book_reference`);
                     updateData["system.source_reference.source"] = item.system.book_reference;
-                    return updateData;
+
+                } else {
+                    updateData["system.source_reference.source"] = bookReference[1]?.trim();
+                    updateData["system.source_reference.page"] = bookReference[2];
                 }
-                updateData["system.source_reference.source"] = book_reference[1].trim();
-                updateData["system.source_reference.page_nr"] = book_reference[2];
+
+                // TODO uncomment before release
+                // Delete the old key
+                //updateData["system.-=book_reference"] = null;
             }
         }
         // ***** End of 1.12.3 *****

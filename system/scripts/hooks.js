@@ -1,4 +1,4 @@
-import { HTML_l5r5e_MultiSelectElement } from "./misc/l5r5e-multiselect.js";
+import { L5r5eHtmlMultiSelectElement } from "./misc/l5r5e-multiselect.js";
 
 export default class HooksL5r5e {
     /**
@@ -59,14 +59,16 @@ export default class HooksL5r5e {
         }
 
         // Find all additional source references that is not the official ones:
-        const references = new Set(Object.keys(CONFIG.l5r5e.source_reference));
+        const references = new Set(Object.keys(CONFIG.l5r5e.sourceReference));
         for(let pack of game.packs) {
-            if(pack.metadata.packageType === "system")
+            if(pack.metadata.packageType === "system") {
                 continue;
+            }
             const documents = await pack.getDocuments();
             for(let document of documents) {
-                if(document?.system?.source_reference)
+                if(document?.system?.source_reference) {
                     references.add(document.system.source_reference.source);
+                }
             }
         }
         game.settings.set(CONFIG.l5r5e.namespace, "all-compendium-references", Array.from(references));
@@ -228,7 +230,7 @@ export default class HooksL5r5e {
      */
     static async renderCompendium(app, html, data) {
         if (app.collection.documentName === "Item") {
-            const content = await app.collection.getDocuments();            
+            const content = await app.collection.getDocuments();
             let sources_in_this_compendium = new Set([]);
             let filters_to_show = {
                 rank: false,
@@ -239,7 +241,7 @@ export default class HooksL5r5e {
 
             // Add additional data to the entries to make it faster to lookup.
             // Add Ring/rank/rarity information
-            content.forEach(async (document) => {
+            for (const document of content) {
                 const entry = html.find(`[data-document-id="${document.id}"]`);
                 if(document.system?.rank) {
                     entry.data("rank", document.system.rank);
@@ -267,17 +269,16 @@ export default class HooksL5r5e {
                     const ring_rarity_rank = await renderTemplate(`${CONFIG.l5r5e.paths.templates}compendium/ring-rarity-rank.html`, document.system);
                     entry.append(ring_rarity_rank);
                 }
-            });
+            }
 
             //Setup what the player cannot see.
-            const officialcontent = game.settings.get(CONFIG.l5r5e.namespace, "compendium-official-content-for-players");
-            const inofficialcontent = game.settings.get(CONFIG.l5r5e.namespace, "compendium-inofficial-content-for-players");
-            let sources_to_mark_as_innaccessable_to_players = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references")
+            const officialContent = game.settings.get(CONFIG.l5r5e.namespace, "compendium-official-content-for-players");
+            const unofficialContent = game.settings.get(CONFIG.l5r5e.namespace, "compendium-unofficial-content-for-players");
+            const unavailableSourceForPlayers = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references")
             .filter((element) => {
-                if(CONFIG.l5r5e.source_reference[element])
-                    return !officialcontent.includes(element);
-                else
-                    return inofficialcontent.includes(element);
+                return CONFIG.l5r5e.sourceReference[element]
+                    ? !officialContent.includes(element)
+                    : unofficialContent.includes(element);
             });
 
             // Create the function that will hide/show elements based on various factors
@@ -287,13 +288,15 @@ export default class HooksL5r5e {
                 const user_filter = header.find("l5r5e-multi-select").val();
                 const ring_filter = header.find(".ring-filter").find(".selected").data("ring");
                 const rarity_filter = header.find(".rarity-filter").find(".selected").data("rarity");
+
                 $(html).find(".directory-item").each(function() {
                     const lineSource = $(this).data("source")?.source;
-                    if(lineSource === null || lineSource === undefined)
+                    if(lineSource === null || lineSource === undefined) {
                         return; // We might have stuff in the compendium view that does not have a source (folders etc.) Ignore those.
+                    }
 
                     let should_show = true;
-                    if(sources_to_mark_as_innaccessable_to_players.includes(lineSource)) {
+                    if(unavailableSourceForPlayers.includes(lineSource)) {
                         if(game.user.isGM) {
                             should_show &= true;
                             $(this).addClass("not-for-players");
@@ -331,10 +334,11 @@ export default class HooksL5r5e {
                         should_show &= $(this).data("rarity") == rarity_filter
                     }
 
-                    if(should_show)
+                    if(should_show) {
                         $(this).show();
-                    else
+                    } else {
                         $(this).hide();
+                    }
                 });
             }
 
@@ -410,8 +414,8 @@ export default class HooksL5r5e {
             if(filters_to_show.source) {
                 // Setup the source select and add it to the document with change callback
                 const selectable_sources = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references")
-                .map((reference) => { 
-                    return { 
+                .map((reference) => {
+                    return {
                         disable: !sources_in_this_compendium.has(reference),
                         source: reference
                     }
@@ -419,14 +423,14 @@ export default class HooksL5r5e {
                 .map((reference) => {
                     return {
                         value: reference.source,
-                        label: CONFIG.l5r5e.source_reference[reference.source]?.label ?? reference.source,
+                        label: CONFIG.l5r5e.sourceReference[reference.source]?.label ?? reference.source,
                         translate: true,
-                        group: CONFIG.l5r5e.source_reference[reference.source]?.type.split(",")[0] ?? "Other",
+                        group: CONFIG.l5r5e.sourceReference[reference.source]?.type.split(",")[0] ?? "l5r5e.multiselect.sources_categories.others",
                         disabled: reference.disable
                     }
                 });
 
-                const filterSourcesBox = HTML_l5r5e_MultiSelectElement.create({
+                const filterSourcesBox = L5r5eHtmlMultiSelectElement.create({
                     name: "filter-sources",
                     options: selectable_sources,
                     localize: true,
@@ -438,10 +442,13 @@ export default class HooksL5r5e {
 
                 // If gm add a extra button to easily filter the content to see the same stuff as a player
                 if(game.user.isGM) {
-                    const buttonHTML = '<button type="button" class="gm" data-tooltip="Apply player filter">Player filter</button>'
+                    const buttonHTML = `<button type="button" class="gm" data-tooltip="${game.i18n.localize('l5r5e.multiselect.player_filter_tooltip')}">`
+                        + game.i18n.localize('l5r5e.multiselect.player_filter_label')
+                        + '</button>'
+
                     $(buttonHTML).appendTo($(header).find("l5r5e-multi-select")).click(function() {
                         const filter = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references").filter((reference) => {
-                            return !sources_to_mark_as_innaccessable_to_players.includes(reference);
+                            return !unavailableSourceForPlayers.includes(reference);
                         })
 
                         header.find("l5r5e-multi-select")[0].value = filter.filter((element) => element !== "");
@@ -449,13 +456,14 @@ export default class HooksL5r5e {
                 }
             }
 
+            // TODO find a better way
             // This is ugly but if we hide the content too early then it won't be hidden for some reason.
             // Current guess is that the foundry search filter is doing something.
             // Adding a delay here so that we hide the content. This will fail on slow computers/network...
             setTimeout(() => {
                 applyCompendiumFilter();
             }, 250)
-            
+
             return false;
         }
     }

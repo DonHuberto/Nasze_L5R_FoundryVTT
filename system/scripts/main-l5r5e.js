@@ -44,9 +44,9 @@ import { GmToolbox } from "./gm/gm-toolbox.js";
 import { GmMonitor } from "./gm/gm-monitor.js";
 import { Storage } from "./storage.js";
 // Misc
-import { HTML_l5r5e_MultiSelectElement } from "./misc/l5r5e-multiselect.js";
+import { L5r5eHtmlMultiSelectElement } from "./misc/l5r5e-multiselect.js";
 
-window.customElements.define(HTML_l5r5e_MultiSelectElement.tagName, HTML_l5r5e_MultiSelectElement);
+window.customElements.define(L5r5eHtmlMultiSelectElement.tagName, L5r5eHtmlMultiSelectElement);
 
 /* ------------------------------------ */
 /* Initialize system                    */

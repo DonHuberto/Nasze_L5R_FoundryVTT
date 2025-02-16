@@ -24,131 +24,131 @@ export const L5R5E = {
         mass_battle: "command",
     },
     noHonorSkillsList: ["commerce", "skulduggery", "medicine", "seafaring", "survival", "labor"],
-    source_reference: {
+    sourceReference: {
         "core_rulebook": {
             value: "core_rulebook",
             label: "l5r5e.source_reference.core_rulebook",
-            type: "Rules"
+            type: "l5r5e.multiselect.sources_categories.rules"
         },
         "emerald_empire": {
             value: "emerald_empire",
             label: "l5r5e.source_reference.emerald_empire",
-            type: "Rules"
+            type: "l5r5e.multiselect.sources_categories.rules"
         },
         "shadowlands": {
             value: "shadowlands",
             label: "l5r5e.source_reference.shadowlands",
-            type: "Rules"
+            type: "l5r5e.multiselect.sources_categories.rules"
         },
         "court_of_stones": {
             value: "court_of_stones",
             label: "l5r5e.source_reference.court_of_stones",
-            type: "Rules"
+            type: "l5r5e.multiselect.sources_categories.rules"
         },
         "path_of_waves": {
             value: "path_of_waves",
             label: "l5r5e.source_reference.path_of_waves",
-            type: "Rules"
+            type: "l5r5e.multiselect.sources_categories.rules"
         },
         "celestial_realms": {
             value: "celestial_realms",
             label: "l5r5e.source_reference.celestial_realms",
-            type: "Rules"
+            type: "l5r5e.multiselect.sources_categories.rules"
         },
         "fields_of_victory": {
             value: "fields_of_victory",
             label: "l5r5e.source_reference.fields_of_victory",
-            type: "Rules"
+            type: "l5r5e.multiselect.sources_categories.rules"
         },
         "writ_of_the_wild": {
             value: "writ_of_the_wild",
             label: "l5r5e.source_reference.writ_of_the_wild",
-            type: "Rules"
+            type: "l5r5e.multiselect.sources_categories.rules"
         },
         "gm_kit": {
             value: "gm_kit",
             label: "l5r5e.source_reference.gm_kit",
-            type: "Rules"
+            type: "l5r5e.multiselect.sources_categories.rules"
         },
         "beginner_game": {
             value: "beginner_game",
             label: "l5r5e.source_reference.beginner_game",
-            type: "Rules"
+            type: "l5r5e.multiselect.sources_categories.rules"
         },
         "the_mantis_clan": {
             value: "the_mantis_clan",
             label: "l5r5e.source_reference.the_mantis_clan",
-            type: "Supplement"
+            type: "l5r5e.multiselect.sources_categories.supplements"
         },
         "legacies_of_war": {
             value: "legacies_of_war",
             label: "l5r5e.source_reference.legacies_of_war",
-            type: "Supplement"
+            type: "l5r5e.multiselect.sources_categories.supplements"
         },
         "mask_of_the_oni": {
             value: "mask_of_the_oni",
             label: "l5r5e.source_reference.mask_of_the_oni",
-            type: "Adventure"
+            type: "l5r5e.multiselect.sources_categories.adventures"
         },
         "winters_embrace": {
             value: "winters_embrace",
             label: "l5r5e.source_reference.winters_embrace",
-            type: "Adventure"
+            type: "l5r5e.multiselect.sources_categories.adventures"
         },
         "sins_of_regret": {
             value: "sins_of_regret",
             label: "l5r5e.source_reference.sins_of_regret",
-            type: "Adventure"
+            type: "l5r5e.multiselect.sources_categories.adventures"
         },
-        "wheele_of_judgment": {
-            value: "wheele_of_judgment",
-            label: "l5r5e.source_reference.wheele_of_judgment",
-            type: "Adventure"
+        "wheel_of_judgment": {
+            value: "wheel_of_judgment",
+            label: "l5r5e.source_reference.wheel_of_judgment",
+            type: "l5r5e.multiselect.sources_categories.adventures"
         },
         "blood_of_the_lioness": {
             value: "blood_of_the_lioness",
             label: "l5r5e.source_reference.blood_of_the_lioness",
-            type: "Adventure"
+            type: "l5r5e.multiselect.sources_categories.adventures"
         },
         "imperfect_land": {
             value: "imperfect_land",
             label: "l5r5e.source_reference.imperfect_land",
-            type: "Adventure"
+            type: "l5r5e.multiselect.sources_categories.adventures"
         },
         "in_the_palace_of_the_emerald_champion": {
             value: "in_the_palace_of_the_emerald_champion",
             label: "l5r5e.source_reference.in_the_palace_of_the_emerald_champion",
-            type: "Adventure"
+            type: "l5r5e.multiselect.sources_categories.adventures"
         },
         "the_highwayman": {
             value: "the_highwayman",
             label: "l5r5e.source_reference.the_highwayman",
-            type: "Adventure"
+            type: "l5r5e.multiselect.sources_categories.adventures"
         },
         "wedding_at_kyotei_castle": {
             value: "wedding_at_kyotei_castle",
             label: "l5r5e.source_reference.wedding_at_kyotei_castle",
-            type: "Adventure"
+            type: "l5r5e.multiselect.sources_categories.adventures"
         },
         "the_knotted_tails": {
             value: "the_knotted_tails",
             label: "l5r5e.source_reference.the_knotted_tails",
-            type: "Adventure"
+            type: "l5r5e.multiselect.sources_categories.adventures"
         },
         "cresting_waves": {
             value: "cresting_waves",
             label: "l5r5e.source_reference.cresting_waves",
-            type: "Adventure"
+            type: "l5r5e.multiselect.sources_categories.adventures"
         },
         "deathly_turns": {
             value: "deathly_turns",
             label: "l5r5e.source_reference.deathly_turns",
-            type: "Adventure"
+            type: "l5r5e.multiselect.sources_categories.adventures"
         },
         "the_scroll_or_the_blade": {
             value: "the_scroll_or_the_blade",
             label: "l5r5e.source_reference.the_scroll_or_the_blade",
-            type: "Adventure"
+            type: "l5r5e.multiselect.sources_categories.adventures"
         },
     },
 };

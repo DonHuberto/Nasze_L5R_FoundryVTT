@@ -703,7 +703,7 @@ button {
         }
     }
 
-    .ring-filter {       
+    .ring-filter {
         i.i_earth,
         i.i_fire,
         i.i_water,
@@ -796,7 +796,7 @@ button {
         }
         .reference {
             display: flex;
-            .page_nr {
+            .page {
                 margin-left: 1ch
             }
         }
@@ -846,7 +846,7 @@ button {
         display: flex;
         flex-wrap: nowrap;
     }
-    .page_nr {
+    .page {
         margin-left: 1ch;
     }
 }
@@ -1011,7 +1011,7 @@ l5r5e-multi-select:has( > button.gm) {
         order: 3; // Move the multiselect to be below the title and description for nicer ui
     }
 
-    [data-setting-id="l5r5e.compendium-inofficial-content-for-players"] {
+    [data-setting-id="l5r5e.compendium-unofficial-content-for-players"] {
         // Move the tags and input fields to a similar place as for the multiselect
         .form-fields {
             order: 3;

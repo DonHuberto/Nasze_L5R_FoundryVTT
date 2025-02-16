@@ -43,8 +43,8 @@
                 "Title": "[Compendium] Available official resources",
                 "Hint": "Useful if you as a GM want to limit the available official content to only books you own"
             },
-            "AllowedInOfficialSources": {
-                "Title": "[Compendium] Available inofficial resources",
+            "AllowedUnofficialSources": {
+                "Title": "[Compendium] Available unofficial resources",
                 "Hint": "Useful if you have compendiums with custom items mixed with player facing items."
             }
         }
@@ -88,7 +88,15 @@
         },
         "multiselect": {
             "empty_tag": "<blank>",
-            "placeholder": "Filter Sources"
+            "placeholder": "Filter Sources",
+            "player_filter_label": "Player filter",
+            "player_filter_tooltip": "Apply player filter",
+            "sources_categories": {
+                "rules": "Rules",
+                "adventures": "Adventures",
+                "supplements": "Supplements",
+                "others": "Others"
+            }
         },
         "settings": {
             "custom-compendiums": {
@@ -142,7 +150,7 @@
             "types": "Tipos",
             "source_reference": {
                 "reference": "Referencia",
-                "page_abbriviation": "p."
+                "page_abbreviation": "p."
             },
             "value": "Valor",
             "rarity": "Rareza",
@@ -726,7 +734,7 @@
             "mask_of_the_oni": "Mask of the Oni",
             "winters_embrace": "Winder's Embrace",
             "sins_of_regret": "Sins of Regret",
-            "wheele_of_judgment": "Wheel of Judgment",
+            "wheel_of_judgment": "Wheel of Judgment",
             "blood_of_the_lioness": "Blood of the Lioness",
             "imperfect_land": "Imperfect Land",
             "in_the_palace_of_the_emerald_champion": "In the Palace of the Emerald Champion",

@@ -1,4 +1,4 @@
-import { l5r5e_SetField } from "./data/l5r5e-setfield.js";
+import { L5r5eSetField } from "./data/l5r5e-setfield.js";
 
 /**
  * Custom system settings register
@@ -51,25 +51,27 @@ export const RegisterSettings = function () {
     /* -------------------------------------- */
     /* Compendium view Settings (GM only)     */
     /* -------------------------------------- */
-    // This value is updated wheneveer we add a reference and on boot
+    // This value is updated whenever we add a reference and on boot
     game.settings.register(CONFIG.l5r5e.namespace, "all-compendium-references", {
         type: new foundry.data.fields.SetField(new foundry.data.fields.StringField()),
-        default: Object.keys(CONFIG.l5r5e.source_reference),
+        default: Object.keys(CONFIG.l5r5e.sourceReference),
         config: false,
         scope: "world",
     });
 
-
     game.settings.register(CONFIG.l5r5e.namespace, "compendium-official-content-for-players", {
         name: "SETTINGS.Compendium.AllowedOfficialSources.Title",
         hint: "SETTINGS.Compendium.AllowedOfficialSources.Hint",
-        type: new l5r5e_SetField( {
-            groups: Array.from(new Set(Object.values(CONFIG.l5r5e.source_reference).map(value => (value.type.split(",")).map(value => value.trim())).flat())).concat("Other"),
-            options: Object.values(CONFIG.l5r5e.source_reference).map((reference) => {
+        type: new L5r5eSetField( {
+            groups: Array.from(new Set(Object.values(CONFIG.l5r5e.sourceReference).map(value =>
+                    (value.type.split(",")).map(value => value.trim())
+                ).flat()))
+                .concat("l5r5e.multiselect.sources_categories.others"),
+            options: Object.values(CONFIG.l5r5e.sourceReference).map((reference) => {
                 return {
                     ...reference,
                     localize: true,
-                    group: CONFIG.l5r5e.source_reference[reference.value]?.type ?? "Other"
+                    group: CONFIG.l5r5e.sourceReference[reference.value]?.type ?? "l5r5e.multiselect.sources_categories.others"
                 };
             })
         }),
@@ -78,9 +80,9 @@ export const RegisterSettings = function () {
         scope: "world",
     });
 
-    game.settings.register(CONFIG.l5r5e.namespace, "compendium-inofficial-content-for-players", {
-        name: "SETTINGS.Compendium.AllowedInOfficialSources.Title",
-        hint: "SETTINGS.Compendium.AllowedInOfficialSources.Hint",
+    game.settings.register(CONFIG.l5r5e.namespace, "compendium-unofficial-content-for-players", {
+        name: "SETTINGS.Compendium.AllowedUnofficialSources.Title",
+        hint: "SETTINGS.Compendium.AllowedUnofficialSources.Hint",
         type: new foundry.data.fields.SetField(new foundry.data.fields.StringField()),
         default: [],
         config: true,

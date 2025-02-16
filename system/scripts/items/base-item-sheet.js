@@ -52,13 +52,13 @@ export class BaseItemSheetL5r5e extends ItemSheet {
 
         // Translate current reference
         const reference = this.item.system.source_reference.source;
-        const label_or_reference = CONFIG.l5r5e.source_reference[reference]?.label ?? reference
+        const label_or_reference = CONFIG.l5r5e.sourceReference[reference]?.label ?? reference
         sheetData.data.system.source_reference.source = game.i18n.localize(label_or_reference);
 
         // Translate list of available references
         const all_references = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references");
         sheetData.source_references = all_references.map((reference) => {
-            const label_or_reference = CONFIG.l5r5e.source_reference[reference]?.label ?? reference
+            const label_or_reference = CONFIG.l5r5e.sourceReference[reference]?.label ?? reference
             return game.i18n.localize(label_or_reference)
         })
 
@@ -73,16 +73,15 @@ export class BaseItemSheetL5r5e extends ItemSheet {
      * @override
      */
     async _updateObject(event, formData) {
-        
         // If we have an official source then store the id instead
-        if(event.currentTarget.name === "system.source_reference.source") {
-            Object.entries(CONFIG.l5r5e.source_reference).forEach(([id, value]) => {
+        if(event.currentTarget?.name === "system.source_reference.source") {
+            Object.entries(CONFIG.l5r5e.sourceReference).forEach(([id, value]) => {
                 if(game.i18n.localize(value.label) === formData["system.source_reference.source"]) {
                     formData["system.source_reference.source"] = id;
                 }
             });
         }
-        
+
         return super._updateObject(event,formData);
     }
 

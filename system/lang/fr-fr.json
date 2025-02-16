@@ -36,16 +36,16 @@
         },
         "Compendium": {
             "HideEmptySourcesFromPlayers": {
-                "Title": "[Compendium] Hide sources without a reference",
-                "Hint": "Useful for hiding items etc. that are partially done"
+                "Title": "[Compendium] Cacher les sources sans référence",
+                "Hint": "Utile pour cacher les éléments qui sont partiellement terminés."
             },
             "AllowedOfficialSources": {
-                "Title": "[Compendium] Available official resources",
-                "Hint": "Useful if you as a GM want to limit the available official content to only books you own"
+                "Title": "[Compendium] Ressources officielles disponibles",
+                "Hint": "Utile si, en tant que MJ, vous souhaitez limiter le contenu officiel disponible aux seuls livres que vous possédez."
             },
-            "AllowedInOfficialSources": {
-                "Title": "[Compendium] Available inofficial resources",
-                "Hint": "Useful if you have compendiums with custom items mixed with player facing items."
+            "AllowedUnofficialSources": {
+                "Title": "[Compendium] Ressources non-officielles disponibles",
+                "Hint": "Utile si vous avez des compendiums avec des objets personnalisés mélangés à des objets destinés aux joueurs."
             }
         }
     },
@@ -79,7 +79,7 @@
             "edge_translation_disclaimer": "",
             "add": "Ajouter",
             "edit": "Modifier",
-            "delete_confirm": "Etes-vous sûr de vouloir supprimer '{name}' ?",
+            "delete_confirm": "Êtes-vous sûr de vouloir supprimer '{name}' ?",
             "drop_here": "Déposez ici",
             "send_to_chat": "Vers Conv.",
             "locked": "Verrouillé",
@@ -87,8 +87,16 @@
             "random": "Aléatoire"
         },
         "multiselect": {
-            "empty_tag": "<blank>",
-            "placeholder": "Filter Sources"
+            "empty_tag": "<vide>",
+            "placeholder": "Sources à filtrer",
+            "player_filter_label": "Filtre joueur",
+            "player_filter_tooltip": "Applique le filtre des joueurs",
+            "sources_categories": {
+                "rules": "Règles",
+                "adventures": "Aventures",
+                "supplements": "Suppléments",
+                "others": "Autres"
+            }
         },
         "settings": {
             "custom-compendiums": {
@@ -142,7 +150,7 @@
             "types": "Types",
             "source_reference": {
                 "reference": "Référence",
-                "page_abbriviation": "p."
+                "page_abbreviation": "p."
             },
             "value": "Valeur",
             "rarity": "Rareté",
@@ -703,39 +711,39 @@
             "wary": "Méfiante"
         },
         "compendium": {
-            "filter_rank": "Show Rank",
-            "not_for_players": "Not shown to players",
+            "filter_rank": "Aff. Rangs",
+            "not_for_players": "Invisible aux joueurs",
             "filter": {
-                "rank": "Rank",
-                "rarity": "Rarity",
-                "ring": "Ring"
+                "rank": "Rang",
+                "rarity": "Rareté",
+                "ring": "Anneau"
             }
         },
         "source_reference": {
-            "core_rulebook": "Core Rulebook",
-            "emerald_empire": "Emerald Empire",
-            "shadowlands": "Shadowlands",
-            "court_of_stones": "Court of Stones",
-            "path_of_waves": "Path of Waves",
-            "celestial_realms": "Celestial Realms",
-            "fields_of_victory": "Fields of Victory",
-            "writ_of_the_wild": "Writ of the Wild",
-            "gm_kit": "Game Master's Kit",
-            "beginner_game": "Beginner Game",
-            "the_mantis_clan": "The Mantis Clan",
-            "mask_of_the_oni": "Mask of the Oni",
-            "winters_embrace": "Winder's Embrace",
-            "sins_of_regret": "Sins of Regret",
-            "wheele_of_judgment": "Wheel of Judgment",
-            "blood_of_the_lioness": "Blood of the Lioness",
-            "imperfect_land": "Imperfect Land",
-            "in_the_palace_of_the_emerald_champion": "In the Palace of the Emerald Champion",
-            "the_highwayman": "The Highwayman",
-            "wedding_at_kyotei_castle": "Wedding at Kyotei Castle",
-            "the_knotted_tails": "The Knotted Tails",
-            "cresting_waves": "Cresting Waves",
+            "core_rulebook": "Livre de Règles",
+            "emerald_empire": "L’Empire d’Émeraude",
+            "shadowlands": "L’Outremonde",
+            "court_of_stones": "Les Cours de Pierre",
+            "path_of_waves": "La Voie des Vagues",
+            "celestial_realms": "Les Royaumes Célestes",
+            "fields_of_victory": "Les Champs de la Victoire",
+            "writ_of_the_wild": "Les Édits de la Nature",
+            "gm_kit": "Kit du Maître de jeu",
+            "beginner_game": "Le Kit d’initiation",
+            "the_mantis_clan": "Le Clan de la Mante",
+            "mask_of_the_oni": "Le Masque de l’Oni",
+            "winters_embrace": "L’Étreinte de l’Hiver",
+            "sins_of_regret": "Les Fantômes Du Passé",
+            "wheel_of_judgment": "La Roue du Jugement",
+            "blood_of_the_lioness": "Le Sang de la Lionne",
+            "imperfect_land": "La Terre imparfaite",
+            "in_the_palace_of_the_emerald_champion": "Dans le Palais du Champion d'Émeraude",
+            "the_highwayman": "Le bandit de grand chemin",
+            "wedding_at_kyotei_castle": "Mariage à Château Kyotei",
+            "the_knotted_tails": "Les Queues Nouées",
+            "cresting_waves": "La Crête des Vagues",
             "deathly_turns": "Deathly Turns",
-            "the_scroll_or_the_blade": "The Scroll or the Blade",
+            "the_scroll_or_the_blade": "Le Parchemin ou le Sabre",
             "legacies_of_war": "Legacies of War"
         }
     }

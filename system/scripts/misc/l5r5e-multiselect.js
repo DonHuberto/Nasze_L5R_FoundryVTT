@@ -20,7 +20,7 @@ const { AbstractMultiSelectElement } = foundry.applications.elements;
  * </l5r5e-multi-select>
  * ```
  */
-export class HTML_l5r5e_MultiSelectElement extends AbstractMultiSelectElement {
+export class L5r5eHtmlMultiSelectElement extends AbstractMultiSelectElement {
 
     constructor() {
         super();
@@ -56,7 +56,7 @@ export class HTML_l5r5e_MultiSelectElement extends AbstractMultiSelectElement {
 
     /* -------------------------------------------- */
 
-    // We will call initalize twice (one in the parent constructor) then one in #setup
+    // We will call initialize twice (one in the parent constructor) then one in #setup
     // required since when we want to build the elements we should to an initialize first
     // and we cannot override _initialize since we don't have access to #disabledValues  there
     #setup() {
@@ -185,7 +185,7 @@ export class HTML_l5r5e_MultiSelectElement extends AbstractMultiSelectElement {
     /**
      * Create a HTML_l5r5e_MultiSelectElement using provided configuration data.
      * @param {FormInputConfig<string[]> & Omit<SelectInputConfig, "blank">} config
-     * @returns {HTML_l5r5e_MultiSelectElement}
+     * @returns {L5r5eHtmlMultiSelectElement}
      */
     static create(config) {
         // Foundry creates either a select with tag multi-select or multi-checkboxes. We want a l5r5e-multi-select
@@ -193,7 +193,7 @@ export class HTML_l5r5e_MultiSelectElement extends AbstractMultiSelectElement {
         const groups = prepareSelectOptionGroups(config);
 
         //Setup the HTML
-        const select = document.createElement(HTML_l5r5e_MultiSelectElement.tagName);
+        const select = document.createElement(L5r5eHtmlMultiSelectElement.tagName);
         select.name = config.name;
         foundry.applications.fields.setInputAttributes(select, config);
         for (const group_entry of groups) {
@@ -210,7 +210,7 @@ export class HTML_l5r5e_MultiSelectElement extends AbstractMultiSelectElement {
 }
 
 /** Stolen from foundry.applications.fields.prepareSelectOptionGroups: Needed to add support for tooltips
- * 
+ *
  */
 function prepareSelectOptionGroups(config) {
     const result = foundry.applications.fields.prepareSelectOptionGroups(config);

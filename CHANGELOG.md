@@ -6,6 +6,14 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.12.3 - ??/02/2025 - Compendiums Filters (Thx Litasa #41)
+- Separated the reference and the page number from book reference for filtering purpose.
+- Adding filters in compendium for rarity, ring, and source
+- Adding custom multi-select to easily select and display filtered sources (this should be reused in other places in the code, selecting skills for example)
+- Adding custom data field that uses the multi-select for display
+- Add option for GM to limit what sources is being displayed to the players in compendiums. GM can still see everything and give players items/techniques etc if needed. (also tech savvy players can still view the content)
+TODO
+
 ## 1.12.2 - 16/09/2024 - Bugfixes
 - Modified : The checkbox `reverseFatigueBar` is now a drop-down with `none`/`fatigue`/`strife`/`both`, and is now an client preference.
 - Fixed : Character sheet errors when using a non-supported language (Thx to KitCat #56).
