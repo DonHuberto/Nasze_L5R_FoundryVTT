@@ -442,19 +442,18 @@ export default class HooksL5r5e {
                 });
 
                 // If gm add a extra button to easily filter the content to see the same stuff as a player
-                if(game.user.isGM) {
-                    if(unavailableSourceForPlayers.length > 0) {
-                        const buttonHTML = `<button type="button" class="gm" data-tooltip="${game.i18n.localize('l5r5e.multiselect.player_filter_tooltip')}">`
-                        + game.i18n.localize('l5r5e.multiselect.player_filter_label')
-                        + '</button>'
+                if (game.user.isGM && unavailableSourceForPlayers.length > 0) {
+                    const buttonHTML = `<button type="button" class="gm" data-tooltip="${game.i18n.localize('l5r5e.multiselect.player_filter_tooltip')}">`
+                    + game.i18n.localize('l5r5e.multiselect.player_filter_label')
+                    + '</button>'
 
-                        const filterPlayerView = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references")
-                            .filter((item) => !unavailableSourceForPlayers.includes(item))
-                            .filter((item) => sources_in_this_compendium.has(item));
-                        $(buttonHTML).appendTo($(header).find("l5r5e-multi-select")).click(function() {
-                            header.find("l5r5e-multi-select")[0].value = filterPlayerView;
-                        });
-                    }
+                    const filterPlayerView = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references")
+                        .filter((item) => !unavailableSourceForPlayers.includes(item))
+                        .filter((item) => sources_in_this_compendium.has(item));
+
+                    $(buttonHTML).appendTo($(header).find("l5r5e-multi-select")).click(function() {
+                        header.find("l5r5e-multi-select")[0].value = filterPlayerView;
+                    });
                 }
             }
 
