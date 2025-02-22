@@ -103,6 +103,19 @@ export class L5r5eHtmlMultiSelectElement extends AbstractMultiSelectElement {
         });
         this.#tags.replaceChildren(...tags);
 
+        // Figure out if we are overflowing the tag div.
+        if($(this.#tags).css("max-height")) {
+            const numericMaxHeight = parseInt($(this.#tags).css("max-height"), 10);
+            if(numericMaxHeight) {
+                if($(this.#tags).prop("scrollHeight") > numericMaxHeight) {
+                    this.#tags.classList.add("overflowing");
+                }
+                else {
+                    this.#tags.classList.remove("overflowing");
+                }
+            }
+        }
+
         // Disable selected options
         for (const option of this.#select) {
             if (this._value.has(option.value)) {
@@ -126,6 +139,22 @@ export class L5r5eHtmlMultiSelectElement extends AbstractMultiSelectElement {
         this.#select.addEventListener("change", this.#onChangeSelect.bind(this));
         this.#clearAll.addEventListener("click", this.#onClickClearAll.bind(this));
         this.#tags.addEventListener("click", this.#onClickTag.bind(this));
+
+        this.#tags.addEventListener("mouseleave", this.#onMouseLeave.bind(this));
+    }
+
+    #onMouseLeave(event) {
+        // Figure out if we are overflowing the tag div.
+        if($(this.#tags).css("max-height")) {
+            const numericMaxHeight = parseInt($(this.#tags).css("max-height"), 10);
+
+            if($(this.#tags).prop("scrollHeight") > numericMaxHeight) {
+                this.#tags.classList.add("overflowing");
+            }
+            else {
+                this.#tags.classList.remove("overflowing");
+            }
+        }
     }
 
     /* -------------------------------------------- */

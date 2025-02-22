@@ -276,9 +276,10 @@ export default class HooksL5r5e {
             const unofficialContent = game.settings.get(CONFIG.l5r5e.namespace, "compendium-unofficial-content-for-players");
             const unavailableSourceForPlayers = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references")
             .filter((element) => {
-                return CONFIG.l5r5e.sourceReference[element]
-                    ? !officialContent.includes(element)
-                    : unofficialContent.includes(element);
+                if(CONFIG.l5r5e.sourceReference[element]) {
+                    return officialContent.length > 0 ? !officialContent.includes(element) : false;
+                }
+                return unofficialContent.length > 0 ? !unofficialContent.includes(element) : false;
             });
 
             // Create the function that will hide/show elements based on various factors
@@ -442,17 +443,18 @@ export default class HooksL5r5e {
 
                 // If gm add a extra button to easily filter the content to see the same stuff as a player
                 if(game.user.isGM) {
-                    const buttonHTML = `<button type="button" class="gm" data-tooltip="${game.i18n.localize('l5r5e.multiselect.player_filter_tooltip')}">`
+                    if(unavailableSourceForPlayers.length > 0) {
+                        const buttonHTML = `<button type="button" class="gm" data-tooltip="${game.i18n.localize('l5r5e.multiselect.player_filter_tooltip')}">`
                         + game.i18n.localize('l5r5e.multiselect.player_filter_label')
                         + '</button>'
 
-                    $(buttonHTML).appendTo($(header).find("l5r5e-multi-select")).click(function() {
-                        const filter = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references").filter((reference) => {
-                            return !unavailableSourceForPlayers.includes(reference);
-                        })
-
-                        header.find("l5r5e-multi-select")[0].value = filter.filter((element) => element !== "");
-                    });
+                        const filterPlayerView = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references")
+                            .filter((item) => !unavailableSourceForPlayers.includes(item))
+                            .filter((item) => sources_in_this_compendium.has(item));
+                        $(buttonHTML).appendTo($(header).find("l5r5e-multi-select")).click(function() {
+                            header.find("l5r5e-multi-select")[0].value = filterPlayerView;
+                        });
+                    }
                 }
             }
 

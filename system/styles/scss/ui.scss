@@ -726,6 +726,9 @@ button {
         select {
             background: rgba(255, 255, 245, 0.8); // same as the header-search in compendium popout
         }
+        .input-element-tags {
+            max-height: 100px;
+        }
     }
 }
 
@@ -990,6 +993,21 @@ l5r5e-multi-select {
     .input-element-tags {
         grid-column-start: 1;
         grid-column-end: span 3;
+
+        max-height: fit-content; // use value in px to limit the initial size of the tags list, but expandable when hovering over
+        overflow: hidden;
+
+        &.overflowing {
+            // Apply mask-image with linear gradient fade-out effect
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
+        
+            // Transition for smooth height change and mask removal
+            transition: height 0.3s ease, mask-image 0.3s ease;
+        }
+        &.overflowing:hover {
+            max-height: fit-content;
+            mask-image: none;
+        }
     }
     select {
         grid-row: 1;
