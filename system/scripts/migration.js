@@ -39,40 +39,46 @@ export class MigrationL5r5e {
             { permanent: true }
         );
 
+        console.groupCollapsed(`L5R5e System Migration v${game.system.version}.`);
+
         // Migrate World Actors
+        console.group(`Checking within ${game.actors.size} actors`);
         for (let actor of game.actors.contents) {
+            console.group(`Checking Actor [${actor.name}][${actor._id}]`);
             try {
                 const updateData = MigrationL5r5e._migrateActorData(actor, options);
                 if (!foundry.utils.isEmpty(updateData)) {
-                    console.log(`L5R5E | Migration | Migrating Actor document ${actor.name}[${actor._id}]`);
+                    console.log(`L5R5E | Migration | Migrating Actor document done`);
                     await actor.update(updateData);
                 }
             } catch (err) {
                 err.message = `L5R5E | Migration | Failed L5R5e system migration for Actor ${actor.name}[${actor._id}]: ${err.message}`;
                 console.error(err);
             }
+
+            // Migrate Actor's Items
+            if (actor.items.size) {
+                console.group(`Checking within ${actor.items.size} items`);
+                await MigrationL5r5e._migrateItemsWorker(actor.items, options);
+                console.groupEnd();
+            }
+            console.groupEnd();
         }
+        console.groupEnd();
 
         // Migrate World Items
-        for (let item of game.items.contents) {
-            try {
-                const updateData = MigrationL5r5e._migrateItemData(item, options);
-                if (!foundry.utils.isEmpty(updateData)) {
-                    console.log(`L5R5E | Migration | Migrating Item document ${item.name}[${item._id}]`);
-                    await item.update(updateData);
-                }
-            } catch (err) {
-                err.message = `L5R5E | Migration | Failed L5R5e system migration for Item ${item.name}[${item._id}]: ${err.message}`;
-                console.error(err);
-            }
-        }
+        console.group(`Checking within ${game.items.size} world's items`);
+        await MigrationL5r5e._migrateItemsWorker(game.items, options);
+        console.groupEnd();
 
         // Migrate Actor Override Tokens
+        console.group(`Checking within ${game.scenes.size} Scene`);
         for (let scene of game.scenes.contents) {
+            console.group(`Checking Scene [${scene.name}][${scene._id}]`);
             try {
                 const updateData = MigrationL5r5e._migrateSceneData(scene, options);
                 if (!foundry.utils.isEmpty(updateData)) {
-                    console.log(`L5R5E | Migration | Migrating Scene document ${scene.name}[${scene._id}]`);
+                    console.log(`L5R5E | Migration | Migrating Scene document done`);
                     await scene.update(updateData);
                     // If we do not do this, then synthetic token actors remain in cache
                     // with the un-updated actorData.
@@ -82,15 +88,19 @@ export class MigrationL5r5e {
                 err.message = `L5R5E | Migration | Failed L5R5e system migration for Scene ${scene.name}[${scene._id}]: ${err.message}`;
                 console.error(err);
             }
+            console.groupEnd();
         }
+        console.groupEnd();
 
         // Migrate World Compendium Packs
+        console.group(`Checking within ${game.packs.size} Compendium Packs`);
         for (let pack of game.packs) {
             if (pack.metadata.packageType !== "world" || !["Actor", "Item", "Scene"].includes(pack.metadata.type)) {
                 continue;
             }
             await MigrationL5r5e._migrateCompendium(pack, options);
         }
+        console.groupEnd();
 
         // Migrate ChatMessages
         try {
@@ -112,11 +122,34 @@ export class MigrationL5r5e {
             console.error(err);
         }
 
+        console.groupEnd();
+
         // Set the migration as complete
         await game.settings.set(CONFIG.l5r5e.namespace, "systemMigrationVersion", game.system.version);
         ui.notifications.info(`L5R5e System Migration to version ${game.system.version} completed!`, {
             permanent: true,
         });
+    }
+
+    /**
+     * Item's migration iterator
+     * @param {Collection} items
+     * @param options
+     * @returns {Promise<void>}
+     */
+    static async _migrateItemsWorker(items, options) {
+        for (let item of items.contents) {
+            try {
+                const updateData = MigrationL5r5e._migrateItemData(item, options);
+                if (!foundry.utils.isEmpty(updateData)) {
+                    console.log(`L5R5E | Migration | Migrating Item document ${item.name}[${item._id}]`);
+                    await item.update(updateData);
+                }
+            } catch (err) {
+                err.message = `L5R5E | Migration | Failed L5R5e system migration for Item ${item.name}[${item._id}]: ${err.message}`;
+                console.error(err);
+            }
+        }
     }
 
     /**
@@ -290,7 +323,7 @@ export class MigrationL5r5e {
         // ***** Start of 1.12.3 *****
         if (options?.force || MigrationL5r5e.needUpdate("1.12.3")) {
             // Splitting book reference & page
-            if(item.system.book_reference) {
+            if (item.system.book_reference) {
                 const bookReference = item.system.book_reference.match(/^((?!p\.)\D+?)?(?:\s*p\.)?(\d+)?$/);
                 if (!bookReference) {
                     console.warn(`L5R5E | Migration | Failed to properly migrate item document ${item.name}[${item._id}]: Could not parse the book_reference`);

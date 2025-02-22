@@ -3,7 +3,7 @@
     "mapping": {
         "types": "system.types",
         "description": "system.description",
-        "book_reference": "system.book_reference"
+        "source_reference": "system.source_reference"
     },
     "entries": [
         {
@@ -11,301 +11,387 @@
             "name": "Animaux",
             "types": "Relations, Mental",
             "description": "",
-            "book_reference": "Livre de Règles p.111"
+            "source_reference": {
+                "page": "111"
+            }
         },
         {
             "id": "Armament",
             "name": "Armement",
             "types": "Mental",
             "description": "",
-            "book_reference": "Livre de Règles p.111"
+            "source_reference": {
+                "page": "111"
+            }
         },
         {
             "id": "Brushwork",
             "name": "Pinceau",
             "types": "Mental, Physique",
             "description": "",
-            "book_reference": "Livre de Règles p.114"
+            "source_reference": {
+                "page": "114"
+            }
         },
         {
             "id": "Curiosity",
             "name": "Curiosité",
             "types": "Mental",
             "description": "",
-            "book_reference": "Livre de Règles p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Daredevil",
             "name": "Casse-cou",
             "types": "Mental, Physique",
             "description": "",
-            "book_reference": "Livre de Règles p.111"
+            "source_reference": {
+                "page": "111"
+            }
         },
         {
             "id": "Enlightenment",
             "name": "Illumination",
             "types": "Spirituel",
             "description": "",
-            "book_reference": "Livre de Règles p.113"
+            "source_reference": {
+                "page": "113"
+            }
         },
         {
             "id": "Fashion",
             "name": "Mode",
             "types": "Relations, Mental",
             "description": "",
-            "book_reference": "Livre de Règles p.113"
+            "source_reference": {
+                "page": "113"
+            }
         },
         {
             "id": "Fortune-Telling",
             "name": "Voyance",
             "types": "Mental, Spirituel",
             "description": "",
-            "book_reference": "Livre de Règles p.116"
+            "source_reference": {
+                "page": "116"
+            }
         },
         {
             "id": "Generosity",
             "name": "Générosité",
             "types": "Relations",
             "description": "",
-            "book_reference": "Livre de Règles p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Gossip",
             "name": "Commérages",
             "types": "Relations",
             "description": "",
-            "book_reference": "Livre de Règles p.111"
+            "source_reference": {
+                "page": "111"
+            }
         },
         {
             "id": "History",
             "name": "Histoire",
             "types": "Mental",
             "description": "",
-            "book_reference": "Livre de Règles p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Ikebana",
             "name": "Ikebana",
             "types": "Mental",
             "description": "",
-            "book_reference": "Livre de Règles p.113"
+            "source_reference": {
+                "page": "113"
+            }
         },
         {
             "id": "Playfulness",
             "name": "Plaisanteries",
             "types": "Relations",
             "description": "",
-            "book_reference": "Livre de Règles p.114"
+            "source_reference": {
+                "page": "114"
+            }
         },
         {
             "id": "Provocation",
             "name": "Provocation",
             "types": "Relations",
             "description": "",
-            "book_reference": "Livre de Règles p.114"
+            "source_reference": {
+                "page": "114"
+            }
         },
         {
             "id": "Sake",
             "name": "Saké",
             "types": "Mental",
             "description": "",
-            "book_reference": "Livre de Règles p.115"
+            "source_reference": {
+                "page": "115"
+            }
         },
         {
             "id": "Secrets",
             "name": "Secrets",
             "types": "Relations, Mental",
             "description": "",
-            "book_reference": "Livre de Règles p.115"
+            "source_reference": {
+                "page": "115"
+            }
         },
         {
             "id": "Stories",
             "name": "Contes",
             "types": "Relations, Mental",
             "description": "",
-            "book_reference": "Livre de Règles p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Tea",
             "name": "Thé",
             "types": "Physique, Spirituel",
             "description": "",
-            "book_reference": "Livre de Règles p.115"
+            "source_reference": {
+                "page": "115"
+            }
         },
         {
             "id": "Travel",
             "name": "Voyages",
             "types": "Mental, Physique",
             "description": "",
-            "book_reference": "Livre de Règles p.115"
+            "source_reference": {
+                "page": "115"
+            }
         },
         {
             "id": "Wordplay",
             "name": "Jeux de mots",
             "types": "Relations, Mental",
             "description": "",
-            "book_reference": "Livre de Règles p.113"
+            "source_reference": {
+                "page": "113"
+            }
         },
         {
             "id": "Bathing",
             "name": "Bains",
             "types": "Relations, Mental",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.90"
+            "source_reference": {
+                "page": "90"
+            }
         },
         {
             "id": "Kyudo",
             "name": "Kyūdo",
             "types": "Mental, Physique",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.91"
+            "source_reference": {
+                "page": "91"
+            }
         },
         {
             "id": "Kabuki",
             "name": "Kabuki",
             "types": "Relations, Mental",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.90"
+            "source_reference": {
+                "page": "90"
+            }
         },
         {
             "id": "Festivals",
             "name": "Festivals",
             "types": "Mental",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.90"
+            "source_reference": {
+                "page": "90"
+            }
         },
         {
             "id": "Religious Study",
             "name": "Culture religieuse",
             "types": "Mental, Spirituel",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.90"
+            "source_reference": {
+                "page": "90"
+            }
         },
         {
             "id": "Local Flare for {Region}",
             "name": "Engouement pour [une région]",
             "types": "Relations",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.100"
+            "source_reference": {
+                "page": "100"
+            }
         },
         {
             "id": "Decorum",
             "name": "Décorum",
             "types": "Relations, Mental",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.100"
+            "source_reference": {
+                "page": "100"
+            }
         },
         {
             "id": "Pot Stirrer",
             "name": "Fauteur de trouble",
             "types": "Relations, Mental",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.101"
+            "source_reference": {
+                "page": "101"
+            }
         },
         {
             "id": "City [Choose One]",
             "name": "Cité [au choix]",
             "types": "Relations, Mental",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude p.244"
+            "source_reference": {
+                "page": "244"
+            }
         },
         {
             "id": "Bonsai",
             "name": "Bonsai",
             "types": "Mental",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude p.244"
+            "source_reference": {
+                "page": "244"
+            }
         },
         {
             "id": "Gourmet",
             "name": "Gourmet",
             "types": "Relations, Mental",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude p.244"
+            "source_reference": {
+                "page": "244"
+            }
         },
         {
             "id": "Rock Gardening",
             "name": "Jardins de rocaille",
             "types": "Mental",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude p.245"
+            "source_reference": {
+                "page": "245"
+            }
         },
         {
             "id": "Military History",
             "name": "Histoire militaire",
             "types": "Mental",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude p.245"
+            "source_reference": {
+                "page": "245"
+            }
         },
         {
             "id": "Navigator",
             "name": "Navigateur",
             "types": "Mental",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude p.245"
+            "source_reference": {
+                "page": "245"
+            }
         },
         {
             "id": "Researcher",
             "name": "Chercheur",
             "types": "Mental",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude p.245"
+            "source_reference": {
+                "page": "245"
+            }
         },
         {
             "id": "Honest Work",
             "name": "Travail honnête",
             "types": "Relations, Mental",
             "description": "",
-            "book_reference": "La Voie des Vagues p.71"
+            "source_reference": {
+                "page": "71"
+            }
         },
         {
             "id": "Attention",
             "name": "Centre de l’attention",
             "types": "Mental",
             "description": "",
-            "book_reference": "La Voie des Vagues p.70"
+            "source_reference": {
+                "page": "70"
+            }
         },
         {
             "id": "Creatures",
             "name": "Créatures",
             "types": "Mental",
             "description": "",
-            "book_reference": "L’Outremonde p.97"
+            "source_reference": {
+                "page": "97"
+            }
         },
         {
             "id": "KnotWork",
             "name": "Noeuds",
             "types": "Mental",
             "description": "",
-            "book_reference": "Le Clan de la Mante p.7"
+            "source_reference": {
+                "page": "7"
+            }
         },
         {
             "id": "Ancestry",
             "name": "Généalogie",
             "types": "Mental",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.83"
+            "source_reference": {
+                "page": "83"
+            }
         },
         {
             "id": "Glorious Deeds",
             "name": "Exploits",
             "types": "Martial, Social",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.83"
+            "source_reference": {
+                "page": "83"
+            }
         },
         {
             "id": "Charity",
             "name": "Charity (WIP)",
             "types": "Relations, Mental",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         },
         {
             "id": "Kintsugi",
             "name": "Kintsugi (WIP)",
             "types": "Mental, Physique",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         }
     ]
 }

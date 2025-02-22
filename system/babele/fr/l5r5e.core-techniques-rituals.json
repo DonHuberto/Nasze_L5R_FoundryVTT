@@ -2,218 +2,288 @@
     "label": "Techniques Rituels",
     "mapping": {
         "description": "system.description",
-        "book_reference": "system.book_reference"
+        "source_reference": "system.source_reference"
     },
     "entries": [
         {
             "id": "Tea Ceremony",
             "name": "Cérémonie du thé",
             "description": "",
-            "book_reference": "Livre de Règles p.212"
+            "source_reference": {
+                "page": "212"
+            }
         },
         {
             "id": "Commune with the Spirits",
             "name": "Communier avec les esprits",
             "description": "",
-            "book_reference": "Livre de Règles p.212"
+            "source_reference": {
+                "page": "212"
+            }
         },
         {
             "id": "Divination",
             "name": "Divination",
             "description": "",
-            "book_reference": "Livre de Règles p.213"
+            "source_reference": {
+                "page": "213"
+            }
         },
         {
             "id": "Cleansing Rite",
             "name": "Rite de purification",
             "description": "",
-            "book_reference": "Livre de Règles p.213"
+            "source_reference": {
+                "page": "213"
+            }
         },
         {
             "id": "Threshold Barrier",
             "name": "Seuil infranchissable",
             "description": "",
-            "book_reference": "Livre de Règles p.213"
+            "source_reference": {
+                "page": "213"
+            }
         },
         {
             "id": "Blessed Union",
             "name": "Union bénite",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.111"
+            "source_reference": {
+                "page": "111"
+            }
         },
         {
             "id": "Blessing of the Dance",
             "name": "Bienfaits de la danse",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.110"
+            "source_reference": {
+                "page": "110"
+            }
         },
         {
             "id": "Prayer of Protection",
             "name": "Prière protectrice",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.110"
+            "source_reference": {
+                "page": "110"
+            }
         },
         {
             "id": "Rite of the Wheel",
             "name": "Rite de la roue",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.110"
+            "source_reference": {
+                "page": "110"
+            }
         },
         {
             "id": "Whispers to the Moon (Moon Cultist)",
             "name": "Murmures à la Lune (adepte de Sire Lune)",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.110"
+            "source_reference": {
+                "page": "110"
+            }
         },
         {
             "id": "Formal Tea Ceremony",
             "name": "Cérémonie du thé protocolaire",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.116"
+            "source_reference": {
+                "page": "116"
+            }
         },
         {
             "id": "Treaty Signing",
             "name": "Signature de traité",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.117"
+            "source_reference": {
+                "page": "117"
+            }
         },
         {
             "id": "The Ties that Bind",
             "name": "Les liens qui nous unissent",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.116"
+            "source_reference": {
+                "page": "116"
+            }
         },
         {
             "id": "Balancing Salve (Qamarist Region)",
             "name": "Baume d’équilibre (Califat Qamariste)",
             "description": "",
-            "book_reference": "La Voie des Vagues p.96"
+            "source_reference": {
+                "page": "96"
+            }
         },
         {
             "id": "Elixir of Recovery (Qamarist Region)",
             "name": "Elixir de guérison (Califat Qamariste)",
             "description": "",
-            "book_reference": "La Voie des Vagues p.96"
+            "source_reference": {
+                "page": "96"
+            }
         },
         {
             "id": "Fortitude Draught (Qamarist Region)",
             "name": "Décoction de résistance (Califat Qamariste)",
             "description": "",
-            "book_reference": "La Voie des Vagues p.96"
+            "source_reference": {
+                "page": "96"
+            }
         },
         {
             "id": "Restorative Transmutation (Qamarist Region)",
             "name": "Transmutation reconstituante (Califat qamariste)",
             "description": "",
-            "book_reference": "La Voie des Vagues p.97"
+            "source_reference": {
+                "page": "97"
+            }
         },
         {
             "id": "Cleansing of Coral and Gold (Ivory Kingdoms Region)",
             "name": "Purification par le corail et l’or (Royaumes d’Ivoire)",
             "description": "",
-            "book_reference": "La Voie des Vagues p.97"
+            "source_reference": {
+                "page": "97"
+            }
         },
         {
             "id": "Wayfarer's Path",
             "name": "La route du voyageur",
             "description": "",
-            "book_reference": "La Voie des Vagues p.97"
+            "source_reference": {
+                "page": "97"
+            }
         },
         {
             "id": "Blessing of Steel (Artisan)",
             "name": "Bénédiction d’acier (Artisan)",
             "description": "",
-            "book_reference": "L’Outremonde p.114"
+            "source_reference": {
+                "page": "114"
+            }
         },
         {
             "id": "Craft Shikigami (Shugenja)",
             "name": "Fabrication des shikigami (Shugenja)",
             "description": "",
-            "book_reference": "L’Outremonde p.114"
+            "source_reference": {
+                "page": "114"
+            }
         },
         {
             "id": "Blessing of Fertile Fields",
             "name": "Bénédiction des champs fertiles",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.110"
+            "source_reference": {
+                "page": "110"
+            }
         },
         {
             "id": "Beseech Akodo's Judgment",
             "name": "Implorer le jugement d’Akodo",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.97"
+            "source_reference": {
+                "page": "97"
+            }
         },
         {
             "id": "Beseech Bayushi's Absolution",
             "name": "Implorer l’absolution de Bayushi",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.97"
+            "source_reference": {
+                "page": "97"
+            }
         },
         {
             "id": "Beseech Doji's Wisdom",
             "name": "Implorer la sagesse de Doji",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.96"
+            "source_reference": {
+                "page": "96"
+            }
         },
         {
             "id": "Beseech Hida's MIght",
             "name": "Implorer la puissance de Hida",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.96"
+            "source_reference": {
+                "page": "96"
+            }
         },
         {
             "id": "Beseech Shiba's Calm",
             "name": "Implorer le calme de Shiba",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.97"
+            "source_reference": {
+                "page": "97"
+            }
         },
         {
             "id": "Beseech Shinjo's Empathy",
             "name": "Implorer l’empathie de Shinjo",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.98"
+            "source_reference": {
+                "page": "98"
+            }
         },
         {
             "id": "Beseech Togashi's Vision",
             "name": "Implorer la vision de Togashi",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.97"
+            "source_reference": {
+                "page": "97"
+            }
         },
         {
             "id": "Imbue Thunder",
             "name": "Imprégner de tonnerre",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.98"
+            "source_reference": {
+                "page": "98"
+            }
         },
         {
             "id": "Chikushō-dō’s Guile",
             "name": "Chikushō-dō’s Guile (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         },
         {
             "id": "Guard Against the Elements",
             "name": "Guard Against the Elements (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         },
         {
             "id": "Cunning Snares",
             "name": "Cunning Snares (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         },
         {
             "id": "Hunter’s Expertise",
             "name": "Hunter’s Expertise (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         },
         {
             "id": "Trance of Lives Past",
             "name": "Trance of Lives Past (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         }
     ]
 }

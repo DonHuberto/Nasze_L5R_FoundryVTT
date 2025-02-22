@@ -5,7 +5,7 @@
         "grip_1": "system.grip_1",
         "grip_2": "system.grip_2",
         "description": "system.description",
-        "book_reference": "system.book_reference"
+        "source_reference": "system.source_reference"
     },
     "entries": [
         {
@@ -15,7 +15,9 @@
             "grip_1": "",
             "grip_2": "Dégâts +2",
             "description": "",
-            "book_reference": "Livre de Règles p.232"
+            "source_reference": {
+                "page": "232"
+            }
         },
         {
             "id": "Chokutō",
@@ -24,7 +26,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Livre de Règles p.232"
+            "source_reference": {
+                "page": "232"
+            }
         },
         {
             "id": "Scimitar",
@@ -33,7 +37,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Livre de Règles p.232"
+            "source_reference": {
+                "page": "232"
+            }
         },
         {
             "id": "Dao",
@@ -42,7 +48,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Livre de Règles p.232"
+            "source_reference": {
+                "page": "232"
+            }
         },
         {
             "id": "Gao",
@@ -51,7 +59,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Livre de Règles p.232"
+            "source_reference": {
+                "page": "232"
+            }
         },
         {
             "id": "Jian",
@@ -60,7 +70,9 @@
             "grip_1": "",
             "grip_2": "Dangerosité +1, Acérée",
             "description": "",
-            "book_reference": "Livre de Règles p.232"
+            "source_reference": {
+                "page": "232"
+            }
         },
         {
             "id": "Katana",
@@ -69,7 +81,9 @@
             "grip_1": "",
             "grip_2": "Dangerosité +2",
             "description": "",
-            "book_reference": "Livre de Règles p.232"
+            "source_reference": {
+                "page": "232"
+            }
         },
         {
             "id": "Nodachi",
@@ -78,7 +92,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Livre de Règles p.233"
+            "source_reference": {
+                "page": "233"
+            }
         },
         {
             "id": "Wakizashi",
@@ -87,7 +103,9 @@
             "grip_1": "",
             "grip_2": "Dangerosité +2",
             "description": "",
-            "book_reference": "Livre de Règles p.233"
+            "source_reference": {
+                "page": "233"
+            }
         },
         {
             "id": "Zanbatō",
@@ -96,7 +114,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Livre de Règles p.233"
+            "source_reference": {
+                "page": "233"
+            }
         },
         {
             "id": "Masakari",
@@ -105,7 +125,9 @@
             "grip_1": "",
             "grip_2": "Dangerosité +2",
             "description": "",
-            "book_reference": "Livre de Règles p.233"
+            "source_reference": {
+                "page": "233"
+            }
         },
         {
             "id": "Ono",
@@ -114,7 +136,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Livre de Règles p.233"
+            "source_reference": {
+                "page": "233"
+            }
         },
         {
             "id": "Club",
@@ -123,7 +147,9 @@
             "grip_1": "",
             "grip_2": "Dégâts +1",
             "description": "",
-            "book_reference": "Livre de Règles p.234"
+            "source_reference": {
+                "page": "234"
+            }
         },
         {
             "id": "Kiseru",
@@ -132,7 +158,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Livre de Règles p.234"
+            "source_reference": {
+                "page": "234"
+            }
         },
         {
             "id": "Hammer",
@@ -141,7 +169,9 @@
             "grip_1": "",
             "grip_2": "Dégâts +2",
             "description": "",
-            "book_reference": "Livre de Règles p.234"
+            "source_reference": {
+                "page": "234"
+            }
         },
         {
             "id": "Ōtsuchi",
@@ -150,7 +180,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Livre de Règles p.234"
+            "source_reference": {
+                "page": "234"
+            }
         },
         {
             "id": "Tetsubō",
@@ -159,7 +191,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Livre de Règles p.234"
+            "source_reference": {
+                "page": "234"
+            }
         },
         {
             "id": "Jitte",
@@ -168,7 +202,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Livre de Règles p.234"
+            "source_reference": {
+                "page": "234"
+            }
         },
         {
             "id": "Knife",
@@ -177,7 +213,9 @@
             "grip_1": "",
             "grip_2": "Dangerosité +2",
             "description": "",
-            "book_reference": "Livre de Règles p.234"
+            "source_reference": {
+                "page": "234"
+            }
         },
         {
             "id": "Nunchaku",
@@ -186,7 +224,9 @@
             "grip_1": "",
             "grip_2": "Entrave",
             "description": "",
-            "book_reference": "Livre de Règles p.235"
+            "source_reference": {
+                "page": "235"
+            }
         },
         {
             "id": "Tessen",
@@ -195,7 +235,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Livre de Règles p.235"
+            "source_reference": {
+                "page": "235"
+            }
         },
         {
             "id": "Bisentō",
@@ -204,7 +246,9 @@
             "grip_1": "Portée 1",
             "grip_2": "Dégâts +2",
             "description": "",
-            "book_reference": "Livre de Règles p.235"
+            "source_reference": {
+                "page": "235"
+            }
         },
         {
             "id": "Bō",
@@ -213,7 +257,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Livre de Règles p.235"
+            "source_reference": {
+                "page": "235"
+            }
         },
         {
             "id": "Ji",
@@ -222,7 +268,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Livre de Règles p.235"
+            "source_reference": {
+                "page": "235"
+            }
         },
         {
             "id": "Naginata",
@@ -231,7 +279,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Livre de Règles p.235"
+            "source_reference": {
+                "page": "235"
+            }
         },
         {
             "id": "Trident",
@@ -240,7 +290,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Livre de Règles p.235"
+            "source_reference": {
+                "page": "235"
+            }
         },
         {
             "id": "Yari",
@@ -249,7 +301,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Livre de Règles p.235"
+            "source_reference": {
+                "page": "235"
+            }
         },
         {
             "id": "Horsebow",
@@ -258,7 +312,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Livre de Règles p.236"
+            "source_reference": {
+                "page": "236"
+            }
         },
         {
             "id": "Daikyū",
@@ -267,7 +323,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Livre de Règles p.236"
+            "source_reference": {
+                "page": "236"
+            }
         },
         {
             "id": "Yumi",
@@ -276,7 +334,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Livre de Règles p.236"
+            "source_reference": {
+                "page": "236"
+            }
         },
         {
             "id": "Oyumi",
@@ -285,7 +345,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Livre de Règles p.236"
+            "source_reference": {
+                "page": "236"
+            }
         },
         {
             "id": "Kama",
@@ -294,7 +356,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Livre de Règles p.237"
+            "source_reference": {
+                "page": "237"
+            }
         },
         {
             "id": "Kusari-gama",
@@ -303,7 +367,9 @@
             "grip_1": "",
             "grip_2": "Portée 2-3",
             "description": "",
-            "book_reference": "Livre de Règles p.237"
+            "source_reference": {
+                "page": "237"
+            }
         },
         {
             "id": "Blowgun",
@@ -312,7 +378,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Livre de Règles p.237"
+            "source_reference": {
+                "page": "237"
+            }
         },
         {
             "id": "Shuriken",
@@ -321,7 +389,9 @@
             "grip_1": "(tranchant ou perforant) -, (lancé) Arts Martiaux (Distance), Portée 1-3",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Livre de Règles p.237"
+            "source_reference": {
+                "page": "237"
+            }
         },
         {
             "id": "Punch",
@@ -330,7 +400,9 @@
             "grip_1": "N/A",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Livre de Règles p.237"
+            "source_reference": {
+                "page": "237"
+            }
         },
         {
             "id": "Kick",
@@ -339,7 +411,9 @@
             "grip_1": "N/A",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Livre de Règles p.237"
+            "source_reference": {
+                "page": "237"
+            }
         },
         {
             "id": "Bite",
@@ -348,7 +422,9 @@
             "grip_1": "N/A",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Livre de Règles p.237"
+            "source_reference": {
+                "page": "237"
+            }
         },
         {
             "id": "Tachi",
@@ -357,7 +433,9 @@
             "grip_1": "",
             "grip_2": "Dangerosité +1",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.98"
+            "source_reference": {
+                "page": "98"
+            }
         },
         {
             "id": "Whip",
@@ -366,7 +444,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.98"
+            "source_reference": {
+                "page": "98"
+            }
         },
         {
             "id": "Moshi Sun Ax",
@@ -375,7 +455,9 @@
             "grip_1": "",
             "grip_2": "Dégâts +3",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.98"
+            "source_reference": {
+                "page": "98"
+            }
         },
         {
             "id": "Uchigatana",
@@ -384,7 +466,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.98"
+            "source_reference": {
+                "page": "98"
+            }
         },
         {
             "id": "Shakujō",
@@ -393,7 +477,9 @@
             "grip_1": "",
             "grip_2": "Dégâts +1",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.98"
+            "source_reference": {
+                "page": "98"
+            }
         },
         {
             "id": "Kusarifundo",
@@ -402,7 +488,9 @@
             "grip_1": "",
             "grip_2": "Entrave",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.111"
+            "source_reference": {
+                "page": "111"
+            }
         },
         {
             "id": "Shakuhachi",
@@ -411,7 +499,9 @@
             "grip_1": "",
             "grip_2": "Dégâts +1",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.111"
+            "source_reference": {
+                "page": "111"
+            }
         },
         {
             "id": "Kyoketsu Shoge",
@@ -420,7 +510,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.111"
+            "source_reference": {
+                "page": "111"
+            }
         },
         {
             "id": "Shinobigatana",
@@ -429,7 +521,9 @@
             "grip_1": "",
             "grip_2": "Dangerosité +1",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.110"
+            "source_reference": {
+                "page": "110"
+            }
         },
         {
             "id": "Ninjatō",
@@ -438,7 +532,9 @@
             "grip_1": "",
             "grip_2": "Dangerosité +1",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.109"
+            "source_reference": {
+                "page": "109"
+            }
         },
         {
             "id": "Kamayari",
@@ -447,7 +543,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.111"
+            "source_reference": {
+                "page": "111"
+            }
         },
         {
             "id": "Tekagi",
@@ -456,7 +554,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Folding Half-Bow",
@@ -465,7 +565,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.110"
+            "source_reference": {
+                "page": "110"
+            }
         },
         {
             "id": "Tekken",
@@ -474,7 +576,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Sake Bottle & Cups",
@@ -483,7 +587,9 @@
             "grip_1": "(matraque) : -, (lancé) : Dangerosité +2, Portée 1-3, Tranchant",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "La Voie des Vagues p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Umbrella",
@@ -492,7 +598,9 @@
             "grip_1": "(matraque) : -",
             "grip_2": "(matraque) : Dégâts +2, (poignarder) : Dégâts +2, Dangerosité +2",
             "description": "",
-            "book_reference": "La Voie des Vagues p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Talwar",
@@ -501,7 +609,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "La Voie des Vagues p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Scroll Case",
@@ -510,7 +620,9 @@
             "grip_1": "",
             "grip_2": "Dégâts +2, Dangerosité +1",
             "description": "",
-            "book_reference": "La Voie des Vagues p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Urumi",
@@ -519,7 +631,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "La Voie des Vagues p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Iron Sheath",
@@ -528,7 +642,9 @@
             "grip_1": "",
             "grip_2": "Dégâts +2",
             "description": "",
-            "book_reference": "La Voie des Vagues p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Buckler",
@@ -537,7 +653,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "La Voie des Vagues p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Lute",
@@ -546,7 +664,9 @@
             "grip_1": "",
             "grip_2": "Dégâts +1, Dangerosité +1",
             "description": "",
-            "book_reference": "La Voie des Vagues p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Sling",
@@ -555,7 +675,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "La Voie des Vagues p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Gada",
@@ -564,7 +686,9 @@
             "grip_1": "",
             "grip_2": "Dangerosité +3",
             "description": "",
-            "book_reference": "La Voie des Vagues p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Kuwa",
@@ -573,7 +697,9 @@
             "grip_1": "",
             "grip_2": "Dégâts +2, Dangerosité +2, Portée 1-2",
             "description": "",
-            "book_reference": "La Voie des Vagues p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Qamarist Heavy Shield",
@@ -582,7 +708,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "La Voie des Vagues p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Boat Oar",
@@ -591,7 +719,9 @@
             "grip_1": "",
             "grip_2": "Dégâts +1, Dangerosité +3",
             "description": "",
-            "book_reference": "La Voie des Vagues p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Fishing Net",
@@ -600,7 +730,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "La Voie des Vagues p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Chair",
@@ -609,7 +741,9 @@
             "grip_1": "(matraque) : -, (lancé) : -",
             "grip_2": "(matraque) : Dégâts +2, (lancé) : Dangerosité +1, Portée 0-2",
             "description": "",
-            "book_reference": "La Voie des Vagues p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Chain Whip",
@@ -618,7 +752,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "La Voie des Vagues p.112"
+            "source_reference": {
+                "page": "112"
+            }
         },
         {
             "id": "Genno",
@@ -627,7 +763,9 @@
             "grip_1": "",
             "grip_2": "Dégâts +4",
             "description": "",
-            "book_reference": "L’Outremonde p.102"
+            "source_reference": {
+                "page": "102"
+            }
         },
         {
             "id": "Tekkan",
@@ -636,7 +774,9 @@
             "grip_1": "Encombrant",
             "grip_2": "Dégâts +2",
             "description": "",
-            "book_reference": "L’Outremonde p.102"
+            "source_reference": {
+                "page": "102"
+            }
         },
         {
             "id": "Small Shield",
@@ -645,7 +785,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "L’Outremonde p.104"
+            "source_reference": {
+                "page": "104"
+            }
         },
         {
             "id": "O-Gata Dohou",
@@ -654,7 +796,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "L’Outremonde p.105"
+            "source_reference": {
+                "page": "105"
+            }
         },
         {
             "id": "Large Shield",
@@ -663,7 +807,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "L’Outremonde p.104"
+            "source_reference": {
+                "page": "104"
+            }
         },
         {
             "id": "Kaiu no Oyumi",
@@ -672,7 +818,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "L’Outremonde p.103"
+            "source_reference": {
+                "page": "103"
+            }
         },
         {
             "id": "Tsuruhashi",
@@ -681,7 +829,9 @@
             "grip_1": "Encombrant",
             "grip_2": "Dangerosité +2",
             "description": "",
-            "book_reference": "L’Outremonde p.102"
+            "source_reference": {
+                "page": "102"
+            }
         },
         {
             "id": "Flyssa",
@@ -690,7 +840,9 @@
             "grip_1": "",
             "grip_2": "Accérée",
             "description": "",
-            "book_reference": "L’Outremonde p.102"
+            "source_reference": {
+                "page": "102"
+            }
         },
         {
             "id": "Sode",
@@ -699,7 +851,9 @@
             "grip_1": "Epaules",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "L’Outremonde p.103"
+            "source_reference": {
+                "page": "103"
+            }
         },
         {
             "id": "Ballista",
@@ -708,7 +862,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "L’Outremonde p.105"
+            "source_reference": {
+                "page": "105"
+            }
         },
         {
             "id": "Kabutowari",
@@ -717,7 +873,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "L’Outremonde p.102"
+            "source_reference": {
+                "page": "102"
+            }
         },
         {
             "id": "Storm Bow",
@@ -726,7 +884,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "L’Outremonde p.103"
+            "source_reference": {
+                "page": "103"
+            }
         },
         {
             "id": "Doom Crossbow",
@@ -735,7 +895,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "L’Outremonde p.103"
+            "source_reference": {
+                "page": "103"
+            }
         },
         {
             "id": "Butterfly sword",
@@ -744,7 +906,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Le Clan de la Mante p.8"
+            "source_reference": {
+                "page": "8"
+            }
         },
         {
             "id": "Eku",
@@ -753,7 +917,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Le Clan de la Mante p.8"
+            "source_reference": {
+                "page": "8"
+            }
         },
         {
             "id": "Rochin",
@@ -762,7 +928,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Le Clan de la Mante p.8"
+            "source_reference": {
+                "page": "8"
+            }
         },
         {
             "id": "Sai",
@@ -771,7 +939,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Le Clan de la Mante p.8"
+            "source_reference": {
+                "page": "8"
+            }
         },
         {
             "id": "Tonfa",
@@ -780,7 +950,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Le Clan de la Mante p.9"
+            "source_reference": {
+                "page": "9"
+            }
         },
         {
             "id": "Tinbe",
@@ -789,7 +961,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Le Clan de la Mante p.8"
+            "source_reference": {
+                "page": "8"
+            }
         },
         {
             "id": "Ichirō Sapper Ax",
@@ -798,7 +972,9 @@
             "grip_1": "-, (émoussé): Dégâts +2, Dangerosité -3",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.88"
+            "source_reference": {
+                "page": "88"
+            }
         },
         {
             "id": "Magari Yari",
@@ -807,7 +983,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.88"
+            "source_reference": {
+                "page": "88"
+            }
         },
         {
             "id": "Nagae Yari",
@@ -816,7 +994,9 @@
             "grip_1": "N/A",
             "grip_2": "",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.88"
+            "source_reference": {
+                "page": "88"
+            }
         },
         {
             "id": "Nagamaki",
@@ -825,7 +1005,9 @@
             "grip_1": "Encombrant",
             "grip_2": "Dégâts +2, Dangerosité +2",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.88"
+            "source_reference": {
+                "page": "88"
+            }
         },
         {
             "id": "Yoroi-Doshi",
@@ -834,7 +1016,9 @@
             "grip_1": "",
             "grip_2": "Dangerosité +3",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.89"
+            "source_reference": {
+                "page": "89"
+            }
         },
         {
             "id": "Gunbai",
@@ -843,7 +1027,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.90"
+            "source_reference": {
+                "page": "90"
+            }
         },
         {
             "id": "Hooves",
@@ -852,7 +1038,9 @@
             "grip_1": "N/A",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Livre de Règles p.327"
+            "source_reference": {
+                "page": "327"
+            }
         },
         {
             "id": "Kishu: The Oni-Cutting Sword [Blessed Treasure]",
@@ -861,7 +1049,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "L’Outremonde p.113"
+            "source_reference": {
+                "page": "113"
+            }
         },
         {
             "id": "Chikara: Ancestral sword of the Crab [Blessed Treasure]",
@@ -870,7 +1060,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.99"
+            "source_reference": {
+                "page": "99"
+            }
         },
         {
             "id": "Shukujo: Ancestral sword of the Crane [Blessed Treasure]",
@@ -879,7 +1071,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.100"
+            "source_reference": {
+                "page": "100"
+            }
         },
         {
             "id": "Shori: Ancestral sword of the Lion [Blessed Treasure]",
@@ -888,7 +1082,9 @@
             "grip_1": "",
             "grip_2": "Dangerosité +1",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.101"
+            "source_reference": {
+                "page": "101"
+            }
         },
         {
             "id": "Ofushikai: Ancestral sword of the Phoenix [Blessed Treasure]",
@@ -897,7 +1093,9 @@
             "grip_1": "",
             "grip_2": "",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.102"
+            "source_reference": {
+                "page": "102"
+            }
         },
         {
             "id": "Itsuwari: Ancestral sword of the Scorpion [Blessed Treasure]",
@@ -906,7 +1104,9 @@
             "grip_1": "",
             "grip_2": "Dangerosité +1",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.103"
+            "source_reference": {
+                "page": "103"
+            }
         },
         {
             "id": "Hayai: Ancestral sword of the Unicorn [Blessed Treasure]",
@@ -915,7 +1115,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.103"
+            "source_reference": {
+                "page": "103"
+            }
         },
         {
             "id": "Kiro: The lost ancestral sword of the Ki-Rin [Concealed Horror]",
@@ -924,7 +1126,9 @@
             "grip_1": "",
             "grip_2": "N/A",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.104"
+            "source_reference": {
+                "page": "104"
+            }
         },
         {
             "id": "Kunshu: Ancestral sword of the hantei [Blessed Treasure]",
@@ -933,7 +1137,9 @@
             "grip_1": "",
             "grip_2": "Dangerosité +1",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.104"
+            "source_reference": {
+                "page": "104"
+            }
         },
         {
             "id": "Mizutsumi [Blessed Treasure]",
@@ -942,7 +1148,9 @@
             "grip_1": "",
             "grip_2": "Dangerosité +2",
             "description": "",
-            "book_reference": "Celestial Realms - Deathly Turns p.19"
+            "source_reference": {
+                "page": "19"
+            }
         },
         {
             "id": "The Five Akodo Daggers [Blessed Treasure]",
@@ -951,7 +1159,9 @@
             "grip_1": "",
             "grip_2": "Dangerosité +2",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.92"
+            "source_reference": {
+                "page": "92"
+            }
         },
         {
             "id": "The blade with no name: Ancestral sword of the Dragon [Blessed Treasure]",
@@ -960,7 +1170,9 @@
             "grip_1": "",
             "grip_2": "",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.100"
+            "source_reference": {
+                "page": "100"
+            }
         }
     ]
 }

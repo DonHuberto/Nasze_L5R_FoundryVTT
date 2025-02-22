@@ -2,536 +2,712 @@
     "label": "Techniques Shuji",
     "mapping": {
         "description": "system.description",
-        "book_reference": "system.book_reference"
+        "source_reference": "system.source_reference"
     },
     "entries": [
         {
             "id": "Rustling of Leaves",
             "name": "Bruissement des feuilles",
             "description": "",
-            "book_reference": "Livre de Règles p.214"
+            "source_reference": {
+                "page": "214"
+            }
         },
         {
             "id": "Cadence",
             "name": "Cadence",
             "description": "",
-            "book_reference": "Livre de Règles p.214"
+            "source_reference": {
+                "page": "214"
+            }
         },
         {
             "id": "Artisan’s Appraisal",
             "name": "Estimation de l’artisan",
             "description": "",
-            "book_reference": "Livre de Règles p.214"
+            "source_reference": {
+                "page": "214"
+            }
         },
         {
             "id": "Bend with the Storm",
             "name": "Le roseau plie sous la tempête",
             "description": "",
-            "book_reference": "Livre de Règles p.214"
+            "source_reference": {
+                "page": "214"
+            }
         },
         {
             "id": "The Wind Blows Both Ways",
             "name": "Le vent tourne",
             "description": "",
-            "book_reference": "Livre de Règles p.215"
+            "source_reference": {
+                "page": "215"
+            }
         },
         {
             "id": "Prey on the Weak",
             "name": "Malheur aux faibles",
             "description": "",
-            "book_reference": "Livre de Règles p.215"
+            "source_reference": {
+                "page": "215"
+            }
         },
         {
             "id": "Whispers of Court",
             "name": "Murmures de la cour",
             "description": "",
-            "book_reference": "Livre de Règles p.215"
+            "source_reference": {
+                "page": "215"
+            }
         },
         {
             "id": "Feigned Opening",
             "name": "Ouverture feinte",
             "description": "",
-            "book_reference": "Livre de Règles p.215"
+            "source_reference": {
+                "page": "215"
+            }
         },
         {
             "id": "Wolf’s Proposal",
             "name": "Proposition du loup",
             "description": "",
-            "book_reference": "Livre de Règles p.215"
+            "source_reference": {
+                "page": "215"
+            }
         },
         {
             "id": "Ancestry Unearthed",
             "name": "Ascendance dévoilée",
             "description": "",
-            "book_reference": "Livre de Règles p.216"
+            "source_reference": {
+                "page": "216"
+            }
         },
         {
             "id": "Touchstone of Courage",
             "name": "Courage exemplaire",
             "description": "",
-            "book_reference": "Livre de Règles p.216"
+            "source_reference": {
+                "page": "216"
+            }
         },
         {
             "id": "Honest Assessment",
             "name": "Evaluation honnête",
             "description": "",
-            "book_reference": "Livre de Règles p.216"
+            "source_reference": {
+                "page": "216"
+            }
         },
         {
             "id": "The Immovable Hand of Peace",
             "name": "L’immuable main de la paix",
             "description": "",
-            "book_reference": "Livre de Règles p.216"
+            "source_reference": {
+                "page": "216"
+            }
         },
         {
             "id": "Civility Foremost",
             "name": "La courtoisie prime",
             "description": "",
-            "book_reference": "Livre de Règles p.217"
+            "source_reference": {
+                "page": "217"
+            }
         },
         {
             "id": "Weight of Duty",
             "name": "Le fardeau du devoir",
             "description": "",
-            "book_reference": "Livre de Règles p.217"
+            "source_reference": {
+                "page": "217"
+            }
         },
         {
             "id": "Pillar of Calm",
             "name": "Pilier de sérénité",
             "description": "",
-            "book_reference": "Livre de Règles p.217"
+            "source_reference": {
+                "page": "217"
+            }
         },
         {
             "id": "Stonewall Tactics",
             "name": "Tactique d’obstruction",
             "description": "",
-            "book_reference": "Livre de Règles p.218"
+            "source_reference": {
+                "page": "218"
+            }
         },
         {
             "id": "Fanning the Flames",
             "name": "Attiser les flammes",
             "description": "",
-            "book_reference": "Livre de Règles p.218"
+            "source_reference": {
+                "page": "218"
+            }
         },
         {
             "id": "Bravado",
             "name": "Bravade",
             "description": "",
-            "book_reference": "Livre de Règles p.218"
+            "source_reference": {
+                "page": "218"
+            }
         },
         {
             "id": "Rallying Cry",
             "name": "Cri de ralliement",
             "description": "",
-            "book_reference": "Livre de Règles p.218"
+            "source_reference": {
+                "page": "218"
+            }
         },
         {
             "id": "Sensational Distraction",
             "name": "Distraction sensationnelle",
             "description": "",
-            "book_reference": "Livre de Règles p.219"
+            "source_reference": {
+                "page": "219"
+            }
         },
         {
             "id": "Dazzling Performance",
             "name": "Eclatante démonstration",
             "description": "",
-            "book_reference": "Livre de Règles p.219"
+            "source_reference": {
+                "page": "219"
+            }
         },
         {
             "id": "Truth Burns through Lies",
             "name": "La vérité derrière l’écran de fumée",
             "description": "",
-            "book_reference": "Livre de Règles p.219"
+            "source_reference": {
+                "page": "219"
+            }
         },
         {
             "id": "Sear the Wound",
             "name": "Le couteau dans la plaie",
             "description": "",
-            "book_reference": "Livre de Règles p.219"
+            "source_reference": {
+                "page": "219"
+            }
         },
         {
             "id": "Lightning Raid",
             "name": "Raid éclair",
             "description": "",
-            "book_reference": "Livre de Règles p.219"
+            "source_reference": {
+                "page": "219"
+            }
         },
         {
             "id": "Stirring the Embers",
             "name": "Souffler sur les braises",
             "description": "",
-            "book_reference": "Livre de Règles p.219"
+            "source_reference": {
+                "page": "219"
+            }
         },
         {
             "id": "Tributaries of Trade",
             "name": "Affluents du négoce",
             "description": "",
-            "book_reference": "Livre de Règles p.220"
+            "source_reference": {
+                "page": "220"
+            }
         },
         {
             "id": "All in Jest",
             "name": "Aimable plaisanterie",
             "description": "",
-            "book_reference": "Livre de Règles p.220"
+            "source_reference": {
+                "page": "220"
+            }
         },
         {
             "id": "Buoyant Arrival",
             "name": "Entrée en douceur",
             "description": "",
-            "book_reference": "Livre de Règles p.220"
+            "source_reference": {
+                "page": "220"
+            }
         },
         {
             "id": "Ebb and Flow",
             "name": "Flux et reflux",
             "description": "",
-            "book_reference": "Livre de Règles p.220"
+            "source_reference": {
+                "page": "220"
+            }
         },
         {
             "id": "Slippery Maneuvers",
             "name": "Manœuvres d’esquive",
             "description": "",
-            "book_reference": "Livre de Règles p.220"
+            "source_reference": {
+                "page": "220"
+            }
         },
         {
             "id": "Regal Bearing",
             "name": "Port altier",
             "description": "",
-            "book_reference": "Livre de Règles p.221"
+            "source_reference": {
+                "page": "221"
+            }
         },
         {
             "id": "Well of Desire",
             "name": "Puits du désir",
             "description": "",
-            "book_reference": "Livre de Règles p.221"
+            "source_reference": {
+                "page": "221"
+            }
         },
         {
             "id": "Shallow Waters",
             "name": "Sous la surface",
             "description": "",
-            "book_reference": "Livre de Règles p.221"
+            "source_reference": {
+                "page": "221"
+            }
         },
         {
             "id": "Lady Shinjo’s Speed (Unicorn)",
             "name": "Célérité de Dame Shinjo (Licorne)",
             "description": "",
-            "book_reference": "Livre de Règles p.222"
+            "source_reference": {
+                "page": "222"
+            }
         },
         {
             "id": "Lady Doji’s Decree (Crane)",
             "name": "Décret de Dame Doji (Grue)",
             "description": "",
-            "book_reference": "Livre de Règles p.222"
+            "source_reference": {
+                "page": "222"
+            }
         },
         {
             "id": "Courtier’s Resolve",
             "name": "La détermination du courtisan",
             "description": "",
-            "book_reference": "Livre de Règles p.222"
+            "source_reference": {
+                "page": "222"
+            }
         },
         {
             "id": "A Samurai’s Fate",
             "name": "Le destin du samouraï",
             "description": "",
-            "book_reference": "Livre de Règles p.222"
+            "source_reference": {
+                "page": "222"
+            }
         },
         {
             "id": "Lord Bayushi’s Whispers (Scorpion)",
             "name": "Murmures de Sire Bayushi (Scorpion)",
             "description": "",
-            "book_reference": "Livre de Règles p.222"
+            "source_reference": {
+                "page": "222"
+            }
         },
         {
             "id": "Lord Togashi’s Insight (Dragon)",
             "name": "Perspicacité de Sire Togashi (Dragon)",
             "description": "",
-            "book_reference": "Livre de Règles p.223"
+            "source_reference": {
+                "page": "223"
+            }
         },
         {
             "id": "Rouse the Soul",
             "name": "Réveil de l’âme",
             "description": "",
-            "book_reference": "Livre de Règles p.223"
+            "source_reference": {
+                "page": "223"
+            }
         },
         {
             "id": "Lord Akodo’s Roar (Lion)",
             "name": "Rugissement de Sire Akodo (Lion)",
             "description": "",
-            "book_reference": "Livre de Règles p.223"
+            "source_reference": {
+                "page": "223"
+            }
         },
         {
             "id": "All Arts Are One",
             "name": "Tous les arts ne font qu’un",
             "description": "",
-            "book_reference": "Livre de Règles p.223"
+            "source_reference": {
+                "page": "223"
+            }
         },
         {
             "id": "Hidden in Smoke",
             "name": "Masqué par la fumée",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.117"
+            "source_reference": {
+                "page": "117"
+            }
         },
         {
             "id": "Assess Strengths",
             "name": "Evaluer les forces",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.117"
+            "source_reference": {
+                "page": "117"
+            }
         },
         {
             "id": "Unyielding Terms",
             "name": "Termes immuables",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.117"
+            "source_reference": {
+                "page": "117"
+            }
         },
         {
             "id": "Offend the Sensibilities",
             "name": "Froisser les sensibilités",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.118"
+            "source_reference": {
+                "page": "118"
+            }
         },
         {
             "id": "Crackling Laughter",
             "name": "Rire moqueur",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.118"
+            "source_reference": {
+                "page": "118"
+            }
         },
         {
             "id": "All Shall Fear Me",
             "name": "Tous me craindront",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.118"
+            "source_reference": {
+                "page": "118"
+            }
         },
         {
             "id": "Spiteful Loss",
             "name": "Amère défaite",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.118"
+            "source_reference": {
+                "page": "118"
+            }
         },
         {
             "id": "Beware The Smallest Mouse",
             "name": "Gare à la plus petite des souris",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.119"
+            "source_reference": {
+                "page": "119"
+            }
         },
         {
             "id": "Fun and Games",
             "name": "Agréable participation",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.118"
+            "source_reference": {
+                "page": "118"
+            }
         },
         {
             "id": "Foreseen Need",
             "name": "Besoin pressenti",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.119"
+            "source_reference": {
+                "page": "119"
+            }
         },
         {
             "id": "Spin the Web (Kolat)",
             "name": "Tisser sa toile (Kolat)",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude p.249"
+            "source_reference": {
+                "page": "249"
+            }
         },
         {
             "id": "Awe of Heaven (Imperial)",
             "name": "Effroi céleste (Impérial)",
             "description": "",
-            "book_reference": "L’Empire d’Émeraude p.249"
+            "source_reference": {
+                "page": "249"
+            }
         },
         {
             "id": "Look Out",
             "name": "Attention !",
             "description": "",
-            "book_reference": "La Voie des Vagues p.92"
+            "source_reference": {
+                "page": "92"
+            }
         },
         {
             "id": "Bellow of Resolve",
             "name": "Hurlement de soutien",
             "description": "",
-            "book_reference": "La Voie des Vagues p.92"
+            "source_reference": {
+                "page": "92"
+            }
         },
         {
             "id": "Ruse of the Moon's Reflection",
             "name": "Ruse du reflet de la Lune",
             "description": "",
-            "book_reference": "La Voie des Vagues p.93"
+            "source_reference": {
+                "page": "93"
+            }
         },
         {
             "id": "Eyes Up!",
             "name": "Là-haut !",
             "description": "",
-            "book_reference": "La Voie des Vagues p.94"
+            "source_reference": {
+                "page": "94"
+            }
         },
         {
             "id": "Pack Gambit",
             "name": "Manoeuvre de meute",
             "description": "",
-            "book_reference": "La Voie des Vagues p.93"
+            "source_reference": {
+                "page": "93"
+            }
         },
         {
             "id": "Mentor's Guidance",
             "name": "Les conseils du mentor",
             "description": "",
-            "book_reference": "La Voie des Vagues p.93"
+            "source_reference": {
+                "page": "93"
+            }
         },
         {
             "id": "Malleable Formation",
             "name": "Formation mobile",
             "description": "",
-            "book_reference": "La Voie des Vagues p.94"
+            "source_reference": {
+                "page": "94"
+            }
         },
         {
             "id": "Goading Taunt",
             "name": "Raillerie provocante",
             "description": "",
-            "book_reference": "La Voie des Vagues p.95"
+            "source_reference": {
+                "page": "95"
+            }
         },
         {
             "id": "Watch My Back",
             "name": "Protège-moi",
             "description": "",
-            "book_reference": "La Voie des Vagues p.94"
+            "source_reference": {
+                "page": "94"
+            }
         },
         {
             "id": "Illuminate the Way",
             "name": "Eclaire mon chemin",
             "description": "",
-            "book_reference": "La Voie des Vagues p.94"
+            "source_reference": {
+                "page": "94"
+            }
         },
         {
             "id": "Fluent Bargaining",
             "name": "Négociations fructueuses",
             "description": "",
-            "book_reference": "La Voie des Vagues p.94"
+            "source_reference": {
+                "page": "94"
+            }
         },
         {
             "id": "Bond of Heroes",
             "name": "Le lien des héros",
             "description": "",
-            "book_reference": "La Voie des Vagues p.95"
+            "source_reference": {
+                "page": "95"
+            }
         },
         {
             "id": "Tonight, I Am Your Opponent",
             "name": "Ce soir, je suis ton adversaire",
             "description": "",
-            "book_reference": "La Voie des Vagues p.95"
+            "source_reference": {
+                "page": "95"
+            }
         },
         {
             "id": "Wanderer's Resolve",
             "name": "La détermination du vagabond",
             "description": "",
-            "book_reference": "La Voie des Vagues p.95"
+            "source_reference": {
+                "page": "95"
+            }
         },
         {
             "id": "Roar of Encouragement",
             "name": "Hurlement d’encouragement",
             "description": "",
-            "book_reference": "La Voie des Vagues p.94"
+            "source_reference": {
+                "page": "94"
+            }
         },
         {
             "id": "Osano-wo’s Boast (Mantis)",
             "name": "Vantardise d'Osano-wo (Mante)",
             "description": "",
-            "book_reference": "Le Clan de la Mante p.7"
+            "source_reference": {
+                "page": "7"
+            }
         },
         {
             "id": "Borrowed Courage",
             "name": "Courage emprunté",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.99"
+            "source_reference": {
+                "page": "99"
+            }
         },
         {
             "id": "Clouds Parted by Steel",
             "name": "L’acier déchire les nuages",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.99"
+            "source_reference": {
+                "page": "99"
+            }
         },
         {
             "id": "Entice with Falsehoods",
             "name": "Inciter par la fausseté",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.99"
+            "source_reference": {
+                "page": "99"
+            }
         },
         {
             "id": "Fortress of Necessity",
             "name": "Forteresse du besoin",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.100"
+            "source_reference": {
+                "page": "100"
+            }
         },
         {
             "id": "Great Anvil's Measure",
             "name": "Aspect de la grande enclume",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.100"
+            "source_reference": {
+                "page": "100"
+            }
         },
         {
             "id": "Steady Hammer",
             "name": "Stabiliser le marteau",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.100"
+            "source_reference": {
+                "page": "100"
+            }
         },
         {
             "id": "Call the Wild",
             "name": "Appeler la nature",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.101"
+            "source_reference": {
+                "page": "101"
+            }
         },
         {
             "id": "Righteous Example",
             "name": "Exemple vertueux",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.101"
+            "source_reference": {
+                "page": "101"
+            }
         },
         {
             "id": "Sting of Warrior's Pride",
             "name": "Piquer la fierté du guerrier",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.102"
+            "source_reference": {
+                "page": "102"
+            }
         },
         {
             "id": "To Smash the Heart",
             "name": "Ecraser le coeur",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.101"
+            "source_reference": {
+                "page": "101"
+            }
         },
         {
             "id": "Coursing March Chant",
             "name": "Chant du pas de course",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.102"
+            "source_reference": {
+                "page": "102"
+            }
         },
         {
             "id": "Preserve Strength",
             "name": "Préserver ses forces",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.103"
+            "source_reference": {
+                "page": "103"
+            }
         },
         {
             "id": "Your Enemy's Arrows",
             "name": "Les flèches de ton ennemi",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.102"
+            "source_reference": {
+                "page": "102"
+            }
         },
         {
             "id": "Battle of No Escape",
             "name": "Une bataille sans échappatoire",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.103"
+            "source_reference": {
+                "page": "103"
+            }
         },
         {
             "id": "Moment of Glory",
             "name": "Un moment de gloire",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.104"
+            "source_reference": {
+                "page": "104"
+            }
         },
         {
             "id": "Victory Without a Sword",
             "name": "Vaincre sans dégainer",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.104"
+            "source_reference": {
+                "page": "104"
+            }
         },
         {
             "id": "Flowering Deceptions",
             "name": "Les fleurs de la supercherie",
             "description": "",
-            "book_reference": "La Voie des Vagues p.93"
+            "source_reference": {
+                "page": "93"
+            }
         }
     ]
 }

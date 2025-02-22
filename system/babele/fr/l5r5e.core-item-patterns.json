@@ -2,116 +2,152 @@
     "label": "Procédés de fabrication",
     "mapping": {
         "description": "system.description",
-        "book_reference": "system.book_reference"
+        "source_reference": "system.source_reference"
     },
     "entries": [
         {
             "id": "Kakita Pattern",
             "name": "Procédé Kakita",
             "description": "",
-            "book_reference": "L’Outremonde p.109"
+            "source_reference": {
+                "page": "109"
+            }
         },
         {
             "id": "Kenzō Blade",
             "name": "Lame Kenzō",
             "description": "",
-            "book_reference": "L’Outremonde p.109"
+            "source_reference": {
+                "page": "109"
+            }
         },
         {
             "id": "Shirogane Jade Inlay",
             "name": "Incrustation de Jade de Shirogane",
             "description": "",
-            "book_reference": "L’Outremonde p.109"
+            "source_reference": {
+                "page": "109"
+            }
         },
         {
             "id": "Uchema’s Technique",
             "name": "Technique d’Uchema",
             "description": "",
-            "book_reference": "L’Outremonde p.109"
+            "source_reference": {
+                "page": "109"
+            }
         },
         {
             "id": "Yasunori Steel",
             "name": "Acier de Yasunori",
             "description": "",
-            "book_reference": "L’Outremonde p.109"
+            "source_reference": {
+                "page": "109"
+            }
         },
         {
             "id": "Akodo Pattern",
             "name": "Procédé Akodo",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.93"
+            "source_reference": {
+                "page": "93"
+            }
         },
         {
             "id": "Burning Watter Pattern",
             "name": "Procédé de l’eau ardente",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.93"
+            "source_reference": {
+                "page": "93"
+            }
         },
         {
             "id": "Concealment Pattern",
             "name": "Procédé de dissimulation",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.93"
+            "source_reference": {
+                "page": "93"
+            }
         },
         {
             "id": "Deadly Fangs Pattern",
             "name": "Procédé des crocs mortels",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.94"
+            "source_reference": {
+                "page": "94"
+            }
         },
         {
             "id": "Fearsome Snarl Pattern",
             "name": "Procédé du grognement terrifiant",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.94"
+            "source_reference": {
+                "page": "94"
+            }
         },
         {
             "id": "Ichirō Pattern",
             "name": "Procédé Ichirō",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.94"
+            "source_reference": {
+                "page": "94"
+            }
         },
         {
             "id": "Mountain Silk Pattern",
             "name": "Procédé de la soie des montagnes",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.94"
+            "source_reference": {
+                "page": "94"
+            }
         },
         {
             "id": "Screaming Fire Pattern",
             "name": "Procédé du feu hurlant",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.94"
+            "source_reference": {
+                "page": "94"
+            }
         },
         {
             "id": "Toriyama's Endurance Pattern",
             "name": "Procédé de l’endurance de Toriyama",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.94"
+            "source_reference": {
+                "page": "94"
+            }
         },
         {
             "id": "Spirit of the Qamarist Pattern",
             "name": "Procédé de l’esprit des Qamaristes",
             "description": "",
-            "book_reference": "La Voie des Vagues p.117"
+            "source_reference": {
+                "page": "117"
+            }
         },
         {
             "id": "Ghostlands Yodhaniya Pattern",
             "name": "Procédé des Yodhaniya des terres Spectrales",
             "description": "",
-            "book_reference": "La Voie des Vagues p.117"
+            "source_reference": {
+                "page": "117"
+            }
         },
         {
             "id": "Kökejin’s Heart of the Wind Pattern",
             "name": "Procédé du Coeur du vent de Kökejin",
             "description": "",
-            "book_reference": "La Voie des Vagues p.117"
+            "source_reference": {
+                "page": "117"
+            }
         },
         {
             "id": "Agasha Pattern",
             "name": "Le procédé Agasha",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.105"
+            "source_reference": {
+                "page": "105"
+            }
         }
     ]
 }

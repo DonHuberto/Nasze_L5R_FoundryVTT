@@ -2,248 +2,328 @@
     "label": "Bénédictions d'instrument divin",
     "mapping": {
         "description": "system.description",
-        "book_reference": "system.book_reference"
+        "source_reference": "system.source_reference"
     },
     "entries": [
         {
             "id": "Agility of Legend [Armor]",
             "name": "Agilité légendaire [Armure]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.104"
+            "source_reference": {
+                "page": "104"
+            }
         },
         {
             "id": "Animal Transformation [Projectile]",
             "name": "Transformation animale [Projectiles]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.103"
+            "source_reference": {
+                "page": "103"
+            }
         },
         {
             "id": "Aura of Power [General]",
             "name": "Aura de puissance [Générique]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.101"
+            "source_reference": {
+                "page": "101"
+            }
         },
         {
             "id": "Beguile the Senses [General]",
             "name": "Envoûtement des sens [Générique]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.102"
+            "source_reference": {
+                "page": "102"
+            }
         },
         {
             "id": "Binding [Projectile]",
             "name": "Liens [Projectiles]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.103"
+            "source_reference": {
+                "page": "103"
+            }
         },
         {
             "id": "Blessed Revitalization [General]",
             "name": "Revitalisation bénie [Générique]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.102"
+            "source_reference": {
+                "page": "102"
+            }
         },
         {
             "id": "Burst of Force [Armor]",
             "name": "Explosion de force [Armure]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.104"
+            "source_reference": {
+                "page": "104"
+            }
         },
         {
             "id": "Celestial Step [General]",
             "name": "Enjambée céleste [Générique]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.102"
+            "source_reference": {
+                "page": "102"
+            }
         },
         {
             "id": "Cosmic Devastation [General]",
             "name": "Dévastation cosmique [Générique]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.102"
+            "source_reference": {
+                "page": "102"
+            }
         },
         {
             "id": "Deadly Venom [Projectile]",
             "name": "Venin mortel [Projectiles]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.103"
+            "source_reference": {
+                "page": "103"
+            }
         },
         {
             "id": "Defensive [General]",
             "name": "Défensif [Générique]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.101"
+            "source_reference": {
+                "page": "101"
+            }
         },
         {
             "id": "Detonation [Projectile]",
             "name": "Déflagration [Projectiles]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.103"
+            "source_reference": {
+                "page": "103"
+            }
         },
         {
             "id": "Duplication [Projectile]",
             "name": "Duplication [Projectiles]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.103"
+            "source_reference": {
+                "page": "103"
+            }
         },
         {
             "id": "Earthshaker [General]",
             "name": "Bouleversement terrestre [Générique]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.101"
+            "source_reference": {
+                "page": "101"
+            }
         },
         {
             "id": "Flurry [General]",
             "name": "Déluge [Générique]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.102"
+            "source_reference": {
+                "page": "102"
+            }
         },
         {
             "id": "Fortress Breaker [Projectile]",
             "name": "Briseur de défenses [Projectiles]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.103"
+            "source_reference": {
+                "page": "103"
+            }
         },
         {
             "id": "Grand Inspiration [Utility Object]",
             "name": "Inspiration grandiose [Utilitaire]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.104"
+            "source_reference": {
+                "page": "104"
+            }
         },
         {
             "id": "Harm Returned [Armor]",
             "name": "Oeil pour oeil [Armure]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.104"
+            "source_reference": {
+                "page": "104"
+            }
         },
         {
             "id": "Illusions Shattered [Utility Object]",
             "name": "Fin des illusions [Utilitaire]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.104"
+            "source_reference": {
+                "page": "104"
+            }
         },
         {
             "id": "Independence [Melee Weapon]",
             "name": "Indépendance [Corps à corps]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.104"
+            "source_reference": {
+                "page": "104"
+            }
         },
         {
             "id": "Inexorable [Melee Weapon]",
             "name": "Inexorable [Corps à corps]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.104"
+            "source_reference": {
+                "page": "104"
+            }
         },
         {
             "id": "Inviolable [Armor]",
             "name": "Impénétrable [Armure]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.104"
+            "source_reference": {
+                "page": "104"
+            }
         },
         {
             "id": "Mark of Doom [Utility Object]",
             "name": "Marque fatale [Utilitaire]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.104"
+            "source_reference": {
+                "page": "104"
+            }
         },
         {
             "id": "Obliteration [Projectile]",
             "name": "Anéantissement [Projectiles]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.102"
+            "source_reference": {
+                "page": "102"
+            }
         },
         {
             "id": "Overwhelming Force [General]",
             "name": "Force irrésistible [Générique]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.102"
+            "source_reference": {
+                "page": "102"
+            }
         },
         {
             "id": "Overwhelming Radiance [Armor]",
             "name": "Eclat irrésistible [Armure]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.104"
+            "source_reference": {
+                "page": "104"
+            }
         },
         {
             "id": "Resounding Arrival [Melee Weapon]",
             "name": "Apparition retentissante [Corps à corps]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.103"
+            "source_reference": {
+                "page": "103"
+            }
         },
         {
             "id": "Resounding Rhetoric [Utility Object]",
             "name": "Rhétorique retentissante [Utilitaire]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.105"
+            "source_reference": {
+                "page": "105"
+            }
         },
         {
             "id": "Returning [Projectile]",
             "name": "Retour au lanceur [Projectiles]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.103"
+            "source_reference": {
+                "page": "103"
+            }
         },
         {
             "id": "Rising Power [Melee Weapon]",
             "name": "Accumulation de puissance [Corps à corps]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.103"
+            "source_reference": {
+                "page": "103"
+            }
         },
         {
             "id": "Root of Language [Utility Object]",
             "name": "Racine du langage [Utilitaire]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.105"
+            "source_reference": {
+                "page": "105"
+            }
         },
         {
             "id": "Shifting Shape [General]",
             "name": "Forme changeante [Générique]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.102"
+            "source_reference": {
+                "page": "102"
+            }
         },
         {
             "id": "Soothing Words [Utility Object]",
             "name": "Mots de réconfort [Utilitaire]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.104"
+            "source_reference": {
+                "page": "104"
+            }
         },
         {
             "id": "Subterranean Secrets [Utility Object]",
             "name": "Secrets souterrains [Utilitaire]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.105"
+            "source_reference": {
+                "page": "105"
+            }
         },
         {
             "id": "Transfiguration [General]",
             "name": "Transfiguration [Générique]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.102"
+            "source_reference": {
+                "page": "102"
+            }
         },
         {
             "id": "Unassuming [General]",
             "name": "Sans prétention [Générique]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.102"
+            "source_reference": {
+                "page": "102"
+            }
         },
         {
             "id": "Unerring [Projectile]",
             "name": "Infaillible [Projectiles]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.103"
+            "source_reference": {
+                "page": "103"
+            }
         },
         {
             "id": "Unleashed Fury [Melee Weapon]",
             "name": "Déchaînement de fureur [Corps à corps]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.103"
+            "source_reference": {
+                "page": "103"
+            }
         },
         {
             "id": "Unlimited Negation [Utility Object]",
             "name": "Négation universelle [Utilitaire]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.105"
+            "source_reference": {
+                "page": "105"
+            }
         },
         {
             "id": "Vitality [Utility Object]",
             "name": "Vitalité [Utilitaire]",
             "description": "",
-            "book_reference": "La Voie des Vagues p.105"
+            "source_reference": {
+                "page": "105"
+            }
         }
     ]
 }

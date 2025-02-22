@@ -2,116 +2,152 @@
     "label": "Techniques Ninjutsu",
     "mapping": {
         "description": "system.description",
-        "book_reference": "system.book_reference"
+        "source_reference": "system.source_reference"
     },
     "entries": [
         {
             "id": "Deadly Sting",
             "name": "Dard mortel",
             "description": "",
-            "book_reference": "Livre de Règles p.226"
+            "source_reference": {
+                "page": "226"
+            }
         },
         {
             "id": "Skulk",
             "name": "Disparition",
             "description": "",
-            "book_reference": "Livre de Règles p.226"
+            "source_reference": {
+                "page": "226"
+            }
         },
         {
             "id": "Silencing Stroke",
             "name": "Neutralisation",
             "description": "",
-            "book_reference": "Livre de Règles p.227"
+            "source_reference": {
+                "page": "227"
+            }
         },
         {
             "id": "Noxious Cloud",
             "name": "Nuage toxique",
             "description": "",
-            "book_reference": "Livre de Règles p.227"
+            "source_reference": {
+                "page": "227"
+            }
         },
         {
             "id": "Artful Alibi",
             "name": "Alibi artistique",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.114"
+            "source_reference": {
+                "page": "114"
+            }
         },
         {
             "id": "Cunning Distraction",
             "name": "Distraction fourbe",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.115"
+            "source_reference": {
+                "page": "115"
+            }
         },
         {
             "id": "Deceitful Strike",
             "name": "Coup malhonnête",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.115"
+            "source_reference": {
+                "page": "115"
+            }
         },
         {
             "id": "Like a Ghost",
             "name": "Tel un fantôme",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.116"
+            "source_reference": {
+                "page": "116"
+            }
         },
         {
             "id": "Silent Elimination",
             "name": "Immobilisation silencieuse",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.115"
+            "source_reference": {
+                "page": "115"
+            }
         },
         {
             "id": "Slicing Wind Kick",
             "name": "Coup de pied tourbillonnant",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.114"
+            "source_reference": {
+                "page": "114"
+            }
         },
         {
             "id": "Stillness of Death",
             "name": "Quiétude de la mort",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.116"
+            "source_reference": {
+                "page": "116"
+            }
         },
         {
             "id": "To Float or Sink",
             "name": "Flotter ou sombrer",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.115"
+            "source_reference": {
+                "page": "115"
+            }
         },
         {
             "id": "What's Yours is Mine",
             "name": "Ce qui est à toi est à moi",
             "description": "",
-            "book_reference": "Les Cours de Pierre p.114"
+            "source_reference": {
+                "page": "114"
+            }
         },
         {
             "id": "Employ Terrible Thunder",
             "name": "Recourir au terrible tonnerre",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.106"
+            "source_reference": {
+                "page": "106"
+            }
         },
         {
             "id": "Swift Scouting",
             "name": "Reconnaissance éclair",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.106"
+            "source_reference": {
+                "page": "106"
+            }
         },
         {
             "id": "The Patient Viper",
             "name": "La patiente vipère",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.105"
+            "source_reference": {
+                "page": "105"
+            }
         },
         {
             "id": "Vanish in the Shadows",
             "name": "Disparaître dans les ombres",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.105"
+            "source_reference": {
+                "page": "105"
+            }
         },
         {
             "id": "Wreak Havoc",
             "name": "Semer le chaos",
             "description": "",
-            "book_reference": "Les Champs de la Victoire p.107"
+            "source_reference": {
+                "page": "107"
+            }
         }
     ]
 }

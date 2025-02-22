@@ -2,236 +2,312 @@
     "label": "Techniques Kihõ",
     "mapping": {
         "description": "system.description",
-        "book_reference": "system.book_reference"
+        "source_reference": "system.source_reference"
     },
     "entries": [
         {
             "id": "Cleansing Spirit",
             "name": "Esprit purificateur",
             "description": "",
-            "book_reference": "Livre de Règles p.182"
+            "source_reference": {
+                "page": "182"
+            }
         },
         {
             "id": "Grasp the Earth Dragon",
             "name": "Etreindre le Dragon de la Terre",
             "description": "",
-            "book_reference": "Livre de Règles p.182"
+            "source_reference": {
+                "page": "182"
+            }
         },
         {
             "id": "Earth Needs No Eyes",
             "name": "La Terre voit sans yeux",
             "description": "",
-            "book_reference": "Livre de Règles p.183"
+            "source_reference": {
+                "page": "183"
+            }
         },
         {
             "id": "Way of the Earthquake",
             "name": "La voie du séisme",
             "description": "",
-            "book_reference": "Livre de Règles p.183"
+            "source_reference": {
+                "page": "183"
+            }
         },
         {
             "id": "Earthen Fist",
             "name": "Poing de terre",
             "description": "",
-            "book_reference": "Livre de Règles p.183"
+            "source_reference": {
+                "page": "183"
+            }
         },
         {
             "id": "Riding the Clouds",
             "name": "Chevaucher les nuages",
             "description": "",
-            "book_reference": "Livre de Règles p.183"
+            "source_reference": {
+                "page": "183"
+            }
         },
         {
             "id": "Way of the Willow",
             "name": "La voie du saule",
             "description": "",
-            "book_reference": "Livre de Règles p.184"
+            "source_reference": {
+                "page": "184"
+            }
         },
         {
             "id": "Air Fist",
             "name": "Poing de vent",
             "description": "",
-            "book_reference": "Livre de Règles p.184"
+            "source_reference": {
+                "page": "184"
+            }
         },
         {
             "id": "The Great Silence",
             "name": "Silence absolu",
             "description": "",
-            "book_reference": "Livre de Règles p.184"
+            "source_reference": {
+                "page": "184"
+            }
         },
         {
             "id": "Channel the Fire Dragon",
             "name": "Dompter le Dragon du Feu",
             "description": "",
-            "book_reference": "Livre de Règles p.184"
+            "source_reference": {
+                "page": "184"
+            }
         },
         {
             "id": "Breaking Blow",
             "name": "Ki destructeur",
             "description": "",
-            "book_reference": "Livre de Règles p.184"
+            "source_reference": {
+                "page": "184"
+            }
         },
         {
             "id": "Way of the Falling Star",
             "name": "La voie de l’étoile filante",
             "description": "",
-            "book_reference": "Livre de Règles p.185"
+            "source_reference": {
+                "page": "185"
+            }
         },
         {
             "id": "The Body Is an Anvil",
             "name": "Le corps est une enclume",
             "description": "",
-            "book_reference": "Livre de Règles p.186"
+            "source_reference": {
+                "page": "186"
+            }
         },
         {
             "id": "Flame Fist",
             "name": "Poing de flamme",
             "description": "",
-            "book_reference": "Livre de Règles p.186"
+            "source_reference": {
+                "page": "186"
+            }
         },
         {
             "id": "Ride the Water Dragon",
             "name": "Chevaucher le Dragon de l’Eau",
             "description": "",
-            "book_reference": "Livre de Règles p.186"
+            "source_reference": {
+                "page": "186"
+            }
         },
         {
             "id": "Freezing the Lifeblood",
             "name": "Gel de l’énergie vitale",
             "description": "",
-            "book_reference": "Livre de Règles p.186"
+            "source_reference": {
+                "page": "186"
+            }
         },
         {
             "id": "Ki Protection",
             "name": "Ki protecteur",
             "description": "",
-            "book_reference": "Livre de Règles p.187"
+            "source_reference": {
+                "page": "187"
+            }
         },
         {
             "id": "Way of the Seafoam",
             "name": "La voie de l’écume",
             "description": "",
-            "book_reference": "Livre de Règles p.187"
+            "source_reference": {
+                "page": "187"
+            }
         },
         {
             "id": "Water Fist",
             "name": "Poing d’eau",
             "description": "",
-            "book_reference": "Livre de Règles p.187"
+            "source_reference": {
+                "page": "187"
+            }
         },
         {
             "id": "Death Touch",
             "name": "Caresse de la mort",
             "description": "",
-            "book_reference": "Livre de Règles p.188"
+            "source_reference": {
+                "page": "188"
+            }
         },
         {
             "id": "Touch the Void Dragon",
             "name": "Effleurer le Dragon du Vide",
             "description": "",
-            "book_reference": "Livre de Règles p.188"
+            "source_reference": {
+                "page": "188"
+            }
         },
         {
             "id": "Still the Elements",
             "name": "Figer les éléments",
             "description": "",
-            "book_reference": "Livre de Règles p.188"
+            "source_reference": {
+                "page": "188"
+            }
         },
         {
             "id": "Way of the Edgeless Sword",
             "name": "La voie du sabre sans tranchant",
             "description": "",
-            "book_reference": "Livre de Règles p.188"
+            "source_reference": {
+                "page": "188"
+            }
         },
         {
             "id": "Mercy of the Stone Fortune",
             "name": "Mercy of the Stone Fortune (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         },
         {
             "id": "Rejuvenating Breath",
             "name": "Rejuvenating Breath (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         },
         {
             "id": "Shadow of Ancient Peaks",
             "name": "Shadow of Ancient Peaks (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         },
         {
             "id": "Cutting Wind Talons",
             "name": "Cutting Wind Talons (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         },
         {
             "id": "Grace of the Gentle Breeze",
             "name": "Grace of the Gentle Breeze (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         },
         {
             "id": "Step of the Storm",
             "name": "Step of the Storm (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         },
         {
             "id": "Blistering Retribution",
             "name": "Blistering Retribution (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         },
         {
             "id": "Dance of Fire",
             "name": "Dance of Fire (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         },
         {
             "id": "Volcanic Fist",
             "name": "Volcanic Fist (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         },
         {
             "id": "Fist of Spreading Venom",
             "name": "Fist of Spreading Venom (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         },
         {
             "id": "River’s Flowing Stride",
             "name": "River’s Flowing Stride (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         },
         {
             "id": "Seeping Ki",
             "name": "Seeping Ki (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         },
         {
             "id": "Aura Awareness",
             "name": "Aura Awareness (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         },
         {
             "id": "Essence of Stillness",
             "name": "Essence of Stillness (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         },
         {
             "id": "Eternal Mind’s Gate",
             "name": "Eternal Mind’s Gate (WIP)",
             "description": "",
-            "book_reference": "Décret de la nature"
+            "source_reference": {
+                "page": ""
+            }
         }
     ]
 }

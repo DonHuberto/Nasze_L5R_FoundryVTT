@@ -2,104 +2,136 @@
     "label": "Techniques d'Inversions",
     "mapping": {
         "description": "system.description",
-        "book_reference": "system.book_reference"
+        "source_reference": "system.source_reference"
     },
     "entries": [
         {
             "id": "One Within the Void",
             "name": "S’unir au Vide",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.115"
+            "source_reference": {
+                "page": "115"
+            }
         },
         {
             "id": "Sight beyond Existence",
             "name": "Voir au-delà de l’existence",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.116"
+            "source_reference": {
+                "page": "116"
+            }
         },
         {
             "id": "Whispered Blade",
             "name": "Lame murmurée",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.115"
+            "source_reference": {
+                "page": "115"
+            }
         },
         {
             "id": "Witness the End",
             "name": "Assister à la fin",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.115"
+            "source_reference": {
+                "page": "115"
+            }
         },
         {
             "id": "Distance Distorted",
             "name": "Distance déformée",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.116"
+            "source_reference": {
+                "page": "116"
+            }
         },
         {
             "id": "Ethereal Flicker",
             "name": "Lueur éthérée",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.117"
+            "source_reference": {
+                "page": "117"
+            }
         },
         {
             "id": "The Lotus Bloom",
             "name": "Le lotus fleurit",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.117"
+            "source_reference": {
+                "page": "117"
+            }
         },
         {
             "id": "Hurl from the Stream",
             "name": "Extirper des flots",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.118"
+            "source_reference": {
+                "page": "118"
+            }
         },
         {
             "id": "Moon on the Shifting Sea",
             "name": "Reflet de lune sur les vagues",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.118"
+            "source_reference": {
+                "page": "118"
+            }
         },
         {
             "id": "Shroud in Solitude",
             "name": "Drapé de solitude",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.117"
+            "source_reference": {
+                "page": "117"
+            }
         },
         {
             "id": "Reality Stitch",
             "name": "Réalités entrelacées",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.119"
+            "source_reference": {
+                "page": "119"
+            }
         },
         {
             "id": "Shattering Caress",
             "name": "Caresse destructrice",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.119"
+            "source_reference": {
+                "page": "119"
+            }
         },
         {
             "id": "Three Heartbeats",
             "name": "Trois battements de coeur",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.119"
+            "source_reference": {
+                "page": "119"
+            }
         },
         {
             "id": "Essence Eternal",
             "name": "Essence éternelle",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.120"
+            "source_reference": {
+                "page": "120"
+            }
         },
         {
             "id": "Slip the Cycle",
             "name": "Passer un cycle",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.120"
+            "source_reference": {
+                "page": "120"
+            }
         },
         {
             "id": "Unweave",
             "name": "Détisser",
             "description": "",
-            "book_reference": "Les Royaumes Célestes p.119"
+            "source_reference": {
+                "page": "119"
+            }
         }
     ]
 }
