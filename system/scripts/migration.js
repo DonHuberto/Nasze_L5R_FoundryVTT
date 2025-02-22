@@ -176,13 +176,13 @@ export class MigrationL5r5e {
 
                 switch (docType) {
                     case "Actor":
-                        updateData = MigrationL5r5e._migrateActorData(doc);
+                        updateData = MigrationL5r5e._migrateActorData(doc, options);
                         break;
                     case "Item":
-                        updateData = MigrationL5r5e._migrateItemData(doc);
+                        updateData = MigrationL5r5e._migrateItemData(doc, options);
                         break;
                     case "Scene":
-                        updateData = MigrationL5r5e._migrateSceneData(doc);
+                        updateData = MigrationL5r5e._migrateSceneData(doc, options);
                         break;
                 }
                 if (foundry.utils.isEmpty(updateData)) {
