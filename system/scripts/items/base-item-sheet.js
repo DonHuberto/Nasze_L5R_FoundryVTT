@@ -74,7 +74,7 @@ export class BaseItemSheetL5r5e extends ItemSheet {
      */
     async _updateObject(event, formData) {
         // If we have an official source then store the id instead
-        if(event.currentTarget?.name === "system.source_reference.source") {
+        if(event.type == 'submit' || event.currentTarget?.name === "system.source_reference.source") {
             Object.entries(CONFIG.l5r5e.sourceReference).forEach(([id, value]) => {
                 if(game.i18n.localize(value.label) === formData["system.source_reference.source"]) {
                     formData["system.source_reference.source"] = id;
