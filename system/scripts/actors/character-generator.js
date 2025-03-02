@@ -380,7 +380,7 @@ export class CharacterGenerator {
         return {
             img: newImg,
             name: newName,
-            data: actorDatas,
+            system: actorDatas,
         };
     }
 
