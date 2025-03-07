@@ -147,6 +147,7 @@ button {
         }
         > .item {
             flex: 0 0 1.5rem;
+            width: 1.5rem;
             height: 1.5rem;
             line-height: 1.5rem;
             margin: 0.1rem;
@@ -1000,7 +1001,7 @@ l5r5e-multi-select {
         &.overflowing {
             // Apply mask-image with linear gradient fade-out effect
             mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
-        
+
             // Transition for smooth height change and mask removal
             transition: height 0.3s ease, mask-image 0.3s ease;
         }
