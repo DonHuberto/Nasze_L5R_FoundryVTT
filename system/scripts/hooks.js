@@ -226,230 +226,183 @@ export default class HooksL5r5e {
     }
 
     /**
-     * Compendium display
+     * Compendium display (Add filters)
      */
     static async renderCompendium(app, html, data) {
         if (app.collection.documentName === "Item") {
             const content = await app.collection.getDocuments();
-            let sources_in_this_compendium = new Set([]);
-            let filters_to_show = {
+            const sourcesInThisCompendium = new Set([]);
+            const filtersToShow = {
                 rank: false,
                 rarity: false,
                 source: false,
                 ring: false,
-            }
+            };
+
+            // Cache
+            const header = html.find(".directory-header");
+            const entries = html.find(".directory-item");
 
             // Add additional data to the entries to make it faster to lookup.
             // Add Ring/rank/rarity information
             for (const document of content) {
-                const entry = html.find(`[data-document-id="${document.id}"]`);
-                if(document.system?.rank) {
+                const entry = entries.filter(`[data-document-id="${document.id}"]`);
+
+                if (document.system?.rank) {
+                    filtersToShow.rank = true;
                     entry.data("rank", document.system.rank);
-                    filters_to_show.rank = true;
                 }
 
-                if(document.system?.source_reference) {
-                    sources_in_this_compendium.add(document.system.source_reference.source);
+                if (document.system?.source_reference) {
+                    filtersToShow.source = true;
+                    sourcesInThisCompendium.add(document.system.source_reference.source);
                     entry.data("source", document.system.source_reference);
-                    filters_to_show.source = true;
                 }
 
-                if(document.system?.ring) {
+                if (document.system?.ring) {
+                    filtersToShow.ring = true;
                     entry.data("ring", document.system.ring);
-                    filters_to_show.ring = true
                 }
 
-                if(document.system?.rarity) {
+                if (document.system?.rarity) {
+                    filtersToShow.rarity = true;
                     entry.data("rarity", document.system.rarity);
-                    filters_to_show.rarity = true;
                 }
 
                 // Add ring/rank/rarity information on the item in the compendium view
-                if(document.system?.ring || document.system?.rarity || document.system?.ring) {
-                    const ring_rarity_rank = await renderTemplate(`${CONFIG.l5r5e.paths.templates}compendium/ring-rarity-rank.html`, document.system);
-                    entry.append(ring_rarity_rank);
+                if (document.system?.ring || document.system?.rarity || document.system?.rank) {
+                    const ringRarityRank = await renderTemplate(`${CONFIG.l5r5e.paths.templates}compendium/ring-rarity-rank.html`, document.system);
+                    entry.append(ringRarityRank);
                 }
             }
 
-            //Setup what the player cannot see.
-            const officialContent = game.settings.get(CONFIG.l5r5e.namespace, "compendium-official-content-for-players");
-            const unofficialContent = game.settings.get(CONFIG.l5r5e.namespace, "compendium-unofficial-content-for-players");
-            const unavailableSourceForPlayers = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references")
-            .filter((element) => {
-                if(CONFIG.l5r5e.sourceReference[element]) {
+            // Setup filters
+            const officialContent             = game.settings.get(CONFIG.l5r5e.namespace, "compendium-official-content-for-players");
+            const unofficialContent           = game.settings.get(CONFIG.l5r5e.namespace, "compendium-unofficial-content-for-players");
+            const allCompendiumReferences     = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references")
+            const hideEmptySourcesFromPlayers = game.settings.get(CONFIG.l5r5e.namespace, "compendium-hide-empty-sources-from-players");
+
+            const unavailableSourceForPlayers = allCompendiumReferences.filter((element) => {
+                if (CONFIG.l5r5e.sourceReference[element]) {
                     return officialContent.length > 0 ? !officialContent.includes(element) : false;
                 }
                 return unofficialContent.length > 0 ? !unofficialContent.includes(element) : false;
             });
 
-            // Create the function that will hide/show elements based on various factors
-            const header = html.find(".directory-header");
-            const applyCompendiumFilter = function() {
-                const rank_filter = header.find(".rank-filter").find(".selected").data("rank");
-                const user_filter = header.find("l5r5e-multi-select").val();
-                const ring_filter = header.find(".ring-filter").find(".selected").data("ring");
-                const rarity_filter = header.find(".rarity-filter").find(".selected").data("rarity");
+            // Create filter function
+            const applyCompendiumFilter = () => {
+                const userFilter = header.find("l5r5e-multi-select").val();
+                const rankFilter = header.find(".rank-filter .selected").data("rank");
+                const ringFilter = header.find(".ring-filter .selected").data("ring");
+                const rarityFilter = header.find(".rarity-filter .selected").data("rarity");
 
-                $(html).find(".directory-item").each(function() {
+                entries.each(function () {
                     const lineSource = $(this).data("source")?.source;
-                    if(lineSource === null || lineSource === undefined) {
-                        return; // We might have stuff in the compendium view that does not have a source (folders etc.) Ignore those.
+
+                    // We might have stuff in the compendium view that does not have a source (folders etc.) Ignore those.
+                    if (lineSource === null || lineSource === undefined) {
+                        return;
                     }
 
-                    let should_show = true;
-                    if(unavailableSourceForPlayers.includes(lineSource)) {
-                        if(game.user.isGM) {
-                            should_show &= true;
-                            $(this).addClass("not-for-players");
-                            $(this).attr("data-tooltip", game.i18n.localize("l5r5e.compendium.not_for_players"));
-                        }
-                        else {
-                            should_show &= false;
-                        }
-                    }
+                    let shouldShow = true;
 
-                    if(lineSource === "" && game.settings.get(CONFIG.l5r5e.namespace, "compendium-hide-empty-sources-from-players")) {
-                        if(game.user.isGM) {
-                            should_show &= true;
-                            $(this).addClass("not-for-players");
-                            $(this).attr("data-tooltip", game.i18n.localize("l5r5e.compendium.not_for_players"))
-                        }
-                        else {
-                            should_show &= false;
+                    // Handle unavailable sources
+                    if (unavailableSourceForPlayers.includes(lineSource)) {
+                        if (game.user.isGM) {
+                            shouldShow &= true;
+                            $(this)
+                                .addClass("not-for-players")
+                                .attr("data-tooltip", game.i18n.localize("l5r5e.compendium.not_for_players"));
+                        } else {
+                            shouldShow &= false;
                         }
                     }
 
-                    if(rank_filter) {
-                        should_show &= $(this).data("rank") == rank_filter;
+                    // Handle empty sources
+                    if (lineSource === "" && hideEmptySourcesFromPlayers) {
+                        if (game.user.isGM) {
+                            shouldShow &= true;
+                            $(this)
+                                .addClass("not-for-players")
+                                .attr("data-tooltip", game.i18n.localize("l5r5e.compendium.not_for_players"));
+                        } else {
+                            shouldShow &= false;
+                        }
                     }
 
-                    if(user_filter.length) {
-                        should_show &= user_filter.includes(lineSource);
+                    // Apply filters
+                    if (rankFilter) {
+                        shouldShow &= $(this).data("rank") == rankFilter;
+                    }
+                    if (userFilter.length) {
+                        shouldShow &= userFilter.includes(lineSource);
+                    }
+                    if (ringFilter) {
+                        shouldShow &= $(this).data("ring") == ringFilter;
+                    }
+                    if (rarityFilter >= 0) {
+                        shouldShow &= $(this).data("rarity") == rarityFilter;
                     }
 
-                    if(ring_filter) {
-                        should_show &= $(this).data("ring") == ring_filter
-                    }
-
-                    if(rarity_filter >= 0) {
-                        should_show &= $(this).data("rarity") == rarity_filter
-                    }
-
-                    if(should_show) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
+                    // Show or hide this entry based on the result
+                    shouldShow ? $(this).show() : $(this).hide();
                 });
-            }
+            };
 
-            // Rank filter: Add the HTML element and on click handling
-            if (filters_to_show.rank) {
-                header.append(await renderTemplate(`${CONFIG.l5r5e.paths.templates}compendium/rank-filter.html`, {type: "rank", number:[1,2,3,4,5]}));
-                header.find(".rank-filter").children().each(function() {
-                    $(this).on("click", (event, rank=$(this).data("rank")) => {
-                        const already_selected = $(event.target).hasClass("selected");
-                        $(html).find(".rank-filter").children().each(function() {
-                            $(this).removeClass("selected");
-                        });
+            // Filter setup
+            const addFilter = async (filterType, templateFile, templateData) => {
+                if (!filtersToShow[filterType]) {
+                    return;
+                }
+                const filterTemplate = await renderTemplate(
+                    `${CONFIG.l5r5e.paths.templates}compendium/${templateFile}.html`,
+                    templateData
+                );
+                header.append(filterTemplate);
 
-                        // Only select valid values
-                        if(rank) {
-                            $(event.target).addClass("selected");
-                        }
-                        // we click the same button to unselect
-                        if(already_selected) {
-                            $(event.target).removeClass("selected");
-                        }
-
+                header.find(`.${filterType}-filter`).children().each(function () {
+                    $(this).on("click", (event) => {
+                        const selected = $(event.target).hasClass("selected");
+                        header.find(`.${filterType}-filter`).children().removeClass("selected");
+                        $(event.target).toggleClass("selected", !selected);
                         applyCompendiumFilter();
                     });
                 });
-            }
+            };
 
-            if(filters_to_show.rarity) {
-                header.append(await renderTemplate(`${CONFIG.l5r5e.paths.templates}compendium/rank-filter.html`, {type: "rarity", number:[0,1,2,3,4,5,6,7,8,9,10]}));
-                header.find(".rarity-filter").children().each(function() {
-                    $(this).on("click", (event, rarity=$(this).data("rarity")) => {
-                        const already_selected = $(event.target).hasClass("selected");
-                        $(html).find(".rarity-filter").children().each(function() {
-                            $(this).removeClass("selected");
-                        });
+            // Add Rank, Rarity, Ring Filters
+            await Promise.all([
+                addFilter('rank'  , 'rank-filter', { type: "rank", number: [1, 2, 3, 4, 5] }),
+                addFilter('rarity', 'rank-filter', { type: "rarity", number: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }),
+                addFilter('ring'  , 'ring-filter', {}),
+            ]);
 
-                        // Only select valid values
-                        if(Number.isInteger(rarity)) {
-                            $(event.target).addClass("selected");
-                        }
-                        // we click the same button to unselect
-                        if(already_selected) {
-                            $(event.target).removeClass("selected");
-                        }
-
-                        applyCompendiumFilter();
-                    });
-                });
-            }
-
-            if(filters_to_show.ring) {
-                header.append(await renderTemplate(`${CONFIG.l5r5e.paths.templates}compendium/ring-filter.html`));
-                header.find(".ring-filter").children().each(function() {
-                    $(this).on("click", (event, ring=$(this).data("ringid")) => {
-                        const already_selected = $(event.target).hasClass("selected");
-                        $(html).find(".ring-filter").children().each(function() {
-                            $(this).removeClass("selected");
-                        });
-
-                        if(ring) { // Do not keep the "reset" button highlighted
-                            $(event.target).addClass("selected");
-                        }
-                        // we click the same button to unselect
-                        if(already_selected) {
-                            $(event.target).removeClass("selected");
-                        }
-
-                        applyCompendiumFilter();
-                    });
-                });
-            }
-
-            if(filters_to_show.source) {
-                // Setup the source select and add it to the document with change callback
-                const selectable_sources = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references")
-                .map((reference) => {
-                    return {
-                        disable: !sources_in_this_compendium.has(reference),
-                        source: reference
-                    }
-                })
-                .map((reference) => {
-                    return {
-                        value: reference.source,
-                        label: CONFIG.l5r5e.sourceReference[reference.source]?.label ?? reference.source,
-                        translate: true,
-                        group: CONFIG.l5r5e.sourceReference[reference.source]?.type.split(",")[0] ?? "l5r5e.multiselect.sources_categories.others",
-                        disabled: reference.disable
-                    }
-                });
-
+            if (filtersToShow.source) {
+                // Build the source select
+                const selectableSources = allCompendiumReferences.map((reference) => ({
+                    value: reference,
+                    label: CONFIG.l5r5e.sourceReference[reference]?.label ?? reference,
+                    translate: true,
+                    group: CONFIG.l5r5e.sourceReference[reference]?.type.split(",")[0] ?? "l5r5e.multiselect.sources_categories.others",
+                    disabled: !sourcesInThisCompendium.has(reference) || (!game.user.isGM && unavailableSourceForPlayers.includes(reference))
+                }));
                 const filterSourcesBox = L5r5eHtmlMultiSelectElement.create({
                     name: "filter-sources",
-                    options: selectable_sources,
+                    options: selectableSources,
                     localize: true,
                 });
                 header.append(filterSourcesBox.outerHTML);
-                $("l5r5e-multi-select").on("change", (event) => {
-                    applyCompendiumFilter();
-                });
+                $("l5r5e-multi-select").on("change", applyCompendiumFilter);
 
-                // If gm add a extra button to easily filter the content to see the same stuff as a player
+                // If gm add an extra button to easily filter the content to see the same stuff as a player
                 if (game.user.isGM && unavailableSourceForPlayers.length > 0) {
                     const buttonHTML = `<button type="button" class="gm" data-tooltip="${game.i18n.localize('l5r5e.multiselect.player_filter_tooltip')}">`
-                    + game.i18n.localize('l5r5e.multiselect.player_filter_label')
-                    + '</button>'
+                        + game.i18n.localize('l5r5e.multiselect.player_filter_label')
+                        + '</button>'
 
-                    const filterPlayerView = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references")
+                    const filterPlayerView = allCompendiumReferences
                         .filter((item) => !unavailableSourceForPlayers.includes(item))
-                        .filter((item) => sources_in_this_compendium.has(item));
+                        .filter((item) => sourcesInThisCompendium.has(item));
 
                     $(buttonHTML).appendTo($(header).find("l5r5e-multi-select")).click(function() {
                         header.find("l5r5e-multi-select")[0].value = filterPlayerView;
@@ -457,16 +410,29 @@ export default class HooksL5r5e {
                 }
             }
 
-            // TODO find a better way
+            // TODO: This delay is a workaround and should be addressed in another way.
             // This is ugly but if we hide the content too early then it won't be hidden for some reason.
             // Current guess is that the foundry search filter is doing something.
             // Adding a delay here so that we hide the content. This will fail on slow computers/network...
             setTimeout(() => {
                 applyCompendiumFilter();
-            }, 250)
+            }, 250);
 
             return false;
         }
+    }
+
+    static updateCompendium(pack, documents, options, userId) {
+        documents.forEach((document) => {
+            const inc_reference = document?.system?.source_reference?.source?.trim();
+            if (!!inc_reference) {
+                const references = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references");
+                if (!references.includes(inc_reference)) {
+                    references.push(inc_reference);
+                    game.settings.set(CONFIG.l5r5e.namespace, "all-compendium-references", references);
+                }
+            }
+        });
     }
 
     /**
@@ -528,19 +494,6 @@ export default class HooksL5r5e {
         if (message?.rolls?.[0]?.l5r5e?.history) {
             context.blind = true;
         }
-    }
-
-    static updateCompendium(pack, documents, options, userId) {
-        documents.forEach((document) => {
-            const inc_reference = document?.system?.source_reference?.source;
-            if(inc_reference) {
-                const references = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references");
-                if(!references.includes(inc_reference)) {
-                    references.push(inc_reference);
-                    game.settings.set(CONFIG.l5r5e.namespace, "all-compendium-references", references);
-                }
-            }
-        })
     }
 
     /**

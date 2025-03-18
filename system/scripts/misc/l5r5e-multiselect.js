@@ -117,6 +117,7 @@ export class L5r5eHtmlMultiSelectElement extends AbstractMultiSelectElement {
         }
 
         // Disable selected options
+        const hideDisabled = game.settings.get(CONFIG.l5r5e.namespace, "compendium-hide-disabled-sources");
         for (const option of this.#select) {
             if (this._value.has(option.value)) {
                 option.disabled = true;
@@ -125,6 +126,7 @@ export class L5r5eHtmlMultiSelectElement extends AbstractMultiSelectElement {
             }
             if (this.#disabledValues.has(option.value)) {
                 option.disabled = true;
+                option.hidden = hideDisabled;
                 continue;
             }
             option.disabled = false;

@@ -35,8 +35,12 @@
             "Hint": "Définir la hauteur par défaut des fenêtres de type Item (techniques, armes...) en pixels"
         },
         "Compendium": {
+            "HideDisabledSources": {
+                "Title": "[Compendium] Cacher les sources vides",
+                "Hint": "Cache les sources sans éléments du filtre source."
+            },
             "HideEmptySourcesFromPlayers": {
-                "Title": "[Compendium] Cacher les sources sans référence",
+                "Title": "[Compendium] Cacher les éléments ayant une référence vide",
                 "Hint": "Utile pour cacher les éléments qui sont partiellement terminés."
             },
             "AllowedOfficialSources": {
@@ -91,6 +95,7 @@
             "placeholder": "Sources à filtrer",
             "player_filter_label": "Filtre joueur",
             "player_filter_tooltip": "Applique le filtre des joueurs",
+            "already_in_filter": "Filtre déjà appliqué",
             "sources_categories": {
                 "rules": "Règles",
                 "adventures": "Aventures",

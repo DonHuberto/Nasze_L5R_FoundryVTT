@@ -334,9 +334,8 @@ export class MigrationL5r5e {
                     updateData["system.source_reference.page"] = bookReference[2];
                 }
 
-                // TODO uncomment before release
                 // Delete the old key
-                //updateData["system.-=book_reference"] = null;
+                updateData["system.-=book_reference"] = null;
             }
         }
         // ***** End of 1.12.3 *****

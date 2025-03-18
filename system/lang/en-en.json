@@ -35,8 +35,12 @@
             "Hint": "Set the default height for 'Items' windows types (techniques, weapons...), in pixels"
         },
         "Compendium": {
+            "HideDisabledSources": {
+                "Title": "[Compendium] Hide sources filter without reference",
+                "Hint": "Hide empty source with no elements in source filter."
+            },
             "HideEmptySourcesFromPlayers": {
-                "Title": "[Compendium] Hide sources without a reference",
+                "Title": "[Compendium] Hide elements with empty reference",
                 "Hint": "Basically require a reference to be set in order for players to view the content in compendiums"
             },
             "AllowedOfficialSources": {
@@ -91,6 +95,7 @@
             "placeholder": "Filter Sources",
             "player_filter_label": "Player filter",
             "player_filter_tooltip": "Apply player filter",
+            "already_in_filter": "Already in filter",
             "sources_categories": {
                 "rules": "Rules",
                 "adventures": "Adventures",

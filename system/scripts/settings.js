@@ -98,6 +98,15 @@ export const RegisterSettings = function () {
         scope: "world",
     });
 
+    game.settings.register(CONFIG.l5r5e.namespace, "compendium-hide-disabled-sources", {
+        name: "SETTINGS.Compendium.HideDisabledSources.Title",
+        hint: "SETTINGS.Compendium.HideDisabledSources.Hint",
+        type: Boolean,
+        default: true,
+        config: true,
+        scope: "world",
+    });
+
     /* ------------------------------------ */
     /* Client preferences                   */
     /* ------------------------------------ */
