@@ -214,12 +214,12 @@
             "toolbox": {
                 "title": "GM ToolBox",
                 "difficulty_hidden": "Cambiar la dificultad visible",
-                "difficulty": "Cambiar dificultad (derecha: añadir, izquierda: sustraer, central: NO 2)",
-                "sleep": "Descanso confortable para todos los personajes (Eliminar fatiga = Agua x2. (Click derecho: sólo a los personajes seleccionados. Izquierdo: a todos los actores)",
+                "difficulty": "Cambiar dificultad (Izquierda: añadir, Derecha: sustraer, central: NO 2)",
+                "sleep": "Descanso confortable para todos los personajes (Eliminar fatiga = Agua x2. (Click Izquierdo: sólo a los personajes seleccionados. Derecho: a todos los actores)",
                 "sleep_info": "Los personajes han dormido bien.",
-                "scene_end": "Final de la escena (El Conflicto y la Fatiga de los personajes se reduce hasta la mitad del máximo del valor (Click derecho: sólo a los personajes seleccionados. Izquierdo: a todos los actores)",
+                "scene_end": "Final de la escena (El Conflicto y la Fatiga de los personajes se reduce hasta la mitad del máximo del valor (Click Izquierdo: sólo a los personajes seleccionados. Derecho: a todos los actores)",
                 "scene_end_info": "La tensión de la escena por fin disminuye.",
-                "reset_void": "Comienzo de la partida: Resetea los puntos de Vacío de los jugadores (Click derecho: sólo a los personajes seleccionados. Izquierdo: a todos los actores)",
+                "reset_void": "Comienzo de la partida: Resetea los puntos de Vacío de los jugadores (Click Izquierdo: sólo a los personajes seleccionados. Derecho: a todos los actores)",
                 "reset_void_info": "Se han adjudicado los puntos de Vacío."
             },
             "monitor": {
@@ -228,7 +228,7 @@
                 "add_selected_tokens": "Add selected tokens",
                 "honor_glory_status": "H/G/E",
                 "focus_vigilance": "Con./Ale.",
-                "mouse_control": "Right click +1, left: -1, middle: reset to 0"
+                "mouse_control": "Click Izquierdo +1, Derecho: -1, middle: set to 0"
             }
         },
         "weapons": {

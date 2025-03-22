@@ -214,12 +214,12 @@
             "toolbox": {
                 "title": "GM ToolBox",
                 "difficulty_hidden": "Modifier la visibilité de la difficulté",
-                "difficulty": "Modifier la difficulté (Clic Droit: ajout, Gauche: soustraction, Milieu: ND 2)",
-                "sleep": "Repos confortable pour tous les personnages (Enlève Eau x2 de fatigue. Clic Droit: Personnages contrôlés uniquement. Gauche: Tous)",
+                "difficulty": "Modifier la difficulté (Clic : Gauche ajout, Droit: soustraction, Milieu: ND 2)",
+                "sleep": "Repos confortable pour tous les personnages (Enlève Eau x2 de fatigue. Clic Gauche: Personnages contrôlés uniquement. Gauche: Tous)",
                 "sleep_info": "Les personnages ont passé une bonne nuit de sommeil.",
-                "scene_end": "Fin de scène (Conflit et Fatigue à moitié pour tous les personnages dont la valeur dépasse ce seuil. Clic Droit: Personnages contrôlés uniquement. Gauche: Tous)",
+                "scene_end": "Fin de scène (Conflit et Fatigue à moitié pour tous les personnages dont la valeur dépasse ce seuil. Clic Gauche: Personnages contrôlés uniquement. Droit: Tous)",
                 "scene_end_info": "La tension de la scène retombe enfin",
-                "reset_void": "Début de partie : Réinitialiser les points du vide des joueurs (Clic Droit: Personnages contrôlés uniquement. Gauche: Tous)",
+                "reset_void": "Début de partie : Réinitialiser les points du vide des joueurs (Clic Gauche: Personnages contrôlés uniquement. Droit: Tous)",
                 "reset_void_info": "Les points du vide ont été attribués"
             },
             "monitor": {
@@ -228,7 +228,7 @@
                 "add_selected_tokens": "Ajouter les tokens sélectionnés",
                 "honor_glory_status": "H/G/S",
                 "focus_vigilance": "Att./Vig.",
-                "mouse_control": "Click Droit +1, Gauche: -1, Milieu: Remise à 0"
+                "mouse_control": "Click Gauche +1, Droit: -1, Milieu: Remise à 0"
             }
         },
         "weapons": {

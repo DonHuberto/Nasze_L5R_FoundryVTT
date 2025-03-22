@@ -13,6 +13,7 @@ Date format : day/month/year
   - Add option for GM to limit what sources is being displayed to the players in compendiums. GM can still see everything and give players items/techniques if needed.
 - Fixed Npc Generator : Actor now update correctly.
 - Fixed the sidebar's icons width on collapsed state.
+- Fixed Left/Right Click order on Gm Tools/Monitor tooltips.
 
 ## 1.12.2 - 16/09/2024 - Bugfixes
 - Modified : The checkbox `reverseFatigueBar` is now a drop-down with `none`/`fatigue`/`strife`/`both`, and is now an client preference.

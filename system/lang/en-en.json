@@ -214,12 +214,12 @@
             "toolbox": {
                 "title": "GM ToolBox",
                 "difficulty_hidden": "Change difficulty visibility",
-                "difficulty": "Change difficulty (right click: add, left: subtract, middle: TN 2)",
-                "sleep": "Comfortable rest for all characters (Remove Water x2 fatigue. Right click: assigned characters only. Left: All actors)",
+                "difficulty": "Change difficulty (Left click: add, Right: subtract, Middle: TN 2)",
+                "sleep": "Comfortable rest for all characters (Remove Water x2 fatigue. Left click: assigned characters only. Right: All actors)",
                 "sleep_info": "The characters had a good night's sleep.",
-                "scene_end": "End of scene (Conflict and Fatigue half reset for all characters. Right click: assigned characters only. Left: All actors)",
+                "scene_end": "End of scene (Conflict and Fatigue half reset for all characters. Left click: assigned characters only. Right: All actors)",
                 "scene_end_info": "The tension of the scene finally drops.",
-                "reset_void": "Start of the game: Reset the players' void points (Right click: assigned characters only. Left: All actors",
+                "reset_void": "Start of the game: Reset the players' void points (Left click: assigned characters only. Right: All actors",
                 "reset_void_info": "Void points have been attributed."
             },
             "monitor": {
@@ -228,7 +228,7 @@
                 "add_selected_tokens": "Add selected tokens",
                 "honor_glory_status": "H/G/S",
                 "focus_vigilance": "Foc./Vig.",
-                "mouse_control": "Right click +1, left: -1, middle: reset to 0"
+                "mouse_control": "Left click +1, Right: -1, middle: set to 0"
             }
         },
         "weapons": {

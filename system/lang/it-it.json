@@ -214,12 +214,12 @@
             "toolbox": {
                 "title": "Attrezzi del GM",
                 "difficulty_hidden": "Cambia la visibilità della TN",
-                "difficulty": "Cambia difficoltà (click destro: aggiungi, sinistro: togli, centro: TN 2)",
-                "sleep": "Riposo tranquillo per tutti i personaggi (rimuove Stanchezza pari a Acqua x2. Click destro: solo personaggi selezionati. Sinistro: tutti gli attori)",
+                "difficulty": "Cambia difficoltà (click Sinistro: aggiungi, Destro: togli, centro: TN 2)",
+                "sleep": "Riposo tranquillo per tutti i personaggi (rimuove Stanchezza pari a Acqua x2. Click Sinistro: solo personaggi selezionati. Destro: tutti gli attori)",
                 "sleep_info": "I personaggi hanno avuto una notte di riposo tranquillo.",
-                "scene_end": "Fine della scena (Stanchezza e Turbamento si resettano a metà per tutti i personaggi. Click destro: solo personaggi selezionati. Sinistro: tutti gli attori)",
+                "scene_end": "Fine della scena (Stanchezza e Turbamento si resettano a metà per tutti i personaggi. Click Sinistro: solo personaggi selezionati. Destro: tutti gli attori)",
                 "scene_end_info": "La tensione della scena finalmente cala.",
-                "reset_void": "Inizio del gioco: Resetta i punti Vuoto dei personaggi (Click destro: solo personaggi selezionati. Sinistro: tutti gli attori)",
+                "reset_void": "Inizio del gioco: Resetta i punti Vuoto dei personaggi (Click Sinistro: solo personaggi selezionati. Destro: tutti gli attori)",
                 "reset_void_info": "I punti Vuoto sono stati distribuiti."
             },
             "monitor": {
@@ -228,7 +228,7 @@
                 "add_selected_tokens": "Add selected tokens",
                 "honor_glory_status": "O/G/S",
                 "focus_vigilance": "Foc./Vig.",
-                "mouse_control": "Click destro +1, sinistro: -1, centrale: resetta a 0"
+                "mouse_control": "Click Sinistro +1, Destro: -1, centrale: resetta a 0"
             }
         },
         "weapons": {
