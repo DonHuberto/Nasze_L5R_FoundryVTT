@@ -238,6 +238,13 @@ export default class HooksL5r5e {
                 source: false,
                 ring: false,
             };
+            // Used to auto hide same values for a full compendium
+            const previousValue = {
+                rank: null,
+                rarity: null,
+                source: null,
+                ring: null,
+            };
 
             // Cache
             const header = html.find(".directory-header");
@@ -248,24 +255,35 @@ export default class HooksL5r5e {
             for (const document of content) {
                 const entry = entries.filter(`[data-document-id="${document.id}"]`);
 
+                // Hide filter if only one value of this type is found in the compendium
+                const autoDisplayFilter = (props, documentData = null) => {
+                    documentData ??= document.system[props];
+
+                    if (filtersToShow[props] || previousValue[props] === documentData) {
+                        return;
+                    }
+                    filtersToShow[props] = previousValue[props] !== null && previousValue[props] !== documentData;
+                    previousValue[props] = documentData;
+                };
+
                 if (document.system?.rank) {
-                    filtersToShow.rank = true;
+                    autoDisplayFilter('rank');
                     entry.data("rank", document.system.rank);
                 }
 
-                if (document.system?.source_reference) {
-                    filtersToShow.source = true;
+                if (document.system?.source_reference.source) {
+                    autoDisplayFilter('source', document.system.source_reference.source);
                     sourcesInThisCompendium.add(document.system.source_reference.source);
                     entry.data("source", document.system.source_reference);
                 }
 
                 if (document.system?.ring) {
-                    filtersToShow.ring = true;
+                    autoDisplayFilter('ring');
                     entry.data("ring", document.system.ring);
                 }
 
                 if (document.system?.rarity) {
-                    filtersToShow.rarity = true;
+                    autoDisplayFilter('rarity');
                     entry.data("rarity", document.system.rarity);
                 }
 
@@ -334,7 +352,7 @@ export default class HooksL5r5e {
                     if (rankFilter) {
                         shouldShow &= $(this).data("rank") == rankFilter;
                     }
-                    if (userFilter.length) {
+                    if (userFilter?.length) {
                         shouldShow &= userFilter.includes(lineSource);
                     }
                     if (ringFilter) {
