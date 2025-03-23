@@ -592,7 +592,13 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
             data.readied = tmpItem.system.readied;
         }
 
-        tmpItem.update({ system: data });
+        // Update the Item: we need to manually notify the "Gm Monitor" as the Actor himself is not updated
+        tmpItem.update({ system: data }).then(() => {
+            // Only if this actor is watched
+            if (this.actor && game.settings.get(CONFIG.l5r5e.namespace, "gm-monitor-actors").some((uuid) => uuid === this.actor.uuid)) {
+                game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor");
+            }
+        });
     }
 
     /**
