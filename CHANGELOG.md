@@ -6,9 +6,10 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
-## 1.12.3 - ??/03/2025 - Fixes and Compendiums Filters (Thx to Litasa)
+## 1.12.3 - 13/03/2025 - Fixes and Compendiums Filters (Thx to Litasa)
 - Added Compendiums Filters (#41)
   - Separated the reference and the page number from book reference for filtering purpose.
+    - Note: If you use Custom Compendiums, you need to update them to the new structure.
   - Adding filters in compendium for rarity, ring, and source.
   - Add option for GM to limit what sources is being displayed to the players in compendiums. GM can still see everything and give players items/techniques if needed.
 - Fixed Npc Generator : Actor now update correctly.
