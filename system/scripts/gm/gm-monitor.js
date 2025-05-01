@@ -1,201 +1,142 @@
-/**
- * L5R GM Monitor Windows
- * @extends {FormApplication}
- */
-export class GmMonitor extends FormApplication {
-    /**
-     * Settings
-     */
-    object = {
-        view: "characters", // characters|armies
-        actors: [],
+
+const HandlebarsApplicationMixin = foundry.applications.api.HandlebarsApplicationMixin;
+const ApplicationV2 = foundry.applications.api.ApplicationV2;
+export class GmMonitor extends HandlebarsApplicationMixin(ApplicationV2) {
+    /** @override ApplicationV2 */
+    static get DEFAULT_OPTIONS() {
+        return {
+            id: "l5r5e-gm-monitor",
+            tag: "div",
+            window: {
+                contentClasses: ["l5r5e", "gm-monitor"],
+                title: "l5r5e.gm.monitor.title",
+                minimizable: true,
+                controls: [
+                    {
+                        label: game.i18n.localize("l5r5e.gm.monitor.add_selected_tokens"),
+                        icon: "fas fa-users",
+                        action: "add_selected_tokens",
+                    },
+                    {
+                        label: game.i18n.localize("l5r5e.gm.monitor.switch_view"),
+                        icon: "fas fa-repeat",
+                        action: "change_view_tab"
+                    }
+                ],
+                resizable: true,
+                editable: true,
+            },
+            position: {
+                width: "600",
+                height: "150"
+            },
+            actions: {
+                add_selected_tokens: GmMonitor.#addSelectedTokens,
+                change_view_tab: GmMonitor.#rotateViewTab,
+                remove_actor: GmMonitor.#removeActor,
+                toggle_prepared: GmMonitor.#togglePrepared,
+                change_stance: {
+                    buttons: [0, 2],
+                    handler: GmMonitor.#changeStance,
+                },
+                modify_fatigue: {
+                    buttons: [0, 1, 2],
+                    handler: GmMonitor.#modifyFatigue,
+                },
+                modify_strife: {
+                    buttons: [0, 1, 2],
+                    handler: GmMonitor.#modifyStrife,
+                },
+                modify_voidPoint: {
+                    buttons: [0, 1, 2],
+                    handler: GmMonitor.#modifyVoidPoint,
+                },
+                modify_casualties: {
+                    buttons: [0, 1, 2],
+                    handler: GmMonitor.#modifyCasualties,
+                },
+                modify_panic: {
+                    buttons: [0, 1, 2],
+                    handler: GmMonitor.#modifyPanic,
+                }
+            },
+            dragDrop: [{ dragSelector: null, dropSelector: null }],
+        }
+    };
+
+    /** @override HandlebarsApplicationMixin */
+    static PARTS = {
+        hidden_tabs: {
+            template: "templates/generic/tab-navigation.hbs"
+        },
+        character: {
+            id: "character",
+            template: "systems/l5r5e/templates/" + "gm/monitor/character-view.html"
+        },
+        army: {
+            if: "army",
+            template: "systems/l5r5e/templates/" + "gm/monitor/army-view.html"
+        }
     };
 
     /**
-     * Assign the default options
-     * @override
+     * @type {Record<string, string>}
+     * @override ApplicationV2
      */
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            id: "l5r5e-gm-monitor",
-            classes: ["l5r5e", "gm-monitor"],
-            template: CONFIG.l5r5e.paths.templates + "gm/gm-monitor.html",
-            title: game.i18n.localize("l5r5e.gm.monitor.title"),
-            width: 800,
-            height: 300,
-            resizable: true,
-            closeOnSubmit: false,
-            submitOnClose: false,
-            submitOnChange: false,
-            dragDrop: [{ dragSelector: null, dropSelector: null }],
-        });
+    tabGroups = {
+        view: "character"
+    };
+
+    /**
+     * Data that is pushed to html
+     */
+    context = {
+        actors: []
     }
 
     /**
-     * Add the Switch View button on top of sheet
-     * @override
+     * hooks we act upon, saved since we need to remove them when this window is not open
      */
-    _getHeaderButtons() {
-        let buttons = super._getHeaderButtons();
-
-        // Switch view Characters/Armies
-        buttons.unshift({
-            label: game.i18n.localize("l5r5e.gm.monitor.switch_view"),
-            class: "switch-view",
-            icon: "fas fa-repeat",
-            onclick: () =>
-                game.l5r5e.HelpersL5r5e.debounce(
-                    "SwitchView-" + this.object.id,
-                    () => {
-                        this.object.view = this.object.view === "armies" ? "characters" : "armies";
-                        this.render(false);
-                    },
-                    500,
-                    true
-                )(),
-        });
-
-        // Add selected tokens
-        buttons.unshift({
-            label: game.i18n.localize("l5r5e.gm.monitor.add_selected_tokens"),
-            class: "add-selected-token",
-            icon: "fas fa-users",
-            onclick: () =>
-                game.l5r5e.HelpersL5r5e.debounce(
-                    "AddSelectedToken-" + this.object.id,
-                    () => this.#addSelectedTokens(),
-                    500,
-                    true
-                )(),
-        });
-
-        return buttons;
-    }
+    #hooks = [];
 
     /**
-     * Constructor
-     * @param {ApplicationOptions} options
+     * The DragDrop instance which handles interactivity resulting from DragTransfer events.
+     * @type {DragDrop}
      */
-    constructor(options = {}) {
-        super(options);
-        this._initialize();
+    #dragDrop;
+
+    constructor() {
+        super();
+        this.#initialize();
     }
 
-    /**
-     * Refresh data (used from socket)
-     */
-    async refresh() {
-        if (!game.user.isGM) {
-            return;
-        }
-        this._initialize();
-        this.render(false);
-    }
+    /** @override ApplicationV2 */
+    async _preClose(options) {
+        await super._preClose(options);
+        options.animate = false;
 
-    /**
-     * Initialize the values
-     * @private
-     */
-    _initialize() {
-        let actors;
-        const uuidList = game.settings.get(CONFIG.l5r5e.namespace, "gm-monitor-actors");
-        if (uuidList.length > 0) {
-            // Get actors from stored uuids
-            actors = uuidList
-                .map(uuid => {
-                    const doc = fromUuidSync(uuid);
-                    if (doc instanceof TokenDocument) {
-                        return doc.actor;
-                    }
-                    return doc;
-                })
-                .filter(a => !!a); // skip null
-
-        } else {
-            // If empty add pc with owner
-            actors = game.actors.filter((actor) => actor.type === "character" && actor.hasPlayerOwnerActive);
-            this._saveActorsIds();
-        }
-
-        // Sort by name asc
-        actors.sort((a, b) => {
-            return a.name.localeCompare(b.name);
-        });
-
-        this.object.actors = actors;
-    }
-
-    /**
-     * Add selected token on monitor if not already present
-     */
-    #addSelectedTokens() {
-        if (canvas.tokens.controlled.length > 0) {
-            const actors2Add = canvas.tokens.controlled
-                .map(t => t.actor)
-                .filter(t => !!t && !this.object.actors.find((a) => a.uuid === t.uuid));
-
-            if (actors2Add.length < 1) {
-                return;
-            }
-
-            this.object.actors = [
-                ...this.object.actors,
-                ...actors2Add
-            ];
-            this._saveActorsIds().then(() => this.render(false));
+        for (const hook of this.#hooks) {
+            Hooks.off(hook.hook, hook.fn);
         }
     }
 
-    /**
-     * Prevent non GM to render this windows
-     * @override
-     */
-    render(force = false, options = {}) {
-        if (!game.user.isGM) {
-            return false;
-        }
-        return super.render(force, options);
-    }
+    /** @override ApplicationV2 */
+    async _onRender(context, options) {
+        await super._onRender(context, options);
 
-    /**
-     * Construct and return the data object used to render the HTML template for this form application.
-     * @param options
-     * @return {Object}
-     * @override
-     */
-    async getData(options = null) {
-        return {
-            ...(await super.getData(options)),
-            data: {
-                ...this.object,
-                actors: this.object.actors.filter((a) => (this.object.view === "armies" ? a.isArmy : !a.isArmy)),
-            },
-        };
-    }
+        // Todo: Move this to common l5r5e application v2 
+        game.l5r5e.HelpersL5r5e.commonListeners($(this.element));
 
-    /**
-     * Listen to html elements
-     * @param {jQuery} html HTML content of the sheet.
-     * @override
-     */
-    activateListeners(html) {
-        super.activateListeners(html);
-
-        if (!game.user.isGM) {
-            return;
-        }
-
-        // Commons
-        game.l5r5e.HelpersL5r5e.commonListeners(html);
-
-        // Delete
-        html.find(`.actor-remove-control`).on("click", this._removeActor.bind(this));
-
-        // Add/Subtract
-        html.find(`.actor-modify-control`).on("mousedown", this._modifyActor.bind(this));
+        this.#dragDrop = new DragDrop({
+          dragSelector: null,
+          dropSelector: null,
+          callbacks: {
+            drop: this.#onDrop.bind(this)
+          }
+        }).bind(this.element);
 
         // Tooltips
-        game.l5r5e.HelpersL5r5e.popupManager(html.find(".actor-infos-control"), async (event) => {
+        game.l5r5e.HelpersL5r5e.popupManager($(this.element).find(".actor-infos-control"), async (event) => {
             const type = $(event.currentTarget).data("type");
             if (!type) {
                 return;
@@ -208,29 +149,71 @@ export class GmMonitor extends FormApplication {
             if (!uuid) {
                 return;
             }
-            const actor = this.object.actors.find((a) => a.uuid === uuid);
+            const actor = this.context.actors.find((actor) => actor.uuid === uuid);
             if (!actor) {
                 return;
             }
 
             switch (type) {
                 case "armors":
-                    return this._getTooltipArmors(actor);
+                    return this.#getTooltipArmors(actor);
                 case "weapons":
-                    return this._getTooltipWeapons(actor);
+                    return this.#getTooltipWeapons(actor);
                 case "global":
-                    return actor.isArmy ? this._getTooltipArmiesGlobal(actor) : this._getTooltipGlobal(actor);
+                    return actor.isArmy ? this.#getTooltipArmiesGlobal(actor) : this.#getTooltipGlobal(actor);
             }
         });
     }
 
+    /** @override ApplicationV2 */
+    async _prepareContext() {
+        return {
+            tabs: this.getTabs(),
+        }
+    }
+
+    /**
+     * @param {string} partId                         The part being rendered
+     * @param {ApplicationRenderContext} context      Shared context provided by _prepareContext
+     * @returns {Promise<ApplicationRenderContext>}   Context data for a specific part
+     * 
+     * @override HandlebarsApplicationMixin
+     */
+    async _preparePartContext(partId, context) {
+        switch (partId) {
+            case "character":
+                context.characters = this.context.actors.filter((actor) => !actor.isArmy); 
+                break;
+            case "army":
+                context.armies = this.context.actors.filter((actor) => actor.isArmy);
+                break;
+        }
+        return context;
+    }
+
+    /**
+     * Prepare an array of form header tabs.
+     * @returns {Record<string, Partial<ApplicationTab>>}
+     */
+    getTabs() {
+        const tabs = {
+            character: { id: "character", group: "view", icon: "fa-solid fa-tag", label: "REGION.SECTIONS.identity" },
+            army: { id: "army", group: "view", icon: "fa-solid fa-shapes", label: "REGION.SECTIONS.shapes" },
+        }
+        for (const v of Object.values(tabs)) {
+            v.active = this.tabGroups[v.group] === v.id;
+            v.cssClass = v.active ? "active" : "";
+        }
+        return tabs;
+    }
+
     /**
      * Handle dropped data on the Actor sheet
-     * @param {DragEvent} event
+     * @param {DragEvent} event       The originating DragEvent
      */
-    async _onDrop(event) {
-        // *** Everything below here is only needed if the sheet is editable ***
-        if (!this.isEditable) {
+    async #onDrop(event) {
+
+        if (!this.options.window.editable) {
             return;
         }
 
@@ -240,7 +223,7 @@ export class GmMonitor extends FormApplication {
         }
 
         const data = JSON.parse(json);
-        if (!data || data.type !== "Actor" || !data.uuid || !!this.object.actors.find((a) => a.uuid === data.uuid)) {
+        if (!data || data.type !== "Actor" || !data.uuid || !!this.context.actors.find((a) => a.uuid === data.uuid)) {
             return;
         }
 
@@ -250,159 +233,383 @@ export class GmMonitor extends FormApplication {
         }
 
         // Switch view to current character type
-        this.object.view = actor.isArmy ? "armies" : "characters";
+        if (actor.isArmy) {
+            this.changeTab("army", "view");
+        }
+        else {
+            this.changeTab("character", "view");
+        }
 
-        this.object.actors.push(actor);
+        this.context.actors.push(actor);
 
-        return this._saveActorsIds();
+        return this.saveActorsIds();
+    }
+
+    /** required for updating via our socket implementation game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor")*/
+    async refresh() {
+        this.render();
     }
 
     /**
-     * Save the actors ids in settings
-     * @return {Promise<*>}
+     * Save the actors ids in setting
      * @private
      */
-    async _saveActorsIds() {
+    async saveActorsIds() {
         return game.settings.set(
             CONFIG.l5r5e.namespace,
             "gm-monitor-actors",
-            this.object.actors.map((a) => a.uuid)
+            this.context.actors.map((a) => a.uuid)
         );
     }
 
-    /**
-     * Remove the link to a property for the current item
-     * @param {Event} event
-     * @return {Promise<void>}
-     * @private
-     */
-    async _removeActor(event) {
-        event.preventDefault();
-        event.stopPropagation();
+    #initialize() {
+        let actors;
+        const uuidList = game.settings.get(CONFIG.l5r5e.namespace, "gm-monitor-actors");
+        if (uuidList.length > 0) {
+            // Get actors from stored uuids
+            actors = uuidList
+                .map(uuid => {
+                    const doc = fromUuidSync(uuid);
+                    if (doc instanceof TokenDocument) {
+                        return doc.actor;
+                    }
+                    return doc;
+                })
+                .filter(actor => !!actor); // skip null
 
-        const uuid = $(event.currentTarget).data("actor-uuid");
-        if (!uuid) {
-            return;
+        } else {
+            // If empty add pc with owner
+            actors = game.actors.filter((actor) => actor.type === "character" && actor.hasPlayerOwnerActive);
+            this.saveActorsIds();
         }
 
-        this.object.actors = this.object.actors.filter((a) => a.uuid !== uuid);
+        // Sort by name asc
+        actors.sort((a, b) => {
+            return a.name.localeCompare(b.name);
+        });
 
-        return this._saveActorsIds();
+        this.context.actors = actors;
+
+        this.#hooks.push({
+            hook: "updateActor",
+            fn: Hooks.on("updateActor", (actor) => this.#onUpdateActor(actor))
+        });
+        this.#hooks.push({
+            hook: "updateSetting",
+            fn: Hooks.on("updateSetting", (actor) => this.#onUpdateSetting(actor))
+        });
     }
 
     /**
-     * Add or subtract fatigue/strife/void/casualties/panic
-     * @param event
-     * @return {Promise<void>}
-     * @private
+     * Switch between the available views in sequence
      */
-    async _modifyActor(event) {
-        event.preventDefault();
-        event.stopPropagation();
+    static #rotateViewTab() {
+        const tabArray = Object.values(this.getTabs());
+        const activeTabIndex = tabArray.findIndex((tab) => tab.active);
+        const nextTabIndex = activeTabIndex + 1 < tabArray.length ? activeTabIndex + 1 : 0;
+        this.changeTab(tabArray[nextTabIndex].id, tabArray[nextTabIndex].group)
+    }
 
-        const type = $(event.currentTarget).data("type");
-        if (!type) {
-            console.warn("L5R5E | GMM | type not set", type);
-            return;
+    /**
+     * Add selected token on monitor if not already present
+     */
+    static #addSelectedTokens() {
+        if (canvas.tokens.controlled.length > 0) {
+            const actors2Add = canvas.tokens.controlled
+                .map(t => t.actor)
+                .filter(t => !!t && !this.context.actors.find((a) => a.uuid === t.uuid));
+
+            if (actors2Add.length < 1) {
+                return;
+            }
+
+            this.context.actors = [
+                ...this.context.actors,
+                ...actors2Add
+            ];
+            this.saveActorsIds();
         }
-        const uuid = $(event.currentTarget).data("actor-uuid");
+    }
+
+    /**
+     * Update baseValue based on the type of event
+     * @param {Int} baseValue   The Base value we can to modify
+     * @param {Int} whichButton  The type of click made
+     */
+    static #newValue(baseValue, whichButton) {
+        switch (whichButton) {
+            case 0:   //Left click
+                return Math.max(0, baseValue + 1);
+            case 1:   //Middle click
+                return 0;
+            case 2:   //Right click
+                return Math.max(0, baseValue - 1); 
+        }
+    }
+
+    /**
+     * @param {HTMLElement} target Html target to get actor information from
+     */
+    static async #getActorValidated(target) {
+        const uuid = $(target).data("actor-uuid");
         if (!uuid) {
             console.warn("L5R5E | GMM | actor uuid not set", type);
-            return;
+            return {isValid: false, actor: null};
         }
-        const actor = fromUuidSync(uuid);
+        const actor = await fromUuid(uuid);
         if (!actor) {
             console.warn("L5R5E | GMM | Actor not found", type);
+            return {isValid: false, actor: null};
+        }
+        return {isValid:true, actor: actor};
+    }
+
+    /**
+     * @param {PointerEvent} event      The originating click event
+     * @param {HTMLElement} target      The capturing HTML element which defined a [data-action]
+     */
+    static async #modifyCasualties(event, target) {
+        const {isValid, actor} = await GmMonitor.#getActorValidated(target);
+        if (!isValid) {
             return;
         }
 
-        // Mouse bt : middle = 0, left +1, right -1
-        const add = event.which === 2 ? -999 : event.which === 1 ? 1 : -1;
+        const casualties_strength = actor.system.battle_readiness.casualties_strength.value;
+        return actor.update({
+            system: {
+                battle_readiness: {
+                    casualties_strength: {
+                        value: GmMonitor.#newValue(casualties_strength, event.button),
+                    }
+                },
+            },
+        });
+    }
 
-        // Stance
-        let stanceIdx = CONFIG.l5r5e.stances.findIndex((s) => s === actor.system.stance) + (event.which === 1 ? 1 : -1);
+    /**
+     * @param {PointerEvent} event      The originating click event
+     * @param {HTMLElement} target      The capturing HTML element which defined a [data-action]
+     */
+    static async #modifyPanic(event, target) {
+        const {isValid, actor} = await GmMonitor.#getActorValidated(target);
+        if (!isValid) {
+            return;
+        }
+
+        const panic_discipline = actor.system.battle_readiness.panic_discipline.value;
+        return actor.update({
+            system: {
+                battle_readiness: {
+                    panic_discipline: {
+                        value: GmMonitor.#newValue(panic_discipline, event.button),
+                    }
+                },
+            },
+        });
+    }
+
+    /**
+     * @param {PointerEvent} event      The originating click event
+     * @param {HTMLElement} target      The capturing HTML element which defined a [data-action]
+     */
+    static async #togglePrepared(event, target) {
+        const {isValid, actor} = await GmMonitor.#getActorValidated(target);
+        if (!isValid) {
+            return;
+        }
+
+        return actor.update({
+            system: {
+                prepared: !actor.system.prepared
+            }
+        });
+    }
+
+    /**
+     * @param {PointerEvent} event      The originating click event
+     * @param {HTMLElement} target      The capturing HTML element which defined a [data-action]
+     */
+    static async #changeStance(event, target) {
+        const {isValid, actor} = await GmMonitor.#getActorValidated(target);
+        if (!isValid) {
+            return;
+        }
+
+        let stanceIdx = CONFIG.l5r5e.stances.findIndex((stance) => stance === actor.system.stance) + (event.button === 0 ? 1 : -1);
         if (stanceIdx < 0) {
             stanceIdx = CONFIG.l5r5e.stances.length - 1;
         } else if (stanceIdx > CONFIG.l5r5e.stances.length - 1) {
             stanceIdx = 0;
         }
 
-        const updateData = {};
-        switch (type) {
-            // *** Characters ***
-            case "fatigue":
-                updateData["system.fatigue.value"] = Math.max(0, actor.system.fatigue.value + add);
-                break;
-
-            case "strife":
-                updateData["system.strife.value"] = Math.max(0, actor.system.strife.value + add);
-                break;
-
-            case "void_points":
-                updateData["system.void_points.value"] = Math.min(
-                    actor.system.void_points.max,
-                    Math.max(0, actor.system.void_points.value + add)
-                );
-                break;
-
-            case "stance":
-                updateData["system.stance"] = CONFIG.l5r5e.stances[stanceIdx];
-                break;
-
-            case "prepared":
-                updateData["system.prepared"] = !actor.system.prepared;
-                break;
-
-            // *** Armies ***
-            case "casualties":
-                updateData["system.battle_readiness.casualties_strength.value"] = Math.max(
-                    0,
-                    actor.system.battle_readiness.casualties_strength.value + add
-                );
-                break;
-
-            case "panic":
-                updateData["system.battle_readiness.panic_discipline.value"] = Math.max(
-                    0,
-                    actor.system.battle_readiness.panic_discipline.value + add
-                );
-                break;
-
-            default:
-                console.warn("L5R5E | GMM | Unsupported type", type);
-                break;
-        }
-        if (!foundry.utils.isEmpty(updateData)) {
-            await actor.update(updateData);
-            this.render(false);
-        }
+        return actor.update({
+            system: {
+                stance: CONFIG.l5r5e.stances[stanceIdx]
+            },
+        });
     }
 
     /**
+     * @param {PointerEvent} event      The originating click event
+     * @param {HTMLElement} target      The capturing HTML element which defined a [data-action]
+     */
+    static async #modifyFatigue(event, target) {
+        const {isValid, actor} = await GmMonitor.#getActorValidated(target);
+        if (!isValid) {
+            return;
+        }
+
+        const fatigue = actor.system.fatigue.value;        
+        return actor.update({
+            system: {
+                fatigue: {
+                    value: GmMonitor.#newValue(fatigue, event.button)
+                }    
+            }
+        });
+    }
+
+    /**
+     * @param {PointerEvent} event      The originating click event
+     * @param {HTMLElement} target      The capturing HTML element which defined a [data-action]
+     */
+    static async #modifyStrife(event, target) {
+        const {isValid, actor} = await GmMonitor.#getActorValidated(target);
+        if (!isValid) {
+            return;
+        }
+
+        const strife = actor.system.strife.value; 
+        return actor.update({
+            system: {
+                strife: {
+                    value: GmMonitor.#newValue(strife, event.button),
+                },
+            },
+        });
+    }
+
+    /**
+     * @param {PointerEvent} event      The originating click event
+     * @param {HTMLElement} target      The capturing HTML element which defined a [data-action]
+     */
+    static async #modifyVoidPoint(event, target) {
+        const {isValid, actor} = await GmMonitor.#getActorValidated(target);
+        if (!isValid) {
+            return;
+        }
+
+        const void_points = actor.system.void_points.value; 
+        const void_points_max = actor.system.void_points.max;
+        return actor.update({
+            system: {
+                void_points: {
+                    value: Math.min(
+                            void_points_max,
+                            GmMonitor.#newValue(void_points, event.button)
+                    ),
+                },
+            },
+        });
+    }
+
+    /**
+     * @param {PointerEvent} event      The originating click event
+     * @param {HTMLElement} target      The capturing HTML element which defined a [data-action]
+     */
+    static async #removeActor(event, target) {
+        const uuid = $(target).data("actor-uuid");
+        if (!uuid) {
+            return;
+        }
+
+        this.context.actors = this.context.actors.filter((actor) => actor.uuid !== uuid);
+        return this.saveActorsIds();
+    }
+
+    /**
+     * Get armors information for this actor
+     * @param {ActorL5r5e} actor
+     * @return {string}
+     * @private
+     */
+    async #getTooltipArmors(actor) {
+        // Equipped Armors
+        const armors = actor.items
+            .filter((item) => item.type === "armor" && item.system.equipped)
+            .map(
+                (item) =>
+                    item.name +
+                    ` (<i class="fas fa-tint">${item.system.armor.physical}</i>` +
+                    ` / <i class="fas fa-bolt">${item.system.armor.supernatural}</i>)`
+            );
+
+        // *** Template ***
+        return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor/tooltips/armors.html`, {
+            armors,
+        });
+    }
+
+          /**
+     * Get weapons information for this actor
+     * @param {ActorL5r5e} actor
+     * @return {string}
+     * @private
+     */
+    async #getTooltipWeapons(actor) {
+        const display = (weapon) => {
+            return (
+                weapon.name +
+                ` (<i class="fas fa-arrows-alt-h"> ${weapon.system.range}</i>` +
+                ` / <i class="fas fa-tint"> ${weapon.system.damage}</i>` +
+                ` / <i class="fas fa-skull"> ${weapon.system.deadliness}</i>)`
+            );
+        };
+
+        // Readied Weapons
+        const equippedWeapons = actor.items.filter((item) => item.type === "weapon" && item.system.equipped);
+
+        const readied = equippedWeapons
+            .filter((weapon) => !!weapon.system.readied)
+            .map((weapon) => display(weapon));
+
+        // Equipped Weapons
+        const sheathed = equippedWeapons
+            .filter((weapon) => !weapon.system.readied)
+            .map((weapon) => display(weapon));
+
+        // *** Template ***
+        return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor/tooltips/weapons.html`, {
+            readied,
+            sheathed,
+        });
+    }
+
+          /**
      * Get tooltips information for this character
      * @param {ActorL5r5e} actor
      * @return {string}
      * @private
      */
-    async _getTooltipGlobal(actor) {
+    async #getTooltipGlobal(actor) {
         const actorData = (await actor.sheet?.getData()?.data) || actor;
 
         // Peculiarities
-        const pec = actor.items.filter((e) => e.type === "peculiarity");
-        const adv = pec
-            .filter((e) => ["distinction", "passion"].includes(e.system.peculiarity_type))
-            .map((e) => e.name)
+        const Peculiarities = actor.items.filter((e) => e.type === "peculiarity");
+        const advantages = Peculiarities
+            .filter((item) => ["distinction", "passion"].includes(item.system.peculiarity_type))
+            .map((item) => item.name)
             .join(", ");
-        const dis = pec
-            .filter((e) => ["adversity", "anxiety"].includes(e.system.peculiarity_type))
-            .map((e) => e.name)
+        const disadvantages = Peculiarities
+            .filter((item) => ["adversity", "anxiety"].includes(item.system.peculiarity_type))
+            .map((item) => item.name)
             .join(", ");
 
         // *** Template ***
-        return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor-tooltips/global.html`, {
+        return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor/tooltips/global.html`, {
             actorData: actorData,
-            advantages: adv,
-            disadvantages: dis,
+            advantages: advantages,
+            disadvantages: disadvantages,
             suffix: actorData.system.template === "pow" ? "_pow" : "",
             actor_type: actor.type,
         });
@@ -414,68 +621,39 @@ export class GmMonitor extends FormApplication {
      * @return {string}
      * @private
      */
-    async _getTooltipArmiesGlobal(actor) {
+    async #getTooltipArmiesGlobal(actor) {
         const actorData = (await actor.sheet?.getData()?.data) || actor;
 
         // *** Template ***
-        return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor-tooltips/global-armies.html`, {
+        return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor/tooltips/global-armies.html`, {
             actorData: actorData,
         });
     }
 
     /**
-     * Get weapons information for this actor
-     * @param {ActorL5r5e} actor
-     * @return {string}
-     * @private
+     * @param {ActorL5r5e} actor The actor that is being updated
      */
-    async _getTooltipWeapons(actor) {
-        const display = (e) => {
-            return (
-                e.name +
-                ` (<i class="fas fa-arrows-alt-h"> ${e.system.range}</i>` +
-                ` / <i class="fas fa-tint"> ${e.system.damage}</i>` +
-                ` / <i class="fas fa-skull"> ${e.system.deadliness}</i>)`
-            );
-        };
-
-        // Readied Weapons
-        const readied = actor.items
-            .filter((e) => e.type === "weapon" && e.system.equipped && !!e.system.readied)
-            .map((e) => display(e));
-
-        // Equipped Weapons
-        const sheathed = actor.items
-            .filter((e) => e.type === "weapon" && e.system.equipped && !e.system.readied)
-            .map((e) => display(e));
-
-        // *** Template ***
-        return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor-tooltips/weapons.html`, {
-            readied,
-            sheathed,
-        });
+    #onUpdateActor(actor) {
+        if (this.context.actors.includes(actor)) {
+            this.render(false);
+        }
     }
 
     /**
-     * Get armors information for this actor
-     * @param {ActorL5r5e} actor
-     * @return {string}
-     * @private
+     * @param {Setting} setting The setting that is being updated
      */
-    async _getTooltipArmors(actor) {
-        // Equipped Armors
-        const armors = actor.items
-            .filter((e) => e.type === "armor" && e.system.equipped)
-            .map(
-                (e) =>
-                    e.name +
-                    ` (<i class="fas fa-tint">${e.system.armor.physical}</i>` +
-                    ` / <i class="fas fa-bolt">${e.system.armor.supernatural}</i>)`
-            );
-
-        // *** Template ***
-        return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor-tooltips/armors.html`, {
-            armors,
-        });
+    #onUpdateSetting(setting) {
+        switch (setting.key) {
+            case "l5r5e.gm-monitor-actors":
+                this.render(false);
+                break;
+            case "l5r5e.initiative-prepared-character":
+            case "l5r5e.initiative-prepared-adversary":
+            case "l5r5e.initiative-prepared-minion":
+                this.render(false);
+                break;
+            default:
+                return;
+        }
     }
 }

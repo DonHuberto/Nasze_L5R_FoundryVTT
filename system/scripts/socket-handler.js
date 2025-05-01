@@ -76,7 +76,7 @@ export class SocketHandlerL5r5e {
         })();
     }
     _onRefreshAppId(payload) {
-        const app = Object.values(ui.windows).find((e) => e.id === payload.appId);
+        const app = game.l5r5e.HelpersL5r5e.getApplication(payload.appId);
         if (!app || typeof app.refresh !== "function") {
             return;
         }
@@ -96,7 +96,7 @@ export class SocketHandlerL5r5e {
         });
     }
     _onUpdateMessageIdAndRefresh(payload) {
-        const app = Object.values(ui.windows).find((e) => e.id === payload.appId);
+        const app = game.l5r5e.HelpersL5r5e.getApplication(payload.appId);
         if (!app || !app.message || typeof app.refresh !== "function") {
             return;
         }

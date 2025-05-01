@@ -792,7 +792,7 @@ export class RollnKeepDialog extends FormApplication {
         const messageId = card.parents(".chat-message").data("message-id");
 
         // Already open ? close it
-        const app = Object.values(ui.windows).find((e) => e.id === `l5r5e-roll-n-keep-dialog-${messageId}`);
+        const app = game.l5r5e.HelpersL5r5e.getApplication(`l5r5e-roll-n-keep-dialog-${messageId}`);
         if (app) {
             app.close();
         } else {

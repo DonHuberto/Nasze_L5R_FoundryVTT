@@ -401,12 +401,22 @@ export class HelpersL5r5e {
         });
     }
 
+    static getApplication(appId) {
+        const app = Object.values(ui.windows).find((e) => e.id === appId);
+        if(app)
+            return app;
+
+        const appV2 = foundry.applications.instances.get(appId)
+        if(appV2)
+            return appV2;
+    }
+
     /**
      * Notify Applications using Difficulty settings that the values was changed
      */
     static notifyDifficultyChange() {
-        ["l5r5e-dice-picker-dialog", "l5r5e-gm-toolbox"].forEach((appId) => {
-            const app = Object.values(ui.windows).find((e) => e.id === appId);
+        ["l5r5e-dice-picker-dialog"].forEach((appId) => {
+            const app = this.getApplication(appId);
             if (app && typeof app.refresh === "function") {
                 app.refresh();
             }
@@ -419,9 +429,7 @@ export class HelpersL5r5e {
      */
     static refreshLocalAndSocket(appId) {
         game.l5r5e.sockets.refreshAppId(appId);
-        Object.values(ui.windows)
-            .find((e) => e.id === appId)
-            ?.refresh();
+        this.getApplication(appId)?.refresh();
     }
 
     /**

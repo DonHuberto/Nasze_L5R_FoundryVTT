@@ -117,7 +117,6 @@ export class ActorL5r5e extends Actor {
             });
         }
 
-        // Now using updateDocuments
         return Actor.updateDocuments([docData], context).then(() => {
             // Notify the "Gm Monitor" if this actor is watched
             if (game.settings.get(CONFIG.l5r5e.namespace, "gm-monitor-actors").some((uuid) => uuid === this.uuid)) {
