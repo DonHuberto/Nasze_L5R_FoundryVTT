@@ -43,7 +43,7 @@ export default class HooksL5r5e {
 
         // Settings TN and EncounterType
         if (game.user.isGM) {
-            new game.l5r5e.GmToolbox().render(true);
+                new game.l5r5e.GmToolbox().render(true);
         }
 
         // ***** UI *****
@@ -543,5 +543,12 @@ export default class HooksL5r5e {
             ) || await Macro.create(macroData);
 
         await game.user.assignHotbarMacro(macro, slot);
+    }
+
+    static async createCombatant(document, options, userId) {
+
+        console.log(document, options, userId);
+
+        new game.l5r5e.CombatActions().render(true);
     }
 }

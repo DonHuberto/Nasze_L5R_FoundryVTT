@@ -1,41 +1,96 @@
-/**
- * L5R GM Toolbox dialog
- * @extends {FormApplication}
- */
-export class GmToolbox extends FormApplication {
-    /**
-     * Settings
-     */
-    object = {};
+const HandlebarsApplicationMixin = foundry.applications.api.HandlebarsApplicationMixin;
+const ApplicationV2 = foundry.applications.api.ApplicationV2;
+export class GmToolbox extends HandlebarsApplicationMixin(ApplicationV2) {
+    /** @override ApplicationV2 */
+    static get DEFAULT_OPTIONS() { return {
+        id: "l5r5e-gm-toolbox",
+        window: {
+            contentClasses: ["l5r5e", "gm-toolbox"],
+            title: "l5r5e.gm.toolbox.title",
+            minimizable: true,
+        },
+        position: {
+            width: "auto",
+            height: "auto"
+        },
+        actions: {
+            open_gm_monitor: GmToolbox.#openGmMonitor,
+            toggle_hide_difficulty: GmToolbox.#onToggleHideDifficulty,
+            change_difficulty: {
+                buttons: [0, 1, 2],
+                handler: GmToolbox.#onChangeDifficulty
+            },
+            reset_void: {
+                buttons: [0, 1, 2, 3, 4], // all the buttons (left, middle, right, extra 1, extra 2)
+                handler: GmToolbox.#onResetVoid
+            },
+            sleep: {
+                buttons: [0, 1, 2, 3, 4],
+                handler: GmToolbox.#onSleep
+            },
+            scene_end: {
+                buttons: [0, 1, 2, 3, 4],
+                handler: GmToolbox.#onSceneEnd
+            },
+        }
+    }};
+
+    /** @override HandlebarsApplicationMixin */
+    static PARTS = {
+        main: {
+            id: "gm-tool-content",
+            template: "systems/l5r5e/templates/" + "gm/gm-toolbox.html"
+        }
+    };
 
     /**
-     * Assign the default options
-     * @override
+     * hooks we act upon, saved since we need to remove them when this window is not open
      */
-    static get defaultOptions() {
-        const x = $(window).width();
-        const y = $(window).height();
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            id: "l5r5e-gm-toolbox",
-            classes: ["l5r5e", "gm-toolbox"],
-            template: CONFIG.l5r5e.paths.templates + "gm/gm-toolbox.html",
-            title: game.i18n.localize("l5r5e.gm.toolbox.title"),
-            left: x - 630,
-            top: y - 98,
-            closeOnSubmit: false,
-            submitOnClose: false,
-            submitOnChange: true,
-            minimizable: false,
+    #hooks = [];
+
+    constructor() {
+        super();
+        this.#hooks.push({
+            hook: "updateSetting",
+            fn: Hooks.on("updateSetting", (setting) => this.#onUpdateSetting(setting))
         });
     }
 
+    /** @override ApplicationV2*/
+    async _prepareContext() {
+        return {
+            difficulty: game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-value"),
+            difficultyHidden: game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-hidden"),
+        };
+    }
+
     /**
-     * Constructor
-     * @param {ApplicationOptions} options
+     * The ApplicationV2 always adds the close button so just remove it when redering the frame
+     * @override ApplicationV2
      */
-    constructor(options = {}) {
-        super(options);
-        this._initialize();
+    async _renderFrame(options) {
+        const frame = await super._renderFrame(options);
+        $(frame).find('button[data-action="close"]').remove();
+        return frame;
+    }
+
+    /**
+     * The ApplicationV2 always adds the close button so just remove it when redering the frame
+     * @override ApplicationV2
+     */
+    _onFirstRender(context, options) {
+        const x = $(window).width();
+        const y = $(window).height();
+        options.position.top = y - 100;
+        options.position.left = x - 630;
+    }
+
+    /**
+     * The GM Toolbox should not be removed when toggling the main menu with the esc key etc.
+     * @override ApplicationV2
+     */
+    async close(options) {
+        return;
     }
 
     /**
@@ -45,210 +100,155 @@ export class GmToolbox extends FormApplication {
         if (!game.user.isGM) {
             return;
         }
-        this._initialize();
         this.render(false);
     }
 
-    /**
-     * Initialize the values
-     * @private
-     */
-    _initialize() {
-        this.object = {
-            difficulty: game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-value"),
-            difficultyHidden: game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-hidden"),
-        };
-    }
-
-    /**
-     * Do not close this dialog
-     * @override
-     */
-    async close(options = {}) {
-        // TODO better implementation needed : see KeyboardManager._onEscape(event, up, modifiers)
-        // This windows is always open, so esc key is stuck at step 2 : Object.keys(ui.windows).length > 0
-        // Case 3 (GM) - release controlled objects
-        if (canvas?.ready && game.user.isGM && Object.keys(canvas.activeLayer.controlled).length) {
-            canvas.activeLayer.releaseAll();
+    static #openGmMonitor() {
+        const app = foundry.applications.instances.get("l5r5e-gm-monitor")
+        if (app) {
+            app.close();
         } else {
-            // Case 4 - toggle the main menu
-            ui.menu.toggle();
+            new game.l5r5e.GmMonitor().render(true);
         }
     }
 
     /**
-     * Prevent non GM to render this windows
-     * @override
+     * @param {PointerEvent} event  The originating click event
      */
-    render(force = false, options = {}) {
-        if (!game.user.isGM) {
+    static #onChangeDifficulty(event) {
+        let difficulty = game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-value");
+        switch (event.button) {
+            case 0: // left click
+                difficulty = Math.min(9, difficulty + 1);
+                break;
+            case 1: // middle click
+                difficulty = 2;
+                break;
+            case 2: // right click
+                difficulty = Math.max(0, difficulty - 1);
+                break;
+        }
+        game.settings.set(CONFIG.l5r5e.namespace, "initiative-difficulty-value", difficulty);
+    }
+
+    static #onToggleHideDifficulty() {
+        const hiddenSetting = game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-hidden")
+        game.settings.set(CONFIG.l5r5e.namespace, "initiative-difficulty-hidden", !hiddenSetting);
+    }
+
+    /**
+     * @param {Boolean} allActors 
+     * @param {ActorL5r5e} actor 
+     * @returns {Boolean}
+     */
+    static #updatableCharacter(allActors, actor) {
+        if (!actor.isCharacterType) {
             return false;
         }
-        this.position.width = "auto";
-        this.position.height = "auto";
-        return super.render(force, options);
-    }
 
-    /**
-     * Remove the close button
-     * @override
-     */
-    _getHeaderButtons() {
-        return [];
-    }
-
-    /**
-     * Construct and return the data object used to render the HTML template for this form application.
-     * @param options
-     * @return {Object}
-     * @override
-     */
-    async getData(options = null) {
-        return {
-            ...(await super.getData(options)),
-            data: this.object,
-        };
-    }
-
-    /**
-     * Listen to html elements
-     * @param {jQuery} html HTML content of the sheet.
-     * @override
-     */
-    activateListeners(html) {
-        super.activateListeners(html);
-
-        if (!game.user.isGM) {
-            return;
+        if (allActors) {
+            return true;
         }
-
-        // Modify difficulty hidden
-        html.find(`.difficulty_hidden`).on("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            this.object.difficultyHidden = !this.object.difficultyHidden;
-            game.settings
-                .set(CONFIG.l5r5e.namespace, "initiative-difficulty-hidden", this.object.difficultyHidden)
-                .then(() => this.submit());
-        });
-
-        // Modify difficulty (TN)
-        html.find(`.difficulty`).on("mousedown", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            switch (event.which) {
-                case 1:
-                    // left clic - add 1
-                    this.object.difficulty = Math.min(9, this.object.difficulty + 1);
-                    break;
-                case 2:
-                    // middle clic - reset to 2
-                    this.object.difficulty = 2;
-                    break;
-                case 3:
-                    // right clic - minus 1
-                    this.object.difficulty = Math.max(0, this.object.difficulty - 1);
-                    break;
-            }
-            game.settings.set(CONFIG.l5r5e.namespace, "initiative-difficulty-value", this.object.difficulty).then(() => this.submit());
-        });
-
-        // Scene End, Sleep, Void Pts
-        html.find(`.gm_actor_updates`).on("mousedown", this._updatesActors.bind(this));
-
-        // GM Monitor
-        html.find(`.gm_monitor`).on("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-
-            const app = Object.values(ui.windows).find((e) => e.id === "l5r5e-gm-monitor");
-            if (app) {
-                app.close();
-            } else {
-                new game.l5r5e.GmMonitor().render(true);
-            }
-        });
+        return actor.isCharacter && actor.hasPlayerOwnerActive
     }
 
     /**
-     * This method is called upon form submission after form data is validated
-     * @param event    The initial triggering submission event
-     * @param formData The object of validated form data with which to update the object
-     * @returns        A Promise which resolves once the update operation has completed
-     * @override
+     * 
+     * @param {Boolean} allActors 
+     * @param {String} type 
      */
-    async _updateObject(event, formData) {
-        this.render(false);
+    static #uiNotification(allActors, type) {
+        ui.notifications.info(
+            ` <i class="fas fa-user${allActors ? "s" : ""}"></i> ` + game.i18n.localize(`l5r5e.gm.toolbox.${type}_info`)
+        );
     }
 
     /**
-     * Update all actors
-     * @param {Event} event
-     * @private
+     * @param {PointerEvent} event The originating click event
      */
-    async _updatesActors(event) {
-        if (!game.user.isGM) {
-            return;
-        }
-
-        // Left clic: assigned characters only, others: all actors
-        const isAll = event.which !== 1;
-        const type = $(event.currentTarget).data("type");
-
+    static async #onResetVoid(event) {
+        const allActors = event.button !== 0;
         for await (const actor of game.actors.contents) {
-            // Only characters types
-            if (!actor.isCharacterType) {
+            if (!GmToolbox.#updatableCharacter(allActors, actor)) {
                 continue;
             }
-
-            // Manage left/right button
-            if (!isAll && (!actor.isCharacter || !actor.hasPlayerOwnerActive)) {
-                continue;
-            }
-
-            switch (type) {
-                case "sleep":
-                    // Remove 'water x2' fatigue points
-                    actor.system.fatigue.value = Math.max(
-                        0,
-                        actor.system.fatigue.value - Math.ceil(actor.system.rings.water * 2)
-                    );
-                    break;
-
-                case "scene_end":
-                    // If more than half the value => roundup half conflit & fatigue
-                    actor.system.fatigue.value = Math.min(
-                        actor.system.fatigue.value,
-                        Math.ceil(actor.system.fatigue.max / 2)
-                    );
-                    actor.system.strife.value = Math.min(
-                        actor.system.strife.value,
-                        Math.ceil(actor.system.strife.max / 2)
-                    );
-                    break;
-
-                case "reset_void":
-                    actor.system.void_points.value = Math.ceil(actor.system.void_points.max / 2);
-                    break;
-            }
-
             await actor.update({
                 system: {
-                    fatigue: {
-                        value: actor.system.fatigue.value,
-                    },
-                    strife: {
-                        value: actor.system.strife.value,
-                    },
                     void_points: {
-                        value: actor.system.void_points.value,
+                        value: Math.ceil(actor.system.void_points.max / 2),
                     },
                 },
             });
         }
 
-        ui.notifications.info(
-            ` <i class="fas fa-user${isAll ? "s" : ""}"></i> ` + game.i18n.localize(`l5r5e.gm.toolbox.${type}_info`)
-        );
+        GmToolbox.#uiNotification(allActors, "reset_void");
+    }
+
+    /**
+     * @param {PointerEvent} event The originating click event
+     */
+    static async #onSleep(event) {
+        const allActors = event.button !== 0;
+        for await (const actor of game.actors.contents) {
+            if (!GmToolbox.#updatableCharacter(allActors, actor)) {
+                continue;
+            }
+            await actor.update({
+                system: {
+                    fatigue: {
+                        value: Math.max(0,
+                            actor.system.fatigue.value - Math.ceil(actor.system.rings.water * 2)
+                        ),
+                    }
+                },
+            });
+        }
+
+        GmToolbox.#uiNotification(allActors, "sleep");
+    }
+
+    /**
+     * @param {PointerEvent} event The originating click event
+     */
+    static async #onSceneEnd(event) {
+        const allActors = event.button !== 0;
+        for await (const actor of game.actors.contents) {
+            if (!GmToolbox.#updatableCharacter(allActors, actor)) {
+                continue;
+            }
+
+            await actor.update({
+                system: {
+                    fatigue: {
+                        value: Math.min(
+                            actor.system.fatigue.value,
+                            Math.ceil(actor.system.fatigue.max / 2)
+                        )
+                    },
+                    strife: {
+                        value: Math.min(
+                            actor.system.strife.value,
+                            Math.ceil(actor.system.strife.max / 2)
+                        )
+                    }
+                }
+            });
+        }
+
+        GmToolbox.#uiNotification(allActors, "scene_end");
+    }
+
+    /**
+     * @param {Setting} setting The setting that is being updated
+     */
+    async #onUpdateSetting(setting) {
+        switch (setting.key) {
+            case "l5r5e.initiative-difficulty-value":
+            case "l5r5e.initiative-difficulty-hidden":
+                this.render(false);
+                break;
+            default:
+                return;
+        }
     }
 }

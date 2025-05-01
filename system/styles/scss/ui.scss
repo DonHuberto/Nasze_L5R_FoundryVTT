@@ -860,6 +860,13 @@ button {
     min-width: 240px;
 
     .window-content {
+        [data-application-part="hidden_tabs"] {
+            display: none;
+        }
+        table {
+            margin: 0;
+            overflow: auto;
+        }
         form {
             padding: 0 0.5rem;
         }
@@ -895,47 +902,39 @@ button {
 }
 
 #l5r5e-gm-toolbox {
-    //bottom: 0;
-    //right: 0.5rem;
     display: flex;
-    background-position: center;
-    background-size: 100%;
     background: linear-gradient(
         $l5r5e-linear-gradient-second,
         $l5r5e-linear-gradient-second-dark,
         $l5r5e-linear-gradient-second
     );
-    background-origin: padding-box;
     border: 1px solid rgb(195, 165, 130);
-    background-origin: padding-box;
-    border-image: url("../assets/ui/macro-button.webp") 10 repeat;
-    border-image-width: 0.5rem;
-    border-image-outset: 0px;
-    padding: 0;
     margin: 0.5rem;
     .window-header {
-        text-align: center;
         border-bottom: 1px solid rgb(195, 165, 130);
-        h4 {
+        background: none; //keep the same background as the toolbox, not the default black opaque
+        .window-title {
+            text-align: center;
+        }
+        
+        h1 {
             letter-spacing: 0.25rem;
             line-height: 2.25rem;
             color: $white-light;
+            padding-top: 1ch;
         }
     }
     .window-content {
-        text-align: center;
-        vertical-align: middle;
-        background: transparent;
-        color: $white-light;
-        form {
-            padding: 0;
-        }
+        background: none;
+        padding: 0;
         .gm-tools-container {
+            color: var(--color-text-primary);
             display: flex;
             font-size: 2rem;
             line-height: 2rem;
             min-height: 2rem;
             margin: 0;
+            padding: 0;
             li {
                 flex: 1;
                 display: flex;
