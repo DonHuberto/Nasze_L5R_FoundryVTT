@@ -10,7 +10,7 @@ export class JournalL5r5e extends JournalEntry {
         const data = (await this.sheet?.getData()) || this;
         const pageData = data.pages[0];
 
-        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}journal/journal-text.html`, {
+        const tpl = await foundry.applications.handlebars.renderTemplate(`${CONFIG.l5r5e.paths.templates}journal/journal-text.html`, {
             data: pageData,
         });
         return tpl || null;

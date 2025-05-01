@@ -257,7 +257,7 @@ export class RollL5r5e extends Roll {
             displaySummary: contexte?.from !== "render",
         };
 
-        return renderTemplate(CONFIG.l5r5e.paths.templates + this.constructor.TOOLTIP_TEMPLATE, { chatData });
+        return foundry.applications.handlebars.renderTemplate(CONFIG.l5r5e.paths.templates + this.constructor.TOOLTIP_TEMPLATE, { chatData });
     }
 
     /**
@@ -319,7 +319,7 @@ export class RollL5r5e extends Roll {
         };
 
         // Render the roll display template
-        return renderTemplate(chatOptions.template, chatData);
+        return foundry.applications.handlebars.renderTemplate(chatOptions.template, chatData);
     }
 
     /**

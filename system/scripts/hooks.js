@@ -78,6 +78,8 @@ export default class HooksL5r5e {
      * SidebarTab
      */
     static renderSidebarTab(app, html, data) {
+        html = $(html); // basic patch for v13
+
         switch (app.tabName) {
             case "chat":
                 // Add DP on dice icon
@@ -131,6 +133,8 @@ export default class HooksL5r5e {
      * Chat Message
      */
     static renderChatMessage(message, html, data) {
+        html = $(html); // basic patch for v13
+
         if (message.isRoll) {
             // Add an extra CSS class to roll
             html.addClass("roll");
@@ -174,6 +178,8 @@ export default class HooksL5r5e {
             return;
         }
 
+        html = $(html); // basic patch for v13
+
         // *** Conf ***
         const encounterTypeList = Object.keys(CONFIG.l5r5e.initiativeSkills);
         const prepared = {
@@ -183,7 +189,7 @@ export default class HooksL5r5e {
         };
 
         // *** Template ***
-        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/combat-tracker-bar.html`, {
+        const tpl = await foundry.applications.handlebars.renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/combat-tracker-bar.html`, {
             encounterType: game.settings.get(CONFIG.l5r5e.namespace, "initiative-encounter"),
             encounterTypeList,
             prepared,
@@ -229,6 +235,8 @@ export default class HooksL5r5e {
      * Compendium display (Add filters)
      */
     static async renderCompendium(app, html, data) {
+        html = $(html); // basic patch for v13
+
         if (app.collection.documentName === "Item") {
             const content = await app.collection.getDocuments();
             const sourcesInThisCompendium = new Set([]);
@@ -289,7 +297,7 @@ export default class HooksL5r5e {
 
                 // Add ring/rank/rarity information on the item in the compendium view
                 if (document.system?.ring || document.system?.rarity || document.system?.rank) {
-                    const ringRarityRank = await renderTemplate(`${CONFIG.l5r5e.paths.templates}compendium/ring-rarity-rank.html`, document.system);
+                    const ringRarityRank = await foundry.applications.handlebars.renderTemplate(`${CONFIG.l5r5e.paths.templates}compendium/ring-rarity-rank.html`, document.system);
                     entry.append(ringRarityRank);
                 }
             }
@@ -372,7 +380,7 @@ export default class HooksL5r5e {
                 if (!filtersToShow[filterType]) {
                     return;
                 }
-                const filterTemplate = await renderTemplate(
+                const filterTemplate = await foundry.applications.handlebars.renderTemplate(
                     `${CONFIG.l5r5e.paths.templates}compendium/${templateFile}.html`,
                     templateData
                 );

@@ -1,7 +1,7 @@
 /**
  * Base Sheet for Actor and Npc
  */
-export class BaseSheetL5r5e extends ActorSheet {
+export class BaseSheetL5r5e extends foundry.appv1.sheets.ActorSheet {
     /**
      * Commons options
      */
@@ -81,8 +81,8 @@ export class BaseSheetL5r5e extends ActorSheet {
 
         // Editors enrichment
         sheetData.data.enrichedHtml = {
-            description: await TextEditor.enrichHTML(sheetData.data.system.description, { async: true }),
-            notes: await TextEditor.enrichHTML(sheetData.data.system.notes, { async: true }),
+            description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(sheetData.data.system.description, { async: true }),
+            notes: await foundry.applications.ux.TextEditor.implementation.enrichHTML(sheetData.data.system.notes, { async: true }),
         };
 
         // Shortcut for some tests

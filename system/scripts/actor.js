@@ -237,7 +237,7 @@ export class ActorL5r5e extends Actor {
      */
     async renderTextTemplate() {
         const sheetData = (await this.sheet?.getData()) || this;
-        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}actors/actor-text.html`, sheetData);
+        const tpl = await foundry.applications.handlebars.renderTemplate(`${CONFIG.l5r5e.paths.templates}actors/actor-text.html`, sheetData);
         if (!tpl) {
             return null;
         }

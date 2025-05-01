@@ -124,10 +124,10 @@ export class GmMonitor extends HandlebarsApplicationMixin(ApplicationV2) {
     async _onRender(context, options) {
         await super._onRender(context, options);
 
-        // Todo: Move this to common l5r5e application v2 
+        // Todo: Move this to common l5r5e application v2
         game.l5r5e.HelpersL5r5e.commonListeners($(this.element));
 
-        this.#dragDrop = new DragDrop({
+        this.#dragDrop = new foundry.applications.ux.DragDrop.implementation({
           dragSelector: null,
           dropSelector: null,
           callbacks: {
@@ -176,13 +176,13 @@ export class GmMonitor extends HandlebarsApplicationMixin(ApplicationV2) {
      * @param {string} partId                         The part being rendered
      * @param {ApplicationRenderContext} context      Shared context provided by _prepareContext
      * @returns {Promise<ApplicationRenderContext>}   Context data for a specific part
-     * 
+     *
      * @override HandlebarsApplicationMixin
      */
     async _preparePartContext(partId, context) {
         switch (partId) {
             case "character":
-                context.characters = this.context.actors.filter((actor) => !actor.isArmy); 
+                context.characters = this.context.actors.filter((actor) => !actor.isArmy);
                 break;
             case "army":
                 context.armies = this.context.actors.filter((actor) => actor.isArmy);
@@ -343,7 +343,7 @@ export class GmMonitor extends HandlebarsApplicationMixin(ApplicationV2) {
             case 1:   //Middle click
                 return 0;
             case 2:   //Right click
-                return Math.max(0, baseValue - 1); 
+                return Math.max(0, baseValue - 1);
         }
     }
 
@@ -459,12 +459,12 @@ export class GmMonitor extends HandlebarsApplicationMixin(ApplicationV2) {
             return;
         }
 
-        const fatigue = actor.system.fatigue.value;        
+        const fatigue = actor.system.fatigue.value;
         return actor.update({
             system: {
                 fatigue: {
                     value: GmMonitor.#newValue(fatigue, event.button)
-                }    
+                }
             }
         });
     }
@@ -479,7 +479,7 @@ export class GmMonitor extends HandlebarsApplicationMixin(ApplicationV2) {
             return;
         }
 
-        const strife = actor.system.strife.value; 
+        const strife = actor.system.strife.value;
         return actor.update({
             system: {
                 strife: {
@@ -499,7 +499,7 @@ export class GmMonitor extends HandlebarsApplicationMixin(ApplicationV2) {
             return;
         }
 
-        const void_points = actor.system.void_points.value; 
+        const void_points = actor.system.void_points.value;
         const void_points_max = actor.system.void_points.max;
         return actor.update({
             system: {
@@ -545,7 +545,7 @@ export class GmMonitor extends HandlebarsApplicationMixin(ApplicationV2) {
             );
 
         // *** Template ***
-        return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor/tooltips/armors.html`, {
+        return foundry.applications.handlebars.renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor/tooltips/armors.html`, {
             armors,
         });
     }
@@ -579,7 +579,7 @@ export class GmMonitor extends HandlebarsApplicationMixin(ApplicationV2) {
             .map((weapon) => display(weapon));
 
         // *** Template ***
-        return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor/tooltips/weapons.html`, {
+        return foundry.applications.handlebars.renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor/tooltips/weapons.html`, {
             readied,
             sheathed,
         });
@@ -606,7 +606,7 @@ export class GmMonitor extends HandlebarsApplicationMixin(ApplicationV2) {
             .join(", ");
 
         // *** Template ***
-        return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor/tooltips/global.html`, {
+        return foundry.applications.handlebars.renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor/tooltips/global.html`, {
             actorData: actorData,
             advantages: advantages,
             disadvantages: disadvantages,
@@ -625,7 +625,7 @@ export class GmMonitor extends HandlebarsApplicationMixin(ApplicationV2) {
         const actorData = (await actor.sheet?.getData()?.data) || actor;
 
         // *** Template ***
-        return renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor/tooltips/global-armies.html`, {
+        return foundry.applications.handlebars.renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/monitor/tooltips/global-armies.html`, {
             actorData: actorData,
         });
     }

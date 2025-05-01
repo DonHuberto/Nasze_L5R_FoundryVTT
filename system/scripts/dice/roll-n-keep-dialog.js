@@ -193,7 +193,7 @@ export class RollnKeepDialog extends FormApplication {
      */
     _createDragDropHandlers() {
         return [
-            new DragDrop({
+            new foundry.applications.ux.DragDrop.implementation({
                 dragSelector: ".dice.draggable",
                 dropSelector: ".dropbox",
                 permissions: { dragstart: this.isEditable, drop: this.isEditable },
@@ -259,13 +259,13 @@ export class RollnKeepDialog extends FormApplication {
         // GM Only, need to be before the editable check
         if (game.user.isGM && this.object.currentStep > 0) {
             // Add Context menu to rollback choices
-            new ContextMenu(html, ".l5r5e.profil", [
+            new foundry.applications.ux.ContextMenu.implementation(html[0], ".l5r5e.profil", [
                 {
                     name: game.i18n.localize("l5r5e.dice.roll_n_keep.undo"),
                     icon: '<i class="fas fa-undo"></i>',
                     callback: () => this._undoLastStepChoices(),
                 },
-            ]);
+            ], { jQuery: false });
         }
 
         // *** Everything below here is only needed if the sheet is editable ***

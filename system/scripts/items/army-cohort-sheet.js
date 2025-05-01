@@ -45,7 +45,7 @@ export class ArmyCohortSheetL5r5e extends ItemSheetL5r5e {
         const sheetData = await super.getData(options);
 
         // Editors enrichment
-        sheetData.data.enrichedHtml.abilities = await TextEditor.enrichHTML(sheetData.data.system.abilities, {
+        sheetData.data.enrichedHtml.abilities = await foundry.applications.ux.TextEditor.implementation.enrichHTML(sheetData.data.system.abilities, {
             async: true,
         });
 

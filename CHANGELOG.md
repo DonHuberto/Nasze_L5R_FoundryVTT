@@ -6,6 +6,11 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.13.0 - ??/??/2025 - Foundry v13 Compatibility
+__! Be certain to carefully back up any critical user data before installing this update !__
+- Updated the System to FoundryVTT v13.
+- Fix Compendium Typo : "Beseech Hida's MIght" -> "Beseech Hida's Might" (!59).
+
 ## 1.12.3 - 13/03/2025 - Fixes and Compendiums Filters (Thx to Litasa)
 - Added Compendiums Filters (#41)
   - Separated the reference and the page number from book reference for filtering purpose.

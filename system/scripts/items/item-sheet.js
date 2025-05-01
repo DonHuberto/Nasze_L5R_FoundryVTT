@@ -26,7 +26,7 @@ export class ItemSheetL5r5e extends BaseItemSheetL5r5e {
 
         // Editors enrichment
         sheetData.data.enrichedHtml = {
-            description: await TextEditor.enrichHTML(sheetData.data.system.description, { async: true }),
+            description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(sheetData.data.system.description, { async: true }),
         };
 
         return sheetData;
@@ -87,7 +87,7 @@ export class ItemSheetL5r5e extends BaseItemSheetL5r5e {
         // "this.isEditable" fail for tooltips (undefined "this.document")
         const isEditable = this.options.editable;
         return [
-            new DragDrop({
+            new foundry.applications.ux.DragDrop.implementation({
                 dragSelector: ".property",
                 dropSelector: null,
                 permissions: { dragstart: isEditable, drop: isEditable },

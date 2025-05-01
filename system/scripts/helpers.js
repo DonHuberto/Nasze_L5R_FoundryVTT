@@ -382,7 +382,7 @@ export class HelpersL5r5e {
         const title = game.i18n.format("DOCUMENT.Create", { type: game.i18n.localize("Item") });
 
         // Render the template
-        const html = await renderTemplate(`${CONFIG.l5r5e.paths.templates}dialogs/choose-item-type-dialog.html`, {
+        const html = await foundry.applications.handlebars.renderTemplate(`${CONFIG.l5r5e.paths.templates}dialogs/choose-item-type-dialog.html`, {
             type: null,
             types: types.reduce((obj, t) => {
                 const label = CONFIG.Item.typeLabels[t] ?? t;

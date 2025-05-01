@@ -2,7 +2,7 @@
  * Base JournalSheet for L5R5e
  * @extends {JournalSheet}
  */
-export class BaseJournalSheetL5r5e extends JournalSheet {
+export class BaseJournalSheetL5r5e extends foundry.appv1.sheets.JournalSheet {
     /** @override */
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {

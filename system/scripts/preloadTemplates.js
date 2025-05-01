@@ -1,6 +1,6 @@
 export const PreloadTemplates = async function () {
     const tpl = CONFIG.l5r5e.paths.templates;
-    return loadTemplates([
+    return foundry.applications.handlebars.loadTemplates([
         // Add paths to "systems/l5r5e/templates"
         // *** Actors : PC ***
         `${tpl}actors/character/advancement-school.html`,

@@ -177,7 +177,7 @@ export class ItemL5r5e extends Item {
             await game.l5r5e.HelpersL5r5e.refreshItemProperties(this);
         }
         const type = this.type.replace("_", "-"); // ex: item_pattern
-        const tpl = await renderTemplate(`${CONFIG.l5r5e.paths.templates}items/${type}/${type}-text.html`, sheetData);
+        const tpl = await foundry.applications.handlebars.renderTemplate(`${CONFIG.l5r5e.paths.templates}items/${type}/${type}-text.html`, sheetData);
         if (!tpl) {
             return null;
         }

@@ -111,107 +111,110 @@ Hooks.once("init", async () => {
     PreloadTemplates().then(() => {});
 
     // ***** Register custom sheets *****
+    const fdc = foundry.documents.collections;
+    const fav1s = foundry.appv1.sheets;
+
     // Actors
-    Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet(L5R5E.namespace, CharacterSheetL5r5e, {
+    fdc.Actors.unregisterSheet("core", fav1s.ActorSheet);
+    fdc.Actors.registerSheet(L5R5E.namespace, CharacterSheetL5r5e, {
         types: ["character"],
         label: "TYPES.Actor.character",
         makeDefault: true,
     });
-    Actors.registerSheet(L5R5E.namespace, NpcSheetL5r5e, {
+    fdc.Actors.registerSheet(L5R5E.namespace, NpcSheetL5r5e, {
         types: ["npc"],
         label: "TYPES.Actor.npc",
         makeDefault: true,
     });
-    Actors.registerSheet(L5R5E.namespace, ArmySheetL5r5e, {
+    fdc.Actors.registerSheet(L5R5E.namespace, ArmySheetL5r5e, {
         types: ["army"],
         label: "TYPES.Actor.army",
         makeDefault: true,
     });
 
     // Items
-    Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet(L5R5E.namespace, ItemSheetL5r5e, {
+    fdc.Items.unregisterSheet("core", fav1s.ItemSheet);
+    fdc.Items.registerSheet(L5R5E.namespace, ItemSheetL5r5e, {
         types: ["item"],
         label: "TYPES.Item.item",
         makeDefault: true,
     });
-    Items.registerSheet(L5R5E.namespace, ArmorSheetL5r5e, {
+    fdc.Items.registerSheet(L5R5E.namespace, ArmorSheetL5r5e, {
         types: ["armor"],
         label: "TYPES.Item.armor",
         makeDefault: true,
     });
-    Items.registerSheet(L5R5E.namespace, WeaponSheetL5r5e, {
+    fdc.Items.registerSheet(L5R5E.namespace, WeaponSheetL5r5e, {
         types: ["weapon"],
         label: "TYPES.Item.weapon",
         makeDefault: true,
     });
-    Items.registerSheet(L5R5E.namespace, TechniqueSheetL5r5e, {
+    fdc.Items.registerSheet(L5R5E.namespace, TechniqueSheetL5r5e, {
         types: ["technique"],
         label: "TYPES.Item.technique",
         makeDefault: true,
     });
-    Items.registerSheet(L5R5E.namespace, PropertySheetL5r5e, {
+    fdc.Items.registerSheet(L5R5E.namespace, PropertySheetL5r5e, {
         types: ["property"],
         label: "TYPES.Item.property",
         makeDefault: true,
     });
-    Items.registerSheet(L5R5E.namespace, PeculiaritySheetL5r5e, {
+    fdc.Items.registerSheet(L5R5E.namespace, PeculiaritySheetL5r5e, {
         types: ["peculiarity"],
         label: "TYPES.Item.peculiarity",
         makeDefault: true,
     });
-    Items.registerSheet(L5R5E.namespace, AdvancementSheetL5r5e, {
+    fdc.Items.registerSheet(L5R5E.namespace, AdvancementSheetL5r5e, {
         types: ["advancement"],
         label: "TYPES.Item.advancement",
         makeDefault: true,
     });
-    Items.registerSheet(L5R5E.namespace, TitleSheetL5r5e, {
+    fdc.Items.registerSheet(L5R5E.namespace, TitleSheetL5r5e, {
         types: ["title"],
         label: "TYPES.Item.title",
         makeDefault: true,
     });
-    Items.registerSheet(L5R5E.namespace, BondSheetL5r5e, {
+    fdc.Items.registerSheet(L5R5E.namespace, BondSheetL5r5e, {
         types: ["bond"],
         label: "TYPES.Item.bond",
         makeDefault: true,
     });
-    Items.registerSheet(L5R5E.namespace, SignatureScrollSheetL5r5e, {
+    fdc.Items.registerSheet(L5R5E.namespace, SignatureScrollSheetL5r5e, {
         types: ["signature_scroll"],
         label: "TYPES.Item.signature_scroll",
         makeDefault: true,
     });
-    Items.registerSheet(L5R5E.namespace, ItemPatternSheetL5r5e, {
+    fdc.Items.registerSheet(L5R5E.namespace, ItemPatternSheetL5r5e, {
         types: ["item_pattern"],
         label: "TYPES.Item.item_pattern",
         makeDefault: true,
     });
-    Items.registerSheet(L5R5E.namespace, ArmyCohortSheetL5r5e, {
+    fdc.Items.registerSheet(L5R5E.namespace, ArmyCohortSheetL5r5e, {
         types: ["army_cohort"],
         label: "TYPES.Item.army_cohort",
         makeDefault: true,
     });
-    Items.registerSheet(L5R5E.namespace, ArmyFortificationSheetL5r5e, {
+    fdc.Items.registerSheet(L5R5E.namespace, ArmyFortificationSheetL5r5e, {
         types: ["army_fortification"],
         label: "TYPES.Item.army_fortification",
         makeDefault: true,
     });
 
     // Journal
-    Journal.unregisterSheet("core", JournalSheet);
-    Journal.registerSheet(L5R5E.namespace, BaseJournalSheetL5r5e, {
+    fdc.Journal.unregisterSheet("core", fav1s.JournalSheet);
+    fdc.Journal.registerSheet(L5R5E.namespace, BaseJournalSheetL5r5e, {
         label: "TYPES.Journal.journal",
         makeDefault: true,
     });
 
     // Override enrichHTML for Symbol replacement
-    const oldEnrichHTML = TextEditor.prototype.constructor.enrichHTML;
-    TextEditor.prototype.constructor.enrichHTML = async function (content, options = {}) {
+    const oldEnrichHTML = foundry.applications.ux.TextEditor.implementation.prototype.constructor.enrichHTML;
+    foundry.applications.ux.TextEditor.implementation.prototype.constructor.enrichHTML = async function (content, options = {}) {
         return HelpersL5r5e.convertSymbols(await oldEnrichHTML.call(this, content, options), true);
     };
 
     // Override the default Token _drawBar function to allow fatigue bar reversing.
-    Token.prototype._drawBar = function (number, bar, data) {
+    foundry.canvas.placeables.Token.prototype._drawBar = function (number, bar, data) {
         const barSettings = game.settings.get(L5R5E.namespace, "token-reverse-token-bars");
         const reverseBar = barSettings === 'both' || barSettings === data.attribute;
 
@@ -257,7 +260,7 @@ Hooks.once("diceSoNiceReady", (dice3d) => HooksL5r5e.diceSoNiceReady(dice3d));
 /* Hooks On                             */
 /* ------------------------------------ */
 Hooks.on("renderSidebarTab", (app, html, data) => HooksL5r5e.renderSidebarTab(app, html, data));
-Hooks.on("renderChatMessage", (message, html, data) => HooksL5r5e.renderChatMessage(message, html, data));
+Hooks.on("renderChatMessageHTML", (message, html, data) => HooksL5r5e.renderChatMessage(message, html, data));
 Hooks.on("renderCombatTracker", (app, html, data) => HooksL5r5e.renderCombatTracker(app, html, data));
 Hooks.on("renderCompendium", async (app, html, data) => HooksL5r5e.renderCompendium(app, html, data));
 Hooks.on("diceSoNiceRollStart", (messageId, context) => HooksL5r5e.diceSoNiceRollStart(messageId, context));

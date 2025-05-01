@@ -55,15 +55,15 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
      */
     _createDragDropHandlers() {
         return [
-            new DragDrop({
+            new foundry.applications.ux.DragDrop.implementation({
                 dropSelector: ".warlord",
                 callbacks: { drop: this._onDropActors.bind(this, "warlord") },
             }),
-            new DragDrop({
+            new foundry.applications.ux.DragDrop.implementation({
                 dropSelector: ".commander",
                 callbacks: { drop: this._onDropActors.bind(this, "commander") },
             }),
-            new DragDrop({
+            new foundry.applications.ux.DragDrop.implementation({
                 dropSelector: null,
                 callbacks: { drop: this._onDrop.bind(this) },
             }),
@@ -120,7 +120,7 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
 
         // Editors enrichment
         for (const name of ["army_abilities", "supplies_logistics", "past_battles"]) {
-            sheetData.data.enrichedHtml[name] = await TextEditor.enrichHTML(sheetData.data.system[name], {
+            sheetData.data.enrichedHtml[name] = await foundry.applications.ux.TextEditor.implementation.enrichHTML(sheetData.data.system[name], {
                 async: true,
             });
         }

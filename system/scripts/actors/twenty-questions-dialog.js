@@ -101,19 +101,19 @@ export class TwentyQuestionsDialog extends FormApplication {
      */
     _createDragDropHandlers() {
         return [
-            new DragDrop({
+            new foundry.applications.ux.DragDrop.implementation({
                 dragSelector: ".item",
                 dropSelector: ".items",
                 permissions: { dragstart: this.isEditable, drop: this.isEditable },
                 callbacks: { dragstart: this._onDragStart.bind(this), drop: this._onDropItem.bind(this, "item") },
             }),
-            new DragDrop({
+            new foundry.applications.ux.DragDrop.implementation({
                 dragSelector: ".technique",
                 dropSelector: ".techniques",
                 permissions: { dragstart: this.isEditable, drop: this.isEditable },
                 callbacks: { dragstart: this._onDragStart.bind(this), drop: this._onDropItem.bind(this, "technique") },
             }),
-            new DragDrop({
+            new foundry.applications.ux.DragDrop.implementation({
                 dragSelector: ".peculiarity",
                 dropSelector: ".peculiarities",
                 permissions: { dragstart: this.isEditable, drop: this.isEditable },
@@ -122,7 +122,7 @@ export class TwentyQuestionsDialog extends FormApplication {
                     drop: this._onDropItem.bind(this, "peculiarity"),
                 },
             }),
-            new DragDrop({
+            new foundry.applications.ux.DragDrop.implementation({
                 dragSelector: ".bond",
                 dropSelector: ".bonds",
                 permissions: { dragstart: this.isEditable, drop: this.isEditable },
