@@ -21,442 +21,11 @@ button {
     }
 }
 
-// sidebar
-#sidebar {
-    padding: 0.5rem 0.25rem 0.5rem 0.5rem;
-    background-position: top;
-    background-size: 100%;
-    background: url("../assets/ui/bgSidebar.webp") no-repeat;
-    border: 1px solid rgb(195, 165, 130);
-    border-radius: 0;
-    overflow: initial;
-    height: calc(100% - 1.1rem);
-    top: 0.2rem;
-    min-width: 20rem;
-    letter-spacing: 0.1rem;
-    position: relative;
-    margin-right: 0.5rem;
-    &:before {
-        z-index: -1;
-        content: "";
-        position: absolute;
-        height: calc(100% + 0.6rem);
-        width: 100%;
-        border: 1px solid rgb(195, 165, 130);
-        border-radius: 0;
-        top: -0.35rem;
-        left: 0.25rem;
-    }
-    #sidebar-tabs {
-        flex: 0 0 2rem;
-        box-sizing: border-box;
-        margin: 0 0 0.25rem;
-        border-bottom: 1px solid rgba(195, 165, 130, 0.5);
-        box-shadow: none;
-        display: flex;
-        i {
-            flex: 1;
-            width: 100%;
-            height: 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 100%;
-            border-radius: 100%;
-
-            // v10 FA6+ color need to be set
-            &.fa-swords,
-            &.fa-user,
-            &.fa-cards {
-                color: black;
-            }
-
-            &.fa-comments {
-                background-image: url("../assets/ui/sidebar/chat.svg");
-                &:before {
-                    content: "";
-                }
-            }
-            &.fa-fist-raised {
-                background-image: url("../assets/ui/sidebar/combat-tracker.svg");
-                background-size: 85%;
-                &:before {
-                    content: "";
-                }
-            }
-            &.fa-map {
-                background-image: url("../assets/ui/sidebar/scenes.svg");
-                background-size: 80%;
-                &:before {
-                    content: "";
-                }
-            }
-            &.fa-users {
-                background-image: url("../assets/ui/sidebar/actors.svg");
-                background-size: 90%;
-                &:before {
-                    content: "";
-                }
-            }
-            &.fa-suitcase {
-                background-image: url("../assets/ui/sidebar/object.svg");
-                &:before {
-                    content: "";
-                }
-            }
-            &.fa-book-open {
-                background-image: url("../assets/ui/sidebar/journal.svg");
-                &:before {
-                    content: "";
-                }
-            }
-            &.fa-th-list {
-                background-image: url("../assets/ui/sidebar/rolltable.svg");
-                background-size: 85%;
-                &:before {
-                    content: "";
-                }
-            }
-            &.fa-id-badge {
-                background-size: 85%;
-                color: black;
-                padding-left: 2px;
-                &:before {
-                    content: "\f2c1";
-                }
-            }
-            &.fa-music {
-                background-image: url("../assets/ui/sidebar/playlist.svg");
-                background-size: 80%;
-                &:before {
-                    content: "";
-                }
-            }
-            &.fa-atlas {
-                background-image: url("../assets/ui/sidebar/compendium.svg");
-                &:before {
-                    content: "";
-                }
-            }
-            &.fa-cogs {
-                background-image: url("../assets/ui/sidebar/settings.svg");
-                background-size: 85%;
-                &:before {
-                    content: "";
-                }
-            }
-        }
-        > .item {
-            flex: 0 0 1.5rem;
-            width: 1.5rem;
-            height: 1.5rem;
-            line-height: 1.5rem;
-            margin: 0.1rem;
-            border-radius: 100%;
-            background: $l5r5e-white;
-            &.active,
-            &:hover {
-                background: $white;
-                border: 1px solid $l5r5e-border-sidebar;
-                box-shadow: 0 0 10px $red;
-            }
-        }
-        .collapse {
-            position: relative;
-            flex: 0 0 0.85rem;
-            line-height: 1.75rem;
-            color: rgb(195, 165, 130);
-            text-align: center;
-            i {
-                background-color: transparent;
-            }
-        }
-    }
-    &.collapsed {
-        min-width: 0;
-        width: 3rem !important;
-
-        #sidebar-tabs {
-            > .item {
-                &.active {
-                    border: 1px solid $l5r5e-border-sidebar;
-                    box-shadow: 0 0 10px $l5r5e-white;
-                    border-radius: 100%;
-                }
-            }
-            .collapse {
-                flex: 0 0 1.5rem;
-                margin: 0.1rem;
-            }
-        }
-    }
-    .sidebar-tab {
-        .chat-control-icon {
-            cursor: url("../assets/cursors/pointer.webp"), pointer;
-        }
-        .action-buttons button {
-            cursor: default;
-            color: $white;
-            background: linear-gradient(
-                $l5r5e-linear-gradient-third,
-                $l5r5e-linear-gradient-third-dark,
-                $l5r5e-linear-gradient-third
-            );
-            background-origin: padding-box;
-            border-image: url("../assets/ui/macro-button.webp") 10 repeat;
-            border-image-width: 0.5rem;
-            border-image-outset: 0px;
-            &:hover {
-                background: linear-gradient(
-                    $l5r5e-linear-gradient-first-dark,
-                    $l5r5e-linear-gradient-first,
-                    $l5r5e-linear-gradient-first-dark
-                );
-            }
-        }
-    }
-    // Settings
-    #settings button {
-        cursor: default;
-        color: $white;
-        background: linear-gradient(
-            $l5r5e-linear-gradient-third,
-            $l5r5e-linear-gradient-third-dark,
-            $l5r5e-linear-gradient-third
-        );
-        background-origin: padding-box;
-        border-image: url("../assets/ui/macro-button.webp") 10 repeat;
-        border-image-width: 0.5rem;
-        border-image-outset: 0px;
-        &:hover {
-            background: linear-gradient(
-                $l5r5e-linear-gradient-first-dark,
-                $l5r5e-linear-gradient-first,
-                $l5r5e-linear-gradient-first-dark
-            );
-        }
-    }
-
-    // Chat
-    #chat-form textarea {
-        color: $black;
-    }
-    #chat-form textarea,
-    .chat-message,
-    .blind,
-    .whisper,
-    #chat-controls .roll-type-select,
-    .header-search input {
-        background: transparent url("../assets/ui/chat-texture.webp") repeat-y;
-        &:focus {
-            background: #f0f0e0 url("../assets/ui/chat-texture.webp") repeat-y;
-        }
-    }
-    .header-search input[name="search"] {
-        background-color: $l5r5e-chat-color;
-        color: $l5r5e-black;
-        &:focus {
-            background-color: $l5r5e-chat-color-roll;
-        }
-    }
-
-    // Chat-Message
-    .chat-message {
-        .message-header {
-            line-height: 2rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            margin-bottom: 0.25rem;
-            border-radius: 0;
-        }
-    }
-
-    #chat-log {
-        margin: 0 0 0.5rem;
-        font-size: 1rem;
-        .message.whisper,
-        .message.blind,
-        .message.roll {
-            position: relative;
-            .message-header {
-                .message-metadata:before {
-                    position: absolute;
-                    top: -0.5rem;
-                    right: 0.25rem;
-                    font-size: 0.5rem;
-                    color: $l5r5e-red;
-                    height: 0;
-                }
-            }
-        }
-        .message.whisper {
-            font-style: italic;
-            .message-header {
-                .message-metadata:before {
-                    content: "(Private)";
-                }
-            }
-            &.roll {
-                .message-header {
-                    .message-metadata:before {
-                        content: "(Private Roll)";
-                    }
-                }
-            }
-        }
-        .message.blind {
-            font-style: italic;
-            .message-header {
-                .message-metadata:before {
-                    content: "(Blind)";
-                }
-            }
-            &.roll {
-                .message-header {
-                    .message-metadata:before {
-                        content: "(Blind Roll)";
-                    }
-                }
-            }
-        }
-        .message.roll {
-            .message-header {
-                .message-metadata:before {
-                    content: "(Roll)";
-                }
-            }
-        }
-    }
-    .message-sender {
-        color: $l5r5e-red;
-        text-shadow: 1px 1px 0px $l5r5e-black-light;
-    }
-    .message {
-        background-color: $l5r5e-chat-color;
-        color: $black-light;
-        ul {
-            li {
-                padding: 0.25rem;
-                border: 1px solid rgba(0, 0, 0, 0.05);
-                border-bottom: 0 none;
-                &:nth-child(odd) {
-                    background: $l5r5e-odd;
-                }
-                &:nth-child(even) {
-                    background: $l5r5e-even;
-                }
-                &:last-child {
-                    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-                }
-            }
-        }
-        &.roll {
-            background-color: $l5r5e-chat-color-roll;
-        }
-        &.blind {
-            background-color: $l5r5e-chat-color-blind;
-        }
-        &.whisper {
-            background-color: $l5r5e-chat-color-whisper;
-        }
-    }
-}
-
-// hotbar
-#hotbar {
-    //margin: 0;
-    #action-bar {
-        //flex: 0 0 100%;
-        .macro {
-            background-position: center;
-            background-size: 100%;
-            background: linear-gradient(
-                $l5r5e-linear-gradient-second,
-                $l5r5e-linear-gradient-second-dark,
-                $l5r5e-linear-gradient-second
-            );
-            background-origin: padding-box;
-            border-image: url("../assets/ui/macro-button.webp");
-            border-image-slice: 8 fill;
-            border-image-width: 0.25rem;
-            border-image-outset: 0;
-            border-radius: 0;
-            .macro-key {
-                background: $l5r5e-black;
-            }
-            &.active {
-                background: linear-gradient(
-                    $l5r5e-linear-gradient-second-dark,
-                    $l5r5e-linear-gradient-second,
-                    $l5r5e-linear-gradient-second-dark
-                );
-                box-shadow: 1px 1px 10px $black inset;
-                border: 1px solid rgba(195, 165, 130, 0.5);
-            }
-        }
-        #macro-list {
-            background: transparent;
-            margin: 0;
-            padding: 0.05rem;
-            border-radius: 0;
-            border: 0 none;
-            box-shadow: 0.25rem 0.25rem 0.5rem $black-light;
-        }
-    }
-    .bar-controls {
-        background-position: center;
-        background-size: 100%;
-        background: linear-gradient(
-            $l5r5e-linear-gradient-second,
-            $l5r5e-linear-gradient-second-dark,
-            $l5r5e-linear-gradient-second
-        );
-        background-origin: padding-box;
-        border-image: url("../assets/ui/macro-button.webp") 15 repeat;
-        border-image-width: 0.5rem;
-        border-image-outset: 0px;
-        box-shadow: 0 0 0.25rem $black-light;
-        border-radius: 0;
-        margin: 0 0.5rem;
-        a.page-control,
-        span.page-number {
-            font-size: 1rem;
-            line-height: 0.95rem;
-        }
-    }
-}
-
-// players
-#players {
-    border-radius: 0;
-    background-position: center;
-    background-size: 100%;
-    background: linear-gradient(
-        $l5r5e-linear-gradient-second,
-        $l5r5e-linear-gradient-second-dark,
-        $l5r5e-linear-gradient-second
-    );
-    background-origin: padding-box;
-    border: 1px solid rgb(195, 165, 130);
-    background-origin: padding-box;
-    border-image: url("../assets/ui/macro-button.webp") 15 repeat;
-    border-image-width: 0.5rem;
-    border-image-outset: 0px;
-    margin: 0;
-    padding: 0;
-    left: 0.2rem;
-    bottom: 0.65rem;
-    box-shadow: inset 0 0 0.5rem $black-light;
-    position: relative;
-    &:before {
-        z-index: -1;
-        position: absolute;
-        content: "";
-        background: transparent url("../assets/ui/players-border.webp") no-repeat 0 0;
-        background-size: 100%;
-        display: block;
-        top: -12px;
-        right: 10%;
-        left: 10%;
-        bottom: 0;
+.chat-message {
+    ul,li {
+        list-style: none;
+        margin: unset;
+        padding: unset;
     }
 }
 
@@ -623,11 +192,14 @@ button {
                     border-right: 1px solid $l5r5e-white-light;
                 }
                 li {
-                    flex: 1;
                     cursor: url("../assets/cursors/pointer.webp"), pointer;
                 }
             }
+            .prepared {
+                justify-content: space-evenly;
+            }
             .encounter {
+                justify-content: space-between;
                 i {
                     font-size: 23px;
                     vertical-align: middle;
@@ -683,27 +255,7 @@ button {
 }
 
 // Compendium
-.compendium,
-.compendium-list {
-    .compendium-pack {
-        .pack-title {
-            margin: 0;
-            line-height: 1rem;
-        }
-        .compendium-footer {
-            text-align: right;
-            margin-right: 2rem;
-            font-size: 0.75rem;
-            color: rgba(240, 240, 225, 0.75);
-        }
-    }
-    .ring-filter,
-    .number-filter {
-        .selected {
-            background-image: radial-gradient(closest-side, yellow, transparent);
-        }
-    }
-
+.directory-item {    
     .ring-filter {
         i.i_earth,
         i.i_fire,
@@ -713,20 +265,29 @@ button {
             line-height: unset; // do not have it rised up
         }
     }
-    .directory-item {
-        .ring-rarity-rank {
-            flex: unset
+
+    .ring-rarity-rank {
+        flex: unset
+    }
+}
+
+.not-for-players {
+    filter:brightness(0.5);
+}
+
+.compendium-header {
+    .ring-filter{
+        .selected {
+            filter: drop-shadow(0px 0px 5px yellow);
         }
     }
-
-    .not-for-players {
-        filter:brightness(0.5);
+    .rank-filter {
+        .selected {
+            filter: drop-shadow(0px 0px 5px yellow) drop-shadow(0px 0px 5px yellow) drop-shadow(0px 0px 5px yellow);
+        }
     }
 
     l5r5e-multi-select {
-        select {
-            background: rgba(255, 255, 245, 0.8); // same as the header-search in compendium popout
-        }
         .input-element-tags {
             max-height: 100px;
         }
@@ -860,6 +421,7 @@ button {
     min-width: 240px;
 
     .window-content {
+        background: rgb(255, 250, 230) url("../assets/imgs/bg-l5r.webp") no-repeat;
         [data-application-part="hidden_tabs"] {
             display: none;
         }
@@ -925,7 +487,6 @@ button {
         }
     }
     .window-content {
-        background: none;
         padding: 0;
         .gm-tools-container {
             color: var(--color-text-primary);
@@ -1042,9 +603,6 @@ l5r5e-multi-select:has( > button.gm) {
 
 
 .autocomplete-wrapper {
-    position: relative;
-    display: inline-block;
-
     .autocomplete-list {
         position: absolute;
         border: 1px solid #6e7e6b;

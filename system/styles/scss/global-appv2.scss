@@ -1,5 +1,4 @@
 .application {
-    background: unset;
     color: var(--color-text-dark-primary);
     
     .scrollable {
@@ -19,7 +18,6 @@
     }
 
     .window-content {
-        background: rgb(255, 250, 230) url("../assets/imgs/bg-l5r.webp") no-repeat;
         padding: 0.25rem;
     }
 }
@@ -46,6 +44,49 @@
                     background: $l5r5e-even;
                 }
             }
+        }
+    }
+}
+
+#sidebar-tabs > menu {
+    gap: 4px; // halve the distance between menu icons
+}
+
+#sidebar-content {
+    background: url("../assets/ui/bgSidebar.webp") no-repeat;
+    border-image: url("../assets/ui/macro-button.webp") 10 repeat;
+    border-style: solid;
+    border-image-width: 0.5rem;
+    border-image-outset: 0px;
+    margin-top: 2px;
+    margin-right: 2px;
+    height: calc(100% - 10px); // use height calculation to add margin at bottom
+
+    .sidebar-tab,.tab {
+        margin: 3px; // center content in sidebar
+        border-radius: 5px; // round of the inside content
+    }
+
+    #chat {
+        margin: unset;
+        padding-right: 4px; // scrollbar should be inside the container
+        .chat-scroll {
+          direction: unset;     // Scrollbar on right
+          scrollbar-color:  var(--color-light-4) var(--color-dark-3);
+          scrollbar-width: thin;
+        }
+    }
+}
+
+// hotbar
+#hotbar {
+    //margin: 0;
+    #action-bar {
+        //flex: 0 0 100%;
+        .slot {
+            border-image: url("../assets/ui/macro-button.webp");
+            border-image-slice: 8 fill;
+            border-image-width: 0.25rem;
         }
     }
 }
