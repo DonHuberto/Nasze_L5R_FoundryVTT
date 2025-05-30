@@ -1,0 +1,46 @@
+
+/* lists */
+ul,
+li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+// Elements Colors
+.earth {
+    color: $l5r5e-earth;
+}
+.air {
+    color: $l5r5e-air;
+}
+.water {
+    color: $l5r5e-water;
+}
+.fire {
+    color: $l5r5e-fire;
+}
+.void {
+    color: $l5r5e-void;
+}
+
+// inputs
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+textarea {
+    padding: 0.25rem;
+    background: $l5r5e-white;
+    border: 1px solid $l5r5e-title;
+    color: $l5r5e-black;
+    resize: vertical;
+    border-radius: 0;
+    &[disabled] {
+        background: $l5r5e-white-light;
+    }
+}
+input[type="number"] {
+    text-align: center;
+}

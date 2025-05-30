@@ -1,4 +1,4 @@
-<div class="l5r5e dice-roll">
+<div class="l5r5e chat dice-roll">
     {{#if isPublicRoll}}
 
     {{#if l5r5e.stance}}
@@ -71,6 +71,7 @@
     <div class="l5r5e dice-result">
         {{#if l5r5e.dicesTypes.l5r}}
         <div class="l5r5e item-display dices-l5r">
+            <div class="l5r5e dice-container">
             {{!-- Dices list --}}
             {{#each l5r5e.dices}}
                 {{#if this.diceTypeL5r}}
@@ -79,6 +80,7 @@
                     {{/each}}
                 {{/if}}
             {{/each}}
+            </div>
 
             {{!-- Roll & Keep Button --}}
             {{^if l5r5e.dicesTypes.std}}

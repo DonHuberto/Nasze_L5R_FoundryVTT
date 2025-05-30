@@ -165,7 +165,7 @@ export default class HooksL5r5e {
      */
     static async renderCombatTracker(app, html, data) {
         // Display Combat bar (only for GMs)
-        await this._gmCombatBar(app, html, data);
+        await this._gmCombatBar(app, $(html), data);
     }
 
     /**
@@ -261,7 +261,7 @@ export default class HooksL5r5e {
             // Add additional data to the entries to make it faster to lookup.
             // Add Ring/rank/rarity information
             for (const document of content) {
-                const entry = entries.filter(`[data-document-id="${document.id}"]`);
+                const entry = entries.filter(`[data-entry-id="${document.id}"]`);
 
                 // Hide filter if only one value of this type is found in the compendium
                 const autoDisplayFilter = (props, documentData = null) => {
@@ -310,9 +310,9 @@ export default class HooksL5r5e {
 
             const unavailableSourceForPlayers = allCompendiumReferences.filter((element) => {
                 if (CONFIG.l5r5e.sourceReference[element]) {
-                    return officialContent.length > 0 ? !officialContent.includes(element) : false;
+                    return officialContent.size > 0 ? !officialContent.has(element) : false;
                 }
-                return unofficialContent.length > 0 ? !unofficialContent.includes(element) : false;
+                return unofficialContent.size > 0 ? !unofficialContent.has(element) : false;
             });
 
             // Create filter function
@@ -333,7 +333,7 @@ export default class HooksL5r5e {
                     let shouldShow = true;
 
                     // Handle unavailable sources
-                    if (unavailableSourceForPlayers.includes(lineSource)) {
+                    if (unavailableSourceForPlayers.has(lineSource)) {
                         if (game.user.isGM) {
                             shouldShow &= true;
                             $(this)
@@ -410,7 +410,7 @@ export default class HooksL5r5e {
                     label: CONFIG.l5r5e.sourceReference[reference]?.label ?? reference,
                     translate: true,
                     group: CONFIG.l5r5e.sourceReference[reference]?.type.split(",")[0] ?? "l5r5e.multiselect.sources_categories.others",
-                    disabled: !sourcesInThisCompendium.has(reference) || (!game.user.isGM && unavailableSourceForPlayers.includes(reference))
+                    disabled: !sourcesInThisCompendium.has(reference) || (!game.user.isGM && unavailableSourceForPlayers.has(reference))
                 }));
                 const filterSourcesBox = L5r5eHtmlMultiSelectElement.create({
                     name: "filter-sources",
@@ -427,7 +427,7 @@ export default class HooksL5r5e {
                         + '</button>'
 
                     const filterPlayerView = allCompendiumReferences
-                        .filter((item) => !unavailableSourceForPlayers.includes(item))
+                        .filter((item) => !unavailableSourceForPlayers.has(item))
                         .filter((item) => sourcesInThisCompendium.has(item));
 
                     $(buttonHTML).appendTo($(header).find("l5r5e-multi-select")).click(function() {
