@@ -585,12 +585,15 @@ l5r5e-multi-select:has( > button.gm) {
     }
 }
 
-#client-settings:has( l5r5e-multi-select) {
-    .form-fields:has(l5r5e-multi-select) {
-        order: 3; // Move the multiselect to be below the title and description for nicer ui
+form#settings-config {
+
+    div.form-group:has(l5r5e-multi-select) {
+        .form-fields {
+            order: 3; // Move the multiselect to be below the title and description for nicer ui
+        }
     }
 
-    [data-setting-id="l5r5e.compendium-unofficial-content-for-players"] {
+    div.form-group:has(#settings-config-l5r5e\.compendium-unofficial-content-for-players) {
         // Move the tags and input fields to a similar place as for the multiselect
         .form-fields {
             order: 3;

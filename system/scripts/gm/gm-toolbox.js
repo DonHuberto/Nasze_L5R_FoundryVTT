@@ -90,7 +90,7 @@ export class GmToolbox extends HandlebarsApplicationMixin(ApplicationV2) {
      * @override ApplicationV2
      */
     async close(options) {
-        return;
+        return Promise.resolve(this);
     }
 
     /**

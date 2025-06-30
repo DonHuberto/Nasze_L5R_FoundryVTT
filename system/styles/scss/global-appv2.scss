@@ -52,7 +52,7 @@
     gap: 4px; // halve the distance between menu icons
 }
 
-#sidebar-content {
+#sidebar-content.expanded {
     background: url("../assets/ui/bgSidebar.webp") no-repeat;
     border-image: url("../assets/ui/macro-button.webp") 10 repeat;
     border-style: solid;
@@ -89,4 +89,14 @@
             border-image-width: 0.25rem;
         }
     }
+}
+
+#menu.active {
+    transition: max-height 150ms ease-in;
+}
+
+#menu {
+    // Foundry listens to transitionend and then close the menu so need something here.
+    // otherwise using ESC will result in a long wait and missed trigger events
+    transition: max-height 10ms ease-out;
 }

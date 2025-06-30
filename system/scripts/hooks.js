@@ -116,17 +116,22 @@ export default class HooksL5r5e {
                 // Add title on button dice icon
                 html.find(".chat-control-icon")[0].title = game.i18n.localize("l5r5e.dice.dicepicker.title");
                 break;
+            }
+    }
 
-            case "settings":
-                // Add Changelog link
-                html.find("#game-details .system").append(
-                    `<span><a href="${game.system.changelog}" target="_blank">Changelog</a>`
-                    + ` <a href="${game.i18n.localize("l5r5e.settings.wiki.link")}" target="_blank">${game.i18n.localize("l5r5e.settings.wiki.title")}</a>`
-                    + ` <a href="${game.i18n.localize("l5r5e.settings.custom-compendiums.link")}" target="_blank">${game.i18n.localize("l5r5e.settings.custom-compendiums.title")}</a>`
-                    + `</span>`
-                );
-                break;
-        }
+    static async activateSettings(app) {
+        const html = app.element
+        const pip = html.querySelector(".info .system .notification-pip");
+        html.querySelector(".info.system.l5r5e")?.remove();
+
+        const section = document.createElement("section");
+        section.className = "info system l5r5e";
+        const tpl = await foundry.applications.handlebars.renderTemplate(`${CONFIG.l5r5e.paths.templates}settings/logo.html`, {
+            SystemVersion: game.system.version
+        });
+        section.append(foundry.utils.parseHTML(tpl));
+        if ( pip ) section.querySelector(".system-info").insertAdjacentElement("beforeend", pip);
+        html.querySelector(".info").insertAdjacentElement("afterend", section);
     }
 
     /**
