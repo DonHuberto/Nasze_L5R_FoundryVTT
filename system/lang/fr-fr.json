@@ -79,6 +79,7 @@
         }
     },
     "l5r5e": {
+        "title": "Legend of the five Rings",
         "global": {
             "edge_translation_disclaimer": "",
             "add": "Ajouter",
@@ -103,16 +104,6 @@
                 "others": "Autres"
             }
         },
-        "settings": {
-            "custom-compendiums": {
-                "title": "Compendiums",
-                "link": "https://gitlab.com/teaml5r/l5r5e/-/wikis/users/custom-compendiums.md"
-            },
-            "wiki": {
-                "title": "Wiki",
-                "link": "https://gitlab.com/teaml5r/l5r5e/-/wikis/home"
-            }
-        },
         "logo": {
             "title": "Besoin d'aide ?",
             "src": "systems/l5r5e/assets/l5r-logo.webp",
@@ -132,6 +123,22 @@
                 "title": "Rejoignez le Discord Francophone",
                 "info": "Votre navigateur va ouvrir le discord francophone de foundry.",
                 "link": "https://discord.gg/pPSDNJk"
+            },
+            "notes": {
+                "title": "Changelog",
+                "link": "https://gitlab.com/teaml5r/l5r5e/-/blob/master/CHANGELOG.md"
+            },
+            "issues": {
+                "title": "Issues",
+                "link": "https://gitlab.com/teaml5r/l5r5e/-/issues"
+            },
+            "custom-compendiums": {
+                "title": "Compendiums",
+                "link": "https://gitlab.com/teaml5r/l5r5e/-/wikis/users/custom-compendiums.md"
+            },
+            "wiki": {
+                "title": "Wiki",
+                "link": "https://gitlab.com/teaml5r/l5r5e/-/wikis/home"
             }
         },
         "rings": {
