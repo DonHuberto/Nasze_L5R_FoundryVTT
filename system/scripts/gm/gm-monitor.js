@@ -1,6 +1,8 @@
+import { L5r5ePopupManager } from '../misc/l5r5e-popup-manager.js';
 
 const HandlebarsApplicationMixin = foundry.applications.api.HandlebarsApplicationMixin;
 const ApplicationV2 = foundry.applications.api.ApplicationV2;
+
 export class GmMonitor extends HandlebarsApplicationMixin(ApplicationV2) {
     /** @override ApplicationV2 */
     static get DEFAULT_OPTIONS() {
@@ -136,33 +138,34 @@ export class GmMonitor extends HandlebarsApplicationMixin(ApplicationV2) {
         }).bind(this.element);
 
         // Tooltips
-        game.l5r5e.HelpersL5r5e.popupManager($(this.element).find(".actor-infos-control"), async (event) => {
-            const type = $(event.currentTarget).data("type");
-            if (!type) {
-                return;
+        new L5r5ePopupManager(
+            $(this.element).find(".actor-infos-control"),
+            async (event) => {
+                const type = $(event.currentTarget).data("type");
+                if (!type) return;
+        
+                if (type === "text") {
+                    return $(event.currentTarget).data("text");
+                }
+        
+                const uuid = $(event.currentTarget).data("actor-uuid");
+                if (!uuid) return;
+        
+                const actor = this.context.actors.find(actor => actor.uuid === uuid);
+                if (!actor) return;
+        
+                switch (type) {
+                    case "armors":
+                        return this.#getTooltipArmors(actor);
+                    case "weapons":
+                        return this.#getTooltipWeapons(actor);
+                    case "global":
+                        return actor.isArmy
+                            ? this.#getTooltipArmiesGlobal(actor)
+                            : this.#getTooltipGlobal(actor);
+                }
             }
-            if (type === "text") {
-                return $(event.currentTarget).data("text");
-            }
-
-            const uuid = $(event.currentTarget).data("actor-uuid");
-            if (!uuid) {
-                return;
-            }
-            const actor = this.context.actors.find((actor) => actor.uuid === uuid);
-            if (!actor) {
-                return;
-            }
-
-            switch (type) {
-                case "armors":
-                    return this.#getTooltipArmors(actor);
-                case "weapons":
-                    return this.#getTooltipWeapons(actor);
-                case "global":
-                    return actor.isArmy ? this.#getTooltipArmiesGlobal(actor) : this.#getTooltipGlobal(actor);
-            }
-        });
+        );
     }
 
     /** @override ApplicationV2 */
