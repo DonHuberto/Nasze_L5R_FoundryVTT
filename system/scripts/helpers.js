@@ -1,3 +1,5 @@
+import { L5r5ePopupManager } from './misc/l5r5e-popup-manager.js';
+
 /**
  * Extends the actor to process special things from L5R.
  */
@@ -509,13 +511,16 @@ export class HelpersL5r5e {
         });
 
         // Item detail tooltips
-        this.popupManager(html.find(".l5r5e-tooltip"), async (event) => {
-            const item = await HelpersL5r5e.getEmbedItemByEvent(event, actor);
-            if (!item) {
-                return;
+        new L5r5ePopupManager(
+            html.find(".l5r5e-tooltip"),
+            async (event) => {
+                const item = await HelpersL5r5e.getEmbedItemByEvent(event, actor);
+                if (!item) {
+                    return;
+                }
+                return await item.renderTextTemplate();
             }
-            return await item.renderTextTemplate();
-        });
+        );
 
         // Open actor sheet
         html.find(".open-sheet-from-uuid").on("click", async (event) => {
@@ -532,52 +537,6 @@ export class HelpersL5r5e {
             }
             (await fromUuid(uuid))?.sheet?.render(true);
         });
-    }
-
-    /**
-     * Do the Popup for the selected element
-     * @param {Selector} selector HTML Selector
-     * @param {function} callback Callback function(event), must return the html to display
-     */
-    static popupManager(selector, callback) {
-        const popupPosition = (event, popup) => {
-            let left = +event.clientX + 60,
-                top = +event.clientY;
-
-            let maxY = window.innerHeight - popup.outerHeight();
-            if (top > maxY) {
-                top = maxY - 10;
-            }
-
-            let maxX = window.innerWidth - popup.outerWidth();
-            if (left > maxX) {
-                left -= popup.outerWidth() + 100;
-            }
-            return { left: left + "px", top: top + "px", visibility: "visible" };
-        };
-
-        selector
-            .on("mouseenter", async (event) => {
-                $(document.body).find("#l5r5e-tooltip-ct").remove();
-
-                const tpl = await callback(event);
-                if (!tpl) {
-                    return;
-                }
-
-                $(document.body).append(
-                    `<div id="l5r5e-tooltip-ct" class="l5r5e-tooltip l5r5e-tooltip-ct">${tpl}</div>`
-                );
-            })
-            .on("mousemove", (event) => {
-                const popup = $(document.body).find("#l5r5e-tooltip-ct");
-                if (popup) {
-                    popup.css(popupPosition(event, popup));
-                }
-            })
-            .on("mouseleave", () => {
-                $(document.body).find("#l5r5e-tooltip-ct").remove();
-            }); // tooltips
     }
 
     /**
