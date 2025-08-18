@@ -652,6 +652,7 @@
             "boar": "Boar",
             "dragonfly": "Dragonfly",
             "firefly": "Firefly",
+            "fox": "Fox",
             "hare": "Hare",
             "monkey": "Monkey",
             "oriole": "Oriole",
@@ -679,6 +680,7 @@
             "capricious": "Capricious",
             "cautious": "Cautious",
             "clever": "Clever",
+            "compassionate": "Compassionate",
             "confused": "Confused",
             "courageous": "Courageous",
             "cowardly": "Cowardly",
@@ -756,7 +758,8 @@
             "cresting_waves": "Cresting Waves",
             "deathly_turns": "Deathly Turns",
             "the_scroll_or_the_blade": "The Scroll or the Blade",
-            "legacies_of_war": "Legacies of War"
+            "legacies_of_war": "Legacies of War",
+            "children_of_the_five_winds": "Children of the Five Winds"
         }
     }
 }
