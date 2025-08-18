@@ -65,6 +65,11 @@ export const L5R5E = {
             label: "l5r5e.source_reference.writ_of_the_wild",
             type: "l5r5e.multiselect.sources_categories.rules"
         },
+        "children_of_the_five_winds": {
+            value: "children_of_the_five_winds",
+            label: "l5r5e.source_reference.children_of_the_five_winds",
+            type: "l5r5e.multiselect.sources_categories.rules"
+        },
         "gm_kit": {
             value: "gm_kit",
             label: "l5r5e.source_reference.gm_kit",
@@ -266,6 +271,7 @@ L5R5E.families.set("bat", ["Komori"]);
 L5R5E.families.set("boar", ["Heichi"]);
 L5R5E.families.set("dragonfly", ["Tonbo"]);
 L5R5E.families.set("firefly", ["Hotaru"]);
+L5R5E.families.set("fox", ["Kitsune"]);
 L5R5E.families.set("hare", ["Ujina", "Usagi"]);
 L5R5E.families.set("monkey", ["Toku", "Fuzake"]);
 L5R5E.families.set("oriole", ["Tsi"]);
@@ -299,6 +305,7 @@ L5R5E.demeanors = [
     { id: "capricious", mod: { air: 2, earth: -2 } },
     { id: "cautious", mod: { air: 2, earth: -2 } },
     { id: "clever", mod: { air: 2, earth: -2 } },
+    { id: "compassionate", mod: { fire: 2, air: -1, water: -1}},
     { id: "confused", mod: { fire: 1, void: 1, air: -2 } },
     { id: "courageous", mod: { air: 2, earth: -2 } },
     { id: "cowardly", mod: { earth: 2, fire: -2 } },
