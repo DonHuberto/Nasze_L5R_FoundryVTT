@@ -652,6 +652,7 @@
             "boar": "Sanglier",
             "dragonfly": "Libellule",
             "firefly": "Luciole",
+            "fox": "Renard",
             "hare": "Lièvre",
             "monkey": "Singe",
             "oriole": "Loriot",
@@ -679,6 +680,7 @@
             "capricious": "Capricieuse",
             "cautious": "Prudente",
             "clever": "Astucieuse",
+            "compassionate": "Compatissante",
             "confused": "Confuse",
             "courageous": "Courageuse",
             "cowardly": "Lâche",
@@ -756,7 +758,8 @@
             "cresting_waves": "La Crête des Vagues",
             "deathly_turns": "Détours Mortels",
             "the_scroll_or_the_blade": "Le Parchemin ou le Sabre",
-            "legacies_of_war": "Les Flambeaux de la Guerre"
+            "legacies_of_war": "Les Flambeaux de la Guerre",
+            "children_of_the_five_winds": "Les Enfants des Cinq Vents"
         }
     }
 }

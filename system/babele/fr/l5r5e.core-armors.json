@@ -156,6 +156,30 @@
             "source_reference": {
                 "page": "97"
             }
+        },
+        {
+            "id": "Mirror Armor",
+            "name": "Mirror Armor (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Unicorn Barding",
+            "name": "Unicorn Barding (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Yuki: The Ancestral Armor of the Unicorn Clan [Blessed Treasure]",
+            "name": "Yuki: The Ancestral Armor of the Unicorn Clan [Blessed Treasure] (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
         }
     ]
 }

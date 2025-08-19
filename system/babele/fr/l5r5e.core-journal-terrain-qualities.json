@@ -135,15 +135,15 @@
             }
         },
         "Imbalanced (One or More Elements) Variant": {
-            "name": "Imbalanced (One or More Elements) Variant (WIP)",
+            "name": "Déséquilibré (un ou plusieurs éléments) – variante",
             "pages": {
                 "Figure: Imbalanced (One or More Elements) Variant": {
-                    "name": "Imbalanced (One or More Elements) Variant (WIP) - Image",
+                    "name": "Déséquilibré (un ou plusieurs éléments) – variante - Image",
                     "src": "icons/svg/stoned.svg"
                 },
                 "Imbalanced (One or More Elements) Variant": {
-                    "name": "Imbalanced (One or More Elements) Variant (WIP)",
-                    "text": "<blockquote>Les Édits de la Nature</blockquote>"
+                    "name": "Déséquilibré (un ou plusieurs éléments) – variante",
+                    "text": "<blockquote>Les Édits de la Nature p.139</blockquote>"
                 }
             }
         }

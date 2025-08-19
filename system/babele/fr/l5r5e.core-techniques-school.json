@@ -743,50 +743,50 @@
         },
         {
             "id": "May the Spirits Show the Path",
-            "name": "May the Spirits Show the Path (WIP)",
+            "name": "Que les esprits montrent la voie",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "96"
             }
         },
         {
             "id": "Laughter Makes the Home",
-            "name": "Laughter Makes the Home (WIP)",
+            "name": "On rit comme chez soi",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "97"
             }
         },
         {
             "id": "Bend Perception",
-            "name": "Bend Perception (WIP)",
+            "name": "Fausser les perceptions",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "98"
             }
         },
         {
             "id": "Keen Senses",
-            "name": "Keen Senses (WIP)",
+            "name": "Sens Développés",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "99"
             }
         },
         {
             "id": "Mind of Calm",
-            "name": "Mind of Calm (WIP)",
+            "name": "Esprit de calme",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "100"
             }
         },
         {
             "id": "Evolution of the Wilds",
-            "name": "Evolution of the Wilds (WIP)",
+            "name": "Evolution de la nature",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "101"
             }
         },
         {
@@ -803,6 +803,86 @@
             "description": "",
             "source_reference": {
                 "page": "25"
+            }
+        },
+        {
+            "id": "Moment of Certainty",
+            "name": "Moment of Certainty (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Disarming Demeanor",
+            "name": "Disarming Demeanor (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "The Horse Lord's Favor",
+            "name": "The Horse Lord's Favor (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Calm Counsel",
+            "name": "Calm Counsel (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Natural Balance",
+            "name": "Natural Balance (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Dunestrider",
+            "name": "Dunestrider (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Methodical Observation",
+            "name": "Methodical Observation (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Unity of Horse and Rider",
+            "name": "Unity of Horse and Rider (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Warden of the Five Winds",
+            "name": "Warden of the Five Winds (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Move as the Wind",
+            "name": "Move as the Wind (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
             }
         }
     ]

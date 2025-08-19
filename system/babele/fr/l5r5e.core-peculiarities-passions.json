@@ -377,17 +377,44 @@
         },
         {
             "id": "Charity",
-            "name": "Charity (WIP)",
+            "name": "Charité",
             "types": "Relations, Mental",
+            "description": "",
+            "source_reference": {
+                "page": "103"
+            }
+        },
+        {
+            "id": "Kintsugi",
+            "name": "Kintsugi",
+            "types": "Mental, Physique",
+            "description": "",
+            "source_reference": {
+                "page": "104"
+            }
+        },
+        {
+            "id": "Horse Racing",
+            "name": "Horse Racing (WIP)",
+            "types": "Physique",
             "description": "",
             "source_reference": {
                 "page": ""
             }
         },
         {
-            "id": "Kintsugi",
-            "name": "Kintsugi (WIP)",
-            "types": "Mental, Physique",
+            "id": "Hot Pot",
+            "name": "Hot Pot (WIP)",
+            "types": "Relations, Physique",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Stargazing",
+            "name": "Stargazing (WIP)",
+            "types": "Mental, Spirituel",
             "description": "",
             "source_reference": {
                 "page": ""

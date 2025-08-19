@@ -247,39 +247,95 @@
         },
         {
             "id": "Chikushō-dō’s Guile",
-            "name": "Chikushō-dō’s Guile (WIP)",
+            "name": "Duplicité du Chikushō-dō",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "118"
             }
         },
         {
             "id": "Guard Against the Elements",
-            "name": "Guard Against the Elements (WIP)",
+            "name": "Protection contre les éléments",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "119"
             }
         },
         {
             "id": "Cunning Snares",
-            "name": "Cunning Snares (WIP)",
+            "name": "Pièges astucieux",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "119"
             }
         },
         {
             "id": "Hunter’s Expertise",
-            "name": "Hunter’s Expertise (WIP)",
+            "name": "Expertise du chasseur",
+            "description": "",
+            "source_reference": {
+                "page": "119"
+            }
+        },
+        {
+            "id": "Trance of Lives Past",
+            "name": "Transe des vies antérieures",
+            "description": "",
+            "source_reference": {
+                "page": "120"
+            }
+        },
+        {
+            "id": "Center the World",
+            "name": "Center the World (WIP)",
             "description": "",
             "source_reference": {
                 "page": ""
             }
         },
         {
-            "id": "Trance of Lives Past",
-            "name": "Trance of Lives Past (WIP)",
+            "id": "Cultural Exchange",
+            "name": "Cultural Exchange (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Protection of the Flock",
+            "name": "Protection of the Flock (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Shadow of Days",
+            "name": "Shadow of Days (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Spiritual Survey",
+            "name": "Spiritual Survey (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Traveler's Experience",
+            "name": "Traveler's Experience (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Wayfinder's Instincts",
+            "name": "Wayfinder's Instincts (WIP)",
             "description": "",
             "source_reference": {
                 "page": ""

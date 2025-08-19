@@ -743,50 +743,50 @@
         },
         {
             "id": "Whispers of the Kami",
-            "name": "Whispers of the Kami (WIP)",
+            "name": "Murmures des kamis",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "96"
             }
         },
         {
             "id": "Smiling Mountain Tradition",
-            "name": "Smiling Mountain Tradition (WIP)",
+            "name": "Tradition de la montagne Rieuse",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "97"
             }
         },
         {
             "id": "Scaled Hide",
-            "name": "Scaled Hide (WIP)",
+            "name": "Epaisse peau écailleuse",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "98"
             }
         },
         {
             "id": "Reflexive Strike",
-            "name": "Reflexive Strike (WIP)",
+            "name": "Attaque réflexe",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "99"
             }
         },
         {
             "id": "A Master of Study",
-            "name": "A Master of Study (WIP)",
+            "name": "Un maître de l’apprentissage",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "100"
             }
         },
         {
             "id": "Born to Survive",
-            "name": "Born to Survive (WIP)",
+            "name": "Né pour survivre",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "101"
             }
         },
         {
@@ -803,6 +803,86 @@
             "description": "",
             "source_reference": {
                 "page": "25"
+            }
+        },
+        {
+            "id": "Measured Force",
+            "name": "Measured Force (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Student of Many Courts",
+            "name": "Student of Many Courts (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "The Noble Heart Shines Through",
+            "name": "The Noble Heart Shines Through (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Cool Heads Prevail",
+            "name": "Cool Heads Prevail (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Procession of Seasons",
+            "name": "Procession of Seasons (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Lay of the Land",
+            "name": "Lay of the Land (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Logical Conclusion",
+            "name": "Logical Conclusion (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Spirit of the Sacred Horse",
+            "name": "Spirit of the Sacred Horse (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Reputation Sentinel",
+            "name": "Reputation Sentinel (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Legendary Endurance",
+            "name": "Legendary Endurance (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
             }
         }
     ]

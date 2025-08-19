@@ -535,111 +535,183 @@
         },
         {
             "id": "Bear’s Swipe Style",
-            "name": "Bear’s Swipe Style (WIP)",
+            "name": "Style de la gifle de l’ours",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "114"
             }
         },
         {
             "id": "Serpent’s Twist Style",
-            "name": "Serpent’s Twist Style (WIP)",
+            "name": "Style de la contorsion du serpent",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "114"
             }
         },
         {
             "id": "Swallow’s Dart Style",
-            "name": "Swallow’s Dart Style (WIP)",
+            "name": "Style de la vivacité de l’hirondelle",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "115"
             }
         },
         {
             "id": "Tiger’s Lunge Style",
-            "name": "Tiger’s Lunge Style (WIP)",
+            "name": "Style de l’attaque du tigre",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "115"
             }
         },
         {
             "id": "Flexible Grip",
-            "name": "Flexible Grip (WIP)",
+            "name": "Prise flexible",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "116"
             }
         },
         {
             "id": "Howling Gale Defense",
-            "name": "Howling Gale Defense (WIP)",
+            "name": "Défense de la bourrasque hurlante",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "115"
             }
         },
         {
             "id": "Heron’s Grasp Style",
-            "name": "Heron’s Grasp Style (WIP)",
+            "name": "Style de l’étreinte du héron",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "116"
             }
         },
         {
             "id": "Serow’s Leap Style",
-            "name": "Serow’s Leap Style (WIP)",
+            "name": "Style du saro bondissant",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "116"
             }
         },
         {
             "id": "Tumbling Oak Style",
-            "name": "Tumbling Oak Style (WIP)",
+            "name": "Style de la chute du chêne",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "116"
             }
         },
         {
             "id": "Flight",
-            "name": "Flight (WIP)",
+            "name": "Vol",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "118"
             }
         },
         {
             "id": "Razor Bite",
-            "name": "Razor Bite (WIP)",
+            "name": "Morsure acérée",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "117"
             }
         },
         {
             "id": "Owl’s Swoop Style",
-            "name": "Owl’s Swoop Style (WIP)",
+            "name": "Style du piqué de la chouette",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "118"
             }
         },
         {
             "id": "Skittering Shift",
-            "name": "Skittering Shift (WIP)",
+            "name": "Déguerpissement prompt",
+            "description": "",
+            "source_reference": {
+                "page": "117"
+            }
+        },
+        {
+            "id": "Tail Sweep",
+            "name": "Balayage caudal",
+            "description": "",
+            "source_reference": {
+                "page": "117"
+            }
+        },
+        {
+            "id": "Cautious Tread",
+            "name": "Cautious Tread (WIP)",
             "description": "",
             "source_reference": {
                 "page": ""
             }
         },
         {
-            "id": "Tail Sweep",
-            "name": "Tail Sweep (WIP)",
+            "id": "Stalking Leopard Style",
+            "name": "Stalking Leopard Style (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Sudden Downpour Style",
+            "name": "Sudden Downpour Style (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Swaying Grass Evasion",
+            "name": "Swaying Grass Evasion (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Distracting Flurry Style",
+            "name": "Distracting Flurry Style (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Scouring Wind Style",
+            "name": "Scouring Wind Style (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Slashing Sandstorm Style",
+            "name": "Slashing Sandstorm Style (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Descending Swarm Shot",
+            "name": "Descending Swarm Shot (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Thunderbolt Style",
+            "name": "Thunderbolt Style (WIP)",
             "description": "",
             "source_reference": {
                 "page": ""

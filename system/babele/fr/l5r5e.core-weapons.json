@@ -1173,6 +1173,116 @@
             "source_reference": {
                 "page": "100"
             }
+        },
+        {
+            "id": "Catalpa Bow",
+            "name": "Catalpa Bow (WIP)",
+            "category": "Arcs",
+            "grip_1": "N/A",
+            "grip_2": "",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Charging Lance",
+            "name": "Charging Lance (WIP)",
+            "category": "Armes d'Hast",
+            "grip_1": "N/A",
+            "grip_2": "",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Fire Lance",
+            "name": "Fire Lance (WIP)",
+            "category": "Armes d'Hast",
+            "grip_1": "N/A",
+            "grip_2": "",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Ganzu Ring Ax",
+            "name": "Ganzu Ring Ax (WIP)",
+            "category": "Haches",
+            "grip_1": "N/A",
+            "grip_2": "",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Katar (Punch Dagger)",
+            "name": "Katar (Punch Dagger) (WIP)",
+            "category": "Armes de Poing",
+            "grip_1": "",
+            "grip_2": "N/A",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Repeating Crossbow",
+            "name": "Repeating Crossbow (WIP)",
+            "category": "Arbalètes",
+            "grip_1": "N/A",
+            "grip_2": "",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Saddle Cutter",
+            "name": "Saddle Cutter (WIP)",
+            "category": "Armes d'Hast",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Ide Parasol Shield",
+            "name": "Ide Parasol Shield (WIP)",
+            "category": "Boucliers",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Standing Shield",
+            "name": "Standing Shield (WIP)",
+            "category": "Boucliers",
+            "grip_1": "",
+            "grip_2": "",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "The Ancestral Sword of the Fox [Blessed Treasure]",
+            "name": "The Ancestral Sword of the Fox [Blessed Treasure] (WIP)",
+            "category": "Sabres",
+            "grip_1": "",
+            "grip_2": "Dangerosité +8",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
         }
     ]
 }

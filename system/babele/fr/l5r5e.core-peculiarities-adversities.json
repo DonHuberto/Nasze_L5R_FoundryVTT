@@ -746,26 +746,53 @@
         },
         {
             "id": "Insomniac",
-            "name": "Insomniac (WIP)",
+            "name": "Insomniaque",
             "types": "Mental",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "104"
             }
         },
         {
             "id": "Out of Shape",
-            "name": "Out of Shape (WIP)",
+            "name": "Petite forme",
             "types": "Physique",
+            "description": "",
+            "source_reference": {
+                "page": "105"
+            }
+        },
+        {
+            "id": "Stalked by [Creature]",
+            "name": "Poursuivi par [une créature]",
+            "types": "Relations, Mental, Spirituel",
+            "description": "",
+            "source_reference": {
+                "page": "105"
+            }
+        },
+        {
+            "id": "Lost Family History",
+            "name": "Lost Family History (WIP)",
+            "types": "Relations, Matériel",
             "description": "",
             "source_reference": {
                 "page": ""
             }
         },
         {
-            "id": "Stalked by [Creature]",
-            "name": "Stalked by [Creature] (WIP)",
-            "types": "Relations, Mental, Spirituel",
+            "id": "Penalty",
+            "name": "Penalty (WIP)",
+            "types": "Infamie, Social",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Schism in Status",
+            "name": "Schism in Status (WIP)",
+            "types": "Infamie, Relations",
             "description": "",
             "source_reference": {
                 "page": ""

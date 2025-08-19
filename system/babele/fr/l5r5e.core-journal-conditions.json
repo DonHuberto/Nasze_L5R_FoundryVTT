@@ -213,67 +213,106 @@
             }
         },
         "Illness: Oozing Sore Disease": {
-            "name": "Illness: Oozing Sore Disease (WIP)",
+            "name": "Maladie : Bubons purulents",
             "pages": {
                 "Figure: Illness: Oozing Sore Disease": {
-                    "name": "Illness: Oozing Sore Disease (WIP) - Image",
-                    "src": "systems/l5r5e/assets/icons/social.svg"
+                    "name": "Maladie : Bubons purulents - Image",
+                    "src": "icons/svg/eye.svg"
                 },
                 "Illness: Oozing Sore Disease": {
-                    "name": "Illness: Oozing Sore Disease (WIP)",
-                    "text": "<blockquote>Les Édits de la Nature</blockquote>"
+                    "name": "Maladie : Bubons purulents",
+                    "text": "<blockquote>Les Édits de la Nature p.140</blockquote>"
                 }
             }
         },
         "Illness: Gut Sickness": {
-            "name": "Illness: Gut Sickness (WIP)",
+            "name": "Maladie : Mal des entrailles",
             "pages": {
                 "Figure: Illness: Gut Sickness": {
-                    "name": "Illness: Gut Sickness (WIP) - Image",
-                    "src": "systems/l5r5e/assets/icons/social.svg"
+                    "name": "Maladie : Mal des entrailles - Image",
+                    "src": "icons/svg/poison.svg"
                 },
                 "Illness: Gut Sickness": {
-                    "name": "Illness: Gut Sickness (WIP)",
-                    "text": "<blockquote>Les Édits de la Nature</blockquote>"
+                    "name": "Maladie : Mal des entrailles",
+                    "text": "<blockquote>Les Édits de la Nature p.141</blockquote>"
                 }
             }
         },
         "Illness: Coughing Illness": {
-            "name": "Illness: Coughing Illness (WIP)",
+            "name": "Maladie : Mauvaise toux",
             "pages": {
                 "Figure: Illness: Coughing Illness": {
-                    "name": "Illness: Coughing Illness (WIP) - Image",
-                    "src": "systems/l5r5e/assets/icons/social.svg"
+                    "name": "Maladie : Mauvaise toux - Image",
+                    "src": "icons/svg/poison.svg"
                 },
                 "Illness: Coughing Illness": {
-                    "name": "Illness: Coughing Illness (WIP)",
-                    "text": "<blockquote>Les Édits de la Nature</blockquote>"
+                    "name": "Maladie : Mauvaise toux",
+                    "text": "<blockquote>Les Édits de la Nature p.141</blockquote>"
                 }
             }
         },
         "Illness: Unsteady Illness": {
-            "name": "Illness: Unsteady Illness (WIP)",
+            "name": "Maladie : Vertiges",
             "pages": {
                 "Figure: Illness: Unsteady Illness": {
-                    "name": "Illness: Unsteady Illness (WIP) - Image",
-                    "src": "systems/l5r5e/assets/icons/social.svg"
+                    "name": "Maladie : Vertiges - Image",
+                    "src": "icons/svg/daze.svg"
                 },
                 "Illness: Unsteady Illness": {
-                    "name": "Illness: Unsteady Illness (WIP)",
-                    "text": "<blockquote>Les Édits de la Nature</blockquote>"
+                    "name": "Maladie : Vertiges",
+                    "text": "<blockquote>Les Édits de la Nature p.141</blockquote>"
                 }
             }
         },
         "Illness: Fire Rash": {
-            "name": "Illness: Fire Rash (WIP)",
+            "name": "Maladie : Rougeurs",
             "pages": {
                 "Figure: Illness: Fire Rash": {
-                    "name": "Illness: Fire Rash (WIP) - Image",
-                    "src": "systems/l5r5e/assets/icons/social.svg"
+                    "name": "Maladie : Rougeurs - Image",
+                    "src": "icons/svg/fire.svg"
                 },
                 "Illness: Fire Rash": {
-                    "name": "Illness: Fire Rash (WIP)",
-                    "text": "<blockquote>Les Édits de la Nature</blockquote>"
+                    "name": "Maladie : Rougeurs",
+                    "text": "<blockquote>Les Édits de la Nature p.141</blockquote>"
+                }
+            }
+        },
+        "Centered": {
+            "name": "Centered (WIP)",
+            "pages": {
+                "Figure: Centered": {
+                    "name": "Centered (WIP) - Image",
+                    "src": "systems/l5r5e/assets/icons/social.svg"
+                },
+                "Centered": {
+                    "name": "Centered (WIP)",
+                    "text": "<blockquote>Les Enfants des Cinq Vents</blockquote>"
+                }
+            }
+        },
+        "Emboldened": {
+            "name": "Emboldened (WIP)",
+            "pages": {
+                "Figure: Emboldened": {
+                    "name": "Emboldened (WIP) - Image",
+                    "src": "systems/l5r5e/assets/icons/social.svg"
+                },
+                "Emboldened": {
+                    "name": "Emboldened (WIP)",
+                    "text": "<blockquote>Les Enfants des Cinq Vents</blockquote>"
+                }
+            }
+        },
+        "Possessed": {
+            "name": "Possessed (WIP)",
+            "pages": {
+                "Figure: Possessed": {
+                    "name": "Possessed (WIP) - Image",
+                    "src": "icons/svg/terror.svg"
+                },
+                "Possessed": {
+                    "name": "Possessed (WIP)",
+                    "text": "<blockquote>Les Enfants des Cinq Vents</blockquote>"
                 }
             }
         }

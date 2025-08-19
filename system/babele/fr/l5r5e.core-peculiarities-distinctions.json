@@ -620,26 +620,53 @@
         },
         {
             "id": "Knowledgeable Wilderness Guide",
-            "name": "Knowledgeable Wilderness Guide (WIP)",
+            "name": "Guide de plein air expert",
             "types": "Relations, Spirituel",
             "description": "",
             "source_reference": {
-                "page": ""
+                "page": "102"
             }
         },
         {
             "id": "Skilled Midwife",
-            "name": "Skilled Midwife (WIP)",
+            "name": "Sage-femme compétente",
             "types": "Relations",
+            "description": "",
+            "source_reference": {
+                "page": "102"
+            }
+        },
+        {
+            "id": "Thoughtful Arbiter",
+            "name": "Arbitre réfléchi",
+            "types": "Relations",
+            "description": "",
+            "source_reference": {
+                "page": "102"
+            }
+        },
+        {
+            "id": "Affinity with [Animal Type]",
+            "name": "Affinity with [Animal Type] (WIP)",
+            "types": "Renommée, Relations",
             "description": "",
             "source_reference": {
                 "page": ""
             }
         },
         {
-            "id": "Thoughtful Arbiter",
-            "name": "Thoughtful Arbiter (WIP)",
-            "types": "Relations",
+            "id": "Legal Scholarship",
+            "name": "Legal Scholarship (WIP)",
+            "types": "Relations, Social",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Syncretic Philosophy",
+            "name": "Syncretic Philosophy (WIP)",
+            "types": "Relations, Mental",
             "description": "",
             "source_reference": {
                 "page": ""

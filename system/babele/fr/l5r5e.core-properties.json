@@ -276,6 +276,38 @@
             "source_reference": {
                 "page": "105"
             }
+        },
+        {
+            "id": "Ujik Horsebow Pattern",
+            "name": "Ujik Horsebow Pattern (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Utsuko Pattern",
+            "name": "Utsuko Pattern (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Watered Steel Pattern",
+            "name": "Watered Steel Pattern (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Hewing",
+            "name": "Hewing (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
         }
     ]
 }

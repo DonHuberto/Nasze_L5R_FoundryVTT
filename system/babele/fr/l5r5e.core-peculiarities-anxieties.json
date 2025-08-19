@@ -359,7 +359,43 @@
         },
         {
             "id": "Fear of [Common Creature]",
-            "name": "Fear of [Common Creature] (WIP)",
+            "name": "Phobie des [Créature Ordinaire]",
+            "types": "Mental",
+            "description": "",
+            "source_reference": {
+                "page": "106"
+            }
+        },
+        {
+            "id": "Fear of Mediocrity",
+            "name": "Crainte de la médiocrité",
+            "types": "Relations, Mental",
+            "description": "",
+            "source_reference": {
+                "page": "105"
+            }
+        },
+        {
+            "id": "Fear of Poison",
+            "name": "Peur du poison",
+            "types": "Mental",
+            "description": "",
+            "source_reference": {
+                "page": "106"
+            }
+        },
+        {
+            "id": "Animal Signs",
+            "name": "Animal Signs (WIP)",
+            "types": "Mental, Spirituel",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Disdain for Urban Sprawl",
+            "name": "Disdain for Urban Sprawl (WIP)",
             "types": "Mental",
             "description": "",
             "source_reference": {
@@ -367,17 +403,8 @@
             }
         },
         {
-            "id": "Fear of Mediocrity",
-            "name": "Fear of Mediocrity (WIP)",
-            "types": "Relations, Mental",
-            "description": "",
-            "source_reference": {
-                "page": ""
-            }
-        },
-        {
-            "id": "Fear of Poison",
-            "name": "Fear of Poison (WIP)",
+            "id": "Tip of the Tongue",
+            "name": "Tip of the Tongue (WIP)",
             "types": "Mental",
             "description": "",
             "source_reference": {

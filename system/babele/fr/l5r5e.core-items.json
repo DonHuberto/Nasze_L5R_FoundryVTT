@@ -892,6 +892,86 @@
             "source_reference": {
                 "page": "96"
             }
+        },
+        {
+            "id": "Astrolabe",
+            "name": "Astrolabe (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Horo (Arrow Cloak)",
+            "name": "Horo (Arrow Cloak) (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Lantern (Personal)",
+            "name": "Lantern (Personal) (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Mineral-Oil Lamp",
+            "name": "Mineral-Oil Lamp (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Prayer Rug",
+            "name": "Prayer Rug (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Sand Clock",
+            "name": "Sand Clock (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Traveling Board Games",
+            "name": "Traveling Board Games (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Word of the Prophet",
+            "name": "Word of the Prophet (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Talisman of the Sun [Blessed Treasure]",
+            "name": "Talisman of the Sun [Blessed Treasure] (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
+        },
+        {
+            "id": "Fox Pipe [Blessed Treasure]",
+            "name": "Fox Pipe [Blessed Treasure] (WIP)",
+            "description": "",
+            "source_reference": {
+                "page": ""
+            }
         }
     ]
 }
