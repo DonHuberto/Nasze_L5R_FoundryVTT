@@ -1,11 +1,12 @@
 const HandlebarsApplicationMixin = foundry.applications.api.HandlebarsApplicationMixin;
 const ApplicationV2 = foundry.applications.api.ApplicationV2;
+
 export class GmToolbox extends HandlebarsApplicationMixin(ApplicationV2) {
     /** @override ApplicationV2 */
     static get DEFAULT_OPTIONS() { return {
         id: "l5r5e-gm-toolbox",
         window: {
-            contentClasses: ["l5r5e", "gm-toolbox"],
+            contentClasses: ["l5r5e", "gm-toolbox", "faded-ui"],
             title: "l5r5e.gm.toolbox.title",
             minimizable: true,
         },
@@ -79,10 +80,10 @@ export class GmToolbox extends HandlebarsApplicationMixin(ApplicationV2) {
      * @override ApplicationV2
      */
     _onFirstRender(context, options) {
-        const x = $(window).width();
+        //const x = $(window).width();
         const y = $(window).height();
-        options.position.top = y - 100;
-        options.position.left = x - 630;
+        options.position.top = y - 220;
+        options.position.left = 220; //x - 630;
     }
 
     /**
@@ -137,8 +138,8 @@ export class GmToolbox extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     /**
-     * @param {Boolean} allActors 
-     * @param {ActorL5r5e} actor 
+     * @param {Boolean} allActors
+     * @param {ActorL5r5e} actor
      * @returns {Boolean}
      */
     static #updatableCharacter(allActors, actor) {
@@ -153,9 +154,8 @@ export class GmToolbox extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     /**
-     * 
-     * @param {Boolean} allActors 
-     * @param {String} type 
+     * @param {Boolean} allActors
+     * @param {String} type
      */
     static #uiNotification(allActors, type) {
         ui.notifications.info(

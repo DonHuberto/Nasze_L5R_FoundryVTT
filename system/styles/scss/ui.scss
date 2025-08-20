@@ -217,7 +217,6 @@ button {
 
                 &-icon {
                     font-weight: 900;
-                    font-family: "Font Awesome 5 Free";
                     -moz-osx-font-smoothing: grayscale;
                     -webkit-font-smoothing: antialiased;
                     display: inline-block;
@@ -255,7 +254,7 @@ button {
 }
 
 // Compendium
-.directory-item {    
+.directory-item {
     .ring-filter {
         i.i_earth,
         i.i_fire,
@@ -421,7 +420,7 @@ button {
     min-width: 240px;
 
     .window-content {
-        background: rgb(255, 250, 230) url("../assets/imgs/bg-l5r.webp") no-repeat;
+        //background: rgb(255, 250, 230) url("../assets/imgs/bg-l5r.webp") no-repeat;
         [data-application-part="hidden_tabs"] {
             display: none;
         }
@@ -433,10 +432,15 @@ button {
             padding: 0 0.5rem;
         }
         thead tr > th {
-            background: rgba(186, 187, 177, 0.9);
+            background: rgb(0 0 0 / 90%);
+            color: #cfcfcfc7;
             position: sticky;
             z-index: 2;
             top: 0;
+
+            i.i_void:before {
+                color: rgba(207,207,207,.8);
+            }
         }
         th,
         td {
@@ -478,7 +482,7 @@ button {
         .window-title {
             text-align: center;
         }
-        
+
         h1 {
             letter-spacing: 0.25rem;
             line-height: 2.25rem;
