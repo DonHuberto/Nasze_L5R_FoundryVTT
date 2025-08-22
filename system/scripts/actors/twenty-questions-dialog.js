@@ -288,14 +288,12 @@ export class TwentyQuestionsDialog extends FormApplication {
                     // School Ability
                     if (stepKey === "step3.school_ability") {
                         if (item.system.technique_type !== "school_ability") {
-                            console.warn(
-                                `L5R5E | 20Q | This technique is not a school ability : ${item.system.technique_type}`
-                            );
+                            console.warn(`L5R5E | 20Q | This technique is not a school ability : ${item.system.technique_type}`);
                             return;
-                        } else if (!this.object.data.step3.allowed_techniques?.[item.system.technique_type]) {
-                            // Informative message : Tech not allowed
-                            ui.notifications.info("l5r5e.techniques.not_allowed", {localize: true});
                         }
+                    } else if (!this.object.data.step3.allowed_techniques?.[item.system.technique_type]) {
+                        // Informative message : Tech not allowed
+                        ui.notifications.info("l5r5e.techniques.not_allowed", {localize: true});
                     }
                     break;
 

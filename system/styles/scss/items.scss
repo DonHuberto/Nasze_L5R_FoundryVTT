@@ -11,7 +11,7 @@
                 flex: 0 0 32px;
                 padding-right: 0.25rem;
                 img {
-                    border: 1px solid rgba(0, 0, 0, 0.1);
+                    border: none;
                 }
             }
             .item-name {
@@ -19,6 +19,7 @@
                 font-size: 1rem;
                 line-height: 1rem;
                 color: $l5r5e-bold;
+                align-content: center;
             }
             .removed {
                 text-decoration-line: line-through;
@@ -454,7 +455,7 @@
             .flx100 {
                 flex: 0 0 calc(100% - 0.5rem);
             }
-            .editor-content {
+            .editor-container {
                 min-height: 8rem;
                 max-height: 14rem;
             }

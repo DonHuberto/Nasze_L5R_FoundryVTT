@@ -9,9 +9,13 @@ Date format : day/month/year
 ## 1.13.0 - ??/??/2025 - Foundry v13 Compatibility (Thx to Litasa)
 __! Be certain to carefully back up any critical user data before installing this update !__
 - Updated the System to FoundryVTT v13.
-- Added English compendium for `Children of the Five Winds`.
-- Added French translation for `Writ of the Wild`.
-- Fix Compendium Typo : "Beseech Hida's MIght" -> "Beseech Hida's Might" (!59).
+- Compendiums
+  - Added English compendium for `Children of the Five Winds`.
+  - Added French translation for `Writ of the Wild`.
+  - Fix Compendium Typo: "Beseech Hida's MIght" -> "Beseech Hida's Might" (!59).
+- Actor sheets: Technique types are now hidden when they are not checked in locked mode.
+- Fix 20Q: Technique message fixed (unallowed tech for School).
+- Switched wysiwyg editor engine to `prosemirror` for text editor (`tinymce` will be removed in Foundry v14).
 
 ## 1.12.3 - 13/03/2025 - Fixes and Compendiums Filters (Thx to Litasa)
 - Added Compendiums Filters (#41)

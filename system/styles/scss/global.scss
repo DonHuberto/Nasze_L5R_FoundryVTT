@@ -19,7 +19,6 @@ body {
     .window-content {
         z-index: 1;
         position: relative;
-        background: rgb(255, 250, 230) url("../assets/imgs/bg-l5r.webp") no-repeat;
         background-size: cover;
         scrollbar-width: thin;
         padding: 0;
@@ -193,7 +192,7 @@ fieldset {
 
 // Editors
 .editor,
-.editor-content {
+.editor-container {
     flex: 1;
     height: 100%;
 }
@@ -232,7 +231,7 @@ sup {
     }
 }
 
-.editor-content,
+.editor-container,
 .item-description {
     ul {
         margin: 0.5rem 0;

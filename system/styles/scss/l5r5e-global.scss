@@ -37,6 +37,7 @@ textarea {
     color: $l5r5e-black;
     resize: vertical;
     border-radius: 0;
+    box-shadow: none;
     &[disabled] {
         background: $l5r5e-white-light;
     }

@@ -520,17 +520,6 @@
         }
         .attribute-label {
             position: relative;
-            &:before {
-                z-index: -1;
-                content: "";
-                position: absolute;
-                height: calc(100% - 0.85rem);
-                width: 3.1rem;
-                border: 1px solid $l5r5e-title;
-                border-radius: 0;
-                top: 0.15rem;
-                left: 0.15rem;
-            }
         }
         .identity-content {
             .attribute-label {
@@ -629,19 +618,19 @@
             }
         }
         .narrative-fluff {
-            flex: 1;
             flex: 0 0 50%;
+            display: flex;
+            flex-direction: column;
 
-            .narrative-description {
-                max-height: 13rem;
-                font-size: 0.85rem;
-                flex: 1;
-            }
+            .narrative-description,
             .narrative-note {
+                flex: 1;
                 font-size: 0.85rem;
-            }
-            .editor-content {
-                min-height: 10rem;
+                max-height: 24rem;
+
+                .editor-container {
+                    min-height: 18rem;
+                }
             }
         }
         .techniques-wrapper {
@@ -765,10 +754,12 @@
     }
 
     table {
+        border: none;
         font-size: 0.85rem;
         color: $black-light;
         text-align: left;
         thead {
+            border: none;
             font-family: $font-secondary;
             font-weight: normal;
             th {
@@ -790,6 +781,7 @@
             }
         }
         tbody {
+            border: none;
             .curriculum {
                 flex: 0 0 2rem;
             }
@@ -827,7 +819,12 @@
                 width: 16px;
                 height: 16px;
                 border: none;
+                display: inline;
             }
+        }
+        tfoot {
+            border: none;
+            text-align-last: center;
         }
     }
 

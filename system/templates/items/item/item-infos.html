@@ -1,7 +1,7 @@
 <article class="tab infos active" data-group="primary" data-tab="infos">
     <fieldset>
         <legend class="text-block-header">{{localize 'l5r5e.sheets.description'}}</legend>
-        {{editor data.enrichedHtml.description target="system.description" button=true owner=owner editable=editable}}
+        {{editor data.enrichedHtml.description target="system.description" button=true owner=owner editable=editable engine="prosemirror" collaborate=false}}
     </fieldset>
     <label class="reference">
         {{localize 'l5r5e.sheets.source_reference.reference'}}

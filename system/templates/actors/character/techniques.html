@@ -3,10 +3,12 @@
     <div class="checklist">
         <i>{{localize 'l5r5e.techniques.type'}}</i>
         {{#each data.techniquesList as |technique|}}
+        {{#ifCond ../data.editable_not_soft_locked '||' (lookup ../data.system.techniques technique.id)}}
             <label>
                 <input type="checkbox" name="system.techniques.{{technique.id}}" {{checked (lookup ../data.system.techniques technique.id)}} {{^if ../data.editable_not_soft_locked}}disabled{{/if}} />
                 {{technique.label}}
             </label>
+        {{/ifCond}}
         {{/each}}
     </div>
     {{!-- technique list --}}
