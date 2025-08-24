@@ -17,12 +17,15 @@ export class GmToolbox extends HandlebarsApplicationMixin(ApplicationV2) {
         actions: {
             open_gm_monitor: GmToolbox.#openGmMonitor,
             toggle_hide_difficulty: GmToolbox.#onToggleHideDifficulty,
+            // Buttons map (0: left, 1: middle, 2: right, 3: extra 1, 4: extra 2)
+            // Foundry v13 use middle (1) for popup and currently not bind it for custom
+            // See : https://github.com/foundryvtt/foundryvtt/issues/12531
             change_difficulty: {
                 buttons: [0, 1, 2],
                 handler: GmToolbox.#onChangeDifficulty
             },
             reset_void: {
-                buttons: [0, 1, 2, 3, 4], // all the buttons (left, middle, right, extra 1, extra 2)
+                buttons: [0, 1, 2, 3, 4],
                 handler: GmToolbox.#onResetVoid
             },
             sleep: {

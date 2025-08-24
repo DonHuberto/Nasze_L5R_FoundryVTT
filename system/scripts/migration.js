@@ -6,7 +6,7 @@ export class MigrationL5r5e {
      * Minimum Version needed for migration stuff to trigger
      * @type {string}
      */
-    static NEEDED_VERSION = "1.12.3";
+    static NEEDED_VERSION = "1.13.0";
 
     /**
      * Return true if the version need some updates
@@ -358,7 +358,21 @@ export class MigrationL5r5e {
                 updateData["content"] = "";
             }
         }
+        // ***** End of 1.3.0 *****
 
+        // ***** Start of 1.13.0 *****
+        if (options?.force || MigrationL5r5e.needUpdate("1.13.0")) {
+           // Fix Roll messages
+            if (message.isRoll && message.content !== "") {
+                updateData["content"] = message.content
+                    .replace('<div class="l5r5e dice-roll">', '<div class="l5r5e chat dice-roll">')
+                    .replace(/<div class="l5r5e item-display dices-l5r">(?!<\/div>)/, '<div class="l5r5e item-display dices-l5r"><div class="l5r5e dice-container">')
+                    .replace(/(?!<\/div>)<button class="l5r5e chat-dice-rnk/, '</div><button class="l5r5e chat-dice-rnk')
+                ;
+            }
+        }
+
+        // ***** End of 1.13.0 *****
         return updateData;
     }
 }
