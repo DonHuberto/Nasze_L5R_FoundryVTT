@@ -38,7 +38,7 @@ export default class HooksL5r5e {
             }
         });
 
-        // For some reasons, not always really ready, so wait a little
+        // For some reason, not always really ready, so wait a little
         await new Promise((r) => setTimeout(r, 2000));
 
         // Settings TN and EncounterType
@@ -47,11 +47,6 @@ export default class HooksL5r5e {
         }
 
         // ***** UI *****
-        // Open Help dialog on clic on logo
-        $("#logo")
-            .on("click", () => new game.l5r5e.HelpDialog().render(true))
-            .prop("title", game.i18n.localize("l5r5e.logo.alt"));
-
         // If any disclaimer "not translated by Edge"
         const disclaimer = game.i18n.localize("l5r5e.global.edge_translation_disclaimer");
         if (disclaimer !== "" && disclaimer !== "l5r5e.global.edge_translation_disclaimer") {

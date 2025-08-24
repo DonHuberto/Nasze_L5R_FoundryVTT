@@ -5,7 +5,6 @@ import { SocketHandlerL5r5e } from "./socket-handler.js";
 import { RegisterSettings } from "./settings.js";
 import { PreloadTemplates } from "./preloadTemplates.js";
 import { RegisterHandlebars } from "./handlebars.js";
-import { HelpDialog } from "./help/help-dialog.js";
 import HooksL5r5e from "./hooks.js";
 // Actors
 import { ActorL5r5e } from "./actor.js";
@@ -95,7 +94,6 @@ Hooks.once("init", async () => {
         RollnKeepDialog,
         GmToolbox,
         GmMonitor,
-        HelpDialog,
         storage: new Storage(),
         sockets: new SocketHandlerL5r5e(),
         migrations: MigrationL5r5e,

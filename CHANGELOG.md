@@ -6,7 +6,7 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
-## 1.13.0 - ??/??/2025 - Foundry v13 Compatibility (Thx to Litasa)
+## 1.13.0 - 24/08/2025 - Foundry v13 Compatibility (Thx to Litasa)
 __! Be certain to carefully back up any critical user data before installing this update !__
 - Updated the System to FoundryVTT v13.
 - Compendiums
