@@ -252,6 +252,7 @@ Hooks.once("init", async () => {
 /* ------------------------------------ */
 Hooks.once("setup", HooksL5r5e.setup);
 Hooks.once("ready", HooksL5r5e.ready);
+Hooks.once("init", HooksL5r5e.init);
 Hooks.once("diceSoNiceReady", (dice3d) => HooksL5r5e.diceSoNiceReady(dice3d));
 
 /* ------------------------------------ */

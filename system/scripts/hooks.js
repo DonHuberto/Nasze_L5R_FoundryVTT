@@ -14,6 +14,10 @@ export default class HooksL5r5e {
         }
     }
 
+    static async init() {
+        CONFIG.statusEffects = CONFIG.l5r5e.conditions
+    }
+
     /**
      * Do anything once the system is ready
      */
