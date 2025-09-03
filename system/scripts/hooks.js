@@ -66,7 +66,7 @@ export default class HooksL5r5e {
                 }
             }
         }
-        game.settings.set(CONFIG.l5r5e.namespace, "all-compendium-references", Array.from(references));
+        game.settings.set(CONFIG.l5r5e.namespace, "all-compendium-references", references);
     }
 
     /**
@@ -303,17 +303,17 @@ export default class HooksL5r5e {
             }
 
             // Setup filters
-            const officialContent             = game.settings.get(CONFIG.l5r5e.namespace, "compendium-official-content-for-players");
-            const unofficialContent           = game.settings.get(CONFIG.l5r5e.namespace, "compendium-unofficial-content-for-players");
-            const allCompendiumReferences     = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references")
+            const officialContentSet             = game.settings.get(CONFIG.l5r5e.namespace, "compendium-official-content-for-players");
+            const unofficialContentSet           = game.settings.get(CONFIG.l5r5e.namespace, "compendium-unofficial-content-for-players");
+            const allCompendiumReferencesSet     = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references")
             const hideEmptySourcesFromPlayers = game.settings.get(CONFIG.l5r5e.namespace, "compendium-hide-empty-sources-from-players");
 
-            const unavailableSourceForPlayers = allCompendiumReferences.filter((element) => {
+            const unavailableSourceForPlayersSet = new Set([...allCompendiumReferencesSet].filter((element) => {
                 if (CONFIG.l5r5e.sourceReference[element]) {
-                    return officialContent.size > 0 ? !officialContent.has(element) : false;
+                    return officialContentSet.size > 0 ? !officialContentSet.has(element) : false;
                 }
-                return unofficialContent.size > 0 ? !unofficialContent.has(element) : false;
-            });
+                return unofficialContentSet.size > 0 ? !unofficialContentSet.has(element) : false;
+            }));
 
             // Create filter function
             const applyCompendiumFilter = () => {
@@ -333,7 +333,7 @@ export default class HooksL5r5e {
                     let shouldShow = true;
 
                     // Handle unavailable sources
-                    if (unavailableSourceForPlayers.has(lineSource)) {
+                    if (unavailableSourceForPlayersSet.has(lineSource)) {
                         if (game.user.isGM) {
                             shouldShow &= true;
                             $(this)
@@ -405,33 +405,33 @@ export default class HooksL5r5e {
 
             if (filtersToShow.source) {
                 // Build the source select
-                const selectableSources = allCompendiumReferences.map((reference) => ({
+                const selectableSourcesArray = [...allCompendiumReferencesSet].map((reference) => ({
                     value: reference,
                     label: CONFIG.l5r5e.sourceReference[reference]?.label ?? reference,
                     translate: true,
                     group: CONFIG.l5r5e.sourceReference[reference]?.type.split(",")[0] ?? "l5r5e.multiselect.sources_categories.others",
-                    disabled: !sourcesInThisCompendium.has(reference) || (!game.user.isGM && unavailableSourceForPlayers.has(reference))
+                    disabled: !sourcesInThisCompendium.has(reference) || (!game.user.isGM && unavailableSourceForPlayersSet.has(reference))
                 }));
                 const filterSourcesBox = L5r5eHtmlMultiSelectElement.create({
                     name: "filter-sources",
-                    options: selectableSources,
+                    options: selectableSourcesArray,
                     localize: true,
                 });
                 header.append(filterSourcesBox.outerHTML);
                 $("l5r5e-multi-select").on("change", applyCompendiumFilter);
 
                 // If gm add an extra button to easily filter the content to see the same stuff as a player
-                if (game.user.isGM && unavailableSourceForPlayers.length > 0) {
+                if (game.user.isGM && unavailableSourceForPlayersSet.size > 0) {
                     const buttonHTML = `<button type="button" class="gm" data-tooltip="${game.i18n.localize('l5r5e.multiselect.player_filter_tooltip')}">`
                         + game.i18n.localize('l5r5e.multiselect.player_filter_label')
                         + '</button>'
 
-                    const filterPlayerView = allCompendiumReferences
-                        .filter((item) => !unavailableSourceForPlayers.has(item))
+                    const filterPlayerViewArray = [...allCompendiumReferencesSet]
+                        .filter((item) => !unavailableSourceForPlayersSet.has(item))
                         .filter((item) => sourcesInThisCompendium.has(item));
 
                     $(buttonHTML).appendTo($(header).find("l5r5e-multi-select")).click(function() {
-                        header.find("l5r5e-multi-select")[0].value = filterPlayerView;
+                        header.find("l5r5e-multi-select")[0].value = filterPlayerViewArray;
                     });
                 }
             }
