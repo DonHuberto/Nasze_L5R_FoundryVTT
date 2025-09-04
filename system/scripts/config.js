@@ -14,33 +14,172 @@ export const L5R5E = {
         skillCostMultiplier: 2,
         techniqueCost: 3,
     },
-    conditions: [
-        {id: "afflicted", name: "l5r5e.conditions.afflicted", img: "icons/magic/death/undead-ghost-scream-teal.webp"},
-        {id: "bleeding", name: "l5r5e.conditions.bleeding", img: "icons/skills/wounds/blood-drip-droplet-red.webp"},
-        {id: "burning", name: "l5r5e.conditions.burning", img: "icons/magic/fire/flame-burning-creature-skeleton.webp"},
-        {id: "compromised", name: "l5r5e.conditions.compromised", img: "icons/creatures/abilities/mouth-teeth-human.webp"},
-        {id: "dazed", name: "l5r5e.conditions.dazed", img: "icons/magic/light/beam-explosion-orange.webp"},
-        {id: "disoriented", name: "l5r5e.conditions.disoriented", img: "icons/magic/control/hypnosis-mesmerism-eye.webp"},
-        {id: "dying", name: "l5r5e.conditions.dying", img: "icons/magic/death/skull-humanoid-white-blue.webp"},
-        {id: "enraged", name: "l5r5e.conditions.enraged", img: "icons/skills/wounds/injury-face-impact-orange.webp"},
-        {id: "exhausted", name: "l5r5e.conditions.exhausted", img: "icons/magic/life/heart-glowing-red.webp"},
-        {id: "immobilized", name: "l5r5e.conditions.immobilized", img: "icons/magic/nature/root-vine-entangle-foot-green.webp"},
-        {id: "incapacitated", name: "l5r5e.conditions.incapacitated", img: "icons/magic/control/silhouette-hold-change-green.webp"},
-        {id: "intoxicated", name: "l5r5e.conditions.intoxicated", img: "icons/consumables/drinks/alcohol-jar-spirits-gray.webp"},
-        {id: "prone", name: "l5r5e.conditions.prone", img: "icons/magic/control/silhouette-fall-slip-prone.webp"},
-        {id: "silenced", name: "l5r5e.conditions.silenced", img: "icons/magic/control/mouth-smile-deception-purple.webp"},
-        {id: "unconscious", name: "l5r5e.conditions.unconscious", img: "icons/magic/control/sleep-bubble-purple.webp"},
-        {id: "lightlyWoundedFire", name: "l5r5e.conditions.lightlyWoundedFire", img: "systems/l5r5e/assets/icons/conditions/fire-white.webp"},
-        {id: "lightlyWoundedWater", name: "l5r5e.conditions.lightlyWoundedWater", img: "systems/l5r5e/assets/icons/conditions/water-white.webp"},
-        {id: "lightlyWoundedAir", name: "l5r5e.conditions.lightlyWoundedAir", img: "systems/l5r5e/assets/icons/conditions/air-white.webp"},
-        {id: "lightlyWoundedEarth", name: "l5r5e.conditions.lightlyWoundedEarth", img: "systems/l5r5e/assets/icons/conditions/earth-white.webp"},
-        {id: "lightlyWoundedVoid", name: "l5r5e.conditions.lightlyWoundedVoid", img: "systems/l5r5e/assets/icons/conditions/void-white.webp"},
-        {id: "severelyWoundedFire", name: "l5r5e.conditions.severelyWoundedFire", img: "systems/l5r5e/assets/icons/conditions/fire-black.webp"},
-        {id: "severelyWoundedWater", name: "l5r5e.conditions.severelyWoundedWater", img: "systems/l5r5e/assets/icons/conditions/water-black.webp"},
-        {id: "severelyWoundedAir", name: "l5r5e.conditions.severelyWoundedAir", img: "systems/l5r5e/assets/icons/conditions/air-black.webp"},
-        {id: "severelyWoundedEarth", name: "l5r5e.conditions.severelyWoundedEarth", img: "systems/l5r5e/assets/icons/conditions/earth-black.webp"},
-        {id: "severelyWoundedVoid", name: "l5r5e.conditions.severelyWoundedVoid", img: "systems/l5r5e/assets/icons/conditions/void-black.webp"},
-    ],
+    conditions: [{
+        id: "afflicted",
+        name: "l5r5e.conditions.afflicted",
+        img: "icons/magic/death/undead-ghost-scream-teal.webp",
+        system: { id: "L5RCoreCon000001" }
+    },{
+        id: "bleeding",
+        name: "l5r5e.conditions.bleeding",
+        img: "icons/skills/wounds/blood-drip-droplet-red.webp",
+        system: { id: "L5RCoreCon000002" }
+    },{
+        id: "burning",
+        name: "l5r5e.conditions.burning",
+        img: "icons/magic/fire/flame-burning-creature-skeleton.webp",
+        system: { id: "L5RCoreCon000003" }
+    },{
+        id: "centered",
+        name: "l5r5e.conditions.centered",
+        img: "systems/l5r5e/assets/icons/social.svg",
+        system: { id: "L5RCoreCon000022" }
+    },{
+        id: "compromised",
+        name: "l5r5e.conditions.compromised",
+        img: "icons/creatures/abilities/mouth-teeth-human.webp",
+        system: { id: "L5RCoreCon000004" }
+    },{
+        id: "dazed",
+        name: "l5r5e.conditions.dazed",
+        img: "icons/magic/light/beam-explosion-orange.webp",
+        system: { id: "L5RCoreCon000005" }
+    },{
+        id: "disoriented",
+        name: "l5r5e.conditions.disoriented",
+        img: "icons/magic/control/hypnosis-mesmerism-eye.webp",
+        system: { id: "L5RCoreCon000006" }
+    },{
+        id: "dying",
+        name: "l5r5e.conditions.dying",
+        img: "icons/magic/death/skull-humanoid-white-blue.webp",
+        system: { id: "L5RCoreCon000007" }
+    },{
+        id: "emboldened",
+        name: "l5r5e.conditions.emboldened",
+        img: "systems/l5r5e/assets/icons/social.svg",
+        system: { id: "L5RCoreCon000023" }
+    },{
+        id: "enraged",
+        name: "l5r5e.conditions.enraged",
+        img: "icons/skills/wounds/injury-face-impact-orange.webp",
+        system: { id: "L5RCoreCon000008" }
+    },{
+        id: "exhausted",
+        name: "l5r5e.conditions.exhausted",
+        img: "icons/magic/life/heart-glowing-red.webp",
+        system: { id: "L5RCoreCon000009" }
+    },{
+        id: "illness_coughing_illness",
+        name: "l5r5e.conditions.illness_coughing_illness",
+        img: "icons/svg/poison.svg",
+        system: { id: "L5RCoreCon000019" }
+    },{
+        id: "illness_fire_rash",
+        name: "l5r5e.conditions.illness_fire_rash",
+        img: "icons/svg/fire.svg",
+        system: { id: "L5RCoreCon000021" }
+    },{
+        id: "illness_gut_sickness",
+        name: "l5r5e.conditions.illness_gut_sickness",
+        img: "icons/svg/poison.svg",
+        system: { id: "L5RCoreCon000018" }
+    },{
+        id: "illness_oozing_sore_disease",
+        name: "l5r5e.conditions.illness_oozing_sore_disease",
+        img: "icons/svg/eye.svg",
+        system: { id: "L5RCoreCon000017" }
+    },{
+        id: "illness_unsteady_illness",
+        name: "l5r5e.conditions.illness_unsteady_illness",
+        img: "icons/svg/daze.svg",
+        system: { id: "L5RCoreCon000020" }
+    },{
+        id: "immobilized",
+        name: "l5r5e.conditions.immobilized",
+        img: "icons/magic/nature/root-vine-entangle-foot-green.webp",
+        system: { id: "L5RCoreCon000010" }
+    },{
+        id: "incapacitated",
+        name: "l5r5e.conditions.incapacitated",
+        img: "icons/magic/control/silhouette-hold-change-green.webp",
+        system: { id: "L5RCoreCon000011" }
+    },{
+        id: "intoxicated",
+        name: "l5r5e.conditions.intoxicated",
+        img: "icons/consumables/drinks/alcohol-jar-spirits-gray.webp",
+        system: { id: "L5RCoreCon000012" }
+    },{
+        id: "possessed",
+        name: "l5r5e.conditions.possessed",
+        img: "icons/svg/terror.svg",
+        system: { id: "L5RCoreCon000024" }
+    },{
+        id: "prone",
+        name: "l5r5e.conditions.prone",
+        img: "icons/magic/control/silhouette-fall-slip-prone.webp",
+        system: { id: "L5RCoreCon000013" }
+    },{
+        id: "silenced",
+        name: "l5r5e.conditions.silenced",
+        img: "icons/magic/control/mouth-smile-deception-purple.webp",
+        system: { id: "L5RCoreCon000014" }
+    },{
+        id: "unconscious",
+        name: "l5r5e.conditions.unconscious",
+        img: "icons/magic/control/sleep-bubble-purple.webp",
+        system: { id: "L5RCoreCon000015" }
+    },{
+        id: "lightly_wounded_fire",
+        name: "l5r5e.conditions.lightly_wounded_fire",
+        img: "systems/l5r5e/assets/icons/conditions/fire-white.webp",
+        system: { id: "L5RCoreCon000016" }
+    },{
+        id: "lightly_wounded_water",
+        name: "l5r5e.conditions.lightly_wounded_water",
+        img: "systems/l5r5e/assets/icons/conditions/water-white.webp",
+        system: { id: "L5RCoreCon000016" }
+    },{
+        id: "lightly_wounded_air",
+        name: "l5r5e.conditions.lightly_wounded_air",
+        img: "systems/l5r5e/assets/icons/conditions/air-white.webp",
+        system: { id: "L5RCoreCon000016" }
+    },{
+        id: "lightly_wounded_earth",
+        name: "l5r5e.conditions.lightly_wounded_earth",
+        img: "systems/l5r5e/assets/icons/conditions/earth-white.webp",
+        system: { id: "L5RCoreCon000016" }
+    },{
+        id: "lightly_wounded_void",
+        name: "l5r5e.conditions.lightly_wounded_void",
+        img: "systems/l5r5e/assets/icons/conditions/void-white.webp",
+        system: { id: "L5RCoreCon000016" }
+    },{
+        id: "severely_wounded_fire",
+        name: "l5r5e.conditions.severely_wounded_fire",
+        img: "systems/l5r5e/assets/icons/conditions/fire-black.webp",
+        system: { id: "L5RCoreCon000016" }
+    },{
+        id: "severely_wounded_water",
+        name: "l5r5e.conditions.severely_wounded_water",
+        img: "systems/l5r5e/assets/icons/conditions/water-black.webp",
+        system: { id: "L5RCoreCon000016" }
+    },{
+        id: "severely_wounded_air",
+        name: "l5r5e.conditions.severely_wounded_air",
+        img: "systems/l5r5e/assets/icons/conditions/air-black.webp",
+        system: { id: "L5RCoreCon000016" }
+    },{
+        id: "severely_wounded_earth",
+        name: "l5r5e.conditions.severely_wounded_earth",
+        img: "systems/l5r5e/assets/icons/conditions/earth-black.webp",
+        system: { id: "L5RCoreCon000016" }
+    },{
+        id: "severely_wounded_void",
+        name: "l5r5e.conditions.severely_wounded_void",
+        img: "systems/l5r5e/assets/icons/conditions/void-black.webp",
+        system: { id: "L5RCoreCon000016" }
+    }],
     regex: {
         techniqueDifficulty: /^@([TS]):([^|]+?)(?:\|(min|max)(?:\(([^)]+?)\))?)?$/,
     },

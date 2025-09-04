@@ -2,6 +2,15 @@ import { L5r5eHtmlMultiSelectElement } from "./misc/l5r5e-multiselect.js";
 
 export default class HooksL5r5e {
     /**
+     * Do initialization
+     */
+    static async init() {
+        // Replace all foundry conditions with L5R conditions only
+        CONFIG.statusEffects = CONFIG.l5r5e.conditions;
+        // CONFIG.statusEffects.push(...CONFIG.l5r5e.conditions);
+    }
+
+    /**
      * Do anything after initialization but before ready
      */
     static setup() {
@@ -12,10 +21,6 @@ export default class HooksL5r5e {
         ) {
             game.babele.setSystemTranslationsDir("babele"); // Since Babele v2.0.7
         }
-    }
-
-    static async init() {
-        CONFIG.statusEffects = CONFIG.l5r5e.conditions
     }
 
     /**

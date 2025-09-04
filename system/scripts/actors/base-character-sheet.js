@@ -321,6 +321,73 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
 
         // Fatigue/Strife +/-
         html.find(".addsub-control").on("click", this._modifyFatigueOrStrife.bind(this));
+
+        // Effect remove/display
+        html.find(".effect-delete").on("click", this._removeEffectId.bind(this));
+        html.find(".effect-name").on("click", this._openEffectJournal.bind(this));
+    }
+
+    /**
+     * Remove an effect
+     * @param {Event} event
+     * @private
+     */
+    _removeEffectId(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const effectId = $(event.currentTarget).data("effect-id");
+        if (!effectId) {
+            return;
+        }
+
+        const tmpItem = this.actor.effects.get(effectId);
+        if (!tmpItem) {
+            return;
+        }
+
+        const callback = async () => {
+            return this.actor.deleteEmbeddedDocuments("ActiveEffect", [effectId]);
+        };
+
+        // Holing Ctrl = without confirm
+        if (event.ctrlKey) {
+            return callback();
+        }
+
+        game.l5r5e.HelpersL5r5e.confirmDeleteDialog(
+            game.i18n.format("l5r5e.global.delete_confirm", { name: tmpItem.name }),
+            callback
+        );
+    }
+
+    /**
+     * Open the core linked journal effect if exist
+     * @param {Event} event
+     * @private
+     */
+    async _openEffectJournal(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const effectId = $(event.currentTarget).data("effect-id");
+        if (!effectId) {
+            return;
+        }
+
+        const effect = this.actor.effects.get(effectId);
+        if (!effect?.system?.id && !effect?.system?.uuid) {
+            return;
+        }
+
+        const journal = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack({
+            id: effect.system.id,
+            uuid: effect.system.uuid,
+            type: "JournalEntry",
+        });
+        if (journal) {
+            journal.sheet.render(true);
+        }
     }
 
     /**

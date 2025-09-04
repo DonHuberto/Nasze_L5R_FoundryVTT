@@ -6,6 +6,12 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.13.1 - ??/09/2025 - Fixes
+- Fix for Clicking on items doesn't show item window (!65 Thx to Litasa)
+- Fix for fade configuration (!66)
+- Added basic token conditions (Thanks to Putty)
+- Added ability to remove condition from actor sheet and core journal on click.
+
 ## 1.13.0 - 24/08/2025 - Foundry v13 Compatibility (Thx to Litasa)
 __! Be certain to carefully back up any critical user data before installing this update !__
 - Updated the System to FoundryVTT v13.
