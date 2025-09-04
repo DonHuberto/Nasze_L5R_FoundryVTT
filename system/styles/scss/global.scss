@@ -122,11 +122,6 @@ body {
 }
 
 /* Focus, Active */
-* {
-    transition-property: background, color, border-color, text-shadow, box-shadow;
-    transition-duration: 0.5s;
-    transition-timing-function: ease;
-}
 input[type="text"]:focus,
 input[type="number"]:focus,
 input[type="password"]:focus,
@@ -309,4 +304,3 @@ a.compendium-link {
         color: #0096ff;
     }
 }
-
