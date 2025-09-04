@@ -56,8 +56,8 @@ export class BaseItemSheetL5r5e extends foundry.appv1.sheets.ItemSheet {
         sheetData.data.system.source_reference.source = game.i18n.localize(label_or_reference);
 
         // Translate list of available references
-        const all_references = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references");
-        sheetData.source_references = all_references.map((reference) => {
+        const all_referencesSet = game.settings.get(CONFIG.l5r5e.namespace, "all-compendium-references");
+        sheetData.source_references = [...all_referencesSet].map((reference) => {
             const label_or_reference = CONFIG.l5r5e.sourceReference[reference]?.label ?? reference
             return game.i18n.localize(label_or_reference)
         })
