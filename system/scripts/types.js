@@ -1,0 +1,3 @@
+/**
+ * @typedef {"afflicted" | "bleeding" | "burning" | "compromised" | "dazed" | "disoriented" | "dying" | "enraged" | "exhausted" | "immobilized" | "incapacitated" | "intoxicated" | "prone" | "silenced" | "unconscious" | "lightlyWoundedFire" | "lightlyWoundedWater" | "lightlyWoundedAir" | "lightlyWoundedEarth" | "lightlyWoundedVoid" | "severelyWoundedFire" | "severelyWoundedWater" | "severelyWoundedAir" | "severelyWoundedEarth" | "severelyWoundedVoid"} Condition
+ */

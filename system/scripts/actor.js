@@ -189,6 +189,21 @@ export class ActorL5r5e extends Actor {
     }
 
     /**
+     * @type {import("./types").Condition}
+     *
+     * Remove conditions by known string ids
+     * @param conditions {Set<Condition>}
+     * @returns {Promise<void>}
+     */
+    async removeConditions(conditions) {
+        const effectsToRemove = this.statuses.intersection(conditions);
+        const idsToRemove = this.effects.contents
+            .filter(effect => effect.statuses.isSubsetOf(effectsToRemove))
+            .map(effect => effect.id);
+        await this.deleteEmbeddedDocuments("ActiveEffect", idsToRemove);
+    }
+
+    /**
      * Alter Actor skill/ring from a advancement
      * @param {Item}    item
      * @param {boolean} isAdd True=add, false=remove
