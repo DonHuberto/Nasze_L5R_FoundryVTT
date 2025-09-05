@@ -205,6 +205,7 @@ export class GmToolbox extends HandlebarsApplicationMixin(ApplicationV2) {
                     }
                 },
             });
+            await actor.removeConditions(new Set(["exhausted"]));
         }
 
         GmToolbox.#uiNotification(allActors, "sleep");
@@ -216,7 +217,8 @@ export class GmToolbox extends HandlebarsApplicationMixin(ApplicationV2) {
     static async #onSceneEnd(event) {
         const allActors = event.button !== 0;
         for await (const actor of game.actors.contents) {
-            if (!GmToolbox.#updatableCharacter(allActors, actor)) {
+            if (!GmToolbox.#updatableCharacter(allActors, actor)
+                || actor.statuses.has("exhausted")) {
                 continue;
             }
 
