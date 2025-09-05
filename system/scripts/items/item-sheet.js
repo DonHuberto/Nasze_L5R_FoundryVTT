@@ -37,30 +37,25 @@ export class ItemSheetL5r5e extends BaseItemSheetL5r5e {
      * @private
      */
     async _prepareProperties(sheetData) {
-        sheetData.data.propertiesList = [];
+        sheetData.data.propertiesList = await Promise.all((sheetData.data?.system?.properties || []).map(async (property) => {
 
-        if (Array.isArray(sheetData.data.system.properties)) {
-            const props = [];
-            for (const property of sheetData.data.system.properties) {
-                const gameProp = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack({ id: property.id, type: "Item" });
-                if (gameProp) {
-                    sheetData.data.propertiesList.push(gameProp);
-                    props.push({ id: gameProp.id, name: gameProp.name });
-                } else {
-                    // Item not found
-                    console.warn(`L5R5E | IS | Unknown property id[${property.id}], name[${property.name}]`);
-                    sheetData.data.propertiesList.push({
-                        id: property.id,
-                        name: property.name,
-                        type: "property",
-                        img: "systems/l5r5e/assets/icons/items/property.svg",
-                        removed: true,
-                    });
-                }
+            const gameProp = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack({ id: property.id, type: "Item" });
+            if (gameProp) {
+                return gameProp;
             }
-            sheetData.data.system.properties = props;
-        }
+
+            // Item not found
+            console.warn(`L5R5E | IS | Unknown property id[${property.id}], name[${property.name}]`);
+            return {
+                id: property.id,
+                name: property.name,
+                type: "property",
+                img: "systems/l5r5e/assets/icons/items/property.svg",
+                removed: true,
+            };
+        }));
     }
+
 
     /**
      * Subscribe to events from the sheet.

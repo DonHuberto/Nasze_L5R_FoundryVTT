@@ -11,6 +11,7 @@ Date format : day/month/year
 - Fix for fade configuration (!66)
 - Added basic token conditions (Thanks to Putty)
 - Added ability to remove condition from actor sheet and core journal on click.
+- Added some Properties loading optimizations (!63 Thanks to KitCat).
 
 ## 1.13.0 - 24/08/2025 - Foundry v13 Compatibility (Thx to Litasa)
 __! Be certain to carefully back up any critical user data before installing this update !__

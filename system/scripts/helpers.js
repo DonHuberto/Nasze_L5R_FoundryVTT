@@ -189,12 +189,12 @@ export class HelpersL5r5e {
 
             // Unknown pack object, iterate all packs
             if (!document) {
-                for (const comp of game.packs) {
+                await Promise.all(game.packs.map(async (comp) => {
                     const tmpData = await comp.getDocument(id);
                     if (tmpData) {
                         document = HelpersL5r5e.createDocumentFromCompendium({ type, data: tmpData });
                     }
-                }
+                }));
             }
 
             // Final
