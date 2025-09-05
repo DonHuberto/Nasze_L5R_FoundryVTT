@@ -20,6 +20,12 @@ export class L5r5ePopupManager {
     #container = null;
 
     /**
+     * Increment number to ignore old tooltips if template is too long to load (#62)
+     * @type {number}
+     */
+    #displayId = 0;
+
+    /**
      * @param {string|jQuery} selector - Selector or jQuery object for tooltip-bound elements.
      * @param {(event: MouseEvent) => Promise<string>} callback - Async function returning tooltip HTML content.
      * @param {HTMLElement|jQuery} [container=document.body] - DOM element or jQuery object to contain the tooltip.
@@ -45,10 +51,24 @@ export class L5r5ePopupManager {
             .on("mouseenter.popup", async (event) => {
                 $(this.#container).find("#l5r5e-tooltip-ct").remove();
 
+                // Memory save
+                if (this.#displayId >= 200) {
+                    this.#displayId = 0;
+                }
+                const currentDisplayId = ++this.#displayId;
+
+                // Load the template, can take a while
                 const tpl = await this.#callback(event);
 
                 // Abort if no content or the target element is no longer in the DOM
-                if (!tpl || !document.body.contains(event.currentTarget)) return;
+                if (!tpl || !document.body.contains(event.currentTarget)) {
+                    return;
+                }
+
+                // If mismatched, that tpl is too old, the user already display another tooltip
+                if (this.#displayId !== currentDisplayId) {
+                    return;
+                }
 
                 $(this.#container).append(
                     `<div id="l5r5e-tooltip-ct" class="l5r5e-tooltip l5r5e-tooltip-ct">${tpl}</div>`
