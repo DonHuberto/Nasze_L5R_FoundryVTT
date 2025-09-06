@@ -125,6 +125,17 @@ export class ActorL5r5e extends Actor {
         });
     }
 
+    /** @inheritDoc */
+    async _preUpdate(changes, options, user) {
+        if (this.isCharacterType) {
+            // apply compromised condition if strife goes beyond max
+            const strife = changes.system?.strife?.value ?? this.system.strife.value;
+            const maxStrife = changes.system?.strife?.max ?? this.system.strife.max;
+            const isCompromised = strife > maxStrife;
+            await this.toggleStatusEffect('compromised', {active: isCompromised});
+        }
+    }
+
     /** @override */
     prepareData() {
         super.prepareData();
@@ -137,13 +148,16 @@ export class ActorL5r5e extends Actor {
                 ActorL5r5e.computeDerivedAttributes(system);
             }
 
+            const isAfflicted = this.statuses.has("afflicted");
+            const isCompromised = this.statuses.has("compromised");
+
             // Attributes bars
             system.fatigue.max = system.endurance;
             system.strife.max = system.composure;
             system.void_points.max = system.rings.void;
 
-            // if compromise, vigilance = 1
-            system.is_compromised = system.strife.value > system.strife.max;
+            // if compromised or afflicted, vigilance = 1
+            system.is_afflicted_or_compromised = isAfflicted || isCompromised;
 
             // Make sure void points are never greater than max
             if (system.void_points.value > system.void_points.max) {

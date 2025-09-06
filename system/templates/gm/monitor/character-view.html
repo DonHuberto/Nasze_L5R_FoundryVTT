@@ -68,7 +68,7 @@
              </td>
              <td>
                  {{actor.system.focus}}
-                 / {{#if actor.system.is_compromised}}<span class="badvalue">1</span>{{else}}{{actor.system.vigilance}}{{/if}}
+                 / {{#if actor.system.is_afflicted_or_compromised}}<span class="badvalue">1</span>{{else}}{{actor.system.vigilance}}{{/if}}
              </td>
              <td>
                  <a title="{{localize 'l5r5e.gm.monitor.mouse_control'}}" data-actor-uuid="{{actor.uuid}}" data-action="modify_voidPoint" class="actor-modify-control">
