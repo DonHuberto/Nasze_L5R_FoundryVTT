@@ -36,10 +36,10 @@
         </label>
         <p class="item-description"> {{localize 'l5r5e.attributes.focustip'}}</p>
     </li>
-    <li class="vigilance-content {{#if data.system.is_compromised}}compromised{{/if}}">
+    <li class="vigilance-content {{#if data.system.is_afflicted_or_compromised}}compromised{{/if}}">
         <label class="attribute-label">
             <strong>{{localize 'l5r5e.attributes.vigilance'}}</strong>
-            {{#if data.system.is_compromised}}
+            {{#if data.system.is_afflicted_or_compromised}}
             <input class="centered-input" type="number" value="1" disabled/>
             {{else}}
             <input class="centered-input" type="number" name="system.vigilance" value="{{data.system.vigilance}}" data-dtype="Number" min="0" placeholder="0" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
