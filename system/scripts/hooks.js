@@ -5,9 +5,8 @@ export default class HooksL5r5e {
      * Do initialization
      */
     static async init() {
-        // Replace all foundry conditions with L5R conditions only
-        CONFIG.statusEffects = CONFIG.l5r5e.conditions;
-        // CONFIG.statusEffects.push(...CONFIG.l5r5e.conditions);
+        // Add L5R conditions to foundry conditions (don't restrict users)
+        CONFIG.statusEffects.push(...CONFIG.l5r5e.conditions);
     }
 
     /**

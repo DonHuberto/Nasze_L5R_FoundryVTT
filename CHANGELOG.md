@@ -7,12 +7,13 @@ Date format : day/month/year
 > - `system-version`: System functionalities and Fixes.
 
 ## 1.13.1 - ??/09/2025 - Fixes
-- Fix for Clicking on items doesn't show item window (!65 Thx to Litasa)
-- Fix for fade configuration (!66)
+- Fix for Clicking on items doesn't show item window (#65 Thx to Litasa)
+- Fix for fade configuration (#66)
 - Added basic token conditions (Thanks to Putty)
+- Added compromised condition when strife goes beyond max (Thanks to Putty).
 - Added ability to remove condition from actor sheet and core journal on click.
-- Added some Tooltips loading optimizations (!62 Thanks to KitCat).
-- Added some Properties loading optimizations (!63 Thanks to KitCat).
+- Added some Tooltips loading optimizations (#62 Thanks to KitCat).
+- Added some Properties loading optimizations (#63 Thanks to KitCat).
 
 ## 1.13.0 - 24/08/2025 - Foundry v13 Compatibility (Thx to Litasa)
 __! Be certain to carefully back up any critical user data before installing this update !__
@@ -20,7 +21,7 @@ __! Be certain to carefully back up any critical user data before installing thi
 - Compendiums
   - Added English compendium for `Children of the Five Winds`.
   - Added French translation for `Writ of the Wild`.
-  - Fix Compendium Typo: "Beseech Hida's MIght" -> "Beseech Hida's Might" (!59).
+  - Fix Compendium Typo: "Beseech Hida's MIght" -> "Beseech Hida's Might" (#59).
 - Actor sheets: Technique types are now hidden when they are not checked in locked mode.
 - Fix 20Q: Technique message fixed (unallowed tech for School).
 - Switched wysiwyg editor engine to `prosemirror` for text editor (`tinymce` will be removed in Foundry v14).
@@ -62,12 +63,12 @@ __! Be certain to carefully back up any critical user data before installing thi
 ## 1.11.0 - 13/12/2023 - Little fixes
 - 20Q :
   - Starting techniques now have a limit of 6 techniques instead of 5 (see Celestial Realms : `Moshi Sun Sentinel School`).
-  - Enable dropping on the 'drop here' label for 20Q (thk to Litasa !34).
+  - Enable dropping on the 'drop here' label for 20Q (thk to Litasa #34).
 - Compendiums : Added masteries and abilities from Deathly Turns.
 
 ## 1.10.1 - 22/08/2023 - Litasa's fixes
 All these changes are thanks to Litasa.
-- Roll-n-Keep dialog now waits for the DiceSoNice animation to finish before displaying the result when re-rolling or exploding dice (!28).
+- Roll-n-Keep dialog now waits for the DiceSoNice animation to finish before displaying the result when re-rolling or exploding dice (#28).
 - Adding the ability to have a different name for the custom-compendium (needed to disable the system embedded ones).
 - Fixes some CSS issues when the font size is not the default (#50, #51 and #52).
 
@@ -83,8 +84,8 @@ __! Be certain to carefully back up any critical user data before installing thi
 
 ## 1.9.6 - 14/05/2023 - Bragma's QoL
 All these changes are thanks to Bragma.
-- Added effects panel to both pc and npc (!26).
-- Added a underline on rings to show current stance (!25).
+- Added effects panel to both pc and npc (#26).
+- Added an underline on rings to show current stance (#25).
 - Fix Lists not showing correctly in journal (#44).
 
 ## 1.9.5 - 11/01/2023 - Adding Modifiers
