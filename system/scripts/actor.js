@@ -130,9 +130,14 @@ export class ActorL5r5e extends Actor {
         if (this.isCharacterType) {
             // apply compromised condition if strife goes beyond max
             const strife = changes.system?.strife?.value ?? this.system.strife.value;
-            const maxStrife = changes.system?.strife?.max ?? this.system.strife.max;
-            const isCompromised = strife > maxStrife;
-            await this.toggleStatusEffect('compromised', {active: isCompromised});
+            const isCompromised = strife > this.system.composure;
+            // apply incapacitated if fatigue goes beyond max endurance
+            const fatigue = changes.system?.fatigue?.value ?? this.system.fatigue.value;
+            const isIncapacitated = fatigue > this.system.endurance;
+            await Promise.all([
+                this.toggleStatusEffect('compromised', {active: isCompromised}),
+                this.toggleStatusEffect('incapacitated', {active: isIncapacitated}),
+            ]);
         }
     }
 
