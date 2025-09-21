@@ -21,6 +21,10 @@
             "SetTn1OnTypeChange": "Fissa la TN a 1 quando si cambia il conflitto",
             "SetTn1OnTypeChangeHint": "Fissa la TN a 1 quando si seleziona il tipo di conflitto (Intrigo, Duello, Schermaglia or Battaglia campale)"
         },
+        "ShowAllStatusEffects": {
+            "Title": "Show all StatusEffects",
+            "Hint": "If uncheck (default), only L5R conditions are shown."
+        },
         "CustomTechniques": {
             "Title": "Usa tecniche custom",
             "Hint": "Aggiunge il tipo 'Speciale' come termine generale."

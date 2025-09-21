@@ -25,6 +25,15 @@ export const RegisterSettings = function () {
         type: Boolean,
         default: true,
     });
+    game.settings.register(CONFIG.l5r5e.namespace, "show-all-status-effects", {
+        name: "SETTINGS.ShowAllStatusEffects.Title",
+        hint: "SETTINGS.ShowAllStatusEffects.Hint",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: false,
+        requiresReload: true,
+    });
     game.settings.register(CONFIG.l5r5e.namespace, "techniques-customs", {
         name: "SETTINGS.CustomTechniques.Title",
         hint: "SETTINGS.CustomTechniques.Hint",

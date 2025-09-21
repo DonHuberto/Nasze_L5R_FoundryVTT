@@ -5,8 +5,14 @@ export default class HooksL5r5e {
      * Do initialization
      */
     static async init() {
-        // Add L5R conditions to foundry conditions (don't restrict users)
-        CONFIG.statusEffects.push(...CONFIG.l5r5e.conditions);
+        // L5R conditions
+        if (game.settings.get(CONFIG.l5r5e.namespace, "show-all-status-effects")) {
+            // Add L5R conditions to foundry conditions (don't restrict users)
+            CONFIG.statusEffects.push(...CONFIG.l5r5e.conditions);
+        } else {
+            // L5R conditions only
+            CONFIG.statusEffects = CONFIG.l5r5e.conditions;
+        }
     }
 
     /**

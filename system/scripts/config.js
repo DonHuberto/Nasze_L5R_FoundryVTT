@@ -14,7 +14,58 @@ export const L5R5E = {
         skillCostMultiplier: 2,
         techniqueCost: 3,
     },
+    // For rings wound to be aligned, add them first
     conditions: [{
+        id: "lightly_wounded_fire",
+        name: "l5r5e.conditions.lightly_wounded_fire",
+        img: "systems/l5r5e/assets/icons/conditions/fire-white.webp",
+        system: { id: "L5RCoreCon000016" }
+    },{
+        id: "lightly_wounded_water",
+        name: "l5r5e.conditions.lightly_wounded_water",
+        img: "systems/l5r5e/assets/icons/conditions/water-white.webp",
+        system: { id: "L5RCoreCon000016" }
+    },{
+        id: "lightly_wounded_air",
+        name: "l5r5e.conditions.lightly_wounded_air",
+        img: "systems/l5r5e/assets/icons/conditions/air-white.webp",
+        system: { id: "L5RCoreCon000016" }
+    },{
+        id: "lightly_wounded_earth",
+        name: "l5r5e.conditions.lightly_wounded_earth",
+        img: "systems/l5r5e/assets/icons/conditions/earth-white.webp",
+        system: { id: "L5RCoreCon000016" }
+    },{
+        id: "lightly_wounded_void",
+        name: "l5r5e.conditions.lightly_wounded_void",
+        img: "systems/l5r5e/assets/icons/conditions/void-white.webp",
+        system: { id: "L5RCoreCon000016" }
+    },{
+        id: "severely_wounded_fire",
+        name: "l5r5e.conditions.severely_wounded_fire",
+        img: "systems/l5r5e/assets/icons/conditions/fire-black.webp",
+        system: { id: "L5RCoreCon000016" }
+    },{
+        id: "severely_wounded_water",
+        name: "l5r5e.conditions.severely_wounded_water",
+        img: "systems/l5r5e/assets/icons/conditions/water-black.webp",
+        system: { id: "L5RCoreCon000016" }
+    },{
+        id: "severely_wounded_air",
+        name: "l5r5e.conditions.severely_wounded_air",
+        img: "systems/l5r5e/assets/icons/conditions/air-black.webp",
+        system: { id: "L5RCoreCon000016" }
+    },{
+        id: "severely_wounded_earth",
+        name: "l5r5e.conditions.severely_wounded_earth",
+        img: "systems/l5r5e/assets/icons/conditions/earth-black.webp",
+        system: { id: "L5RCoreCon000016" }
+    },{
+        id: "severely_wounded_void",
+        name: "l5r5e.conditions.severely_wounded_void",
+        img: "systems/l5r5e/assets/icons/conditions/void-black.webp",
+        system: { id: "L5RCoreCon000016" }
+    },{
         id: "afflicted",
         name: "l5r5e.conditions.afflicted",
         img: "icons/magic/death/undead-ghost-scream-teal.webp",
@@ -129,56 +180,6 @@ export const L5R5E = {
         name: "l5r5e.conditions.unconscious",
         img: "icons/magic/control/sleep-bubble-purple.webp",
         system: { id: "L5RCoreCon000015" }
-    },{
-        id: "lightly_wounded_fire",
-        name: "l5r5e.conditions.lightly_wounded_fire",
-        img: "systems/l5r5e/assets/icons/conditions/fire-white.webp",
-        system: { id: "L5RCoreCon000016" }
-    },{
-        id: "lightly_wounded_water",
-        name: "l5r5e.conditions.lightly_wounded_water",
-        img: "systems/l5r5e/assets/icons/conditions/water-white.webp",
-        system: { id: "L5RCoreCon000016" }
-    },{
-        id: "lightly_wounded_air",
-        name: "l5r5e.conditions.lightly_wounded_air",
-        img: "systems/l5r5e/assets/icons/conditions/air-white.webp",
-        system: { id: "L5RCoreCon000016" }
-    },{
-        id: "lightly_wounded_earth",
-        name: "l5r5e.conditions.lightly_wounded_earth",
-        img: "systems/l5r5e/assets/icons/conditions/earth-white.webp",
-        system: { id: "L5RCoreCon000016" }
-    },{
-        id: "lightly_wounded_void",
-        name: "l5r5e.conditions.lightly_wounded_void",
-        img: "systems/l5r5e/assets/icons/conditions/void-white.webp",
-        system: { id: "L5RCoreCon000016" }
-    },{
-        id: "severely_wounded_fire",
-        name: "l5r5e.conditions.severely_wounded_fire",
-        img: "systems/l5r5e/assets/icons/conditions/fire-black.webp",
-        system: { id: "L5RCoreCon000016" }
-    },{
-        id: "severely_wounded_water",
-        name: "l5r5e.conditions.severely_wounded_water",
-        img: "systems/l5r5e/assets/icons/conditions/water-black.webp",
-        system: { id: "L5RCoreCon000016" }
-    },{
-        id: "severely_wounded_air",
-        name: "l5r5e.conditions.severely_wounded_air",
-        img: "systems/l5r5e/assets/icons/conditions/air-black.webp",
-        system: { id: "L5RCoreCon000016" }
-    },{
-        id: "severely_wounded_earth",
-        name: "l5r5e.conditions.severely_wounded_earth",
-        img: "systems/l5r5e/assets/icons/conditions/earth-black.webp",
-        system: { id: "L5RCoreCon000016" }
-    },{
-        id: "severely_wounded_void",
-        name: "l5r5e.conditions.severely_wounded_void",
-        img: "systems/l5r5e/assets/icons/conditions/void-black.webp",
-        system: { id: "L5RCoreCon000016" }
     }],
     regex: {
         techniqueDifficulty: /^@([TS]):([^|]+?)(?:\|(min|max)(?:\(([^)]+?)\))?)?$/,

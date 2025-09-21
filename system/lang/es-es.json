@@ -21,6 +21,10 @@
             "SetTn1OnTypeChange": "Poner el NO a 1 al seleccionar el tipo de encuentro",
             "SetTn1OnTypeChangeHint": "Poner el NO a 1 cuando se elige el tipo de encuentro (Intriga, Duelo, Escaramuza o Batalla a gran escala)"
         },
+        "ShowAllStatusEffects": {
+            "Title": "Show all StatusEffects",
+            "Hint": "If uncheck (default), only L5R conditions are shown."
+        },
         "CustomTechniques": {
             "Title": "Use custom techniques",
             "Hint": "Add 'Specificity' technique type to serve as a catch-all."

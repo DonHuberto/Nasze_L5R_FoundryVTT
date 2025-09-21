@@ -6,14 +6,17 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
-## 1.13.1 - ??/09/2025 - Fixes
+## 1.13.1 - 21/09/2025 - Conditions & Fixes
 - Fix for Clicking on items doesn't show item window (#65 Thx to Litasa)
 - Fix for fade configuration (#66)
-- Added basic token conditions (Thanks to Putty)
-- Added compromised condition when strife goes beyond max (Thanks to Putty).
-- Added ability to remove condition from actor sheet and core journal on click.
 - Added some Tooltips loading optimizations (#62 Thanks to KitCat).
 - Added some Properties loading optimizations (#63 Thanks to KitCat).
+- Conditions changes :
+  - Added basic token conditions (Thanks to Putty)
+  - Added compromised condition when strife goes beyond max (Thanks to Putty).
+  - Added apply incapacitated if character's fatigue goes beyond endurance (Thanks to Putty).
+  - Added ability to remove condition from actor sheet and show core journal on click.
+  - Added option to show all conditions (StatusEffect), default to false (show only l5R conditions).
 
 ## 1.13.0 - 24/08/2025 - Foundry v13 Compatibility (Thx to Litasa)
 __! Be certain to carefully back up any critical user data before installing this update !__

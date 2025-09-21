@@ -21,6 +21,10 @@
             "SetTn1OnTypeChange": "Set TN to 1 on encounter change",
             "SetTn1OnTypeChangeHint": "Set the TN to 1 when the encounter type is selected (Intrigue, Duel, Skirmish or Mass battle)"
         },
+        "ShowAllStatusEffects": {
+            "Title": "Show all StatusEffects",
+            "Hint": "If uncheck (default), only L5R conditions are shown."
+        },
         "CustomTechniques": {
             "Title": "Use custom techniques",
             "Hint": "Add 'Specificity' technique type to serve as a catch-all."

@@ -21,6 +21,10 @@
             "SetTn1OnTypeChange": "ND 1 à la sélection du type de rencontre",
             "SetTn1OnTypeChangeHint": "Met le ND à 1 lorsqu'on modifie le type de rencontre (Intrigue, Duel, Escarmouche ou Bataille rangée)"
         },
+        "ShowAllStatusEffects": {
+            "Title": "Affiche tous les StatusEffects",
+            "Hint": "Si décoché (défaut), uniquement les conditions de L5R sont affichées."
+        },
         "CustomTechniques": {
             "Title": "Utiliser les techniques personnalisées",
             "Hint": "Ajoute un type de technique 'Particularités' pour servir de fourre-tout."
