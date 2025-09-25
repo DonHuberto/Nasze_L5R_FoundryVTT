@@ -694,6 +694,12 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
     _openDicePickerForSkill(event) {
         event.preventDefault();
         event.stopPropagation();
+
+        // In Fvtt v13+ "Enter" trigger that mouse event, we ignore that below
+        if (event.clientX ===  0 && event.clientY === 0) {
+            return;
+        }
+
         const li = $(event.currentTarget);
         const weapon = this._getWeaponInfos(li.data("weapon-id") || null);
         const isInitiative = li.data("initiative") || false;
