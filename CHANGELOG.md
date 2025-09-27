@@ -7,7 +7,9 @@ Date format : day/month/year
 > - `system-version`: System functionalities and Fixes.
 
 ## 1.13.2 - ??/09/2025 - Fixes
-- Sheet : Fix for pressing key "Enter" in input trigger "no active Encounter..." message.
+- Sheet : Fix for pressing key `Enter` in input trigger `no active Encounter...` message.
+- Fix Compendium `Astrolab` is duplicate with `Mantis Clan` and `cotfw`. Renamed the `cotfw` version to `Astrolabe (Unicorn)`.
+- Fix 20Q autocomplete and menu css.
 
 ## 1.13.1 - 21/09/2025 - Conditions & Fixes
 - Fix for Clicking on items doesn't show item window (#65 Thx to Litasa)
