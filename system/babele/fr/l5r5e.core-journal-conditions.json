@@ -9,7 +9,7 @@
             "pages": {
                 "Figure: Afflicted": {
                     "name": "Tourmenté - Image",
-                    "src": "icons/svg/sun.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/afflicted.webp"
                 },
                 "Afflicted": {
                     "name": "Tourmenté",
@@ -22,7 +22,7 @@
             "pages": {
                 "Figure: Bleeding": {
                     "name": "En sang - Image",
-                    "src": "icons/svg/blood.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/bleeding.webp"
                 },
                 "Bleeding": {
                     "name": "En sang",
@@ -35,7 +35,7 @@
             "pages": {
                 "Figure: Burning": {
                     "name": "En feu - Image",
-                    "src": "icons/svg/fire.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/burning.webp"
                 },
                 "Burning": {
                     "name": "En feu",
@@ -48,7 +48,7 @@
             "pages": {
                 "Figure: Compromised": {
                     "name": "Compromis - Image",
-                    "src": "icons/svg/terror.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/compromised.webp"
                 },
                 "Compromised": {
                     "name": "Compromis",
@@ -61,7 +61,7 @@
             "pages": {
                 "Figure: Dazed": {
                     "name": "Hébété - Image",
-                    "src": "icons/svg/eye.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/dazed.webp"
                 },
                 "Dazed": {
                     "name": "Hébété",
@@ -74,7 +74,7 @@
             "pages": {
                 "Figure: Disoriented": {
                     "name": "Désorienté - Image",
-                    "src": "icons/svg/daze.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/disoriented.webp"
                 },
                 "Disoriented": {
                     "name": "Désorienté",
@@ -87,7 +87,7 @@
             "pages": {
                 "Figure: Dying [X Rounds]": {
                     "name": "Mourant (X rounds) - Image",
-                    "src": "icons/svg/skull.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/dying_1.webp"
                 },
                 "Dying [X Rounds]": {
                     "name": "Mourant (X rounds)",
@@ -100,7 +100,7 @@
             "pages": {
                 "Figure: Enraged": {
                     "name": "Enragé - Image",
-                    "src": "icons/svg/lightning.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/enraged.webp"
                 },
                 "Enraged": {
                     "name": "Enragé",
@@ -113,7 +113,7 @@
             "pages": {
                 "Figure: Exhausted": {
                     "name": "Epuisé - Image",
-                    "src": "icons/svg/sleep.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/exhausted.webp"
                 },
                 "Exhausted": {
                     "name": "Epuisé",
@@ -126,7 +126,7 @@
             "pages": {
                 "Figure: Immobilized": {
                     "name": "Immobilisé - Image",
-                    "src": "icons/svg/net.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/immobilized.webp"
                 },
                 "Immobilized": {
                     "name": "Immobilisé",
@@ -139,7 +139,7 @@
             "pages": {
                 "Figure: Incapacitated": {
                     "name": "Hors de combat - Image",
-                    "src": "icons/svg/downgrade.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/incapacitated.webp"
                 },
                 "Incapacitated": {
                     "name": "Hors de combat",
@@ -152,7 +152,7 @@
             "pages": {
                 "Figure: Intoxicated": {
                     "name": "Ivre - Image",
-                    "src": "icons/svg/poison.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/intoxicated.webp"
                 },
                 "Intoxicated": {
                     "name": "Ivre",
@@ -165,7 +165,7 @@
             "pages": {
                 "Figure: Prone": {
                     "name": "A terre - Image",
-                    "src": "icons/svg/falling.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/prone.webp"
                 },
                 "Prone": {
                     "name": "A terre",
@@ -178,7 +178,7 @@
             "pages": {
                 "Figure: Silenced": {
                     "name": "Aphone - Image",
-                    "src": "icons/svg/silenced.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/silenced.webp"
                 },
                 "Silenced": {
                     "name": "Aphone",
@@ -191,7 +191,7 @@
             "pages": {
                 "Figure: Unconscious": {
                     "name": "Inconscient - Image",
-                    "src": "icons/svg/unconscious.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/unconscious.webp"
                 },
                 "Unconscious": {
                     "name": "Inconscient",
@@ -204,7 +204,7 @@
             "pages": {
                 "Figure: Wounded": {
                     "name": "Blessé - Image",
-                    "src": "icons/svg/degen.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/heavily_wounded.webp"
                 },
                 "Wounded": {
                     "name": "Blessé",
