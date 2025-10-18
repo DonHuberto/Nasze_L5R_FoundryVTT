@@ -6,7 +6,7 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
-## 1.13.2 - ??/10/2025 - Fixes
+## 1.13.2 - 18/10/2025 - Conditions Icons & Fixes
 - Fix Actor Sheet for pressing key `Enter` in input trigger `no active Encounter...` message.
 - Fix Compendium `Astrolab` is duplicate with `Mantis Clan` and `Children of the Five Winds`. Renamed the `cotfw` version to `Astrolabe (Unicorn)`.
 - Fix 20Q autocomplete and menu css.
