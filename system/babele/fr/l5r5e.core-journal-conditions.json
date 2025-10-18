@@ -217,7 +217,7 @@
             "pages": {
                 "Figure: Illness: Oozing Sore Disease": {
                     "name": "Maladie : Bubons purulents - Image",
-                    "src": "icons/svg/eye.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/illness_oozing_sore_disease.webp"
                 },
                 "Illness: Oozing Sore Disease": {
                     "name": "Maladie : Bubons purulents",
@@ -230,7 +230,7 @@
             "pages": {
                 "Figure: Illness: Gut Sickness": {
                     "name": "Maladie : Mal des entrailles - Image",
-                    "src": "icons/svg/poison.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/illness_gut_sickness.webp"
                 },
                 "Illness: Gut Sickness": {
                     "name": "Maladie : Mal des entrailles",
@@ -243,7 +243,7 @@
             "pages": {
                 "Figure: Illness: Coughing Illness": {
                     "name": "Maladie : Mauvaise toux - Image",
-                    "src": "icons/svg/poison.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/illness_coughing_illness.webp"
                 },
                 "Illness: Coughing Illness": {
                     "name": "Maladie : Mauvaise toux",
@@ -256,7 +256,7 @@
             "pages": {
                 "Figure: Illness: Unsteady Illness": {
                     "name": "Maladie : Vertiges - Image",
-                    "src": "icons/svg/daze.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/illness_unsteady_illness.webp"
                 },
                 "Illness: Unsteady Illness": {
                     "name": "Maladie : Vertiges",
@@ -269,7 +269,7 @@
             "pages": {
                 "Figure: Illness: Fire Rash": {
                     "name": "Maladie : Rougeurs - Image",
-                    "src": "icons/svg/fire.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/illness_fire_rash.webp"
                 },
                 "Illness: Fire Rash": {
                     "name": "Maladie : Rougeurs",
@@ -282,7 +282,7 @@
             "pages": {
                 "Figure: Centered": {
                     "name": "Centered (WIP) - Image",
-                    "src": "systems/l5r5e/assets/icons/social.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/centered.webp"
                 },
                 "Centered": {
                     "name": "Centered (WIP)",
@@ -295,7 +295,7 @@
             "pages": {
                 "Figure: Emboldened": {
                     "name": "Emboldened (WIP) - Image",
-                    "src": "systems/l5r5e/assets/icons/social.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/emboldened.webp"
                 },
                 "Emboldened": {
                     "name": "Emboldened (WIP)",
@@ -308,7 +308,7 @@
             "pages": {
                 "Figure: Possessed": {
                     "name": "Possessed (WIP) - Image",
-                    "src": "icons/svg/terror.svg"
+                    "src": "systems/l5r5e/assets/icons/conditions/possesed.webp"
                 },
                 "Possessed": {
                     "name": "Possessed (WIP)",

@@ -83,7 +83,7 @@ export const L5R5E = {
     },{
         id: "centered",
         name: "l5r5e.conditions.centered",
-        img: "systems/l5r5e/assets/icons/social.svg",
+        img: "systems/l5r5e/assets/icons/conditions/centered.webp",
         system: { id: "L5RCoreCon000022" }
     },{
         id: "compromised",
@@ -108,7 +108,7 @@ export const L5R5E = {
     },{
         id: "emboldened",
         name: "l5r5e.conditions.emboldened",
-        img: "systems/l5r5e/assets/icons/social.svg",
+        img: "systems/l5r5e/assets/icons/conditions/emboldened.webp",
         system: { id: "L5RCoreCon000023" }
     },{
         id: "enraged",
@@ -123,27 +123,27 @@ export const L5R5E = {
     },{
         id: "illness_coughing_illness",
         name: "l5r5e.conditions.illness_coughing_illness",
-        img: "icons/svg/poison.svg",
+        img: "systems/l5r5e/assets/icons/conditions/illness_coughing_illness.webp",
         system: { id: "L5RCoreCon000019" }
     },{
         id: "illness_fire_rash",
         name: "l5r5e.conditions.illness_fire_rash",
-        img: "icons/svg/fire.svg",
+        img: "systems/l5r5e/assets/icons/conditions/illness_fire_rash.webp",
         system: { id: "L5RCoreCon000021" }
     },{
         id: "illness_gut_sickness",
         name: "l5r5e.conditions.illness_gut_sickness",
-        img: "icons/svg/poison.svg",
+        img: "systems/l5r5e/assets/icons/conditions/illness_gut_sickness.webp",
         system: { id: "L5RCoreCon000018" }
     },{
         id: "illness_oozing_sore_disease",
         name: "l5r5e.conditions.illness_oozing_sore_disease",
-        img: "icons/svg/eye.svg",
+        img: "systems/l5r5e/assets/icons/conditions/illness_oozing_sore_disease.webp",
         system: { id: "L5RCoreCon000017" }
     },{
         id: "illness_unsteady_illness",
         name: "l5r5e.conditions.illness_unsteady_illness",
-        img: "icons/svg/daze.svg",
+        img: "systems/l5r5e/assets/icons/conditions/illness_unsteady_illness.webp",
         system: { id: "L5RCoreCon000020" }
     },{
         id: "immobilized",
@@ -163,7 +163,7 @@ export const L5R5E = {
     },{
         id: "possessed",
         name: "l5r5e.conditions.possessed",
-        img: "icons/svg/terror.svg",
+        img: "systems/l5r5e/assets/icons/conditions/possesed.webp",
         system: { id: "L5RCoreCon000024" }
     },{
         id: "prone",
