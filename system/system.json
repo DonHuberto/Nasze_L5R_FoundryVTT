@@ -7,8 +7,8 @@
     "changelog": "https://gitlab.com/teaml5r/l5r5e/-/blob/master/CHANGELOG.md",
     "license": "https://gitlab.com/teaml5r/l5r5e/-/blob/master/LICENSE.md",
     "manifest": "https://gitlab.com/teaml5r/l5r5e/-/raw/master/system/system.json",
-    "download": "https://gitlab.com/teaml5r/l5r5e/-/jobs/artifacts/v1.13.1/raw/l5r5e.zip?job=build",
-    "version": "1.13.1",
+    "download": "https://gitlab.com/teaml5r/l5r5e/-/jobs/artifacts/v1.13.2/raw/l5r5e.zip?job=build",
+    "version": "1.13.2",
     "compatibility": {
         "minimum": "13",
         "verified": "13",
