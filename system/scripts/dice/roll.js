@@ -37,6 +37,12 @@ export class RollL5r5e extends Roll {
         },
         target: null,
         voidPointUsed: false,
+        actions: {
+            attack: false,
+            scheme: false,
+            support: false,
+            move: false,
+        },
     };
 
     constructor(formula, data = {}, options = {}) {

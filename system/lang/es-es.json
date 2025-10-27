@@ -242,7 +242,14 @@
                 "skill_assistance_label": "Asistencia",
                 "roll_label": "Tirar",
                 "bt_add_macro": "Añadir una macro",
-                "gm_request_dp_to_players": "Solicitud de tirada enviada a los jugadores"
+                "gm_request_dp_to_players": "Solicitud de tirada enviada a los jugadores",
+                "actions": {
+                    "title": "Tipo de acción",
+                    "attack": "Ataque",
+                    "scheme": "Plan",
+                    "support": "Apoyo",
+                    "move": "Movimiento"
+                }
             },
             "roll_n_keep": {
                 "title": "Tirar y guardar",

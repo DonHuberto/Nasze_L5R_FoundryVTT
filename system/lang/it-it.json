@@ -242,7 +242,14 @@
                 "skill_assistance_label": "Aiuto",
                 "roll_label": "Tira",
                 "bt_add_macro": "Aggiungi una macro",
-                "gm_request_dp_to_players": "Roll request sent to players"
+                "gm_request_dp_to_players": "Roll request sent to players",
+                "actions": {
+                    "title": "Tipo di azione",
+                    "attack": "Attacco",
+                    "scheme": "Intrigo",
+                    "support": "Supporto",
+                    "move": "Movimento"
+                }
             },
             "roll_n_keep": {
                 "title": "Tira e Tieni",
