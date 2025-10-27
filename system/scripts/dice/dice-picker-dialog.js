@@ -788,7 +788,7 @@ export class DicePickerDialog extends FormApplication {
 
             if (this._isAnyActionSelected(["scheme"])) {
                 if (statuses.has("silenced")) {
-                    modifier += 2;
+                    modifier += 3;
                 }
             }
         }
@@ -796,6 +796,9 @@ export class DicePickerDialog extends FormApplication {
         const targetActor = this._target?.actor;
         if (targetActor?.system?.stance === "air" && this._isAnyActionSelected(["attack", "scheme"])) {
             modifier += 1;
+			if (Number(targetActor?.system?.rank ?? 0) > 3) {
+				modifier += 1;
+			}
         }
 
         return modifier;
