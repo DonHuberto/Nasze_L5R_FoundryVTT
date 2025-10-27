@@ -175,7 +175,7 @@ export const RegisterSettings = function () {
         scope: "world",
         config: false,
         type: Number,
-        default: 2,
+        default: 1,
         onChange: () => game.l5r5e.HelpersL5r5e.notifyDifficultyChange(),
     });
     game.settings.register(CONFIG.l5r5e.namespace, "initiative-encounter", {
