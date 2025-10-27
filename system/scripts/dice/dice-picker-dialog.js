@@ -58,7 +58,51 @@ export class DicePickerDialog extends FormApplication {
         },
         useVoidPoint: false,
         isInitiativeRoll: false,
+        actions: {},
     };
+
+    static get ACTION_TYPES() {
+        return ["attack", "scheme", "support", "move"];
+    }
+
+    static defaultActionsState() {
+        return this.ACTION_TYPES.reduce((acc, action) => {
+            acc[action] = false;
+            return acc;
+        }, {});
+    }
+
+    static normalizeActions(actions) {
+        const normalized = this.defaultActionsState();
+        if (actions === undefined || actions === null) {
+            return normalized;
+        }
+
+        const toggleFromList = (list) => {
+            list
+                .map((action) => String(action ?? ""))
+                .map((action) => action.toLowerCase().trim())
+                .forEach((action) => {
+                    if (action && Object.prototype.hasOwnProperty.call(normalized, action)) {
+                        normalized[action] = true;
+                    }
+                });
+        };
+
+        if (Array.isArray(actions)) {
+            toggleFromList(actions);
+        } else if (typeof actions === "string") {
+            toggleFromList(actions.split(/[,\s]+/).filter((value) => value.length > 0));
+        } else if (typeof actions === "object") {
+            this.ACTION_TYPES.forEach((action) => {
+                if (Object.prototype.hasOwnProperty.call(actions, action)) {
+                    normalized[action] = !!actions[action];
+                }
+            });
+        }
+
+        return normalized;
+    }
 
     /**
      * Assign the default options
@@ -129,6 +173,8 @@ export class DicePickerDialog extends FormApplication {
     constructor(options = {}) {
         super({}, options);
 
+        this.object.actions = this.constructor.defaultActionsState();
+
         // Try to get Actor from: options, first selected token or player's selected character
         [
             options?.actor,
@@ -194,6 +240,11 @@ export class DicePickerDialog extends FormApplication {
         } else if (options.itemUuid) {
             this.item = fromUuidSync(options.itemUuid);
         }
+
+        const actionDefaults = options.actions ?? options.actionTypes;
+        if (actionDefaults !== undefined) {
+            this.actions = actionDefaults;
+        }
     }
 
     /**
@@ -251,6 +302,14 @@ export class DicePickerDialog extends FormApplication {
             return;
         }
         this._target = targetToken;
+    }
+
+    set actions(actions) {
+        this.object.actions = this.constructor.normalizeActions(actions);
+    }
+
+    get actions() {
+        return this.object.actions;
     }
 
     /**
@@ -513,6 +572,16 @@ export class DicePickerDialog extends FormApplication {
             this._updateVoidPointUsage();
             this.render(false);
         });
+
+        html.find("input[name^='actions.']").on("change", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            const action = event.currentTarget.dataset.action;
+            if (!action || !Object.prototype.hasOwnProperty.call(this.object.actions, action)) {
+                return;
+            }
+            this.object.actions[action] = event.currentTarget.checked;
+        });
     }
 
     /**
@@ -590,6 +659,7 @@ export class DicePickerDialog extends FormApplication {
                 useVoidPoint: this.object.useVoidPoint,
                 skillAssistance: this.object.skill.assistance,
                 difficultyHidden: this.object.difficulty.hidden,
+                actions: foundry.utils.deepClone(this.object.actions),
             };
 
             await this._actor.rollInitiative({
@@ -617,6 +687,7 @@ export class DicePickerDialog extends FormApplication {
             roll.l5r5e.voidPointUsed = this.object.useVoidPoint;
             roll.l5r5e.skillAssistance = this.object.skill.assistance;
             roll.l5r5e.difficultyHidden = this.object.difficulty.hidden;
+            roll.l5r5e.actions = foundry.utils.deepClone(this.object.actions);
 
             await roll.roll();
             message = await roll.toMessage();
@@ -676,6 +747,11 @@ export class DicePickerDialog extends FormApplication {
         }
         if (this.object.skill.name) {
             name = name + " - " + this.object.skill.name;
+        }
+
+        const selectedActions = this.constructor.ACTION_TYPES.filter((action) => this.object.actions?.[action]);
+        if (selectedActions.length > 0) {
+            params.actions = selectedActions;
         }
 
         const command = `new game.l5r5e.DicePickerDialog(${JSON.stringify(params)}).render(true);`;

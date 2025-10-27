@@ -66,6 +66,48 @@
         cursor: url("../assets/cursors/pointer.webp"), pointer;
     }
 
+    td.skill {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .skill-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.25rem;
+    }
+
+    .action-type-title {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.75);
+    }
+
+    .action-type-grid {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        column-gap: 0.75rem;
+        row-gap: 0.25rem;
+        text-align: left;
+    }
+
+    .action-type-grid label {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+    }
+
+    .skill-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        align-items: center;
+    }
+
     // Approach choice
     .ring-selection {
         &.ring-selected {

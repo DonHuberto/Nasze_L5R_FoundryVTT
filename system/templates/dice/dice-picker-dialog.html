@@ -19,6 +19,28 @@
                 </ul>
             </td>
             <td class="skill">
+                <div class="skill-actions">
+                    <span class="action-type-title">{{localize 'l5r5e.dice.dicepicker.actions.title'}}</span>
+                    <div class="action-type-grid">
+                        <label>
+                            <input type="checkbox" name="actions.attack" data-action="attack" {{checked data.actions.attack}} />
+                            {{localize 'l5r5e.dice.dicepicker.actions.attack'}}
+                        </label>
+                        <label>
+                            <input type="checkbox" name="actions.scheme" data-action="scheme" {{checked data.actions.scheme}} />
+                            {{localize 'l5r5e.dice.dicepicker.actions.scheme'}}
+                        </label>
+                        <label>
+                            <input type="checkbox" name="actions.move" data-action="move" {{checked data.actions.move}} />
+                            {{localize 'l5r5e.dice.dicepicker.actions.move'}}
+                        </label>
+                        <label>
+                            <input type="checkbox" name="actions.support" data-action="support" {{checked data.actions.support}} />
+                            {{localize 'l5r5e.dice.dicepicker.actions.support'}}
+                        </label>
+                    </div>
+                </div>
+                <div class="skill-content">
                 {{#if data.skill.name}}
                     {{#if data.skill.list}}
                         {{^if useCategory}}
@@ -53,6 +75,7 @@
                 {{else}}
                     <img class="profile-img" src="systems/l5r5e/assets/imgs/noskill.webp" data-edit="img" alt="no skill selected" />
                 {{/if}}
+                </div>
             </td>
         </tr>
 
