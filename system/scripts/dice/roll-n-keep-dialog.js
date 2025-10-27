@@ -233,6 +233,10 @@ export class RollnKeepDialog extends FormApplication {
             const kept = this._getKeepCount(this.object.currentStep);
             this.object.submitDisabled = kept < 1 || kept > rollData.keepLimit;
         } else if (!this.object.dicesList[this.object.currentStep]) {
+			const stance = String(rollData?.stance ?? "").toLowerCase();
+			if (stance !== "void" && (this.roll.l5r5e.strifeApplied ?? undefined) === undefined)){
+				this.roll.l5r5e.strifeApplied = rollData.summary.strife
+			}
             this.options.editable = this.isOwner && rollData.summary.strife > 0;
             this.options.classes.push("finalized");
         }

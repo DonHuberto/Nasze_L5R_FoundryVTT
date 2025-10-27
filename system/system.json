@@ -7,8 +7,8 @@
     "changelog": "https://gitlab.com/teaml5r/l5r5e/-/blob/master/CHANGELOG.md",
     "license": "https://gitlab.com/teaml5r/l5r5e/-/blob/master/LICENSE.md",
     "manifest": "https://gitlab.com/teaml5r/l5r5e/-/raw/master/system/system.json",
-    "download": "https://gitlab.com/teaml5r/l5r5e/-/jobs/artifacts/v1.13.2/raw/l5r5e.zip?job=build",
-    "version": "1.13.2",
+    "download": "https://gitlab.com/teaml5r/l5r5e/-/jobs/artifacts/v1.13N.0/raw/l5r5e.zip?job=build",
+    "version": "1.13N.0",
     "compatibility": {
         "minimum": "13",
         "verified": "13",
@@ -29,7 +29,15 @@
             "name": "Carter",
             "discord": "Carter#2703",
             "url": "https://fr.tipeee.com/carter-foundryvtt"
-        }
+        },
+		{
+			"name": "DonHuberto",
+			"url": "https://github.com/DonHuberto"
+		},
+		{
+			"name": "Rozgladacz",
+			"url": "https://github.com/rozgladacz"
+		}
     ],
     "background": "systems/l5r5e/assets/l5r-header.webp",
     "scripts": [],
