@@ -6,7 +6,7 @@
     "readme": "https://raw.githubusercontent.com/rozgladacz/Nasze_L5R_FoundryVTT/v1.13.100/README.md",
     "changelog": "https://raw.githubusercontent.com/rozgladacz/Nasze_L5R_FoundryVTT/v1.13.100/CHANGELOG.md",
     "manifest": "https://raw.githubusercontent.com/rozgladacz/Nasze_L5R_FoundryVTT/refs/heads/master/system/system.json?token=GHSAT0AAAAAADNBB3R5BZTMUNJ3UGRFDUYI2IARGNQ",
-    "download": "https://github.com/rozgladacz/Nasze_L5R_FoundryVTT/releases/download/v1.13.100/l5r5e.zip",
+    "download": "https://github.com/rozgladacz/Nasze_L5R_FoundryVTT/releases/download/v1.13.100/l5r5eN.zip",
     "version": "1.13.100",
     "compatibility": {
         "minimum": "13",
