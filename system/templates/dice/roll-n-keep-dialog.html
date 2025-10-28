@@ -137,16 +137,56 @@
                     </tr>
                 {{/each}}
             </table>
-            {{!-- Strife selection --}}
-            {{#if showStrifeBt}}
-            <div class="form-group" style="width: 100%;">
-                <label>{{ localize 'l5r5e.dice.roll_n_keep.strife_received_label' }}</label>
-                <div class="form-fields strife-applied-group">
-                    <button type="button" class="strife-adjust pointer-choice" data-delta="-1">-</button>
-                    <input type="number" name="strifeApplied" data-dtype="Number" value="{{l5r5e.strifeApplied}}" min="0" step="1">
-                    <button type="button" class="strife-adjust pointer-choice" data-delta="1">+</button>
-                    <span class="strife-value">{{l5r5e.strifeApplied}}</span> <i class="i_strife"></i>
+            {{!-- Apply results selection --}}
+            {{#if showApplyResults}}
+            <div class="rnk-apply-results">
+                {{#if applyOptions.strifeToCharacter}}
+                <div class="form-group" style="width: 100%;">
+                    <label>{{ localize 'l5r5e.dice.roll_n_keep.strife_received_label' }}</label>
+                    <div class="form-fields apply-value" data-field="strifeApplied" data-min="0" data-max="{{l5r5e.summary.strife}}">
+                        <button type="button" class="apply-adjust pointer-choice" data-field="strifeApplied" data-delta="-1">-</button>
+                        <input type="number" name="strifeApplied" data-dtype="Number" value="{{l5r5e.strifeApplied}}" min="0" step="1">
+                        <button type="button" class="apply-adjust pointer-choice" data-field="strifeApplied" data-delta="1">+</button>
+                        <span class="apply-value-display">{{l5r5e.strifeApplied}}</span> <i class="i_strife"></i>
+                    </div>
                 </div>
+                {{/if}}
+
+                {{#if applyOptions.fatigueToCharacter}}
+                <div class="form-group" style="width: 100%;">
+                    <label>{{ localize 'l5r5e.dice.roll_n_keep.fatigue_to_character_label' }}</label>
+                    <div class="form-fields apply-value" data-field="fatigueApplied" data-min="0">
+                        <button type="button" class="apply-adjust pointer-choice" data-field="fatigueApplied" data-delta="-1">-</button>
+                        <input type="number" name="fatigueApplied" data-dtype="Number" value="{{l5r5e.fatigueApplied}}" min="0" step="1">
+                        <button type="button" class="apply-adjust pointer-choice" data-field="fatigueApplied" data-delta="1">+</button>
+                        <span class="apply-value-display">{{l5r5e.fatigueApplied}}</span>
+                    </div>
+                </div>
+                {{/if}}
+
+                {{#if applyOptions.strifeToTarget}}
+                <div class="form-group" style="width: 100%;">
+                    <label>{{ localize 'l5r5e.dice.roll_n_keep.strife_to_target_label' }}</label>
+                    <div class="form-fields apply-value" data-field="targetStrifeApplied" data-min="0">
+                        <button type="button" class="apply-adjust pointer-choice" data-field="targetStrifeApplied" data-delta="-1">-</button>
+                        <input type="number" name="targetStrifeApplied" data-dtype="Number" value="{{l5r5e.targetStrifeApplied}}" min="0" step="1">
+                        <button type="button" class="apply-adjust pointer-choice" data-field="targetStrifeApplied" data-delta="1">+</button>
+                        <span class="apply-value-display">{{l5r5e.targetStrifeApplied}}</span>
+                    </div>
+                </div>
+                {{/if}}
+
+                {{#if applyOptions.fatigueToTarget}}
+                <div class="form-group" style="width: 100%;">
+                    <label>{{ localize 'l5r5e.dice.roll_n_keep.fatigue_to_target_label' }}</label>
+                    <div class="form-fields apply-value" data-field="targetFatigueApplied" data-min="0">
+                        <button type="button" class="apply-adjust pointer-choice" data-field="targetFatigueApplied" data-delta="-1">-</button>
+                        <input type="number" name="targetFatigueApplied" data-dtype="Number" value="{{l5r5e.targetFatigueApplied}}" min="0" step="1">
+                        <button type="button" class="apply-adjust pointer-choice" data-field="targetFatigueApplied" data-delta="1">+</button>
+                        <span class="apply-value-display">{{l5r5e.targetFatigueApplied}}</span>
+                    </div>
+                </div>
+                {{/if}}
             </div>
             <button id="finalize" name="finalize" type="button" {{#if data.submitDisabled}}disabled{{/if}}>
                 {{ localize 'l5r5e.dice.roll_n_keep.bt_strife' }} <i class="fas fa-arrow-circle-right"></i>

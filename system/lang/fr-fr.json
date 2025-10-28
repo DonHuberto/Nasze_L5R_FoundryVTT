@@ -259,8 +259,11 @@
                 "keep_drop_here": "Garder",
                 "max": "Max",
                 "bt_validate": "Finaliser cette étape",
-                "bt_strife": "Appliquer le conflit",
+                "bt_strife": "Appliquer les résultats",
                 "strife_received_label": "Conflit reçu :",
+                "fatigue_to_character_label": "Fatigue au personnage :",
+                "strife_to_target_label": "Conflit sur la cible :",
+                "fatigue_to_target_label": "Fatigue sur la cible :",
                 "undo": "[GM] Annuler les choix de la dernière étape"
             }
         },
