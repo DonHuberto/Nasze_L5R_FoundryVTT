@@ -66,17 +66,17 @@
         cursor: url("../assets/cursors/pointer.webp"), pointer;
     }
 
-    .strife-applied-group {
+    .apply-value {
         display: flex;
         align-items: center;
         gap: 0.5rem;
 
-        input[name="strifeApplied"] {
+        input[type="number"] {
             width: 3rem;
             text-align: center;
         }
 
-        .strife-adjust {
+        .apply-adjust {
             width: 1.5rem;
             height: 1.5rem;
             line-height: 1.5rem;
@@ -91,10 +91,26 @@
             }
         }
 
-        .strife-value {
+        .apply-value-display {
             min-width: 1.5rem;
             text-align: center;
             display: inline-block;
+        }
+    }
+
+    .dice-applied-results {
+        margin-top: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        .applied-result {
+            font-size: 0.9rem;
+        }
+
+        .applied-target {
+            margin-left: 0.25rem;
+            opacity: 0.8;
         }
     }
 
