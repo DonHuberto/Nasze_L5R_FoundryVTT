@@ -140,12 +140,13 @@
             {{!-- Strife selection --}}
             {{#if showStrifeBt}}
             <div class="form-group" style="width: 100%;">
-                <div class="form-fields"></div>
-                <div class="form-fields">
-                    <input type="range" name="strifeApplied" data-dtype="Number" value="{{l5r5e.strifeApplied}}" min="0" max="{{l5r5e.summary.strife}}" step="1">
-                    <span class="range-value">{{l5r5e.strifeApplied}}</span> <i class="i_strife"></i>
+                <label>{{ localize 'l5r5e.dice.roll_n_keep.strife_received_label' }}</label>
+                <div class="form-fields strife-applied-group">
+                    <button type="button" class="strife-adjust pointer-choice" data-delta="-1">-</button>
+                    <input type="number" name="strifeApplied" data-dtype="Number" value="{{l5r5e.strifeApplied}}" min="0" max="{{l5r5e.summary.strife}}" step="1">
+                    <button type="button" class="strife-adjust pointer-choice" data-delta="1">+</button>
+                    <span class="strife-value">{{l5r5e.strifeApplied}}</span> <i class="i_strife"></i>
                 </div>
-                <div class="form-fields"></div>
             </div>
             <button id="finalize" name="finalize" type="button" {{#if data.submitDisabled}}disabled{{/if}}>
                 {{ localize 'l5r5e.dice.roll_n_keep.bt_strife' }} <i class="fas fa-arrow-circle-right"></i>

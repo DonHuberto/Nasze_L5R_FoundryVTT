@@ -286,6 +286,45 @@ export class RollnKeepDialog extends FormApplication {
             }
         });
 
+        const strifeInput = html.find('input[name="strifeApplied"]');
+        if (strifeInput.length) {
+            const strifeValue = html.find('.strife-value');
+            const applyValue = (value) => {
+                const min = Number(strifeInput.attr('min')) || 0;
+                const maxAttr = strifeInput.attr('max');
+                const parsedMax = maxAttr !== undefined ? Number(maxAttr) : undefined;
+                const max = Number.isNaN(parsedMax) ? undefined : parsedMax;
+                const sanitized = Number.isNaN(value) ? min : Math.round(value);
+                const clamped = max !== undefined ? Math.min(max, Math.max(min, sanitized)) : Math.max(min, sanitized);
+                strifeInput.val(clamped);
+                if (strifeValue.length) {
+                    strifeValue.text(clamped);
+                }
+            };
+
+            strifeInput.on('change', (event) => {
+                const target = event.currentTarget ?? event.target ?? strifeInput[0];
+                applyValue(Number(target?.value));
+            });
+
+            strifeInput.on('input', (event) => {
+                const current = Number(event.currentTarget.value);
+                if (strifeValue.length) {
+                    strifeValue.text(Number.isNaN(current) ? '' : current);
+                }
+            });
+
+            html.find('.strife-adjust').on('click', (event) => {
+                event.preventDefault();
+                const delta = Number(event.currentTarget.dataset.delta) || 0;
+                const current = Number(strifeInput.val()) || 0;
+                applyValue(current + delta);
+                strifeInput.trigger('change');
+            });
+
+            applyValue(Number(strifeInput.val()));
+        }
+
         const diceSelector = ".dice.draggable";
         html.find(diceSelector).on("click", this._onDiceKeep.bind(this));
         html.find(diceSelector).on("contextmenu", this._onDiceDiscard.bind(this));

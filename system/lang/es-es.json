@@ -260,6 +260,7 @@
                 "max": "Máx",
                 "bt_validate": "Terminar este paso",
                 "bt_strife": "Aplicar Conflicto",
+                "strife_received_label": "Conflicto recibido:",
                 "undo": "[GM] Deshacer los últimos cambios"
             }
         },
