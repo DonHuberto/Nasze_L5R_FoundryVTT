@@ -285,6 +285,10 @@ export class RollnKeepDialog extends FormApplication {
                 this.submit();
             }
         });
+
+        const diceSelector = ".dice.draggable";
+        html.find(diceSelector).on("click", this._onDiceKeep.bind(this));
+        html.find(diceSelector).on("contextmenu", this._onDiceDiscard.bind(this));
     }
 
     /**
@@ -339,6 +343,69 @@ export class RollnKeepDialog extends FormApplication {
         if (
             this._checkKeepCount(this.object.currentStep) &&
             this._getKeepCount(this.object.currentStep) === this.roll.l5r5e.keepLimit
+        ) {
+            this._forceChoiceForDiceWithoutOne(RollnKeepDialog.CHOICES.discard);
+        }
+
+        this.render(false);
+        return false;
+    }
+
+    /**
+     * Handle a direct dice selection to keep it
+     * @param {MouseEvent} event
+     * @returns {boolean}
+     * @private
+     */
+    _onDiceKeep(event) {
+        return this._onDiceDirectSelection(event, RollnKeepDialog.CHOICES.keep);
+    }
+
+    /**
+     * Handle a direct dice selection to discard it
+     * @param {MouseEvent} event
+     * @returns {boolean}
+     * @private
+     */
+    _onDiceDiscard(event) {
+        return this._onDiceDirectSelection(event, RollnKeepDialog.CHOICES.discard);
+    }
+
+    /**
+     * Apply a direct dice selection choice
+     * @param {MouseEvent} event
+     * @param {string} choice
+     * @returns {boolean}
+     * @private
+     */
+    _onDiceDirectSelection(event, choice) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const target = event.currentTarget;
+        const step = Number(target.dataset.step);
+        const dieIndex = Number(target.dataset.die);
+
+        if (!Number.isInteger(step) || !Number.isInteger(dieIndex)) {
+            return false;
+        }
+
+        if (step !== this.object.currentStep) {
+            return false;
+        }
+
+        const die = this.object.dicesList?.[step]?.[dieIndex];
+        if (!die) {
+            return false;
+        }
+
+        delete die.newFace;
+        die.choice = choice;
+
+        if (
+            choice === RollnKeepDialog.CHOICES.keep &&
+            this._checkKeepCount(step) &&
+            this._getKeepCount(step) === this.roll.l5r5e.keepLimit
         ) {
             this._forceChoiceForDiceWithoutOne(RollnKeepDialog.CHOICES.discard);
         }
