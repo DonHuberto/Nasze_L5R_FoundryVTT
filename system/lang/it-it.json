@@ -260,6 +260,7 @@
                 "max": "Max",
                 "bt_validate": "Conferma",
                 "bt_strife": "Aggiungi Turbamento",
+                "strife_received_label": "Turbamento ricevuto:",
                 "undo": "[GM] Annulla l'ultima scelta"
             }
         },
