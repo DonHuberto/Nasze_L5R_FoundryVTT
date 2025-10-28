@@ -33,6 +33,45 @@
                     <i class="i_skill" title="{{l5r5e.skillAssistance}}x {{localize 'l5r5e.dice.chat.assistance_used'}}"></i>
                 {{/if}}
             </span>
+            {{#if l5r5e.dicesTypes.l5r}}
+                {{#with l5r5e.summary as |summary|}}
+                <span class="chat-profil-element chat-roll-summary">
+                    <span class="chat-roll-summary-item">
+                        <span class="chat-roll-summary-value">
+                            {{#ifCond summary.success '===' undefined}}0{{else}}{{summary.success}}{{/ifCond}}
+                        </span>
+                        <i class="i_success" title="{{localize 'l5r5e.dice.chat.successes'}}"></i>
+                    </span>
+                    <span class="chat-roll-summary-item">
+                        <span class="chat-roll-summary-value">
+                            {{#ifCond summary.opportunity '===' undefined}}0{{else}}{{summary.opportunity}}{{/ifCond}}
+                        </span>
+                        <i class="i_opportunity" title="{{localize 'l5r5e.dice.chat.opportunities'}}"></i>
+                    </span>
+                    <span class="chat-roll-summary-item">
+                        <span class="chat-roll-summary-value">
+                            {{#ifCond summary.strife '===' undefined}}0{{else}}{{summary.strife}}{{/ifCond}}
+                        </span>
+                        <i class="i_strife" title="{{localize 'l5r5e.dice.chat.strife'}}"></i>
+                    </span>
+                </span>
+                {{else}}
+                <span class="chat-profil-element chat-roll-summary">
+                    <span class="chat-roll-summary-item">
+                        <span class="chat-roll-summary-value">0</span>
+                        <i class="i_success" title="{{localize 'l5r5e.dice.chat.successes'}}"></i>
+                    </span>
+                    <span class="chat-roll-summary-item">
+                        <span class="chat-roll-summary-value">0</span>
+                        <i class="i_opportunity" title="{{localize 'l5r5e.dice.chat.opportunities'}}"></i>
+                    </span>
+                    <span class="chat-roll-summary-item">
+                        <span class="chat-roll-summary-value">0</span>
+                        <i class="i_strife" title="{{localize 'l5r5e.dice.chat.strife'}}"></i>
+                    </span>
+                </span>
+                {{/with}}
+            {{/if}}
         </header>
     </div>
     {{/if}}
