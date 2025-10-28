@@ -169,7 +169,7 @@ export class RollnKeepDialog extends FormApplication {
                 this.object.dicesList[0].push({
                     type: term.constructor.name,
                     face: res.result,
-                    choice: RollnKeepDialog.CHOICES.nothing,
+                    choice: this._getDefaultChoiceForDie(term.constructor.name, res.result),
                 });
             });
         });
@@ -623,12 +623,48 @@ export class RollnKeepDialog extends FormApplication {
                 out[term.constructor.name].push({
                     type: term.constructor.name,
                     face: res.result,
-                    choice: RollnKeepDialog.CHOICES.nothing,
+                    choice: this._getDefaultChoiceForDie(term.constructor.name, res.result),
                 });
             });
         });
 
         return out;
+    }
+
+    /**
+     * Return the default choice for a die face based on the actor state.
+     * @param {string} dieType
+     * @param {number} dieFace
+     * @returns {string|null}
+     * @private
+     */
+    _getDefaultChoiceForDie(dieType, dieFace) {
+        if (!this._isActorCompromised()) {
+            return RollnKeepDialog.CHOICES.nothing;
+        }
+
+        const dieFaces = game.l5r5e?.[dieType]?.FACES;
+        if (!dieFaces) {
+            return RollnKeepDialog.CHOICES.nothing;
+        }
+
+        const hasStrife = Boolean(dieFaces?.[dieFace]?.strife);
+        return hasStrife ? RollnKeepDialog.CHOICES.discard : RollnKeepDialog.CHOICES.nothing;
+    }
+
+    /**
+     * Check if the actor linked to the roll is compromised.
+     * @returns {boolean}
+     * @private
+     */
+    _isActorCompromised() {
+        const actor = this.roll?.l5r5e?.actor;
+        if (!actor) {
+            return false;
+        }
+
+        const statuses = actor.statuses;
+        return typeof statuses?.has === "function" ? statuses.has("compromised") : false;
     }
 
     /**
