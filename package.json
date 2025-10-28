@@ -10,14 +10,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://gitlab.com/teaml5r/l5r5e.git"
+        "url": "git+https://github.com/rozgladacz/Nasze_L5R_FoundryVTT.git"
     },
     "author": "Team L5r",
     "license": "ISC",
     "bugs": {
-        "url": "https://gitlab.com/teaml5r/l5r5e/issues"
+        "url": "https://github.com/rozgladacz/Nasze_L5R_FoundryVTT/issues"
     },
-    "homepage": "https://gitlab.com/teaml5r/l5r5e#readme",
+    "homepage": "https://github.com/rozgladacz/Nasze_L5R_FoundryVTT#readme",
     "devDependencies": {
         "babel-eslint": "^10.1.0",
         "browser-sync": "^2.27.10",
