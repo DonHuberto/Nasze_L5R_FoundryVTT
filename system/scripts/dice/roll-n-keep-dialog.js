@@ -236,6 +236,9 @@ export class RollnKeepDialog extends FormApplication {
 			const stance = String(rollData?.stance ?? "").toLowerCase();
 			if (stance !== "void" && (this.roll.l5r5e.strifeApplied ?? undefined) === undefined)){
 				this.roll.l5r5e.strifeApplied = rollData.summary.strife
+				if (rollData.actor?.statuses?.has === "function" && rollData.actor?.statuses?.has("intoxicated"))
+					this.roll.l5r5e.strifeApplied += rollData.summary.strife
+				}
 			}
             this.options.editable = this.isOwner && rollData.summary.strife > 0;
             this.options.classes.push("finalized");
@@ -290,15 +293,10 @@ export class RollnKeepDialog extends FormApplication {
         if (strifeInput.length) {
             const strifeValue = html.find('.strife-value');
             const applyValue = (value) => {
-                const min = Number(strifeInput.attr('min')) || 0;
-                const maxAttr = strifeInput.attr('max');
-                const parsedMax = maxAttr !== undefined ? Number(maxAttr) : undefined;
-                const max = Number.isNaN(parsedMax) ? undefined : parsedMax;
-                const sanitized = Number.isNaN(value) ? min : Math.round(value);
-                const clamped = max !== undefined ? Math.min(max, Math.max(min, sanitized)) : Math.max(min, sanitized);
-                strifeInput.val(clamped);
+                const sanitized = Math.max(0,Number.isNaN(value) ? 0 : Math.round(value));
+                strifeInput.val(sanitized);
                 if (strifeValue.length) {
-                    strifeValue.text(clamped);
+                    strifeValue.text(sanitized);
                 }
             };
 
