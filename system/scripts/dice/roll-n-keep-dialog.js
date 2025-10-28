@@ -939,7 +939,7 @@ export class RollnKeepDialog extends FormApplication {
 
             if (formData.strifeApplied !== undefined && rollData.applyFlags?.strifeToCharacter && actor?.isCharacterType) {
                 const parsed = Number(formData.strifeApplied);
-                const strifeApplied = Math.min(summary.strife, Math.max(0, Number.isNaN(parsed) ? 0 : Math.round(parsed)));
+                const strifeApplied = Math.max(0, Number.isNaN(parsed) ? 0 : Math.round(parsed));
                 const previous = rollData.strifeApplied || 0;
                 const actorMod = strifeApplied - previous;
                 if (actorMod !== 0) {

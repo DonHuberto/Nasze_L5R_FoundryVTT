@@ -143,7 +143,7 @@
                 {{#if applyOptions.strifeToCharacter}}
                 <div class="form-group" style="width: 100%;">
                     <label>{{ localize 'l5r5e.dice.roll_n_keep.strife_received_label' }}</label>
-                    <div class="form-fields apply-value" data-field="strifeApplied" data-min="0" data-max="{{l5r5e.summary.strife}}">
+                    <div class="form-fields apply-value" data-field="strifeApplied" data-min="0">
                         <button type="button" class="apply-adjust pointer-choice" data-field="strifeApplied" data-delta="-1">-</button>
                         <input type="number" name="strifeApplied" data-dtype="Number" value="{{l5r5e.strifeApplied}}" min="0" step="1">
                         <button type="button" class="apply-adjust pointer-choice" data-field="strifeApplied" data-delta="1">+</button>
