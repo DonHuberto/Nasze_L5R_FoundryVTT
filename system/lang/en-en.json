@@ -260,6 +260,7 @@
                 "max": "Max",
                 "bt_validate": "Finalize this step",
                 "bt_strife": "Apply strife",
+                "strife_received_label": "Strife received:",
                 "undo": "[GM] Undo the last step choices"
             }
         },

@@ -260,6 +260,7 @@
                 "max": "Max",
                 "bt_validate": "Finaliser cette étape",
                 "bt_strife": "Appliquer le conflit",
+                "strife_received_label": "Conflit reçu :",
                 "undo": "[GM] Annuler les choix de la dernière étape"
             }
         },
