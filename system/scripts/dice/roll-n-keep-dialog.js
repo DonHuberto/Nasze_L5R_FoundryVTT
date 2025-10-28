@@ -243,8 +243,13 @@ export class RollnKeepDialog extends FormApplication {
 
         const actor = rollData.actor || null;
         const targetActor = rollData.target?.actor || null;
+        const actorHasBleeding = typeof actor?.statuses?.has === "function" ? actor.statuses.has("bleeding") : false;
         const canApplyStrifeToCharacter = applyFlags.strifeToCharacter && rollData.actor?.isCharacterType;
-        const canApplyFatigueToCharacter = applyFlags.fatigueToCharacter && !!actor;
+        const bleedingCanApplyFatigue = actorHasBleeding && !!actor;
+        if (bleedingCanApplyFatigue && !applyFlags.fatigueToCharacter) {
+            applyFlags.fatigueToCharacter = true;
+        }
+        const canApplyFatigueToCharacter = (applyFlags.fatigueToCharacter && !!actor) || bleedingCanApplyFatigue;
         const canApplyStrifeToTarget = applyFlags.strifeToTarget && !!targetActor;
         const canApplyFatigueToTarget = applyFlags.fatigueToTarget && !!targetActor;
         const hasApplyOptions =
@@ -266,6 +271,22 @@ export class RollnKeepDialog extends FormApplication {
                 if (typeof rollData.actor?.statuses?.has === "function" && rollData.actor.statuses.has("intoxicated")) {
                     this.roll.l5r5e.strifeApplied += rollData.summary.strife;
                 }
+            }
+
+            if (bleedingCanApplyFatigue) {
+                const bleedingDefault = this.roll.l5r5e._bleedingFatigueDefault;
+                const currentFatigue = this.roll.l5r5e.fatigueApplied;
+                const summaryStrife = rollData.summary.strife;
+                if (
+                    currentFatigue === undefined ||
+                    bleedingDefault === undefined ||
+                    currentFatigue === bleedingDefault
+                ) {
+                    this.roll.l5r5e.fatigueApplied = summaryStrife;
+                }
+                this.roll.l5r5e._bleedingFatigueDefault = summaryStrife;
+            } else {
+                delete this.roll.l5r5e._bleedingFatigueDefault;
             }
 
             const canEditResults =
