@@ -242,7 +242,14 @@
                 "skill_assistance_label": "Assistance",
                 "roll_label": "Lancer",
                 "bt_add_macro": "Ajouter une macro",
-                "gm_request_dp_to_players": "Demande de jet envoyée aux joueurs"
+                "gm_request_dp_to_players": "Demande de jet envoyée aux joueurs",
+                "actions": {
+                    "title": "Type d'action",
+                    "attack": "Attaque",
+                    "scheme": "Stratagème",
+                    "support": "Soutien",
+                    "move": "Mouvement"
+                }
             },
             "roll_n_keep": {
                 "title": "Roll & Keep",

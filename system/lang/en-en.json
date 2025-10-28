@@ -242,7 +242,14 @@
                 "skill_assistance_label": "Assistance",
                 "roll_label": "Roll",
                 "bt_add_macro": "Add a macro",
-                "gm_request_dp_to_players": "Roll request sent to players"
+                "gm_request_dp_to_players": "Roll request sent to players",
+                "actions": {
+                    "title": "Action Type",
+                    "attack": "Attack",
+                    "scheme": "Scheme",
+                    "support": "Support",
+                    "move": "Move"
+                }
             },
             "roll_n_keep": {
                 "title": "Roll & Keep",

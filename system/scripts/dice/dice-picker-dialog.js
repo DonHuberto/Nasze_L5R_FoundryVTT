@@ -35,6 +35,13 @@ export class DicePickerDialog extends FormApplication {
     };
 
     /**
+     * Base difficulty before automatic modifiers are applied.
+     * @type {number}
+     * @private
+     */
+    _baseDifficulty = 2;
+
+    /**
      * Payload Object
      */
     object = {
@@ -53,12 +60,58 @@ export class DicePickerDialog extends FormApplication {
         },
         difficulty: {
             value: 2,
+            base: 2,
+            modifier: 0,
             hidden: false,
             addVoidPoint: false,
         },
         useVoidPoint: false,
         isInitiativeRoll: false,
+        actions: {},
     };
+
+    static get ACTION_TYPES() {
+        return ["attack", "scheme", "support", "move"];
+    }
+
+    static defaultActionsState() {
+        return this.ACTION_TYPES.reduce((acc, action) => {
+            acc[action] = false;
+            return acc;
+        }, {});
+    }
+
+    static normalizeActions(actions) {
+        const normalized = this.defaultActionsState();
+        if (actions === undefined || actions === null) {
+            return normalized;
+        }
+
+        const toggleFromList = (list) => {
+            list
+                .map((action) => String(action ?? ""))
+                .map((action) => action.toLowerCase().trim())
+                .forEach((action) => {
+                    if (action && Object.prototype.hasOwnProperty.call(normalized, action)) {
+                        normalized[action] = true;
+                    }
+                });
+        };
+
+        if (Array.isArray(actions)) {
+            toggleFromList(actions);
+        } else if (typeof actions === "string") {
+            toggleFromList(actions.split(/[,\s]+/).filter((value) => value.length > 0));
+        } else if (typeof actions === "object") {
+            this.ACTION_TYPES.forEach((action) => {
+                if (Object.prototype.hasOwnProperty.call(actions, action)) {
+                    normalized[action] = !!actions[action];
+                }
+            });
+        }
+
+        return normalized;
+    }
 
     /**
      * Assign the default options
@@ -129,6 +182,8 @@ export class DicePickerDialog extends FormApplication {
     constructor(options = {}) {
         super({}, options);
 
+        this.object.actions = this.constructor.defaultActionsState();
+
         // Try to get Actor from: options, first selected token or player's selected character
         [
             options?.actor,
@@ -194,6 +249,11 @@ export class DicePickerDialog extends FormApplication {
         } else if (options.itemUuid) {
             this.item = fromUuidSync(options.itemUuid);
         }
+
+        const actionDefaults = options.actions ?? options.actionTypes;
+        if (actionDefaults !== undefined) {
+            this.actions = actionDefaults;
+        }
     }
 
     /**
@@ -251,6 +311,16 @@ export class DicePickerDialog extends FormApplication {
             return;
         }
         this._target = targetToken;
+        this._recalculateDifficulty();
+    }
+
+    set actions(actions) {
+        this.object.actions = this.constructor.normalizeActions(actions);
+        this._recalculateDifficulty();
+    }
+
+    get actions() {
+        return this.object.actions;
     }
 
     /**
@@ -259,7 +329,8 @@ export class DicePickerDialog extends FormApplication {
      */
     set ringId(ringId) {
         this.object.ring.id = CONFIG.l5r5e.stances.includes(ringId) ? ringId : "void";
-        this.object.ring.value = this._actor.system.rings?.[this.object.ring.id] || 1;
+        this.object.ring.value = this._actor?.system.rings?.[this.object.ring.id] || 1;
+        this._recalculateDifficulty();
     }
 
     /**
@@ -350,8 +421,13 @@ export class DicePickerDialog extends FormApplication {
         difficulty = parseInt(difficulty);
         if (isNaN(difficulty) || difficulty < 0) {
             difficulty = 2;
+			if this.object.isInitiativeRoll {
+				difficulty = 1;
+			}
         }
-        this.object.difficulty.value = difficulty;
+        this._baseDifficulty = difficulty;
+        this.object.difficulty.base = difficulty;
+        this._recalculateDifficulty();
     }
 
     /**
@@ -513,6 +589,18 @@ export class DicePickerDialog extends FormApplication {
             this._updateVoidPointUsage();
             this.render(false);
         });
+
+        html.find("input[name^='actions.']").on("change", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            const action = event.currentTarget.dataset.action;
+            if (!action || !Object.prototype.hasOwnProperty.call(this.object.actions, action)) {
+                return;
+            }
+            this.object.actions[action] = event.currentTarget.checked;
+            this._recalculateDifficulty();
+            this.render(false);
+        });
     }
 
     /**
@@ -590,6 +678,7 @@ export class DicePickerDialog extends FormApplication {
                 useVoidPoint: this.object.useVoidPoint,
                 skillAssistance: this.object.skill.assistance,
                 difficultyHidden: this.object.difficulty.hidden,
+                actions: foundry.utils.deepClone(this.object.actions),
             };
 
             await this._actor.rollInitiative({
@@ -617,6 +706,7 @@ export class DicePickerDialog extends FormApplication {
             roll.l5r5e.voidPointUsed = this.object.useVoidPoint;
             roll.l5r5e.skillAssistance = this.object.skill.assistance;
             roll.l5r5e.difficultyHidden = this.object.difficulty.hidden;
+            roll.l5r5e.actions = foundry.utils.deepClone(this.object.actions);
 
             await roll.roll();
             message = await roll.toMessage();
@@ -637,7 +727,97 @@ export class DicePickerDialog extends FormApplication {
      * @private
      */
     _quantityChange(element, add) {
+        if (element === "difficulty") {
+            const currentBase = parseInt(this.object.difficulty.base);
+            const base = Number.isInteger(currentBase) ? currentBase : this._baseDifficulty;
+            this.object.difficulty.base = Math.max(Math.min(base + add, 9), 0);
+            this._baseDifficulty = this.object.difficulty.base;
+            this._recalculateDifficulty();
+            return;
+        }
         this.object[element].value = Math.max(Math.min(parseInt(this.object[element].value) + add, 9), 0);
+    }
+
+    /**
+     * Compute and apply automatic modifiers to the difficulty value.
+     * @private
+     */
+    _recalculateDifficulty() {
+        const parsedBase = Number(this.object.difficulty.base);
+        const base = Math.max(Math.min(Number.isFinite(parsedBase) ? parsedBase : this._baseDifficulty, 9), 0);
+        this.object.difficulty.base = base;
+        this._baseDifficulty = base;
+
+        const modifier = this._computeDifficultyModifier();
+        this.object.difficulty.modifier = modifier;
+
+        const value = Math.max(Math.min(base + modifier, 9), 0);
+        this.object.difficulty.value = value;
+    }
+
+    /**
+     * Determine the current automatic difficulty modifier based on conditions and actions.
+     * @returns {number}
+     * @private
+     */
+    _computeDifficultyModifier() {
+        let modifier = 0;
+        const actor = this._actor;
+        const ringId = this.object?.ring?.id;
+
+        if (actor) {
+            const statuses = actor.statuses ?? new Set();
+
+            if (ringId) {
+                if (statuses.has(`lightly_wounded_${ringId}`)) {
+                    modifier += 1;
+                }
+                if (statuses.has(`severely_wounded_${ringId}`)) {
+                    modifier += 3;
+                }
+            }
+
+            if (this._isAnyActionSelected(["attack", "scheme"])) {
+                if (statuses.has("dazed")) {
+                    modifier += 2;
+                }
+            }
+
+            if (this._isAnyActionSelected(["move", "support"])) {
+                if (statuses.has("disoriented")) {
+                    modifier += 2;
+                }
+            }
+
+            if (this._isAnyActionSelected(["scheme"])) {
+                if (statuses.has("silenced")) {
+                    modifier += 3;
+                }
+            }
+        }
+
+        const targetActor = this._target?.actor;
+        if (targetActor?.system?.stance === "air" && this._isAnyActionSelected(["attack", "scheme"])) {
+            modifier += 1;
+			if (Number(targetActor?.system?.rank ?? 0) > 3) {
+				modifier += 1;
+			}
+        }
+
+        return modifier;
+    }
+
+    /**
+     * Check whether any of the provided action types are currently selected.
+     * @param {string[]} actions
+     * @returns {boolean}
+     * @private
+     */
+    _isAnyActionSelected(actions) {
+        if (!Array.isArray(actions) || actions.length === 0) {
+            return false;
+        }
+        return actions.some((action) => !!this.object.actions?.[action]);
     }
 
     /**
@@ -676,6 +856,11 @@ export class DicePickerDialog extends FormApplication {
         }
         if (this.object.skill.name) {
             name = name + " - " + this.object.skill.name;
+        }
+
+        const selectedActions = this.constructor.ACTION_TYPES.filter((action) => this.object.actions?.[action]);
+        if (selectedActions.length > 0) {
+            params.actions = selectedActions;
         }
 
         const command = `new game.l5r5e.DicePickerDialog(${JSON.stringify(params)}).render(true);`;
