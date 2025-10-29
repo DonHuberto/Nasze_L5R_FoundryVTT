@@ -27,6 +27,9 @@ export class RollL5r5e extends Roll {
         skillId: "",
         stance: "",
         strifeApplied: 0,
+        fatigueApplied: 0,
+        targetStrifeApplied: 0,
+        targetFatigueApplied: 0,
         summary: {
             totalSuccess: 0,
             totalBonus: 0,
@@ -36,12 +39,19 @@ export class RollL5r5e extends Roll {
             strife: 0,
         },
         target: null,
+        hasAppliedResults: false,
         voidPointUsed: false,
         actions: {
             attack: false,
             scheme: false,
             support: false,
             move: false,
+        },
+        applyFlags: {
+            strifeToCharacter: false,
+            fatigueToCharacter: false,
+            strifeToTarget: false,
+            fatigueToTarget: false,
         },
     };
 
@@ -123,6 +133,18 @@ export class RollL5r5e extends Roll {
     l5rSummary() {
         const summary = this.l5r5e.summary;
 
+        // Ensure default apply flags are present
+        this.l5r5e.applyFlags = foundry.utils.mergeObject(
+            {
+                strifeToCharacter: false,
+                fatigueToCharacter: false,
+                strifeToTarget: false,
+                fatigueToTarget: false,
+            },
+            this.l5r5e.applyFlags || {},
+            { inplace: false }
+        );
+
         // Reset totals
         summary.success = 0;
         summary.explosive = 0;
@@ -166,6 +188,10 @@ export class RollL5r5e extends Roll {
             this.l5r5e.rnkEnded = !this.l5r5e.history[this.l5r5e.history.length - 1].some(
                 (e) => !!e && e.choice === null
             );
+        }
+
+        if (summary.strife > 0) {
+            this.l5r5e.applyFlags.strifeToCharacter = true;
         }
     }
 
