@@ -5,7 +5,6 @@
     "url": "https://github.com/rozgladacz/Nasze_L5R_FoundryVTT",
     "manifest": "https://raw.githubusercontent.com/rozgladacz/Nasze_L5R_FoundryVTT/refs/heads/master/system/system.json",
     "download": "https://github.com/rozgladacz/Nasze_L5R_FoundryVTT/releases/download/v.1.13.100/l5r5e.zip",
-
     "version": "1.13.100",
     "compatibility": {
         "minimum": "13",
@@ -28,14 +27,14 @@
             "discord": "Carter#2703",
             "url": "https://fr.tipeee.com/carter-foundryvtt"
         },
-		{
-			"name": "DonHuberto",
-			"url": "https://github.com/DonHuberto"
-		},
-		{
-			"name": "Rozgladacz",
-			"url": "https://github.com/rozgladacz"
-		}
+        {
+            "name": "DonHuberto",
+            "url": "https://github.com/DonHuberto"
+        },
+        {
+            "name": "Rozgladacz",
+            "url": "https://github.com/rozgladacz"
+        }
     ],
     "background": "systems/l5r5e/assets/l5r-header.webp",
     "scripts": [],
