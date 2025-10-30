@@ -141,8 +141,6 @@ export class DicePickerDialog extends FormApplication {
     constructor(options = {}) {
         super({}, options);
 
-        this.object.actions = defaultActionsState();
-
         // Try to get Actor from: options, first selected token or player's selected character
         [
             options?.actor,
@@ -210,6 +208,8 @@ export class DicePickerDialog extends FormApplication {
         }
 
         const actionDefaults = options.actions ?? options.actionTypes ?? options.actionTypeTags;
+        this.object.actions = defaultActionsState(actionDefaults === undefined);
+
         if (actionDefaults !== undefined) {
             this.actions = actionDefaults;
         }
