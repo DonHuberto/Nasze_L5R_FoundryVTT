@@ -212,6 +212,8 @@ export class DicePickerDialog extends FormApplication {
 
         if (actionDefaults !== undefined) {
             this.actions = actionDefaults;
+        } else {
+            this._recalculateDifficulty();
         }
     }
 
