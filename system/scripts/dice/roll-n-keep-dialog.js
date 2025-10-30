@@ -940,8 +940,10 @@ export class RollnKeepDialog extends FormApplication {
             if (formData.strifeApplied !== undefined && rollData.applyFlags?.strifeToCharacter && actor?.isCharacterType) {
                 const parsed = Number(formData.strifeApplied);
                 const strifeApplied = Math.max(0, Number.isNaN(parsed) ? 0 : Math.round(parsed));
-                const previous = rollData.strifeApplied || 0;
-                const actorMod = strifeApplied - previous;
+                const previousApplied = Number.isNaN(Number(rollData._strifeAppliedToActor))
+                    ? 0
+                    : Number(rollData._strifeAppliedToActor);
+                const actorMod = strifeApplied - previousApplied;
                 if (actorMod !== 0) {
                     await actor.update({
                         system: {
@@ -951,15 +953,20 @@ export class RollnKeepDialog extends FormApplication {
                         },
                     });
                     rollData.strifeApplied = strifeApplied;
+                    rollData._strifeAppliedToActor = strifeApplied;
                     updated = true;
+                } else {
+                    rollData.strifeApplied = strifeApplied;
                 }
             }
 
             if (formData.fatigueApplied !== undefined && rollData.applyFlags?.fatigueToCharacter && actor) {
                 const parsed = Number(formData.fatigueApplied);
                 const fatigueApplied = Math.max(0, Number.isNaN(parsed) ? 0 : Math.round(parsed));
-                const previous = rollData.fatigueApplied || 0;
-                const actorMod = fatigueApplied - previous;
+                const previousApplied = Number.isNaN(Number(rollData._fatigueAppliedToActor))
+                    ? 0
+                    : Number(rollData._fatigueAppliedToActor);
+                const actorMod = fatigueApplied - previousApplied;
                 if (actorMod !== 0) {
                     await actor.update({
                         system: {
@@ -969,7 +976,10 @@ export class RollnKeepDialog extends FormApplication {
                         },
                     });
                     rollData.fatigueApplied = fatigueApplied;
+                    rollData._fatigueAppliedToActor = fatigueApplied;
                     updated = true;
+                } else {
+                    rollData.fatigueApplied = fatigueApplied;
                 }
             }
 
