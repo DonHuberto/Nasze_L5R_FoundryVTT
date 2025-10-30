@@ -91,11 +91,6 @@
             }
         }
 
-        .apply-value-display {
-            min-width: 1.5rem;
-            text-align: center;
-            display: inline-block;
-        }
     }
 
     .dice-applied-results {
@@ -465,6 +460,25 @@
             .chat-profil-stance {
                 font-size: 3.5rem;
                 line-height: 3.5rem;
+            }
+        }
+        &-summary {
+            flex-grow: 0;
+            margin-left: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+            gap: 0.25rem;
+
+            .chat-profil-summary-line {
+                display: flex;
+                align-items: center;
+                gap: 0.25rem;
+
+                .chat-profil-summary-value {
+                    font-weight: bold;
+                }
             }
         }
     }

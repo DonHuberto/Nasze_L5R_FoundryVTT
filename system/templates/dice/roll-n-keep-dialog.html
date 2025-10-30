@@ -34,6 +34,24 @@
                     <i class="i_skill" title="{{l5r5e.skillAssistance}}x {{localize 'l5r5e.dice.chat.assistance_used'}}"></i>
                 {{/if}}
             </li>
+            {{#if l5r5e.summary}}
+                <li class="chat-profil-element chat-profil-summary">
+                    {{#with l5r5e.summary as |summary|}}
+                        <div class="chat-profil-summary-line">
+                            <span class="chat-profil-summary-value">{{#if summary.success}}{{summary.success}}{{else}}0{{/if}}</span>
+                            <i class="i_success" title="{{localize 'l5r5e.dice.chat.successes'}}"></i>
+                        </div>
+                        <div class="chat-profil-summary-line">
+                            <span class="chat-profil-summary-value">{{#if summary.opportunity}}{{summary.opportunity}}{{else}}0{{/if}}</span>
+                            <i class="i_opportunity" title="{{localize 'l5r5e.dice.chat.opportunities'}}"></i>
+                        </div>
+                        <div class="chat-profil-summary-line">
+                            <span class="chat-profil-summary-value">{{#if summary.strife}}{{summary.strife}}{{else}}0{{/if}}</span>
+                            <i class="i_strife" title="{{localize 'l5r5e.dice.chat.strife'}}"></i>
+                        </div>
+                    {{/with}}
+                </li>
+            {{/if}}
         </ul>
     </header>
     <section class="rnk-ct">
@@ -147,7 +165,6 @@
                         <button type="button" class="apply-adjust pointer-choice" data-field="strifeApplied" data-delta="-1">-</button>
                         <input type="number" name="strifeApplied" data-dtype="Number" value="{{l5r5e.strifeApplied}}" min="0" step="1">
                         <button type="button" class="apply-adjust pointer-choice" data-field="strifeApplied" data-delta="1">+</button>
-                        <span class="apply-value-display">{{l5r5e.strifeApplied}}</span>
                     </div>
                 </div>
                 {{/if}}
@@ -159,7 +176,6 @@
                         <button type="button" class="apply-adjust pointer-choice" data-field="fatigueApplied" data-delta="-1">-</button>
                         <input type="number" name="fatigueApplied" data-dtype="Number" value="{{l5r5e.fatigueApplied}}" min="0" step="1">
                         <button type="button" class="apply-adjust pointer-choice" data-field="fatigueApplied" data-delta="1">+</button>
-                        <span class="apply-value-display">{{l5r5e.fatigueApplied}}</span>
                     </div>
                 </div>
                 {{/if}}
@@ -171,7 +187,6 @@
                         <button type="button" class="apply-adjust pointer-choice" data-field="targetStrifeApplied" data-delta="-1">-</button>
                         <input type="number" name="targetStrifeApplied" data-dtype="Number" value="{{l5r5e.targetStrifeApplied}}" min="0" step="1">
                         <button type="button" class="apply-adjust pointer-choice" data-field="targetStrifeApplied" data-delta="1">+</button>
-                        <span class="apply-value-display">{{l5r5e.targetStrifeApplied}}</span>
                     </div>
                 </div>
                 {{/if}}
@@ -183,7 +198,6 @@
                         <button type="button" class="apply-adjust pointer-choice" data-field="targetFatigueApplied" data-delta="-1">-</button>
                         <input type="number" name="targetFatigueApplied" data-dtype="Number" value="{{l5r5e.targetFatigueApplied}}" min="0" step="1">
                         <button type="button" class="apply-adjust pointer-choice" data-field="targetFatigueApplied" data-delta="1">+</button>
-                        <span class="apply-value-display">{{l5r5e.targetFatigueApplied}}</span>
                     </div>
                 </div>
                 {{/if}}
