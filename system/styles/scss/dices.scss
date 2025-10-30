@@ -141,26 +141,16 @@
         text-align: left;
     }
 
-    .action-type-grid label {
-        display: flex;
+    .action-type-grid .action-type-option {
+        display: inline-flex;
         align-items: center;
-        gap: 0.25rem;
         font-size: 0.75rem;
         text-transform: uppercase;
         position: relative;
         cursor: pointer;
+        transition: color 0.2s ease;
 
-        input[type='checkbox'] {
-            position: absolute;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        span {
-            transition: color 0.2s ease;
-        }
-
-        input[type='checkbox']:checked + span {
+        &.is-active {
             color: $red-light;
         }
     }
