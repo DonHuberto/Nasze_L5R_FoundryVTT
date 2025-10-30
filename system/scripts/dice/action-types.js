@@ -5,9 +5,10 @@ export function getRollActionTypes() {
     return Array.from(configured ?? []);
 }
 
-export function defaultActionsState() {
+export function defaultActionsState(isActive = false) {
+    const active = !!isActive;
     return getRollActionTypes().reduce((acc, action) => {
-        acc[action] = false;
+        acc[action] = active;
         return acc;
     }, {});
 }
