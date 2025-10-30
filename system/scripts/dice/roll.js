@@ -1,3 +1,5 @@
+import { normalizeActions } from "./action-types.js";
+
 /**
  * Roll for L5R5e
  */
@@ -57,6 +59,14 @@ export class RollL5r5e extends Roll {
 
     constructor(formula, data = {}, options = {}) {
         super(formula, data, options);
+
+        const dataActions =
+            data && typeof data === "object"
+                ? data.actionTypeTags ?? data.actionTypes ?? data.actions
+                : undefined;
+        this.l5r5e.actions = normalizeActions(
+            options?.actionTypeTags ?? options?.actionTypes ?? options?.actions ?? dataActions
+        );
 
         // Parse flavor for stance and skillId
         const flavors = Array.from(formula.matchAll(/\d+d([sr])\[([^\]]+)\]/gmu));
