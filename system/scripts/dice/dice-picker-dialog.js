@@ -211,6 +211,8 @@ export class DicePickerDialog extends FormApplication {
         this.object.actions = defaultActionsState(actionDefaults === undefined && !this.object.isInitiativeRoll );
         if (actionDefaults !== undefined) {
             this.actions = actionDefaults;
+        } else {
+            this._recalculateDifficulty();
         }
     }
 
@@ -548,14 +550,14 @@ export class DicePickerDialog extends FormApplication {
             this.render(false);
         });
 
-        html.find("input[name^='actions.']").on("change", (event) => {
+        html.find(".action-type-option").on("click", (event) => {
             event.preventDefault();
             event.stopPropagation();
             const action = event.currentTarget.dataset.action;
             if (!action || !Object.prototype.hasOwnProperty.call(this.object.actions, action)) {
                 return;
             }
-            this.object.actions[action] = event.currentTarget.checked;
+            this.object.actions[action] = !this.object.actions[action];
             this._recalculateDifficulty();
             this.render(false);
         });

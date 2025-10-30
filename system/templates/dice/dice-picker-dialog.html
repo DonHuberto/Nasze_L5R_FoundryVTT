@@ -22,22 +22,18 @@
                 <div class="skill-actions">
                     <span class="action-type-title">{{localize 'l5r5e.dice.dicepicker.actions.title'}}</span>
                     <div class="action-type-grid">
-                        <label class="action-type-option">
-                            <input type="checkbox" name="actions.attack" data-action="attack" {{checked data.actions.attack}} />
-                            <span>{{localize 'l5r5e.dice.dicepicker.actions.attack'}}</span>
-                        </label>
-                        <label class="action-type-option">
-                            <input type="checkbox" name="actions.scheme" data-action="scheme" {{checked data.actions.scheme}} />
-                            <span>{{localize 'l5r5e.dice.dicepicker.actions.scheme'}}</span>
-                        </label>
-                        <label class="action-type-option">
-                            <input type="checkbox" name="actions.move" data-action="move" {{checked data.actions.move}} />
-                            <span>{{localize 'l5r5e.dice.dicepicker.actions.move'}}</span>
-                        </label>
-                        <label class="action-type-option">
-                            <input type="checkbox" name="actions.support" data-action="support" {{checked data.actions.support}} />
-                            <span>{{localize 'l5r5e.dice.dicepicker.actions.support'}}</span>
-                        </label>
+                        <span class="action-type-option{{#if data.actions.attack}} is-active{{/if}}" data-action="attack">
+                            {{localize 'l5r5e.dice.dicepicker.actions.attack'}}
+                        </span>
+                        <span class="action-type-option{{#if data.actions.scheme}} is-active{{/if}}" data-action="scheme">
+                            {{localize 'l5r5e.dice.dicepicker.actions.scheme'}}
+                        </span>
+                        <span class="action-type-option{{#if data.actions.move}} is-active{{/if}}" data-action="move">
+                            {{localize 'l5r5e.dice.dicepicker.actions.move'}}
+                        </span>
+                        <span class="action-type-option{{#if data.actions.support}} is-active{{/if}}" data-action="support">
+                            {{localize 'l5r5e.dice.dicepicker.actions.support'}}
+                        </span>
                     </div>
                 </div>
                 <div class="skill-content">
