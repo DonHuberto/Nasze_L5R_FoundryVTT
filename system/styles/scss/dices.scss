@@ -147,6 +147,22 @@
         gap: 0.25rem;
         font-size: 0.75rem;
         text-transform: uppercase;
+        position: relative;
+        cursor: pointer;
+
+        input[type='checkbox'] {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        span {
+            transition: color 0.2s ease;
+        }
+
+        input[type='checkbox']:checked + span {
+            color: $red-light;
+        }
     }
 
     .skill-content {
