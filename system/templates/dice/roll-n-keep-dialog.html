@@ -34,6 +34,24 @@
                     <i class="i_skill" title="{{l5r5e.skillAssistance}}x {{localize 'l5r5e.dice.chat.assistance_used'}}"></i>
                 {{/if}}
             </li>
+            {{#if l5r5e.summary}}
+                <li class="chat-profil-element chat-profil-summary">
+                    {{#with l5r5e.summary as |summary|}}
+                        <div class="chat-profil-summary-line">
+                            <span class="chat-profil-summary-value">{{#if summary.success}}{{summary.success}}{{else}}0{{/if}}</span>
+                            <i class="i_success" title="{{localize 'l5r5e.dice.chat.successes'}}"></i>
+                        </div>
+                        <div class="chat-profil-summary-line">
+                            <span class="chat-profil-summary-value">{{#if summary.opportunity}}{{summary.opportunity}}{{else}}0{{/if}}</span>
+                            <i class="i_opportunity" title="{{localize 'l5r5e.dice.chat.opportunities'}}"></i>
+                        </div>
+                        <div class="chat-profil-summary-line">
+                            <span class="chat-profil-summary-value">{{#if summary.strife}}{{summary.strife}}{{else}}0{{/if}}</span>
+                            <i class="i_strife" title="{{localize 'l5r5e.dice.chat.strife'}}"></i>
+                        </div>
+                    {{/with}}
+                </li>
+            {{/if}}
         </ul>
     </header>
     <section class="rnk-ct">
