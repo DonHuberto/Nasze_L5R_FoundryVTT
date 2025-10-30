@@ -359,7 +359,6 @@ export class RollnKeepDialog extends FormApplication {
                 return;
             }
 
-            const display = group.find(".apply-value-display");
             const minAttr = group.data("min");
             const maxAttr = group.data("max");
             const min = Number.isNaN(Number(minAttr)) ? 0 : Number(minAttr);
@@ -377,21 +376,11 @@ export class RollnKeepDialog extends FormApplication {
             const applyValue = (value) => {
                 const sanitized = clamp(value);
                 input.val(sanitized);
-                if (display.length) {
-                    display.text(sanitized);
-                }
             };
 
             input.on("change", (event) => {
                 const target = event.currentTarget ?? event.target ?? input[0];
                 applyValue(Number(target?.value));
-            });
-
-            input.on("input", (event) => {
-                const current = Number(event.currentTarget.value);
-                if (display.length) {
-                    display.text(Number.isNaN(current) ? "" : current);
-                }
             });
 
             html.find(`.apply-adjust[data-field="${field}"]`).on("click", (event) => {
