@@ -6,6 +6,7 @@ export const L5R5E = {
     },
     money: [50, 10],
     stances: ["earth", "air", "water", "fire", "void"],
+    rollActionTypes: ["attack", "scheme", "support", "move"],
     roles: ["artisan", "bushi", "courtier", "monk", "sage", "shinobi", "shugenja"],
     xp: {
         costPerRank: [0, 20, 24, 32, 44, 60],
