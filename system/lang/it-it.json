@@ -259,7 +259,11 @@
                 "keep_drop_here": "Tieni",
                 "max": "Max",
                 "bt_validate": "Conferma",
-                "bt_strife": "Aggiungi Turbamento",
+                "bt_strife": "Applica risultati",
+                "strife_received_label": "Turbamento ricevuto:",
+                "fatigue_to_character_label": "Affaticamento al personaggio:",
+                "strife_to_target_label": "Turbamento al bersaglio:",
+                "fatigue_to_target_label": "Affaticamento al bersaglio:",
                 "undo": "[GM] Annulla l'ultima scelta"
             }
         },

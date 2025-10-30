@@ -1,3 +1,5 @@
+import { defaultActionsState, getRollActionTypes, normalizeActions } from "./action-types.js";
+
 /**
  * L5R Dice picker dialog
  * @extends {FormApplication}
@@ -70,49 +72,6 @@ export class DicePickerDialog extends FormApplication {
         actions: {},
     };
 
-    static get ACTION_TYPES() {
-        return ["attack", "scheme", "support", "move"];
-    }
-
-    static defaultActionsState() {
-        return this.ACTION_TYPES.reduce((acc, action) => {
-            acc[action] = false;
-            return acc;
-        }, {});
-    }
-
-    static normalizeActions(actions) {
-        const normalized = this.defaultActionsState();
-        if (actions === undefined || actions === null) {
-            return normalized;
-        }
-
-        const toggleFromList = (list) => {
-            list
-                .map((action) => String(action ?? ""))
-                .map((action) => action.toLowerCase().trim())
-                .forEach((action) => {
-                    if (action && Object.prototype.hasOwnProperty.call(normalized, action)) {
-                        normalized[action] = true;
-                    }
-                });
-        };
-
-        if (Array.isArray(actions)) {
-            toggleFromList(actions);
-        } else if (typeof actions === "string") {
-            toggleFromList(actions.split(/[,\s]+/).filter((value) => value.length > 0));
-        } else if (typeof actions === "object") {
-            this.ACTION_TYPES.forEach((action) => {
-                if (Object.prototype.hasOwnProperty.call(actions, action)) {
-                    normalized[action] = !!actions[action];
-                }
-            });
-        }
-
-        return normalized;
-    }
-
     /**
      * Assign the default options
      * @override
@@ -182,7 +141,7 @@ export class DicePickerDialog extends FormApplication {
     constructor(options = {}) {
         super({}, options);
 
-        this.object.actions = this.constructor.defaultActionsState();
+        this.object.actions = defaultActionsState();
 
         // Try to get Actor from: options, first selected token or player's selected character
         [
@@ -250,7 +209,7 @@ export class DicePickerDialog extends FormApplication {
             this.item = fromUuidSync(options.itemUuid);
         }
 
-        const actionDefaults = options.actions ?? options.actionTypes;
+        const actionDefaults = options.actions ?? options.actionTypes ?? options.actionTypeTags;
         if (actionDefaults !== undefined) {
             this.actions = actionDefaults;
         }
@@ -315,7 +274,7 @@ export class DicePickerDialog extends FormApplication {
     }
 
     set actions(actions) {
-        this.object.actions = this.constructor.normalizeActions(actions);
+        this.object.actions = normalizeActions(actions);
         this._recalculateDifficulty();
     }
 
@@ -858,7 +817,7 @@ export class DicePickerDialog extends FormApplication {
             name = name + " - " + this.object.skill.name;
         }
 
-        const selectedActions = this.constructor.ACTION_TYPES.filter((action) => this.object.actions?.[action]);
+        const selectedActions = getRollActionTypes().filter((action) => this.object.actions?.[action]);
         if (selectedActions.length > 0) {
             params.actions = selectedActions;
         }

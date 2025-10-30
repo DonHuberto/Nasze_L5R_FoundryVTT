@@ -1,3 +1,5 @@
+import { normalizeActions } from "./action-types.js";
+
 /**
  * Roll for L5R5e
  */
@@ -27,6 +29,9 @@ export class RollL5r5e extends Roll {
         skillId: "",
         stance: "",
         strifeApplied: 0,
+        fatigueApplied: 0,
+        targetStrifeApplied: 0,
+        targetFatigueApplied: 0,
         summary: {
             totalSuccess: 0,
             totalBonus: 0,
@@ -36,6 +41,7 @@ export class RollL5r5e extends Roll {
             strife: 0,
         },
         target: null,
+        hasAppliedResults: false,
         voidPointUsed: false,
         actions: {
             attack: false,
@@ -43,10 +49,24 @@ export class RollL5r5e extends Roll {
             support: false,
             move: false,
         },
+        applyFlags: {
+            strifeToCharacter: false,
+            fatigueToCharacter: false,
+            strifeToTarget: false,
+            fatigueToTarget: false,
+        },
     };
 
     constructor(formula, data = {}, options = {}) {
         super(formula, data, options);
+
+        const dataActions =
+            data && typeof data === "object"
+                ? data.actionTypeTags ?? data.actionTypes ?? data.actions
+                : undefined;
+        this.l5r5e.actions = normalizeActions(
+            options?.actionTypeTags ?? options?.actionTypes ?? options?.actions ?? dataActions
+        );
 
         // Parse flavor for stance and skillId
         const flavors = Array.from(formula.matchAll(/\d+d([sr])\[([^\]]+)\]/gmu));
@@ -123,6 +143,18 @@ export class RollL5r5e extends Roll {
     l5rSummary() {
         const summary = this.l5r5e.summary;
 
+        // Ensure default apply flags are present
+        this.l5r5e.applyFlags = foundry.utils.mergeObject(
+            {
+                strifeToCharacter: false,
+                fatigueToCharacter: false,
+                strifeToTarget: false,
+                fatigueToTarget: false,
+            },
+            this.l5r5e.applyFlags || {},
+            { inplace: false }
+        );
+
         // Reset totals
         summary.success = 0;
         summary.explosive = 0;
@@ -166,6 +198,10 @@ export class RollL5r5e extends Roll {
             this.l5r5e.rnkEnded = !this.l5r5e.history[this.l5r5e.history.length - 1].some(
                 (e) => !!e && e.choice === null
             );
+        }
+
+        if (summary.strife > 0) {
+            this.l5r5e.applyFlags.strifeToCharacter = true;
         }
     }
 

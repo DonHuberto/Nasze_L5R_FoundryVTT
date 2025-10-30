@@ -259,7 +259,11 @@
                 "keep_drop_here": "Guardar",
                 "max": "Máx",
                 "bt_validate": "Terminar este paso",
-                "bt_strife": "Aplicar Conflicto",
+                "bt_strife": "Aplicar resultados",
+                "strife_received_label": "Conflicto recibido:",
+                "fatigue_to_character_label": "Fatiga al personaje:",
+                "strife_to_target_label": "Conflicto al objetivo:",
+                "fatigue_to_target_label": "Fatiga al objetivo:",
                 "undo": "[GM] Deshacer los últimos cambios"
             }
         },

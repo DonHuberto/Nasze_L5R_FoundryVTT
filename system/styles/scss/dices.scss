@@ -66,6 +66,54 @@
         cursor: url("../assets/cursors/pointer.webp"), pointer;
     }
 
+    .apply-value {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        input[type="number"] {
+            width: 3rem;
+            text-align: center;
+        }
+
+        .apply-adjust {
+            width: 1.5rem;
+            height: 1.5rem;
+            line-height: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: transparent;
+            color: inherit;
+            border-radius: 3px;
+            font-weight: bold;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        .apply-value-display {
+            min-width: 1.5rem;
+            text-align: center;
+            display: inline-block;
+        }
+    }
+
+    .dice-applied-results {
+        margin-top: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        .applied-result {
+            font-size: 0.9rem;
+        }
+
+        .applied-target {
+            margin-left: 0.25rem;
+            opacity: 0.8;
+        }
+    }
+
     td.skill {
         display: flex;
         flex-direction: column;

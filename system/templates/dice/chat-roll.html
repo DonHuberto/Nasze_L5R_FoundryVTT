@@ -121,6 +121,28 @@
                 {{/ifCond}}
             </div>
             {{/l5r5e.summary}}
+            {{#if l5r5e.hasAppliedResults}}
+            <div class="l5r5e dice-applied-results">
+                {{#if l5r5e.strifeApplied}}
+                    <div class="applied-result">{{ localize 'l5r5e.dice.roll_n_keep.strife_received_label' }} {{l5r5e.strifeApplied}}</div>
+                {{/if}}
+                {{#if l5r5e.fatigueApplied}}
+                    <div class="applied-result">{{ localize 'l5r5e.dice.roll_n_keep.fatigue_to_character_label' }} {{l5r5e.fatigueApplied}}</div>
+                {{/if}}
+                {{#if l5r5e.targetStrifeApplied}}
+                    <div class="applied-result">
+                        {{ localize 'l5r5e.dice.roll_n_keep.strife_to_target_label' }} {{l5r5e.targetStrifeApplied}}
+                        {{#if l5r5e.target.name}}<span class="applied-target">({{l5r5e.target.name}})</span>{{/if}}
+                    </div>
+                {{/if}}
+                {{#if l5r5e.targetFatigueApplied}}
+                    <div class="applied-result">
+                        {{ localize 'l5r5e.dice.roll_n_keep.fatigue_to_target_label' }} {{l5r5e.targetFatigueApplied}}
+                        {{#if l5r5e.target.name}}<span class="applied-target">({{l5r5e.target.name}})</span>{{/if}}
+                    </div>
+                {{/if}}
+            </div>
+            {{/if}}
         </div>
         {{/if}}
 

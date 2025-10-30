@@ -229,23 +229,85 @@ export class RollnKeepDialog extends FormApplication {
         this.options.classes = this.options.classes.filter((e) => e !== "finalized");
         this.object.submitDisabled = false;
 
+        const applyFlags = foundry.utils.mergeObject(
+            {
+                strifeToCharacter: false,
+                fatigueToCharacter: false,
+                strifeToTarget: false,
+                fatigueToTarget: false,
+            },
+            rollData.applyFlags || {},
+            { inplace: false }
+        );
+        rollData.applyFlags = applyFlags;
+
+        const actor = rollData.actor || null;
+        const targetActor = rollData.target?.actor || null;
+        const actorHasBleeding = typeof actor?.statuses?.has === "function" ? actor.statuses.has("bleeding") : false;
+        const canApplyStrifeToCharacter = applyFlags.strifeToCharacter && rollData.actor?.isCharacterType;
+        const bleedingCanApplyFatigue = actorHasBleeding && !!actor;
+        if (bleedingCanApplyFatigue && !applyFlags.fatigueToCharacter) {
+            applyFlags.fatigueToCharacter = true;
+        }
+        const canApplyFatigueToCharacter = (applyFlags.fatigueToCharacter && !!actor) || bleedingCanApplyFatigue;
+        const canApplyStrifeToTarget = applyFlags.strifeToTarget && !!targetActor;
+        const canApplyFatigueToTarget = applyFlags.fatigueToTarget && !!targetActor;
+        const hasApplyOptions =
+            canApplyStrifeToCharacter || canApplyFatigueToCharacter || canApplyStrifeToTarget || canApplyFatigueToTarget;
+
+        rollData.hasAppliedResults =
+            (rollData.strifeApplied || 0) > 0 ||
+            (rollData.fatigueApplied || 0) > 0 ||
+            (rollData.targetStrifeApplied || 0) > 0 ||
+            (rollData.targetFatigueApplied || 0) > 0;
+
         if (this._checkKeepCount(this.object.currentStep)) {
             const kept = this._getKeepCount(this.object.currentStep);
             this.object.submitDisabled = kept < 1 || kept > rollData.keepLimit;
         } else if (!this.object.dicesList[this.object.currentStep]) {
-			const stance = String(rollData?.stance ?? "").toLowerCase();
-			if (stance !== "void" && (this.roll.l5r5e.strifeApplied ?? undefined) === undefined)){
-				this.roll.l5r5e.strifeApplied = rollData.summary.strife
-			}
-            this.options.editable = this.isOwner && rollData.summary.strife > 0;
+            const stance = String(rollData?.stance ?? "").toLowerCase();
+            if (stance !== "void" && this.roll.l5r5e.strifeApplied === undefined) {
+                this.roll.l5r5e.strifeApplied = rollData.summary.strife;
+                if (typeof rollData.actor?.statuses?.has === "function" && rollData.actor.statuses.has("intoxicated")) {
+                    this.roll.l5r5e.strifeApplied += rollData.summary.strife;
+                }
+            }
+
+            if (bleedingCanApplyFatigue) {
+                const bleedingDefault = this.roll.l5r5e._bleedingFatigueDefault;
+                const currentFatigue = this.roll.l5r5e.fatigueApplied;
+                const summaryStrife = rollData.summary.strife;
+                if (
+                    currentFatigue === undefined ||
+                    bleedingDefault === undefined ||
+                    currentFatigue === bleedingDefault
+                ) {
+                    this.roll.l5r5e.fatigueApplied = summaryStrife;
+                }
+                this.roll.l5r5e._bleedingFatigueDefault = summaryStrife;
+            } else {
+                delete this.roll.l5r5e._bleedingFatigueDefault;
+            }
+
+            const canEditResults =
+                (rollData.summary.strife > 0 && rollData.actor?.isCharacterType) || hasApplyOptions;
+            this.options.editable = this.isOwner && canEditResults;
             this.options.classes.push("finalized");
         }
+
+        const isEditable = options?.editable ?? this.options.editable;
 
         return {
             ...(await super.getData(options)),
             isGM: game.user.isGM,
-            showChoices: options.editable && !rollData.rnkEnded,
-            showStrifeBt: options.editable && rollData.summary.strife > 0 && rollData.actor?.isCharacterType,
+            showChoices: isEditable && !rollData.rnkEnded,
+            showApplyResults: isEditable && hasApplyOptions,
+            applyOptions: {
+                strifeToCharacter: canApplyStrifeToCharacter,
+                fatigueToCharacter: canApplyFatigueToCharacter,
+                strifeToTarget: canApplyStrifeToTarget,
+                fatigueToTarget: canApplyFatigueToTarget,
+            },
             cssClass: this.options.classes.join(" "),
             data: this.object,
             l5r5e: rollData,
@@ -285,6 +347,67 @@ export class RollnKeepDialog extends FormApplication {
                 this.submit();
             }
         });
+
+        const registerValuePicker = (field) => {
+            const group = html.find(`.apply-value[data-field="${field}"]`);
+            if (!group.length) {
+                return;
+            }
+
+            const input = group.find(`input[name="${field}"]`);
+            if (!input.length) {
+                return;
+            }
+
+            const display = group.find(".apply-value-display");
+            const minAttr = group.data("min");
+            const maxAttr = group.data("max");
+            const min = Number.isNaN(Number(minAttr)) ? 0 : Number(minAttr);
+            const max = maxAttr !== undefined && !Number.isNaN(Number(maxAttr)) ? Number(maxAttr) : undefined;
+
+            const clamp = (value) => {
+                let sanitized = Number.isNaN(value) ? min : Math.round(value);
+                sanitized = Math.max(min, sanitized);
+                if (max !== undefined) {
+                    sanitized = Math.min(max, sanitized);
+                }
+                return sanitized;
+            };
+
+            const applyValue = (value) => {
+                const sanitized = clamp(value);
+                input.val(sanitized);
+                if (display.length) {
+                    display.text(sanitized);
+                }
+            };
+
+            input.on("change", (event) => {
+                const target = event.currentTarget ?? event.target ?? input[0];
+                applyValue(Number(target?.value));
+            });
+
+            input.on("input", (event) => {
+                const current = Number(event.currentTarget.value);
+                if (display.length) {
+                    display.text(Number.isNaN(current) ? "" : current);
+                }
+            });
+
+            html.find(`.apply-adjust[data-field="${field}"]`).on("click", (event) => {
+                event.preventDefault();
+                const delta = Number(event.currentTarget.dataset.delta) || 0;
+                const current = Number(input.val()) || 0;
+                applyValue(current + delta);
+                input.trigger("change");
+            });
+
+            applyValue(Number(input.val()));
+        };
+
+        ["strifeApplied", "fatigueApplied", "targetStrifeApplied", "targetFatigueApplied"].forEach((field) =>
+            registerValuePicker(field)
+        );
 
         const diceSelector = ".dice.draggable";
         html.find(diceSelector).on("click", this._onDiceKeep.bind(this));
@@ -807,20 +930,102 @@ export class RollnKeepDialog extends FormApplication {
         }
 
         // Last step strife choice
-        if (this.roll?.l5r5e?.rnkEnded && formData.strifeApplied !== undefined) {
-            // Apply strife to actor
-            const strifeApplied = Math.min(this.roll.l5r5e.summary.strife, Math.max(0, formData.strifeApplied));
-            const actorMod = strifeApplied - this.roll.l5r5e.strifeApplied;
-            if (actorMod !== 0 && this.roll.l5r5e.actor?.isCharacterType) {
-                await this.roll.l5r5e.actor.update({
-                    system: {
-                        strife: {
-                            value: Math.max(0, this.roll.l5r5e.actor.system.strife.value + actorMod),
+        if (this.roll?.l5r5e?.rnkEnded) {
+            const rollData = this.roll.l5r5e;
+            const summary = rollData.summary;
+            const actor = rollData.actor;
+            const targetActor = rollData.target?.actor || null;
+            let updated = false;
+
+            if (formData.strifeApplied !== undefined && rollData.applyFlags?.strifeToCharacter && actor?.isCharacterType) {
+                const parsed = Number(formData.strifeApplied);
+                const strifeApplied = Math.max(0, Number.isNaN(parsed) ? 0 : Math.round(parsed));
+                const previous = rollData.strifeApplied || 0;
+                const actorMod = strifeApplied - previous;
+                if (actorMod !== 0) {
+                    await actor.update({
+                        system: {
+                            strife: {
+                                value: Math.max(0, actor.system.strife.value + actorMod),
+                            },
                         },
-                    },
-                });
-                // Update the roll & send to chat
-                this.roll.l5r5e.strifeApplied = strifeApplied;
+                    });
+                    rollData.strifeApplied = strifeApplied;
+                    updated = true;
+                }
+            }
+
+            if (formData.fatigueApplied !== undefined && rollData.applyFlags?.fatigueToCharacter && actor) {
+                const parsed = Number(formData.fatigueApplied);
+                const fatigueApplied = Math.max(0, Number.isNaN(parsed) ? 0 : Math.round(parsed));
+                const previous = rollData.fatigueApplied || 0;
+                const actorMod = fatigueApplied - previous;
+                if (actorMod !== 0) {
+                    await actor.update({
+                        system: {
+                            fatigue: {
+                                value: Math.max(0, actor.system.fatigue.value + actorMod),
+                            },
+                        },
+                    });
+                    rollData.fatigueApplied = fatigueApplied;
+                    updated = true;
+                }
+            }
+
+            const canModifyTarget = targetActor && (targetActor.isOwner || game.user.isGM);
+
+            if (
+                formData.targetStrifeApplied !== undefined &&
+                rollData.applyFlags?.strifeToTarget &&
+                canModifyTarget
+            ) {
+                const parsed = Number(formData.targetStrifeApplied);
+                const targetStrifeApplied = Math.max(0, Number.isNaN(parsed) ? 0 : Math.round(parsed));
+                const previous = rollData.targetStrifeApplied || 0;
+                const targetMod = targetStrifeApplied - previous;
+                if (targetMod !== 0) {
+                    await targetActor.update({
+                        system: {
+                            strife: {
+                                value: Math.max(0, targetActor.system.strife.value + targetMod),
+                            },
+                        },
+                    });
+                    rollData.targetStrifeApplied = targetStrifeApplied;
+                    updated = true;
+                }
+            }
+
+            if (
+                formData.targetFatigueApplied !== undefined &&
+                rollData.applyFlags?.fatigueToTarget &&
+                canModifyTarget
+            ) {
+                const parsed = Number(formData.targetFatigueApplied);
+                const targetFatigueApplied = Math.max(0, Number.isNaN(parsed) ? 0 : Math.round(parsed));
+                const previous = rollData.targetFatigueApplied || 0;
+                const targetMod = targetFatigueApplied - previous;
+                if (targetMod !== 0) {
+                    await targetActor.update({
+                        system: {
+                            fatigue: {
+                                value: Math.max(0, targetActor.system.fatigue.value + targetMod),
+                            },
+                        },
+                    });
+                    rollData.targetFatigueApplied = targetFatigueApplied;
+                    updated = true;
+                }
+            }
+
+            rollData.hasAppliedResults =
+                (rollData.strifeApplied || 0) > 0 ||
+                (rollData.fatigueApplied || 0) > 0 ||
+                (rollData.targetStrifeApplied || 0) > 0 ||
+                (rollData.targetFatigueApplied || 0) > 0;
+
+            if (updated) {
                 await this._toChatMessage();
             }
             return this.close();
