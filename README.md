@@ -4,7 +4,8 @@ Custom changes:
 - Rolls
   - LMB to keep, RMB to discard  
   - Expanded roll summary  
-  - Support for strife and fatigue to actor and target  
+  - Support for strife and fatigue to actor and target
+  - Suport for action type tags  
   - Roll automation:
     - Support for Void, Air, and Fire stance  
     - Auto TN adjust for conditions  
