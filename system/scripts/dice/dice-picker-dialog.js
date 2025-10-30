@@ -380,9 +380,9 @@ export class DicePickerDialog extends FormApplication {
         difficulty = parseInt(difficulty);
         if (isNaN(difficulty) || difficulty < 0) {
             difficulty = 2;
-			if this.object.isInitiativeRoll {
-				difficulty = 1;
-			}
+            if (this.object.isInitiativeRoll) {
+                difficulty = 1;
+            }
         }
         this._baseDifficulty = difficulty;
         this.object.difficulty.base = difficulty;
