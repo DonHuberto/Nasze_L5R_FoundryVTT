@@ -758,9 +758,17 @@ export class DicePickerDialog extends FormApplication {
         const targetActor = this._target?.actor;
         if (targetActor?.system?.stance === "air" && this._isAnyActionSelected(["attack", "scheme"])) {
             modifier += 1;
-			if (Number(targetActor?.system?.rank ?? 0) > 3) {
-				modifier += 1;
-			}
+
+            const targetRankValue =
+                targetActor?.system?.identity?.school_rank ??
+                targetActor?.martialRank ??
+                targetActor?.system?.conflict_rank?.martial ??
+                0;
+            const targetRank = Number(targetRankValue);
+
+            if (Number.isFinite(targetRank) && targetRank > 3) {
+                modifier += 1;
+            }
         }
 
         return modifier;
