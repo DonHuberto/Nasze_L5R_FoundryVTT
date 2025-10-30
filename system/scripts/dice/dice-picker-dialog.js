@@ -208,8 +208,7 @@ export class DicePickerDialog extends FormApplication {
         }
 
         const actionDefaults = options.actions ?? options.actionTypes ?? options.actionTypeTags;
-        this.object.actions = defaultActionsState(actionDefaults === undefined);
-
+        this.object.actions = defaultActionsState(actionDefaults === undefined && !this.object.isInitiativeRoll );
         if (actionDefaults !== undefined) {
             this.actions = actionDefaults;
         }
