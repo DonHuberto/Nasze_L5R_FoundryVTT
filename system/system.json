@@ -4,7 +4,7 @@
     "description": "This is houseruled game system En|Fr|Es, for Legend of the Five Rings (5th Edition) by <a href='https://edge-studio.net/'>Edge Studio</a>",
     "url": "https://github.com/rozgladacz/Nasze_L5R_FoundryVTT",
     "manifest": "https://raw.githubusercontent.com/rozgladacz/Nasze_L5R_FoundryVTT/refs/tags/v1.13.101/system/system.json",
-    "download": "https://github.com/rozgladacz/Nasze_L5R_FoundryVTT/releases/download/v1.13.101/l5r5e.zip",
+    "download": "https://github.com/rozgladacz/Nasze_L5R_FoundryVTT/releases/download/v1.13.101/system.zip",
     "version": "1.13.101",
     "compatibility": {
         "minimum": "13",
