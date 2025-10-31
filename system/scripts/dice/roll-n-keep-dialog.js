@@ -156,6 +156,7 @@ export class RollnKeepDialog extends FormApplication {
                 currentStep += 1;
             }
             this.object.currentStep = currentStep;
+            this._updateSummaryFromChoices();
             return;
         }
 
@@ -173,6 +174,8 @@ export class RollnKeepDialog extends FormApplication {
                 });
             });
         });
+
+        this._updateSummaryFromChoices();
     }
 
     /**
@@ -223,6 +226,7 @@ export class RollnKeepDialog extends FormApplication {
      * @return {Object}
      */
     async getData(options = null) {
+        this._updateSummaryFromChoices();
         const rollData = this.roll.l5r5e;
 
         // Disable submit / edition
@@ -312,6 +316,69 @@ export class RollnKeepDialog extends FormApplication {
             data: this.object,
             l5r5e: rollData,
         };
+    }
+
+    /**
+     * Recompute the current summary based on the selected dice.
+     * @private
+     */
+    _updateSummaryFromChoices() {
+        const rollData = this.roll?.l5r5e;
+        if (!rollData || !Array.isArray(this.object?.dicesList)) {
+            return;
+        }
+
+        const summary = rollData.summary ?? {};
+        summary.success = 0;
+        summary.explosive = 0;
+        summary.opportunity = 0;
+        summary.strife = 0;
+        summary.totalSuccess = 0;
+
+        this.object.dicesList.forEach((step, stepIdx) => {
+            if (!Array.isArray(step)) {
+                return;
+            }
+
+            const haveReroll =
+                stepIdx > 0 &&
+                this._haveChoice(stepIdx - 1, [RollnKeepDialog.CHOICES.reroll, RollnKeepDialog.CHOICES.swap]);
+
+            step.forEach((die) => {
+                if (!die) {
+                    return;
+                }
+
+                const includeDie =
+                    die.choice === RollnKeepDialog.CHOICES.keep ||
+                    (haveReroll && die.choice === RollnKeepDialog.CHOICES.nothing);
+                if (!includeDie) {
+                    return;
+                }
+
+                const faceValue = die.newFace ?? die.face;
+                const dieFaces = game.l5r5e?.[die.type]?.FACES;
+                const faceData = dieFaces?.[faceValue];
+                if (!faceData) {
+                    return;
+                }
+
+                summary.success += Number(faceData.success) || 0;
+                summary.explosive += Number(faceData.explosive) || 0;
+                summary.opportunity += Number(faceData.opportunity) || 0;
+                summary.strife += Number(faceData.strife) || 0;
+            });
+        });
+
+        summary.totalSuccess = summary.success + summary.explosive;
+        summary.baseTotalSuccess = summary.totalSuccess;
+
+        const difficulty = Number(rollData.difficulty ?? 0);
+        let totalBonus = Math.max(0, summary.totalSuccess - difficulty);
+        if (rollData.stance === "fire" && summary.baseTotalSuccess >= difficulty) {
+            totalBonus += summary.strife;
+        }
+        summary.totalBonus = totalBonus;
     }
 
     /**
