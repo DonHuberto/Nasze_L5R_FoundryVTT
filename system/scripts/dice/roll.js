@@ -174,9 +174,9 @@ export class RollL5r5e extends Roll {
         ); // ignore math symbols
         this.l5r5e.dicesTypes.l5r = this.dice.some((term) => term instanceof game.l5r5e.L5rBaseDie);
         summary.totalBonus = Math.max(0, summary.totalSuccess - this.l5r5e.difficulty);
-		if (this.l5r5e.stance === "fire" && summary.baseTotalSuccess >= this.l5r5e.difficulty) {
-			summary.totalBonus += summary.strife;
-		}
+        if (this.l5r5e.stance === "fire" && summary.totalSuccess >= this.l5r5e.difficulty) {
+            summary.totalBonus += summary.strife;
+        }
 
         if (!this.l5r5e.keepLimit) {
             // count ring die + skill assistance
