@@ -38,7 +38,7 @@
                 <li class="chat-profil-element chat-profil-summary">
                     {{#with l5r5e.summary as |summary|}}
                         <div class="chat-profil-summary-line">
-                            <span class="chat-profil-summary-value">{{#if summary.success}}{{summary.success}}{{else}}0{{/if}}</span>
+                            <span class="chat-profil-summary-value">{{#if summary.totalSuccess}}{{summary.totalSuccess}}{{else}}0{{/if}}</span>
                             <i class="i_success" title="{{localize 'l5r5e.dice.chat.successes'}}"></i>
                         </div>
                         <div class="chat-profil-summary-line">
