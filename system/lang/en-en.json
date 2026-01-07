@@ -837,6 +837,33 @@
             "the_scroll_or_the_blade": "The Scroll or the Blade",
             "legacies_of_war": "Legacies of War",
             "children_of_the_five_winds": "Children of the Five Winds"
+        },
+        "tactical_grid": {
+            "settings": {
+                "title": "Tactical Grid Settings",
+                "label": "Tactical Grid Settings",
+                "hint":"Configures tactical grid range band distances (GM only) and their visual appearance colors and transparency (all users).",
+                "cells": "spaces",
+                "world": {
+                    "enabled": "Enable Tactical Grid",
+                    "enabled_hint": "Enables or Disable tactical grid for everyone",
+                    "start": "Start"
+                },
+                "client": {
+                    "color": "Color",
+                    "alpha": "Alpha"
+                },
+                "range": "Range {index}",
+                "validate": {
+                    "start-too-small": "Must be greater than Range Band {previousRangeIndex} ({previousStart})",
+                    "start-too-large": "Must be lower then Range Band {nextRangeIndex} ({nextStart})"
+                },
+                "reset": "Reset to Default",
+                "submit": "Save"
+            },
+            "range_band": "Range Band {band}",
+            "range": "Range {range}",
+            "range_abbriviation": "RB {range}"
         }
     }
 }

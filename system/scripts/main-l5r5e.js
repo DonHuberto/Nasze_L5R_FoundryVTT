@@ -11,6 +11,7 @@ import { ActorL5r5e } from "./actor.js";
 import { CharacterSheetL5r5e } from "./actors/character-sheet.js";
 import { NpcSheetL5r5e } from "./actors/npc-sheet.js";
 import { ArmySheetL5r5e } from "./actors/army-sheet.js";
+import { RulerL5r5e, TokenRulerL5r5e } from "./tatical-grid-rulers.js";
 // Dice and rolls
 import { L5rBaseDie } from "./dice/dietype/l5r-base-die.js";
 import { AbilityDie } from "./dice/dietype/ability-die.js";
@@ -72,6 +73,8 @@ Hooks.once("init", async () => {
     CONFIG.Item.documentClass = ItemL5r5e;
     CONFIG.JournalEntry.documentClass = JournalL5r5e;
     CONFIG.JournalEntry.sheetClass = BaseJournalSheetL5r5e;
+    CONFIG.Token.rulerClass = TokenRulerL5r5e;
+    CONFIG.Canvas.rulerClass = RulerL5r5e;
 
     // Define custom Roll class
     CONFIG.Dice.rolls.unshift(RollL5r5e);
