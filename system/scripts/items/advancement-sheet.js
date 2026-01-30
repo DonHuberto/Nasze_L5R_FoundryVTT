@@ -149,5 +149,8 @@ export class AdvancementSheetL5r5e extends ItemSheetL5r5e {
                 xp_used: xp_used,
             },
         });
+
+        // Re-render sheet
+        this.render(true);
     }
 }
