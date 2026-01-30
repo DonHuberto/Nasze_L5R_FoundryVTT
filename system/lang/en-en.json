@@ -842,7 +842,7 @@
             "settings": {
                 "title": "Tactical Grid Settings",
                 "label": "Tactical Grid Settings",
-                "hint":"Configures tactical grid range band distances (GM only) and their visual appearance colors and transparency (all users).",
+                "hint": "Configures tactical grid range band distances (GM only) and their visual appearance colors and transparency (all users).",
                 "cells": "spaces",
                 "world": {
                     "enabled": "Enable Tactical Grid",
@@ -862,8 +862,7 @@
                 "submit": "Save"
             },
             "range_band": "Range Band {band}",
-            "range": "Range {range}",
-            "range_abbriviation": "RB {range}"
+            "range_abbreviation": "RB {range}"
         }
     }
 }

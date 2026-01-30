@@ -24,7 +24,7 @@ export class RulerL5r5e extends foundry.canvas.interaction.Ruler {
             const diagonalCost = game.canvas.grid.distance * waypoint.measurement.diagonals;
             context.distance.total = waypoint.measurement.distance.toNearest(0.1) + diagonalCost; //Diagonals count twice
             context.additional = {
-                label: game.i18n.format("l5r5e.tactical_grid.range_abbriviation", {range: getRangeband(gridSettings, waypoint.measurement.distance)})
+                label: game.i18n.format("l5r5e.tactical_grid.range_abbreviation", {range: getRangeband(gridSettings, waypoint.measurement.distance)})
             };
         }
         return context;
@@ -60,7 +60,7 @@ export class TokenRulerL5r5e extends foundry.canvas.placeables.tokens.TokenRuler
             const diagonalCost = game.canvas.grid.distance * waypoint.measurement.diagonals;
             context.cost.total = waypoint.measurement.cost.toNearest(0.1) + diagonalCost; //Diagonals count twice
             context.additional = {
-                label: game.i18n.format("l5r5e.tactical_grid.range_abbriviation", {range: getRangeband(gridSettings, waypoint.measurement.distance)})
+                label: game.i18n.format("l5r5e.tactical_grid.range_abbreviation", {range: getRangeband(gridSettings, waypoint.measurement.distance)})
             };
         }
         return context;

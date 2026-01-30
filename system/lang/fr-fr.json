@@ -837,6 +837,32 @@
             "the_scroll_or_the_blade": "Le Parchemin ou le Sabre",
             "legacies_of_war": "Les Flambeaux de la Guerre",
             "children_of_the_five_winds": "Les Enfants des Cinq Vents"
+        },
+        "tactical_grid": {
+            "settings": {
+                "title": "Plan Tactique",
+                "label": "Paramètres du Plan Tactique",
+                "hint": "Configure les Niveaux de Portée (GM uniquement), ainsi que les différentes couleurs et transparence (tous les utilisateurs).",
+                "cells": "cases",
+                "world": {
+                    "enabled": "Activer le Plan Tactique",
+                    "enabled_hint": "Active ou désactive le plan tactique pour tout le monde",
+                    "start": "Début"
+                },
+                "client": {
+                    "color": "Couleur",
+                    "alpha": "Alpha"
+                },
+                "range": "Portée {index}",
+                "validate": {
+                    "start-too-small": "Doit être supérieur à la Portée {previousRangeIndex} ({previousStart})",
+                    "start-too-large": "Doit être inférieur à la Portée {nextRangeIndex} ({nextStart})"
+                },
+                "reset": "Réinitialiser les paramètres par défaut",
+                "submit": "Enregistrer"
+            },
+            "range_band": "Portée {band}",
+            "range_abbreviation": "NP {range}"
         }
     }
 }
