@@ -6,6 +6,11 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.13.3 - 01/02/2026 - Tactical Grid & Fixes
+- Updated demeanors from books up to Imperfect Land (included), thanks to Olivier Brencklé (!48).
+- Added Tactical Grid Range Band, thanks to Litasa (!49).
+- Fix Title advancement auto-name/icon, thanks to SagaTympana (!50).
+
 ## 1.13.2 - 18/10/2025 - Conditions Icons & Fixes
 - Fix Actor Sheet for pressing key `Enter` in input trigger `no active Encounter...` message.
 - Fix Compendium `Astrolab` is duplicate with `Mantis Clan` and `Children of the Five Winds`. Renamed the `cotfw` version to `Astrolabe (Unicorn)`.
@@ -14,8 +19,8 @@ Date format : day/month/year
 - Spanish language updated thanks to Alejabarr.
 
 ## 1.13.1 - 21/09/2025 - Conditions & Fixes
-- Fix for Clicking on items doesn't show item window (#65 Thx to Litasa)
-- Fix for fade configuration (#66)
+- Fix for Clicking on items doesn't show item window (#65 Thx to Litasa).
+- Fix for fade configuration (#66).
 - Added some Tooltips loading optimizations (#62 Thanks to KitCat).
 - Added some Properties loading optimizations (#63 Thanks to KitCat).
 - Conditions changes :
