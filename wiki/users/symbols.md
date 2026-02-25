@@ -1,6 +1,8 @@
 # Symbols replacement list
-In sheets or journals, you can use these tags to use symbols :
-```
+
+In sheets or journals, you can use these tags to embed a symbol in the text:
+
+```md
 Dice symbols : (op) (su) (ex) (st) (skill) (ring)
 Rings : (earth) (water) (fire) (air) (void)
 Tech: (kiho) (maho) (ninjutsu) (ritual) (shuji) (invocation) (kata) (prereq) (inversion) (mantra)
@@ -10,4 +12,4 @@ Others : (courtier) (bushi) (shugenja)
 
 Result :
 
-![](img/symbols.png)
+![Inline Dice](img/symbols.png)

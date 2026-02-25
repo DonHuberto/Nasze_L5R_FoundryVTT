@@ -1,7 +1,9 @@
 # Roll
+
 The roll use the `RollL5r5e` class, who store a lot of additional variables.
 
-Here is a view of `<roll>.l5r5e` properties :
+Here is a view of `<roll>.l5r5e` properties:
+
 ```js
 actor: null,             // actor instance
 dicesTypes: {
