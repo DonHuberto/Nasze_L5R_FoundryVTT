@@ -326,7 +326,7 @@
                 margin: 0.25rem 0;
                 flex-direction: row-reverse;
                 strong {
-                    flex: 0 0 calc(100% - 3.5rem);
+                    flex: 0 0 calc(100% - 4.5rem);
                 }
                 input {
                     flex: 0 0 3rem;
@@ -444,7 +444,7 @@
                     width: 3.5rem;
                 }
             }
-            .attributes-buttons {
+            .increment-control {
                 line-height: 13px;
                 position: relative;
                 top: 0.2rem;
@@ -751,12 +751,22 @@
             flex: calc(100% / 3);
             padding: 0.5rem;
             font-size: 0.85rem;
+            align-items: center;
             input {
                 margin-left: 0.5rem;
             }
         }
+        .xp-buttons,
         .money-buttons {
             line-height: 13px;
+            padding-left: 0.3em;
+        }
+        .increment-control {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-left: 0.2rem;
+            flex: none;
         }
     }
 

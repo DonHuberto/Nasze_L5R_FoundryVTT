@@ -492,7 +492,10 @@
             "rarity_modifier": "Modificador de rareza",
             "item_pattern": "Patrones de objetos",
             "signature_scroll": "Pergaminos espaciales",
-            "school_curriculum_journal": "Arrastra el diario del programa en la hoja para vincularlo"
+            "school_curriculum_journal": "Arrastra el diario del programa en la hoja para vincularlo",
+            "warning": {
+                "total_less_then_spent": "La experiencia total es menor que la experiencia utilizada."
+            }
         },
         "character_types": {
             "character": "Personaje jugador",

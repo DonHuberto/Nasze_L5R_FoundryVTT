@@ -624,6 +624,36 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
                 });
                 break;
 
+            case "honor":
+                await this.actor.update({
+                    system: {
+                        social: {
+                            honor: Math.max(0, this.actor.system.social.honor + mod),
+                        },
+                    },
+                });
+                break;
+            
+            case "glory":
+                await this.actor.update({
+                    system: {
+                        social: {
+                            glory: Math.max(0, this.actor.system.social.glory + mod),
+                        },
+                    },
+                });
+                break;
+
+            case "status":
+                await this.actor.update({
+                    system: {
+                        social: {
+                            status: Math.max(0, this.actor.system.social.status + mod),
+                        },
+                    },
+                });
+                break;
+
             default:
                 console.warn("L5R5E | BCS | Unsupported type", type);
                 break;

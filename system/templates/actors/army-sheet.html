@@ -13,9 +13,9 @@
             <div class="readiness">
                 <ul>
                     <li>
-                        <label class="attribute-label-casualties">
+                        <label class="attribute-label casualties">
                             <input name="system.battle_readiness.casualties_strength.value" type="number" value="{{data.system.battle_readiness.casualties_strength.value}}"  {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
-                            <span class="attributes-buttons">
+                            <span class="increment-control casualties">
                                 <i class="addsub-control pointer-choice fa fa-plus-square" data-type="casualties" data-value="1"></i>
                                 <i class="addsub-control pointer-choice fa fa-minus-square" data-type="casualties" data-value="-1"></i>
                             </span>
@@ -23,15 +23,15 @@
                         <strong>{{localize 'l5r5e.army.battle_readiness.casualties'}}</strong>
                     </li>
                     <li>
-                        <label class="attribute-label-strength">
+                        <label class="attribute-label strength">
                             <input name="system.battle_readiness.casualties_strength.max" type="number" value="{{data.system.battle_readiness.casualties_strength.max}}"  {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
                         </label>
                         <strong>{{localize 'l5r5e.army.battle_readiness.strength'}}</strong>
                     </li>
                     <li>
-                        <label class="attribute-label-panic">
+                        <label class="attribute-label panic">
                             <input name="system.battle_readiness.panic_discipline.value" type="number" value="{{data.system.battle_readiness.panic_discipline.value}}"  {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
-                            <span class="attributes-buttons">
+                            <span class="increment-control panic">
                                 <i class="addsub-control pointer-choice fa fa-plus-square" data-type="panic" data-value="1"></i>
                                 <i class="addsub-control pointer-choice fa fa-minus-square" data-type="panic" data-value="-1"></i>
                             </span>
@@ -39,7 +39,7 @@
                         <strong>{{localize 'l5r5e.army.battle_readiness.panic'}}</strong>
                     </li>
                     <li>
-                        <label class="attribute-label-discipline">
+                        <label class="attribute-label discipline">
                             <input name="system.battle_readiness.panic_discipline.max" type="number" value="{{data.system.battle_readiness.panic_discipline.max}}"  {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
                         </label>
                         <strong>{{localize 'l5r5e.army.battle_readiness.discipline'}}</strong>

@@ -56,6 +56,9 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
         // Split Others advancements, and calculate xp spent and add it to total
         this._prepareOthersAdvancement(sheetData);
 
+        // Update spent_xp to actor
+        this.actor.system.xp_spent = sheetData.data.system.xp_spent;
+
         // Total
         sheetData.data.system.xp_saved = Math.floor(
             parseInt(sheetData.data.system.xp_total) - parseInt(sheetData.data.system.xp_spent)
@@ -113,6 +116,9 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
 
         // Money +/-
         html.find(".money-control").on("click", this._modifyMoney.bind(this));
+
+        // XP +/-
+        html.find(".xp-control").on("click", this._modifyXP.bind(this));
 
         // Advancements Tab to current rank onload
         // TODO class "Active" Bug on load, dunno why :/
@@ -282,6 +288,35 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
                 zeni: this.actor.system.zeni,
             },
         });
+        this.render(false);
+    }
+
+    /**
+     * Add or Subtract XP (+/- buttons)
+     * @param {Event} event
+     * @private
+     */
+    async _modifyXP(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const elmt = $(event.currentTarget);
+        let mod = elmt.data("value");
+        if (!mod) {
+            return;
+        }
+
+        const new_xp_total = Math.max(0, this.actor.system.xp_total + mod);
+        this.actor.update({
+            system: {
+                xp_total: new_xp_total,
+            },
+        });
+
+        if(this.actor.system.xp_spent > new_xp_total) {
+            ui.notifications.warn("l5r5e.advancements.warning.total_less_then_spent", { localize: true })
+        }
+
         this.render(false);
     }
 

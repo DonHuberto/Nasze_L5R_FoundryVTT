@@ -2,18 +2,30 @@
     <li>
         <label class="attribute-label centered-input">
             <strong>{{localize 'l5r5e.social.honor'}}</strong>
+            <span class="increment-control honor">
+                <i class="addsub-control pointer-choice fa fa-plus-square" data-type="honor" data-value="1"></i>
+                <i class="addsub-control pointer-choice fa fa-minus-square" data-type="honor" data-value="-1"></i>
+            </span>
             <input class="centered-input select-on-focus" type="number" name="system.social.honor" value="{{data.system.social.honor}}" data-dtype="Number" placeholder="0" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
         </label>
     </li>
     <li>
         <label class="attribute-label centered-input">
             <strong>{{localize 'l5r5e.social.glory'}}</strong>
+            <span class="increment-control glory">
+                <i class="addsub-control pointer-choice fa fa-plus-square" data-type="glory" data-value="1"></i>
+                <i class="addsub-control pointer-choice fa fa-minus-square" data-type="glory" data-value="-1"></i>
+            </span>
             <input class="centered-input select-on-focus" type="number" name="system.social.glory" value="{{data.system.social.glory}}" data-dtype="Number" placeholder="0" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
         </label>
     </li>
     <li>
         <label class="attribute-label centered-input">
             <strong>{{localize 'l5r5e.social.status'}}</strong>
+            <span class="increment-control status">
+                <i class="addsub-control pointer-choice fa fa-plus-square" data-type="status" data-value="1"></i>
+                <i class="addsub-control pointer-choice fa fa-minus-square" data-type="status" data-value="-1"></i>
+            </span>
             <input class="centered-input select-on-focus" type="number" name="system.social.status" value="{{data.system.social.status}}" data-dtype="Number" placeholder="0" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
         </label>
     </li>

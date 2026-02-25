@@ -3,6 +3,10 @@
     <label class="attribute-label">
         {{localize 'l5r5e.advancements.total'}}
         <input class="centered-input select-on-focus" type="number" name="system.xp_total" value="{{data.system.xp_total}}" data-dtype="Number" min="0" placeholder="0" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
+        <span class="increment-control xp">
+            <i class="xp-control pointer-choice fa fa-plus-square" data-type="xp" data-value="1"></i>
+            <i class="xp-control pointer-choice fa fa-minus-square" data-type="xp" data-value="-1"></i>
+        </span>
     </label>
     <label class="attribute-label">
         {{localize 'l5r5e.advancements.spent'}}
