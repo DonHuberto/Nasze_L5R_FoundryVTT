@@ -38,6 +38,8 @@ import { ArmyFortificationSheetL5r5e } from "./items/army-fortification-sheet.js
 // JournalEntry
 import { JournalL5r5e } from "./journal.js";
 import { BaseJournalSheetL5r5e } from "./journals/base-journal-sheet.js";
+// Compendium
+import { CompendiumDirectoryL5r5e } from "./compendium/l5r5e-compendium-directory.js";
 // Specific
 import { MigrationL5r5e } from "./migration.js";
 import { GmToolbox } from "./gm/gm-toolbox.js";
@@ -66,6 +68,23 @@ Hooks.once("init", async () => {
     // Global access to L5R Config
     CONFIG.l5r5e = L5R5E;
 
+    // Setting up sidebar icons
+    CONFIG.ChatMessage.sidebarIcon = "l5r5e chatIcon";
+    CONFIG.Combat.sidebarIcon = "l5r5e combatIcon";
+    CONFIG.Scene.sidebarIcon = "l5r5e sceneIcon";
+    CONFIG.Actor.sidebarIcon = "l5r5e actorIcon";
+    CONFIG.Item.sidebarIcon = "l5r5e itemIcon";
+    CONFIG.JournalEntry.sidebarIcon = "l5r5e journalIcon";
+    CONFIG.RollTable.sidebarIcon = "l5r5e rolltableIcon";
+    CONFIG.Playlist.sidebarIcon = "l5r5e playlistIcon";
+    // Note: We don't have any custom icons here so just append l5r5e and type
+    CONFIG.Cards.sidebarIcon += " l5r5e cardsIcon";
+    CONFIG.Macro.sidebarIcon += " l5r5e macroIcon";
+    
+    // The compendium and the settings menu is registered a little different.
+    foundry.applications.sidebar.Sidebar.TABS.compendium.icon = "l5r5e compendiumIcon";
+    foundry.applications.sidebar.Sidebar.TABS.settings.icon = "l5r5e settingsIcon";
+
     // Assign custom classes and constants here
     CONFIG.Combat.documentClass = CombatL5r5e;
     CONFIG.Actor.documentClass = ActorL5r5e;
@@ -75,6 +94,8 @@ Hooks.once("init", async () => {
     CONFIG.JournalEntry.sheetClass = BaseJournalSheetL5r5e;
     CONFIG.Token.rulerClass = TokenRulerL5r5e;
     CONFIG.Canvas.rulerClass = RulerL5r5e;
+
+    CONFIG.ui.compendium = CompendiumDirectoryL5r5e;
 
     // Define custom Roll class
     CONFIG.Dice.rolls.unshift(RollL5r5e);
