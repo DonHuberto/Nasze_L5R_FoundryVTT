@@ -48,9 +48,68 @@
     }
 }
 
+// Handle Sidebar here. Starting with custom icons
+$l5r5e-custom-icons: (
+  chatIcon: "../assets/ui/sidebar/chat.svg",
+  combatIcon: "../assets/ui/sidebar/combat-tracker.svg",
+  sceneIcon: "../assets/ui/sidebar/scenes.svg",
+  actorIcon: "../assets/ui/sidebar/actors.svg",
+  itemIcon: "../assets/ui/sidebar/object.svg",
+  journalIcon: "../assets/ui/sidebar/journal.svg",
+  rolltableIcon: "../assets/ui/sidebar/rolltable.svg",
+  playlistIcon: "../assets/ui/sidebar/playlist.svg",
+  compendiumIcon: "../assets/ui/sidebar/compendium.svg",
+  settingsIcon: "../assets/ui/sidebar/settings.svg"
+);
+
+$selectors: (
+  "#sidebar-tabs button.l5r5e",
+  "#sidebar-content .create-button.l5r5e",
+  "#sidebar-content i.l5r5e"
+);
+
+@each $selector in $selectors {
+  #{$selector} {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    @if str-index($selector, "i.") {
+      width: 2em;
+      height: 2em;
+      color: currentColor;
+    }
+    
+    @if str-index($selector, "create-button") {
+      filter: drop-shadow(0 0 3px var(--color-dark-1));
+    }
+    
+    // Apply masks for each icon
+    @each $name, $url in $l5r5e-custom-icons {
+      &.#{$name}::before {
+        content: "";
+        position: absolute;
+        width: 95%;
+        height: 95%;
+        background-color: currentColor;
+        mask: url($url) no-repeat center / contain;
+        -webkit-mask: url($url) no-repeat center / contain;
+        z-index: 0;
+      }
+    }
+    
+    // Generic plus icon badge
+    &.icon-plus::after {
+      z-index: 2;
+    }
+  }
+}
+
 #sidebar-tabs > menu {
     gap: 4px; // halve the distance between menu icons
 }
+
 
 #sidebar-content.expanded {
     background: url("../assets/ui/bgSidebar.webp") no-repeat;
