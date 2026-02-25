@@ -155,6 +155,12 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
                 adv[rank].spent.total += xp_used_total;
                 adv[rank].spent.curriculum += xp_used;
             });
+
+        // If we finished the rank but haven't added anything to the next rank we should show an empty tab
+        // note: adv is index from 1, not 0 because of rank starting at 1
+        if(adv.length -1 < sheetData.data.system.identity.school_rank) {
+            adv.push({list: [], rank: sheetData.data.system.identity.school_rank, spent: { total: 0, curriculum: 0}});
+        }
         sheetData.data.advancementsListByRank = adv;
     }
 
