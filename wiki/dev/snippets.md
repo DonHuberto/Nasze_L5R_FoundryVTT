@@ -1,10 +1,13 @@
 # Snippets
-This page contains some useful code snippet for macro or so.
 
+This page contains some useful code snippet for macros, etc.
 
-### Foundry (core)
-## Actor related
-Some useful methods to get a actor document :
+## Foundry (core)
+
+### Actor related
+
+Some useful methods to get an actor document :
+
 ```js
 // By uuid
 actor = fromUuid("Actor.lQYEzLeDS5ndopJV"); // or `fromUuidSync()
@@ -28,27 +31,30 @@ actors = Array.from(game.user.targets).map(t => t.actor);
 actor = game.user.character;
 ```
 
+### Document open sheet
 
-## Document open sheet
 ```js
 <document>.sheet?.render(true);
 ```
 
+### FrameViewer
 
-## FrameViewer
-Open an url in an embedded windows in FoundryVTT
+Open an url in an embedded windows in FoundryVTT.
+
 ```js
 // url, options
 new FrameViewer("https://foundryvtt.wiki/", { title: "SIDEBAR.Wiki" }).render(true);
 ```
 
-
 ## L5R5e specific
+
 ### autocomplete
+
 A basic autocomplete for text inputs
 
 Parameters :
-```
+
+```md
 @param {jQuery}   html HTML content of the sheet.
 @param {string}   name Html name of the input
 @param {string[]} list Array of string to display
@@ -56,6 +62,7 @@ Parameters :
 ```
 
 Usage examples :
+
 ```js
 game.l5r5e.HelpersL5r5e.autocomplete(
     html,
@@ -70,17 +77,19 @@ game.l5r5e.HelpersL5r5e.autocomplete(
 ```
 
 It produces two values that can be useful in some cases :
+
 ```js
 formData["autoCompleteListName"];           // "system.difficulty"
-formData["autoCompleteListSelectedIndex"];  // 0 <- 1st élément selected
+formData["autoCompleteListSelectedIndex"];  // 0 <- 1st element selected
 ```
 
+### Debounce
 
-### debounce
 Isolated Debounce by Id
 
 Parameters :
-```
+
+```md
 @param {String}   id       Named id (namespace)
 @param {Function} callback Callback function
 @param {Number}   timeout  Wait time (default 500ms)
@@ -89,6 +98,7 @@ Parameters :
 ```
 
 Usage examples :
+
 ```js
 // Basic usage, non leading
 game.l5r5e.HelpersL5r5e.debounce('appId', (text) => { console.log(text) })('my text');
@@ -102,12 +112,13 @@ game.l5r5e.HelpersL5r5e.debounce(
 )();
 ```
 
-
 ### drawManyFromPack
+
 Shortcut method to draw names to chat (private) from a table in compendium without importing it
 
 Parameters :
-```
+
+```md
 @param  {String} pack               Compendium name
 @param  {String} tableName          Table name/id in this compendium
 @param  {String} retrieve           How many draw we do (default "5")
@@ -115,24 +126,28 @@ Parameters :
 @return {Promise<{RollTableDraw}>}  The drawn results
 ```
 
-Usage examples :
+Usage examples:
+
 ```js
 game.l5r5e.HelpersL5r5e.drawManyFromPack("l5r5e.core-name-tables", "Japanese names (Village)", 5);
 ```
 
-
 ### migrateWorld
+
 You can force to trigger the system migration by using :
+
 ```js
 game.l5r5e.migrations.migrateWorld({force: true});
 ```
+
 This will try to normalize the actor/items in the current loaded world.
 
-
 ### sendToChat
+
 Send the description of this `Document` (`BaseSheetL5r5e`, `JournalL5r5e`, `ItemL5r5e`) to chat.
 
 Usage examples :
+
 ```js
 game.l5r5e.HelpersL5r5e.sendToChat(game.actors.getName("Soshi Yui"));
 ```
