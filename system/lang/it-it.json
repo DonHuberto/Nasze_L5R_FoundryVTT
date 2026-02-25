@@ -492,7 +492,10 @@
             "rarity_modifier": "Modificatore rarità",
             "item_pattern": "Item Patterns",
             "signature_scroll": "Signature Scrolls",
-            "school_curriculum_journal": "Trascina il diario del curriculum sulla scheda per collegarlo"
+            "school_curriculum_journal": "Trascina il diario del curriculum sulla scheda per collegarlo",
+            "warning": {
+                "total_less_then_spent": "L'esperienza totale è inferiore all'esperienza utilizzata."
+            }
         },
         "character_types": {
             "character": "Personaggio giocante",

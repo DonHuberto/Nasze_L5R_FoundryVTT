@@ -492,7 +492,10 @@
             "rarity_modifier": "Rarity modifier",
             "item_pattern": "Item Patterns",
             "signature_scroll": "Signature Scrolls",
-            "school_curriculum_journal": "Drop curriculum's journal in sheet to link it"
+            "school_curriculum_journal": "Drop curriculum's journal in sheet to link it",
+            "warning": {
+                "total_less_then_spent": "Total Experience is less then Used Experience."
+            }
         },
         "character_types": {
             "character": "Player Character",

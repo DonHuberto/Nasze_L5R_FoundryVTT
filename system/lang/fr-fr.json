@@ -492,7 +492,10 @@
             "rarity_modifier": "Modificateur de rareté",
             "item_pattern": "Procédés de fabrication",
             "signature_scroll": "Rouleaux de marque",
-            "school_curriculum_journal": "Déposer un journal de Cursus dans la feuille pour le lier"
+            "school_curriculum_journal": "Déposer un journal de Cursus dans la feuille pour le lier",
+            "warning": {
+                "total_less_then_spent": "L'expérience totale est inférieure à l'expérience utilisée."
+            }
         },
         "character_types": {
             "character": "Personnage Joueur",

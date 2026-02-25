@@ -1,25 +1,25 @@
 <fieldset class="money money-wrapper">
     <legend class="section-header">{{localize 'l5r5e.money.title'}}</legend>
-    <label>
+    <label class="attribute-label money">
         {{localize 'l5r5e.money.koku'}}
         <input name="system.money.koku" type="number" value="{{data.system.money.koku}}" data-dtype="Number" min="0" placeholder="0" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
-        <span class="money-buttons">
+        <span class="increment-control money">
             <i class="money-control pointer-choice fa fa-plus-square" data-type="koku" data-value="1"></i>
             <i class="money-control pointer-choice fa fa-minus-square" data-type="koku" data-value="-1"></i>
         </span>
     </label>
-    <label>
+    <label class="attribute-label money">
         {{localize 'l5r5e.money.bu'}}
         <input name="system.money.bu" type="number" value="{{data.system.money.bu}}" data-dtype="Number" min="0" placeholder="0" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
-        <span class="money-buttons">
+        <span class="increment-control money">
             <i class="money-control pointer-choice fa fa-plus-square" data-type="bu" data-value="1"></i>
             <i class="money-control pointer-choice fa fa-minus-square" data-type="bu" data-value="-1"></i>
         </span>
     </label>
-    <label>
+    <label class="attribute-label money">
         {{localize 'l5r5e.money.zeni'}}
         <input name="system.money.zeni" type="number" value="{{data.system.money.zeni}}" data-dtype="Number" min="0" placeholder="0" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
-        <span class="money-buttons">
+        <span class="increment-control money">
             <i class="money-control pointer-choice fa fa-plus-square" data-type="zeni" data-value="1"></i>
             <i class="money-control pointer-choice fa fa-minus-square" data-type="zeni" data-value="-1"></i>
         </span>
