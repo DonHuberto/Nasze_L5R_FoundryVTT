@@ -513,6 +513,9 @@ export class DicePickerDialog extends FormApplication {
             this._updateVoidPointUsage();
             this.render(false);
         });
+
+        // Open journal on effect name
+        html.find(".effect-name").on("click", this._openEffectJournal.bind(this));
     }
 
     /**
@@ -863,5 +866,35 @@ export class DicePickerDialog extends FormApplication {
         array.sort((a, b) => a.label.localeCompare(b.label));
 
         return array;
+    }
+
+    /**
+     * Open the core linked journal effect if exist
+     * @param {Event} event
+     * @private
+     */
+    async _openEffectJournal(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const effectId = $(event.currentTarget).data("effect-id");
+        if (!effectId) {
+            return;
+        }
+
+        const effect = this._actor?.effects?.get(effectId);
+        if (!effect?.system?.id && !effect?.system?.uuid) {
+            return;
+        }
+
+        const journal = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack({
+            id: effect.system.id,
+            uuid: effect.system.uuid,
+            type: "JournalEntry",
+        });
+        if (journal) {
+            // Open on the "rules" section. If non exists then it will open the first page
+            journal.sheet.render(true, {pageIndex: 2});
+        }
     }
 }

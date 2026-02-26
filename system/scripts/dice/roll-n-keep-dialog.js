@@ -268,6 +268,9 @@ export class RollnKeepDialog extends FormApplication {
             ], { jQuery: false });
         }
 
+        // Open journal on effect name
+        html.find(".effect-name").on("click", this._openEffectJournal.bind(this));
+
         // *** Everything below here is only needed if the sheet is editable ***
         if (!this.isEditable) {
             return;
@@ -801,5 +804,35 @@ export class RollnKeepDialog extends FormApplication {
 
         // Re-enable the button
         button.attr("disabled", false);
+    }
+
+    /**
+     * Open the core linked journal effect if exist
+     * @param {Event} event
+     * @private
+     */
+    async _openEffectJournal(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const effectId = $(event.currentTarget).data("effect-id");
+        if (!effectId) {
+            return;
+        }
+
+        const effect = this.roll.l5r5e?.actor?.effects?.get(effectId);
+        if (!effect?.system?.id && !effect?.system?.uuid) {
+            return;
+        }
+
+        const journal = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack({
+            id: effect.system.id,
+            uuid: effect.system.uuid,
+            type: "JournalEntry",
+        });
+        if (journal) {
+            // Open on the "rules" section. If non exists then it will open the first page
+            journal.sheet.render(true, {pageIndex: 2});
+        }
     }
 }
