@@ -40,8 +40,8 @@
         },
         "Compendium": {
             "HideDisabledSources": {
-                "Title": "[Compendium] Hide sources filter without reference",
-                "Hint": "Hide empty source with no elements in source filter."
+                "Title": "[Compendium] Hide unavailable sources",
+                "Hint": "Hide sources that have no available content from the source filter dropdown."
             },
             "HideEmptySourcesFromPlayers": {
                 "Title": "[Compendium] Hide elements with empty reference",
@@ -136,6 +136,7 @@
             "player_filter_label": "Player filter",
             "player_filter_tooltip": "Apply player filter",
             "already_in_filter": "Already in filter",
+            "no_results": "Not Found",
             "sources_categories": {
                 "rules": "Rules",
                 "adventures": "Adventures",
@@ -810,7 +811,8 @@
             "filter": {
                 "rank": "Rank",
                 "rarity": "Rarity",
-                "ring": "Ring"
+                "ring": "Ring",
+                "clear": "Clear Filter"
             }
         },
         "source_reference": {

@@ -47,8 +47,10 @@ import { GmMonitor } from "./gm/gm-monitor.js";
 import { Storage } from "./storage.js";
 // Misc
 import { L5r5eHtmlMultiSelectElement } from "./misc/l5r5e-multiselect.js";
+import { L5R5eHtmlComboBoxElement } from "./misc/l5r5e-combo-box.js";
 
 window.customElements.define(L5r5eHtmlMultiSelectElement.tagName, L5r5eHtmlMultiSelectElement);
+window.customElements.define(L5R5eHtmlComboBoxElement.tagName, L5R5eHtmlComboBoxElement);
 
 /* ------------------------------------ */
 /* Initialize system                    */
@@ -286,6 +288,4 @@ Hooks.on("renderSidebarTab", (app, html, data) => HooksL5r5e.renderSidebarTab(ap
 Hooks.on("activateSettings", async (app)=> HooksL5r5e.activateSettings(app));
 Hooks.on("renderChatMessageHTML", (message, html, data) => HooksL5r5e.renderChatMessage(message, html, data));
 Hooks.on("renderCombatTracker", (app, html, data) => HooksL5r5e.renderCombatTracker(app, html, data));
-Hooks.on("renderCompendium", async (app, html, data) => HooksL5r5e.renderCompendium(app, html, data));
 Hooks.on("diceSoNiceRollStart", (messageId, context) => HooksL5r5e.diceSoNiceRollStart(messageId, context));
-Hooks.on("updateCompendium", (pack, documents, options, userId) => HooksL5r5e.updateCompendium(pack, documents, options, userId));
