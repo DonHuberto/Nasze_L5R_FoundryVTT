@@ -1,301 +1,424 @@
+import { DropdownMixin } from "./l5r5e-dropdown-mixin.js";
+
 const { AbstractMultiSelectElement } = foundry.applications.elements;
 
 /**
- * Provide a multi-select workflow using a select element as the input mechanism.
- * It is a expanded copy of the HTMLMultiselect with support for disabling options
- * and a clear all button. Also have support for hover-over information using titlea
+ * A custom `<l5r5e-multi-select>` form element providing Select2-style chip multi-selection.
  *
- * @example Multi-Select HTML Markup
- * ```html
- * <l5r5e-multi-select name="select-many-things">
- *   <optgroup label="Basic Options">
- *     <option value="foo">Foo</option>
- *     <option value="bar">Bar</option>
- *     <option value="baz">Baz</option>
- *   </optgroup>
- *   <optgroup label="Advanced Options">
- *    <option value="fizz">Fizz</option>
- *     <option value="buzz">Buzz</option>
- *   </optgroup>
+ * Stores **multiple string values** from a fixed option list, shown as removable chips inside
+ * the input box. A live-search input filters the dropdown as the user types. Use this when a
+ * field holds an unordered collection of values (e.g. a set of skills, tags, or abilities).
+ * For storing a single value — predefined or free-text — use {@link L5R5eHtmlComboBoxElement} instead.
+ *
+ * The element's `value` getter returns a comma-separated string (e.g. `"fire,water"`),
+ * which is what `FormData` will read on submission. `_getValue()` returns a plain Array,
+ * which is what `FormDataExtended` will use.
+ *
+ * Pre-selection on render is handled via the `value` attribute on the element — NOT via
+ * `{{selectOptions selected=...}}`, which cannot handle comma-separated strings. Use
+ * `{{selectOptions}}` without `selected` purely to render the available options, and let
+ * the `value` attribute drive pre-selection. Since `getAttribute()` always returns a string,
+ * passing a `Set` or `Array` via Handlebars will not work correctly — always pass a
+ * comma-separated string to `value=`.
+ *
+ * Prefer {@link L5r5eSetField} + `{{formGroup}}` when wiring this into a DataModel — the
+ * field handles the full round-trip automatically.
+ *
+ * @example
+ * ```hbs
+ * {{!-- Use value= (comma-separated string) for pre-selection, not selectOptions selected= --}}
+ * <l5r5e-multi-select name="elements" value="{{data.elements}}">
+ *   {{selectOptions choices localize=true}}
  * </l5r5e-multi-select>
  * ```
+ *
+ * @example
+ * // Static factory — use only when building outside of Foundry's field/template system:
+ * const el = L5r5eHtmlMultiSelectElement.create({
+ *   name:    "elements",
+ *   options: [{ value: "fire", label: "Fire" }, { value: "water", label: "Water" }],
+ *   value:   "fire,water",   // comma-separated pre-selection
+ * });
+ * form.appendChild(el);
+ *
+ * // Reading the value back:
+ * el.value;        // "fire,water"    — comma-separated string, compatible with FormData
+ * el._getValue();  // ["fire","water"] — array, compatible with FormDataExtended
  */
-export class L5r5eHtmlMultiSelectElement extends AbstractMultiSelectElement {
-
-    constructor() {
-        super();
-        this.#setup();
-    }
-
+export class L5r5eHtmlMultiSelectElement extends DropdownMixin(
+    AbstractMultiSelectElement,
+    { multiSelect: true, debounceMs: 150 }
+) {
     /** @override */
     static tagName = "l5r5e-multi-select";
 
-    /**
-    * A select element used to choose options.
-    * @type {HTMLSelectElement}
-    */
-    #select;
+    /** @type {HTMLDivElement} — outer box containing chips, input, clear button */
+    #selectionBox;
+
+    /** @type {HTMLDivElement} — chips are injected here */
+    #chipList;
+
+    /** @type {HTMLSpanElement} — auto-sizing wrapper around the search input */
+    #inputSizer;
+
+    /** @type {HTMLButtonElement} — trailing clear-all button */
+    #clearButton;
+
+    /** @type {Set<string>} */
+    #disabledValues = new Set();
+
+    /** @type {Map<string, string>} */
+    #tooltips = new Map();
+
 
     /**
-     * A display element which lists the chosen options.
-     * @type {HTMLDivElement}
+     * Returns a comma-separated string
+     * FormData reads this via field.value.
+     * @override
      */
-    #tags;
+    get value() {
+        return Array.from(this._value).join(",");
+    }
+
+    /** @override */
+    set value(val) {
+        this._value.clear();
+        const values = Array.isArray(val) ? val : String(val).split(",").filter(Boolean);
+        for (const v of values) {
+            this._value.add(v);
+        }
+        this._internals.setFormValue(this.value);
+        this._refresh();
+    }
 
     /**
-     * A button element which clear all the options.
-     * @type {HTMLButtonElement}
+     * Return an array so FormDataExtended.object[name] matches Foundry's own
+     * HTMLMultiSelectElement — both field.value (string) and .object (array) are correct.
+     * @override
+     * @protected
      */
-    #clearAll;
+    _getValue() {
+        return Array.from(this._value);
+    }
 
     /**
-     * A Set containing the values that should always be disabled.
-     * @type {Set}
+     * Accept either an array or comma-separated string when Foundry calls _setValue().
+     * @override
+     * @protected
      */
-    #disabledValues;
-
-    /* -------------------------------------------- */
-
-    // We will call initialize twice (one in the parent constructor) then one in #setup
-    // required since when we want to build the elements we should to an initialize first
-    // and we cannot override _initialize since we don't have access to #disabledValues  there
-    #setup() {
-        super._initialize();
-        this.#disabledValues = new Set();
-        for (const option of this.querySelectorAll("option")) {
-            if (option.value === "") {
-                option.label = game.i18n.localize("l5r5e.multiselect.empty_tag");
-                this._choices[option.value] = game.i18n.localize("l5r5e.multiselect.empty_tag");
-            }
-            if (option.disabled) {
-                this.#disabledValues.add(option.value);
-            }
+    _setValue(val) {
+        const values = Array.isArray(val) ? val : String(val).split(",").filter(Boolean);
+        if (values.some(v => v && !(v in this._choices))) {
+            throw new Error("The values assigned to a multi-select element must all be valid options.");
+        }
+        this._value.clear();
+        for (const v of values) {
+            this._value.add(v);
         }
     }
+
+    /** @override */
+    _initialize() {
+        super._initialize(); // fills this._choices, this._value, this._options
+        for (const option of this.querySelectorAll("option")) {
+            if (option.disabled)
+                this.#disabledValues.add(option.value);
+            if (option.title)
+                this.#tooltips.set(option.value, option.title);
+        }
+        if (this.hasAttribute("value")) {
+            this._setValue(this.getAttribute("value"));
+        }
+    }
+
+    /* -------------------------------------------- */
+    /*  Element Lifecycle                           */
+    /* -------------------------------------------- */
 
     /** @override */
     _buildElements() {
-        this.#setup();
-
-        // Create select element
-        this.#select = this._primaryInput = document.createElement("select");
-        this.#select.insertAdjacentHTML("afterbegin", `<option id="l5r5e-multiselect-placeholder" value="" disabled selected hidden>${game.i18n.localize("l5r5e.multiselect.placeholder")}</option>`);
-        this.#select.append(...this._options);
-        this.#select.disabled = !this.editable;
-
-        // Create a div element for display
-        this.#tags = document.createElement("div");
-        this.#tags.className = "tags input-element-tags";
-
-        // Create a clear all button
-        this.#clearAll = document.createElement("button");
-        this.#clearAll.textContent = "X";
-        return [this.#select, this.#clearAll, this.#tags];
-    }
-
-    /* -------------------------------------------- */
-
-    /** @override */
-    _refresh() {
-        // Update the displayed tags
-        const tags = Array.from(this._value).map(id => {
-            return foundry.applications.elements.HTMLStringTagsElement.renderTag(id, this._choices[id], this.editable);
+        // Ask mixin to build <input> + <ul>, then re-home them into our structure.
+        const mixinWrapper = this._buildDropdownElements({
+            placeholder: this.getAttribute("placeholder")
+                ?? game.i18n.localize("l5r5e.multiselect.placeholder"),
         });
-        this.#tags.replaceChildren(...tags);
+        const searchInput  = mixinWrapper.querySelector("input.input");
+        const dropdownList = mixinWrapper.querySelector("ul.dropdown");
 
-        // Figure out if we are overflowing the tag div.
-        if($(this.#tags).css("max-height")) {
-            const numericMaxHeight = parseInt($(this.#tags).css("max-height"), 10);
-            if(numericMaxHeight) {
-                if($(this.#tags).prop("scrollHeight") > numericMaxHeight) {
-                    this.#tags.classList.add("overflowing");
-                }
-                else {
-                    this.#tags.classList.remove("overflowing");
-                }
-            }
-        }
+        // Selection box
+        this.#selectionBox = document.createElement("div");
+        this.#selectionBox.classList.add("selection-box");
 
-        // Disable selected options
-        const hideDisabled = game.settings.get(CONFIG.l5r5e.namespace, "compendium-hide-disabled-sources");
-        for (const option of this.#select) {
-            if (this._value.has(option.value)) {
-                option.disabled = true;
-                option.title = game.i18n.localize("l5r5e.multiselect.already_in_filter");
-                continue;
-            }
-            if (this.#disabledValues.has(option.value)) {
-                option.disabled = true;
-                option.hidden = hideDisabled;
-                continue;
-            }
-            option.disabled = false;
-            option.removeAttribute("title");
-        }
+        // Chip list
+        this.#chipList = document.createElement("div");
+        this.#chipList.classList.add("chip-list");
+
+        // Auto-sizing sizer — CSS grid trick: ::after mirrors data-value, input shares the cell
+        this.#inputSizer = document.createElement("span");
+        this.#inputSizer.classList.add("input-sizer");
+        this.#inputSizer.dataset.value = "";
+        this.#inputSizer.append(searchInput);
+
+        // Clear-all button
+        this.#clearButton = document.createElement("button");
+        this.#clearButton.type = "button";
+        this.#clearButton.classList.add("clear-btn");
+        this.#clearButton.setAttribute("aria-label",
+            game.i18n.localize("l5r5e.multiselect.clear_all") ?? "Clear all");
+        this.#clearButton.textContent = "×";
+        this.#clearButton.hidden = true;
+
+        this.#selectionBox.append(this.#chipList, this.#inputSizer, this.#clearButton);
+
+        // Container: selection box + dropdown must share the same positioned ancestor.
+        const container = document.createElement("div");
+        container.classList.add("multi-select-container");
+        container.append(this.#selectionBox, dropdownList);
+
+        this._primaryInput = searchInput;
+        return [container];
     }
-
-    /* -------------------------------------------- */
 
     /** @override */
     _activateListeners() {
-        this.#select.addEventListener("change", this.#onChangeSelect.bind(this));
-        this.#clearAll.addEventListener("click", this.#onClickClearAll.bind(this));
-        this.#tags.addEventListener("click", this.#onClickTag.bind(this));
+        this._activateDropdownListeners();
+        const signal = this.abortSignal;
 
-        this.#tags.addEventListener("mouseleave", this.#onMouseLeave.bind(this));
+        this.#selectionBox.addEventListener("mousedown", this.#onBoxMouseDown.bind(this), { signal });
+        this.#chipList.addEventListener("click",         this.#onChipClick.bind(this),    { signal });
+        this.#clearButton.addEventListener("click",         this.#onClearAll.bind(this),     { signal });
+        // stop the clear button from opening the selection box when pressing it
+        this.#clearButton.addEventListener("mousedown", (event) => {event.preventDefault(); event.stopPropagation();}, {signal});
+        this._dropdownInput.addEventListener("input",    () => this.#updateInputSizer(),         { signal });
     }
 
-    #onMouseLeave(event) {
-        // Figure out if we are overflowing the tag div.
-        if($(this.#tags).css("max-height")) {
-            const numericMaxHeight = parseInt($(this.#tags).css("max-height"), 10);
-
-            if($(this.#tags).prop("scrollHeight") > numericMaxHeight) {
-                this.#tags.classList.add("overflowing");
-            }
-            else {
-                this.#tags.classList.remove("overflowing");
-            }
-        }
-    }
-
-    /* -------------------------------------------- */
-
-    /**
-     * Handle changes to the Select input, marking the selected option as a chosen value.
-     * @param {Event} event         The change event on the select element
-     */
-    #onChangeSelect(event) {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        const select = event.currentTarget;
-        if (select.valueIndex === 0)
-            return; // Ignore placeholder
-        this.select(select.value);
-        select.value = "";
-    }
-
-    /* -------------------------------------------- */
-
-    /**
-     * Handle click events on a tagged value, removing it from the chosen set.
-     * @param {PointerEvent} event    The originating click event on a chosen tag
-     */
-    #onClickTag(event) {
-        event.preventDefault();
-        if (!event.target.classList.contains("remove"))
-            return;
-        if (!this.editable)
-            return;
-        const tag = event.target.closest(".tag");
-        this.unselect(tag.dataset.key);
-    }
-
-    /* -------------------------------------------- */
-
-    /**
-     * Handle clickling the clear all button
-     * @param {Event} event         The originating click event on the clear all button
-     */
-    #onClickClearAll(event) {
-        event.preventDefault();
-        var _this = this;
-        $(this.#tags).children().each(function () {
-            _this.unselect($(this).data("key"));
-        })
-    }
-
-    /* -------------------------------------------- */
     /** @override */
     _toggleDisabled(disabled) {
-        this.#select.toggleAttribute("disabled", disabled);
+        this._toggleDropdownDisabled(disabled);
+
+        if (this.#selectionBox) {
+            this.#selectionBox.classList.toggle("disabled", disabled);
+        }
+
+        if (this.#chipList) {
+            this._refresh(); // re-render chips so × appears/disappears
+        }
+    }
+
+    /** @override */
+    _refresh() {
+        const values = Array.from(this._value);
+        this._internals.setFormValue(values.length ? values.join(",") : "");
+
+        this.#renderChips(values);
+
+        // Clear button: only visible when editable and something is selected.
+        if (this.#clearButton) {
+            this.#clearButton.hidden = (!this.editable || values.length === 0);
+        }
+
+        this.#updateInputSizer();
+        this._dropdownRefresh();
+    }
+
+    /** @param {string[]} values */
+    #renderChips(values) {
+        if (!this.#chipList){
+            return
+        }
+        this.#chipList.replaceChildren(...values.map(id => this.#buildChip(id)));
+    }
+
+    /** @param {string} id */
+    #buildChip(id) {
+        const chip = document.createElement("span");
+        chip.classList.add("chip");
+        chip.dataset.key = id;
+
+        const label = document.createElement("span");
+        label.classList.add("chip-label");
+        label.textContent = this._choices[id] ?? id;
+        chip.append(label);
+
+        // Only add × when the element is editable (not disabled, not readonly).
+        if (this.editable) {
+            const remove = document.createElement("span");
+            remove.classList.add("chip-remove");
+            remove.setAttribute("aria-label", `Remove ${this._choices[id] ?? id}`);
+            remove.setAttribute("aria-hidden", "true");
+            remove.textContent = "×";
+            chip.append(remove);
+        }
+        return chip;
+    }
+
+    /** Mirror typed text into the sizer span so CSS sizes the input correctly. */
+    #updateInputSizer() {
+        if (!this.#inputSizer || !this._dropdownInput)
+            return;
+
+        const input = this._dropdownInput;
+        const text = input.value || input.placeholder || "";
+        this.#inputSizer.dataset.value = text;
+    }
+
+    /** @override */
+    _getDropdownOptions() {
+        const makeOption = (option, group = null) => ({
+            value: option.value,
+            label: this._choices[option.value] ?? option.innerText,
+            group,
+            disabled: this.#disabledValues.has(option.value),
+            tooltip: this.#tooltips.get(option.value) ?? "",
+        });
+
+        return this._options.flatMap(child => {
+            if (child instanceof HTMLOptGroupElement) {
+                return [...child.querySelectorAll("option")]
+                    .filter(option => option.value)
+                    .map(option => makeOption(option, child.label));
+            }
+            if (child instanceof HTMLOptionElement && child.value) {
+                return makeOption(child);
+            }
+            return [];
+        });
+    }
+
+    /** @override */
+    _isOptionSelected(value) { 
+        return this._value.has(value);
+    }
+
+    /** @override */
+    _onDropdownPick(option) {
+        const inValue = this._value.has(option.value);
+        const inChoices = option.value in this._choices;
+        if(!(inValue || inChoices))
+            return;
+
+        if (inValue) {
+            this._value.delete(option.value);
+        }
+        else if(inChoices) {
+            this._value.add(option.value);
+        }
+
+        this._internals.setFormValue(this.value);
+        this._refresh();
+        this.dispatchEvent(new Event("change", { bubbles: true, cancelable: true }));
+    }
+
+    #onBoxMouseDown(event) {
+        // Fully block interaction when not editable.
+        if (!this.editable) {
+            event.preventDefault();
+            return;
+        }
+        if (event.target.classList.contains("chip-remove"))
+            return;
+        if (event.target === this._dropdownInput)
+            return;
+
+        event.preventDefault();
+        this._dropdownInput?.focus();
+    }
+
+    #onChipClick(event) {
+        if (!event.target.classList.contains("chip-remove") || !this.editable)
+            return;
+        
+        const chip = event.target.closest(".chip");
+        if (!chip)
+            return;
+        
+        this._value.delete(chip.dataset.key);
+        this._internals.setFormValue(this.value);
+        this._refresh();
+        this.dispatchEvent(new Event("change", { bubbles: true, cancelable: true }));
+        this._dropdownInput?.focus();
+    }
+
+    #onClearAll(event) {
+        event.preventDefault();
+        if (!this.editable)
+            return;
+
+        this._value.clear();
+        this._internals.setFormValue("");
+        this._refresh();
+        this.dispatchEvent(new Event("change", { bubbles: true, cancelable: true }));
     }
 
     /* -------------------------------------------- */
+    /*  Static Factory                              */
+    /* -------------------------------------------- */
 
-    /**
-     * Create a HTML_l5r5e_MultiSelectElement using provided configuration data.
-     * @param {FormInputConfig<string[]> & Omit<SelectInputConfig, "blank">} config
-     * @returns {L5r5eHtmlMultiSelectElement}
-     */
     static create(config) {
-        // Foundry creates either a select with tag multi-select or multi-checkboxes. We want a l5r5e-multi-select
-        // Copied the implementation from foundry.applications.fields.createMultiSelectInput with our required changes.
         const groups = prepareSelectOptionGroups(config);
+        const element = document.createElement(L5r5eHtmlMultiSelectElement.tagName);
+        element.name = config.name;
+        foundry.applications.fields.setInputAttributes(element, config);
+        if (config.hideDisabledOptions) {
+            element.toggleAttribute("hidedisabledoptions", true);
+        }
 
-        //Setup the HTML
-        const select = document.createElement(L5r5eHtmlMultiSelectElement.tagName);
-        select.name = config.name;
-        foundry.applications.fields.setInputAttributes(select, config);
-        for (const group_entry of groups) {
-            let parent = select;
-            if (group_entry.group) {
-                parent = _appendOptgroupHtml(group_entry.group, select);
+        for (const groupEntry of groups) {
+            let parent = element;
+            if (groupEntry.group) {
+                parent = _appendOptgroup(groupEntry.group, element);
             }
-            for (const option_entry of group_entry.options) {
-                _appendOptionHtml(option_entry, parent);
+            for (const groupOption of groupEntry.options){
+                _appendOption(groupOption, parent);
             }
         }
-        return select;
+        return element;
     }
 }
 
-/** Stolen from foundry.applications.fields.prepareSelectOptionGroups: Needed to add support for tooltips
- *
- */
+/* -------------------------------------------- */
+/*  Module Helpers                              */
+/* -------------------------------------------- */
+
 function prepareSelectOptionGroups(config) {
     const result = foundry.applications.fields.prepareSelectOptionGroups(config);
-
-    // Disable options based on input
-    config.options.filter((option) => option?.disabled || option?.tooltip).forEach((SpecialOption) => {
-        result.forEach((group) => {
-            group.options.forEach((option) => {
-                if (SpecialOption.value === option.value) {
-                    option.disabled = SpecialOption.disabled;
-                    option.tooltip = SpecialOption?.tooltip;
+    config.options.filter(option => option?.disabled || option?.tooltip).forEach(special => {
+        result.forEach(group => {
+            group.options.forEach(groupOption => {
+                if (groupOption.value === special.value) {
+                    groupOption.disabled = special.disabled;
+                    groupOption.tooltip = special.tooltip;
                 }
-            })
-        })
-    })
+            });
+        });
+    });
     return result;
 }
 
-/** Stolen from foundry.applications.fields
- * Create and append an optgroup element to a parent select.
- * @param {string} label
- * @param {HTMLSelectElement} parent
- * @returns {HTMLOptGroupElement}
- * @internal
- */
-function _appendOptgroupHtml(label, parent) {
-    const optgroup = document.createElement("optgroup");
-    optgroup.label = label;
-    parent.appendChild(optgroup);
-    return optgroup;
+function _appendOptgroup(label, parent) {
+    const element = document.createElement("optgroup");
+    element.label = label;
+    parent.appendChild(element);
+    
+    return element;
 }
 
-/** Stolen from foundry.applications.fields
- * Create and append an option element to a parent select or optgroup.
- * @param {FormSelectOption} option
- * @param {HTMLSelectElement|HTMLOptGroupElement} parent
- * @internal
- */
-function _appendOptionHtml(option, parent) {
+function _appendOption(option, parent) {
     const { value, label, selected, disabled, rule, tooltip } = option;
-    if ((value !== undefined) && (label !== undefined)) {
-        const option_html = document.createElement("option");
-        option_html.value = value;
-        option_html.innerText = label;
+    if (value !== undefined && label !== undefined) {
+        const element = document.createElement("option");
+        element.value = value;
+        element.innerText = label;
         if (selected) {
-            option_html.toggleAttribute("selected", true);
+            element.toggleAttribute("selected", true);
         }
         if (disabled) {
-            option_html.toggleAttribute("disabled", true);
+            element.toggleAttribute("disabled", true);
         }
         if (tooltip) {
-            option_html.setAttribute("title", tooltip);
+            element.setAttribute("title", tooltip);
         }
-        parent.appendChild(option_html);
+        parent.appendChild(element);
     }
     if (rule) {
         parent.insertAdjacentHTML("beforeend", "<hr>");

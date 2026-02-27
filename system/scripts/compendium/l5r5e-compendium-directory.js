@@ -1,3 +1,4 @@
+const { CompendiumDirectory } = foundry.applications.sidebar.tabs;
 
 export class CompendiumDirectoryL5r5e extends CompendiumDirectory {
 

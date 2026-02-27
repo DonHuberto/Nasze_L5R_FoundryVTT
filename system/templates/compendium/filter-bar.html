@@ -1,0 +1,52 @@
+<div class="l5r5e filter-bar">
+
+    {{#if filtersToShow.rank}}
+    <div class="flexrow l5r5e rank-filter number-filter">
+        <label>{{localize 'l5r5e.compendium.filter.rank'}}:</label>
+        {{#each ranks}}
+        <a data-rank="{{this}}"
+           data-tooltip="{{localize 'l5r5e.compendium.filter.rank'}} {{this}}">{{this}}</a>
+        {{/each}}
+        <a data-clear style="display:none" data-tooltip="{{localize 'l5r5e.compendium.filter.clear'}}">×</a>
+    </div>
+    {{/if}}
+
+    {{#if filtersToShow.rarity}}
+    <div class="flexrow l5r5e rarity-filter number-filter">
+        <label>{{localize 'l5r5e.compendium.filter.rarity'}}:</label>
+        {{#each rarities}}
+        <a data-rarity="{{this}}"
+           data-tooltip="{{localize 'l5r5e.compendium.filter.rarity'}} {{this}}">{{this}}</a>
+        {{/each}}
+        <a data-clear style="display:none" data-tooltip="{{localize 'l5r5e.compendium.filter.clear'}}">×</a>
+    </div>
+    {{/if}}
+
+    {{#if filtersToShow.ring}}
+    <div class="flexrow l5r5e ring-filter">
+        <label>{{localize 'l5r5e.rings.label'}}:</label>
+        {{#each rings}}
+        <i data-ring="{{this}}"
+           data-tooltip="{{localize (concat 'l5r5e.rings.' this)}}"
+           class="i_{{this}}"></i>
+        {{/each}}
+        <a data-clear style="display:none" data-tooltip="{{localize 'l5r5e.compendium.filter.clear'}}">×</a>
+    </div>
+    {{/if}}
+
+    {{#if filtersToShow.source}}
+    <div class="flexrow l5r5e source-filter">
+        <l5r5e-multi-select name="filter-sources" {{#if hideDisabledOptions}}hidedisabledoptions{{/if}}>
+            {{selectOptions sources localize=true}}
+        </l5r5e-multi-select>
+    </div>
+    {{#if showPlayerView}}
+                <button type="button" class="gm applyPlayerFilter"
+                        data-action="applyPlayerView"
+                        data-tooltip="{{localize 'l5r5e.multiselect.player_filter_tooltip'}}">
+                    {{localize 'l5r5e.multiselect.player_filter_label'}}
+                </button>
+            {{/if}}
+    {{/if}}
+
+</div>
