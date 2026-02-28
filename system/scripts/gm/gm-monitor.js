@@ -166,6 +166,15 @@ export class GmMonitor extends HandlebarsApplicationMixin(ApplicationV2) {
                 }
             }
         );
+
+        // Apply global interface theme if it is set
+        if (!this.options.classes.includes("themed")) {
+            this.element.classList.remove("theme-light", "theme-dark");
+            const {colorScheme} = game.settings.get("core", "uiConfig");
+            if (colorScheme.interface) {
+                this.element.classList.add("themed", `theme-${colorScheme.interface}`);
+            }
+        }
     }
 
     /** @override ApplicationV2 */

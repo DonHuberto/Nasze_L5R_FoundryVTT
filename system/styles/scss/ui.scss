@@ -20,6 +20,8 @@
     // selection ring
     --l5r5e-filter-selected-opacity: 0.6;
     --l5r5e-filter-selected-tint: invert(1) sepia(1) saturate(4) hue-rotate(5deg); // → gold
+    
+    --l5r5e-gm-monitor-void-icon: #{$l5r5e-void-light};
 }
 
 @mixin theme-light {
@@ -42,6 +44,8 @@
     // selection ring
     --l5r5e-filter-selected-opacity: 0.45;
     --l5r5e-filter-selected-tint: invert(0.15) sepia(1) saturate(6) hue-rotate(295deg) brightness(0.7); // → deep red
+
+    --l5r5e-gm-monitor-void-icon: #{$l5r5e-void};
 }
 
 body.theme-light {
@@ -570,7 +574,7 @@ button {
             top: 0;
 
             i.i_void:before {
-                color: rgba(207,207,207,.8);
+                color: $l5r5e-void-light;
             }
         }
         th,
@@ -591,6 +595,10 @@ button {
         .badvalue {
             color: #ab2a00;
         }
+
+        .i_void:before {
+            color: var(--l5r5e-gm-monitor-void-icon);
+        }
     }
     // hide "search anywhere" draggable icon
     .window-draggable-handle {
@@ -600,11 +608,6 @@ button {
 
 #l5r5e-gm-toolbox {
     display: flex;
-    background: linear-gradient(
-        $l5r5e-linear-gradient-second,
-        $l5r5e-linear-gradient-second-dark,
-        $l5r5e-linear-gradient-second
-    );
     border: 1px solid rgb(195, 165, 130);
     margin: 0.5rem;
     .window-header {
@@ -617,7 +620,7 @@ button {
         h1 {
             letter-spacing: 0.25rem;
             line-height: 2.25rem;
-            color: $white-light;
+            color: var(--color-text-emphatic);
             padding-top: 1ch;
         }
     }
@@ -643,7 +646,7 @@ button {
                     border: 0 none;
                 }
                 :hover {
-                    text-shadow: 0 0 $red;
+                    text-shadow: 0px 0px 5px $red;
                 }
             }
             .difficulty_hidden {
