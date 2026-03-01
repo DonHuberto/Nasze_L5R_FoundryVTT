@@ -136,6 +136,7 @@
             "player_filter_label": "Filtre joueur",
             "player_filter_tooltip": "Applique le filtre des joueurs",
             "already_in_filter": "Filtre déjà appliqué",
+            "no_results": "Aucun résultat",
             "sources_categories": {
                 "rules": "Règles",
                 "adventures": "Aventures",
@@ -810,7 +811,8 @@
             "filter": {
                 "rank": "Rang",
                 "rarity": "Rareté",
-                "ring": "Anneau"
+                "ring": "Anneau",
+                "clear": "Suppr. les Filtres"
             }
         },
         "source_reference": {

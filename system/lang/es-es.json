@@ -136,6 +136,7 @@
             "player_filter_label": "Filtro de jugador",
             "player_filter_tooltip": "Aplicar filtro de jugador",
             "already_in_filter": "Ya en el filtro",
+            "no_results": "Not Found",
             "sources_categories": {
                 "rules": "Reglas",
                 "adventures": "Aventuras",
@@ -810,7 +811,8 @@
             "filter": {
                 "rank": "Rango",
                 "rarity": "Rareza",
-                "ring": "Anillo"
+                "ring": "Anillo",
+                "clear": "Clear Filter"
             }
         },
         "source_reference": {
