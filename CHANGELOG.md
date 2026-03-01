@@ -9,16 +9,16 @@ Date format : day/month/year
 ## 1.13.4 - XX/XX/2026 - UI Polish, Compendium Upgrades
 Welcoming Litasa as a maintainer for the system!
 
-- Fixing type in Courts of Stone title, thanks to SagaTympana ([!51](https://gitlab.com/teaml5r/l5r5e/-/merge_requests/51)).
-- Update to the [development wiki](https://gitlab.com/teaml5r/l5r5e/-/wikis/home), thanks to Norman Briggs ([!52](https://gitlab.com/teaml5r/l5r5e/-/merge_requests/52))
-- Updating the sidebar icons to show L5r5e specific ones ([!53](https://gitlab.com/teaml5r/l5r5e/-/merge_requests/53)) (Litasa)
-- Adding incremental buttons for honor, glory, and status ([!54](https://gitlab.com/teaml5r/l5r5e/-/merge_requests/54)) (Litasa)
-- New rank is now shown directly when completing a school rank ([!57](https://gitlab.com/teaml5r/l5r5e/-/merge_requests/57)) (Litasa)
-- Adding Starting items to Compendiums that was missing. Split Poison and Omamori into individual items([!58](https://gitlab.com/teaml5r/l5r5e/-/merge_requests/58)) (Litasa)
-- Some combinations of light and dark theme made the GM Toolbox and GM Monitor hard/impossible to use. Fixed now ([!59](https://gitlab.com/teaml5r/l5r5e/-/merge_requests/59)) (Litasa)
-- Conditions now show in the top of dice-picker and roll-n-keep ([!60](https://gitlab.com/teaml5r/l5r5e/-/merge_requests/60)) (Litasa)
-- Compendium filter is now a lot "snappier". New search box and now able to multi select elements/ranks/rarity. ([!61](https://gitlab.com/teaml5r/l5r5e/-/merge_requests/61)) (Litasa)
-- Adding selection circle to Combat encounter ([!62](https://gitlab.com/teaml5r/l5r5e/-/merge_requests/62)) (Litasa)
+- Fixing type in Courts of Stone title, thanks to SagaTympana (!51).
+- Update to the [development wiki](https://gitlab.com/teaml5r/l5r5e/-/wikis/home), thanks to Norman Briggs (!52)
+- Updating the sidebar icons to show L5r5e specific ones (#72)(!53) (Litasa)
+- Adding incremental buttons for honor, glory, and status (#69)(!54) (Litasa)
+- New rank is now shown directly when completing a school rank (#64)(!57) (Litasa)
+- Adding Starting items to Compendiums that was missing. Split Poison and Omamori into individual items(!58) (Litasa)
+- Some combinations of light and dark theme made the GM Toolbox and GM Monitor hard/impossible to use. Fixed now (#75)(!59) (Litasa)
+- Conditions now show in the top of dice-picker and roll-n-keep (related to #74)(!60) (Litasa)
+- Compendium filter is now a lot "snappier". New search box and now able to multi select elements/ranks/rarity. (!61) (Litasa)
+- Adding selection circle to Combat encounter (!62) (Litasa)
 
 ## 1.13.3 - 01/02/2026 - Tactical Grid & Fixes
 - Updated demeanors from books up to Imperfect Land (included), thanks to Olivier Brencklé (!48).
