@@ -18,17 +18,17 @@ See the [Wiki page - Installation](https://gitlab.com/teaml5r/l5r5e/-/wikis/user
 
 
 ## Current L5R team (alphabetical order)
-- Vlyan (development)
 - Litasa (development)
+- Vlyan (development)
 
 
 ## Historical L5R team (alphabetical order)
 - Carter (compendiums, adventure adaptation)
 - Hrunh (compendiums, pre-gen characters adaptation)
+- Litasa (development)
 - Mandar (development)
 - Sasmira (contributor)
 - Vlyan (development)
-- Litasa (development)
 
 
 ## Acknowledgements, vielen danke & Many thanks to :

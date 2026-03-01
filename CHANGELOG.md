@@ -6,7 +6,7 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
-## 1.13.4 - XX/XX/2026 - UI Polish, Compendium Upgrades
+## 1.13.4 - 01/03/2026 - UI Polish, Compendium Upgrades
 Welcoming Litasa as a maintainer for the system!
 
 - Fixing type in Courts of Stone title, thanks to SagaTympana (!51).

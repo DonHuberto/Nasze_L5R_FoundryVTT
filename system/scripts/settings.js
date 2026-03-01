@@ -241,25 +241,24 @@ export const RegisterSettings = function () {
     /* -------------------------------------- */
     /* Grid Settings (GM only)                */
     /* -------------------------------------- */
-
     // UI Configuration
     game.settings.register(CONFIG.l5r5e.namespace, "tactical-grid-settings-world", {
         scope: "world",
         config: false,
         type: TacticalGridSettingsL5R5E.worldSchema,
-      });
-    
+    });
+
     game.settings.register(CONFIG.l5r5e.namespace, "tactical-grid-settings-client", {
         scope: "client",
         config: false,
         type: TacticalGridSettingsL5R5E.clientSchema,
-      });
-    
-      game.settings.registerMenu(CONFIG.l5r5e.namespace, "tactical-grid-settings", {
+    });
+
+    game.settings.registerMenu(CONFIG.l5r5e.namespace, "tactical-grid-settings", {
         name:  "l5r5e.tactical_grid.settings.title",
         label: "l5r5e.tactical_grid.settings.label",
         hint:  "l5r5e.tactical_grid.settings.hint",
         icon: "fa-solid fa-table-layout",
         type: TacticalGridSettingsL5R5E
-        });
+    });
 };
