@@ -1,27 +1,21 @@
 {
     "label": "Signature Scrolls (WIP)",
-    "mapping": {
-        "description": "system.description",
-        "book_reference": "system.book_reference"
-    },
-    "entries": [
-        {
-            "id": "Ichi’s Second Sight",
+    "mapping": {},
+    "entries": {
+        "Ichi’s Second Sight": {
             "name": "Ichi’s Second Sight",
             "description": "",
             "book_reference": "Terre dell'Ombra p.108"
         },
-        {
-            "id": "Hasegawa’s Denial",
+        "Hasegawa’s Denial": {
             "name": "Hasegawa’s Denial",
             "description": "",
             "book_reference": "Terre dell'Ombra p.108"
         },
-        {
-            "id": "Maikara’s Rebuke",
+        "Maikara’s Rebuke": {
             "name": "Maikara’s Rebuke",
             "description": "",
             "book_reference": "Terre dell'Ombra p.108"
         }
-    ]
+    }
 }

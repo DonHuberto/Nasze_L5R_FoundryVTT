@@ -1,137 +1,86 @@
 {
-    "label": "Techniques Mahõ",
-    "mapping": {
-        "description": "system.description",
-        "source_reference": "system.source_reference"
-    },
-    "entries": [
-        {
-            "id": "Incite Haunting",
-            "name": "Emprise maléfique",
+    "label": "Techniques Mah\u00f5",
+    "mapping": {},
+    "entries": {
+        "Incite Haunting": {
+            "name": "Emprise mal\u00e9fique",
             "description": "",
-            "source_reference": {
-                "page": "224"
-            }
+            "source_reference_page": "224"
         },
-        {
-            "id": "Grip of Anguish",
-            "name": "Etreinte de l’angoisse",
+        "Grip of Anguish": {
+            "name": "Etreinte de l\u2019angoisse",
             "description": "",
-            "source_reference": {
-                "page": "224"
-            }
+            "source_reference_page": "224"
         },
-        {
-            "id": "Unholy Fervor",
+        "Unholy Fervor": {
             "name": "Ferveur impie",
             "description": "",
-            "source_reference": {
-                "page": "225"
-            }
+            "source_reference_page": "225"
         },
-        {
-            "id": "Mark of Desecration",
+        "Mark of Desecration": {
             "name": "Marque de profanation",
             "description": "",
-            "source_reference": {
-                "page": "225"
-            }
+            "source_reference_page": "225"
         },
-        {
-            "id": "Sinful Whispers",
-            "name": "Murmures déviants",
+        "Sinful Whispers": {
+            "name": "Murmures d\u00e9viants",
             "description": "",
-            "source_reference": {
-                "page": "225"
-            }
+            "source_reference_page": "225"
         },
-        {
-            "id": "Accursed Summoning",
+        "Accursed Summoning": {
             "name": "Conjuration maudite",
             "description": "",
-            "source_reference": {
-                "page": "118"
-            }
+            "source_reference_page": "118"
         },
-        {
-            "id": "Bind the Undead",
+        "Bind the Undead": {
             "name": "Lier les non-morts",
             "description": "",
-            "source_reference": {
-                "page": "119"
-            }
+            "source_reference_page": "119"
         },
-        {
-            "id": "Commune with Evil",
+        "Commune with Evil": {
             "name": "Communier avec le mal",
             "description": "",
-            "source_reference": {
-                "page": "118"
-            }
+            "source_reference_page": "118"
         },
-        {
-            "id": "Dark Reflection",
+        "Dark Reflection": {
             "name": "Sombre reflet",
             "description": "",
-            "source_reference": {
-                "page": "121"
-            }
+            "source_reference_page": "121"
         },
-        {
-            "id": "Entreat the Shadow Steed",
-            "name": "Implorer le destrier d’ombres",
+        "Entreat the Shadow Steed": {
+            "name": "Implorer le destrier d\u2019ombres",
             "description": "",
-            "source_reference": {
-                "page": "119"
-            }
+            "source_reference_page": "119"
         },
-        {
-            "id": "Fiend's Retreat",
-            "name": "La retraite du démon",
+        "Fiend's Retreat": {
+            "name": "La retraite du d\u00e9mon",
             "description": "",
-            "source_reference": {
-                "page": "119"
-            }
+            "source_reference_page": "119"
         },
-        {
-            "id": "Shape the Flesh",
+        "Shape the Flesh": {
             "name": "Modeler la chair",
             "description": "",
-            "source_reference": {
-                "page": "120"
-            }
+            "source_reference_page": "120"
         },
-        {
-            "id": "Spiritual Shackles",
-            "name": "Chaînes spirituelles",
+        "Spiritual Shackles": {
+            "name": "Cha\u00eenes spirituelles",
             "description": "",
-            "source_reference": {
-                "page": "118"
-            }
+            "source_reference_page": "118"
         },
-        {
-            "id": "Spread Corruption",
-            "name": "Répandre la corruption",
+        "Spread Corruption": {
+            "name": "R\u00e9pandre la corruption",
             "description": "",
-            "source_reference": {
-                "page": "120"
-            }
+            "source_reference_page": "120"
         },
-        {
-            "id": "Sword of Blood",
+        "Sword of Blood": {
             "name": "Sabre de sang",
             "description": "",
-            "source_reference": {
-                "page": "121"
-            }
+            "source_reference_page": "121"
         },
-        {
-            "id": "Twisted Summons",
-            "name": "Convocation de la difformité",
+        "Twisted Summons": {
+            "name": "Convocation de la difformit\u00e9",
             "description": "",
-            "source_reference": {
-                "page": "119"
-            }
+            "source_reference_page": "119"
         }
-    ]
+    }
 }

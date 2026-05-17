@@ -145,6 +145,11 @@ input[type="time"]:focus {
     line-height: initial;
 }
 
+// Remove icon on link (bc specificity)
+#sidebar-content .content-link i.l5r5e {
+    display: none;
+}
+
 button:hover {
     box-shadow: 0 0 10px $red;
 }
@@ -182,13 +187,13 @@ fieldset {
     }
     .editor {
         height: 100%;
+        flex: 1;
     }
 }
 
 // Editors
 .editor,
 .editor-container {
-    flex: 1;
     height: 100%;
 }
 
@@ -227,6 +232,7 @@ sup {
 }
 
 .editor-container,
+.editor-content,
 .item-description {
     ul {
         margin: 0.5rem 0;

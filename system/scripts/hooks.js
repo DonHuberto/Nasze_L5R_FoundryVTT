@@ -16,17 +16,18 @@ export default class HooksL5r5e {
     }
 
     /**
+     * Babele Init
+     * @param {Babel} babele
+     * @returns {Promise<void>}
+     */
+    static async babeleInit(babele) {
+        babele.setSystemTranslationsDir("babele");
+    }
+
+    /**
      * Do anything after initialization but before ready
      */
     static setup() {
-        // Enable embed Babele compendiums only if custom compendium is not found or disabled
-        if (
-            game.babele &&
-            game.babele.modules.every((module) => module.module !== game.settings.get(CONFIG.l5r5e.namespace, "custom-compendium-name"))
-        ) {
-            game.babele.setSystemTranslationsDir("babele"); // Since Babele v2.0.7
-        }
-
         ItemCompendiumL5r5e.applyToPacks();
     }
 
@@ -59,7 +60,7 @@ export default class HooksL5r5e {
 
         // Settings TN and EncounterType
         if (game.user.isGM) {
-                new game.l5r5e.GmToolbox().render(true);
+            new game.l5r5e.GmToolbox().render(true);
         }
 
         // ***** UI *****
@@ -71,13 +72,13 @@ export default class HooksL5r5e {
 
         // Find all additional source references that is not the official ones:
         const references = new Set(Object.keys(CONFIG.l5r5e.sourceReference));
-        for(let pack of game.packs) {
-            if(pack.metadata.packageType === "system") {
+        for (let pack of game.packs) {
+            if (pack.metadata.packageType === "system") {
                 continue;
             }
             const documents = await pack.getDocuments();
-            for(let document of documents) {
-                if(document?.system?.source_reference) {
+            for (let document of documents) {
+                if (document?.system?.source_reference) {
                     references.add(document.system.source_reference.source);
                 }
             }
@@ -127,21 +128,24 @@ export default class HooksL5r5e {
                 // Add title on button dice icon
                 html.find(".chat-control-icon")[0].title = game.i18n.localize("l5r5e.dice.dicepicker.title");
                 break;
-            }
+        }
     }
 
     static async activateSettings(app) {
-        const html = app.element
+        const html = app.element;
         const pip = html.querySelector(".info .system .notification-pip");
         html.querySelector(".info.system.l5r5e")?.remove();
 
         const section = document.createElement("section");
         section.className = "info system l5r5e";
-        const tpl = await foundry.applications.handlebars.renderTemplate(`${CONFIG.l5r5e.paths.templates}settings/logo.html`, {
-            SystemVersion: game.system.version
-        });
+        const tpl = await foundry.applications.handlebars.renderTemplate(
+            `${CONFIG.l5r5e.paths.templates}settings/logo.html`,
+            {
+                SystemVersion: game.system.version,
+            }
+        );
         section.append(foundry.utils.parseHTML(tpl));
-        if ( pip ) section.querySelector(".system-info").insertAdjacentElement("beforeend", pip);
+        if (pip) section.querySelector(".system-info").insertAdjacentElement("beforeend", pip);
         html.querySelector(".info").insertAdjacentElement("afterend", section);
     }
 
@@ -205,11 +209,14 @@ export default class HooksL5r5e {
         };
 
         // *** Template ***
-        const tpl = await foundry.applications.handlebars.renderTemplate(`${CONFIG.l5r5e.paths.templates}gm/combat-tracker-bar.html`, {
-            encounterType: game.settings.get(CONFIG.l5r5e.namespace, "initiative-encounter"),
-            encounterTypeList,
-            prepared,
-        });
+        const tpl = await foundry.applications.handlebars.renderTemplate(
+            `${CONFIG.l5r5e.paths.templates}gm/combat-tracker-bar.html`,
+            {
+                encounterType: game.settings.get(CONFIG.l5r5e.namespace, "initiative-encounter"),
+                encounterTypeList,
+                prepared,
+            }
+        );
 
         // Add/replace in bar
         const elmt = html.find("#l5r5e_gm_combat_tracker_bar");
@@ -243,7 +250,11 @@ export default class HooksL5r5e {
                 true: rev ? "actor" : "false",
                 actor: rev ? "false" : "true",
             };
-            game.settings.set(CONFIG.l5r5e.namespace, `initiative-prepared-${preparedId}`, nextValue[prepared[preparedId]]);
+            game.settings.set(
+                CONFIG.l5r5e.namespace,
+                `initiative-prepared-${preparedId}`,
+                nextValue[prepared[preparedId]]
+            );
         });
     }
 
@@ -324,7 +335,7 @@ export default class HooksL5r5e {
         const macroData = {
             type: "script",
             scope: "actor",
-            name: (itemData.actor?.name ? `${itemData.actor?.name} : ` : '') + itemData.name,
+            name: (itemData.actor?.name ? `${itemData.actor?.name} : ` : "") + itemData.name,
             img: itemData.img,
             command: `await Hotbar.toggleDocumentSheet("${itemData.uuid}")`,
         };
@@ -340,7 +351,6 @@ export default class HooksL5r5e {
     }
 
     static async createCombatant(document, options, userId) {
-
         console.log(document, options, userId);
 
         new game.l5r5e.CombatActions().render(true);

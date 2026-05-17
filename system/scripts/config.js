@@ -180,6 +180,10 @@ export const L5R5E = {
         name: "l5r5e.conditions.unconscious",
         img: "systems/l5r5e/assets/icons/conditions/unconscious.webp",
         system: { id: "L5RCoreCon000015" }
+    },{
+        id: "dead",
+        name: "EFFECT.StatusDead",
+        img: "icons/svg/skull.svg"
     }],
     regex: {
         techniqueDifficulty: /^@([TS]):([^|]+?)(?:\|(min|max)(?:\(([^)]+?)\))?)?$/,

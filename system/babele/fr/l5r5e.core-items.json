@@ -1,1169 +1,731 @@
 {
     "label": "Objets",
-    "mapping": {
-        "description": "system.description",
-        "source_reference": "system.source_reference"
-    },
-    "entries": [
-        {
-            "id": "Tattoo Needles",
+    "mapping": {},
+    "entries": {
+        "Tattoo Needles": {
             "name": "Aiguilles de tatoueur",
             "description": "",
-            "source_reference": {
-                "page": "242"
-            }
+            "source_reference_page": "242"
         },
-        {
-            "id": "Finger of Jade",
+        "Finger of Jade": {
             "name": "Doigt de jade",
             "description": "",
-            "source_reference": {
-                "page": "242"
-            }
+            "source_reference_page": "242"
         },
-        {
-            "id": "Chopsticks",
+        "Chopsticks": {
             "name": "Baguettes",
             "description": "",
-            "source_reference": {
-                "page": "242"
-            }
+            "source_reference_page": "242"
         },
-        {
-            "id": "Quiver of Arrow",
+        "Quiver of Arrow": {
             "name": "Carquois",
             "description": "",
-            "source_reference": {
-                "page": "242"
-            }
+            "source_reference_page": "242"
         },
-        {
-            "id": "Rope (By the Foot)",
+        "Rope (By the Foot)": {
             "name": "Corde",
             "description": "",
-            "source_reference": {
-                "page": "242"
-            }
+            "source_reference_page": "242"
         },
-        {
-            "id": "Sake Cup",
-            "name": "Coupe à saké",
+        "Sake Cup": {
+            "name": "Coupe \u00e0 sak\u00e9",
             "description": "",
-            "source_reference": {
-                "page": "242"
-            }
+            "source_reference_page": "242"
         },
-        {
-            "id": "Lucky Cricket",
+        "Lucky Cricket": {
             "name": "Criquet porte-bonheur",
             "description": "",
-            "source_reference": {
-                "page": "242"
-            }
+            "source_reference_page": "242"
         },
-        {
-            "id": "Bottle of Sake",
-            "name": "Cruche de saké",
+        "Bottle of Sake": {
+            "name": "Cruche de sak\u00e9",
             "description": "",
-            "source_reference": {
-                "page": "242"
-            }
+            "source_reference_page": "242"
         },
-        {
-            "id": "Dice and Cup",
-            "name": "Dés et gobelet",
+        "Dice and Cup": {
+            "name": "D\u00e9s et gobelet",
             "description": "",
-            "source_reference": {
-                "page": "242"
-            }
+            "source_reference_page": "242"
         },
-        {
-            "id": "Sweets (Four Servings)",
+        "Sweets (Four Servings)": {
             "name": "Douceurs (4 portions)",
             "description": "",
-            "source_reference": {
-                "page": "242"
-            }
+            "source_reference_page": "242"
         },
-        {
-            "id": "Spices",
+        "Spices": {
             "name": "Epices",
             "description": "",
-            "source_reference": {
-                "page": "243"
-            }
+            "source_reference_page": "243"
         },
-        {
-            "id": "Musical Instrument",
+        "Musical Instrument": {
             "name": "Instrument de musique",
             "description": "",
-            "source_reference": {
-                "page": "243"
-            }
+            "source_reference_page": "243"
         },
-        {
-            "id": "Games",
+        "Games": {
             "name": "Jeux",
             "description": "",
-            "source_reference": {
-                "page": "243"
-            }
+            "source_reference_page": "243"
         },
-        {
-            "id": "Kubi Bukuro",
+        "Kubi Bukuro": {
             "name": "Kubi Bukuro",
             "description": "",
-            "source_reference": {
-                "page": "243"
-            }
+            "source_reference_page": "243"
         },
-        {
-            "id": "Pillow Book",
+        "Pillow Book": {
             "name": "Livre de chevet",
             "description": "",
-            "source_reference": {
-                "page": "243"
-            }
+            "source_reference_page": "243"
         },
-        {
-            "id": "Bowyer’s Kit",
-            "name": "Nécessaire d'archer",
+        "Bowyer\u2019s Kit": {
+            "name": "N\u00e9cessaire d'archer",
             "description": "",
-            "source_reference": {
-                "page": "243"
-            }
+            "source_reference_page": "243"
         },
-        {
-            "id": "Calligraphy Set",
-            "name": "Nécessaire de calligraphie",
+        "Calligraphy Set": {
+            "name": "N\u00e9cessaire de calligraphie",
             "description": "",
-            "source_reference": {
-                "page": "243"
-            }
+            "source_reference_page": "243"
         },
-        {
-            "id": "Divination Kit",
-            "name": "Nécessaire de divination",
+        "Divination Kit": {
+            "name": "N\u00e9cessaire de divination",
             "description": "",
-            "source_reference": {
-                "page": "243"
-            }
+            "source_reference_page": "243"
         },
-        {
-            "id": "Medicine Kit",
-            "name": "Nécessaire médical",
+        "Medicine Kit": {
+            "name": "N\u00e9cessaire m\u00e9dical",
             "description": "",
-            "source_reference": {
-                "page": "244"
-            }
+            "source_reference_page": "244"
         },
-        {
-            "id": "Omamori",
+        "Omamori": {
             "name": "Omamori",
             "description": "",
-            "source_reference": {
-                "page": "244"
-            }
+            "source_reference_page": "244"
         },
-        {
-            "id": "Umbrella",
+        "Umbrella": {
             "name": "Ombrelle",
             "description": "",
-            "source_reference": {
-                "page": "244"
-            }
+            "source_reference_page": "244"
         },
-        {
-            "id": "Whetstone",
-            "name": "Pierre à aiguiser",
+        "Whetstone": {
+            "name": "Pierre \u00e0 aiguiser",
             "description": "",
-            "source_reference": {
-                "page": "244"
-            }
+            "source_reference_page": "244"
         },
-        {
-            "id": "Poison (One Vial)",
+        "Poison (One Vial)": {
             "name": "Poison (une dose)",
             "description": "",
-            "source_reference": {
-                "page": "244"
-            }
+            "source_reference_page": "244"
         },
-        {
-            "id": "Daishō Stand",
-            "name": "Présentoir de Daishō",
+        "Daish\u014d Stand": {
+            "name": "Pr\u00e9sentoir de Daish\u014d",
             "description": "",
-            "source_reference": {
-                "page": "245"
-            }
+            "source_reference_page": "245"
         },
-        {
-            "id": "Traveling Rations",
+        "Traveling Rations": {
             "name": "Rations de voyage",
             "description": "",
-            "source_reference": {
-                "page": "245"
-            }
+            "source_reference_page": "245"
         },
-        {
-            "id": "Personal Seal or Chop",
+        "Personal Seal or Chop": {
             "name": "Sceau ou tampon personnel",
             "description": "",
-            "source_reference": {
-                "page": "245"
-            }
+            "source_reference_page": "245"
         },
-        {
-            "id": "Tea Set (Portable)",
-            "name": "Service à thé (portatif)",
+        "Tea Set (Portable)": {
+            "name": "Service \u00e0 th\u00e9 (portatif)",
             "description": "",
-            "source_reference": {
-                "page": "245"
-            }
+            "source_reference_page": "245"
         },
-        {
-            "id": "Tent (Chomchong)",
+        "Tent (Chomchong)": {
             "name": "Tente (Chomchong)",
             "description": "",
-            "source_reference": {
-                "page": "245"
-            }
+            "source_reference_page": "245"
         },
-        {
-            "id": "Tent (Small)",
+        "Tent (Small)": {
             "name": "Tente (Petite)",
             "description": "",
-            "source_reference": {
-                "page": "245"
-            }
+            "source_reference_page": "245"
         },
-        {
-            "id": "Tent (Yurt)",
+        "Tent (Yurt)": {
             "name": "Tente (Yourte)",
             "description": "",
-            "source_reference": {
-                "page": "245"
-            }
+            "source_reference_page": "245"
         },
-        {
-            "id": "Scroll satchel",
-            "name": "Sacoche à rouleaux",
+        "Scroll satchel": {
+            "name": "Sacoche \u00e0 rouleaux",
             "description": "",
-            "source_reference": {
-                "page": "60"
-            }
+            "source_reference_page": "60"
         },
-        {
-            "id": "Traveling pack",
+        "Traveling pack": {
             "name": "Sac de Voyage",
             "description": "",
-            "source_reference": {
-                "page": "245"
-            }
+            "source_reference_page": "245"
         },
-        {
-            "id": "Journal of Observations",
+        "Journal of Observations": {
             "name": "Journal d'observations",
             "description": "",
-            "source_reference": {
-                "page": "67"
-            }
+            "source_reference_page": "67"
         },
-        {
-            "id": "Omamori (Boon of Jurojin)",
-            "name": "Omamori (Bienfait de Jurōjin)",
+        "Omamori (Boon of Jurojin)": {
+            "name": "Omamori (Bienfait de Jur\u014djin)",
             "description": "",
-            "source_reference": {
-                "page": "97"
-            }
+            "source_reference_page": "97"
         },
-        {
-            "id": "Omamori (Boon of Kisshoten)",
-            "name": "Omamori (Bienfait de Kisshōten)",
+        "Omamori (Boon of Kisshoten)": {
+            "name": "Omamori (Bienfait de Kissh\u014dten)",
             "description": "",
-            "source_reference": {
-                "page": "97"
-            }
+            "source_reference_page": "97"
         },
-        {
-            "id": "Omamori (Boon of Hotei)",
+        "Omamori (Boon of Hotei)": {
             "name": "Omamori (Bienfait de Hotei)",
             "description": "",
-            "source_reference": {
-                "page": "97"
-            }
+            "source_reference_page": "97"
         },
-        {
-            "id": "Makeup Kit",
-            "name": "Nécessaire de maquillage",
+        "Makeup Kit": {
+            "name": "N\u00e9cessaire de maquillage",
             "description": "",
-            "source_reference": {
-                "page": "105"
-            }
+            "source_reference_page": "105"
         },
-        {
-            "id": "Ceremonial Tea Set",
-            "name": "Service à thé de cérémonie",
+        "Ceremonial Tea Set": {
+            "name": "Service \u00e0 th\u00e9 de c\u00e9r\u00e9monie",
             "description": "",
-            "source_reference": {
-                "page": "106"
-            }
+            "source_reference_page": "106"
         },
-        {
-            "id": "Folding Fan",
+        "Folding Fan": {
             "name": "Eventail pliant",
             "description": "",
-            "source_reference": {
-                "page": "105"
-            }
+            "source_reference_page": "105"
         },
-        {
-            "id": "Mono Imi Fuda (Taboo Plaque)",
+        "Mono Imi Fuda (Taboo Plaque)": {
             "name": "Mono Imi Fuda (Plaque du Tabou)",
             "description": "",
-            "source_reference": {
-                "page": "105"
-            }
+            "source_reference_page": "105"
         },
-        {
-            "id": "Mari (Ball)",
+        "Mari (Ball)": {
             "name": "Mari (Balle)",
             "description": "",
-            "source_reference": {
-                "page": "105"
-            }
+            "source_reference_page": "105"
         },
-        {
-            "id": "Amigasa",
+        "Amigasa": {
             "name": "Amigasa",
             "description": "",
-            "source_reference": {
-                "page": "106"
-            }
+            "source_reference_page": "106"
         },
-        {
-            "id": "Norimono (Planquin)",
+        "Norimono (Planquin)": {
             "name": "Norimono (Palanquin)",
             "description": "",
-            "source_reference": {
-                "page": "106"
-            }
+            "source_reference_page": "106"
         },
-        {
-            "id": "Performer's Boat",
+        "Performer's Boat": {
             "name": "Ponton de musiciens",
             "description": "",
-            "source_reference": {
-                "page": "106"
-            }
+            "source_reference_page": "106"
         },
-        {
-            "id": "Makibishi",
+        "Makibishi": {
             "name": "Makibishi",
             "description": "",
-            "source_reference": {
-                "page": "107"
-            }
+            "source_reference_page": "107"
         },
-        {
-            "id": "Metsubushi",
+        "Metsubushi": {
             "name": "Metsubushi",
             "description": "",
-            "source_reference": {
-                "page": "107"
-            }
+            "source_reference_page": "107"
         },
-        {
-            "id": "Invisible Ink",
+        "Invisible Ink": {
             "name": "Encre invisible",
             "description": "",
-            "source_reference": {
-                "page": "107"
-            }
+            "source_reference_page": "107"
         },
-        {
-            "id": "Disguise Kit",
-            "name": "Nécessaire de déguisement",
+        "Disguise Kit": {
+            "name": "N\u00e9cessaire de d\u00e9guisement",
             "description": "",
-            "source_reference": {
-                "page": "108"
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Demon Mask",
-            "name": "Masque de démon",
+        "Demon Mask": {
+            "name": "Masque de d\u00e9mon",
             "description": "",
-            "source_reference": {
-                "page": "107"
-            }
+            "source_reference_page": "107"
         },
-        {
-            "id": "Bamboo Cane",
+        "Bamboo Cane": {
             "name": "Canne en bambou",
             "description": "",
-            "source_reference": {
-                "page": "107"
-            }
+            "source_reference_page": "107"
         },
-        {
-            "id": "Herbal Medicines",
-            "name": "Remèdes aux plantes",
+        "Herbal Medicines": {
+            "name": "Rem\u00e8des aux plantes",
             "description": "",
-            "source_reference": {
-                "page": "109"
-            }
+            "source_reference_page": "109"
         },
-        {
-            "id": "Modified Scabbard",
-            "name": "Fourreau modifié",
+        "Modified Scabbard": {
+            "name": "Fourreau modifi\u00e9",
             "description": "",
-            "source_reference": {
-                "page": "107"
-            }
+            "source_reference_page": "107"
         },
-        {
-            "id": "Portable Boat",
+        "Portable Boat": {
             "name": "Radeau Portable",
             "description": "",
-            "source_reference": {
-                "page": "108"
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Rope Ladder",
+        "Rope Ladder": {
             "name": "Echelle de corde",
             "description": "",
-            "source_reference": {
-                "page": "107"
-            }
+            "source_reference_page": "107"
         },
-        {
-            "id": "Opening and Closing Tools",
-            "name": "Nécessaire de crochetage",
+        "Opening and Closing Tools": {
+            "name": "N\u00e9cessaire de crochetage",
             "description": "",
-            "source_reference": {
-                "page": "108"
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Mizugumo (Water Spider)",
-            "name": "Mizugumo (Araignée d'eau)",
+        "Mizugumo (Water Spider)": {
+            "name": "Mizugumo (Araign\u00e9e d'eau)",
             "description": "",
-            "source_reference": {
-                "page": "108"
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Sekihitsu",
+        "Sekihitsu": {
             "name": "Sekihitsu",
             "description": "",
-            "source_reference": {
-                "page": "109"
-            }
+            "source_reference_page": "109"
         },
-        {
-            "id": "Tenugui",
+        "Tenugui": {
             "name": "Tenugui",
             "description": "",
-            "source_reference": {
-                "page": "109"
-            }
+            "source_reference_page": "109"
         },
-        {
-            "id": "Uchitake",
+        "Uchitake": {
             "name": "Uchitake",
             "description": "",
-            "source_reference": {
-                "page": "109"
-            }
+            "source_reference_page": "109"
         },
-        {
-            "id": "Sokutoki",
+        "Sokutoki": {
             "name": "Sokutoki",
             "description": "",
-            "source_reference": {
-                "page": "109"
-            }
+            "source_reference_page": "109"
         },
-        {
-            "id": "Travel Rations",
+        "Travel Rations": {
             "name": "Rations de voyage",
             "description": "",
-            "source_reference": {
-                "page": "114"
-            }
+            "source_reference_page": "114"
         },
-        {
-            "id": "Cooking Kit",
-            "name": "Nécessaire de cuisine",
+        "Cooking Kit": {
+            "name": "N\u00e9cessaire de cuisine",
             "description": "",
-            "source_reference": {
-                "page": "114"
-            }
+            "source_reference_page": "114"
         },
-        {
-            "id": "Dice Kit",
-            "name": "Dés à jouer",
+        "Dice Kit": {
+            "name": "D\u00e9s \u00e0 jouer",
             "description": "",
-            "source_reference": {
-                "page": "114"
-            }
+            "source_reference_page": "114"
         },
-        {
-            "id": "Alchemy Kit",
-            "name": "Nécessaire d’alchimie",
+        "Alchemy Kit": {
+            "name": "N\u00e9cessaire d\u2019alchimie",
             "description": "",
-            "source_reference": {
-                "page": "114"
-            }
+            "source_reference_page": "114"
         },
-        {
-            "id": "Fishing kit",
-            "name": "Nécessaire de pêche",
+        "Fishing kit": {
+            "name": "N\u00e9cessaire de p\u00eache",
             "description": "",
-            "source_reference": {
-                "page": "115"
-            }
+            "source_reference_page": "115"
         },
-        {
-            "id": "Tailor's Kit",
-            "name": "Nécessaire de couture",
+        "Tailor's Kit": {
+            "name": "N\u00e9cessaire de couture",
             "description": "",
-            "source_reference": {
-                "page": "114"
-            }
+            "source_reference_page": "114"
         },
-        {
-            "id": "Weaver's Kit",
-            "name": "Nécessaire de tissage",
+        "Weaver's Kit": {
+            "name": "N\u00e9cessaire de tissage",
             "description": "",
-            "source_reference": {
-                "page": "115"
-            }
+            "source_reference_page": "115"
         },
-        {
-            "id": "Mason's Kit",
-            "name": "Nécessaire de maçonnerie",
+        "Mason's Kit": {
+            "name": "N\u00e9cessaire de ma\u00e7onnerie",
             "description": "",
-            "source_reference": {
-                "page": "115"
-            }
+            "source_reference_page": "115"
         },
-        {
-            "id": "Chandu",
+        "Chandu": {
             "name": "Chandu (Opium)",
             "description": "",
-            "source_reference": {
-                "page": "115"
-            }
+            "source_reference_page": "115"
         },
-        {
-            "id": "Thievery Kit",
-            "name": "Nécessaire de cambriolage",
+        "Thievery Kit": {
+            "name": "N\u00e9cessaire de cambriolage",
             "description": "",
-            "source_reference": {
-                "page": "116"
-            }
+            "source_reference_page": "116"
         },
-        {
-            "id": "Poppy Tea",
-            "name": "Thé de pavot",
+        "Poppy Tea": {
+            "name": "Th\u00e9 de pavot",
             "description": "",
-            "source_reference": {
-                "page": "116"
-            }
+            "source_reference_page": "116"
         },
-        {
-            "id": "Shikomizue",
+        "Shikomizue": {
             "name": "Shikomizue",
             "description": "",
-            "source_reference": {
-                "page": "116"
-            }
+            "source_reference_page": "116"
         },
-        {
-            "id": "Climbing Kit",
-            "name": "Matériel d'escalade",
+        "Climbing Kit": {
+            "name": "Mat\u00e9riel d'escalade",
             "description": "",
-            "source_reference": {
-                "page": "106"
-            }
+            "source_reference_page": "106"
         },
-        {
-            "id": "Spyglass",
+        "Spyglass": {
             "name": "Longue-vue",
             "description": "",
-            "source_reference": {
-                "page": "106"
-            }
+            "source_reference_page": "106"
         },
-        {
-            "id": "Tate",
+        "Tate": {
             "name": "Tate",
             "description": "",
-            "source_reference": {
-                "page": "106"
-            }
+            "source_reference_page": "106"
         },
-        {
-            "id": "Taketaba",
+        "Taketaba": {
             "name": "Taketaba",
             "description": "",
-            "source_reference": {
-                "page": "106"
-            }
+            "source_reference_page": "106"
         },
-        {
-            "id": "Smithy's Kit",
-            "name": "Nécessaire de Forgeron",
+        "Smithy's Kit": {
+            "name": "N\u00e9cessaire de Forgeron",
             "description": "",
-            "source_reference": {
-                "page": "106"
-            }
+            "source_reference_page": "106"
         },
-        {
-            "id": "Sapper's Kit",
-            "name": "Nécessaire de Sapeur-Minier",
+        "Sapper's Kit": {
+            "name": "N\u00e9cessaire de Sapeur-Minier",
             "description": "",
-            "source_reference": {
-                "page": "106"
-            }
+            "source_reference_page": "106"
         },
-        {
-            "id": "Engineer's Kit",
-            "name": "Nécessaire d'Ingénieur",
+        "Engineer's Kit": {
+            "name": "N\u00e9cessaire d'Ing\u00e9nieur",
             "description": "",
-            "source_reference": {
-                "page": "106"
-            }
+            "source_reference_page": "106"
         },
-        {
-            "id": "Smoke Arrows",
-            "name": "Flèches fumigènes",
+        "Smoke Arrows": {
+            "name": "Fl\u00e8ches fumig\u00e8nes",
             "description": "",
-            "source_reference": {
-                "page": "106"
-            }
+            "source_reference_page": "106"
         },
-        {
-            "id": "Astrolabe",
+        "Astrolabe": {
             "name": "Astrolabe",
             "description": "",
-            "source_reference": {
-                "page": "9"
-            }
+            "source_reference_page": "9"
         },
-        {
-            "id": "Fishing Rod and Line",
-            "name": "Canne à pêche et ligne",
+        "Fishing Rod and Line": {
+            "name": "Canne \u00e0 p\u00eache et ligne",
             "description": "",
-            "source_reference": {
-                "page": "9"
-            }
+            "source_reference_page": "9"
         },
-        {
-            "id": "TaraiBune",
+        "TaraiBune": {
             "name": "TaraiBune",
             "description": "",
-            "source_reference": {
-                "page": "9"
-            }
+            "source_reference_page": "9"
         },
-        {
-            "id": "Animal Helm",
+        "Animal Helm": {
             "name": "Casque animal",
             "description": "",
-            "source_reference": {
-                "page": "90"
-            }
+            "source_reference_page": "90"
         },
-        {
-            "id": "Blasting Powder (1 charge)",
+        "Blasting Powder (1 charge)": {
             "name": "Poudre noire (1 charge)",
             "description": "",
-            "source_reference": {
-                "page": "91"
-            }
+            "source_reference_page": "91"
         },
-        {
-            "id": "Battlefield Heirloom",
-            "name": "Héritage guerrier",
+        "Battlefield Heirloom": {
+            "name": "H\u00e9ritage guerrier",
             "description": "",
-            "source_reference": {
-                "page": "90"
-            }
+            "source_reference_page": "90"
         },
-        {
-            "id": "Battlefield Medical Pack",
-            "name": "Fournitures médicales de terrain",
+        "Battlefield Medical Pack": {
+            "name": "Fournitures m\u00e9dicales de terrain",
             "description": "",
-            "source_reference": {
-                "page": "90"
-            }
+            "source_reference_page": "90"
         },
-        {
-            "id": "Brilliant Flare",
-            "name": "Fusée éclairante",
+        "Brilliant Flare": {
+            "name": "Fus\u00e9e \u00e9clairante",
             "description": "",
-            "source_reference": {
-                "page": "90"
-            }
+            "source_reference_page": "90"
         },
-        {
-            "id": "Mempō",
-            "name": "Menpō",
+        "Memp\u014d": {
+            "name": "Menp\u014d",
             "description": "",
-            "source_reference": {
-                "page": "90"
-            }
+            "source_reference_page": "90"
         },
-        {
-            "id": "Saihai",
+        "Saihai": {
             "name": "Saihai",
             "description": "",
-            "source_reference": {
-                "page": "91"
-            }
+            "source_reference_page": "91"
         },
-        {
-            "id": "Sashimono",
+        "Sashimono": {
             "name": "Sashimono",
             "description": "",
-            "source_reference": {
-                "page": "91"
-            }
+            "source_reference_page": "91"
         },
-        {
-            "id": "Smoking Pipe",
+        "Smoking Pipe": {
             "name": "Pipe",
             "description": "",
-            "source_reference": {
-                "page": "91"
-            }
+            "source_reference_page": "91"
         },
-        {
-            "id": "Tetsubishi",
+        "Tetsubishi": {
             "name": "Tetsubishi",
             "description": "",
-            "source_reference": {
-                "page": "91"
-            }
+            "source_reference_page": "91"
         },
-        {
-            "id": "Uma-Jirushi",
+        "Uma-Jirushi": {
             "name": "Uma-Jirushi",
             "description": "",
-            "source_reference": {
-                "page": "91"
-            }
+            "source_reference_page": "91"
         },
-        {
-            "id": "Banner of Amaterasu [Blessed Treasure]",
-            "name": "La Bannière d’Amaterasu",
+        "Banner of Amaterasu [Blessed Treasure]": {
+            "name": "La Banni\u00e8re d\u2019Amaterasu",
             "description": "",
-            "source_reference": {
-                "page": "92"
-            }
+            "source_reference_page": "92"
         },
-        {
-            "id": "The Claws of the Kitsu [Blessed Treasure]",
+        "The Claws of the Kitsu [Blessed Treasure]": {
             "name": "Les Griffes des Kitsu",
             "description": "",
-            "source_reference": {
-                "page": "92"
-            }
+            "source_reference_page": "92"
         },
-        {
-            "id": "Leadership Scrolls [Blessed Treasure]",
+        "Leadership Scrolls [Blessed Treasure]": {
             "name": "Rouleaux du Commandement",
             "description": "",
-            "source_reference": {
-                "page": "92"
-            }
+            "source_reference_page": "92"
         },
-        {
-            "id": "The Anvil of Despair [Concealed Horror]",
-            "name": "L’Enclume du désespoir [Horreur Cachée]",
+        "The Anvil of Despair [Concealed Horror]": {
+            "name": "L\u2019Enclume du d\u00e9sespoir [Horreur Cach\u00e9e]",
             "description": "",
-            "source_reference": {
-                "page": "111"
-            }
+            "source_reference_page": "111"
         },
-        {
-            "id": "The Black Pearls of Fu Leng [Concealed Horror]",
-            "name": "Les Perles noires de Fu Leng [Horreur Cachée]",
+        "The Black Pearls of Fu Leng [Concealed Horror]": {
+            "name": "Les Perles noires de Fu Leng [Horreur Cach\u00e9e]",
             "description": "",
-            "source_reference": {
-                "page": "111"
-            }
+            "source_reference_page": "111"
         },
-        {
-            "id": "The Henge-Okurimono [Concealed Horror]",
-            "name": "Les Henge-okurimono [Horreur Cachée]",
+        "The Henge-Okurimono [Concealed Horror]": {
+            "name": "Les Henge-okurimono [Horreur Cach\u00e9e]",
             "description": "",
-            "source_reference": {
-                "page": "111"
-            }
+            "source_reference_page": "111"
         },
-        {
-            "id": "The Porcelain Mask of Fu Leng [Concealed Horror]",
-            "name": "Le Masque de porcelaine de Fu Leng [Horreur Cachée]",
+        "The Porcelain Mask of Fu Leng [Concealed Horror]": {
+            "name": "Le Masque de porcelaine de Fu Leng [Horreur Cach\u00e9e]",
             "description": "",
-            "source_reference": {
-                "page": "111"
-            }
+            "source_reference_page": "111"
         },
-        {
-            "id": "The Jade Cups of Taira [Blessed Treasure]",
-            "name": "Les coupes de Jade de Taira [Trésor Béni]",
+        "The Jade Cups of Taira [Blessed Treasure]": {
+            "name": "Les coupes de Jade de Taira [Tr\u00e9sor B\u00e9ni]",
             "description": "",
-            "source_reference": {
-                "page": "112"
-            }
+            "source_reference_page": "112"
         },
-        {
-            "id": "Jade Petal Tea [Blessed Treasure]",
-            "name": "Thé de pétales de Jade [Trésor Béni]",
+        "Jade Petal Tea [Blessed Treasure]": {
+            "name": "Th\u00e9 de p\u00e9tales de Jade [Tr\u00e9sor B\u00e9ni]",
             "description": "",
-            "source_reference": {
-                "page": "113"
-            }
+            "source_reference_page": "113"
         },
-        {
-            "id": "Obsidian Ink [Blessed Treasure]",
-            "name": "Encre d’obsidienne [Trésor Béni]",
+        "Obsidian Ink [Blessed Treasure]": {
+            "name": "Encre d\u2019obsidienne [Tr\u00e9sor B\u00e9ni]",
             "description": "",
-            "source_reference": {
-                "page": "113"
-            }
+            "source_reference_page": "113"
         },
-        {
-            "id": "Arrows",
-            "name": "Flèches",
+        "Arrows": {
+            "name": "Fl\u00e8ches",
             "description": "",
-            "source_reference": {
-                "page": "236"
-            }
+            "source_reference_page": "236"
         },
-        {
-            "id": "Arrows : Fire-Blossom",
-            "name": "Flèches : Braises ardentes",
+        "Arrows : Fire-Blossom": {
+            "name": "Fl\u00e8ches : Braises ardentes",
             "description": "",
-            "source_reference": {
-                "page": "97"
-            }
+            "source_reference_page": "97"
         },
-        {
-            "id": "Arrows : Hamaya",
-            "name": "Flèches : Hamaya",
+        "Arrows : Hamaya": {
+            "name": "Fl\u00e8ches : Hamaya",
             "description": "",
-            "source_reference": {
-                "page": "97"
-            }
+            "source_reference_page": "97"
         },
-        {
-            "id": "Arrows : Soul-Star",
-            "name": "Flèches : Éclat d’âme",
+        "Arrows : Soul-Star": {
+            "name": "Fl\u00e8ches : \u00c9clat d\u2019\u00e2me",
             "description": "",
-            "source_reference": {
-                "page": "97"
-            }
+            "source_reference_page": "97"
         },
-        {
-            "id": "The horagai of Sacred Rains",
-            "name": "Le horagai des Pluies sacrées",
+        "The horagai of Sacred Rains": {
+            "name": "Le horagai des Pluies sacr\u00e9es",
             "description": "",
-            "source_reference": {
-                "page": "96"
-            }
+            "source_reference_page": "96"
         },
-        {
-            "id": "Daikoku's Mallet",
+        "Daikoku's Mallet": {
             "name": "Le maillet de Daikoku",
             "description": "",
-            "source_reference": {
-                "page": "96"
-            }
+            "source_reference_page": "96"
         },
-        {
-            "id": "Candles of the Moth",
-            "name": "Les chandelles du Clan de la Phalène",
+        "Candles of the Moth": {
+            "name": "Les chandelles du Clan de la Phal\u00e8ne",
             "description": "",
-            "source_reference": {
-                "page": "96"
-            }
+            "source_reference_page": "96"
         },
-        {
-            "id": "Astrolabe (Unicorn)",
+        "Astrolabe (Unicorn)": {
             "name": "Astrolabe (Licorne)",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Horo (Arrow Cloak)",
-            "name": "Horo (Arrow Cloak) (WIP)",
+        "Horo (Arrow Cloak)": {
+            "name": "Horo (manteau antifl\u00e8ches)",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Lantern (Personal)",
-            "name": "Lantern (Personal) (WIP)",
+        "Lantern (Personal)": {
+            "name": "Lanterne (personnelle)",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Mineral-Oil Lamp",
-            "name": "Mineral-Oil Lamp (WIP)",
+        "Mineral-Oil Lamp": {
+            "name": "Lampe \u00e0 huile",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Prayer Rug",
-            "name": "Prayer Rug (WIP)",
+        "Prayer Rug": {
+            "name": "Tapis de pri\u00e8re",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Sand Clock",
-            "name": "Sand Clock (WIP)",
+        "Sand Clock": {
+            "name": "Sablier",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Traveling Board Games",
-            "name": "Traveling Board Games (WIP)",
+        "Traveling Board Games": {
+            "name": "Jeux de soci\u00e9t\u00e9 de voyage",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Word of the Prophet",
-            "name": "Word of the Prophet (WIP)",
+        "Word of the Prophet": {
+            "name": "La Parole du Proph\u00e8te",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Talisman of the Sun [Blessed Treasure]",
-            "name": "Talisman of the Sun [Blessed Treasure] (WIP)",
+        "Talisman of the Sun [Blessed Treasure]": {
+            "name": "Le talisman du Soleil [Tr\u00e9sor B\u00e9ni]",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Fox Pipe [Blessed Treasure]",
-            "name": "Fox Pipe [Blessed Treasure] (WIP)",
+        "Fox Pipe [Blessed Treasure]": {
+            "name": "Pipe du renard [Tr\u00e9sor B\u00e9ni]",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "105"
         },
-        {
-            "id": "Glass Ornament (Dragonfly)",
+        "Glass Ornament (Dragonfly)": {
             "name": "Le Verre de Libellule",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "83"
         },
-        {
-            "id": "Arrows: Armor-Piercing",
-            "name": "Flèches : Perce-armure",
+        "Arrows: Armor-Piercing": {
+            "name": "Fl\u00e8ches : Perce-armure",
             "description": "",
-            "source_reference": {
-                "page": "236"
-            }
+            "source_reference_page": "236"
         },
-        {
-            "id": "Arrows: Flesh-Cutter",
-            "name": "Flèches : Fouilleuse d’entrailles",
+        "Arrows: Flesh-Cutter": {
+            "name": "Fl\u00e8ches : Fouilleuse d\u2019entrailles",
             "description": "",
-            "source_reference": {
-                "page": "236"
-            }
+            "source_reference_page": "236"
         },
-        {
-            "id": "Arrows: Humming-Bulb",
-            "name": "Flèches : Bulbe bourdonnant",
+        "Arrows: Humming-Bulb": {
+            "name": "Fl\u00e8ches : Bulbe bourdonnant",
             "description": "",
-            "source_reference": {
-                "page": "236"
-            }
+            "source_reference_page": "236"
         },
-        {
-            "id": "Journal",
+        "Journal": {
             "name": "Journal",
             "description": "",
-            "source_reference": {
-                "page": "66"
-            }
+            "source_reference_page": "66"
         },
-        {
-            "id": "Smithing hammer",
+        "Smithing hammer": {
             "name": "Marteau de forgeron",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "89"
         },
-        {
-            "id": "Sumai Garb",
+        "Sumai Garb": {
             "name": "Tenue de Sumai",
             "description": "",
-            "source_reference": {
-                "page": "76"
-            }
+            "source_reference_page": "76"
         },
-        {
-            "id": "Drafting Paper",
-            "name": "Papier à dessin",
+        "Drafting Paper": {
+            "name": "Papier \u00e0 dessin",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "84"
         },
-        {
-            "id": "Fine set of Chisels",
-            "name": "Ensemble de burins de grande qualité",
+        "Fine set of Chisels": {
+            "name": "Ensemble de burins de grande qualit\u00e9",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "84"
         },
-        {
-            "id": "Omamori (Boon of Fukurokujin)",
+        "Omamori (Boon of Fukurokujin)": {
             "name": "Omamori (Bienfait de Fukurokujin)",
             "description": "",
-            "source_reference": {
-                "page": "243"
-            }
+            "source_reference_page": "243"
         },
-        {
-            "id": "Omamori (Boon of Bishamon)",
+        "Omamori (Boon of Bishamon)": {
             "name": "Omamori (Bienfait de Bishamon)",
             "description": "",
-            "source_reference": {
-                "page": "243"
-            }
+            "source_reference_page": "243"
         },
-        {
-            "id": "Omamori (Boon of Benten)",
+        "Omamori (Boon of Benten)": {
             "name": "Omamori (Bienfait de Benten)",
             "description": "",
-            "source_reference": {
-                "page": "243"
-            }
+            "source_reference_page": "243"
         },
-        {
-            "id": "Poison - Noxious Poison (One Vial)",
+        "Poison - Noxious Poison (One Vial)": {
             "name": "Poison - Toxines (un flacon)",
             "description": "",
-            "source_reference": {
-                "page": "244"
-            }
+            "source_reference_page": "244"
         },
-        {
-            "id": "Poison - Fire Biter (One Vial)",
-            "name": "Poison - Morsure Brûlante (un flacon)",
+        "Poison - Fire Biter (One Vial)": {
+            "name": "Poison - Morsure Br\u00fblante (un flacon)",
             "description": "",
-            "source_reference": {
-                "page": "244"
-            }
+            "source_reference_page": "244"
         },
-        {
-            "id": "Poison - Night Milk (One Vial)",
+        "Poison - Night Milk (One Vial)": {
             "name": "Poison - Lait de la Nuit (un flacon)",
             "description": "",
-            "source_reference": {
-                "page": "244"
-            }
+            "source_reference_page": "244"
         },
-        {
-            "id": "Blanket",
+        "Blanket": {
             "name": "Couverture",
             "description": "",
-            "source_reference": {
-                "page": "245"
-            }
+            "source_reference_page": "245"
         },
-        {
-            "id": "Bowl",
+        "Bowl": {
             "name": "Bol",
             "description": "",
-            "source_reference": {
-                "page": "245"
-            }
+            "source_reference_page": "245"
         },
-        {
-            "id": "Flint and Tinder",
+        "Flint and Tinder": {
             "name": "Silex et amadou",
             "description": "",
-            "source_reference": {
-                "page": "245"
-            }
+            "source_reference_page": "245"
         },
-        {
-            "id": "Furoshiki",
+        "Furoshiki": {
             "name": "Furoshiki",
             "description": "",
-            "source_reference": {
-                "page": "245"
-            }
+            "source_reference_page": "245"
         },
-        {
-            "id": "The Obsidian Journal",
-            "name": "Le Journal d’obsidienne",
+        "The Obsidian Journal": {
+            "name": "Le Journal d\u2019obsidienne",
             "description": "",
-            "source_reference": {
-                "page": "128"
-            }
+            "source_reference_page": "128"
         },
-        {
-            "id": "Pouch of Insence",
-            "name": "Bourse d’Encens",
+        "Pouch of Insence": {
+            "name": "Bourse d\u2019Encens",
             "description": "",
-            "source_reference": {
-                "page": "85"
-            }
+            "source_reference_page": "85"
         },
-        {
-            "id": "Religious texts",
+        "Religious texts": {
             "name": "Textes religieux",
             "description": "",
-            "source_reference": {
-                "page": "86"
-            }
+            "source_reference_page": "86"
         },
-        {
-            "id": "Small Sachel of Ingredients",
-            "name": "Petit sachet d'ingrédients",
+        "Small Sachel of Ingredients": {
+            "name": "Petit sachet d'ingr\u00e9dients",
             "description": "",
-            "source_reference": {
-                "page": "80"
-            }
+            "source_reference_page": "80"
         },
-        {
-            "id": "Blessed Glass vial",
-            "name": "Fiole en verre bénie",
+        "Blessed Glass vial": {
+            "name": "Fiole en verre b\u00e9nie",
             "description": "",
-            "source_reference": {
-                "page": "80"
-            }
+            "source_reference_page": "80"
         }
-    ]
+    }
 }

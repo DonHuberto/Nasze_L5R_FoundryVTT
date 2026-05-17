@@ -1,889 +1,556 @@
 {
-    "label": "Capacités d’école",
-    "mapping": {
-        "description": "system.description",
-        "source_reference": "system.source_reference"
-    },
-    "entries": [
-        {
-            "id": "Way of the Crab",
+    "label": "Capacit\u00e9s d\u2019\u00e9cole",
+    "mapping": {},
+    "entries": {
+        "Way of the Crab": {
             "name": "La voie du Crabe",
             "description": "",
-            "source_reference": {
-                "page": "57"
-            }
+            "source_reference_page": "57"
         },
-        {
-            "id": "Flickering Flame Skirmisher",
-            "name": "Dérobade de la flamme fugitive",
+        "Flickering Flame Skirmisher": {
+            "name": "D\u00e9robade de la flamme fugitive",
             "description": "",
-            "source_reference": {
-                "page": "58"
-            }
+            "source_reference_page": "58"
         },
-        {
-            "id": "Masterful Builder",
-            "name": "Maître bâtisseur",
+        "Masterful Builder": {
+            "name": "Ma\u00eetre b\u00e2tisseur",
             "description": "",
-            "source_reference": {
-                "page": "59"
-            }
+            "source_reference_page": "59"
         },
-        {
-            "id": "Gaze into Shadow",
-            "name": "Regarder dans les ténèbres",
+        "Gaze into Shadow": {
+            "name": "Regarder dans les t\u00e9n\u00e8bres",
             "description": "",
-            "source_reference": {
-                "page": "60"
-            }
+            "source_reference_page": "60"
         },
-        {
-            "id": "Way of the Carp",
+        "Way of the Carp": {
             "name": "La voie de la Carpe",
             "description": "",
-            "source_reference": {
-                "page": "61"
-            }
+            "source_reference_page": "61"
         },
-        {
-            "id": "Spiritual Artisan",
+        "Spiritual Artisan": {
             "name": "Artisan spirituel",
             "description": "",
-            "source_reference": {
-                "page": "62"
-            }
+            "source_reference_page": "62"
         },
-        {
-            "id": "Vigilance of Mind",
-            "name": "Vigilance de l’esprit",
+        "Vigilance of Mind": {
+            "name": "Vigilance de l\u2019esprit",
             "description": "",
-            "source_reference": {
-                "page": "63"
-            }
+            "source_reference_page": "63"
         },
-        {
-            "id": "Speaking in Silence",
+        "Speaking in Silence": {
             "name": "Communication silencieuse",
             "description": "",
-            "source_reference": {
-                "page": "64"
-            }
+            "source_reference_page": "64"
         },
-        {
-            "id": "Way of the Crane",
+        "Way of the Crane": {
             "name": "La voie de la Grue",
             "description": "",
-            "source_reference": {
-                "page": "65"
-            }
+            "source_reference_page": "65"
         },
-        {
-            "id": "Elemental Transmutation",
-            "name": "Transmutation élémentaire",
+        "Elemental Transmutation": {
+            "name": "Transmutation \u00e9l\u00e9mentaire",
             "description": "",
-            "source_reference": {
-                "page": "66"
-            }
+            "source_reference_page": "66"
         },
-        {
-            "id": "Kitsuki’s Method",
-            "name": "La méthode Kitsuki",
+        "Kitsuki\u2019s Method": {
+            "name": "La m\u00e9thode Kitsuki",
             "description": "",
-            "source_reference": {
-                "page": "67"
-            }
+            "source_reference_page": "67"
         },
-        {
-            "id": "Way of the Dragon",
+        "Way of the Dragon": {
             "name": "La voie du Dragon",
             "description": "",
-            "source_reference": {
-                "page": "68"
-            }
+            "source_reference_page": "68"
         },
-        {
-            "id": "Blood of the Kami",
+        "Blood of the Kami": {
             "name": "Sang des Kamis",
             "description": "",
-            "source_reference": {
-                "page": "69"
-            }
+            "source_reference_page": "69"
         },
-        {
-            "id": "Way of the Lion",
+        "Way of the Lion": {
             "name": "La voie du Lion",
             "description": "",
-            "source_reference": {
-                "page": "70"
-            }
+            "source_reference_page": "70"
         },
-        {
-            "id": "Heart of the Lion",
-            "name": "Le cœur du Lion",
+        "Heart of the Lion": {
+            "name": "Le c\u0153ur du Lion",
             "description": "",
-            "source_reference": {
-                "page": "71"
-            }
+            "source_reference_page": "71"
         },
-        {
-            "id": "Favor of the Ancestors",
-            "name": "Faveur des ancêtres",
+        "Favor of the Ancestors": {
+            "name": "Faveur des anc\u00eatres",
             "description": "",
-            "source_reference": {
-                "page": "72"
-            }
+            "source_reference_page": "72"
         },
-        {
-            "id": "Matsu’s Fury",
+        "Matsu\u2019s Fury": {
             "name": "La fureur de Matsu",
             "description": "",
-            "source_reference": {
-                "page": "73"
-            }
+            "source_reference_page": "73"
         },
-        {
-            "id": "Wisdom of the Ages",
-            "name": "Sagesse éternelle",
+        "Wisdom of the Ages": {
+            "name": "Sagesse \u00e9ternelle",
             "description": "",
-            "source_reference": {
-                "page": "74"
-            }
+            "source_reference_page": "74"
         },
-        {
-            "id": "One with the Elements",
-            "name": "Union avec les éléments",
+        "One with the Elements": {
+            "name": "Union avec les \u00e9l\u00e9ments",
             "description": "",
-            "source_reference": {
-                "page": "75"
-            }
+            "source_reference_page": "75"
         },
-        {
-            "id": "Way of the Phoenix",
-            "name": "La voie du Phénix",
+        "Way of the Phoenix": {
+            "name": "La voie du Ph\u00e9nix",
             "description": "",
-            "source_reference": {
-                "page": "76"
-            }
+            "source_reference_page": "76"
         },
-        {
-            "id": "Sacred Arrows",
-            "name": "Flèches sacrées",
+        "Sacred Arrows": {
+            "name": "Fl\u00e8ches sacr\u00e9es",
             "description": "",
-            "source_reference": {
-                "page": "77"
-            }
+            "source_reference_page": "77"
         },
-        {
-            "id": "Weakness Is My Strength",
+        "Weakness Is My Strength": {
             "name": "La faiblesse est ma force",
             "description": "",
-            "source_reference": {
-                "page": "78"
-            }
+            "source_reference_page": "78"
         },
-        {
-            "id": "The Path of Shadows",
+        "The Path of Shadows": {
             "name": "Le sentier des ombres",
             "description": "",
-            "source_reference": {
-                "page": "79"
-            }
+            "source_reference_page": "79"
         },
-        {
-            "id": "The Kami’s Whisper",
+        "The Kami\u2019s Whisper": {
             "name": "Le murmure des kamis",
             "description": "",
-            "source_reference": {
-                "page": "80"
-            }
+            "source_reference_page": "80"
         },
-        {
-            "id": "Mystical Script",
+        "Mystical Script": {
             "name": "Calligraphie mystique",
             "description": "",
-            "source_reference": {
-                "page": "81"
-            }
+            "source_reference_page": "81"
         },
-        {
-            "id": "Vendor of Strange Wares",
-            "name": "Vendeur d’étranges articles",
+        "Vendor of Strange Wares": {
+            "name": "Vendeur d\u2019\u00e9tranges articles",
             "description": "",
-            "source_reference": {
-                "page": "82"
-            }
+            "source_reference_page": "82"
         },
-        {
-            "id": "The Way of Names",
+        "The Way of Names": {
             "name": "La voie des noms",
             "description": "",
-            "source_reference": {
-                "page": "83"
-            }
+            "source_reference_page": "83"
         },
-        {
-            "id": "Swirling Desert Wind",
+        "Swirling Desert Wind": {
             "name": "Le tourbillon du simoun",
             "description": "",
-            "source_reference": {
-                "page": "84"
-            }
+            "source_reference_page": "84"
         },
-        {
-            "id": "Born in the Saddle",
-            "name": "Né sur une selle",
+        "Born in the Saddle": {
+            "name": "N\u00e9 sur une selle",
             "description": "",
-            "source_reference": {
-                "page": "85"
-            }
+            "source_reference_page": "85"
         },
-        {
-            "id": "Heroic Charge",
-            "name": "Charge héroïque",
+        "Heroic Charge": {
+            "name": "Charge h\u00e9ro\u00efque",
             "description": "",
-            "source_reference": {
-                "page": "86"
-            }
+            "source_reference_page": "86"
         },
-        {
-            "id": "School of Waves",
-            "name": "L’école des vagues",
+        "School of Waves": {
+            "name": "L\u2019\u00e9cole des vagues",
             "description": "",
-            "source_reference": {
-                "page": "87"
-            }
+            "source_reference_page": "87"
         },
-        {
-            "id": "Flesh of the Elements",
-            "name": "Chair élémentaire",
+        "Flesh of the Elements": {
+            "name": "Chair \u00e9l\u00e9mentaire",
             "description": "",
-            "source_reference": {
-                "page": "80"
-            }
+            "source_reference_page": "80"
         },
-        {
-            "id": "Soul of Ceremony",
-            "name": "Cérémonie solennelle",
+        "Soul of Ceremony": {
+            "name": "C\u00e9r\u00e9monie solennelle",
             "description": "",
-            "source_reference": {
-                "page": "81"
-            }
+            "source_reference_page": "81"
         },
-        {
-            "id": "Way of the Void",
+        "Way of the Void": {
             "name": "La voie du Vide",
             "description": "",
-            "source_reference": {
-                "page": "82"
-            }
+            "source_reference_page": "82"
         },
-        {
-            "id": "The Body is a Shrine",
+        "The Body is a Shrine": {
             "name": "Le corps est un sanctuaire",
             "description": "",
-            "source_reference": {
-                "page": "83"
-            }
+            "source_reference_page": "83"
         },
-        {
-            "id": "Every Stone Serves",
-            "name": "Chaque pierre a son utilité",
+        "Every Stone Serves": {
+            "name": "Chaque pierre a son utilit\u00e9",
             "description": "",
-            "source_reference": {
-                "page": "84"
-            }
+            "source_reference_page": "84"
         },
-        {
-            "id": "Celestial Alignment",
-            "name": "Alignement céleste",
+        "Celestial Alignment": {
+            "name": "Alignement c\u00e9leste",
             "description": "",
-            "source_reference": {
-                "page": "85"
-            }
+            "source_reference_page": "85"
         },
-        {
-            "id": "Blazing Tears of Lady Sun",
-            "name": "Larmes brûlantes de Dame Soleil",
+        "Blazing Tears of Lady Sun": {
+            "name": "Larmes br\u00fblantes de Dame Soleil",
             "description": "",
-            "source_reference": {
-                "page": "86"
-            }
+            "source_reference_page": "86"
         },
-        {
-            "id": "Sudden nightfall",
+        "Sudden nightfall": {
             "name": "Nuit soudaine",
             "description": "",
-            "source_reference": {
-                "page": "87"
-            }
+            "source_reference_page": "87"
         },
-        {
-            "id": "Steed of the Kami",
+        "Steed of the Kami": {
             "name": "Monture du kami",
             "description": "",
-            "source_reference": {
-                "page": "88"
-            }
+            "source_reference_page": "88"
         },
-        {
-            "id": "Way of the Scorpion",
+        "Way of the Scorpion": {
             "name": "La voie du Scorpion",
             "description": "",
-            "source_reference": {
-                "page": "89"
-            }
+            "source_reference_page": "89"
         },
-        {
-            "id": "Incisive Insight",
-            "name": "Pénétrante perspicacité",
+        "Incisive Insight": {
+            "name": "P\u00e9n\u00e9trante perspicacit\u00e9",
             "description": "",
-            "source_reference": {
-                "page": "90"
-            }
+            "source_reference_page": "90"
         },
-        {
-            "id": "Procedure and Protocol",
-            "name": "Procédure et protocole",
+        "Procedure and Protocol": {
+            "name": "Proc\u00e9dure et protocole",
             "description": "",
-            "source_reference": {
-                "page": "91"
-            }
+            "source_reference_page": "91"
         },
-        {
-            "id": "Victory before Honor",
-            "name": "La victoire passe avant l’honneur",
+        "Victory before Honor": {
+            "name": "La victoire passe avant l\u2019honneur",
             "description": "",
-            "source_reference": {
-                "page": "92"
-            }
+            "source_reference_page": "92"
         },
-        {
-            "id": "Disciple of Darkness",
-            "name": "Disciple des ténèbres",
+        "Disciple of Darkness": {
+            "name": "Disciple des t\u00e9n\u00e8bres",
             "description": "",
-            "source_reference": {
-                "page": "93"
-            }
+            "source_reference_page": "93"
         },
-        {
-            "id": "Architect of Tranquility",
-            "name": "Architecte de la tranquillité",
+        "Architect of Tranquility": {
+            "name": "Architecte de la tranquillit\u00e9",
             "description": "",
-            "source_reference": {
-                "page": "94"
-            }
+            "source_reference_page": "94"
         },
-        {
-            "id": "Gift of Musubi-no-Kami",
+        "Gift of Musubi-no-Kami": {
             "name": "Don de Musubi no Kami",
             "description": "",
-            "source_reference": {
-                "page": "95"
-            }
+            "source_reference_page": "95"
         },
-        {
-            "id": "Typhoon in the Bamboo Grove",
+        "Typhoon in the Bamboo Grove": {
             "name": "Le typhon dans la bambouseraie",
             "description": "",
-            "source_reference": {
-                "page": "96"
-            }
+            "source_reference_page": "96"
         },
-        {
-            "id": "A Grain of Truth",
-            "name": "Un soupçon de vérité",
+        "A Grain of Truth": {
+            "name": "Un soup\u00e7on de v\u00e9rit\u00e9",
             "description": "",
-            "source_reference": {
-                "page": "97"
-            }
+            "source_reference_page": "97"
         },
-        {
-            "id": "Claws of the Crab",
+        "Claws of the Crab": {
             "name": "Les pinces du Crabe",
             "description": "",
-            "source_reference": {
-                "page": "98"
-            }
+            "source_reference_page": "98"
         },
-        {
-            "id": "Well Traveled",
+        "Well Traveled": {
             "name": "Grand voyageur",
             "description": "",
-            "source_reference": {
-                "page": "232"
-            }
+            "source_reference_page": "232"
         },
-        {
-            "id": "Voice of the Emperor",
+        "Voice of the Emperor": {
             "name": "La Voix de L'empereur",
             "description": "",
-            "source_reference": {
-                "page": "234"
-            }
+            "source_reference_page": "234"
         },
-        {
-            "id": "Necessary Actions",
+        "Necessary Actions": {
             "name": "Interventions de rigueur",
             "description": "",
-            "source_reference": {
-                "page": "235"
-            }
+            "source_reference_page": "235"
         },
-        {
-            "id": "Just as Predicted",
-            "name": "Tout comme je l’avais prédit",
+        "Just as Predicted": {
+            "name": "Tout comme je l\u2019avais pr\u00e9dit",
             "description": "",
-            "source_reference": {
-                "page": "236"
-            }
+            "source_reference_page": "236"
         },
-        {
-            "id": "Speed of Heaven",
-            "name": "Célérité des Cieux",
+        "Speed of Heaven": {
+            "name": "C\u00e9l\u00e9rit\u00e9 des Cieux",
             "description": "",
-            "source_reference": {
-                "page": "237"
-            }
+            "source_reference_page": "237"
         },
-        {
-            "id": "Blessing of the Fortunes",
-            "name": "Bénédiction des fortunes",
+        "Blessing of the Fortunes": {
+            "name": "B\u00e9n\u00e9diction des fortunes",
             "description": "",
-            "source_reference": {
-                "page": "238"
-            }
+            "source_reference_page": "238"
         },
-        {
-            "id": "Embrace the Void",
+        "Embrace the Void": {
             "name": "Embrasser le Vide",
             "description": "",
-            "source_reference": {
-                "page": "239"
-            }
+            "source_reference_page": "239"
         },
-        {
-            "id": "Fox Spirit",
+        "Fox Spirit": {
             "name": "Esprit renard",
             "description": "",
-            "source_reference": {
-                "page": "240"
-            }
+            "source_reference_page": "240"
         },
-        {
-            "id": "Professional Saboteur",
+        "Professional Saboteur": {
             "name": "Saboteur professionnel",
             "description": "",
-            "source_reference": {
-                "page": "241"
-            }
+            "source_reference_page": "241"
         },
-        {
-            "id": "Signiature Weapon",
+        "Signiature Weapon": {
             "name": "Arme favorite",
             "description": "",
-            "source_reference": {
-                "page": "48"
-            }
+            "source_reference_page": "48"
         },
-        {
-            "id": "Piercing Insight",
-            "name": "Perspicacité remarquable",
+        "Piercing Insight": {
+            "name": "Perspicacit\u00e9 remarquable",
             "description": "",
-            "source_reference": {
-                "page": "49"
-            }
+            "source_reference_page": "49"
         },
-        {
-            "id": "Risk and Reward",
-            "name": "Risque et récompense",
+        "Risk and Reward": {
+            "name": "Risque et r\u00e9compense",
             "description": "",
-            "source_reference": {
-                "page": "50"
-            }
+            "source_reference_page": "50"
         },
-        {
-            "id": "Tactical Cover",
+        "Tactical Cover": {
             "name": "Couvert tactique",
             "description": "",
-            "source_reference": {
-                "page": "51"
-            }
+            "source_reference_page": "51"
         },
-        {
-            "id": "Naturally Attuned",
+        "Naturally Attuned": {
             "name": "Naturellement en accord",
             "description": "",
-            "source_reference": {
-                "page": "52"
-            }
+            "source_reference_page": "52"
         },
-        {
-            "id": "Resourceful Artistry",
-            "name": "Ingéniosité artistique",
+        "Resourceful Artistry": {
+            "name": "Ing\u00e9niosit\u00e9 artistique",
             "description": "",
-            "source_reference": {
-                "page": "53"
-            }
+            "source_reference_page": "53"
         },
-        {
-            "id": "Unexpected Wisdom",
+        "Unexpected Wisdom": {
             "name": "Sagesse inattendue",
             "description": "",
-            "source_reference": {
-                "page": "54"
-            }
+            "source_reference_page": "54"
         },
-        {
-            "id": "Seer of the Lords of Death",
-            "name": "Prophète des seigneurs de la Mort",
+        "Seer of the Lords of Death": {
+            "name": "Proph\u00e8te des seigneurs de la Mort",
             "description": "",
-            "source_reference": {
-                "page": "55"
-            }
+            "source_reference_page": "55"
         },
-        {
-            "id": "Akilah's Teachings",
-            "name": "Les enseignements d’Akilah",
+        "Akilah's Teachings": {
+            "name": "Les enseignements d\u2019Akilah",
             "description": "",
-            "source_reference": {
-                "page": "56"
-            }
+            "source_reference_page": "56"
         },
-        {
-            "id": "Creative Execution",
-            "name": "Exécution créative",
+        "Creative Execution": {
+            "name": "Ex\u00e9cution cr\u00e9ative",
             "description": "",
-            "source_reference": {
-                "page": "57"
-            }
+            "source_reference_page": "57"
         },
-        {
-            "id": "Gift of Inner Power",
-            "name": "Don de la puissance intérieure",
+        "Gift of Inner Power": {
+            "name": "Don de la puissance int\u00e9rieure",
             "description": "",
-            "source_reference": {
-                "page": "58"
-            }
+            "source_reference_page": "58"
         },
-        {
-            "id": "Flurry of Steel",
-            "name": "Déluge d’acier",
+        "Flurry of Steel": {
+            "name": "D\u00e9luge d\u2019acier",
             "description": "",
-            "source_reference": {
-                "page": "59"
-            }
+            "source_reference_page": "59"
         },
-        {
-            "id": "Traces of Passage",
-            "name": "Vestiges d’un passage",
+        "Traces of Passage": {
+            "name": "Vestiges d\u2019un passage",
             "description": "",
-            "source_reference": {
-                "page": "88"
-            }
+            "source_reference_page": "88"
         },
-        {
-            "id": "Sacred Art of Steel",
-            "name": "L’art sacré de l’acier",
+        "Sacred Art of Steel": {
+            "name": "L\u2019art sacr\u00e9 de l\u2019acier",
             "description": "",
-            "source_reference": {
-                "page": "89"
-            }
+            "source_reference_page": "89"
         },
-        {
-            "id": "Field Medicine",
-            "name": "Médecine de terrain",
+        "Field Medicine": {
+            "name": "M\u00e9decine de terrain",
             "description": "",
-            "source_reference": {
-                "page": "90"
-            }
+            "source_reference_page": "90"
         },
-        {
-            "id": "Supressing Blows",
-            "name": "Frappes d’intimidation",
+        "Supressing Blows": {
+            "name": "Frappes d\u2019intimidation",
             "description": "",
-            "source_reference": {
-                "page": "91"
-            }
+            "source_reference_page": "91"
         },
-        {
-            "id": "Sharpened Ki",
-            "name": "Ki exacerbé",
+        "Sharpened Ki": {
+            "name": "Ki exacerb\u00e9",
             "description": "",
-            "source_reference": {
-                "page": "92"
-            }
+            "source_reference_page": "92"
         },
-        {
-            "id": "Hands of Earth and Sky",
+        "Hands of Earth and Sky": {
             "name": "Mains de la terre et du ciel",
             "description": "",
-            "source_reference": {
-                "page": "93"
-            }
+            "source_reference_page": "93"
         },
-        {
-            "id": "Eyes of Yotogi",
+        "Eyes of Yotogi": {
             "name": "Les yeux de Yotogi",
             "description": "",
-            "source_reference": {
-                "page": "94"
-            }
+            "source_reference_page": "94"
         },
-        {
-            "id": "Warded Shikigami",
-            "name": "Shikigami bardé de glyphes",
+        "Warded Shikigami": {
+            "name": "Shikigami bard\u00e9 de glyphes",
             "description": "",
-            "source_reference": {
-                "page": "95"
-            }
+            "source_reference_page": "95"
         },
-        {
-            "id": "Sailor’s Fortune",
+        "Sailor\u2019s Fortune": {
             "name": "La fortune du marin",
             "description": "",
-            "source_reference": {
-                "page": "5"
-            }
+            "source_reference_page": "5"
         },
-        {
-            "id": "Way of the Tortoise [Tortoise]",
+        "Way of the Tortoise [Tortoise]": {
             "name": "La voie de la Tortue (Tortue)",
             "description": "",
-            "source_reference": {
-                "page": "9"
-            }
+            "source_reference_page": "9"
         },
-        {
-            "id": "Stand as the Mountain",
+        "Stand as the Mountain": {
             "name": "Robuste comme la montagne",
             "description": "",
-            "source_reference": {
-                "page": "72"
-            }
+            "source_reference_page": "72"
         },
-        {
-            "id": "Drilled Precision",
-            "name": "Précision militaire",
+        "Drilled Precision": {
+            "name": "Pr\u00e9cision militaire",
             "description": "",
-            "source_reference": {
-                "page": "73"
-            }
+            "source_reference_page": "73"
         },
-        {
-            "id": "Explosive Arrival",
-            "name": "Arrivée explosive",
+        "Explosive Arrival": {
+            "name": "Arriv\u00e9e explosive",
             "description": "",
-            "source_reference": {
-                "page": "74"
-            }
+            "source_reference_page": "74"
         },
-        {
-            "id": "Thunderous Courage",
+        "Thunderous Courage": {
             "name": "Courage retentissant",
             "description": "",
-            "source_reference": {
-                "page": "75"
-            }
+            "source_reference_page": "75"
         },
-        {
-            "id": "Badger's Hold",
+        "Badger's Hold": {
             "name": "La prise du blaireau",
             "description": "",
-            "source_reference": {
-                "page": "76"
-            }
+            "source_reference_page": "76"
         },
-        {
-            "id": "Hide of Iron",
+        "Hide of Iron": {
             "name": "Peau de fer",
             "description": "",
-            "source_reference": {
-                "page": "77"
-            }
+            "source_reference_page": "77"
         },
-        {
-            "id": "Sympathetic Bearing",
+        "Sympathetic Bearing": {
             "name": "Allure sympathique",
             "description": "",
-            "source_reference": {
-                "page": "78"
-            }
+            "source_reference_page": "78"
         },
-        {
-            "id": "Elemental Inspiration",
-            "name": "Inspiration élémentaire",
+        "Elemental Inspiration": {
+            "name": "Inspiration \u00e9l\u00e9mentaire",
             "description": "",
-            "source_reference": {
-                "page": "79"
-            }
+            "source_reference_page": "79"
         },
-        {
-            "id": "One with the Pride",
+        "One with the Pride": {
             "name": "Union avec la troupe",
             "description": "",
-            "source_reference": {
-                "page": "80"
-            }
+            "source_reference_page": "80"
         },
-        {
-            "id": "Oath of Sacrifice",
+        "Oath of Sacrifice": {
             "name": "Serment de sacrifice",
             "description": "",
-            "source_reference": {
-                "page": "81"
-            }
+            "source_reference_page": "81"
         },
-        {
-            "id": "Eye of the Storm",
-            "name": "L’oeil de la tempête",
+        "Eye of the Storm": {
+            "name": "L\u2019oeil de la temp\u00eate",
             "description": "",
-            "source_reference": {
-                "page": "6"
-            }
+            "source_reference_page": "6"
         },
-        {
-            "id": "May the Spirits Show the Path",
+        "May the Spirits Show the Path": {
             "name": "Que les esprits montrent la voie",
             "description": "",
-            "source_reference": {
-                "page": "96"
-            }
+            "source_reference_page": "96"
         },
-        {
-            "id": "Laughter Makes the Home",
+        "Laughter Makes the Home": {
             "name": "On rit comme chez soi",
             "description": "",
-            "source_reference": {
-                "page": "97"
-            }
+            "source_reference_page": "97"
         },
-        {
-            "id": "Bend Perception",
+        "Bend Perception": {
             "name": "Fausser les perceptions",
             "description": "",
-            "source_reference": {
-                "page": "98"
-            }
+            "source_reference_page": "98"
         },
-        {
-            "id": "Keen Senses",
-            "name": "Sens Développés",
+        "Keen Senses": {
+            "name": "Sens D\u00e9velopp\u00e9s",
             "description": "",
-            "source_reference": {
-                "page": "99"
-            }
+            "source_reference_page": "99"
         },
-        {
-            "id": "Mind of Calm",
+        "Mind of Calm": {
             "name": "Esprit de calme",
             "description": "",
-            "source_reference": {
-                "page": "100"
-            }
+            "source_reference_page": "100"
         },
-        {
-            "id": "Evolution of the Wilds",
+        "Evolution of the Wilds": {
             "name": "Evolution de la nature",
             "description": "",
-            "source_reference": {
-                "page": "101"
-            }
+            "source_reference_page": "101"
         },
-        {
-            "id": "Mazoku's Authority",
-            "name": "Autorité des Mazoku",
+        "Mazoku's Authority": {
+            "name": "Autorit\u00e9 des Mazoku",
             "description": "",
-            "source_reference": {
-                "page": "24"
-            }
+            "source_reference_page": "24"
         },
-        {
-            "id": "Effortless Aim",
-            "name": "Visée fluide",
+        "Effortless Aim": {
+            "name": "Vis\u00e9e fluide",
             "description": "",
-            "source_reference": {
-                "page": "25"
-            }
+            "source_reference_page": "25"
         },
-        {
-            "id": "Moment of Certainty",
-            "name": "Moment of Certainty (WIP)",
+        "Moment of Certainty": {
+            "name": "Instant de certitude",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "83"
         },
-        {
-            "id": "Disarming Demeanor",
-            "name": "Disarming Demeanor (WIP)",
+        "Disarming Demeanor": {
+            "name": "Attitude attachante",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "84"
         },
-        {
-            "id": "The Horse Lord's Favor",
-            "name": "The Horse Lord's Favor (WIP)",
+        "The Horse Lord's Favor": {
+            "name": "Faveur du Seigneur des chevaux",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "85"
         },
-        {
-            "id": "Calm Counsel",
-            "name": "Calm Counsel (WIP)",
+        "Calm Counsel": {
+            "name": "Conseils calmants",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "86"
         },
-        {
-            "id": "Natural Balance",
-            "name": "Natural Balance (WIP)",
+        "Natural Balance": {
+            "name": "Equilibre naturel",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "87"
         },
-        {
-            "id": "Dunestrider",
-            "name": "Dunestrider (WIP)",
+        "Dunestrider": {
+            "name": "Arpenteur des dunes",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "88"
         },
-        {
-            "id": "Methodical Observation",
-            "name": "Methodical Observation (WIP)",
+        "Methodical Observation": {
+            "name": "Observation m\u00e9thodique",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "89"
         },
-        {
-            "id": "Unity of Horse and Rider",
-            "name": "Unity of Horse and Rider (WIP)",
+        "Unity of Horse and Rider": {
+            "name": "L\u2019union du cheval et du cavalier",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "90"
         },
-        {
-            "id": "Warden of the Five Winds",
-            "name": "Warden of the Five Winds (WIP)",
+        "Warden of the Five Winds": {
+            "name": "Gardien des Cinq Vents",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "91"
         },
-        {
-            "id": "Move as the Wind",
-            "name": "Move as the Wind (WIP)",
+        "Move as the Wind": {
+            "name": "D\u00e9place-toi tel le vent",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "92"
         }
-    ]
+    }
 }

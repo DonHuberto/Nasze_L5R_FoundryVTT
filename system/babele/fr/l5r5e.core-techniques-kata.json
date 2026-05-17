@@ -1,721 +1,451 @@
 {
     "label": "Techniques Kata",
-    "mapping": {
-        "description": "system.description",
-        "source_reference": "system.source_reference"
-    },
-    "entries": [
-        {
-            "id": "Flowing Water Strike",
-            "name": "Assaut de l’eau courante",
+    "mapping": {},
+    "entries": {
+        "Flowing Water Strike": {
+            "name": "Assaut de l\u2019eau courante",
             "description": "",
-            "source_reference": {
-                "page": "174"
-            }
+            "source_reference_page": "174"
         },
-        {
-            "id": "Crimson Leaves Strike",
+        "Crimson Leaves Strike": {
             "name": "Assaut des feuilles pourpres",
             "description": "",
-            "source_reference": {
-                "page": "175"
-            }
+            "source_reference_page": "175"
         },
-        {
-            "id": "Heartpiercing Strike",
+        "Heartpiercing Strike": {
             "name": "Assaut en plein coeur",
             "description": "",
-            "source_reference": {
-                "page": "175"
-            }
+            "source_reference_page": "175"
         },
-        {
-            "id": "Battle in the Mind",
+        "Battle in the Mind": {
             "name": "Bataille mentale",
             "description": "",
-            "source_reference": {
-                "page": "175"
-            }
+            "source_reference_page": "175"
         },
-        {
-            "id": "Lord Shiba’s Valor (Phoenix)",
-            "name": "Bravoure de Sire Shiba (Phénix)",
+        "Lord Shiba\u2019s Valor (Phoenix)": {
+            "name": "Bravoure de Sire Shiba (Ph\u00e9nix)",
             "description": "",
-            "source_reference": {
-                "page": "175"
-            }
+            "source_reference_page": "175"
         },
-        {
-            "id": "Soul Sunder",
-            "name": "Destruction de l’âme",
+        "Soul Sunder": {
+            "name": "Destruction de l\u2019\u00e2me",
             "description": "",
-            "source_reference": {
-                "page": "176"
-            }
+            "source_reference_page": "176"
         },
-        {
-            "id": "Warrior’s Resolve",
-            "name": "Détermination du guerrier",
+        "Warrior\u2019s Resolve": {
+            "name": "D\u00e9termination du guerrier",
             "description": "",
-            "source_reference": {
-                "page": "176"
-            }
+            "source_reference_page": "176"
         },
-        {
-            "id": "Tactical Assessment",
+        "Tactical Assessment": {
             "name": "Evaluation tactique",
             "description": "",
-            "source_reference": {
-                "page": "176"
-            }
+            "source_reference_page": "176"
         },
-        {
-            "id": "Soaring Slice",
-            "name": "Mortelle envolée",
+        "Soaring Slice": {
+            "name": "Mortelle envol\u00e9e",
             "description": "",
-            "source_reference": {
-                "page": "177"
-            }
+            "source_reference_page": "177"
         },
-        {
-            "id": "Striking as Air",
-            "name": "Offensive de l’Air",
+        "Striking as Air": {
+            "name": "Offensive de l\u2019Air",
             "description": "",
-            "source_reference": {
-                "page": "177"
-            }
+            "source_reference_page": "177"
         },
-        {
-            "id": "Striking as Water",
+        "Striking as Water": {
             "name": "Offensive de l'Eau",
             "description": "",
-            "source_reference": {
-                "page": "177"
-            }
+            "source_reference_page": "177"
         },
-        {
-            "id": "Striking as Earth",
+        "Striking as Earth": {
             "name": "Offensive de la Terre",
             "description": "",
-            "source_reference": {
-                "page": "177"
-            }
+            "source_reference_page": "177"
         },
-        {
-            "id": "Striking as Fire",
+        "Striking as Fire": {
             "name": "Offensive du Feu",
             "description": "",
-            "source_reference": {
-                "page": "177"
-            }
+            "source_reference_page": "177"
         },
-        {
-            "id": "Striking as Void",
+        "Striking as Void": {
             "name": "Offensive du Vide",
             "description": "",
-            "source_reference": {
-                "page": "177"
-            }
+            "source_reference_page": "177"
         },
-        {
-            "id": "Lord Hida’s Grip (Crab)",
+        "Lord Hida\u2019s Grip (Crab)": {
             "name": "Poigne de Sire Hida (Crabe)",
             "description": "",
-            "source_reference": {
-                "page": "178"
-            }
+            "source_reference_page": "178"
         },
-        {
-            "id": "Disappearing World Style",
+        "Disappearing World Style": {
             "name": "Style de la disparition du monde",
             "description": "",
-            "source_reference": {
-                "page": "178"
-            }
+            "source_reference_page": "178"
         },
-        {
-            "id": "Crashing Wave Style",
-            "name": "Style de la vague déferlante",
+        "Crashing Wave Style": {
+            "name": "Style de la vague d\u00e9ferlante",
             "description": "",
-            "source_reference": {
-                "page": "178"
-            }
+            "source_reference_page": "178"
         },
-        {
-            "id": "Crescent Moon Style",
+        "Crescent Moon Style": {
             "name": "Style du croissant de lune",
             "description": "",
-            "source_reference": {
-                "page": "178"
-            }
+            "source_reference_page": "178"
         },
-        {
-            "id": "Iron in the Mountains Style",
+        "Iron in the Mountains Style": {
             "name": "Style du fer dans les montagnes",
             "description": "",
-            "source_reference": {
-                "page": "178"
-            }
+            "source_reference_page": "178"
         },
-        {
-            "id": "Breath of Wind Style",
+        "Breath of Wind Style": {
             "name": "Style du souffle du vent",
             "description": "",
-            "source_reference": {
-                "page": "178"
-            }
+            "source_reference_page": "178"
         },
-        {
-            "id": "Thunderclap Strike",
+        "Thunderclap Strike": {
             "name": "Assaut du coup de tonnerre",
             "description": "",
-            "source_reference": {
-                "page": "179"
-            }
+            "source_reference_page": "179"
         },
-        {
-            "id": "Iaijutsu Cut: Rising Blade",
+        "Iaijutsu Cut: Rising Blade": {
             "name": "Attaque de iaijutsu : lame ascendante",
             "description": "",
-            "source_reference": {
-                "page": "179"
-            }
+            "source_reference_page": "179"
         },
-        {
-            "id": "Iaijutsu Cut: Crossing Blade",
+        "Iaijutsu Cut: Crossing Blade": {
             "name": "Attaque de iaijutsu : lame horizontale",
             "description": "",
-            "source_reference": {
-                "page": "180"
-            }
+            "source_reference_page": "180"
         },
-        {
-            "id": "Rushing Avalanche Style",
-            "name": "Style de l’avalanche meurtrière",
+        "Rushing Avalanche Style": {
+            "name": "Style de l\u2019avalanche meurtri\u00e8re",
             "description": "",
-            "source_reference": {
-                "page": "180"
-            }
+            "source_reference_page": "180"
         },
-        {
-            "id": "Iron Forest Style",
-            "name": "Style de la forêt de fer",
+        "Iron Forest Style": {
+            "name": "Style de la for\u00eat de fer",
             "description": "",
-            "source_reference": {
-                "page": "180"
-            }
+            "source_reference_page": "180"
         },
-        {
-            "id": "Open-Hand Style",
+        "Open-Hand Style": {
             "name": "Style de la main ouverte",
             "description": "",
-            "source_reference": {
-                "page": "180"
-            }
+            "source_reference_page": "180"
         },
-        {
-            "id": "Veiled Menace Style",
-            "name": "Style de la menace voilée",
+        "Veiled Menace Style": {
+            "name": "Style de la menace voil\u00e9e",
             "description": "",
-            "source_reference": {
-                "page": "180"
-            }
+            "source_reference_page": "180"
         },
-        {
-            "id": "Spinning Blades Style",
+        "Spinning Blades Style": {
             "name": "Style des lames tournoyantes",
             "description": "",
-            "source_reference": {
-                "page": "180"
-            }
+            "source_reference_page": "180"
         },
-        {
-            "id": "Coiling Serpent Style",
+        "Coiling Serpent Style": {
             "name": "Style du serpent constricteur",
             "description": "",
-            "source_reference": {
-                "page": "181"
-            }
+            "source_reference_page": "181"
         },
-        {
-            "id": "Pin the Fan",
-            "name": "Clouer l’éventail",
+        "Pin the Fan": {
+            "name": "Clouer l\u2019\u00e9ventail",
             "description": "",
-            "source_reference": {
-                "page": "181"
-            }
+            "source_reference_page": "181"
         },
-        {
-            "id": "Hawk’s Precision",
-            "name": "Précision du faucon",
+        "Hawk\u2019s Precision": {
+            "name": "Pr\u00e9cision du faucon",
             "description": "",
-            "source_reference": {
-                "page": "181"
-            }
+            "source_reference_page": "181"
         },
-        {
-            "id": "Pelting Hail Style",
-            "name": "Style de l’averse de grêle",
+        "Pelting Hail Style": {
+            "name": "Style de l\u2019averse de gr\u00eale",
             "description": "",
-            "source_reference": {
-                "page": "181"
-            }
+            "source_reference_page": "181"
         },
-        {
-            "id": "Trip the Leg",
+        "Trip the Leg": {
             "name": "Croc-en-jambe",
             "description": "",
-            "source_reference": {
-                "page": "113"
-            }
+            "source_reference_page": "113"
         },
-        {
-            "id": "Pole-Vault",
-            "name": "Saut à la perche",
+        "Pole-Vault": {
+            "name": "Saut \u00e0 la perche",
             "description": "",
-            "source_reference": {
-                "page": "113"
-            }
+            "source_reference_page": "113"
         },
-        {
-            "id": "Chaotic Scattering",
+        "Chaotic Scattering": {
             "name": "Dispersion chaotique",
             "description": "",
-            "source_reference": {
-                "page": "86"
-            }
+            "source_reference_page": "86"
         },
-        {
-            "id": "Mind's Edge",
-            "name": "Le tranchant de l’esprit",
+        "Mind's Edge": {
+            "name": "Le tranchant de l\u2019esprit",
             "description": "",
-            "source_reference": {
-                "page": "86"
-            }
+            "source_reference_page": "86"
         },
-        {
-            "id": "Iron Shell Style",
+        "Iron Shell Style": {
             "name": "Style de la carapace de fer",
             "description": "",
-            "source_reference": {
-                "page": "87"
-            }
+            "source_reference_page": "87"
         },
-        {
-            "id": "Boar's Wrath Style",
+        "Boar's Wrath Style": {
             "name": "Style de la fureur du sanglier",
             "description": "",
-            "source_reference": {
-                "page": "90"
-            }
+            "source_reference_page": "90"
         },
-        {
-            "id": "Thunderous Hooves Style",
+        "Thunderous Hooves Style": {
             "name": "Style du tonnerre des sabots",
             "description": "",
-            "source_reference": {
-                "page": "87"
-            }
+            "source_reference_page": "87"
         },
-        {
-            "id": "Rider's Haste",
-            "name": "La précipitation du cavalier",
+        "Rider's Haste": {
+            "name": "La pr\u00e9cipitation du cavalier",
             "description": "",
-            "source_reference": {
-                "page": "86"
-            }
+            "source_reference_page": "86"
         },
-        {
-            "id": "Void Embrace Style",
-            "name": "Style de l’étreinte du Vide",
+        "Void Embrace Style": {
+            "name": "Style de l\u2019\u00e9treinte du Vide",
             "description": "",
-            "source_reference": {
-                "page": "87"
-            }
+            "source_reference_page": "87"
         },
-        {
-            "id": "Improvised Assault",
-            "name": "Assaut improvisé",
+        "Improvised Assault": {
+            "name": "Assaut improvis\u00e9",
             "description": "",
-            "source_reference": {
-                "page": "88"
-            }
+            "source_reference_page": "88"
         },
-        {
-            "id": "Bonebreaker Style",
-            "name": "Style de l’écrasement des os",
+        "Bonebreaker Style": {
+            "name": "Style de l\u2019\u00e9crasement des os",
             "description": "",
-            "source_reference": {
-                "page": "90"
-            }
+            "source_reference_page": "90"
         },
-        {
-            "id": "Flashing Steel Strike",
-            "name": "Assaut de l’éclat d’acier",
+        "Flashing Steel Strike": {
+            "name": "Assaut de l\u2019\u00e9clat d\u2019acier",
             "description": "",
-            "source_reference": {
-                "page": "87"
-            }
+            "source_reference_page": "87"
         },
-        {
-            "id": "Deflective Defense",
-            "name": "Déflexion",
+        "Deflective Defense": {
+            "name": "D\u00e9flexion",
             "description": "",
-            "source_reference": {
-                "page": "89"
-            }
+            "source_reference_page": "89"
         },
-        {
-            "id": "Daring Swing",
+        "Daring Swing": {
             "name": "Balancement hardi",
             "description": "",
-            "source_reference": {
-                "page": "89"
-            }
+            "source_reference_page": "89"
         },
-        {
-            "id": "Iaijutsu Cut: Reverse Draw",
-            "name": "Attaque de iaijutsu : garde inversée",
+        "Iaijutsu Cut: Reverse Draw": {
+            "name": "Attaque de iaijutsu : garde invers\u00e9e",
             "description": "",
-            "source_reference": {
-                "page": "88"
-            }
+            "source_reference_page": "88"
         },
-        {
-            "id": "Landslide Strike",
+        "Landslide Strike": {
             "name": "Assaut du glissement de terrain",
             "description": "",
-            "source_reference": {
-                "page": "88"
-            }
+            "source_reference_page": "88"
         },
-        {
-            "id": "Laughing Fox Style",
+        "Laughing Fox Style": {
             "name": "Style du renard rieur",
             "description": "",
-            "source_reference": {
-                "page": "91"
-            }
+            "source_reference_page": "91"
         },
-        {
-            "id": "Iaijutsu Cut: Sword and Sheath",
+        "Iaijutsu Cut: Sword and Sheath": {
             "name": "Attaque de iaijutsu : sabre et fourreau",
             "description": "",
-            "source_reference": {
-                "page": "88"
-            }
+            "source_reference_page": "88"
         },
-        {
-            "id": "Piercing Bolt Style",
+        "Piercing Bolt Style": {
             "name": "Style de la charge perforante",
             "description": "",
-            "source_reference": {
-                "page": "90"
-            }
+            "source_reference_page": "90"
         },
-        {
-            "id": "Reckless Lunge",
-            "name": "Fente téméraire",
+        "Reckless Lunge": {
+            "name": "Fente t\u00e9m\u00e9raire",
             "description": "",
-            "source_reference": {
-                "page": "89"
-            }
+            "source_reference_page": "89"
         },
-        {
-            "id": "Swirling Tempest Style",
-            "name": "Style de la tempête tournoyante",
+        "Swirling Tempest Style": {
+            "name": "Style de la temp\u00eate tournoyante",
             "description": "",
-            "source_reference": {
-                "page": "90"
-            }
+            "source_reference_page": "90"
         },
-        {
-            "id": "Snapping Branch Strike",
-            "name": "Assaut de la branche cassée",
+        "Snapping Branch Strike": {
+            "name": "Assaut de la branche cass\u00e9e",
             "description": "",
-            "source_reference": {
-                "page": "87"
-            }
+            "source_reference_page": "87"
         },
-        {
-            "id": "Thunderous Blows Style",
+        "Thunderous Blows Style": {
             "name": "Style des coups tonitruants",
             "description": "",
-            "source_reference": {
-                "page": "91"
-            }
+            "source_reference_page": "91"
         },
-        {
-            "id": "Rushing Ox Style",
+        "Rushing Ox Style": {
             "name": "Style de la charge du taureau",
             "description": "",
-            "source_reference": {
-                "page": "90"
-            }
+            "source_reference_page": "90"
         },
-        {
-            "id": "Wheeling Sweep",
+        "Wheeling Sweep": {
             "name": "Balayage tournoyant",
             "description": "",
-            "source_reference": {
-                "page": "89"
-            }
+            "source_reference_page": "89"
         },
-        {
-            "id": "Eyeless Sight Shot",
-            "name": "Tir à l’aveugle",
+        "Eyeless Sight Shot": {
+            "name": "Tir \u00e0 l\u2019aveugle",
             "description": "",
-            "source_reference": {
-                "page": "91"
-            }
+            "source_reference_page": "91"
         },
-        {
-            "id": "Twin Streams Style",
+        "Twin Streams Style": {
             "name": "Style des ruisseaux jumeaux",
             "description": "",
-            "source_reference": {
-                "page": "91"
-            }
+            "source_reference_page": "91"
         },
-        {
-            "id": "Staggering Shot",
-            "name": "Tir déséquilibrant",
+        "Staggering Shot": {
+            "name": "Tir d\u00e9s\u00e9quilibrant",
             "description": "",
-            "source_reference": {
-                "page": "92"
-            }
+            "source_reference_page": "92"
         },
-        {
-            "id": "Falling Heavens Shot",
-            "name": "Tir tombé des Cieux",
+        "Falling Heavens Shot": {
+            "name": "Tir tomb\u00e9 des Cieux",
             "description": "",
-            "source_reference": {
-                "page": "92"
-            }
+            "source_reference_page": "92"
         },
-        {
-            "id": "Swirling Viper Style",
-            "name": "Style de la vipère tournoyante",
+        "Swirling Viper Style": {
+            "name": "Style de la vip\u00e8re tournoyante",
             "description": "",
-            "source_reference": {
-                "page": "91"
-            }
+            "source_reference_page": "91"
         },
-        {
-            "id": "Wasp's Spite Style",
-            "name": "Style de l’agressivité de la guêpe",
+        "Wasp's Spite Style": {
+            "name": "Style de l\u2019agressivit\u00e9 de la gu\u00eape",
             "description": "",
-            "source_reference": {
-                "page": "91"
-            }
+            "source_reference_page": "91"
         },
-        {
-            "id": "Fierce Badger Style",
-            "name": "Style du blaireau féroce",
+        "Fierce Badger Style": {
+            "name": "Style du blaireau f\u00e9roce",
             "description": "",
-            "source_reference": {
-                "page": "95"
-            }
+            "source_reference_page": "95"
         },
-        {
-            "id": "Thicket's Embrace Style",
-            "name": "Style de l’étreinte du fourré",
+        "Thicket's Embrace Style": {
+            "name": "Style de l\u2019\u00e9treinte du fourr\u00e9",
             "description": "",
-            "source_reference": {
-                "page": "95"
-            }
+            "source_reference_page": "95"
         },
-        {
-            "id": "Shattering Tide Style",
-            "name": "Style de la marée destructrice",
+        "Shattering Tide Style": {
+            "name": "Style de la mar\u00e9e destructrice",
             "description": "",
-            "source_reference": {
-                "page": "95"
-            }
+            "source_reference_page": "95"
         },
-        {
-            "id": "Bear’s Swipe Style",
-            "name": "Style de la gifle de l’ours",
+        "Bear\u2019s Swipe Style": {
+            "name": "Style de la gifle de l\u2019ours",
             "description": "",
-            "source_reference": {
-                "page": "114"
-            }
+            "source_reference_page": "114"
         },
-        {
-            "id": "Serpent’s Twist Style",
+        "Serpent\u2019s Twist Style": {
             "name": "Style de la contorsion du serpent",
             "description": "",
-            "source_reference": {
-                "page": "114"
-            }
+            "source_reference_page": "114"
         },
-        {
-            "id": "Swallow’s Dart Style",
-            "name": "Style de la vivacité de l’hirondelle",
+        "Swallow\u2019s Dart Style": {
+            "name": "Style de la vivacit\u00e9 de l\u2019hirondelle",
             "description": "",
-            "source_reference": {
-                "page": "115"
-            }
+            "source_reference_page": "115"
         },
-        {
-            "id": "Tiger’s Lunge Style",
-            "name": "Style de l’attaque du tigre",
+        "Tiger\u2019s Lunge Style": {
+            "name": "Style de l\u2019attaque du tigre",
             "description": "",
-            "source_reference": {
-                "page": "115"
-            }
+            "source_reference_page": "115"
         },
-        {
-            "id": "Flexible Grip",
+        "Flexible Grip": {
             "name": "Prise flexible",
             "description": "",
-            "source_reference": {
-                "page": "116"
-            }
+            "source_reference_page": "116"
         },
-        {
-            "id": "Howling Gale Defense",
-            "name": "Défense de la bourrasque hurlante",
+        "Howling Gale Defense": {
+            "name": "D\u00e9fense de la bourrasque hurlante",
             "description": "",
-            "source_reference": {
-                "page": "115"
-            }
+            "source_reference_page": "115"
         },
-        {
-            "id": "Heron’s Grasp Style",
-            "name": "Style de l’étreinte du héron",
+        "Heron\u2019s Grasp Style": {
+            "name": "Style de l\u2019\u00e9treinte du h\u00e9ron",
             "description": "",
-            "source_reference": {
-                "page": "116"
-            }
+            "source_reference_page": "116"
         },
-        {
-            "id": "Serow’s Leap Style",
+        "Serow\u2019s Leap Style": {
             "name": "Style du saro bondissant",
             "description": "",
-            "source_reference": {
-                "page": "116"
-            }
+            "source_reference_page": "116"
         },
-        {
-            "id": "Tumbling Oak Style",
-            "name": "Style de la chute du chêne",
+        "Tumbling Oak Style": {
+            "name": "Style de la chute du ch\u00eane",
             "description": "",
-            "source_reference": {
-                "page": "116"
-            }
+            "source_reference_page": "116"
         },
-        {
-            "id": "Flight",
+        "Flight": {
             "name": "Vol",
             "description": "",
-            "source_reference": {
-                "page": "118"
-            }
+            "source_reference_page": "118"
         },
-        {
-            "id": "Razor Bite",
-            "name": "Morsure acérée",
+        "Razor Bite": {
+            "name": "Morsure ac\u00e9r\u00e9e",
             "description": "",
-            "source_reference": {
-                "page": "117"
-            }
+            "source_reference_page": "117"
         },
-        {
-            "id": "Owl’s Swoop Style",
-            "name": "Style du piqué de la chouette",
+        "Owl\u2019s Swoop Style": {
+            "name": "Style du piqu\u00e9 de la chouette",
             "description": "",
-            "source_reference": {
-                "page": "118"
-            }
+            "source_reference_page": "118"
         },
-        {
-            "id": "Skittering Shift",
-            "name": "Déguerpissement prompt",
+        "Skittering Shift": {
+            "name": "D\u00e9guerpissement prompt",
             "description": "",
-            "source_reference": {
-                "page": "117"
-            }
+            "source_reference_page": "117"
         },
-        {
-            "id": "Tail Sweep",
+        "Tail Sweep": {
             "name": "Balayage caudal",
             "description": "",
-            "source_reference": {
-                "page": "117"
-            }
+            "source_reference_page": "117"
         },
-        {
-            "id": "Cautious Tread",
-            "name": "Cautious Tread (WIP)",
+        "Cautious Tread": {
+            "name": "Avanc\u00e9e prudente",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Stalking Leopard Style",
-            "name": "Stalking Leopard Style (WIP)",
+        "Stalking Leopard Style": {
+            "name": "Style du l\u00e9opard qui r\u00f4de",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Sudden Downpour Style",
-            "name": "Sudden Downpour Style (WIP)",
+        "Sudden Downpour Style": {
+            "name": "Style de l\u2019averse soudaine",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Swaying Grass Evasion",
-            "name": "Swaying Grass Evasion (WIP)",
+        "Swaying Grass Evasion": {
+            "name": "Evasion de l\u2019herbe ondulante",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Distracting Flurry Style",
-            "name": "Distracting Flurry Style (WIP)",
+        "Distracting Flurry Style": {
+            "name": "Style de la distraction imp\u00e9tueuse",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Scouring Wind Style",
-            "name": "Scouring Wind Style (WIP)",
+        "Scouring Wind Style": {
+            "name": "Style de l\u2019\u00e9rosion du vent",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "109"
         },
-        {
-            "id": "Slashing Sandstorm Style",
-            "name": "Slashing Sandstorm Style (WIP)",
+        "Slashing Sandstorm Style": {
+            "name": "Style de la temp\u00eate de sable cinglante",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "109"
         },
-        {
-            "id": "Descending Swarm Shot",
-            "name": "Descending Swarm Shot (WIP)",
+        "Descending Swarm Shot": {
+            "name": "Tir de la nu\u00e9e qui s\u2019abat",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "110"
         },
-        {
-            "id": "Thunderbolt Style",
-            "name": "Thunderbolt Style (WIP)",
+        "Thunderbolt Style": {
+            "name": "Style de l\u2019\u00e9clair",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "110"
         }
-    ]
+    }
 }

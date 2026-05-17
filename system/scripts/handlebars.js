@@ -37,6 +37,14 @@ export const RegisterHandlebars = function () {
         return sanitizeIfFail(game.i18n.localize(isYes ? "Yes" : "No"));
     });
 
+    // Replace "localize (localize" for partial var (broken in v14)
+    Handlebars.registerHelper("localizeEmbedded", function (string, objects) {
+        Object.keys(objects.hash).forEach(key => {
+            string = string.replace("{" + key + "}", objects.hash[key]);
+        });
+        return sanitizeIfFail(game.i18n.localize(string));
+    });
+
     /* ------------------------------------ */
     /* Dice                                 */
     /* ------------------------------------ */

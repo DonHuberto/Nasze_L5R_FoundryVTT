@@ -1,213 +1,176 @@
 {
     "label": "Qualità degli Oggetti (WIP)",
-    "mapping": {
-        "description": "system.description",
-        "book_reference": "system.book_reference"
-    },
-    "entries": [
-        {
-            "id": "Razor-Edged",
+    "mapping": {},
+    "entries": {
+        "Razor-Edged": {
             "name": "Affilato",
             "description": "",
             "book_reference": "Manuale Base p.240"
         },
-        {
-            "id": "Ceremonial",
+        "Ceremonial": {
             "name": "Cerimoniale",
             "description": "",
             "book_reference": "Manuale Base p.240"
         },
-        {
-            "id": "Damaged",
+        "Damaged": {
             "name": "Danneggiato",
             "description": "",
             "book_reference": "Manuale Base p.240"
         },
-        {
-            "id": "Destroyed",
+        "Destroyed": {
             "name": "Distrutto",
             "description": "",
             "book_reference": "Manuale Base p.240"
         },
-        {
-            "id": "Concealable",
+        "Concealable": {
             "name": "Discreto",
             "description": "",
             "book_reference": "Manuale Base p.240"
         },
-        {
-            "id": "Cumbersome",
+        "Cumbersome": {
             "name": "Ingombrante",
             "description": "",
             "book_reference": "Manuale Base p.240"
         },
-        {
-            "id": "Snaring",
+        "Snaring": {
             "name": "Intrappolante",
             "description": "",
             "book_reference": "Manuale Base p.240"
         },
-        {
-            "id": "Unholy",
+        "Unholy": {
             "name": "Sacrilego",
             "description": "",
             "book_reference": "Manuale Base p.241"
         },
-        {
-            "id": "Forbidden",
+        "Forbidden": {
             "name": "Proibito",
             "description": "",
             "book_reference": "Manuale Base p.241"
         },
-        {
-            "id": "Resplendent",
+        "Resplendent": {
             "name": "Risplendente",
             "description": "",
             "book_reference": "Manuale Base p.241"
         },
-        {
-            "id": "Wargear",
+        "Wargear": {
             "name": "Militare",
             "description": "",
             "book_reference": "Manuale Base p.241"
         },
-        {
-            "id": "Mundane",
+        "Mundane": {
             "name": "Comune",
             "description": "",
             "book_reference": "Manuale Base p.240"
         },
-        {
-            "id": "Prepare",
+        "Prepare": {
             "name": "Ricaricabile",
             "description": "",
             "book_reference": "Manuale Base p.241"
         },
-        {
-            "id": "Sacred",
+        "Sacred": {
             "name": "Sacro",
             "description": "",
             "book_reference": "Manuale Base p.241"
         },
-        {
-            "id": "Durable",
+        "Durable": {
             "name": "Durevole",
             "description": "",
             "book_reference": "Manuale Base p.240"
         },
-        {
-            "id": "Subtle",
+        "Subtle": {
             "name": "Occultabile",
             "description": "",
             "book_reference": "Manuale Base p.241"
         },
-        {
-            "id": "Kakita Pattern",
+        "Kakita Pattern": {
             "name": "Kakita Pattern",
             "description": "",
             "book_reference": "Terre dell'Ombra p.109"
         },
-        {
-            "id": "Kenzō Blade",
+        "Kenzō Blade": {
             "name": "Kenzō Blade",
             "description": "",
             "book_reference": "Terre dell'Ombra p.109"
         },
-        {
-            "id": "Shirogane Jade Inlay",
+        "Shirogane Jade Inlay": {
             "name": "Shirogane Jade Inlay",
             "description": "",
             "book_reference": "Terre dell'Ombra p.109"
         },
-        {
-            "id": "Uchema’s Technique",
+        "Uchema’s Technique": {
             "name": "Uchema’s Technique",
             "description": "",
             "book_reference": "Terre dell'Ombra p.109"
         },
-        {
-            "id": "Yasunori Steel",
+        "Yasunori Steel": {
             "name": "Yasunori Steel",
             "description": "",
             "book_reference": "Terre dell'Ombra p.109"
         },
-        {
-            "id": "Akodo Pattern",
+        "Akodo Pattern": {
             "name": "Akodo Pattern",
             "description": "",
             "book_reference": "Fields of Victory"
         },
-        {
-            "id": "Burning Watter Pattern",
+        "Burning Watter Pattern": {
             "name": "Burning Watter Pattern",
             "description": "",
             "book_reference": "Fields of Victory"
         },
-        {
-            "id": "Concealment Pattern",
+        "Concealment Pattern": {
             "name": "Concealment Pattern",
             "description": "",
             "book_reference": "Fields of Victory"
         },
-        {
-            "id": "Deadly Fangs Pattern",
+        "Deadly Fangs Pattern": {
             "name": "Deadly Fangs Pattern",
             "description": "",
             "book_reference": "Fields of Victory"
         },
-        {
-            "id": "Fearsome Snarl Pattern",
+        "Fearsome Snarl Pattern": {
             "name": "Fearsome Snarl Pattern",
             "description": "",
             "book_reference": "Fields of Victory"
         },
-        {
-            "id": "Ichirō Pattern",
+        "Ichirō Pattern": {
             "name": "Ichirō Pattern",
             "description": "",
             "book_reference": "Fields of Victory"
         },
-        {
-            "id": "Mountain Silk Pattern",
+        "Mountain Silk Pattern": {
             "name": "Mountain Silk Pattern",
             "description": "",
             "book_reference": "Fields of Victory"
         },
-        {
-            "id": "Screaming Fire Pattern",
+        "Screaming Fire Pattern": {
             "name": "Screaming Fire Pattern",
             "description": "",
             "book_reference": "Fields of Victory"
         },
-        {
-            "id": "Toriyama's Endurance Pattern",
+        "Toriyama's Endurance Pattern": {
             "name": "Toriyama's Endurance Pattern",
             "description": "",
             "book_reference": "Fields of Victory"
         },
-        {
-            "id": "Spirit of the Qamarist Pattern",
+        "Spirit of the Qamarist Pattern": {
             "name": "Spirit of the Qamarist Pattern",
             "description": "",
             "book_reference": "Sentiero delle Onde p.117"
         },
-        {
-            "id": "Ghostlands Yodhaniya Pattern",
+        "Ghostlands Yodhaniya Pattern": {
             "name": "Ghostlands Yodhaniya Pattern",
             "description": "",
             "book_reference": "Sentiero delle Onde p.117"
         },
-        {
-            "id": "Kökejin’s Heart of the Wind Pattern",
+        "Kökejin’s Heart of the Wind Pattern": {
             "name": "Kökejin’s Heart of the Wind Pattern",
             "description": "",
             "book_reference": "Sentiero delle Onde p.117"
         },
-        {
-            "id": "Agasha Pattern",
+        "Agasha Pattern": {
             "name": "Agasha Pattern",
             "description": "",
             "book_reference": "Reami Celesti"
         }
-    ]
+    }
 }

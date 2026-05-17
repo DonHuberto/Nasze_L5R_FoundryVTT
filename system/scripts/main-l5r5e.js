@@ -82,7 +82,7 @@ Hooks.once("init", async () => {
     // Note: We don't have any custom icons here so just append l5r5e and type
     CONFIG.Cards.sidebarIcon += " l5r5e cardsIcon";
     CONFIG.Macro.sidebarIcon += " l5r5e macroIcon";
-    
+
     // The compendium and the settings menu is registered a little different.
     foundry.applications.sidebar.Sidebar.TABS.compendium.icon = "l5r5e compendiumIcon";
     foundry.applications.sidebar.Sidebar.TABS.settings.icon = "l5r5e settingsIcon";
@@ -279,6 +279,7 @@ Hooks.once("init", async () => {
 Hooks.once("setup", HooksL5r5e.setup);
 Hooks.once("ready", HooksL5r5e.ready);
 Hooks.once("init", HooksL5r5e.init);
+Hooks.once("babele.init", (babele) => HooksL5r5e.babeleInit(babele));
 Hooks.once("diceSoNiceReady", (dice3d) => HooksL5r5e.diceSoNiceReady(dice3d));
 
 /* ------------------------------------ */
