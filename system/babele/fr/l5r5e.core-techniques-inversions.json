@@ -1,137 +1,86 @@
 {
     "label": "Techniques d'Inversions",
-    "mapping": {
-        "description": "system.description",
-        "source_reference": "system.source_reference"
-    },
-    "entries": [
-        {
-            "id": "One Within the Void",
-            "name": "S’unir au Vide",
+    "mapping": {},
+    "entries": {
+        "One Within the Void": {
+            "name": "S\u2019unir au Vide",
             "description": "",
-            "source_reference": {
-                "page": "115"
-            }
+            "source_reference_page": "115"
         },
-        {
-            "id": "Sight beyond Existence",
-            "name": "Voir au-delà de l’existence",
+        "Sight beyond Existence": {
+            "name": "Voir au-del\u00e0 de l\u2019existence",
             "description": "",
-            "source_reference": {
-                "page": "116"
-            }
+            "source_reference_page": "116"
         },
-        {
-            "id": "Whispered Blade",
-            "name": "Lame murmurée",
+        "Whispered Blade": {
+            "name": "Lame murmur\u00e9e",
             "description": "",
-            "source_reference": {
-                "page": "115"
-            }
+            "source_reference_page": "115"
         },
-        {
-            "id": "Witness the End",
-            "name": "Assister à la fin",
+        "Witness the End": {
+            "name": "Assister \u00e0 la fin",
             "description": "",
-            "source_reference": {
-                "page": "115"
-            }
+            "source_reference_page": "115"
         },
-        {
-            "id": "Distance Distorted",
-            "name": "Distance déformée",
+        "Distance Distorted": {
+            "name": "Distance d\u00e9form\u00e9e",
             "description": "",
-            "source_reference": {
-                "page": "116"
-            }
+            "source_reference_page": "116"
         },
-        {
-            "id": "Ethereal Flicker",
-            "name": "Lueur éthérée",
+        "Ethereal Flicker": {
+            "name": "Lueur \u00e9th\u00e9r\u00e9e",
             "description": "",
-            "source_reference": {
-                "page": "117"
-            }
+            "source_reference_page": "117"
         },
-        {
-            "id": "The Lotus Bloom",
+        "The Lotus Bloom": {
             "name": "Le lotus fleurit",
             "description": "",
-            "source_reference": {
-                "page": "117"
-            }
+            "source_reference_page": "117"
         },
-        {
-            "id": "Hurl from the Stream",
+        "Hurl from the Stream": {
             "name": "Extirper des flots",
             "description": "",
-            "source_reference": {
-                "page": "118"
-            }
+            "source_reference_page": "118"
         },
-        {
-            "id": "Moon on the Shifting Sea",
+        "Moon on the Shifting Sea": {
             "name": "Reflet de lune sur les vagues",
             "description": "",
-            "source_reference": {
-                "page": "118"
-            }
+            "source_reference_page": "118"
         },
-        {
-            "id": "Shroud in Solitude",
-            "name": "Drapé de solitude",
+        "Shroud in Solitude": {
+            "name": "Drap\u00e9 de solitude",
             "description": "",
-            "source_reference": {
-                "page": "117"
-            }
+            "source_reference_page": "117"
         },
-        {
-            "id": "Reality Stitch",
-            "name": "Réalités entrelacées",
+        "Reality Stitch": {
+            "name": "R\u00e9alit\u00e9s entrelac\u00e9es",
             "description": "",
-            "source_reference": {
-                "page": "119"
-            }
+            "source_reference_page": "119"
         },
-        {
-            "id": "Shattering Caress",
+        "Shattering Caress": {
             "name": "Caresse destructrice",
             "description": "",
-            "source_reference": {
-                "page": "119"
-            }
+            "source_reference_page": "119"
         },
-        {
-            "id": "Three Heartbeats",
+        "Three Heartbeats": {
             "name": "Trois battements de coeur",
             "description": "",
-            "source_reference": {
-                "page": "119"
-            }
+            "source_reference_page": "119"
         },
-        {
-            "id": "Essence Eternal",
-            "name": "Essence éternelle",
+        "Essence Eternal": {
+            "name": "Essence \u00e9ternelle",
             "description": "",
-            "source_reference": {
-                "page": "120"
-            }
+            "source_reference_page": "120"
         },
-        {
-            "id": "Slip the Cycle",
+        "Slip the Cycle": {
             "name": "Passer un cycle",
             "description": "",
-            "source_reference": {
-                "page": "120"
-            }
+            "source_reference_page": "120"
         },
-        {
-            "id": "Unweave",
-            "name": "Détisser",
+        "Unweave": {
+            "name": "D\u00e9tisser",
             "description": "",
-            "source_reference": {
-                "page": "119"
-            }
+            "source_reference_page": "119"
         }
-    ]
+    }
 }

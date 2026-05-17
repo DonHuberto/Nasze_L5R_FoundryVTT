@@ -6,6 +6,16 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.0 - 17/05/2026 - Foundry v14 Compatibility
+__! Be certain to carefully back up any critical user data before installing this update !__
+- Updated the System to FoundryVTT v14 (Vlyan).
+- Fix List without bullet on item sheets (Vlyan).
+- Fix black embedded links displays on Tooltips (Vlyan).
+- Fix autocomplete drop-down (!65)(Litasa).
+- Adding the dead status (!64)(Litasa).
+- Updated the System for Babele 2.8+, and removed the CustomCompendiumName settings. Babel do the thing for us (Vlyan).
+- Updated French translations for `Children of the Five Winds` (Vlyan).
+
 ## 1.13.4 - 01/03/2026 - UI Polish, Compendium Upgrades
 Welcoming Litasa as a maintainer for the system!
 

@@ -29,11 +29,6 @@
             "Title": "Utiliser les techniques personnalisées",
             "Hint": "Ajoute un type de technique 'Particularités' pour servir de fourre-tout."
         },
-        "CustomCompendiumName": {
-            "Title": "Nom du CustomCompendium",
-            "Hint": "Pour les utilisateurs avancés qui souhaitent modifier le nom du compendium personnalisé (utilisé pour désactiver ceux intégrés).",
-            "Notification": "Impossible de définir le compendium personnalisé : '{name}'. Est-il activé et enregistré auprès de Babele ?"
-        },
         "CustomItemsHeight": {
             "Title": "Hauteur par défaut des fenêtres d'objets",
             "Hint": "Définir la hauteur par défaut des fenêtres de type Item (techniques, armes...) en pixels"

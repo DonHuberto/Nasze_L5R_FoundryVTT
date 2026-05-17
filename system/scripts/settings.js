@@ -43,20 +43,7 @@ export const RegisterSettings = function () {
         type: Boolean,
         default: false,
     });
-    game.settings.register(CONFIG.l5r5e.namespace, "custom-compendium-name", {
-        name: "SETTINGS.CustomCompendiumName.Title",
-        hint: "SETTINGS.CustomCompendiumName.Hint",
-        scope: "world",
-        config: isBabeleRegistered,
-        requiresReload: true,
-        type: String,
-        default: "l5r5e-custom-compendiums",
-        onChange: (name) => {
-            if (game.babele && !game.babele.modules.find((module) => module.module === name)) {
-                ui.notifications.warn(game.i18n.format("SETTINGS.CustomCompendiumName.Notification", { name }), { permanent: true });
-            }
-        }
-    });
+
 
     /* -------------------------------------- */
     /* Compendium view Settings (GM only)     */

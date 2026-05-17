@@ -3,1286 +3,936 @@
     "mapping": {
         "category": "system.category",
         "grip_1": "system.grip_1",
-        "grip_2": "system.grip_2",
-        "description": "system.description",
-        "source_reference": "system.source_reference"
+        "grip_2": "system.grip_2"
     },
-    "entries": [
-        {
-            "id": "Bokken",
+    "entries": {
+        "Bokken": {
             "name": "Bokken",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "Dégâts +2",
+            "grip_2": "D\u00e9g\u00e2ts +2",
             "description": "",
-            "source_reference": {
-                "page": "232"
-            }
+            "source_reference_page": "232"
         },
-        {
-            "id": "Chokutō",
-            "name": "Chokutō",
+        "Chokut\u014d": {
+            "name": "Chokut\u014d",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "232"
-            }
+            "source_reference_page": "232"
         },
-        {
-            "id": "Scimitar",
+        "Scimitar": {
             "name": "Cimeterre",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "232"
-            }
+            "source_reference_page": "232"
         },
-        {
-            "id": "Dao",
+        "Dao": {
             "name": "Dao",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "232"
-            }
+            "source_reference_page": "232"
         },
-        {
-            "id": "Gao",
+        "Gao": {
             "name": "Gao",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "232"
-            }
+            "source_reference_page": "232"
         },
-        {
-            "id": "Jian",
+        "Jian": {
             "name": "Jian",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "Dangerosité +1, Acérée",
+            "grip_2": "Dangerosit\u00e9 +1, Ac\u00e9r\u00e9e",
             "description": "",
-            "source_reference": {
-                "page": "232"
-            }
+            "source_reference_page": "232"
         },
-        {
-            "id": "Katana",
+        "Katana": {
             "name": "Katana",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "Dangerosité +2",
+            "grip_2": "Dangerosit\u00e9 +2",
             "description": "",
-            "source_reference": {
-                "page": "232"
-            }
+            "source_reference_page": "232"
         },
-        {
-            "id": "Nodachi",
+        "Nodachi": {
             "name": "Nodachi",
             "category": "Sabres",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "233"
-            }
+            "source_reference_page": "233"
         },
-        {
-            "id": "Wakizashi",
+        "Wakizashi": {
             "name": "Wakizashi",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "Dangerosité +2",
+            "grip_2": "Dangerosit\u00e9 +2",
             "description": "",
-            "source_reference": {
-                "page": "233"
-            }
+            "source_reference_page": "233"
         },
-        {
-            "id": "Zanbatō",
-            "name": "Zanbatō",
+        "Zanbat\u014d": {
+            "name": "Zanbat\u014d",
             "category": "Sabres",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "233"
-            }
+            "source_reference_page": "233"
         },
-        {
-            "id": "Masakari",
+        "Masakari": {
             "name": "Masakari",
             "category": "Haches",
             "grip_1": "",
-            "grip_2": "Dangerosité +2",
+            "grip_2": "Dangerosit\u00e9 +2",
             "description": "",
-            "source_reference": {
-                "page": "233"
-            }
+            "source_reference_page": "233"
         },
-        {
-            "id": "Ono",
+        "Ono": {
             "name": "Ono",
             "category": "Haches",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "233"
-            }
+            "source_reference_page": "233"
         },
-        {
-            "id": "Club",
+        "Club": {
             "name": "Gourdin",
             "category": "Armes Contondantes",
             "grip_1": "",
-            "grip_2": "Dégâts +1",
+            "grip_2": "D\u00e9g\u00e2ts +1",
             "description": "",
-            "source_reference": {
-                "page": "234"
-            }
+            "source_reference_page": "234"
         },
-        {
-            "id": "Kiseru",
+        "Kiseru": {
             "name": "Kiseru",
             "category": "Armes Contondantes",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "234"
-            }
+            "source_reference_page": "234"
         },
-        {
-            "id": "Hammer",
+        "Hammer": {
             "name": "Marteau",
             "category": "Armes Contondantes",
             "grip_1": "",
-            "grip_2": "Dégâts +2",
+            "grip_2": "D\u00e9g\u00e2ts +2",
             "description": "",
-            "source_reference": {
-                "page": "234"
-            }
+            "source_reference_page": "234"
         },
-        {
-            "id": "Ōtsuchi",
-            "name": "Ōtsuchi",
+        "\u014ctsuchi": {
+            "name": "\u014ctsuchi",
             "category": "Armes Contondantes",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "234"
-            }
+            "source_reference_page": "234"
         },
-        {
-            "id": "Tetsubō",
-            "name": "Tetsubō",
+        "Tetsub\u014d": {
+            "name": "Tetsub\u014d",
             "category": "Armes Contondantes",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "234"
-            }
+            "source_reference_page": "234"
         },
-        {
-            "id": "Jitte",
+        "Jitte": {
             "name": "Jitte",
             "category": "Armes de Poing",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "234"
-            }
+            "source_reference_page": "234"
         },
-        {
-            "id": "Knife",
+        "Knife": {
             "name": "Couteau",
             "category": "Armes de Poing",
             "grip_1": "",
-            "grip_2": "Dangerosité +2",
+            "grip_2": "Dangerosit\u00e9 +2",
             "description": "",
-            "source_reference": {
-                "page": "234"
-            }
+            "source_reference_page": "234"
         },
-        {
-            "id": "Nunchaku",
+        "Nunchaku": {
             "name": "Nunchaku",
             "category": "Armes de Poing",
             "grip_1": "",
             "grip_2": "Entrave",
             "description": "",
-            "source_reference": {
-                "page": "235"
-            }
+            "source_reference_page": "235"
         },
-        {
-            "id": "Tessen",
+        "Tessen": {
             "name": "Tessen",
             "category": "Armes de Poing",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "235"
-            }
+            "source_reference_page": "235"
         },
-        {
-            "id": "Bisentō",
-            "name": "Bisentō",
+        "Bisent\u014d": {
+            "name": "Bisent\u014d",
             "category": "Armes d'Hast",
-            "grip_1": "Portée 1",
-            "grip_2": "Dégâts +2",
+            "grip_1": "Port\u00e9e 1",
+            "grip_2": "D\u00e9g\u00e2ts +2",
             "description": "",
-            "source_reference": {
-                "page": "235"
-            }
+            "source_reference_page": "235"
         },
-        {
-            "id": "Bō",
-            "name": "Bō",
+        "B\u014d": {
+            "name": "B\u014d",
             "category": "Armes d'Hast",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "235"
-            }
+            "source_reference_page": "235"
         },
-        {
-            "id": "Ji",
+        "Ji": {
             "name": "Ji",
             "category": "Armes d'Hast",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "235"
-            }
+            "source_reference_page": "235"
         },
-        {
-            "id": "Naginata",
+        "Naginata": {
             "name": "Naginata",
             "category": "Armes d'Hast",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "235"
-            }
+            "source_reference_page": "235"
         },
-        {
-            "id": "Trident",
+        "Trident": {
             "name": "Trident",
             "category": "Armes d'Hast",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "235"
-            }
+            "source_reference_page": "235"
         },
-        {
-            "id": "Yari",
+        "Yari": {
             "name": "Yari",
             "category": "Armes d'Hast",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "235"
-            }
+            "source_reference_page": "235"
         },
-        {
-            "id": "Horsebow",
+        "Horsebow": {
             "name": "Arc de cavalerie",
             "category": "Arcs",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "236"
-            }
+            "source_reference_page": "236"
         },
-        {
-            "id": "Daikyū",
-            "name": "Daikyū",
+        "Daiky\u016b": {
+            "name": "Daiky\u016b",
             "category": "Arcs",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "236"
-            }
+            "source_reference_page": "236"
         },
-        {
-            "id": "Yumi",
+        "Yumi": {
             "name": "Yumi",
             "category": "Arcs",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "236"
-            }
+            "source_reference_page": "236"
         },
-        {
-            "id": "Oyumi",
+        "Oyumi": {
             "name": "Oyumi",
-            "category": "Arbalètes",
-            "grip_1": "N/A",
+            "category": "Arbal\u00e8tes",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "236"
-            }
+            "source_reference_page": "236"
         },
-        {
-            "id": "Kama",
+        "Kama": {
             "name": "Kama",
-            "category": "Armes Spécialisées",
+            "category": "Armes Sp\u00e9cialis\u00e9es",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "237"
-            }
+            "source_reference_page": "237"
         },
-        {
-            "id": "Kusari-gama",
+        "Kusari-gama": {
             "name": "Kusari-gama",
-            "category": "Armes Spécialisées",
+            "category": "Armes Sp\u00e9cialis\u00e9es",
             "grip_1": "",
-            "grip_2": "Portée 2-3",
+            "grip_2": "Port\u00e9e 2-3",
             "description": "",
-            "source_reference": {
-                "page": "237"
-            }
+            "source_reference_page": "237"
         },
-        {
-            "id": "Blowgun",
+        "Blowgun": {
             "name": "Sarbacane",
-            "category": "Armes Spécialisées",
+            "category": "Armes Sp\u00e9cialis\u00e9es",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "237"
-            }
+            "source_reference_page": "237"
         },
-        {
-            "id": "Shuriken",
+        "Shuriken": {
             "name": "Shuriken",
-            "category": "Armes Spécialisées",
-            "grip_1": "(tranchant ou perforant) -, (lancé) Arts Martiaux (Distance), Portée 1-3",
-            "grip_2": "N/A",
+            "category": "Armes Sp\u00e9cialis\u00e9es",
+            "grip_1": "(tranchant ou perforant) -, (lanc\u00e9) Arts Martiaux (Distance), Port\u00e9e 1-3",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "237"
-            }
+            "source_reference_page": "237"
         },
-        {
-            "id": "Punch",
+        "Punch": {
             "name": "Coup de poing",
-            "category": "Attaques à mains nues",
-            "grip_1": "N/A",
-            "grip_2": "N/A",
+            "category": "Attaques \u00e0 mains nues",
+            "grip_1": "N\/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "237"
-            }
+            "source_reference_page": "237"
         },
-        {
-            "id": "Kick",
+        "Kick": {
             "name": "Coup de pied",
-            "category": "Attaques à mains nues",
-            "grip_1": "N/A",
-            "grip_2": "N/A",
+            "category": "Attaques \u00e0 mains nues",
+            "grip_1": "N\/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "237"
-            }
+            "source_reference_page": "237"
         },
-        {
-            "id": "Bite",
+        "Bite": {
             "name": "Morsure",
-            "category": "Attaques à mains nues",
-            "grip_1": "N/A",
-            "grip_2": "N/A",
+            "category": "Attaques \u00e0 mains nues",
+            "grip_1": "N\/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "237"
-            }
+            "source_reference_page": "237"
         },
-        {
-            "id": "Tachi",
+        "Tachi": {
             "name": "Tachi",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "Dangerosité +1",
+            "grip_2": "Dangerosit\u00e9 +1",
             "description": "",
-            "source_reference": {
-                "page": "98"
-            }
+            "source_reference_page": "98"
         },
-        {
-            "id": "Whip",
+        "Whip": {
             "name": "Fouet",
-            "category": "Armes Spécialisées",
+            "category": "Armes Sp\u00e9cialis\u00e9es",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "98"
-            }
+            "source_reference_page": "98"
         },
-        {
-            "id": "Moshi Sun Ax",
+        "Moshi Sun Ax": {
             "name": "Hache du soleil Moshi",
             "category": "Haches",
             "grip_1": "",
-            "grip_2": "Dégâts +3",
+            "grip_2": "D\u00e9g\u00e2ts +3",
             "description": "",
-            "source_reference": {
-                "page": "98"
-            }
+            "source_reference_page": "98"
         },
-        {
-            "id": "Uchigatana",
+        "Uchigatana": {
             "name": "Uchigatana",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "98"
-            }
+            "source_reference_page": "98"
         },
-        {
-            "id": "Shakujō",
-            "name": "Shakujō",
+        "Shakuj\u014d": {
+            "name": "Shakuj\u014d",
             "category": "Armes d'Hast",
             "grip_1": "",
-            "grip_2": "Dégâts +1",
+            "grip_2": "D\u00e9g\u00e2ts +1",
             "description": "",
-            "source_reference": {
-                "page": "98"
-            }
+            "source_reference_page": "98"
         },
-        {
-            "id": "Kusarifundo",
+        "Kusarifundo": {
             "name": "Kusarifundo",
-            "category": "Armes Spécialisées",
+            "category": "Armes Sp\u00e9cialis\u00e9es",
             "grip_1": "",
             "grip_2": "Entrave",
             "description": "",
-            "source_reference": {
-                "page": "111"
-            }
+            "source_reference_page": "111"
         },
-        {
-            "id": "Shakuhachi",
+        "Shakuhachi": {
             "name": "Shakuhachi",
-            "category": "Armes Spécialisées",
+            "category": "Armes Sp\u00e9cialis\u00e9es",
             "grip_1": "",
-            "grip_2": "Dégâts +1",
+            "grip_2": "D\u00e9g\u00e2ts +1",
             "description": "",
-            "source_reference": {
-                "page": "111"
-            }
+            "source_reference_page": "111"
         },
-        {
-            "id": "Kyoketsu Shoge",
+        "Kyoketsu Shoge": {
             "name": "Kyoketsu Shoge",
-            "category": "Armes Spécialisées",
-            "grip_1": "N/A",
+            "category": "Armes Sp\u00e9cialis\u00e9es",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "111"
-            }
+            "source_reference_page": "111"
         },
-        {
-            "id": "Shinobigatana",
+        "Shinobigatana": {
             "name": "Shinobigatana",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "Dangerosité +1",
+            "grip_2": "Dangerosit\u00e9 +1",
             "description": "",
-            "source_reference": {
-                "page": "110"
-            }
+            "source_reference_page": "110"
         },
-        {
-            "id": "Ninjatō",
-            "name": "Ninjatō",
+        "Ninjat\u014d": {
+            "name": "Ninjat\u014d",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "Dangerosité +1",
+            "grip_2": "Dangerosit\u00e9 +1",
             "description": "",
-            "source_reference": {
-                "page": "109"
-            }
+            "source_reference_page": "109"
         },
-        {
-            "id": "Kamayari",
+        "Kamayari": {
             "name": "Kamayari",
-            "category": "Armes Spécialisées",
-            "grip_1": "N/A",
+            "category": "Armes Sp\u00e9cialis\u00e9es",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "111"
-            }
+            "source_reference_page": "111"
         },
-        {
-            "id": "Tekagi",
+        "Tekagi": {
             "name": "Tekagi",
-            "category": "Armes Spécialisées",
+            "category": "Armes Sp\u00e9cialis\u00e9es",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "112"
-            }
+            "source_reference_page": "112"
         },
-        {
-            "id": "Folding Half-Bow",
+        "Folding Half-Bow": {
             "name": "Demi-arc pliant",
             "category": "Arcs",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "110"
-            }
+            "source_reference_page": "110"
         },
-        {
-            "id": "Tekken",
+        "Tekken": {
             "name": "Tekken",
-            "category": "Armes Spécialisées",
+            "category": "Armes Sp\u00e9cialis\u00e9es",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "112"
-            }
+            "source_reference_page": "112"
         },
-        {
-            "id": "Sake Bottle & Cups",
-            "name": "Bouteille et coupe de saké",
-            "category": "Armes improvisées",
-            "grip_1": "(matraque) : -, (lancé) : Dangerosité +2, Portée 1-3, Tranchant",
-            "grip_2": "N/A",
+        "Sake Bottle & Cups": {
+            "name": "Bouteille et coupe de sak\u00e9",
+            "category": "Armes improvis\u00e9es",
+            "grip_1": "(matraque) : -, (lanc\u00e9) : Dangerosit\u00e9 +2, Port\u00e9e 1-3, Tranchant",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "112"
-            }
+            "source_reference_page": "112"
         },
-        {
-            "id": "Umbrella",
+        "Umbrella": {
             "name": "Ombrelle",
-            "category": "Armes improvisées",
+            "category": "Armes improvis\u00e9es",
             "grip_1": "(matraque) : -",
-            "grip_2": "(matraque) : Dégâts +2, (poignarder) : Dégâts +2, Dangerosité +2",
+            "grip_2": "(matraque) : D\u00e9g\u00e2ts +2, (poignarder) : D\u00e9g\u00e2ts +2, Dangerosit\u00e9 +2",
             "description": "",
-            "source_reference": {
-                "page": "112"
-            }
+            "source_reference_page": "112"
         },
-        {
-            "id": "Talwar",
+        "Talwar": {
             "name": "Talwar",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "112"
-            }
+            "source_reference_page": "112"
         },
-        {
-            "id": "Scroll Case",
-            "name": "Etui à parchemins",
-            "category": "Armes improvisées",
+        "Scroll Case": {
+            "name": "Etui \u00e0 parchemins",
+            "category": "Armes improvis\u00e9es",
             "grip_1": "",
-            "grip_2": "Dégâts +2, Dangerosité +1",
+            "grip_2": "D\u00e9g\u00e2ts +2, Dangerosit\u00e9 +1",
             "description": "",
-            "source_reference": {
-                "page": "112"
-            }
+            "source_reference_page": "112"
         },
-        {
-            "id": "Urumi",
+        "Urumi": {
             "name": "Urumi",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "112"
-            }
+            "source_reference_page": "112"
         },
-        {
-            "id": "Iron Sheath",
-            "name": "Fourreau ferré",
-            "category": "Armes improvisées",
+        "Iron Sheath": {
+            "name": "Fourreau ferr\u00e9",
+            "category": "Armes improvis\u00e9es",
             "grip_1": "",
-            "grip_2": "Dégâts +2",
+            "grip_2": "D\u00e9g\u00e2ts +2",
             "description": "",
-            "source_reference": {
-                "page": "112"
-            }
+            "source_reference_page": "112"
         },
-        {
-            "id": "Buckler",
+        "Buckler": {
             "name": "Bocle",
             "category": "Boucliers",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "112"
-            }
+            "source_reference_page": "112"
         },
-        {
-            "id": "Lute",
+        "Lute": {
             "name": "Luth",
-            "category": "Armes improvisées",
+            "category": "Armes improvis\u00e9es",
             "grip_1": "",
-            "grip_2": "Dégâts +1, Dangerosité +1",
+            "grip_2": "D\u00e9g\u00e2ts +1, Dangerosit\u00e9 +1",
             "description": "",
-            "source_reference": {
-                "page": "112"
-            }
+            "source_reference_page": "112"
         },
-        {
-            "id": "Sling",
+        "Sling": {
             "name": "Fronde",
-            "category": "Armes Spécialisées",
+            "category": "Armes Sp\u00e9cialis\u00e9es",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "112"
-            }
+            "source_reference_page": "112"
         },
-        {
-            "id": "Gada",
+        "Gada": {
             "name": "Gada",
             "category": "Armes Contondantes",
             "grip_1": "",
-            "grip_2": "Dangerosité +3",
+            "grip_2": "Dangerosit\u00e9 +3",
             "description": "",
-            "source_reference": {
-                "page": "112"
-            }
+            "source_reference_page": "112"
         },
-        {
-            "id": "Kuwa",
+        "Kuwa": {
             "name": "Kuwa",
             "category": "Haches",
             "grip_1": "",
-            "grip_2": "Dégâts +2, Dangerosité +2, Portée 1-2",
+            "grip_2": "D\u00e9g\u00e2ts +2, Dangerosit\u00e9 +2, Port\u00e9e 1-2",
             "description": "",
-            "source_reference": {
-                "page": "112"
-            }
+            "source_reference_page": "112"
         },
-        {
-            "id": "Qamarist Heavy Shield",
+        "Qamarist Heavy Shield": {
             "name": "Ecu Qamaristes",
             "category": "Boucliers",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "112"
-            }
+            "source_reference_page": "112"
         },
-        {
-            "id": "Boat Oar",
+        "Boat Oar": {
             "name": "Rame de bateau",
-            "category": "Armes improvisées",
+            "category": "Armes improvis\u00e9es",
             "grip_1": "",
-            "grip_2": "Dégâts +1, Dangerosité +3",
+            "grip_2": "D\u00e9g\u00e2ts +1, Dangerosit\u00e9 +3",
             "description": "",
-            "source_reference": {
-                "page": "112"
-            }
+            "source_reference_page": "112"
         },
-        {
-            "id": "Fishing Net",
-            "name": "Filet de pêche",
-            "category": "Armes improvisées",
-            "grip_1": "N/A",
+        "Fishing Net": {
+            "name": "Filet de p\u00eache",
+            "category": "Armes improvis\u00e9es",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "112"
-            }
+            "source_reference_page": "112"
         },
-        {
-            "id": "Chair",
+        "Chair": {
             "name": "Chaise",
-            "category": "Armes improvisées",
-            "grip_1": "(matraque) : -, (lancé) : -",
-            "grip_2": "(matraque) : Dégâts +2, (lancé) : Dangerosité +1, Portée 0-2",
+            "category": "Armes improvis\u00e9es",
+            "grip_1": "(matraque) : -, (lanc\u00e9) : -",
+            "grip_2": "(matraque) : D\u00e9g\u00e2ts +2, (lanc\u00e9) : Dangerosit\u00e9 +1, Port\u00e9e 0-2",
             "description": "",
-            "source_reference": {
-                "page": "112"
-            }
+            "source_reference_page": "112"
         },
-        {
-            "id": "Chain Whip",
-            "name": "Chaîne à neuf section",
-            "category": "Armes Spécialisées",
+        "Chain Whip": {
+            "name": "Cha\u00eene \u00e0 neuf section",
+            "category": "Armes Sp\u00e9cialis\u00e9es",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "112"
-            }
+            "source_reference_page": "112"
         },
-        {
-            "id": "Genno",
+        "Genno": {
             "name": "Genno",
             "category": "Marteaux",
             "grip_1": "",
-            "grip_2": "Dégâts +4",
+            "grip_2": "D\u00e9g\u00e2ts +4",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Tekkan",
+        "Tekkan": {
             "name": "Tekkan",
             "category": "Sabres",
             "grip_1": "Encombrant",
-            "grip_2": "Dégâts +2",
+            "grip_2": "D\u00e9g\u00e2ts +2",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Small Shield",
+        "Small Shield": {
             "name": "Petit bouclier",
             "category": "Boucliers",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "O-Gata Dohou",
+        "O-Gata Dohou": {
             "name": "O-Gata Dohou",
-            "category": "Engins de siège",
-            "grip_1": "N/A",
+            "category": "Engins de si\u00e8ge",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "105"
-            }
+            "source_reference_page": "105"
         },
-        {
-            "id": "Large Shield",
+        "Large Shield": {
             "name": "Grand bouclier",
             "category": "Boucliers",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Kaiu no Oyumi",
+        "Kaiu no Oyumi": {
             "name": "Kaiu no Oyumi",
-            "category": "Arbalètes",
-            "grip_1": "N/A",
+            "category": "Arbal\u00e8tes",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Tsuruhashi",
+        "Tsuruhashi": {
             "name": "Tsuruhashi",
             "category": "Haches",
             "grip_1": "Encombrant",
-            "grip_2": "Dangerosité +2",
+            "grip_2": "Dangerosit\u00e9 +2",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Flyssa",
+        "Flyssa": {
             "name": "Flissa",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "Accérée",
+            "grip_2": "Acc\u00e9r\u00e9e",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Sode",
+        "Sode": {
             "name": "Sode",
             "category": "Boucliers",
             "grip_1": "Epaules",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Ballista",
+        "Ballista": {
             "name": "Baliste",
-            "category": "Engins de siège",
-            "grip_1": "N/A",
+            "category": "Engins de si\u00e8ge",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "105"
-            }
+            "source_reference_page": "105"
         },
-        {
-            "id": "Kabutowari",
+        "Kabutowari": {
             "name": "Kabutowari",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Storm Bow",
-            "name": "Arc tempête",
+        "Storm Bow": {
+            "name": "Arc temp\u00eate",
             "category": "Arcs",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Doom Crossbow",
-            "name": "Arbalète funeste",
-            "category": "Arbalètes",
-            "grip_1": "N/A",
+        "Doom Crossbow": {
+            "name": "Arbal\u00e8te funeste",
+            "category": "Arbal\u00e8tes",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Butterfly sword",
-            "name": "Epée papillon",
+        "Butterfly sword": {
+            "name": "Ep\u00e9e papillon",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "8"
-            }
+            "source_reference_page": "8"
         },
-        {
-            "id": "Eku",
+        "Eku": {
             "name": "Eku",
             "category": "Armes d'Hast",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "8"
-            }
+            "source_reference_page": "8"
         },
-        {
-            "id": "Rochin",
+        "Rochin": {
             "name": "Rochin",
             "category": "Armes d'Hast",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "8"
-            }
+            "source_reference_page": "8"
         },
-        {
-            "id": "Sai",
+        "Sai": {
             "name": "Sai",
             "category": "Armes de Poing",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "8"
-            }
+            "source_reference_page": "8"
         },
-        {
-            "id": "Tonfa",
+        "Tonfa": {
             "name": "Tonfa",
             "category": "Armes de Poing",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "9"
-            }
+            "source_reference_page": "9"
         },
-        {
-            "id": "Tinbe",
+        "Tinbe": {
             "name": "Timbe",
             "category": "Boucliers",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "8"
-            }
+            "source_reference_page": "8"
         },
-        {
-            "id": "Ichirō Sapper Ax",
-            "name": "Hache de sapeur Ichirō",
+        "Ichir\u014d Sapper Ax": {
+            "name": "Hache de sapeur Ichir\u014d",
             "category": "Haches",
-            "grip_1": "-, (émoussé): Dégâts +2, Dangerosité -3",
-            "grip_2": "N/A",
+            "grip_1": "-, (\u00e9mouss\u00e9): D\u00e9g\u00e2ts +2, Dangerosit\u00e9 -3",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "88"
-            }
+            "source_reference_page": "88"
         },
-        {
-            "id": "Magari Yari",
+        "Magari Yari": {
             "name": "Magari Yari",
             "category": "Armes d'Hast",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "88"
-            }
+            "source_reference_page": "88"
         },
-        {
-            "id": "Nagae Yari",
+        "Nagae Yari": {
             "name": "Nagae Yari",
             "category": "Armes d'Hast",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "88"
-            }
+            "source_reference_page": "88"
         },
-        {
-            "id": "Nagamaki",
+        "Nagamaki": {
             "name": "Nagamaki",
             "category": "Armes d'Hast",
             "grip_1": "Encombrant",
-            "grip_2": "Dégâts +2, Dangerosité +2",
+            "grip_2": "D\u00e9g\u00e2ts +2, Dangerosit\u00e9 +2",
             "description": "",
-            "source_reference": {
-                "page": "88"
-            }
+            "source_reference_page": "88"
         },
-        {
-            "id": "Yoroi-Doshi",
+        "Yoroi-Doshi": {
             "name": "Yoroi-Doshi",
             "category": "Armes de Poing",
             "grip_1": "",
-            "grip_2": "Dangerosité +3",
+            "grip_2": "Dangerosit\u00e9 +3",
             "description": "",
-            "source_reference": {
-                "page": "89"
-            }
+            "source_reference_page": "89"
         },
-        {
-            "id": "Gunbai",
+        "Gunbai": {
             "name": "Gunbai",
             "category": "Armes de Poing",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "90"
-            }
+            "source_reference_page": "90"
         },
-        {
-            "id": "Hooves",
+        "Hooves": {
             "name": "Sabots",
-            "category": "Attaques à mains nues",
-            "grip_1": "N/A",
-            "grip_2": "N/A",
+            "category": "Attaques \u00e0 mains nues",
+            "grip_1": "N\/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "327"
-            }
+            "source_reference_page": "327"
         },
-        {
-            "id": "Kishu: The Oni-Cutting Sword [Blessed Treasure]",
-            "name": "Kishu : Le sabre Tranche-oni [Trésor Béni]",
+        "Kishu: The Oni-Cutting Sword [Blessed Treasure]": {
+            "name": "Kishu : Le sabre Tranche-oni [Tr\u00e9sor B\u00e9ni]",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "113"
-            }
+            "source_reference_page": "113"
         },
-        {
-            "id": "Chikara: Ancestral sword of the Crab [Blessed Treasure]",
-            "name": "Chikara : le sabre ancestral du Clan du Crabe [Trésor Béni]",
+        "Chikara: Ancestral sword of the Crab [Blessed Treasure]": {
+            "name": "Chikara : le sabre ancestral du Clan du Crabe [Tr\u00e9sor B\u00e9ni]",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "99"
-            }
+            "source_reference_page": "99"
         },
-        {
-            "id": "Shukujo: Ancestral sword of the Crane [Blessed Treasure]",
-            "name": "Shukujo : le sabre ancestral du Clan de la Grue [Trésor Béni]",
+        "Shukujo: Ancestral sword of the Crane [Blessed Treasure]": {
+            "name": "Shukujo : le sabre ancestral du Clan de la Grue [Tr\u00e9sor B\u00e9ni]",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "100"
-            }
+            "source_reference_page": "100"
         },
-        {
-            "id": "Shori: Ancestral sword of the Lion [Blessed Treasure]",
-            "name": "Shori : le sabre ancestral du Clan du Lion [Trésor Béni]",
+        "Shori: Ancestral sword of the Lion [Blessed Treasure]": {
+            "name": "Shori : le sabre ancestral du Clan du Lion [Tr\u00e9sor B\u00e9ni]",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "Dangerosité +1",
+            "grip_2": "Dangerosit\u00e9 +1",
             "description": "",
-            "source_reference": {
-                "page": "101"
-            }
+            "source_reference_page": "101"
         },
-        {
-            "id": "Ofushikai: Ancestral sword of the Phoenix [Blessed Treasure]",
-            "name": "Ofushikai : le sabre ancestral du Clan du Phénix [Trésor Béni]",
+        "Ofushikai: Ancestral sword of the Phoenix [Blessed Treasure]": {
+            "name": "Ofushikai : le sabre ancestral du Clan du Ph\u00e9nix [Tr\u00e9sor B\u00e9ni]",
             "category": "Sabres",
             "grip_1": "",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Itsuwari: Ancestral sword of the Scorpion [Blessed Treasure]",
-            "name": "Itsuwari : le sabre ancestral du Clan du Scorpion [Trésor Béni]",
+        "Itsuwari: Ancestral sword of the Scorpion [Blessed Treasure]": {
+            "name": "Itsuwari : le sabre ancestral du Clan du Scorpion [Tr\u00e9sor B\u00e9ni]",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "Dangerosité +1",
+            "grip_2": "Dangerosit\u00e9 +1",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Hayai: Ancestral sword of the Unicorn [Blessed Treasure]",
-            "name": "Hayai : le sabre ancestral du Clan de la Licorne [Trésor Béni]",
+        "Hayai: Ancestral sword of the Unicorn [Blessed Treasure]": {
+            "name": "Hayai : le sabre ancestral du Clan de la Licorne [Tr\u00e9sor B\u00e9ni]",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Kiro: The lost ancestral sword of the Ki-Rin [Concealed Horror]",
+        "Kiro: The lost ancestral sword of the Ki-Rin [Concealed Horror]": {
             "name": "Kiro : le sabre ancestral disparu de la Ki-Rin",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Kunshu: Ancestral sword of the hantei [Blessed Treasure]",
-            "name": "Kunshu : le sabre ancestral des Hantei [Trésor Béni]",
+        "Kunshu: Ancestral sword of the hantei [Blessed Treasure]": {
+            "name": "Kunshu : le sabre ancestral des Hantei [Tr\u00e9sor B\u00e9ni]",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "Dangerosité +1",
+            "grip_2": "Dangerosit\u00e9 +1",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Mizutsumi [Blessed Treasure]",
-            "name": "Mizutsumi [Trésor Béni]",
+        "Mizutsumi [Blessed Treasure]": {
+            "name": "Mizutsumi [Tr\u00e9sor B\u00e9ni]",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "Dangerosité +2",
+            "grip_2": "Dangerosit\u00e9 +2",
             "description": "",
-            "source_reference": {
-                "page": "19"
-            }
+            "source_reference_page": "19"
         },
-        {
-            "id": "The Five Akodo Daggers [Blessed Treasure]",
-            "name": "Les Cinq Dagues Akodo [Trésor Béni]",
+        "The Five Akodo Daggers [Blessed Treasure]": {
+            "name": "Les Cinq Dagues Akodo [Tr\u00e9sor B\u00e9ni]",
             "category": "Armes de Poing",
             "grip_1": "",
-            "grip_2": "Dangerosité +2",
+            "grip_2": "Dangerosit\u00e9 +2",
             "description": "",
-            "source_reference": {
-                "page": "92"
-            }
+            "source_reference_page": "92"
         },
-        {
-            "id": "The blade with no name: Ancestral sword of the Dragon [Blessed Treasure]",
-            "name": "La Lame sans nom: Le sabre ancestral du Clan du Dragon [Trésor Béni]",
+        "The blade with no name: Ancestral sword of the Dragon [Blessed Treasure]": {
+            "name": "La Lame sans nom: Le sabre ancestral du Clan du Dragon [Tr\u00e9sor B\u00e9ni]",
             "category": "Sabres",
             "grip_1": "",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": "100"
-            }
+            "source_reference_page": "100"
         },
-        {
-            "id": "Catalpa Bow",
-            "name": "Catalpa Bow (WIP)",
+        "Catalpa Bow": {
+            "name": "Arc en Catalpa",
             "category": "Arcs",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "99"
         },
-        {
-            "id": "Charging Lance",
-            "name": "Charging Lance (WIP)",
+        "Charging Lance": {
+            "name": "Lance de Charge",
             "category": "Armes d'Hast",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "101"
         },
-        {
-            "id": "Fire Lance",
-            "name": "Fire Lance (WIP)",
+        "Fire Lance": {
+            "name": "Lance de feu",
             "category": "Armes d'Hast",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "101"
         },
-        {
-            "id": "Ganzu Ring Ax",
-            "name": "Ganzu Ring Ax (WIP)",
+        "Ganzu Ring Ax": {
+            "name": "Hache-anneau Ganzu",
             "category": "Haches",
-            "grip_1": "N/A",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "99"
         },
-        {
-            "id": "Katar (Punch Dagger)",
-            "name": "Katar (Punch Dagger) (WIP)",
+        "Katar (Punch Dagger)": {
+            "name": "Katar (Dague Coup-de-poing)",
             "category": "Armes de Poing",
             "grip_1": "",
-            "grip_2": "N/A",
+            "grip_2": "N\/A",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": ""
         },
-        {
-            "id": "Repeating Crossbow",
-            "name": "Repeating Crossbow (WIP)",
-            "category": "Arbalètes",
-            "grip_1": "N/A",
+        "Repeating Crossbow": {
+            "name": "ArbaL\u00e8te \u00e0 r\u00e9p\u00e9tition",
+            "category": "Arbal\u00e8tes",
+            "grip_1": "N\/A",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "99"
         },
-        {
-            "id": "Saddle Cutter",
-            "name": "Saddle Cutter (WIP)",
+        "Saddle Cutter": {
+            "name": "Coupe-Selle",
             "category": "Armes d'Hast",
             "grip_1": "",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "99"
         },
-        {
-            "id": "Ide Parasol Shield",
-            "name": "Ide Parasol Shield (WIP)",
+        "Ide Parasol Shield": {
+            "name": "Bouclier-Ombrelle Ide",
             "category": "Boucliers",
             "grip_1": "",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "101"
         },
-        {
-            "id": "Standing Shield",
-            "name": "Standing Shield (WIP)",
+        "Standing Shield": {
+            "name": "Pavois",
             "category": "Boucliers",
             "grip_1": "",
             "grip_2": "",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "The Ancestral Sword of the Fox [Blessed Treasure]",
-            "name": "The Ancestral Sword of the Fox [Blessed Treasure] (WIP)",
+        "The Ancestral Sword of the Fox [Blessed Treasure]": {
+            "name": "Le sabre ancestral du Clan du Renard [Tr\u00e9sor B\u00e9ni]",
             "category": "Sabres",
             "grip_1": "",
-            "grip_2": "Dangerosité +8",
+            "grip_2": "Dangerosit\u00e9 8",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "105"
         }
-    ]
+    }
 }

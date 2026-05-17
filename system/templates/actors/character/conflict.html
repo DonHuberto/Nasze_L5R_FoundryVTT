@@ -2,7 +2,7 @@
     <legend class="section-header">
         {{localize 'l5r5e.conflict.initiative.title'}}
         <a class="encounter prepared-control" data-id="{{data.type}}">
-            <i class="fa fas prepared-icon prepared-icon-{{data.system.prepared}} prepared-{{data.type}}" title="{{localize (localize 'l5r5e.conflict.initiative.prepared_{value}' value=data.system.prepared)}}"></i>
+            <i class="fa fas prepared-icon prepared-icon-{{data.system.prepared}} prepared-{{data.type}}" title="{{localizeEmbedded 'l5r5e.conflict.initiative.prepared_{value}' value=data.system.prepared}}"></i>
         </a>
     </legend>
     <button class="initiative dice-picker" data-initiative="true" data-skill="sentiment">{{localize 'l5r5e.conflict.initiative.intrigue'}}</button>

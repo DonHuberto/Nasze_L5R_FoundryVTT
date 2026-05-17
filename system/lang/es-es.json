@@ -29,11 +29,6 @@
             "Title": "Usar técnicas personalizadas",
             "Hint": "Añadir el tipo de técnica 'Particularidad' para que sirva como comodín."
         },
-        "CustomCompendiumName": {
-            "Title": "Nombre de Compendio personalizado",
-            "Hint": "Permite a los usuarios avanzados cambiar el nombre de los compendios personalizados (utilizados para desactivar los compendios integrados).",
-            "Notification": "No se puede configurar el compendio personalizado: '{name}'. ¿Está activado y registrado con Babele?"
-        },
         "CustomItemsHeight": {
             "Title": "Altura predeterminada de las ventanas de objetos",
             "Hint": "Establecer la altura predeterminada para las ventanas de 'objetos' (técnicas, armas...), en píxeles."

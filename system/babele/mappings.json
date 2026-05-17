@@ -1,0 +1,9 @@
+{
+    "Item": {
+        "description": "system.description",
+        "source_reference_page": "system.source_reference.page"
+    },
+    "JournalEntry": {
+        "text": "text"
+    }
+}

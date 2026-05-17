@@ -327,16 +327,10 @@ export class RollL5r5e extends Roll {
      * This function can either create the ChatMessage directly, or return the data object that will be used to create.
      * @override
      */
-    async toMessage(messageData = {}, { rollMode = null } = {}) {
+    async toMessage(messageData = {}, { messageMode = null } = {}) {
         // Perform the roll, if it has not yet been rolled
         if (!this._evaluated) {
             await this.evaluate();
-        }
-
-        // RollMode
-        const rMode = rollMode || messageData.rollMode || game.settings.get("core", "rollMode");
-        if (rMode) {
-            messageData = ChatMessage.applyRollMode(messageData, rMode);
         }
 
         // Force the content to avoid weird foundry behaviour
@@ -358,9 +352,15 @@ export class RollL5r5e extends Roll {
         );
         messageData.rolls = [this];
 
+        // Message mode
+        const mMode = messageMode || messageData.messageMode || game.settings.get("core", "messageMode");
+        if (mMode) {
+            messageData = ChatMessage.applyMode(messageData, mMode);
+        }
+
         // Either create the message or just return the chat data
         return ChatMessage.implementation.create(messageData, {
-            rollMode: rMode,
+            messageMode: mMode,
         });
     }
 

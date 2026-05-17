@@ -73,7 +73,7 @@ export class ActorL5r5e extends Actor {
                 );
                 break;
         }
-        await super.create(docData, options);
+        return super.create(docData, options);
     }
 
     /**

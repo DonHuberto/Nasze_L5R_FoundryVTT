@@ -1,3 +1,5 @@
+import { HelpersL5r5e } from "../helpers.js";
+
 /**
  * L5R Dice Roll n Keep dialog
  * @extends {FormApplication}
@@ -651,7 +653,7 @@ export class RollnKeepDialog extends FormApplication {
         if (this.roll.l5r5e.isInitiativeRoll) {
             let msgOptions = {
                 rnkRoll: this.roll,
-                rollMode: game.l5r5e.HelpersL5r5e.getRollMode(this._message),
+                messageMode: HelpersL5r5e.getMessageMode(this._message),
             };
 
             await this.roll.l5r5e.actor.rollInitiative({
@@ -667,7 +669,7 @@ export class RollnKeepDialog extends FormApplication {
             // Send it to chat, switch to new message
             this.message = await this.roll.toMessage(
                 {},
-                { rollMode: game.l5r5e.HelpersL5r5e.getRollMode(this._message) }
+                { messageMode: HelpersL5r5e.getMessageMode(this._message) }
             );
         }
 

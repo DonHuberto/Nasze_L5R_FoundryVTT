@@ -1,153 +1,96 @@
 {
     "label": "Techniques Ninjutsu",
-    "mapping": {
-        "description": "system.description",
-        "source_reference": "system.source_reference"
-    },
-    "entries": [
-        {
-            "id": "Deadly Sting",
+    "mapping": {},
+    "entries": {
+        "Deadly Sting": {
             "name": "Dard mortel",
             "description": "",
-            "source_reference": {
-                "page": "226"
-            }
+            "source_reference_page": "226"
         },
-        {
-            "id": "Skulk",
+        "Skulk": {
             "name": "Disparition",
             "description": "",
-            "source_reference": {
-                "page": "226"
-            }
+            "source_reference_page": "226"
         },
-        {
-            "id": "Silencing Stroke",
+        "Silencing Stroke": {
             "name": "Neutralisation",
             "description": "",
-            "source_reference": {
-                "page": "227"
-            }
+            "source_reference_page": "227"
         },
-        {
-            "id": "Noxious Cloud",
+        "Noxious Cloud": {
             "name": "Nuage toxique",
             "description": "",
-            "source_reference": {
-                "page": "227"
-            }
+            "source_reference_page": "227"
         },
-        {
-            "id": "Artful Alibi",
+        "Artful Alibi": {
             "name": "Alibi artistique",
             "description": "",
-            "source_reference": {
-                "page": "114"
-            }
+            "source_reference_page": "114"
         },
-        {
-            "id": "Cunning Distraction",
+        "Cunning Distraction": {
             "name": "Distraction fourbe",
             "description": "",
-            "source_reference": {
-                "page": "115"
-            }
+            "source_reference_page": "115"
         },
-        {
-            "id": "Deceitful Strike",
-            "name": "Coup malhonnête",
+        "Deceitful Strike": {
+            "name": "Coup malhonn\u00eate",
             "description": "",
-            "source_reference": {
-                "page": "115"
-            }
+            "source_reference_page": "115"
         },
-        {
-            "id": "Like a Ghost",
-            "name": "Tel un fantôme",
+        "Like a Ghost": {
+            "name": "Tel un fant\u00f4me",
             "description": "",
-            "source_reference": {
-                "page": "116"
-            }
+            "source_reference_page": "116"
         },
-        {
-            "id": "Silent Elimination",
+        "Silent Elimination": {
             "name": "Immobilisation silencieuse",
             "description": "",
-            "source_reference": {
-                "page": "115"
-            }
+            "source_reference_page": "115"
         },
-        {
-            "id": "Slicing Wind Kick",
+        "Slicing Wind Kick": {
             "name": "Coup de pied tourbillonnant",
             "description": "",
-            "source_reference": {
-                "page": "114"
-            }
+            "source_reference_page": "114"
         },
-        {
-            "id": "Stillness of Death",
-            "name": "Quiétude de la mort",
+        "Stillness of Death": {
+            "name": "Qui\u00e9tude de la mort",
             "description": "",
-            "source_reference": {
-                "page": "116"
-            }
+            "source_reference_page": "116"
         },
-        {
-            "id": "To Float or Sink",
+        "To Float or Sink": {
             "name": "Flotter ou sombrer",
             "description": "",
-            "source_reference": {
-                "page": "115"
-            }
+            "source_reference_page": "115"
         },
-        {
-            "id": "What's Yours is Mine",
-            "name": "Ce qui est à toi est à moi",
+        "What's Yours is Mine": {
+            "name": "Ce qui est \u00e0 toi est \u00e0 moi",
             "description": "",
-            "source_reference": {
-                "page": "114"
-            }
+            "source_reference_page": "114"
         },
-        {
-            "id": "Employ Terrible Thunder",
+        "Employ Terrible Thunder": {
             "name": "Recourir au terrible tonnerre",
             "description": "",
-            "source_reference": {
-                "page": "106"
-            }
+            "source_reference_page": "106"
         },
-        {
-            "id": "Swift Scouting",
-            "name": "Reconnaissance éclair",
+        "Swift Scouting": {
+            "name": "Reconnaissance \u00e9clair",
             "description": "",
-            "source_reference": {
-                "page": "106"
-            }
+            "source_reference_page": "106"
         },
-        {
-            "id": "The Patient Viper",
-            "name": "La patiente vipère",
+        "The Patient Viper": {
+            "name": "La patiente vip\u00e8re",
             "description": "",
-            "source_reference": {
-                "page": "105"
-            }
+            "source_reference_page": "105"
         },
-        {
-            "id": "Vanish in the Shadows",
-            "name": "Disparaître dans les ombres",
+        "Vanish in the Shadows": {
+            "name": "Dispara\u00eetre dans les ombres",
             "description": "",
-            "source_reference": {
-                "page": "105"
-            }
+            "source_reference_page": "105"
         },
-        {
-            "id": "Wreak Havoc",
+        "Wreak Havoc": {
             "name": "Semer le chaos",
             "description": "",
-            "source_reference": {
-                "page": "107"
-            }
+            "source_reference_page": "107"
         }
-    ]
+    }
 }

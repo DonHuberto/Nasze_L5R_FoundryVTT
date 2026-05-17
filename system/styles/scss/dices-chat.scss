@@ -6,6 +6,9 @@
         position: relative;
         padding: 0;
         margin: 0;
+        height: 48px;
+        width: 48px;
+
         &:after {
             content: "";
             position: absolute;
@@ -20,6 +23,7 @@
             color: white;
             background: transparent;
         }
+
         &:last-of-type,
         &:nth-child(6),
         &:nth-child(12),
@@ -28,10 +32,12 @@
                 padding: 0 0.175rem 0 0.15rem;
             }
         }
+
         &.rerolled {
             > img {
                 border-bottom: 0 none;
             }
+
             &:after {
                 content: "\f2f9";
                 background: orangered;
@@ -42,6 +48,7 @@
             > img {
                 border-bottom: 0 none;
             }
+
             &:after {
                 content: "\f337";
                 background: fuchsia;
@@ -50,9 +57,9 @@
 
         > img {
             border: 1px solid transparent;
-            height: auto;
         }
     }
+
     td {
         .chat-dice {
         }
@@ -72,6 +79,7 @@
             margin: 0.25rem;
             text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
         }
+
         &-element {
             flex-wrap: wrap;
             flex-grow: 1;
@@ -79,11 +87,13 @@
             &-skill {
                 flex-grow: 3;
             }
+
             &:last-child {
                 flex-grow: 2;
             }
         }
     }
+
     .dice-formula,
     .dice-total {
         background: rgba(255, 255, 255, 0.1);
@@ -91,44 +101,51 @@
         text-align: center;
         margin: 0.5rem 0;
         padding: 0.25rem 0.5rem 0.25rem 0.25rem;
+
         &-rnk {
             line-height: 2rem;
+
             i {
                 margin-left: 0.5rem;
             }
         }
     }
+
     button {
         justify-self: center;
+
         &.chat-dice-rnk {
             cursor: url("../assets/cursors/pointer.webp"), pointer;
             color: $white;
             background: linear-gradient(
-                $l5r5e-linear-gradient-third,
-                $l5r5e-linear-gradient-third-dark,
-                $l5r5e-linear-gradient-third
+                    $l5r5e-linear-gradient-third,
+                    $l5r5e-linear-gradient-third-dark,
+                    $l5r5e-linear-gradient-third
             );
             background-origin: padding-box;
             border-image: url("../assets/ui/macro-button.webp") 10 repeat;
             border-image-width: 0.5rem;
             border-image-outset: 0px;
             margin: 0.5rem 0 0;
+
             &:hover {
                 background: linear-gradient(
-                    $l5r5e-linear-gradient-first-dark,
-                    $l5r5e-linear-gradient-first,
-                    $l5r5e-linear-gradient-first-dark
+                        $l5r5e-linear-gradient-first-dark,
+                        $l5r5e-linear-gradient-first,
+                        $l5r5e-linear-gradient-first-dark
                 );
             }
         }
+
         &.chat-dice-rnk-ended {
             background: linear-gradient(
-                $l5r5e-linear-gradient-second,
-                $l5r5e-linear-gradient-second-dark,
-                $l5r5e-linear-gradient-second
+                    $l5r5e-linear-gradient-second,
+                    $l5r5e-linear-gradient-second-dark,
+                    $l5r5e-linear-gradient-second
             );
         }
     }
+
     .dice-result-rnk {
         background: rgba(0, 0, 255, 0.1);
         border: 1px solid rgba(55, 55, 155, 0.75);
@@ -137,25 +154,30 @@
         text-align: center;
         font-weight: bold;
         text-shadow: 0 0 0 $black;
+
         &.success {
             background: rgba(0, 255, 0, 0.1);
             border-color: rgba(55, 155, 55, 0.75);
             color: rgba(55, 155, 55, 0.75);
+
             i.i_success {
                 font-size: 1rem;
             }
         }
+
         &.unknown {
             background: rgba(121, 121, 121, 0.1);
             border-color: rgba(124, 124, 124, 0.75);
             color: rgba(91, 91, 91, 0.75);
         }
+
         &.fail {
             background: rgba(255, 0, 0, 0.1);
             border-color: rgba(155, 55, 55, 0.75);
             color: rgba(155, 55, 55, 0.75);
         }
     }
+
     .target,
     .item-infos {
         display: flex;
@@ -166,20 +188,25 @@
         background: rgba(255, 255, 255, 0.1);
         border: solid 1px rgba(100, 0, 0, 0.75);
         border-radius: 3px;
+
         .profile {
             flex: 1;
             margin: 0.25rem 0.25rem 0 0;
             position: relative;
+
             .profile-img {
                 position: relative;
                 border: none;
                 filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.66));
             }
         }
+
         .name {
             flex: 6;
             font-family: "BrushtipTexe", sans-serif;
+            display: flex;
         }
+
         .content-link {
             background: unset;
             border: unset;
@@ -188,8 +215,10 @@
             }
         }
     }
+
     .item-infos {
         border: solid 1px rgba(0, 78, 100, 0.75);
+
         i {
             font-size: var(--font-size-12);
         }
@@ -199,3 +228,4 @@
         display: flex;
     }
 }
+

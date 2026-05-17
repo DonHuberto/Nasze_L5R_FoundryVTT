@@ -1,88 +1,70 @@
 {
     "label": "Condizioni",
-    "mapping": {
-        "content": "content"
-    },
-    "entries": [
-        {
-            "id": "Afflicted",
+    "mapping": {},
+    "entries": {
+        "Afflicted": {
             "name": "Afflitto",
             "content": "<blockquote>Manuale Base p.271</blockquote>"
         },
-        {
-            "id": "Bleeding",
+        "Bleeding": {
             "name": "Sanguinante",
             "content": "<blockquote>Manuale Base p.273</blockquote>"
         },
-        {
-            "id": "Burning",
+        "Burning": {
             "name": "In Fiamme",
             "content": "<blockquote>Manuale Base p.272</blockquote>"
         },
-        {
-            "id": "Compromised",
+        "Compromised": {
             "name": "Compromesso",
             "content": "<blockquote>Manuale Base p.271</blockquote>"
         },
-        {
-            "id": "Dazed",
+        "Dazed": {
             "name": "Frastornato",
             "content": "<blockquote>Manuale Base p.272</blockquote>"
         },
-        {
-            "id": "Disoriented",
+        "Disoriented": {
             "name": "Disorientato",
             "content": "<blockquote>Manuale Base p.271</blockquote>"
         },
-        {
-            "id": "Dying [X Rounds]",
+        "Dying [X Rounds]": {
             "name": "Morente (X round)",
             "content": "<blockquote>Manuale Base p.273</blockquote>"
         },
-        {
-            "id": "Enraged",
+        "Enraged": {
             "name": "Infuriato",
             "content": "<blockquote>Manuale Base p.273</blockquote>"
         },
-        {
-            "id": "Exhausted",
+        "Exhausted": {
             "name": "Esausto",
             "content": "<blockquote>Manuale Base p.272</blockquote>"
         },
-        {
-            "id": "Immobilized",
+        "Immobilized": {
             "name": "Immobilizzato",
             "content": "<blockquote>Manuale Base p.272</blockquote>"
         },
-        {
-            "id": "Incapacitated",
+        "Incapacitated": {
             "name": "Incapacitato",
             "content": "<blockquote>Manuale Base p.272</blockquote>"
         },
-        {
-            "id": "Intoxicated",
+        "Intoxicated": {
             "name": "Intossicato",
             "content": "<blockquote>Manuale Base p.273</blockquote>"
         },
-        {
-            "id": "Prone",
+        "Prone": {
             "name": "Prono",
             "content": "<blockquote>Manuale Base p.273</blockquote>"
         },
-        {
-            "id": "Silenced",
+        "Silenced": {
             "name": "Ammutolito",
             "content": "<blockquote>Manuale Base p.271</blockquote>"
         },
-        {
-            "id": "Unconscious",
+        "Unconscious": {
             "name": "Svenuto",
             "content": "<blockquote>Manuale Base p.273</blockquote>"
         },
-        {
-            "id": "Wounded",
+        "Wounded": {
             "name": "Ferito",
             "content": "<blockquote>Manuale Base p.271</blockquote>"
         }
-    ]
+    }
 }
