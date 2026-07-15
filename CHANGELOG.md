@@ -6,9 +6,43 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.101 - 15/07/2026 - Foundry v14 fork update
+- Merge the official v1.14.0 Foundry VTT v14 compatibility update.
+- Preserve the fork's custom roll automation and Roll & Keep behaviour.
+- Update fork manifest metadata and release links for v1.14.101.
+
 ## 1.13.101 - 31/10/2025 - Release preparation
 - Update manifest metadata for v1.13.101 release.
 - Point the manifest download link to the v1.13.101 package.
+
+## 1.14.0 - 17/05/2026 - Foundry v14 Compatibility
+__! Be certain to carefully back up any critical user data before installing this update !__
+- Updated the System to FoundryVTT v14 (Vlyan).
+- Fix List without bullet on item sheets (Vlyan).
+- Fix black embedded links displays on Tooltips (Vlyan).
+- Fix autocomplete drop-down (!65)(Litasa).
+- Adding the dead status (!64)(Litasa).
+- Updated the System for Babele 2.8+, and removed the CustomCompendiumName settings. Babel do the thing for us (Vlyan).
+- Updated French translations for `Children of the Five Winds` (Vlyan).
+
+## 1.13.4 - 01/03/2026 - UI Polish, Compendium Upgrades
+Welcoming Litasa as a maintainer for the system!
+
+- Fixing type in Courts of Stone title, thanks to SagaTympana (!51).
+- Update to the [development wiki](https://gitlab.com/teaml5r/l5r5e/-/wikis/home), thanks to Norman Briggs (!52)
+- Updating the sidebar icons to show L5r5e specific ones (#72)(!53) (Litasa)
+- Adding incremental buttons for honor, glory, and status (#69)(!54) (Litasa)
+- New rank is now shown directly when completing a school rank (#64)(!57) (Litasa)
+- Adding Starting items to Compendiums that was missing. Split Poison and Omamori into individual items(!58) (Litasa)
+- Some combinations of light and dark theme made the GM Toolbox and GM Monitor hard/impossible to use. Fixed now (#75)(!59) (Litasa)
+- Conditions now show in the top of dice-picker and roll-n-keep (related to #74)(!60) (Litasa)
+- Compendium filter is now a lot "snappier". New search box and now able to multi select elements/ranks/rarity. (!61) (Litasa)
+- Adding selection circle to Combat encounter (!62) (Litasa)
+
+## 1.13.3 - 01/02/2026 - Tactical Grid & Fixes
+- Updated demeanors from books up to Imperfect Land (included), thanks to Olivier Brencklé (!48).
+- Added Tactical Grid Range Band, thanks to Litasa (!49).
+- Fix Title advancement auto-name/icon, thanks to SagaTympana (!50).
 
 ## 1.13.2 - 18/10/2025 - Conditions Icons & Fixes
 - Fix Actor Sheet for pressing key `Enter` in input trigger `no active Encounter...` message.
@@ -18,8 +52,8 @@ Date format : day/month/year
 - Spanish language updated thanks to Alejabarr.
 
 ## 1.13.1 - 21/09/2025 - Conditions & Fixes
-- Fix for Clicking on items doesn't show item window (#65 Thx to Litasa)
-- Fix for fade configuration (#66)
+- Fix for Clicking on items doesn't show item window (#65 Thx to Litasa).
+- Fix for fade configuration (#66).
 - Added some Tooltips loading optimizations (#62 Thanks to KitCat).
 - Added some Properties loading optimizations (#63 Thanks to KitCat).
 - Conditions changes :

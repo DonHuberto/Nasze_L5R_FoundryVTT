@@ -27,12 +27,12 @@
                 </label>
                 <br>
                 <br>
-                <i>{{localize (localize 'l5r5e.twenty_questions.part0.section{suffix}' suffix=suffix)}}</i>
+                <i>{{localizeEmbedded 'l5r5e.twenty_questions.part0.section{suffix}' suffix=suffix}}</i>
                 <button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>
             </article>
             <article class="tab parts part1" data-group="primary" data-tab="part1">
-                <h2>{{localize (localize 'l5r5e.twenty_questions.part1.title{suffix}' suffix=suffix)}}</h2>
-                <h3>{{localize (localize 'l5r5e.twenty_questions.part1.q1{suffix}' suffix=suffix)}}</h3>
+                <h2>{{localizeEmbedded 'l5r5e.twenty_questions.part1.title{suffix}' suffix=suffix}}</h2>
+                <h3>{{localizeEmbedded 'l5r5e.twenty_questions.part1.q1{suffix}' suffix=suffix}}</h3>
                 <div>
                     <input type="text" name="step1.clan" value="{{data.step1.clan}}">
                 </div>
@@ -73,7 +73,7 @@
                         </td>
                     </tr>
                 </table>
-                <h3>{{localize (localize 'l5r5e.twenty_questions.part1.q2{suffix}' suffix=suffix)}}</h3>
+                <h3>{{localizeEmbedded 'l5r5e.twenty_questions.part1.q2{suffix}' suffix=suffix}}</h3>
                 <div>
                     <input type="text" name="step2.family" value="{{data.step2.family}}">
                 </div>
@@ -122,7 +122,7 @@
             </article>
             <article class="tab parts part2" data-group="primary" data-tab="part2">
                 <h2>{{localize 'l5r5e.twenty_questions.part2.title'}}</h2>
-                <h3>{{localize (localize 'l5r5e.twenty_questions.part2.q3{suffix}' suffix=suffix)}}</h3>
+                <h3>{{localizeEmbedded 'l5r5e.twenty_questions.part2.q3{suffix}' suffix=suffix}}</h3>
                 <label class="full">
                     {{localize 'l5r5e.twenty_questions.part2.school'}}
                     <input type="text" name="step3.school" value="{{data.step3.school}}">
@@ -214,7 +214,7 @@
                         </td>
                     </tr>
                 </table>
-                <h3>{{localize (localize 'l5r5e.twenty_questions.part2.q4{suffix}' suffix=suffix)}}</h3>
+                <h3>{{localizeEmbedded 'l5r5e.twenty_questions.part2.q4{suffix}' suffix=suffix}}</h3>
                 <textarea name="step4.stand_out">{{data.step4.stand_out}}</textarea>
                 <label>
                     {{localize 'l5r5e.twenty_questions.increase_ring1'}}
@@ -226,8 +226,8 @@
                 <button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>
             </article>
             <article class="tab parts part3" data-group="primary" data-tab="part3">
-                <h2>{{localize (localize 'l5r5e.twenty_questions.part3.title{suffix}' suffix=suffix)}}</h2>
-                <h3>{{localize (localize 'l5r5e.twenty_questions.part3.q5{suffix}' suffix=suffix)}}</h3>
+                <h2>{{localizeEmbedded 'l5r5e.twenty_questions.part3.title{suffix}' suffix=suffix}}</h2>
+                <h3>{{localizeEmbedded 'l5r5e.twenty_questions.part3.q5{suffix}' suffix=suffix}}</h3>
                 <label>
                     {{#ifCond data.template '==' 'core'}}
                         {{localize 'l5r5e.twenty_questions.part3.choose_giri'}}
@@ -236,12 +236,12 @@
                     {{/ifCond}}
                     <textarea name="step5.social_giri">{{data.step5.social_giri}}</textarea>
                 </label>
-                <h3>{{localize (localize 'l5r5e.twenty_questions.part3.q6{suffix}' suffix=suffix)}}</h3>
+                <h3>{{localizeEmbedded 'l5r5e.twenty_questions.part3.q6{suffix}' suffix=suffix}}</h3>
                 <label>
                     {{localize 'l5r5e.twenty_questions.part3.choose_ninjo'}}
                     <textarea name="step6.social_ninjo">{{data.step6.social_ninjo}}</textarea>
                 </label>
-                <h3>{{localize (localize 'l5r5e.twenty_questions.part3.q7{suffix}' suffix=suffix)}}</h3>
+                <h3>{{localizeEmbedded 'l5r5e.twenty_questions.part3.q7{suffix}' suffix=suffix}}</h3>
                 <textarea name="step7.clan_relations">{{data.step7.clan_relations}}</textarea>
                 <table>
                     <tr>
@@ -265,7 +265,7 @@
                         </td>
                     </tr>
                 </table>
-                <h3>{{localize (localize 'l5r5e.twenty_questions.part3.q8{suffix}' suffix=suffix)}}</h3>
+                <h3>{{localizeEmbedded 'l5r5e.twenty_questions.part3.q8{suffix}' suffix=suffix}}</h3>
                 <textarea name="step8.bushido">{{data.step8.bushido}}</textarea>
                 <table>
                     <tr>
@@ -315,31 +315,31 @@
             </article>
             <article class="tab parts part4" data-group="primary" data-tab="part4">
                 <h2>{{localize 'l5r5e.twenty_questions.part4.title'}}</h2>
-                <h3>{{localize (localize 'l5r5e.twenty_questions.part4.q9{suffix}' suffix=suffix)}}</h3>
+                <h3>{{localizeEmbedded 'l5r5e.twenty_questions.part4.q9{suffix}' suffix=suffix}}</h3>
                 <textarea name="step9.success">{{data.step9.success}}</textarea>
                 <label>
                     {{localize 'l5r5e.twenty_questions.part4.distinction'}}
                     {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step9.distinction stepName='step9.distinction' itemType='peculiarities' hideDndAt=1}}
                 </label>
-                <h3>{{localize (localize 'l5r5e.twenty_questions.part4.q10{suffix}' suffix=suffix)}}</h3>
+                <h3>{{localizeEmbedded 'l5r5e.twenty_questions.part4.q10{suffix}' suffix=suffix}}</h3>
                 <textarea name="step10.difficulty">{{data.step10.difficulty}}</textarea>
                 <label>
                     {{localize 'l5r5e.twenty_questions.part4.adversity'}}
                     {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step10.adversity stepName='step10.adversity' itemType='peculiarities' hideDndAt=1}}
                 </label>
-                <h3>{{localize (localize 'l5r5e.twenty_questions.part4.q11{suffix}' suffix=suffix)}}</h3>
+                <h3>{{localizeEmbedded 'l5r5e.twenty_questions.part4.q11{suffix}' suffix=suffix}}</h3>
                 <textarea name="step11.calms">{{data.step11.calms}}</textarea>
                 <label>
                     {{localize 'l5r5e.twenty_questions.part4.passion'}}
                     {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step11.passion stepName='step11.passion' itemType='peculiarities' hideDndAt=1}}
                 </label>
-                <h3>{{localize (localize 'l5r5e.twenty_questions.part4.q12{suffix}' suffix=suffix)}}</h3>
+                <h3>{{localizeEmbedded 'l5r5e.twenty_questions.part4.q12{suffix}' suffix=suffix}}</h3>
                 <textarea name="step12.worries">{{data.step12.worries}}</textarea>
                 <label>
                     {{localize 'l5r5e.twenty_questions.part4.anxiety'}}
                     {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step12.anxiety stepName='step12.anxiety' itemType='peculiarities' hideDndAt=1}}
                 </label>
-                <h3>{{localize (localize 'l5r5e.twenty_questions.part4.q13{suffix}' suffix=suffix)}}</h3>
+                <h3>{{localizeEmbedded 'l5r5e.twenty_questions.part4.q13{suffix}' suffix=suffix}}</h3>
                 <textarea name="step13.most_learn">{{data.step13.most_learn}}</textarea>
                 <table>
                     <tr>
@@ -376,13 +376,13 @@
             </article>
             <article class="tab parts part5" data-group="primary" data-tab="part5">
                 <h2>{{localize 'l5r5e.twenty_questions.part5.title'}}</h2>
-                <h3>{{localize (localize 'l5r5e.twenty_questions.part5.q14{suffix}' suffix=suffix)}}</h3>
+                <h3>{{localizeEmbedded 'l5r5e.twenty_questions.part5.q14{suffix}' suffix=suffix}}</h3>
                 <textarea name="step14.first_sight">{{data.step14.first_sight}}</textarea>
                 <label>
                     {{localize 'l5r5e.twenty_questions.part5.accoutrement'}}
                     {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step14.special_features stepName='step14.special_features' itemType='items' hideDndAt=1}}
                 </label>
-                <h3>{{localize (localize 'l5r5e.twenty_questions.part5.q15{suffix}' suffix=suffix)}}</h3>
+                <h3>{{localizeEmbedded 'l5r5e.twenty_questions.part5.q15{suffix}' suffix=suffix}}</h3>
                 <textarea name="step15.stress">{{data.step15.stress}}</textarea>
                 {{#ifCond data.template '==' 'core'}}
                     <h3>{{localize 'l5r5e.twenty_questions.part5.q16'}}</h3>
@@ -395,16 +395,16 @@
                 <button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>
             </article>
             <article class="tab parts part6" data-group="primary" data-tab="part6">
-                <h2>{{localize (localize 'l5r5e.twenty_questions.part6.title{suffix}' suffix=suffix)}}</h2>
+                <h2>{{localizeEmbedded 'l5r5e.twenty_questions.part6.title{suffix}' suffix=suffix}}</h2>
                 {{#ifCond data.template '==' 'pow'}}
-                    <h3>{{localize (localize 'l5r5e.twenty_questions.part5.q16_pow' suffix=suffix)}}</h3>
+                    <h3>{{localize 'l5r5e.twenty_questions.part5.q16_pow'}}</h3>
                     <textarea name="step16.relations">{{data.step16.relations}}</textarea>
                     <label>
                         {{localize 'l5r5e.twenty_questions.part5.object'}}
                         {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step16.item stepName='step16.item' itemType='items' hideDndAt=1}}
                     </label>
                 {{/ifCond}}
-                <h3>{{localize (localize 'l5r5e.twenty_questions.part6.q17{suffix}' suffix=suffix)}}</h3>
+                <h3>{{localizeEmbedded 'l5r5e.twenty_questions.part6.q17{suffix}' suffix=suffix}}</h3>
                 <textarea name="step17.parents_pov">{{data.step17.parents_pov}}</textarea>
                 {{#ifCond data.template '==' 'core'}}
                     <label>
@@ -424,7 +424,7 @@
                         {{> 'systems/l5r5e/templates/actors/character/twenty-questions-item.html' itemsList=cache.step17.bond stepName='step17.bond' itemType='bonds' hideDndAt=1}}
                     </label>
                 {{/ifCond}}
-                <h3>{{localize (localize 'l5r5e.twenty_questions.part6.q18{suffix}' suffix=suffix)}}</h3>
+                <h3>{{localizeEmbedded 'l5r5e.twenty_questions.part6.q18{suffix}' suffix=suffix}}</h3>
                 <textarea name="step18.heritage_name">{{data.step18.heritage_name}}</textarea>
                 {{#ifCond data.template '==' 'core'}}
                     <table>
@@ -491,7 +491,7 @@
                         </select>
                     </label>
                 {{/ifCond}}
-                <h3>{{localize (localize 'l5r5e.twenty_questions.part6.q19{suffix}' suffix=suffix)}}</h3>
+                <h3>{{localizeEmbedded 'l5r5e.twenty_questions.part6.q19{suffix}' suffix=suffix}}</h3>
                 <textarea name="step19.firstname">{{data.step19.firstname}}</textarea>
                 <button class="next" name="next" type="button">{{localize 'l5r5e.twenty_questions.bt_next'}} <i class='fas fa-arrow-right'></i></button>
             </article>
@@ -499,7 +499,7 @@
                 <h2>{{localize 'l5r5e.twenty_questions.part7.title'}}</h2>
                 <div>
                     <label>
-                        <h3>{{localize (localize 'l5r5e.twenty_questions.part7.q20{suffix}' suffix=suffix)}}</h3>
+                        <h3>{{localizeEmbedded 'l5r5e.twenty_questions.part7.q20{suffix}' suffix=suffix}}</h3>
                         <textarea name="step20.death">{{data.step20.death}}</textarea>
                     </label>
                 </div>

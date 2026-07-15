@@ -29,11 +29,6 @@
             "Title": "Usa tecniche custom",
             "Hint": "Aggiunge il tipo 'Speciale' come termine generale."
         },
-        "CustomCompendiumName": {
-            "Title": "Custom Compendium Name",
-            "Hint": "For advanced users that want to change the name of the custom compendiums (Used to disables the embedded ones).",
-            "Notification": "Unable set Custom Compendium: '{name}'. Is it activated and registered with Babele?"
-        },
         "CustomItemsHeight": {
             "Title": "Default items windows height",
             "Hint": "Set the default height for 'Items' windows types (techniques, weapons...), in pixels"
@@ -136,6 +131,7 @@
             "player_filter_label": "Player filter",
             "player_filter_tooltip": "Apply player filter",
             "already_in_filter": "Already in filter",
+            "no_results": "Not Found",
             "sources_categories": {
                 "rules": "Rules",
                 "adventures": "Adventures",
@@ -503,7 +499,10 @@
             "rarity_modifier": "Modificatore rarità",
             "item_pattern": "Item Patterns",
             "signature_scroll": "Signature Scrolls",
-            "school_curriculum_journal": "Trascina il diario del curriculum sulla scheda per collegarlo"
+            "school_curriculum_journal": "Trascina il diario del curriculum sulla scheda per collegarlo",
+            "warning": {
+                "total_less_then_spent": "L'esperienza totale è inferiore all'esperienza utilizzata."
+            }
         },
         "character_types": {
             "character": "Personaggio giocante",
@@ -716,6 +715,7 @@
         "demeanor": {
             "adaptable": "Flessibile",
             "aggressive": "Aggressivo",
+            "alluring": "Alluring",
             "ambitious": "Ambizioso",
             "amiable": "Affabile",
             "analytical": "Analitico",
@@ -724,6 +724,7 @@
             "assertive": "Risoluto",
             "beguiling": "Ammaliante",
             "bitter": "Amaro",
+            "bloodthirsty": "Bloodthirsty",
             "bold": "Ardito",
             "calculating": "Calcolatore",
             "calm": "Calmo",
@@ -734,37 +735,68 @@
             "confused": "Confuso",
             "courageous": "Coraggioso",
             "cowardly": "Codardo",
+            "crestfallen": "Crestfallen",
             "curious": "Curioso",
+            "defensive": "Defensive",
             "dependable": "Affidabile",
             "detached": "Distaccato",
+            "determined": "Determined",
+            "devoted": "Devoted",
+            "direct": "Direct",
             "disheartened": "Sconfortato",
+            "dour": "Dour",
+            "duplicitous": "Duplicitous",
+            "effusive": "Effusive",
             "enraged": "Infuriato",
+            "fanatical": "Fanatical",
             "feral": "Selvaggio",
+            "fervent": "Fervent",
             "fickle": "Volubile",
             "fierce": "Agguerrito",
             "flighty": "Volubile",
             "flippant": "Irriverente",
             "friendly": "Amichevole",
             "gruff": "Burbero",
+            "honorable": "Honorable",
+            "hubristic": "Prétentieuse",
             "hungry": "Affamato",
+            "idealistic": "Idealistic",
+            "imposing": "Imposing",
+            "inquisitive": "Inquisitive",
             "intense": "Intenso",
             "intimidating": "Intimidatorio",
             "irritable": "Irritabile",
             "loyal": "Leale",
+            "methodical": "Methodical",
+            "meticulous": "Meticulous",
             "mischievous": "Malandrino",
+            "moon_blessed": "Moon-blessed",
             "morose": "Cupo",
+            "near_feral": "Near feral",
             "nurturing": "Materno",
+            "obsessed": "Obsessed",
             "obstinate": "Ostinato",
             "opportunistic": "Opportunista",
+            "otherworldly": "Otherworldly",
+            "outgoing": "Outgoing",
             "passionate": "Appassionato",
+            "patient": "Patient",
+            "personable": "Personable",
             "playful": "Giocoso",
             "power_hungry": "Affamato di potere",
             "proud": "Orgoglioso",
+            "refined": "Refined",
+            "reserved": "Reserved",
             "restrained": "Contenuto",
+            "righteous": "Righteous",
             "scheming": "Cospiratore",
             "serene": "Sereno",
             "serious": "Serio",
             "shrewd": "Scaltro",
+            "sinister": "Sinister",
+            "sociable": "Sociable",
+            "stoic": "Stoic",
+            "starved": "Starved",
             "stubborn": "Testardo",
             "suspicious": "Sospettoso",
             "teasing": "Stuzzicante",
@@ -772,7 +804,12 @@
             "uncertain": "Incerto",
             "unenthused": "Non entusiasta",
             "vain": "Vanesio",
-            "wary": "Diffidente"
+            "vengeful": "Vengeful",
+            "vindictive": "Vindictive",
+            "wary": "Diffidente",
+            "watchful": "Watchful",
+            "wrathful": "Wrathful",
+            "zealous": "Zealous"
         },
         "compendium": {
             "filter_rank": "Show Rank",
@@ -780,14 +817,15 @@
             "filter": {
                 "rank": "Rank",
                 "rarity": "Rarity",
-                "ring": "Ring"
+                "ring": "Ring",
+                "clear": "Clear Filter"
             }
         },
         "source_reference": {
             "core_rulebook": "Core Rulebook",
             "emerald_empire": "Emerald Empire",
             "shadowlands": "Shadowlands",
-            "court_of_stones": "Court of Stones",
+            "court_of_stones": "Courts of Stone",
             "path_of_waves": "Path of Waves",
             "celestial_realms": "Celestial Realms",
             "fields_of_victory": "Fields of Victory",
@@ -810,6 +848,32 @@
             "the_scroll_or_the_blade": "The Scroll or the Blade",
             "legacies_of_war": "Legacies of War",
             "children_of_the_five_winds": "Children of the Five Winds"
+        },
+        "tactical_grid": {
+            "settings": {
+                "title": "Tactical Grid Settings",
+                "label": "Tactical Grid Settings",
+                "hint": "Configures tactical grid range band distances (GM only) and their visual appearance colors and transparency (all users).",
+                "cells": "spaces",
+                "world": {
+                    "enabled": "Enable Tactical Grid",
+                    "enabled_hint": "Enables or Disable tactical grid for everyone",
+                    "start": "Start"
+                },
+                "client": {
+                    "color": "Color",
+                    "alpha": "Alpha"
+                },
+                "range": "Range {index}",
+                "validate": {
+                    "start-too-small": "Must be greater than Range Band {previousRangeIndex} ({previousStart})",
+                    "start-too-large": "Must be lower then Range Band {nextRangeIndex} ({nextStart})"
+                },
+                "reset": "Reset to Default",
+                "submit": "Save"
+            },
+            "range_band": "Range Band {band}",
+            "range_abbreviation": "RB {range}"
         }
     }
 }

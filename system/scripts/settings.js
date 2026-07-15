@@ -1,4 +1,5 @@
 import { L5r5eSetField } from "./data/l5r5e-setfield.js";
+import { TacticalGridSettingsL5R5E } from "./settings/tactical-grid-settings.js"
 
 /**
  * Custom system settings register
@@ -42,20 +43,7 @@ export const RegisterSettings = function () {
         type: Boolean,
         default: false,
     });
-    game.settings.register(CONFIG.l5r5e.namespace, "custom-compendium-name", {
-        name: "SETTINGS.CustomCompendiumName.Title",
-        hint: "SETTINGS.CustomCompendiumName.Hint",
-        scope: "world",
-        config: isBabeleRegistered,
-        requiresReload: true,
-        type: String,
-        default: "l5r5e-custom-compendiums",
-        onChange: (name) => {
-            if (game.babele && !game.babele.modules.find((module) => module.module === name)) {
-                ui.notifications.warn(game.i18n.format("SETTINGS.CustomCompendiumName.Notification", { name }), { permanent: true });
-            }
-        }
-    });
+
 
     /* -------------------------------------- */
     /* Compendium view Settings (GM only)     */
@@ -235,5 +223,29 @@ export const RegisterSettings = function () {
         type: Array,
         default: [],
         onChange: () => game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor"),
+    });
+
+    /* -------------------------------------- */
+    /* Grid Settings (GM only)                */
+    /* -------------------------------------- */
+    // UI Configuration
+    game.settings.register(CONFIG.l5r5e.namespace, "tactical-grid-settings-world", {
+        scope: "world",
+        config: false,
+        type: TacticalGridSettingsL5R5E.worldSchema,
+    });
+
+    game.settings.register(CONFIG.l5r5e.namespace, "tactical-grid-settings-client", {
+        scope: "client",
+        config: false,
+        type: TacticalGridSettingsL5R5E.clientSchema,
+    });
+
+    game.settings.registerMenu(CONFIG.l5r5e.namespace, "tactical-grid-settings", {
+        name:  "l5r5e.tactical_grid.settings.title",
+        label: "l5r5e.tactical_grid.settings.label",
+        hint:  "l5r5e.tactical_grid.settings.hint",
+        icon: "fa-solid fa-table-layout",
+        type: TacticalGridSettingsL5R5E
     });
 };

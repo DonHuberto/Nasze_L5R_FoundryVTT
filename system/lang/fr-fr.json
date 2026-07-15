@@ -29,11 +29,6 @@
             "Title": "Utiliser les techniques personnalisées",
             "Hint": "Ajoute un type de technique 'Particularités' pour servir de fourre-tout."
         },
-        "CustomCompendiumName": {
-            "Title": "Nom du CustomCompendium",
-            "Hint": "Pour les utilisateurs avancés qui souhaitent modifier le nom du compendium personnalisé (utilisé pour désactiver ceux intégrés).",
-            "Notification": "Impossible de définir le compendium personnalisé : '{name}'. Est-il activé et enregistré auprès de Babele ?"
-        },
         "CustomItemsHeight": {
             "Title": "Hauteur par défaut des fenêtres d'objets",
             "Hint": "Définir la hauteur par défaut des fenêtres de type Item (techniques, armes...) en pixels"
@@ -136,6 +131,7 @@
             "player_filter_label": "Filtre joueur",
             "player_filter_tooltip": "Applique le filtre des joueurs",
             "already_in_filter": "Filtre déjà appliqué",
+            "no_results": "Aucun résultat",
             "sources_categories": {
                 "rules": "Règles",
                 "adventures": "Aventures",
@@ -503,7 +499,10 @@
             "rarity_modifier": "Modificateur de rareté",
             "item_pattern": "Procédés de fabrication",
             "signature_scroll": "Rouleaux de marque",
-            "school_curriculum_journal": "Déposer un journal de Cursus dans la feuille pour le lier"
+            "school_curriculum_journal": "Déposer un journal de Cursus dans la feuille pour le lier",
+            "warning": {
+                "total_less_then_spent": "L'expérience totale est inférieure à l'expérience utilisée."
+            }
         },
         "character_types": {
             "character": "Personnage Joueur",
@@ -714,65 +713,103 @@
             "ujik": "Ujik"
         },
         "demeanor": {
-            "adaptable": "Adaptable",
+            "adaptable": "Malléable",
             "aggressive": "Agressive",
+            "alluring": "Attirante",
             "ambitious": "Ambitieuse",
-            "amiable": "Sympathique",
-            "analytical": "Réfléchie",
-            "angry": "Enervée",
+            "amiable": "Aimable",
+            "analytical": "Analytique",
+            "angry": "En colère",
             "arrogant": "Arrogante",
-            "assertive": "Assurée",
-            "beguiling": "Séduisante",
+            "assertive": "Sûre de soi",
+            "beguiling": "Envoûtante",
             "bitter": "Amère",
-            "bold": "Audacieuse",
+            "bloodthirsty": "Sanguinaire",
+            "bold": "Courageuse",
             "calculating": "Calculatrice",
             "calm": "Calme",
             "capricious": "Capricieuse",
             "cautious": "Prudente",
-            "clever": "Astucieuse",
+            "clever": "Malicieuse",
             "compassionate": "Compatissante",
             "confused": "Confuse",
             "courageous": "Courageuse",
             "cowardly": "Lâche",
+            "crestfallen": "Démoralisée",
             "curious": "Curieuse",
+            "defensive": "Sur la défensive",
             "dependable": "Fiable",
             "detached": "Détachée",
-            "disheartened": "Découragée",
+            "determined": "Déterminée",
+            "devoted": "Fervente",
+            "direct": "Directe",
+            "disheartened": "Abattue",
+            "dour": "Renfrognée",
+            "duplicitous": "Sournoise",
+            "effusive": "Communicative",
             "enraged": "Enragée",
+            "fanatical": "Fanatique",
             "feral": "Sauvage",
-            "fickle": "Inconstante",
+            "fervent": "Dévote",
+            "fickle": "Volatile",
             "fierce": "Féroce",
-            "flighty": "Volage",
+            "flighty": "Inconstante",
             "flippant": "Désinvolte",
             "friendly": "Amicale",
             "gruff": "Bourrue",
+            "honorable": "Honorable",
+            "hubristic": "Prétentieuse",
             "hungry": "Affamée",
-            "intense": "Intense",
+            "idealistic": "Idéaliste",
+            "imposing": "Impressionnante",
+            "inquisitive": "Inquisitrice",
+            "intense": "Excessive",
             "intimidating": "Intimidante",
-            "irritable": "Irritable",
-            "loyal": "Fidèle",
-            "mischievous": "Malicieuse",
+            "irritable": "Colérique",
+            "loyal": "Loyale",
+            "methodical": "Méthodique",
+            "meticulous": "Méticuleuse",
+            "mischievous": "Taquine",
+            "moon_blessed": "Bénie par la Lune",
             "morose": "Morose",
-            "nurturing": "Encourageante",
+            "near_feral": "Presque sauvage",
+            "nurturing": "Maternelle",
+            "obsessed": "Obsessionnelle",
             "obstinate": "Obstinée",
             "opportunistic": "Opportuniste",
+            "otherworldly": "Mystique",
+            "outgoing": "Agréable",
             "passionate": "Passionnée",
-            "playful": "Enjouée",
+            "patient": "Patiente",
+            "personable": "Avenante",
+            "playful": "Joueuse",
             "power_hungry": "Avide de pouvoir",
             "proud": "Fière",
-            "restrained": "Restreinte",
-            "scheming": "Intrigante",
+            "refined": "Raffinée",
+            "restrained": "Modérée",
+            "reserved": "Réservée",
+            "righteous": "Intègre",
+            "scheming": "Fourbe",
             "serene": "Sereine",
             "serious": "Sérieuse",
-            "shrewd": "Astucieuse",
+            "shrewd": "Rusée",
+            "sinister": "Sinistre",
+            "sociable": "Affable",
+            "starved": "Famélique",
+            "stoic": "Stoïque",
             "stubborn": "Têtue",
-            "suspicious": "Soupçonneuse",
-            "teasing": "Taquine",
+            "suspicious": "Suspicieuse",
+            "teasing": "Moqueuse",
             "territorial": "Territoriale",
-            "uncertain": "Incertaine",
-            "unenthused": "Peu enthousiaste",
-            "vain": "Vaine",
-            "wary": "Méfiante"
+            "uncertain": "Peu sûre de soi",
+            "unenthused": "Amorphe",
+            "vain": "Orgueilleuse",
+            "vengeful": "Vengeuse",
+            "vindictive": "Vindicative",
+            "wary": "Méfiante",
+            "watchful": "Attentif",
+            "wrathful": "Furieuse",
+            "zealous": "Zélée"
         },
         "compendium": {
             "filter_rank": "Aff. Rangs",
@@ -780,7 +817,8 @@
             "filter": {
                 "rank": "Rang",
                 "rarity": "Rareté",
-                "ring": "Anneau"
+                "ring": "Anneau",
+                "clear": "Suppr. les Filtres"
             }
         },
         "source_reference": {
@@ -810,6 +848,32 @@
             "the_scroll_or_the_blade": "Le Parchemin ou le Sabre",
             "legacies_of_war": "Les Flambeaux de la Guerre",
             "children_of_the_five_winds": "Les Enfants des Cinq Vents"
+        },
+        "tactical_grid": {
+            "settings": {
+                "title": "Plan Tactique",
+                "label": "Paramètres du Plan Tactique",
+                "hint": "Configure les Niveaux de Portée (GM uniquement), ainsi que les différentes couleurs et transparence (tous les utilisateurs).",
+                "cells": "cases",
+                "world": {
+                    "enabled": "Activer le Plan Tactique",
+                    "enabled_hint": "Active ou désactive le plan tactique pour tout le monde",
+                    "start": "Début"
+                },
+                "client": {
+                    "color": "Couleur",
+                    "alpha": "Alpha"
+                },
+                "range": "Portée {index}",
+                "validate": {
+                    "start-too-small": "Doit être supérieur à la Portée {previousRangeIndex} ({previousStart})",
+                    "start-too-large": "Doit être inférieur à la Portée {nextRangeIndex} ({nextStart})"
+                },
+                "reset": "Réinitialiser les paramètres par défaut",
+                "submit": "Enregistrer"
+            },
+            "range_band": "Portée {band}",
+            "range_abbreviation": "NP {range}"
         }
     }
 }

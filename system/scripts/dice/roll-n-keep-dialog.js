@@ -1,3 +1,5 @@
+import { HelpersL5r5e } from "../helpers.js";
+
 /**
  * L5R Dice Roll n Keep dialog
  * @extends {FormApplication}
@@ -400,6 +402,9 @@ export class RollnKeepDialog extends FormApplication {
                 },
             ], { jQuery: false });
         }
+
+        // Open journal on effect name
+        html.find(".effect-name").on("click", this._openEffectJournal.bind(this));
 
         // *** Everything below here is only needed if the sheet is editable ***
         if (!this.isEditable) {
@@ -934,7 +939,7 @@ export class RollnKeepDialog extends FormApplication {
         if (this.roll.l5r5e.isInitiativeRoll) {
             let msgOptions = {
                 rnkRoll: this.roll,
-                rollMode: game.l5r5e.HelpersL5r5e.getRollMode(this._message),
+                messageMode: HelpersL5r5e.getMessageMode(this._message),
             };
 
             await this.roll.l5r5e.actor.rollInitiative({
@@ -950,7 +955,7 @@ export class RollnKeepDialog extends FormApplication {
             // Send it to chat, switch to new message
             this.message = await this.roll.toMessage(
                 {},
-                { rollMode: game.l5r5e.HelpersL5r5e.getRollMode(this._message) }
+                { messageMode: HelpersL5r5e.getMessageMode(this._message) }
             );
         }
 
@@ -1179,5 +1184,35 @@ export class RollnKeepDialog extends FormApplication {
 
         // Re-enable the button
         button.attr("disabled", false);
+    }
+
+    /**
+     * Open the core linked journal effect if exist
+     * @param {Event} event
+     * @private
+     */
+    async _openEffectJournal(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const effectId = $(event.currentTarget).data("effect-id");
+        if (!effectId) {
+            return;
+        }
+
+        const effect = this.roll.l5r5e?.actor?.effects?.get(effectId);
+        if (!effect?.system?.id && !effect?.system?.uuid) {
+            return;
+        }
+
+        const journal = await game.l5r5e.HelpersL5r5e.getObjectGameOrPack({
+            id: effect.system.id,
+            uuid: effect.system.uuid,
+            type: "JournalEntry",
+        });
+        if (journal) {
+            // Open on the "rules" section. If non exists then it will open the first page
+            journal.sheet.render(true, {pageIndex: 2});
+        }
     }
 }

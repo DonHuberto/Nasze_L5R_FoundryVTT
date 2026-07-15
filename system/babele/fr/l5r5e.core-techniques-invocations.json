@@ -1,617 +1,386 @@
 {
     "label": "Techniques Invocations",
-    "mapping": {
-        "description": "system.description",
-        "source_reference": "system.source_reference"
-    },
-    "entries": [
-        {
-            "id": "Rise, Air",
+    "mapping": {},
+    "entries": {
+        "Rise, Air": {
             "name": "Air, incarne-toi",
             "description": "",
-            "source_reference": {
-                "page": "192"
-            }
+            "source_reference_page": "192"
         },
-        {
-            "id": "Nature’s Touch",
+        "Nature\u2019s Touch": {
             "name": "Caresse de la nature",
             "description": "",
-            "source_reference": {
-                "page": "192"
-            }
+            "source_reference_page": "192"
         },
-        {
-            "id": "Wrath of Kaze-no-Kami",
+        "Wrath of Kaze-no-Kami": {
             "name": "Courroux de Kaze no kami",
             "description": "",
-            "source_reference": {
-                "page": "192"
-            }
+            "source_reference_page": "192"
         },
-        {
-            "id": "Secrets on the Wind",
+        "Secrets on the Wind": {
             "name": "Des secrets dans le vent",
             "description": "",
-            "source_reference": {
-                "page": "193"
-            }
+            "source_reference_page": "193"
         },
-        {
-            "id": "Vapor of Nightmares",
+        "Vapor of Nightmares": {
             "name": "Emanation de cauchemar",
             "description": "",
-            "source_reference": {
-                "page": "193"
-            }
+            "source_reference_page": "193"
         },
-        {
-            "id": "Grasp of the Air Dragon",
-            "name": "Etreinte du Dragon de l’Air",
+        "Grasp of the Air Dragon": {
+            "name": "Etreinte du Dragon de l\u2019Air",
             "description": "",
-            "source_reference": {
-                "page": "193"
-            }
+            "source_reference_page": "193"
         },
-        {
-            "id": "Blessed Wind",
-            "name": "Vent béni",
+        "Blessed Wind": {
+            "name": "Vent b\u00e9ni",
             "description": "",
-            "source_reference": {
-                "page": "196"
-            }
+            "source_reference_page": "196"
         },
-        {
-            "id": "By the Light of the Lord Moon",
-            "name": "Par la lumière de Sire Lune",
+        "By the Light of the Lord Moon": {
+            "name": "Par la lumi\u00e8re de Sire Lune",
             "description": "",
-            "source_reference": {
-                "page": "195"
-            }
+            "source_reference_page": "195"
         },
-        {
-            "id": "Call Upon the Wind",
-            "name": "L’appel du vent",
+        "Call Upon the Wind": {
+            "name": "L\u2019appel du vent",
             "description": "",
-            "source_reference": {
-                "page": "194"
-            }
+            "source_reference_page": "194"
         },
-        {
-            "id": "Cloak of Night",
+        "Cloak of Night": {
             "name": "Manteau de nuit",
             "description": "",
-            "source_reference": {
-                "page": "194"
-            }
+            "source_reference_page": "194"
         },
-        {
-            "id": "False Realm of the Fox Spirits",
+        "False Realm of the Fox Spirits": {
             "name": "Royaume factice des esprits renards",
             "description": "",
-            "source_reference": {
-                "page": "195"
-            }
+            "source_reference_page": "195"
         },
-        {
-            "id": "Mask of Wind",
+        "Mask of Wind": {
             "name": "Masque du vent",
             "description": "",
-            "source_reference": {
-                "page": "194"
-            }
+            "source_reference_page": "194"
         },
-        {
-            "id": "Summon Fog",
+        "Summon Fog": {
             "name": "Nappe de brouillard",
             "description": "",
-            "source_reference": {
-                "page": "195"
-            }
+            "source_reference_page": "195"
         },
-        {
-            "id": "Tempest of Air",
+        "Tempest of Air": {
             "name": "Tornade",
             "description": "",
-            "source_reference": {
-                "page": "196"
-            }
+            "source_reference_page": "196"
         },
-        {
-            "id": "Token of Memory",
+        "Token of Memory": {
             "name": "Fragment de souvenir",
             "description": "",
-            "source_reference": {
-                "page": "194"
-            }
+            "source_reference_page": "194"
         },
-        {
-            "id": "Yari of Air",
-            "name": "Yari de l’Air",
+        "Yari of Air": {
+            "name": "Yari de l\u2019Air",
             "description": "",
-            "source_reference": {
-                "page": "196"
-            }
+            "source_reference_page": "196"
         },
-        {
-            "id": "Armor of Earth",
+        "Armor of Earth": {
             "name": "Armure de la Terre",
             "description": "",
-            "source_reference": {
-                "page": "197"
-            }
+            "source_reference_page": "197"
         },
-        {
-            "id": "Bind the Shadow",
-            "name": "Enchaîner les ténèbres",
+        "Bind the Shadow": {
+            "name": "Encha\u00eener les t\u00e9n\u00e8bres",
             "description": "",
-            "source_reference": {
-                "page": "198"
-            }
+            "source_reference_page": "198"
         },
-        {
-            "id": "Caress of Earth",
+        "Caress of Earth": {
             "name": "Caresse de la Terre",
             "description": "",
-            "source_reference": {
-                "page": "197"
-            }
+            "source_reference_page": "197"
         },
-        {
-            "id": "Courage of Seven Thunders",
+        "Courage of Seven Thunders": {
             "name": "Courage des Sept Tonnerres",
             "description": "",
-            "source_reference": {
-                "page": "198"
-            }
+            "source_reference_page": "198"
         },
-        {
-            "id": "Earthquake",
-            "name": "Séisme",
+        "Earthquake": {
+            "name": "S\u00e9isme",
             "description": "",
-            "source_reference": {
-                "page": "200"
-            }
+            "source_reference_page": "200"
         },
-        {
-            "id": "Earth Becomes Sky",
+        "Earth Becomes Sky": {
             "name": "La terre devient le ciel",
             "description": "",
-            "source_reference": {
-                "page": "199"
-            }
+            "source_reference_page": "199"
         },
-        {
-            "id": "Embrace of Kenro-Ji-Jin",
+        "Embrace of Kenro-Ji-Jin": {
             "name": "Etreinte de Kenro-ji-jin",
             "description": "",
-            "source_reference": {
-                "page": "198"
-            }
+            "source_reference_page": "198"
         },
-        {
-            "id": "Grasp of Earth",
+        "Grasp of Earth": {
             "name": "Etreinte de la Terre",
             "description": "",
-            "source_reference": {
-                "page": "199"
-            }
+            "source_reference_page": "199"
         },
-        {
-            "id": "Jade Strike",
+        "Jade Strike": {
             "name": "Assaut de jade",
             "description": "",
-            "source_reference": {
-                "page": "197"
-            }
+            "source_reference_page": "197"
         },
-        {
-            "id": "Jurōjin’s Balm",
-            "name": "Baume de Jurōjin",
+        "Jur\u014djin\u2019s Balm": {
+            "name": "Baume de Jur\u014djin",
             "description": "",
-            "source_reference": {
-                "page": "197"
-            }
+            "source_reference_page": "197"
         },
-        {
-            "id": "Power of the Earth Dragon",
+        "Power of the Earth Dragon": {
             "name": "Puissance du Dragon de la Terre",
             "description": "",
-            "source_reference": {
-                "page": "200"
-            }
+            "source_reference_page": "200"
         },
-        {
-            "id": "Rise, Earth",
+        "Rise, Earth": {
             "name": "Terre, incarne-toi",
             "description": "",
-            "source_reference": {
-                "page": "200"
-            }
+            "source_reference_page": "200"
         },
-        {
-            "id": "Symbol of Earth",
+        "Symbol of Earth": {
             "name": "Symbole de la Terre",
             "description": "",
-            "source_reference": {
-                "page": "200"
-            }
+            "source_reference_page": "200"
         },
-        {
-            "id": "Tetsubō of Earth",
-            "name": "Tetsubō de la Terre",
+        "Tetsub\u014d of Earth": {
+            "name": "Tetsub\u014d de la Terre",
             "description": "",
-            "source_reference": {
-                "page": "201"
-            }
+            "source_reference_page": "201"
         },
-        {
-            "id": "Tomb of Jade",
+        "Tomb of Jade": {
             "name": "Tombe de jade",
             "description": "",
-            "source_reference": {
-                "page": "201"
-            }
+            "source_reference_page": "201"
         },
-        {
-            "id": "Wall of Earth",
+        "Wall of Earth": {
             "name": "Muraille de terre",
             "description": "",
-            "source_reference": {
-                "page": "199"
-            }
+            "source_reference_page": "199"
         },
-        {
-            "id": "Armor of Radiance",
+        "Armor of Radiance": {
             "name": "Armure rayonnante",
             "description": "",
-            "source_reference": {
-                "page": "202"
-            }
+            "source_reference_page": "202"
         },
-        {
-            "id": "Biting Steel",
-            "name": "Morsure de l’acier",
+        "Biting Steel": {
+            "name": "Morsure de l\u2019acier",
             "description": "",
-            "source_reference": {
-                "page": "205"
-            }
+            "source_reference_page": "205"
         },
-        {
-            "id": "Breath of the Fire Dragon",
+        "Breath of the Fire Dragon": {
             "name": "Souffle du Dragon du Feu",
             "description": "",
-            "source_reference": {
-                "page": "206"
-            }
+            "source_reference_page": "206"
         },
-        {
-            "id": "Extinguish",
+        "Extinguish": {
             "name": "Extinction",
             "description": "",
-            "source_reference": {
-                "page": "203"
-            }
+            "source_reference_page": "203"
         },
-        {
-            "id": "Fukurokujin’s Wit",
+        "Fukurokujin\u2019s Wit": {
             "name": "Esprit de Fukurokujin",
             "description": "",
-            "source_reference": {
-                "page": "202"
-            }
+            "source_reference_page": "202"
         },
-        {
-            "id": "Fury of Osano-wo",
-            "name": "Fureur d’Osano-wo",
+        "Fury of Osano-wo": {
+            "name": "Fureur d\u2019Osano-wo",
             "description": "",
-            "source_reference": {
-                "page": "204"
-            }
+            "source_reference_page": "204"
         },
-        {
-            "id": "Katana of Fire",
+        "Katana of Fire": {
             "name": "Katana du Feu",
             "description": "",
-            "source_reference": {
-                "page": "204"
-            }
+            "source_reference_page": "204"
         },
-        {
-            "id": "Matsu's Battlecry",
+        "Matsu's Battlecry": {
             "name": "Cri de guerre de Matsu",
             "description": "",
-            "source_reference": {
-                "page": "202"
-            }
+            "source_reference_page": "202"
         },
-        {
-            "id": "Ravenous Swarms",
-            "name": "Nuée vorace",
+        "Ravenous Swarms": {
+            "name": "Nu\u00e9e vorace",
             "description": "",
-            "source_reference": {
-                "page": "205"
-            }
+            "source_reference_page": "205"
         },
-        {
-            "id": "Rise, Flame",
+        "Rise, Flame": {
             "name": "Feu, incarne-toi",
             "description": "",
-            "source_reference": {
-                "page": "203"
-            }
+            "source_reference_page": "203"
         },
-        {
-            "id": "The Cleansing Fire",
+        "The Cleansing Fire": {
             "name": "Le feu purificateur",
             "description": "",
-            "source_reference": {
-                "page": "205"
-            }
+            "source_reference_page": "205"
         },
-        {
-            "id": "The Fires from Within",
-            "name": "Feu intérieur",
+        "The Fires from Within": {
+            "name": "Feu int\u00e9rieur",
             "description": "",
-            "source_reference": {
-                "page": "203"
-            }
+            "source_reference_page": "203"
         },
-        {
-            "id": "The Soul’s Blade",
+        "The Soul\u2019s Blade": {
             "name": "Lame spirituelle",
             "description": "",
-            "source_reference": {
-                "page": "204"
-            }
+            "source_reference_page": "204"
         },
-        {
-            "id": "Wall of Fire",
+        "Wall of Fire": {
             "name": "Muraille de flammes",
             "description": "",
-            "source_reference": {
-                "page": "205"
-            }
+            "source_reference_page": "205"
         },
-        {
-            "id": "Wings of the Phoenix",
-            "name": "Ailes du phénix",
+        "Wings of the Phoenix": {
+            "name": "Ailes du ph\u00e9nix",
             "description": "",
-            "source_reference": {
-                "page": "202"
-            }
+            "source_reference_page": "202"
         },
-        {
-            "id": "Bō of Water",
-            "name": "Bō de l’Eau",
+        "B\u014d of Water": {
+            "name": "B\u014d de l\u2019Eau",
             "description": "",
-            "source_reference": {
-                "page": "207"
-            }
+            "source_reference_page": "207"
         },
-        {
-            "id": "Dance of Seasons",
+        "Dance of Seasons": {
             "name": "La danse des saisons",
             "description": "",
-            "source_reference": {
-                "page": "209"
-            }
+            "source_reference_page": "209"
         },
-        {
-            "id": "Dominion of Suijin",
+        "Dominion of Suijin": {
             "name": "Le domaine de Suijin",
             "description": "",
-            "source_reference": {
-                "page": "209"
-            }
+            "source_reference_page": "209"
         },
-        {
-            "id": "Ever-Changing Waves",
-            "name": "L’impermanence du ressac",
+        "Ever-Changing Waves": {
+            "name": "L\u2019impermanence du ressac",
             "description": "",
-            "source_reference": {
-                "page": "208"
-            }
+            "source_reference_page": "208"
         },
-        {
-            "id": "Hands of the Tides",
-            "name": "Mains des marées",
+        "Hands of the Tides": {
+            "name": "Mains des mar\u00e9es",
             "description": "",
-            "source_reference": {
-                "page": "210"
-            }
+            "source_reference_page": "210"
         },
-        {
-            "id": "Heart of the Water Dragon",
-            "name": "Cœur du Dragon de l’eau",
+        "Heart of the Water Dragon": {
+            "name": "C\u0153ur du Dragon de l\u2019eau",
             "description": "",
-            "source_reference": {
-                "page": "207"
-            }
+            "source_reference_page": "207"
         },
-        {
-            "id": "Inari’s Blessing",
-            "name": "Bénédiction d’Inari",
+        "Inari\u2019s Blessing": {
+            "name": "B\u00e9n\u00e9diction d\u2019Inari",
             "description": "",
-            "source_reference": {
-                "page": "207"
-            }
+            "source_reference_page": "207"
         },
-        {
-            "id": "Path to Inner Peace",
-            "name": "Voie de la sérénité",
+        "Path to Inner Peace": {
+            "name": "Voie de la s\u00e9r\u00e9nit\u00e9",
             "description": "",
-            "source_reference": {
-                "page": "211"
-            }
+            "source_reference_page": "211"
         },
-        {
-            "id": "Reflections of P’an Ku",
-            "name": "Reflets de P’an Ku",
+        "Reflections of P\u2019an Ku": {
+            "name": "Reflets de P\u2019an Ku",
             "description": "",
-            "source_reference": {
-                "page": "211"
-            }
+            "source_reference_page": "211"
         },
-        {
-            "id": "Rise, Water",
+        "Rise, Water": {
             "name": "Eau, incarne-toi",
             "description": "",
-            "source_reference": {
-                "page": "208"
-            }
+            "source_reference_page": "208"
         },
-        {
-            "id": "Stride the Waves",
+        "Stride the Waves": {
             "name": "Marcher sur les vagues",
             "description": "",
-            "source_reference": {
-                "page": "211"
-            }
+            "source_reference_page": "211"
         },
-        {
-            "id": "Strike the Tsunami",
+        "Strike the Tsunami": {
             "name": "Impact du tsunami",
             "description": "",
-            "source_reference": {
-                "page": "208"
-            }
+            "source_reference_page": "208"
         },
-        {
-            "id": "Suijin’s Embrace",
+        "Suijin\u2019s Embrace": {
             "name": "Etreinte de Suijin",
             "description": "",
-            "source_reference": {
-                "page": "208"
-            }
+            "source_reference_page": "208"
         },
-        {
-            "id": "Sympathetic Energies",
-            "name": "Transfert d’énergie",
+        "Sympathetic Energies": {
+            "name": "Transfert d\u2019\u00e9nergie",
             "description": "",
-            "source_reference": {
-                "page": "211"
-            }
+            "source_reference_page": "211"
         },
-        {
-            "id": "The Rushing Wave",
-            "name": "La déferlante",
+        "The Rushing Wave": {
+            "name": "La d\u00e9ferlante",
             "description": "",
-            "source_reference": {
-                "page": "209"
-            }
+            "source_reference_page": "209"
         },
-        {
-            "id": "Dream Painter",
+        "Dream Painter": {
             "name": "Peintre onirique",
             "description": "",
-            "source_reference": {
-                "page": "106"
-            }
+            "source_reference_page": "106"
         },
-        {
-            "id": "Messenger of Chikusho-do",
-            "name": "Messager du Chikushō-dō",
+        "Messenger of Chikusho-do": {
+            "name": "Messager du Chikush\u014d-d\u014d",
             "description": "",
-            "source_reference": {
-                "page": "105"
-            }
+            "source_reference_page": "105"
         },
-        {
-            "id": "The Fading Dream",
-            "name": "Rêve évanescent",
+        "The Fading Dream": {
+            "name": "R\u00eave \u00e9vanescent",
             "description": "",
-            "source_reference": {
-                "page": "106"
-            }
+            "source_reference_page": "106"
         },
-        {
-            "id": "Bond of the Realms",
+        "Bond of the Realms": {
             "name": "Les liens des royaumes",
             "description": "",
-            "source_reference": {
-                "page": "107"
-            }
+            "source_reference_page": "107"
         },
-        {
-            "id": "Guardian of the Secret Gate",
-            "name": "Gardien de la porte secrète",
+        "Guardian of the Secret Gate": {
+            "name": "Gardien de la porte secr\u00e8te",
             "description": "",
-            "source_reference": {
-                "page": "107"
-            }
+            "source_reference_page": "107"
         },
-        {
-            "id": "Emboldened Steed",
+        "Emboldened Steed": {
             "name": "Monture ragaillardie",
             "description": "",
-            "source_reference": {
-                "page": "107"
-            }
+            "source_reference_page": "107"
         },
-        {
-            "id": "Fluid Shadows",
+        "Fluid Shadows": {
             "name": "Ombre liquide",
             "description": "",
-            "source_reference": {
-                "page": "108"
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Heart of the Lady Sun",
+        "Heart of the Lady Sun": {
             "name": "Coeur de Dame Soleil",
             "description": "",
-            "source_reference": {
-                "page": "108"
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Fires of Purity",
+        "Fires of Purity": {
             "name": "Feux de la purification",
             "description": "",
-            "source_reference": {
-                "page": "108"
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Amaterasu's Gaze",
-            "name": "Regard d’Amaterasu",
+        "Amaterasu's Gaze": {
+            "name": "Regard d\u2019Amaterasu",
             "description": "",
-            "source_reference": {
-                "page": "108"
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Rain of Ten Thousand Lotuses",
+        "Rain of Ten Thousand Lotuses": {
             "name": "Pluie des dix mille lotus",
             "description": "",
-            "source_reference": {
-                "page": "109"
-            }
+            "source_reference_page": "109"
         },
-        {
-            "id": "Path of Beasts",
+        "Path of Beasts": {
             "name": "Voie des animaux",
             "description": "",
-            "source_reference": {
-                "page": "109"
-            }
+            "source_reference_page": "109"
         },
-        {
-            "id": "Essence of Jade",
+        "Essence of Jade": {
             "name": "Essence de jade",
             "description": "",
-            "source_reference": {
-                "page": "114"
-            }
+            "source_reference_page": "114"
         },
-        {
-            "id": "The World is Not Heavy",
-            "name": "The World is Not Heavy (WIP)",
+        "The World is Not Heavy": {
+            "name": "Le monde n\u2019est pas lourd",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "116"
         }
-    ]
+    }
 }

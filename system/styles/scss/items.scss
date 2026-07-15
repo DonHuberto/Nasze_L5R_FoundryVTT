@@ -340,6 +340,13 @@
     article {
         &.properties {
             width: 100%;
+
+            .item-list {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+            }
         }
         &.infos {
             height: calc(100% - 4.5rem);

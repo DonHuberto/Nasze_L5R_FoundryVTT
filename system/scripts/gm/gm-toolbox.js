@@ -5,10 +5,11 @@ export class GmToolbox extends HandlebarsApplicationMixin(ApplicationV2) {
     /** @override ApplicationV2 */
     static get DEFAULT_OPTIONS() { return {
         id: "l5r5e-gm-toolbox",
+        classes: ["faded-ui"],
         window: {
-            contentClasses: ["l5r5e", "gm-toolbox", "faded-ui"],
+            contentClasses: ["l5r5e", "gm-toolbox"],
             title: "l5r5e.gm.toolbox.title",
-            minimizable: true,
+            minimizable: false,
         },
         position: {
             width: "auto",
@@ -87,6 +88,19 @@ export class GmToolbox extends HandlebarsApplicationMixin(ApplicationV2) {
         const y = $(window).height();
         options.position.top = y - 220;
         options.position.left = 220; //x - 630;
+    }
+
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+
+        if (this.options.classes.includes("themed")) {
+            return;
+        }
+        this.element.classList.remove("theme-light", "theme-dark");
+        const {colorScheme} = game.settings.get("core", "uiConfig");
+        if (colorScheme.interface) {
+            this.element.classList.add("themed", `theme-${colorScheme.interface}`);
+        }
     }
 
     /**

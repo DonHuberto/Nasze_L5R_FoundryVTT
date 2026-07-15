@@ -65,7 +65,7 @@
         <ul>
             {{#each data.splitTechniquesList as |list techName|}}
                 <li>
-                    <strong>{{localize (localize 'l5r5e.techniques.{techName}' techName=techName) }}</strong>
+                    <strong>{{localizeEmbedded 'l5r5e.techniques.{techName}' techName=techName}}</strong>
                     <ul>
                     {{#each list as |technique|}}
                         <li>
@@ -130,7 +130,7 @@
             <li>{{localize 'l5r5e.money.title'}} : {{data.system.money.koku}} {{localize 'l5r5e.money.koku'}} / {{data.system.money.bu}} {{localize 'l5r5e.money.bu'}} / {{data.system.money.zeni}} {{localize 'l5r5e.money.zeni'}}</li>
             {{#each data.splitItemsList as |cat type|}}
                 <li>
-                    <strong>{{localize (localize 'l5r5e.{type}s.title' type=type)}} ({{cat.length}})</strong>
+                    <strong>{{localizeEmbedded 'l5r5e.{type}s.title' type=type}} ({{cat.length}})</strong>
                     <ul>
                     {{#each cat as |item|}}
                         <li>{{> 'systems/l5r5e/templates/items/item/item-text.html' data=item editable=../../options.editable}}</li>
@@ -209,20 +209,20 @@
         {{/ifCond}}
         <h2>{{localize 'l5r5e.twenty_questions.title'}}</h2>
         <ul>
-            <li>{{localize (localize 'l5r5e.twenty_questions.part2.q4{suffix}' suffix=suffix)}} : {{data.system.twenty_questions.step4.stand_out}}</li>
-            <li>{{localize (localize 'l5r5e.twenty_questions.part3.q7{suffix}' suffix=suffix)}} : {{data.system.twenty_questions.step7.clan_relations}}</li>
-            <li>{{localize (localize 'l5r5e.twenty_questions.part3.q8{suffix}' suffix=suffix)}} : {{data.system.twenty_questions.step8.bushido}}</li>
-            <li>{{localize (localize 'l5r5e.twenty_questions.part4.q9{suffix}' suffix=suffix)}} : {{data.system.twenty_questions.step9.success}}</li>
-            <li>{{localize (localize 'l5r5e.twenty_questions.part4.q10{suffix}' suffix=suffix)}} : {{data.system.twenty_questions.step10.difficulty}}</li>
-            <li>{{localize (localize 'l5r5e.twenty_questions.part4.q11{suffix}' suffix=suffix)}} : {{data.system.twenty_questions.step11.calms}}</li>
-            <li>{{localize (localize 'l5r5e.twenty_questions.part4.q12{suffix}' suffix=suffix)}} : {{data.system.twenty_questions.step12.worries}}</li>
-            <li>{{localize (localize 'l5r5e.twenty_questions.part4.q13{suffix}' suffix=suffix)}} : {{data.system.twenty_questions.step13.most_learn}}</li>
-            <li>{{localize (localize 'l5r5e.twenty_questions.part5.q14{suffix}' suffix=suffix)}} : {{data.system.twenty_questions.step14.first_sight}}</li>
-            <li>{{localize (localize 'l5r5e.twenty_questions.part5.q15{suffix}' suffix=suffix)}} : {{data.system.twenty_questions.step15.stress}}</li>
-            <li>{{localize (localize 'l5r5e.twenty_questions.part5.q16{suffix}' suffix=suffix)}} : {{data.system.twenty_questions.step16.relations}}</li>
-            <li>{{localize (localize 'l5r5e.twenty_questions.part6.q17{suffix}' suffix=suffix)}} : {{data.system.twenty_questions.step17.parents_pov}}</li>
-            <li>{{localize (localize 'l5r5e.twenty_questions.part6.q18{suffix}' suffix=suffix)}} : {{data.system.twenty_questions.step18.heritage_name}}</li>
-            <li>{{localize (localize 'l5r5e.twenty_questions.part7.q20{suffix}' suffix=suffix)}} : {{data.system.twenty_questions.step20.death}}</li>
+            <li>{{localizeEmbedded 'l5r5e.twenty_questions.part2.q4{suffix}' suffix}} : {{data.system.twenty_questions.step4.stand_out}}</li>
+            <li>{{localizeEmbedded 'l5r5e.twenty_questions.part3.q7{suffix}' suffix}} : {{data.system.twenty_questions.step7.clan_relations}}</li>
+            <li>{{localizeEmbedded 'l5r5e.twenty_questions.part3.q8{suffix}' suffix}} : {{data.system.twenty_questions.step8.bushido}}</li>
+            <li>{{localizeEmbedded 'l5r5e.twenty_questions.part4.q9{suffix}' suffix}} : {{data.system.twenty_questions.step9.success}}</li>
+            <li>{{localizeEmbedded 'l5r5e.twenty_questions.part4.q10{suffix}' suffix}} : {{data.system.twenty_questions.step10.difficulty}}</li>
+            <li>{{localizeEmbedded 'l5r5e.twenty_questions.part4.q11{suffix}' suffix}} : {{data.system.twenty_questions.step11.calms}}</li>
+            <li>{{localizeEmbedded 'l5r5e.twenty_questions.part4.q12{suffix}' suffix}} : {{data.system.twenty_questions.step12.worries}}</li>
+            <li>{{localizeEmbedded 'l5r5e.twenty_questions.part4.q13{suffix}' suffix}} : {{data.system.twenty_questions.step13.most_learn}}</li>
+            <li>{{localizeEmbedded 'l5r5e.twenty_questions.part5.q14{suffix}' suffix}} : {{data.system.twenty_questions.step14.first_sight}}</li>
+            <li>{{localizeEmbedded 'l5r5e.twenty_questions.part5.q15{suffix}' suffix}} : {{data.system.twenty_questions.step15.stress}}</li>
+            <li>{{localizeEmbedded 'l5r5e.twenty_questions.part5.q16{suffix}' suffix}} : {{data.system.twenty_questions.step16.relations}}</li>
+            <li>{{localizeEmbedded 'l5r5e.twenty_questions.part6.q17{suffix}' suffix}} : {{data.system.twenty_questions.step17.parents_pov}}</li>
+            <li>{{localizeEmbedded 'l5r5e.twenty_questions.part6.q18{suffix}' suffix}} : {{data.system.twenty_questions.step18.heritage_name}}</li>
+            <li>{{localizeEmbedded 'l5r5e.twenty_questions.part7.q20{suffix}' suffix}} : {{data.system.twenty_questions.step20.death}}</li>
         </ul>
 
     </section>

@@ -1,19 +1,17 @@
 {
-    "label": "États préjudiciables",
-    "mapping": {
-        "text": "text"
-    },
+    "label": "\u00c9tats pr\u00e9judiciables",
+    "mapping": {},
     "entries": {
         "Afflicted": {
-            "name": "Tourmenté",
+            "name": "Tourment\u00e9",
             "pages": {
                 "Figure: Afflicted": {
-                    "name": "Tourmenté - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/afflicted.webp"
+                    "name": "Tourment\u00e9 - Image",
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/afflicted.webp"
                 },
                 "Afflicted": {
-                    "name": "Tourmenté",
-                    "text": "<blockquote>Livre de Règles p.273</blockquote>"
+                    "name": "Tourment\u00e9",
+                    "text": "<blockquote>Livre de R\u00e8gles p.273<\/blockquote>"
                 }
             }
         },
@@ -22,11 +20,11 @@
             "pages": {
                 "Figure: Bleeding": {
                     "name": "En sang - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/bleeding.webp"
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/bleeding.webp"
                 },
                 "Bleeding": {
                     "name": "En sang",
-                    "text": "<blockquote>Livre de Règles p.272</blockquote>"
+                    "text": "<blockquote>Livre de R\u00e8gles p.272<\/blockquote>"
                 }
             }
         },
@@ -35,11 +33,11 @@
             "pages": {
                 "Figure: Burning": {
                     "name": "En feu - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/burning.webp"
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/burning.webp"
                 },
                 "Burning": {
                     "name": "En feu",
-                    "text": "<blockquote>Livre de Règles p.272</blockquote>"
+                    "text": "<blockquote>Livre de R\u00e8gles p.272<\/blockquote>"
                 }
             }
         },
@@ -48,37 +46,37 @@
             "pages": {
                 "Figure: Compromised": {
                     "name": "Compromis - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/compromised.webp"
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/compromised.webp"
                 },
                 "Compromised": {
                     "name": "Compromis",
-                    "text": "<blockquote>Livre de Règles p.271</blockquote>"
+                    "text": "<blockquote>Livre de R\u00e8gles p.271<\/blockquote>"
                 }
             }
         },
         "Dazed": {
-            "name": "Hébété",
+            "name": "H\u00e9b\u00e9t\u00e9",
             "pages": {
                 "Figure: Dazed": {
-                    "name": "Hébété - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/dazed.webp"
+                    "name": "H\u00e9b\u00e9t\u00e9 - Image",
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/dazed.webp"
                 },
                 "Dazed": {
-                    "name": "Hébété",
-                    "text": "<blockquote>Livre de Règles p.272</blockquote>"
+                    "name": "H\u00e9b\u00e9t\u00e9",
+                    "text": "<blockquote>Livre de R\u00e8gles p.272<\/blockquote>"
                 }
             }
         },
         "Disoriented": {
-            "name": "Désorienté",
+            "name": "D\u00e9sorient\u00e9",
             "pages": {
                 "Figure: Disoriented": {
-                    "name": "Désorienté - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/disoriented.webp"
+                    "name": "D\u00e9sorient\u00e9 - Image",
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/disoriented.webp"
                 },
                 "Disoriented": {
-                    "name": "Désorienté",
-                    "text": "<blockquote>Livre de Règles p.272</blockquote>"
+                    "name": "D\u00e9sorient\u00e9",
+                    "text": "<blockquote>Livre de R\u00e8gles p.272<\/blockquote>"
                 }
             }
         },
@@ -87,50 +85,50 @@
             "pages": {
                 "Figure: Dying [X Rounds]": {
                     "name": "Mourant (X rounds) - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/dying_1.webp"
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/dying_1.webp"
                 },
                 "Dying [X Rounds]": {
                     "name": "Mourant (X rounds)",
-                    "text": "<blockquote>Livre de Règles p.273</blockquote>"
+                    "text": "<blockquote>Livre de R\u00e8gles p.273<\/blockquote>"
                 }
             }
         },
         "Enraged": {
-            "name": "Enragé",
+            "name": "Enrag\u00e9",
             "pages": {
                 "Figure: Enraged": {
-                    "name": "Enragé - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/enraged.webp"
+                    "name": "Enrag\u00e9 - Image",
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/enraged.webp"
                 },
                 "Enraged": {
-                    "name": "Enragé",
-                    "text": "<blockquote>Livre de Règles p.272</blockquote>"
+                    "name": "Enrag\u00e9",
+                    "text": "<blockquote>Livre de R\u00e8gles p.272<\/blockquote>"
                 }
             }
         },
         "Exhausted": {
-            "name": "Epuisé",
+            "name": "Epuis\u00e9",
             "pages": {
                 "Figure: Exhausted": {
-                    "name": "Epuisé - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/exhausted.webp"
+                    "name": "Epuis\u00e9 - Image",
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/exhausted.webp"
                 },
                 "Exhausted": {
-                    "name": "Epuisé",
-                    "text": "<blockquote>Livre de Règles p.272</blockquote>"
+                    "name": "Epuis\u00e9",
+                    "text": "<blockquote>Livre de R\u00e8gles p.272<\/blockquote>"
                 }
             }
         },
         "Immobilized": {
-            "name": "Immobilisé",
+            "name": "Immobilis\u00e9",
             "pages": {
                 "Figure: Immobilized": {
-                    "name": "Immobilisé - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/immobilized.webp"
+                    "name": "Immobilis\u00e9 - Image",
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/immobilized.webp"
                 },
                 "Immobilized": {
-                    "name": "Immobilisé",
-                    "text": "<blockquote>Livre de Règles p.272</blockquote>"
+                    "name": "Immobilis\u00e9",
+                    "text": "<blockquote>Livre de R\u00e8gles p.272<\/blockquote>"
                 }
             }
         },
@@ -139,11 +137,11 @@
             "pages": {
                 "Figure: Incapacitated": {
                     "name": "Hors de combat - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/incapacitated.webp"
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/incapacitated.webp"
                 },
                 "Incapacitated": {
                     "name": "Hors de combat",
-                    "text": "<blockquote>Livre de Règles p.272</blockquote>"
+                    "text": "<blockquote>Livre de R\u00e8gles p.272<\/blockquote>"
                 }
             }
         },
@@ -152,11 +150,11 @@
             "pages": {
                 "Figure: Intoxicated": {
                     "name": "Ivre - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/intoxicated.webp"
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/intoxicated.webp"
                 },
                 "Intoxicated": {
                     "name": "Ivre",
-                    "text": "<blockquote>Livre de Règles p.273</blockquote>"
+                    "text": "<blockquote>Livre de R\u00e8gles p.273<\/blockquote>"
                 }
             }
         },
@@ -165,11 +163,11 @@
             "pages": {
                 "Figure: Prone": {
                     "name": "A terre - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/prone.webp"
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/prone.webp"
                 },
                 "Prone": {
                     "name": "A terre",
-                    "text": "<blockquote>Livre de Règles p.271</blockquote>"
+                    "text": "<blockquote>Livre de R\u00e8gles p.271<\/blockquote>"
                 }
             }
         },
@@ -178,11 +176,11 @@
             "pages": {
                 "Figure: Silenced": {
                     "name": "Aphone - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/silenced.webp"
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/silenced.webp"
                 },
                 "Silenced": {
                     "name": "Aphone",
-                    "text": "<blockquote>Livre de Règles p.271</blockquote>"
+                    "text": "<blockquote>Livre de R\u00e8gles p.271<\/blockquote>"
                 }
             }
         },
@@ -191,24 +189,24 @@
             "pages": {
                 "Figure: Unconscious": {
                     "name": "Inconscient - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/unconscious.webp"
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/unconscious.webp"
                 },
                 "Unconscious": {
                     "name": "Inconscient",
-                    "text": "<blockquote>Livre de Règles p.273</blockquote>"
+                    "text": "<blockquote>Livre de R\u00e8gles p.273<\/blockquote>"
                 }
             }
         },
         "Wounded": {
-            "name": "Blessé",
+            "name": "Bless\u00e9",
             "pages": {
                 "Figure: Wounded": {
-                    "name": "Blessé - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/heavily_wounded.webp"
+                    "name": "Bless\u00e9 - Image",
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/heavily_wounded.webp"
                 },
                 "Wounded": {
-                    "name": "Blessé",
-                    "text": "<blockquote>Livre de Règles p.271</blockquote>"
+                    "name": "Bless\u00e9",
+                    "text": "<blockquote>Livre de R\u00e8gles p.271<\/blockquote>"
                 }
             }
         },
@@ -217,11 +215,11 @@
             "pages": {
                 "Figure: Illness: Oozing Sore Disease": {
                     "name": "Maladie : Bubons purulents - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/illness_oozing_sore_disease.webp"
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/illness_oozing_sore_disease.webp"
                 },
                 "Illness: Oozing Sore Disease": {
                     "name": "Maladie : Bubons purulents",
-                    "text": "<blockquote>Les Édits de la Nature p.140</blockquote>"
+                    "text": "<blockquote>Les \u00c9dits de la Nature p.140<\/blockquote>"
                 }
             }
         },
@@ -230,11 +228,11 @@
             "pages": {
                 "Figure: Illness: Gut Sickness": {
                     "name": "Maladie : Mal des entrailles - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/illness_gut_sickness.webp"
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/illness_gut_sickness.webp"
                 },
                 "Illness: Gut Sickness": {
                     "name": "Maladie : Mal des entrailles",
-                    "text": "<blockquote>Les Édits de la Nature p.141</blockquote>"
+                    "text": "<blockquote>Les \u00c9dits de la Nature p.141<\/blockquote>"
                 }
             }
         },
@@ -243,11 +241,11 @@
             "pages": {
                 "Figure: Illness: Coughing Illness": {
                     "name": "Maladie : Mauvaise toux - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/illness_coughing_illness.webp"
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/illness_coughing_illness.webp"
                 },
                 "Illness: Coughing Illness": {
                     "name": "Maladie : Mauvaise toux",
-                    "text": "<blockquote>Les Édits de la Nature p.141</blockquote>"
+                    "text": "<blockquote>Les \u00c9dits de la Nature p.141<\/blockquote>"
                 }
             }
         },
@@ -256,11 +254,11 @@
             "pages": {
                 "Figure: Illness: Unsteady Illness": {
                     "name": "Maladie : Vertiges - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/illness_unsteady_illness.webp"
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/illness_unsteady_illness.webp"
                 },
                 "Illness: Unsteady Illness": {
                     "name": "Maladie : Vertiges",
-                    "text": "<blockquote>Les Édits de la Nature p.141</blockquote>"
+                    "text": "<blockquote>Les \u00c9dits de la Nature p.141<\/blockquote>"
                 }
             }
         },
@@ -269,50 +267,50 @@
             "pages": {
                 "Figure: Illness: Fire Rash": {
                     "name": "Maladie : Rougeurs - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/illness_fire_rash.webp"
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/illness_fire_rash.webp"
                 },
                 "Illness: Fire Rash": {
                     "name": "Maladie : Rougeurs",
-                    "text": "<blockquote>Les Édits de la Nature p.141</blockquote>"
+                    "text": "<blockquote>Les \u00c9dits de la Nature p.141<\/blockquote>"
                 }
             }
         },
         "Centered": {
-            "name": "Centered (WIP)",
+            "name": "Centr\u00e9",
             "pages": {
                 "Figure: Centered": {
-                    "name": "Centered (WIP) - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/centered.webp"
+                    "name": "Centr\u00e9 - Image",
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/centered.webp"
                 },
                 "Centered": {
-                    "name": "Centered (WIP)",
-                    "text": "<blockquote>Les Enfants des Cinq Vents</blockquote>"
+                    "name": "Centr\u00e9",
+                    "text": "<blockquote>Les Enfants des Cinq Vents p.133<\/blockquote>"
                 }
             }
         },
         "Emboldened": {
-            "name": "Emboldened (WIP)",
+            "name": "Enhardi",
             "pages": {
                 "Figure: Emboldened": {
-                    "name": "Emboldened (WIP) - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/emboldened.webp"
+                    "name": "Enhardi - Image",
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/emboldened.webp"
                 },
                 "Emboldened": {
-                    "name": "Emboldened (WIP)",
-                    "text": "<blockquote>Les Enfants des Cinq Vents</blockquote>"
+                    "name": "Enhardi",
+                    "text": "<blockquote>Les Enfants des Cinq Vents p.133<\/blockquote>"
                 }
             }
         },
         "Possessed": {
-            "name": "Possessed (WIP)",
+            "name": "Poss\u00e9d\u00e9",
             "pages": {
                 "Figure: Possessed": {
-                    "name": "Possessed (WIP) - Image",
-                    "src": "systems/l5r5e/assets/icons/conditions/possesed.webp"
+                    "name": "Poss\u00e9d\u00e9 - Image",
+                    "src": "systems\/l5r5e\/assets\/icons\/conditions\/possesed.webp"
                 },
                 "Possessed": {
-                    "name": "Possessed (WIP)",
-                    "text": "<blockquote>Les Enfants des Cinq Vents</blockquote>"
+                    "name": "Poss\u00e9d\u00e9",
+                    "text": "<blockquote>Les Enfants des Cinq Vents p.133<\/blockquote>"
                 }
             }
         }

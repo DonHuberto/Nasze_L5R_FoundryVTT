@@ -29,11 +29,6 @@
             "Title": "Usar técnicas personalizadas",
             "Hint": "Añadir el tipo de técnica 'Particularidad' para que sirva como comodín."
         },
-        "CustomCompendiumName": {
-            "Title": "Nombre de Compendio personalizado",
-            "Hint": "Permite a los usuarios avanzados cambiar el nombre de los compendios personalizados (utilizados para desactivar los compendios integrados).",
-            "Notification": "No se puede configurar el compendio personalizado: '{name}'. ¿Está activado y registrado con Babele?"
-        },
         "CustomItemsHeight": {
             "Title": "Altura predeterminada de las ventanas de objetos",
             "Hint": "Establecer la altura predeterminada para las ventanas de 'objetos' (técnicas, armas...), en píxeles."
@@ -136,6 +131,7 @@
             "player_filter_label": "Filtro de jugador",
             "player_filter_tooltip": "Aplicar filtro de jugador",
             "already_in_filter": "Ya en el filtro",
+            "no_results": "Not Found",
             "sources_categories": {
                 "rules": "Reglas",
                 "adventures": "Aventuras",
@@ -503,7 +499,10 @@
             "rarity_modifier": "Modificador de rareza",
             "item_pattern": "Patrones de objetos",
             "signature_scroll": "Pergaminos espaciales",
-            "school_curriculum_journal": "Arrastra el diario del programa en la hoja para vincularlo"
+            "school_curriculum_journal": "Arrastra el diario del programa en la hoja para vincularlo",
+            "warning": {
+                "total_less_then_spent": "La experiencia total es menor que la experiencia utilizada."
+            }
         },
         "character_types": {
             "character": "Personaje jugador",
@@ -716,6 +715,7 @@
         "demeanor": {
             "adaptable": "Adaptable",
             "aggressive": "Agresivo",
+            "alluring": "Alluring",
             "ambitious": "Ambicioso",
             "amiable": "Amigable",
             "analytical": "Analítico",
@@ -724,6 +724,7 @@
             "assertive": "Firme",
             "beguiling": "Seductor",
             "bitter": "Amargado",
+            "bloodthirsty": "Bloodthirsty",
             "bold": "Atrevido",
             "calculating": "Calculador",
             "calm": "Calmado",
@@ -734,37 +735,68 @@
             "confused": "Confuso",
             "courageous": "Valiente",
             "cowardly": "Cobarde",
+            "crestfallen": "Crestfallen",
             "curious": "Curioso",
+            "defensive": "Defensive",
             "dependable": "Fiable",
             "detached": "Desapegado",
+            "determined": "Determined",
+            "devoted": "Devoted",
+            "direct": "Direct",
             "disheartened": "Desanimado",
+            "dour": "Dour",
+            "duplicitous": "Duplicitous",
+            "effusive": "Effusive",
             "enraged": "Furioso",
+            "fanatical": "Fanatical",
             "feral": "Salvaje",
+            "fervent": "Fervent",
             "fickle": "Voluble",
             "fierce": "Fiero",
             "flighty": "Veleidoso",
             "flippant": "Frívolo",
             "friendly": "Amable",
             "gruff": "Hosco",
+            "honorable": "Honorable",
+            "hubristic": "Hubristic",
             "hungry": "Hambriento",
+            "idealistic": "Idealistic",
+            "imposing": "Imposing",
+            "inquisitive": "Inquisitive",
             "intense": "Intenso",
             "intimidating": "Intimidante",
             "irritable": "Irritable",
             "loyal": "Leal",
+            "methodical": "Methodical",
+            "meticulous": "Meticulous",
             "mischievous": "Travieso",
+            "moon_blessed": "Moon-blessed",
             "morose": "Taciturno",
+            "near_feral": "Near feral",
             "nurturing": "Animador",
+            "obsessed": "Obsessed",
             "obstinate": "Obstinado",
             "opportunistic": "Oportunista",
+            "otherworldly": "Otherworldly",
+            "outgoing": "Outgoing",
             "passionate": "Apasionado",
+            "patient": "Patient",
+            "personable": "Personable",
             "playful": "Juguetón",
             "power_hungry": "Ávido de poder",
             "proud": "Orgulloso",
+            "refined": "Refined",
+            "reserved": "Reserved",
             "restrained": "Contenido",
+            "righteous": "Righteous",
             "scheming": "Taimado",
             "serene": "Sereno",
             "serious": "Serio",
             "shrewd": "Artero",
+            "sinister": "Sinister",
+            "sociable": "Sociable",
+            "stoic": "Stoic",
+            "starved": "Starved",
             "stubborn": "Testarudo",
             "suspicious": "Suspicaz",
             "teasing": "Bromista",
@@ -772,7 +804,12 @@
             "uncertain": "Inseguro",
             "unenthused": "Sin entusiasmo",
             "vain": "Vanidoso",
-            "wary": "Precavido"
+            "vengeful": "Vengeful",
+            "vindictive": "Vindictive",
+            "wary": "Precavido",
+            "watchful": "Watchful",
+            "wrathful": "Wrathful",
+            "zealous": "Zealous"
         },
         "compendium": {
             "filter_rank": "Mostrar rango",
@@ -780,7 +817,8 @@
             "filter": {
                 "rank": "Rango",
                 "rarity": "Rareza",
-                "ring": "Anillo"
+                "ring": "Anillo",
+                "clear": "Clear Filter"
             }
         },
         "source_reference": {
@@ -810,6 +848,32 @@
             "the_scroll_or_the_blade": "El pergamino o la espada",
             "legacies_of_war": "Legacies of War",
             "children_of_the_five_winds": "Children of the Five Winds"
+        },
+        "tactical_grid": {
+            "settings": {
+                "title": "Tactical Grid Settings",
+                "label": "Tactical Grid Settings",
+                "hint": "Configures tactical grid range band distances (GM only) and their visual appearance colors and transparency (all users).",
+                "cells": "spaces",
+                "world": {
+                    "enabled": "Enable Tactical Grid",
+                    "enabled_hint": "Enables or Disable tactical grid for everyone",
+                    "start": "Start"
+                },
+                "client": {
+                    "color": "Color",
+                    "alpha": "Alpha"
+                },
+                "range": "Range {index}",
+                "validate": {
+                    "start-too-small": "Must be greater than Range Band {previousRangeIndex} ({previousStart})",
+                    "start-too-large": "Must be lower then Range Band {nextRangeIndex} ({nextStart})"
+                },
+                "reset": "Reset to Default",
+                "submit": "Save"
+            },
+            "range_band": "Range Band {band}",
+            "range_abbreviation": "RB {range}"
         }
     }
 }

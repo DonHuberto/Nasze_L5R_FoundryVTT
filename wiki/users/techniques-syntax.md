@@ -1,10 +1,13 @@
-# Techniques skill and difficulty syntaxe
+# Techniques skill and difficulty syntax
+
 On the Technique sheets, you will find two fields `Difficulty` and `Skill`.
 
-These fields have special constraints, you will find theirs rules below.
+These fields have special constraints, with the following rules listed below:
 
 ## Difficulty
-Can be :
+
+Valid values for this field are:
+
   - A integer number : `1` to `9`.
   - Or specific syntax "@`S`:`prop1`" or "@`T`:`prop1`|`max`" or "@`T`:`prop1`|`max`(`prop2`)" :
     - `@` fixed, trigger the parser
@@ -18,9 +21,10 @@ Can be :
       - `@T:vigilance|min` : Difficulty will be the `vigilance` from the target with the minimum vigilance (implicit) value. it's the same to wrote `@T:vigilance|min(vigilance)`.
       - `@T:vigilance|max(statusRank)` : Difficulty will be the `vigilance` from the target with the maximum `statusRank` value.
 
-
 ## Skill
-Can be :
+
+Valid values for this field are:
+
   - Any `Skill` id : `melee`, `fitness`...
   - Any `SkillCategory` id : `scholar`, `martial`...
   - Or both in list, coma separated.

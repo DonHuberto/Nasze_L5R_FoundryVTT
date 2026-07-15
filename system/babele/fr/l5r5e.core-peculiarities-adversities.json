@@ -1,802 +1,536 @@
 {
     "label": "Coups du sort",
     "mapping": {
-        "types": "system.types",
-        "description": "system.description",
-        "source_reference": "system.source_reference"
+        "types": "system.types"
     },
-    "entries": [
-        {
-            "id": "Benten’s Curse",
-            "name": "Malédiction de Benten",
+    "entries": {
+        "Benten\u2019s Curse": {
+            "name": "Mal\u00e9diction de Benten",
             "types": "Relations, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "122"
-            }
+            "source_reference_page": "122"
         },
-        {
-            "id": "Bishamon’s Curse",
-            "name": "Malédiction de Bishamon",
+        "Bishamon\u2019s Curse": {
+            "name": "Mal\u00e9diction de Bishamon",
             "types": "Physique, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "123"
-            }
+            "source_reference_page": "123"
         },
-        {
-            "id": "Bitter Betrothal",
-            "name": "Amères fiançailles",
+        "Bitter Betrothal": {
+            "name": "Am\u00e8res fian\u00e7ailles",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "117"
-            }
+            "source_reference_page": "117"
         },
-        {
-            "id": "Blackmailed by [Character’s Name]",
-            "name": "Chantage exercé par [Nom de personnage]",
+        "Blackmailed by [Character\u2019s Name]": {
+            "name": "Chantage exerc\u00e9 par [Nom de personnage]",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "118"
-            }
+            "source_reference_page": "118"
         },
-        {
-            "id": "Blindness",
-            "name": "Cécité",
-            "types": "Physique, Séquelle",
+        "Blindness": {
+            "name": "C\u00e9cit\u00e9",
+            "types": "Physique, S\u00e9quelle",
             "description": "",
-            "source_reference": {
-                "page": "118"
-            }
+            "source_reference_page": "118"
         },
-        {
-            "id": "Bluntness",
+        "Bluntness": {
             "name": "Franc-parler",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "120"
-            }
+            "source_reference_page": "120"
         },
-        {
-            "id": "Clumsiness",
+        "Clumsiness": {
             "name": "Maladresse",
             "types": "Physique",
             "description": "",
-            "source_reference": {
-                "page": "122"
-            }
+            "source_reference_page": "122"
         },
-        {
-            "id": "Cognitive Lapses",
+        "Cognitive Lapses": {
             "name": "Absences",
-            "types": "Mental, Séquelle",
+            "types": "Mental, S\u00e9quelle",
             "description": "",
-            "source_reference": {
-                "page": "116"
-            }
+            "source_reference_page": "116"
         },
-        {
-            "id": "Daikoku’s Curse",
-            "name": "Malédiction de Daikoku",
+        "Daikoku\u2019s Curse": {
+            "name": "Mal\u00e9diction de Daikoku",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "123"
-            }
+            "source_reference_page": "123"
         },
-        {
-            "id": "Damaged Heart or Organ",
-            "name": "Cœur ou organe défaillant",
-            "types": "Physique, Séquelle",
+        "Damaged Heart or Organ": {
+            "name": "C\u0153ur ou organe d\u00e9faillant",
+            "types": "Physique, S\u00e9quelle",
             "description": "",
-            "source_reference": {
-                "page": "119"
-            }
+            "source_reference_page": "119"
         },
-        {
-            "id": "Deafness",
-            "name": "Surdité",
-            "types": "Physique, Séquelle",
+        "Deafness": {
+            "name": "Surdit\u00e9",
+            "types": "Physique, S\u00e9quelle",
             "description": "",
-            "source_reference": {
-                "page": "130"
-            }
+            "source_reference_page": "130"
         },
-        {
-            "id": "Discomfiting Countenance",
-            "name": "Aspect déconcertant",
+        "Discomfiting Countenance": {
+            "name": "Aspect d\u00e9concertant",
             "types": "Relations, Physique",
             "description": "",
-            "source_reference": {
-                "page": "117"
-            }
+            "source_reference_page": "117"
         },
-        {
-            "id": "Disdain for Compassion",
-            "name": "Mépris pour la Compassion",
-            "types": "Défaut, Mental",
+        "Disdain for Compassion": {
+            "name": "M\u00e9pris pour la Compassion",
+            "types": "D\u00e9faut, Mental",
             "description": "",
-            "source_reference": {
-                "page": "125"
-            }
+            "source_reference_page": "125"
         },
-        {
-            "id": "Disdain for Courage",
-            "name": "Mépris pour le Courage",
-            "types": "Défaut, Mental",
+        "Disdain for Courage": {
+            "name": "M\u00e9pris pour le Courage",
+            "types": "D\u00e9faut, Mental",
             "description": "",
-            "source_reference": {
-                "page": "125"
-            }
+            "source_reference_page": "125"
         },
-        {
-            "id": "Disdain for Courtesy",
-            "name": "Mépris pour la Courtoisie",
-            "types": "Défaut, Mental",
+        "Disdain for Courtesy": {
+            "name": "M\u00e9pris pour la Courtoisie",
+            "types": "D\u00e9faut, Mental",
             "description": "",
-            "source_reference": {
-                "page": "125"
-            }
+            "source_reference_page": "125"
         },
-        {
-            "id": "Disdain for Duty and Loyalty",
-            "name": "Mépris pour le Devoir et loyauté",
-            "types": "Défaut, Mental",
+        "Disdain for Duty and Loyalty": {
+            "name": "M\u00e9pris pour le Devoir et loyaut\u00e9",
+            "types": "D\u00e9faut, Mental",
             "description": "",
-            "source_reference": {
-                "page": "125"
-            }
+            "source_reference_page": "125"
         },
-        {
-            "id": "Disdain for Honor",
-            "name": "Mépris pour l'Honneur",
-            "types": "Défaut, Mental",
+        "Disdain for Honor": {
+            "name": "M\u00e9pris pour l'Honneur",
+            "types": "D\u00e9faut, Mental",
             "description": "",
-            "source_reference": {
-                "page": "125"
-            }
+            "source_reference_page": "125"
         },
-        {
-            "id": "Disdain for Righteousness",
-            "name": "Mépris pour la Droiture",
-            "types": "Défaut, Mental",
+        "Disdain for Righteousness": {
+            "name": "M\u00e9pris pour la Droiture",
+            "types": "D\u00e9faut, Mental",
             "description": "",
-            "source_reference": {
-                "page": "125"
-            }
+            "source_reference_page": "125"
         },
-        {
-            "id": "Disdain for Sincerity",
-            "name": "Mépris pour la Sincérité",
-            "types": "Défaut, Mental",
+        "Disdain for Sincerity": {
+            "name": "M\u00e9pris pour la Sinc\u00e9rit\u00e9",
+            "types": "D\u00e9faut, Mental",
             "description": "",
-            "source_reference": {
-                "page": "125"
-            }
+            "source_reference_page": "125"
         },
-        {
-            "id": "Ebisu’s Curse",
-            "name": "Malédiction d’Ebisu",
+        "Ebisu\u2019s Curse": {
+            "name": "Mal\u00e9diction d\u2019Ebisu",
             "types": "Physique, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "123"
-            }
+            "source_reference_page": "123"
         },
-        {
-            "id": "Fractured Spine",
-            "name": "Colonne vertébrale fracturée",
-            "types": "Physique, Séquelle",
+        "Fractured Spine": {
+            "name": "Colonne vert\u00e9brale fractur\u00e9e",
+            "types": "Physique, S\u00e9quelle",
             "description": "",
-            "source_reference": {
-                "page": "119"
-            }
+            "source_reference_page": "119"
         },
-        {
-            "id": "Fukurokujin’s Curse",
-            "name": "Malédiction de Fukurokujin",
+        "Fukurokujin\u2019s Curse": {
+            "name": "Mal\u00e9diction de Fukurokujin",
             "types": "Mental, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "124"
-            }
+            "source_reference_page": "124"
         },
-        {
-            "id": "Gaijin Name, Culture, or Appearance",
+        "Gaijin Name, Culture, or Appearance": {
             "name": "Nom, culture ou apparence gaijin",
             "types": "Relations (Culture) ou Physique (Apparance), Relations (Nom), Mental",
             "description": "",
-            "source_reference": {
-                "page": "126"
-            }
+            "source_reference_page": "126"
         },
-        {
-            "id": "Haunting",
-            "name": "Hanté",
+        "Haunting": {
+            "name": "Hant\u00e9",
             "types": "Relations, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "120"
-            }
+            "source_reference_page": "120"
         },
-        {
-            "id": "Incurable Illness",
+        "Incurable Illness": {
             "name": "Maladie incurable",
             "types": "Physique",
             "description": "",
-            "source_reference": {
-                "page": "122"
-            }
+            "source_reference_page": "122"
         },
-        {
-            "id": "Jurōjin’s Curse",
-            "name": "Malédiction de Jurōjin",
+        "Jur\u014djin\u2019s Curse": {
+            "name": "Mal\u00e9diction de Jur\u014djin",
             "types": "Physique, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "124"
-            }
+            "source_reference_page": "124"
         },
-        {
-            "id": "Kisshōten’s Curse",
-            "name": "Malédiction de Kisshōten",
+        "Kissh\u014dten\u2019s Curse": {
+            "name": "Mal\u00e9diction de Kissh\u014dten",
             "types": "Physique, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "124"
-            }
+            "source_reference_page": "124"
         },
-        {
-            "id": "Lost Arm or Lost Hand",
+        "Lost Arm or Lost Hand": {
             "name": "Manchot",
-            "types": "Physique, Séquelle",
+            "types": "Physique, S\u00e9quelle",
             "description": "",
-            "source_reference": {
-                "page": "124"
-            }
+            "source_reference_page": "124"
         },
-        {
-            "id": "Lost Eye",
+        "Lost Eye": {
             "name": "Borgne",
-            "types": "Physique, Séquelle",
+            "types": "Physique, S\u00e9quelle",
             "description": "",
-            "source_reference": {
-                "page": "118"
-            }
+            "source_reference_page": "118"
         },
-        {
-            "id": "Lost Fingers",
+        "Lost Fingers": {
             "name": "Doigts manquants",
-            "types": "Physique, Séquelle",
+            "types": "Physique, S\u00e9quelle",
             "description": "",
-            "source_reference": {
-                "page": "120"
-            }
+            "source_reference_page": "120"
         },
-        {
-            "id": "Lost Leg",
+        "Lost Leg": {
             "name": "Unijambiste",
-            "types": "Physique, Séquelle",
+            "types": "Physique, S\u00e9quelle",
             "description": "",
-            "source_reference": {
-                "page": "130"
-            }
+            "source_reference_page": "130"
         },
-        {
-            "id": "Lost Memories",
-            "name": "Amnésie",
-            "types": "Mental, Séquelle",
+        "Lost Memories": {
+            "name": "Amn\u00e9sie",
+            "types": "Mental, S\u00e9quelle",
             "description": "",
-            "source_reference": {
-                "page": "117"
-            }
+            "source_reference_page": "117"
         },
-        {
-            "id": "Maimed Arm",
-            "name": "Bras mutilé",
-            "types": "Physique, Séquelle",
+        "Maimed Arm": {
+            "name": "Bras mutil\u00e9",
+            "types": "Physique, S\u00e9quelle",
             "description": "",
-            "source_reference": {
-                "page": "118"
-            }
+            "source_reference_page": "118"
         },
-        {
-            "id": "Maimed Visage",
-            "name": "Défiguré",
-            "types": "Relations, Physique, Séquelle",
+        "Maimed Visage": {
+            "name": "D\u00e9figur\u00e9",
+            "types": "Relations, Physique, S\u00e9quelle",
             "description": "",
-            "source_reference": {
-                "page": "119"
-            }
+            "source_reference_page": "119"
         },
-        {
-            "id": "Momoku",
+        "Momoku": {
             "name": "Momoku",
             "types": "Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "125"
-            }
+            "source_reference_page": "125"
         },
-        {
-            "id": "Muteness",
+        "Muteness": {
             "name": "Mutisme",
-            "types": "Relations, Physique ou Mental, Séquelle",
+            "types": "Relations, Physique ou Mental, S\u00e9quelle",
             "description": "",
-            "source_reference": {
-                "page": "126"
-            }
+            "source_reference_page": "126"
         },
-        {
-            "id": "Nerve Damage",
-            "name": "Lésions nerveuses",
-            "types": "Physique, Séquelle",
+        "Nerve Damage": {
+            "name": "L\u00e9sions nerveuses",
+            "types": "Physique, S\u00e9quelle",
             "description": "",
-            "source_reference": {
-                "page": "121"
-            }
+            "source_reference_page": "121"
         },
-        {
-            "id": "Scorn of [One Group]",
-            "name": "Méprisé par [un groupe]",
+        "Scorn of [One Group]": {
+            "name": "M\u00e9pris\u00e9 par [un groupe]",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "125"
-            }
+            "source_reference_page": "125"
         },
-        {
-            "id": "Shadowlands Taint (Air)",
-            "name": "Souillure de l’Outremonde (Air)",
-            "types": "Malédiction, Relations, Spirituel",
+        "Shadowlands Taint (Air)": {
+            "name": "Souillure de l\u2019Outremonde (Air)",
+            "types": "Mal\u00e9diction, Relations, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "128"
-            }
+            "source_reference_page": "128"
         },
-        {
-            "id": "Shadowlands Taint (Earth)",
-            "name": "Souillure de l’Outremonde (Terre)",
-            "types": "Malédiction, Physique, Spirituel",
+        "Shadowlands Taint (Earth)": {
+            "name": "Souillure de l\u2019Outremonde (Terre)",
+            "types": "Mal\u00e9diction, Physique, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "129"
-            }
+            "source_reference_page": "129"
         },
-        {
-            "id": "Shadowlands Taint (Fire)",
-            "name": "Souillure de l’Outremonde (Feu)",
-            "types": "Malédiction, Mental, Spirituel",
+        "Shadowlands Taint (Fire)": {
+            "name": "Souillure de l\u2019Outremonde (Feu)",
+            "types": "Mal\u00e9diction, Mental, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "129"
-            }
+            "source_reference_page": "129"
         },
-        {
-            "id": "Shadowlands Taint (Void)",
-            "name": "Souillure de l’Outremonde (Vide)",
-            "types": "Malédiction, Spirituel",
+        "Shadowlands Taint (Void)": {
+            "name": "Souillure de l\u2019Outremonde (Vide)",
+            "types": "Mal\u00e9diction, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "129"
-            }
+            "source_reference_page": "129"
         },
-        {
-            "id": "Shadowlands Taint (Water)",
-            "name": "Souillure de l’Outremonde (Eau)",
-            "types": "Malédiction, Physique, Spirituel",
+        "Shadowlands Taint (Water)": {
+            "name": "Souillure de l\u2019Outremonde (Eau)",
+            "types": "Mal\u00e9diction, Physique, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "128"
-            }
+            "source_reference_page": "128"
         },
-        {
-            "id": "Sworn Enemy",
-            "name": "Ennemi juré",
+        "Sworn Enemy": {
+            "name": "Ennemi jur\u00e9",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "120"
-            }
+            "source_reference_page": "120"
         },
-        {
-            "id": "Whispers of Cruelty",
-            "name": "Réputation de cruauté",
+        "Whispers of Cruelty": {
+            "name": "R\u00e9putation de cruaut\u00e9",
             "types": "Infamie, Relations",
             "description": "",
-            "source_reference": {
-                "page": "126"
-            }
+            "source_reference_page": "126"
         },
-        {
-            "id": "Whispers of Doom",
-            "name": "Réputation de tragédie",
+        "Whispers of Doom": {
+            "name": "R\u00e9putation de trag\u00e9die",
             "types": "Infamie, Relations",
             "description": "",
-            "source_reference": {
-                "page": "127"
-            }
+            "source_reference_page": "127"
         },
-        {
-            "id": "Whispers of Failure",
-            "name": "Réputation d’échec",
+        "Whispers of Failure": {
+            "name": "R\u00e9putation d\u2019\u00e9chec",
             "types": "Infamie, Relations",
             "description": "",
-            "source_reference": {
-                "page": "127"
-            }
+            "source_reference_page": "127"
         },
-        {
-            "id": "Whispers of Poverty",
-            "name": "Réputation d’indigence",
+        "Whispers of Poverty": {
+            "name": "R\u00e9putation d\u2019indigence",
             "types": "Infamie, Relations",
             "description": "",
-            "source_reference": {
-                "page": "127"
-            }
+            "source_reference_page": "127"
         },
-        {
-            "id": "Whispers of Treachery",
-            "name": "Réputation de traîtrise",
+        "Whispers of Treachery": {
+            "name": "R\u00e9putation de tra\u00eetrise",
             "types": "Infamie, Relations",
             "description": "",
-            "source_reference": {
-                "page": "127"
-            }
+            "source_reference_page": "127"
         },
-        {
-            "id": "Elemental Deficiency (Air)",
-            "name": "Carence élémentaire (Air)",
+        "Elemental Deficiency (Air)": {
+            "name": "Carence \u00e9l\u00e9mentaire (Air)",
             "types": "Mental, Physique, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "93"
-            }
+            "source_reference_page": "93"
         },
-        {
-            "id": "Elemental Deficiency (Earth)",
-            "name": "Carence élémentaire (Terre)",
+        "Elemental Deficiency (Earth)": {
+            "name": "Carence \u00e9l\u00e9mentaire (Terre)",
             "types": "Mental, Physique, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "94"
-            }
+            "source_reference_page": "94"
         },
-        {
-            "id": "Elemental Deficiency (Fire)",
-            "name": "Carence élémentaire (Feu)",
+        "Elemental Deficiency (Fire)": {
+            "name": "Carence \u00e9l\u00e9mentaire (Feu)",
             "types": "Mental, Physique, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "94"
-            }
+            "source_reference_page": "94"
         },
-        {
-            "id": "Elemental Deficiency (Water)",
-            "name": "Carence élémentaire (Eau)",
+        "Elemental Deficiency (Water)": {
+            "name": "Carence \u00e9l\u00e9mentaire (Eau)",
             "types": "Mental, Physique, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "93"
-            }
+            "source_reference_page": "93"
         },
-        {
-            "id": "Lackluster",
+        "Lackluster": {
             "name": "Terne",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Overconfidence in Creativity",
-            "name": "Confiance excessive en Créativité",
+        "Overconfidence in Creativity": {
+            "name": "Confiance excessive en Cr\u00e9ativit\u00e9",
             "types": "Mental",
             "description": "",
-            "source_reference": {
-                "page": "101"
-            }
+            "source_reference_page": "101"
         },
-        {
-            "id": "Overconfidence in Spiritual Sensitivity",
-            "name": "Confiance excessive en  Sensibilité spirituelle",
+        "Overconfidence in Spiritual Sensitivity": {
+            "name": "Confiance excessive en  Sensibilit\u00e9 spirituelle",
             "types": "Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "101"
-            }
+            "source_reference_page": "101"
         },
-        {
-            "id": "Overconfidence in Charm",
+        "Overconfidence in Charm": {
             "name": "Confiance excessive en Charme",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "101"
-            }
+            "source_reference_page": "101"
         },
-        {
-            "id": "Overconfidence in Subtlety",
-            "name": "Confiance excessive en Subtilité",
+        "Overconfidence in Subtlety": {
+            "name": "Confiance excessive en Subtilit\u00e9",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "101"
-            }
+            "source_reference_page": "101"
         },
-        {
-            "id": "Overconfidence in Toughness",
-            "name": "Confiance excessive en Tenacité",
+        "Overconfidence in Toughness": {
+            "name": "Confiance excessive en Tenacit\u00e9",
             "types": "Physique",
             "description": "",
-            "source_reference": {
-                "page": "101"
-            }
+            "source_reference_page": "101"
         },
-        {
-            "id": "Unsavory Past",
-            "name": "Passé honteux",
+        "Unsavory Past": {
+            "name": "Pass\u00e9 honteux",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "101"
-            }
+            "source_reference_page": "101"
         },
-        {
-            "id": "Allergy",
+        "Allergy": {
             "name": "Allergie [au choix]",
             "types": "Physique",
             "description": "",
-            "source_reference": {
-                "page": "246"
-            }
+            "source_reference_page": "246"
         },
-        {
-            "id": "Cursed Lineage",
-            "name": "Lignée maudite",
+        "Cursed Lineage": {
+            "name": "Lign\u00e9e maudite",
             "types": "Relations, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "246"
-            }
+            "source_reference_page": "246"
         },
-        {
-            "id": "Adopted Peasant",
-            "name": "Paysan adopté",
+        "Adopted Peasant": {
+            "name": "Paysan adopt\u00e9",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "246"
-            }
+            "source_reference_page": "246"
         },
-        {
-            "id": "Despise in [City]",
-            "name": "Méprisé à [une ville]",
-            "types": "Renommée, Relations",
+        "Despise in [City]": {
+            "name": "M\u00e9pris\u00e9 \u00e0 [une ville]",
+            "types": "Renomm\u00e9e, Relations",
             "description": "",
-            "source_reference": {
-                "page": "247"
-            }
+            "source_reference_page": "247"
         },
-        {
-            "id": "Hunted by Chikusho-Do",
-            "name": "Traqué par le Chikushō-dō",
+        "Hunted by Chikusho-Do": {
+            "name": "Traqu\u00e9 par le Chikush\u014d-d\u014d",
             "types": "Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "247"
-            }
+            "source_reference_page": "247"
         },
-        {
-            "id": "Skepticism",
+        "Skepticism": {
             "name": "Scepticisme",
             "types": "Mental, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "247"
-            }
+            "source_reference_page": "247"
         },
-        {
-            "id": "Debt to [Person or Organization]",
+        "Debt to [Person or Organization]": {
             "name": "Dette envers [une personne ou une organisation]",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "71"
-            }
+            "source_reference_page": "71"
         },
-        {
-            "id": "Bullheaded",
-            "name": "Entêté",
+        "Bullheaded": {
+            "name": "Ent\u00eat\u00e9",
             "types": "Mental",
             "description": "",
-            "source_reference": {
-                "page": "72"
-            }
+            "source_reference_page": "72"
         },
-        {
-            "id": "Many Mouths",
-            "name": "Des bouches à nourrir",
+        "Many Mouths": {
+            "name": "Des bouches \u00e0 nourrir",
             "types": "Relations, Mental",
             "description": "",
-            "source_reference": {
-                "page": "71"
-            }
+            "source_reference_page": "71"
         },
-        {
-            "id": "Horrible Scar",
+        "Horrible Scar": {
             "name": "Horrible cicatrice",
             "types": "Relations, Mental",
             "description": "",
-            "source_reference": {
-                "page": "72"
-            }
+            "source_reference_page": "72"
         },
-        {
-            "id": "Pursued by [Individual or Group]",
+        "Pursued by [Individual or Group]": {
             "name": "Poursuivi par [un individu ou un groupe]",
             "types": "Relations, Mental",
             "description": "",
-            "source_reference": {
-                "page": "73"
-            }
+            "source_reference_page": "73"
         },
-        {
-            "id": "Encompassing Duty",
+        "Encompassing Duty": {
             "name": "Devoir absolu",
             "types": "Mental",
             "description": "",
-            "source_reference": {
-                "page": "72"
-            }
+            "source_reference_page": "72"
         },
-        {
-            "id": "Stained Lineage",
-            "name": "Lignée entachée",
+        "Stained Lineage": {
+            "name": "Lign\u00e9e entach\u00e9e",
             "types": "Relations, Mental",
             "description": "",
-            "source_reference": {
-                "page": "72"
-            }
+            "source_reference_page": "72"
         },
-        {
-            "id": "Shadowlands Taint [One with the Darkness]",
-            "name": "Souillure de l’Outremonde (Disciple des ténèbres)",
-            "types": "Malédiction, Physique, Spirituel",
+        "Shadowlands Taint [One with the Darkness]": {
+            "name": "Souillure de l\u2019Outremonde (Disciple des t\u00e9n\u00e8bres)",
+            "types": "Mal\u00e9diction, Physique, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "100"
-            }
+            "source_reference_page": "100"
         },
-        {
-            "id": "Shadowlands Taint [Unnatural Skin]",
-            "name": "Souillure de l’Outremonde (Mutation de la peau)",
-            "types": "Malédiction, Physique",
+        "Shadowlands Taint [Unnatural Skin]": {
+            "name": "Souillure de l\u2019Outremonde (Mutation de la peau)",
+            "types": "Mal\u00e9diction, Physique",
             "description": "",
-            "source_reference": {
-                "page": "100"
-            }
+            "source_reference_page": "100"
         },
-        {
-            "id": "Shadowlands Taint [Blasphemous Appetites]",
-            "name": "Souillure de l’Outremonde (Voracité infâme)",
-            "types": "Malédiction, Mental, Spirituel",
+        "Shadowlands Taint [Blasphemous Appetites]": {
+            "name": "Souillure de l\u2019Outremonde (Voracit\u00e9 inf\u00e2me)",
+            "types": "Mal\u00e9diction, Mental, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "100"
-            }
+            "source_reference_page": "100"
         },
-        {
-            "id": "Lost Name",
-            "name": "Nom dérobé",
+        "Lost Name": {
+            "name": "Nom d\u00e9rob\u00e9",
             "types": "Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "97"
-            }
+            "source_reference_page": "97"
         },
-        {
-            "id": "Demon Wound",
-            "name": "Blessure de démon",
-            "types": "Séquelle, Spirituel",
+        "Demon Wound": {
+            "name": "Blessure de d\u00e9mon",
+            "types": "S\u00e9quelle, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "97"
-            }
+            "source_reference_page": "97"
         },
-        {
-            "id": "Shadowlands Taint [Kansen Whispers]",
-            "name": "Souillure de l’Outremonde (Murmures des Kansen)",
-            "types": "Malédiction, Mental",
+        "Shadowlands Taint [Kansen Whispers]": {
+            "name": "Souillure de l\u2019Outremonde (Murmures des Kansen)",
+            "types": "Mal\u00e9diction, Mental",
             "description": "",
-            "source_reference": {
-                "page": "99"
-            }
+            "source_reference_page": "99"
         },
-        {
-            "id": "Shadowlands Taint [Distorted Limbs]",
-            "name": "Souillure de l’Outremonde (Membres déformés)",
-            "types": "Malédiction, Physique",
+        "Shadowlands Taint [Distorted Limbs]": {
+            "name": "Souillure de l\u2019Outremonde (Membres d\u00e9form\u00e9s)",
+            "types": "Mal\u00e9diction, Physique",
             "description": "",
-            "source_reference": {
-                "page": "99"
-            }
+            "source_reference_page": "99"
         },
-        {
-            "id": "Sailor’s Tongue",
+        "Sailor\u2019s Tongue": {
             "name": "Parler du marin",
             "types": "Relations, Mental",
             "description": "",
-            "source_reference": {
-                "page": "7"
-            }
+            "source_reference_page": "7"
         },
-        {
-            "id": "Blood Feud",
+        "Blood Feud": {
             "name": "Vendetta",
             "types": "Relations, Social",
             "description": "",
-            "source_reference": {
-                "page": "83"
-            }
+            "source_reference_page": "83"
         },
-        {
-            "id": "Insomniac",
+        "Insomniac": {
             "name": "Insomniaque",
             "types": "Mental",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Out of Shape",
+        "Out of Shape": {
             "name": "Petite forme",
             "types": "Physique",
             "description": "",
-            "source_reference": {
-                "page": "105"
-            }
+            "source_reference_page": "105"
         },
-        {
-            "id": "Stalked by [Creature]",
-            "name": "Poursuivi par [une créature]",
+        "Stalked by [Creature]": {
+            "name": "Poursuivi par [une cr\u00e9ature]",
             "types": "Relations, Mental, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "105"
-            }
+            "source_reference_page": "105"
         },
-        {
-            "id": "Lost Family History",
-            "name": "Lost Family History (WIP)",
-            "types": "Relations, Matériel",
+        "Lost Family History": {
+            "name": "Histoire familiale perdue",
+            "types": "Relations, Mat\u00e9riel",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "95"
         },
-        {
-            "id": "Penalty",
-            "name": "Penalty (WIP)",
+        "Penalty": {
+            "name": "P\u00e9nalit\u00e9",
             "types": "Infamie, Social",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "96"
         },
-        {
-            "id": "Schism in Status",
-            "name": "Schism in Status (WIP)",
+        "Schism in Status": {
+            "name": "Diff\u00e9rence de statut",
             "types": "Infamie, Relations",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "95"
         }
-    ]
+    }
 }

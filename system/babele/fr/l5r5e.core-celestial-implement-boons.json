@@ -1,329 +1,206 @@
 {
-    "label": "Bénédictions d'instrument divin",
-    "mapping": {
-        "description": "system.description",
-        "source_reference": "system.source_reference"
-    },
-    "entries": [
-        {
-            "id": "Agility of Legend [Armor]",
-            "name": "Agilité légendaire [Armure]",
+    "label": "B\u00e9n\u00e9dictions d'instrument divin",
+    "mapping": {},
+    "entries": {
+        "Agility of Legend [Armor]": {
+            "name": "Agilit\u00e9 l\u00e9gendaire [Armure]",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Animal Transformation [Projectile]",
+        "Animal Transformation [Projectile]": {
             "name": "Transformation animale [Projectiles]",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Aura of Power [General]",
-            "name": "Aura de puissance [Générique]",
+        "Aura of Power [General]": {
+            "name": "Aura de puissance [G\u00e9n\u00e9rique]",
             "description": "",
-            "source_reference": {
-                "page": "101"
-            }
+            "source_reference_page": "101"
         },
-        {
-            "id": "Beguile the Senses [General]",
-            "name": "Envoûtement des sens [Générique]",
+        "Beguile the Senses [General]": {
+            "name": "Envo\u00fbtement des sens [G\u00e9n\u00e9rique]",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Binding [Projectile]",
+        "Binding [Projectile]": {
             "name": "Liens [Projectiles]",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Blessed Revitalization [General]",
-            "name": "Revitalisation bénie [Générique]",
+        "Blessed Revitalization [General]": {
+            "name": "Revitalisation b\u00e9nie [G\u00e9n\u00e9rique]",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Burst of Force [Armor]",
+        "Burst of Force [Armor]": {
             "name": "Explosion de force [Armure]",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Celestial Step [General]",
-            "name": "Enjambée céleste [Générique]",
+        "Celestial Step [General]": {
+            "name": "Enjamb\u00e9e c\u00e9leste [G\u00e9n\u00e9rique]",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Cosmic Devastation [General]",
-            "name": "Dévastation cosmique [Générique]",
+        "Cosmic Devastation [General]": {
+            "name": "D\u00e9vastation cosmique [G\u00e9n\u00e9rique]",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Deadly Venom [Projectile]",
+        "Deadly Venom [Projectile]": {
             "name": "Venin mortel [Projectiles]",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Defensive [General]",
-            "name": "Défensif [Générique]",
+        "Defensive [General]": {
+            "name": "D\u00e9fensif [G\u00e9n\u00e9rique]",
             "description": "",
-            "source_reference": {
-                "page": "101"
-            }
+            "source_reference_page": "101"
         },
-        {
-            "id": "Detonation [Projectile]",
-            "name": "Déflagration [Projectiles]",
+        "Detonation [Projectile]": {
+            "name": "D\u00e9flagration [Projectiles]",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Duplication [Projectile]",
+        "Duplication [Projectile]": {
             "name": "Duplication [Projectiles]",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Earthshaker [General]",
-            "name": "Bouleversement terrestre [Générique]",
+        "Earthshaker [General]": {
+            "name": "Bouleversement terrestre [G\u00e9n\u00e9rique]",
             "description": "",
-            "source_reference": {
-                "page": "101"
-            }
+            "source_reference_page": "101"
         },
-        {
-            "id": "Flurry [General]",
-            "name": "Déluge [Générique]",
+        "Flurry [General]": {
+            "name": "D\u00e9luge [G\u00e9n\u00e9rique]",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Fortress Breaker [Projectile]",
-            "name": "Briseur de défenses [Projectiles]",
+        "Fortress Breaker [Projectile]": {
+            "name": "Briseur de d\u00e9fenses [Projectiles]",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Grand Inspiration [Utility Object]",
+        "Grand Inspiration [Utility Object]": {
             "name": "Inspiration grandiose [Utilitaire]",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Harm Returned [Armor]",
+        "Harm Returned [Armor]": {
             "name": "Oeil pour oeil [Armure]",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Illusions Shattered [Utility Object]",
+        "Illusions Shattered [Utility Object]": {
             "name": "Fin des illusions [Utilitaire]",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Independence [Melee Weapon]",
-            "name": "Indépendance [Corps à corps]",
+        "Independence [Melee Weapon]": {
+            "name": "Ind\u00e9pendance [Corps \u00e0 corps]",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Inexorable [Melee Weapon]",
-            "name": "Inexorable [Corps à corps]",
+        "Inexorable [Melee Weapon]": {
+            "name": "Inexorable [Corps \u00e0 corps]",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Inviolable [Armor]",
-            "name": "Impénétrable [Armure]",
+        "Inviolable [Armor]": {
+            "name": "Imp\u00e9n\u00e9trable [Armure]",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Mark of Doom [Utility Object]",
+        "Mark of Doom [Utility Object]": {
             "name": "Marque fatale [Utilitaire]",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Obliteration [Projectile]",
-            "name": "Anéantissement [Projectiles]",
+        "Obliteration [Projectile]": {
+            "name": "An\u00e9antissement [Projectiles]",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Overwhelming Force [General]",
-            "name": "Force irrésistible [Générique]",
+        "Overwhelming Force [General]": {
+            "name": "Force irr\u00e9sistible [G\u00e9n\u00e9rique]",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Overwhelming Radiance [Armor]",
-            "name": "Eclat irrésistible [Armure]",
+        "Overwhelming Radiance [Armor]": {
+            "name": "Eclat irr\u00e9sistible [Armure]",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Resounding Arrival [Melee Weapon]",
-            "name": "Apparition retentissante [Corps à corps]",
+        "Resounding Arrival [Melee Weapon]": {
+            "name": "Apparition retentissante [Corps \u00e0 corps]",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Resounding Rhetoric [Utility Object]",
-            "name": "Rhétorique retentissante [Utilitaire]",
+        "Resounding Rhetoric [Utility Object]": {
+            "name": "Rh\u00e9torique retentissante [Utilitaire]",
             "description": "",
-            "source_reference": {
-                "page": "105"
-            }
+            "source_reference_page": "105"
         },
-        {
-            "id": "Returning [Projectile]",
+        "Returning [Projectile]": {
             "name": "Retour au lanceur [Projectiles]",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Rising Power [Melee Weapon]",
-            "name": "Accumulation de puissance [Corps à corps]",
+        "Rising Power [Melee Weapon]": {
+            "name": "Accumulation de puissance [Corps \u00e0 corps]",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Root of Language [Utility Object]",
+        "Root of Language [Utility Object]": {
             "name": "Racine du langage [Utilitaire]",
             "description": "",
-            "source_reference": {
-                "page": "105"
-            }
+            "source_reference_page": "105"
         },
-        {
-            "id": "Shifting Shape [General]",
-            "name": "Forme changeante [Générique]",
+        "Shifting Shape [General]": {
+            "name": "Forme changeante [G\u00e9n\u00e9rique]",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Soothing Words [Utility Object]",
-            "name": "Mots de réconfort [Utilitaire]",
+        "Soothing Words [Utility Object]": {
+            "name": "Mots de r\u00e9confort [Utilitaire]",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Subterranean Secrets [Utility Object]",
+        "Subterranean Secrets [Utility Object]": {
             "name": "Secrets souterrains [Utilitaire]",
             "description": "",
-            "source_reference": {
-                "page": "105"
-            }
+            "source_reference_page": "105"
         },
-        {
-            "id": "Transfiguration [General]",
-            "name": "Transfiguration [Générique]",
+        "Transfiguration [General]": {
+            "name": "Transfiguration [G\u00e9n\u00e9rique]",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Unassuming [General]",
-            "name": "Sans prétention [Générique]",
+        "Unassuming [General]": {
+            "name": "Sans pr\u00e9tention [G\u00e9n\u00e9rique]",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Unerring [Projectile]",
+        "Unerring [Projectile]": {
             "name": "Infaillible [Projectiles]",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Unleashed Fury [Melee Weapon]",
-            "name": "Déchaînement de fureur [Corps à corps]",
+        "Unleashed Fury [Melee Weapon]": {
+            "name": "D\u00e9cha\u00eenement de fureur [Corps \u00e0 corps]",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Unlimited Negation [Utility Object]",
-            "name": "Négation universelle [Utilitaire]",
+        "Unlimited Negation [Utility Object]": {
+            "name": "N\u00e9gation universelle [Utilitaire]",
             "description": "",
-            "source_reference": {
-                "page": "105"
-            }
+            "source_reference_page": "105"
         },
-        {
-            "id": "Vitality [Utility Object]",
-            "name": "Vitalité [Utilitaire]",
+        "Vitality [Utility Object]": {
+            "name": "Vitalit\u00e9 [Utilitaire]",
             "description": "",
-            "source_reference": {
-                "page": "105"
-            }
+            "source_reference_page": "105"
         }
-    ]
+    }
 }

@@ -1,486 +1,416 @@
 {
     "label": "Vantaggi (WIP)",
     "mapping": {
-        "types": "system.types",
-        "description": "system.description",
-        "book_reference": "system.book_reference"
+        "types": "system.types"
     },
-    "entries": [
-        {
-            "id": "Ally [Name]",
+    "entries": {
+        "Ally [Name]": {
             "name": "Alleato [Nome]",
             "types": "Interpersonale",
             "description": "",
             "book_reference": "Manuale Base p.102"
         },
-        {
-            "id": "Ambidexterity",
+        "Ambidexterity": {
             "name": "Ambidestria",
             "types": "Fisica",
             "description": "",
             "book_reference": "Manuale Base p.102"
         },
-        {
-            "id": "Benten’s Blessing",
+        "Benten’s Blessing": {
             "name": "Benedizione di Benten",
             "types": "Interpersonale, Spirituale",
             "description": "",
             "book_reference": "Manuale Base p.102"
         },
-        {
-            "id": "Bishamon’s Blessing",
+        "Bishamon’s Blessing": {
             "name": "Benedizione di Bishamon",
             "types": "Fisica, Spirituale",
             "description": "",
             "book_reference": "Manuale Base p.102"
         },
-        {
-            "id": "Blackmail on [Name]",
+        "Blackmail on [Name]": {
             "name": "Ricatto Verso [Nome]",
             "types": "Interpersonale",
             "description": "",
             "book_reference": "Manuale Base p.108"
         },
-        {
-            "id": "Blessed Lineage",
+        "Blessed Lineage": {
             "name": "Lignaggio Benedetto",
             "types": "Interpersonale, Spirituale",
             "description": "",
             "book_reference": "Manuale Base p.107"
         },
-        {
-            "id": "Blissful Betrothal",
+        "Blissful Betrothal": {
             "name": "Fidanzamento Felice",
             "types": "Interpersonale",
             "description": "",
             "book_reference": "Manuale Base p.106"
         },
-        {
-            "id": "Daikoku’s Blessing",
+        "Daikoku’s Blessing": {
             "name": "Benedizione di Daikoku",
             "types": "Interpersonale, Spirituale",
             "description": "",
             "book_reference": "Manuale Base p.102"
         },
-        {
-            "id": "Dangerous Allure",
+        "Dangerous Allure": {
             "name": "Fascino Pericoloso",
             "types": "Interpersonale, Fisica",
             "description": "",
             "book_reference": "Manuale Base p.106"
         },
-        {
-            "id": "Ebisu’s Blessing",
+        "Ebisu’s Blessing": {
             "name": "Benedizione di Ebisu",
             "types": "Fisica, Spirituale",
             "description": "",
             "book_reference": "Manuale Base p.103"
         },
-        {
-            "id": "Famously Honest",
+        "Famously Honest": {
             "name": "Famoso per l'Onestà",
             "types": "Rinomanza, Interpersonale",
             "description": "",
             "book_reference": "Manuale Base p.105"
         },
-        {
-            "id": "Famously Lucky",
+        "Famously Lucky": {
             "name": "Famoso per la Fortuna",
             "types": "Rinomanza, Interpersonale",
             "description": "",
             "book_reference": "Manuale Base p.105"
         },
-        {
-            "id": "Famously Reliable",
+        "Famously Reliable": {
             "name": "Famoso per l'Affidabilità",
             "types": "Rinomanza, Interpersonale",
             "description": "",
             "book_reference": "Manuale Base p.104"
         },
-        {
-            "id": "Famously Successful",
+        "Famously Successful": {
             "name": "Famoso per il Successo",
             "types": "Rinomanza, Interpersonale",
             "description": "",
             "book_reference": "Manuale Base p.105"
         },
-        {
-            "id": "Famously Wealthy",
+        "Famously Wealthy": {
             "name": "Famoso per la Ricchezza",
             "types": "Rinomanza, Interpersonale",
             "description": "",
             "book_reference": "Manuale Base p.105"
         },
-        {
-            "id": "Flexibility",
+        "Flexibility": {
             "name": "Flessibilità",
             "types": "Fisica",
             "description": "",
             "book_reference": "Manuale Base p.106"
         },
-        {
-            "id": "Fukurokujin’s Blessing",
+        "Fukurokujin’s Blessing": {
             "name": "Benedizione di Fukurokujin",
             "types": "Mentale, Spirituale",
             "description": "",
             "book_reference": "Manuale Base p.103"
         },
-        {
-            "id": "Indomitable Will",
+        "Indomitable Will": {
             "name": "Volontà Indomabile",
             "types": "Interpersonale, Mentale",
             "description": "",
             "book_reference": "Manuale Base p.110"
         },
-        {
-            "id": "Jurojin’s Blessing",
+        "Jurojin’s Blessing": {
             "name": "Benedizione di Jurōjin",
             "types": "Fisica, Spirituale",
             "description": "",
             "book_reference": "Manuale Base p.103"
         },
-        {
-            "id": "Keen Balance",
+        "Keen Balance": {
             "name": "Equilibrio Impeccabile",
             "types": "Mentale, Fisica",
             "description": "",
             "book_reference": "Manuale Base p.104"
         },
-        {
-            "id": "Keen Hearing",
+        "Keen Hearing": {
             "name": "Udito Impeccabile",
             "types": "Mentale, Fisica",
             "description": "",
             "book_reference": "Manuale Base p.109"
         },
-        {
-            "id": "Keen Sight",
+        "Keen Sight": {
             "name": "Vista Impeccabile",
             "types": "Mentale, Fisica",
             "description": "",
             "book_reference": "Manuale Base p.110"
         },
-        {
-            "id": "Keen Smell",
+        "Keen Smell": {
             "name": "Olfatto Impeccabile",
             "types": "Mentale, Fisica",
             "description": "",
             "book_reference": "Manuale Base p.108"
         },
-        {
-            "id": "Karmic Tie",
+        "Karmic Tie": {
             "name": "Legame Karmico",
             "types": "Interpersonale, Spirituale",
             "description": "",
             "book_reference": "Manuale Base p.107"
         },
-        {
-            "id": "Kisshōten’s Blessing",
+        "Kisshōten’s Blessing": {
             "name": "Benedizione di Kisshōten",
             "types": "Fisica, Spirituale",
             "description": "",
             "book_reference": "Manuale Base p.103"
         },
-        {
-            "id": "Large Stature",
+        "Large Stature": {
             "name": "Grande Statura",
             "types": "Fisica",
             "description": "",
             "book_reference": "Manuale Base p.106"
         },
-        {
-            "id": "Paragon of Compassion",
+        "Paragon of Compassion": {
             "name": "Espressione di Compassione",
             "types": "Mentale, Virtù",
             "description": "",
             "book_reference": "Manuale Base p.104"
         },
-        {
-            "id": "Paragon of Courage",
+        "Paragon of Courage": {
             "name": "Espressione di Coraggio",
             "types": "Mentale, Virtù",
             "description": "",
             "book_reference": "Manuale Base p.104"
         },
-        {
-            "id": "Paragon of Courtesy",
+        "Paragon of Courtesy": {
             "name": "Espressione di Cortesia",
             "types": "Mentale, Virtù",
             "description": "",
             "book_reference": "Manuale Base p.104"
         },
-        {
-            "id": "Paragon of Duty and Loyalty",
+        "Paragon of Duty and Loyalty": {
             "name": "Espressione di Dovere e Lealtà",
             "types": "Mentale, Virtù",
             "description": "",
             "book_reference": "Manuale Base p.104"
         },
-        {
-            "id": "Paragon of Honor",
+        "Paragon of Honor": {
             "name": "Espressione di Onore",
             "types": "Mentale, Virtù",
             "description": "",
             "book_reference": "Manuale Base p.104"
         },
-        {
-            "id": "Paragon of Righteousness",
+        "Paragon of Righteousness": {
             "name": "Espressione di Rettitudine",
             "types": "Mentale, Virtù",
             "description": "",
             "book_reference": "Manuale Base p.104"
         },
-        {
-            "id": "Paragon of Sincerity",
+        "Paragon of Sincerity": {
             "name": "Espressione di Sincerità",
             "types": "Mentale, Virtù",
             "description": "",
             "book_reference": "Manuale Base p.104"
         },
-        {
-            "id": "Precise Memory",
+        "Precise Memory": {
             "name": "Memoria Infallibile",
             "types": "Mentale",
             "description": "",
             "book_reference": "Manuale Base p.107"
         },
-        {
-            "id": "Quick Reflexes",
+        "Quick Reflexes": {
             "name": "Riflessi Fulminei",
             "types": "Interpersonale, Fisica",
             "description": "",
             "book_reference": "Manuale Base p.108"
         },
-        {
-            "id": "Seasoned",
+        "Seasoned": {
             "name": "Veterano",
             "types": "Interpersonale, Mentale",
             "description": "",
             "book_reference": "Manuale Base p.110"
         },
-        {
-            "id": "Sixth Sense",
+        "Sixth Sense": {
             "name": "Sesto Senso",
             "types": "Spirituale",
             "description": "",
             "book_reference": "Manuale Base p.109"
         },
-        {
-            "id": "Small Stature",
+        "Small Stature": {
             "name": "Piccola Statura",
             "types": "Fisica",
             "description": "",
             "book_reference": "Manuale Base p.108"
         },
-        {
-            "id": "Subtle Observer",
+        "Subtle Observer": {
             "name": "Sottile Osservatore",
             "types": "Interpersonale, Mentale",
             "description": "",
             "book_reference": "Manuale Base p.109"
         },
-        {
-            "id": "Support of [One Group]",
+        "Support of [One Group]": {
             "name": "Supporto dei [un Gruppo]",
             "types": "Interpersonale",
             "description": "",
             "book_reference": "Manuale Base p.109"
         },
-        {
-            "id": "Talented Herbalist",
+        "Talented Herbalist": {
             "name": "Talented Herbalist",
             "types": "Mentale",
             "description": "",
             "book_reference": "Reami Celesti"
         },
-        {
-            "id": "Famously Kind",
+        "Famously Kind": {
             "name": "Famously Kind",
             "types": "Rinomanza, Interpersonale",
             "description": "",
             "book_reference": "Reami Celesti"
         },
-        {
-            "id": "Portentous Birth",
+        "Portentous Birth": {
             "name": "Portentous Birth",
             "types": "Interpersonale, Spirituale",
             "description": "",
             "book_reference": "Reami Celesti"
         },
-        {
-            "id": "Affect of Harmlessness",
+        "Affect of Harmlessness": {
             "name": "Affect of Harmlessness",
             "types": "Interpersonale",
             "description": "",
             "book_reference": "Corti di Pietra p.99"
         },
-        {
-            "id": "Famously Neutral",
+        "Famously Neutral": {
             "name": "Famously Neutral",
             "types": "Rinomanza, Interpersonale",
             "description": "",
             "book_reference": "Corti di Pietra p.99"
         },
-        {
-            "id": "Well Connected in {City}",
+        "Well Connected in {City}": {
             "name": "Well Connected in {City}",
             "types": "Interpersonale",
             "description": "",
             "book_reference": "Corti di Pietra p.99"
         },
-        {
-            "id": "Animal Trainer",
+        "Animal Trainer": {
             "name": "Animal Trainer",
             "types": "Interpersonale, Mentale",
             "description": "",
             "book_reference": "Impero di Smeraldo p.242"
         },
-        {
-            "id": "Expert Tracker",
+        "Expert Tracker": {
             "name": "Expert Tracker",
             "types": "Mentale, Fisica",
             "description": "",
             "book_reference": "Impero di Smeraldo p.242"
         },
-        {
-            "id": "Criminal Connections",
+        "Criminal Connections": {
             "name": "Criminal Connections",
             "types": "Interpersonale",
             "description": "",
             "book_reference": "Impero di Smeraldo p.242"
         },
-        {
-            "id": "Friend of the brotherhood",
+        "Friend of the brotherhood": {
             "name": "Friend of the brotherhood",
             "types": "Interpersonale",
             "description": "",
             "book_reference": "Impero di Smeraldo p.242"
         },
-        {
-            "id": "Well Connected",
+        "Well Connected": {
             "name": "Well Connected",
             "types": "Interpersonale",
             "description": "",
             "book_reference": "Impero di Smeraldo p.243"
         },
-        {
-            "id": "Kuge Lineage",
+        "Kuge Lineage": {
             "name": "Kuge Lineage",
             "types": "Interpersonale",
             "description": "",
             "book_reference": "Impero di Smeraldo p.243"
         },
-        {
-            "id": "Hero of [Village]",
+        "Hero of [Village]": {
             "name": "Hero of [Village]",
             "types": "Rinomanza, Interpersonale",
             "description": "",
             "book_reference": "Impero di Smeraldo p.243"
         },
-        {
-            "id": "Spiritual Protector",
+        "Spiritual Protector": {
             "name": "Spiritual Protector",
             "types": "Spirituale",
             "description": "",
             "book_reference": "Impero di Smeraldo p.243"
         },
-        {
-            "id": "Ardent Leader",
+        "Ardent Leader": {
             "name": "Ardent Leader",
             "types": "Interpersonale, Mentale",
             "description": "",
             "book_reference": "Sentiero delle Onde p.69"
         },
-        {
-            "id": "Dashing Scar",
+        "Dashing Scar": {
             "name": "Dashing Scar",
             "types": "Interpersonale",
             "description": "",
             "book_reference": "Sentiero delle Onde p.69"
         },
-        {
-            "id": "Lucky Hunter",
+        "Lucky Hunter": {
             "name": "Lucky Hunter",
             "types": "Fisica, Spirituale",
             "description": "",
             "book_reference": "Sentiero delle Onde p.69"
         },
-        {
-            "id": "Scrounger",
+        "Scrounger": {
             "name": "Scrounger",
             "types": "Interpersonale, Mentale",
             "description": "",
             "book_reference": "Sentiero delle Onde p.70"
         },
-        {
-            "id": "Scrappy",
+        "Scrappy": {
             "name": "Scrappy",
             "types": "Mentale, Fisica",
             "description": "",
             "book_reference": "Sentiero delle Onde p.68"
         },
-        {
-            "id": "Urbane and Worldly",
+        "Urbane and Worldly": {
             "name": "Urbane and Worldly",
             "types": "Interpersonale, Fisica",
             "description": "",
             "book_reference": "Sentiero delle Onde p.69"
         },
-        {
-            "id": "Dead Eyes",
+        "Dead Eyes": {
             "name": "Dead Eyes",
             "types": "Mentale",
             "description": "",
             "book_reference": "Terre dell'Ombra p.96"
         },
-        {
-            "id": "Light Sleeper",
+        "Light Sleeper": {
             "name": "Light Sleeper",
             "types": "Fisica",
             "description": "",
             "book_reference": "Terre dell'Ombra p.96"
         },
-        {
-            "id": "Friend of the Nezumi",
+        "Friend of the Nezumi": {
             "name": "Friend of the Nezumi",
             "types": "Interpersonale",
             "description": "",
             "book_reference": "Terre dell'Ombra p.96"
         },
-        {
-            "id": "Blood of Osano-Wo",
+        "Blood of Osano-Wo": {
             "name": "Sangue di Osano-wo",
             "types": "Mentale, Spirituale",
             "description": "",
             "book_reference": "Il Clan della Mantide p.7"
         },
-        {
-            "id": "Sea Legs",
+        "Sea Legs": {
             "name": "Gambe da Marinaio",
             "types": "Fisica",
             "description": "",
             "book_reference": "Il Clan della Mantide p.7"
         },
-        {
-            "id": "Guiding Ancestor",
+        "Guiding Ancestor": {
             "name": "Guiding Ancestor",
             "types": "Spirituale",
             "description": "",
             "book_reference": "Fields of Victory"
         },
-        {
-            "id": "Traditional Adherent",
+        "Traditional Adherent": {
             "name": "Traditional Adherent",
             "types": "Mentale",
             "description": "",
             "book_reference": "Fields of Victory"
         },
-        {
-            "id": "Passion for [Foreign Performing Art Form]",
+        "Passion for [Foreign Performing Art Form]": {
             "name": "Passion for [Foreign Performing Art Form]",
             "types": "Rinomanza, Interpersonale",
             "description": "",
             "book_reference": "Sentiero delle Onde p.70"
         }
-    ]
+    }
 }

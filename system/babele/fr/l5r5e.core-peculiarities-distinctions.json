@@ -1,676 +1,452 @@
 {
     "label": "Aptitudes",
     "mapping": {
-        "types": "system.types",
-        "description": "system.description",
-        "source_reference": "system.source_reference"
+        "types": "system.types"
     },
-    "entries": [
-        {
-            "id": "Ally [Name]",
-            "name": "Allié [Nom]",
+    "entries": {
+        "Ally [Name]": {
+            "name": "Alli\u00e9 [Nom]",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Ambidexterity",
+        "Ambidexterity": {
             "name": "Ambidextrie",
             "types": "Physique",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Benten’s Blessing",
-            "name": "Bénédiction de Benten",
+        "Benten\u2019s Blessing": {
+            "name": "B\u00e9n\u00e9diction de Benten",
             "types": "Relations, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Bishamon’s Blessing",
-            "name": "Bénédiction de Bishamon",
+        "Bishamon\u2019s Blessing": {
+            "name": "B\u00e9n\u00e9diction de Bishamon",
             "types": "Physique, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Blackmail on [Name]",
-            "name": "Chantage contre [Nom d’un personnage]",
+        "Blackmail on [Name]": {
+            "name": "Chantage contre [Nom d\u2019un personnage]",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Blessed Lineage",
-            "name": "Lignée prestigieuse",
+        "Blessed Lineage": {
+            "name": "Lign\u00e9e prestigieuse",
             "types": "Relations, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "106"
-            }
+            "source_reference_page": "106"
         },
-        {
-            "id": "Blissful Betrothal",
-            "name": "Fiançailles bienheureuses",
+        "Blissful Betrothal": {
+            "name": "Fian\u00e7ailles bienheureuses",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "105"
-            }
+            "source_reference_page": "105"
         },
-        {
-            "id": "Daikoku’s Blessing",
-            "name": "Bénédiction de Daikoku",
+        "Daikoku\u2019s Blessing": {
+            "name": "B\u00e9n\u00e9diction de Daikoku",
             "types": "Relations, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Dangerous Allure",
-            "name": "Beauté fatale",
+        "Dangerous Allure": {
+            "name": "Beaut\u00e9 fatale",
             "types": "Relations, Physique",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Ebisu’s Blessing",
-            "name": "Bénédiction d’Ebisu",
+        "Ebisu\u2019s Blessing": {
+            "name": "B\u00e9n\u00e9diction d\u2019Ebisu",
             "types": "Physique, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "103"
-            }
+            "source_reference_page": "103"
         },
-        {
-            "id": "Famously Honest",
-            "name": "Notoirement honnête",
-            "types": "Renommée, Relations",
+        "Famously Honest": {
+            "name": "Notoirement honn\u00eate",
+            "types": "Renomm\u00e9e, Relations",
             "description": "",
-            "source_reference": {
-                "page": "107"
-            }
+            "source_reference_page": "107"
         },
-        {
-            "id": "Famously Lucky",
+        "Famously Lucky": {
             "name": "Notoirement chanceux",
-            "types": "Renommée, Relations",
+            "types": "Renomm\u00e9e, Relations",
             "description": "",
-            "source_reference": {
-                "page": "106"
-            }
+            "source_reference_page": "106"
         },
-        {
-            "id": "Famously Reliable",
+        "Famously Reliable": {
             "name": "Notoirement fiable",
-            "types": "Renommée, Relations",
+            "types": "Renomm\u00e9e, Relations",
             "description": "",
-            "source_reference": {
-                "page": "107"
-            }
+            "source_reference_page": "107"
         },
-        {
-            "id": "Famously Successful",
+        "Famously Successful": {
             "name": "Notoirement efficace",
-            "types": "Renommée, Relations",
+            "types": "Renomm\u00e9e, Relations",
             "description": "",
-            "source_reference": {
-                "page": "106"
-            }
+            "source_reference_page": "106"
         },
-        {
-            "id": "Famously Wealthy",
+        "Famously Wealthy": {
             "name": "Notoirement riche",
-            "types": "Renommée, Relations",
+            "types": "Renomm\u00e9e, Relations",
             "description": "",
-            "source_reference": {
-                "page": "107"
-            }
+            "source_reference_page": "107"
         },
-        {
-            "id": "Flexibility",
+        "Flexibility": {
             "name": "Souplesse",
             "types": "Physique",
             "description": "",
-            "source_reference": {
-                "page": "109"
-            }
+            "source_reference_page": "109"
         },
-        {
-            "id": "Fukurokujin’s Blessing",
-            "name": "Bénédiction de Fukurokujin",
+        "Fukurokujin\u2019s Blessing": {
+            "name": "B\u00e9n\u00e9diction de Fukurokujin",
             "types": "Mental, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Indomitable Will",
-            "name": "Volonté indomptable",
+        "Indomitable Will": {
+            "name": "Volont\u00e9 indomptable",
             "types": "Relations, Mental",
             "description": "",
-            "source_reference": {
-                "page": "110"
-            }
+            "source_reference_page": "110"
         },
-        {
-            "id": "Jurojin’s Blessing",
-            "name": "Bénédiction de Jurōjin",
+        "Jurojin\u2019s Blessing": {
+            "name": "B\u00e9n\u00e9diction de Jur\u014djin",
             "types": "Physique, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Keen Balance",
+        "Keen Balance": {
             "name": "Equilibre exceptionnel",
             "types": "Mental, Physique",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Keen Hearing",
-            "name": "Ouïe exceptionnelle",
+        "Keen Hearing": {
+            "name": "Ou\u00efe exceptionnelle",
             "types": "Mental, Physique",
             "description": "",
-            "source_reference": {
-                "page": "108"
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Keen Sight",
+        "Keen Sight": {
             "name": "Vue exceptionnelle",
             "types": "Mental, Physique",
             "description": "",
-            "source_reference": {
-                "page": "110"
-            }
+            "source_reference_page": "110"
         },
-        {
-            "id": "Keen Smell",
+        "Keen Smell": {
             "name": "Odorat exceptionnel",
             "types": "Mental, Physique",
             "description": "",
-            "source_reference": {
-                "page": "108"
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Karmic Tie",
+        "Karmic Tie": {
             "name": "Lien karmique",
             "types": "Relations, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "105"
-            }
+            "source_reference_page": "105"
         },
-        {
-            "id": "Kisshōten’s Blessing",
-            "name": "Bénédiction de Kisshōten",
+        "Kissh\u014dten\u2019s Blessing": {
+            "name": "B\u00e9n\u00e9diction de Kissh\u014dten",
             "types": "Physique, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "104"
-            }
+            "source_reference_page": "104"
         },
-        {
-            "id": "Large Stature",
+        "Large Stature": {
             "name": "Stature imposante",
             "types": "Physique",
             "description": "",
-            "source_reference": {
-                "page": "110"
-            }
+            "source_reference_page": "110"
         },
-        {
-            "id": "Paragon of Compassion",
+        "Paragon of Compassion": {
             "name": "Parangon de Compassion",
             "types": "Mental, Vertu",
             "description": "",
-            "source_reference": {
-                "page": "108"
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Paragon of Courage",
+        "Paragon of Courage": {
             "name": "Parangon de Courage",
             "types": "Mental, Vertu",
             "description": "",
-            "source_reference": {
-                "page": "108"
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Paragon of Courtesy",
+        "Paragon of Courtesy": {
             "name": "Parangon de Courtoisie",
             "types": "Mental, Vertu",
             "description": "",
-            "source_reference": {
-                "page": "108"
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Paragon of Duty and Loyalty",
-            "name": "Parangon de Devoir et loyauté",
+        "Paragon of Duty and Loyalty": {
+            "name": "Parangon de Devoir et loyaut\u00e9",
             "types": "Mental, Vertu",
             "description": "",
-            "source_reference": {
-                "page": "108"
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Paragon of Honor",
+        "Paragon of Honor": {
             "name": "Parangon d'Honneur",
             "types": "Mental, Vertu",
             "description": "",
-            "source_reference": {
-                "page": "108"
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Paragon of Righteousness",
+        "Paragon of Righteousness": {
             "name": "Parangon de Droiture",
             "types": "Mental, Vertu",
             "description": "",
-            "source_reference": {
-                "page": "108"
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Paragon of Sincerity",
-            "name": "Parangon de Sincérité",
+        "Paragon of Sincerity": {
+            "name": "Parangon de Sinc\u00e9rit\u00e9",
             "types": "Mental, Vertu",
             "description": "",
-            "source_reference": {
-                "page": "108"
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Precise Memory",
-            "name": "Excellente mémoire",
+        "Precise Memory": {
+            "name": "Excellente m\u00e9moire",
             "types": "Mental",
             "description": "",
-            "source_reference": {
-                "page": "105"
-            }
+            "source_reference_page": "105"
         },
-        {
-            "id": "Quick Reflexes",
-            "name": "Réflexes fulgurants",
+        "Quick Reflexes": {
+            "name": "R\u00e9flexes fulgurants",
             "types": "Relations, Physique",
             "description": "",
-            "source_reference": {
-                "page": "109"
-            }
+            "source_reference_page": "109"
         },
-        {
-            "id": "Seasoned",
+        "Seasoned": {
             "name": "Aguerri",
             "types": "Relations, Mental",
             "description": "",
-            "source_reference": {
-                "page": "101"
-            }
+            "source_reference_page": "101"
         },
-        {
-            "id": "Sixth Sense",
-            "name": "Sixième sens",
+        "Sixth Sense": {
+            "name": "Sixi\u00e8me sens",
             "types": "Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "109"
-            }
+            "source_reference_page": "109"
         },
-        {
-            "id": "Small Stature",
+        "Small Stature": {
             "name": "Petit",
             "types": "Physique",
             "description": "",
-            "source_reference": {
-                "page": "108"
-            }
+            "source_reference_page": "108"
         },
-        {
-            "id": "Subtle Observer",
+        "Subtle Observer": {
             "name": "Observateur subtil",
             "types": "Relations, Mental",
             "description": "",
-            "source_reference": {
-                "page": "107"
-            }
+            "source_reference_page": "107"
         },
-        {
-            "id": "Support of [One Group]",
+        "Support of [One Group]": {
             "name": "Soutien de [un groupe]",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "109"
-            }
+            "source_reference_page": "109"
         },
-        {
-            "id": "Talented Herbalist",
+        "Talented Herbalist": {
             "name": "Herboriste talentueux",
             "types": "Mental",
             "description": "",
-            "source_reference": {
-                "page": "89"
-            }
+            "source_reference_page": "89"
         },
-        {
-            "id": "Famously Kind",
+        "Famously Kind": {
             "name": "Notoirement gentil",
-            "types": "Renommée, Relations",
+            "types": "Renomm\u00e9e, Relations",
             "description": "",
-            "source_reference": {
-                "page": "89"
-            }
+            "source_reference_page": "89"
         },
-        {
-            "id": "Portentous Birth",
-            "name": "Né sous de bons auspices",
+        "Portentous Birth": {
+            "name": "N\u00e9 sous de bons auspices",
             "types": "Relations, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "89"
-            }
+            "source_reference_page": "89"
         },
-        {
-            "id": "Affect of Harmlessness",
+        "Affect of Harmlessness": {
             "name": "Apparence inoffensive",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "99"
-            }
+            "source_reference_page": "99"
         },
-        {
-            "id": "Famously Neutral",
+        "Famously Neutral": {
             "name": "Notoirement impartial",
-            "types": "Renommée, Relations",
+            "types": "Renomm\u00e9e, Relations",
             "description": "",
-            "source_reference": {
-                "page": "99"
-            }
+            "source_reference_page": "99"
         },
-        {
-            "id": "Well Connected in {City}",
-            "name": "Relations à [une ville]",
+        "Well Connected in {City}": {
+            "name": "Relations \u00e0 [une ville]",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "99"
-            }
+            "source_reference_page": "99"
         },
-        {
-            "id": "Animal Trainer",
+        "Animal Trainer": {
             "name": "Dresseur",
             "types": "Relations, Mental",
             "description": "",
-            "source_reference": {
-                "page": "242"
-            }
+            "source_reference_page": "242"
         },
-        {
-            "id": "Expert Tracker",
+        "Expert Tracker": {
             "name": "Pisteur expert",
             "types": "Mental, Physique",
             "description": "",
-            "source_reference": {
-                "page": "242"
-            }
+            "source_reference_page": "242"
         },
-        {
-            "id": "Criminal Connections",
-            "name": "Liens avec la pègre",
+        "Criminal Connections": {
+            "name": "Liens avec la p\u00e8gre",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "242"
-            }
+            "source_reference_page": "242"
         },
-        {
-            "id": "Friend of the brotherhood",
-            "name": "Ami de la confrérie",
+        "Friend of the brotherhood": {
+            "name": "Ami de la confr\u00e9rie",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "242"
-            }
+            "source_reference_page": "242"
         },
-        {
-            "id": "Well Connected",
+        "Well Connected": {
             "name": "Relations influentes",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "243"
-            }
+            "source_reference_page": "243"
         },
-        {
-            "id": "Kuge Lineage",
-            "name": "Lignée Kuge",
+        "Kuge Lineage": {
+            "name": "Lign\u00e9e Kuge",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "243"
-            }
+            "source_reference_page": "243"
         },
-        {
-            "id": "Hero of [Village]",
-            "name": "Héros de [Village]",
-            "types": "Renommée, Relations",
+        "Hero of [Village]": {
+            "name": "H\u00e9ros de [Village]",
+            "types": "Renomm\u00e9e, Relations",
             "description": "",
-            "source_reference": {
-                "page": "243"
-            }
+            "source_reference_page": "243"
         },
-        {
-            "id": "Spiritual Protector",
+        "Spiritual Protector": {
             "name": "Protecteur spirituel",
             "types": "Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "243"
-            }
+            "source_reference_page": "243"
         },
-        {
-            "id": "Ardent Leader",
+        "Ardent Leader": {
             "name": "Chef ardent",
             "types": "Relations, Mental",
             "description": "",
-            "source_reference": {
-                "page": "69"
-            }
+            "source_reference_page": "69"
         },
-        {
-            "id": "Dashing Scar",
+        "Dashing Scar": {
             "name": "Impressionnante cicatrice",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "69"
-            }
+            "source_reference_page": "69"
         },
-        {
-            "id": "Lucky Hunter",
+        "Lucky Hunter": {
             "name": "Chasseur chanceux",
             "types": "Physique, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "69"
-            }
+            "source_reference_page": "69"
         },
-        {
-            "id": "Scrounger",
+        "Scrounger": {
             "name": "Profiteur",
             "types": "Relations, Mental",
             "description": "",
-            "source_reference": {
-                "page": "70"
-            }
+            "source_reference_page": "70"
         },
-        {
-            "id": "Scrappy",
+        "Scrappy": {
             "name": "Bagarreur",
             "types": "Mental, Physique",
             "description": "",
-            "source_reference": {
-                "page": "68"
-            }
+            "source_reference_page": "68"
         },
-        {
-            "id": "Urbane and Worldly",
-            "name": "Baroudeur bienséant",
+        "Urbane and Worldly": {
+            "name": "Baroudeur biens\u00e9ant",
             "types": "Relations, Physique",
             "description": "",
-            "source_reference": {
-                "page": "69"
-            }
+            "source_reference_page": "69"
         },
-        {
-            "id": "Dead Eyes",
-            "name": "Regard voilé",
+        "Dead Eyes": {
+            "name": "Regard voil\u00e9",
             "types": "Mental",
             "description": "",
-            "source_reference": {
-                "page": "96"
-            }
+            "source_reference_page": "96"
         },
-        {
-            "id": "Light Sleeper",
-            "name": "Sommeil léger",
+        "Light Sleeper": {
+            "name": "Sommeil l\u00e9ger",
             "types": "Physique",
             "description": "",
-            "source_reference": {
-                "page": "96"
-            }
+            "source_reference_page": "96"
         },
-        {
-            "id": "Friend of the Nezumi",
+        "Friend of the Nezumi": {
             "name": "Ami des nezumi",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "96"
-            }
+            "source_reference_page": "96"
         },
-        {
-            "id": "Blood of Osano-Wo",
-            "name": "Sang d’Osano-wo",
+        "Blood of Osano-Wo": {
+            "name": "Sang d\u2019Osano-wo",
             "types": "Mental, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "7"
-            }
+            "source_reference_page": "7"
         },
-        {
-            "id": "Sea Legs",
+        "Sea Legs": {
             "name": "Pied marin",
             "types": "Physique",
             "description": "",
-            "source_reference": {
-                "page": "7"
-            }
+            "source_reference_page": "7"
         },
-        {
-            "id": "Guiding Ancestor",
-            "name": "Conseillé par un ancêtre",
+        "Guiding Ancestor": {
+            "name": "Conseill\u00e9 par un anc\u00eatre",
             "types": "Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "82"
-            }
+            "source_reference_page": "82"
         },
-        {
-            "id": "Traditional Adherent",
+        "Traditional Adherent": {
             "name": "Traditionaliste",
             "types": "Mental",
             "description": "",
-            "source_reference": {
-                "page": "82"
-            }
+            "source_reference_page": "82"
         },
-        {
-            "id": "Passion for [Foreign Performing Art Form]",
-            "name": "Talent pour [une forme d’art étrangère]",
-            "types": "Renommée, Relations",
+        "Passion for [Foreign Performing Art Form]": {
+            "name": "Talent pour [une forme d\u2019art \u00e9trang\u00e8re]",
+            "types": "Renomm\u00e9e, Relations",
             "description": "",
-            "source_reference": {
-                "page": "70"
-            }
+            "source_reference_page": "70"
         },
-        {
-            "id": "Knowledgeable Wilderness Guide",
+        "Knowledgeable Wilderness Guide": {
             "name": "Guide de plein air expert",
             "types": "Relations, Spirituel",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Skilled Midwife",
-            "name": "Sage-femme compétente",
+        "Skilled Midwife": {
+            "name": "Sage-femme comp\u00e9tente",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Thoughtful Arbiter",
-            "name": "Arbitre réfléchi",
+        "Thoughtful Arbiter": {
+            "name": "Arbitre r\u00e9fl\u00e9chi",
             "types": "Relations",
             "description": "",
-            "source_reference": {
-                "page": "102"
-            }
+            "source_reference_page": "102"
         },
-        {
-            "id": "Affinity with [Animal Type]",
-            "name": "Affinity with [Animal Type] (WIP)",
-            "types": "Renommée, Relations",
+        "Affinity with [Animal Type]": {
+            "name": "Affinit\u00e9 avec [un type d\u2019animal]",
+            "types": "Renomm\u00e9e, Relations",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "93"
         },
-        {
-            "id": "Legal Scholarship",
-            "name": "Legal Scholarship (WIP)",
+        "Legal Scholarship": {
+            "name": "Savoir L\u00e9gal",
             "types": "Relations, Social",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "93"
         },
-        {
-            "id": "Syncretic Philosophy",
-            "name": "Syncretic Philosophy (WIP)",
+        "Syncretic Philosophy": {
+            "name": "Philosophie Syncr\u00e9tique",
             "types": "Relations, Mental",
             "description": "",
-            "source_reference": {
-                "page": ""
-            }
+            "source_reference_page": "93"
         }
-    ]
+    }
 }

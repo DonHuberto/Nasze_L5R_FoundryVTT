@@ -20,9 +20,9 @@
     {{#ifCond actor_type "==" "character"}}
     {{!-- 20Q --}}
     <ul>
-        <li><b>{{localize (localize 'l5r5e.twenty_questions.part5.q14{suffix}' suffix=suffix)}}</b> : {{actorData.system.twenty_questions.step14.first_sight}}</li>
-        <li><b>{{localize (localize 'l5r5e.twenty_questions.part5.q15{suffix}' suffix=suffix)}}</b> : {{actorData.system.twenty_questions.step15.stress}}</li>
-        <li><b>{{localize (localize 'l5r5e.twenty_questions.part7.q20{suffix}' suffix=suffix)}}</b> : {{actorData.system.twenty_questions.step20.death}}</li>
+        <li><b>{{localizeEmbedded 'l5r5e.twenty_questions.part5.q14' suffix}}</b> : {{actorData.system.twenty_questions.step14.first_sight}}</li>
+        <li><b>{{localizeEmbedded 'l5r5e.twenty_questions.part5.q15' suffix}}</b> : {{actorData.system.twenty_questions.step15.stress}}</li>
+        <li><b>{{localizeEmbedded 'l5r5e.twenty_questions.part7.q20' suffix}}</b> : {{actorData.system.twenty_questions.step20.death}}</li>
     </ul>
     {{/ifCond}}
     <p>{{{actorData.enrichedHtml.description}}}</p>

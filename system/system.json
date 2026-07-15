@@ -2,14 +2,17 @@
     "id": "l5r5e",
     "title": "Legend of the Five Rings (5th Edition)[N]",
     "description": "This is houseruled game system En|Fr|Es, for Legend of the Five Rings (5th Edition) by <a href='https://edge-studio.net/'>Edge Studio</a>",
-    "url": "https://github.com/rozgladacz/Nasze_L5R_FoundryVTT",
-    "manifest": "https://raw.githubusercontent.com/rozgladacz/Nasze_L5R_FoundryVTT/refs/tags/v1.13.101/system/system.json",
-    "download": "https://github.com/rozgladacz/Nasze_L5R_FoundryVTT/releases/download/v1.13.101/system.zip",
-    "version": "1.13.101",
+    "url": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT",
+    "readme": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/blob/master/README.md",
+    "changelog": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/blob/master/CHANGELOG.md",
+    "license": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/blob/master/LICENSE.md",
+    "manifest": "https://raw.githubusercontent.com/DonHuberto/Nasze_L5R_FoundryVTT/refs/tags/v1.14.101/system/system.json",
+    "download": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/releases/download/v1.14.101/system.zip",
+    "version": "1.14.101",
     "compatibility": {
-        "minimum": "13",
-        "verified": "13",
-        "maximum": "13"
+        "minimum": "14",
+        "verified": "14",
+        "maximum": "14"
     },
     "socket": true,
     "authors": [
@@ -34,6 +37,10 @@
         {
             "name": "Rozgladacz",
             "url": "https://github.com/rozgladacz"
+        },
+        {
+            "name": "Litasa",
+            "discord": "Litasa#3139"
         }
     ],
     "background": "systems/l5r5e/assets/l5r-header.webp",

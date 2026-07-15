@@ -1,91 +1,62 @@
 {
     "label": "Liens",
     "mapping": {
-        "description": "system.description",
-        "source_reference": "system.source_reference",
         "bond_type": "system.bond_type"
     },
-    "entries": [
-        {
-            "id": "Family",
+    "entries": {
+        "Family": {
             "name": "Familial",
             "description": "",
-            "source_reference": {
-                "page": "136"
-            },
+            "source_reference_page": "136",
             "bond_type": "Familial"
         },
-        {
-            "id": "Comrade",
-            "name": "Amitié",
+        "Comrade": {
+            "name": "Amiti\u00e9",
             "description": "",
-            "source_reference": {
-                "page": "137"
-            },
-            "bond_type": "Amitié"
+            "source_reference_page": "137",
+            "bond_type": "Amiti\u00e9"
         },
-        {
-            "id": "Lover",
+        "Lover": {
             "name": "Amoureux",
             "description": "",
-            "source_reference": {
-                "page": "137"
-            },
+            "source_reference_page": "137",
             "bond_type": "Amoureux"
         },
-        {
-            "id": "Rival",
-            "name": "Rivalité",
+        "Rival": {
+            "name": "Rivalit\u00e9",
             "description": "",
-            "source_reference": {
-                "page": "138"
-            },
-            "bond_type": "Rivalité"
+            "source_reference_page": "138",
+            "bond_type": "Rivalit\u00e9"
         },
-        {
-            "id": "Nemesis",
+        "Nemesis": {
             "name": "Haine",
             "description": "",
-            "source_reference": {
-                "page": "138"
-            },
+            "source_reference_page": "138",
             "bond_type": "Haine"
         },
-        {
-            "id": "Old Flame",
+        "Old Flame": {
             "name": "Ancien amant",
             "description": "",
-            "source_reference": {
-                "page": "188"
-            },
+            "source_reference_page": "188",
             "bond_type": "Ancien amant"
         },
-        {
-            "id": "Partner",
+        "Partner": {
             "name": "Partenaire",
             "description": "",
-            "source_reference": {
-                "page": "189"
-            },
+            "source_reference_page": "189",
             "bond_type": "Partenaire"
         },
-        {
-            "id": "Protector and Ward",
+        "Protector and Ward": {
             "name": "Protecteur et pupille",
             "description": "",
-            "source_reference": {
-                "page": "189"
-            },
+            "source_reference_page": "189",
             "bond_type": "Protecteur et pupille"
         },
-        {
-            "id": "Wanderers Fellowship",
-            "name": "Frères d’errance",
+        "Wanderers Fellowship": {
+            "name": "Fr\u00e8res d\u2019errance",
             "description": "",
-            "source_reference": {
-                "page": "191"
-            },
-            "bond_type": "Frères d’errance"
+            "source_reference_page": "191",
+            "bond_type": "Fr\u00e8res d\u2019errance"
         }
-    ]
+    }
 }

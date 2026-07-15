@@ -629,21 +629,21 @@ export class HelpersL5r5e {
     }
 
     /**
-     * Return the RollMode for this ChatData
+     * Return the MessageMode for this ChatData
      * @param  {object} chatData
      * @return {string}
      */
-    static getRollMode(chatData) {
+    static getMessageMode(chatData) {
         if (chatData.whisper.length === 1 && chatData.whisper[0] === game.user.id) {
-            return "selfroll";
+            return "self";
         }
         if (chatData.blind) {
-            return "blindroll";
+            return "blind";
         }
         if (chatData.whisper.length > 1) {
-            return "gmroll";
+            return "gm";
         }
-        return "roll";
+        return "public";
     }
 
     /**
@@ -690,7 +690,7 @@ export class HelpersL5r5e {
      * @param {object} opt                 drawMany config option object
      * @return {Promise<{RollTableDraw}>}  The drawn results
      */
-    static async drawManyFromPack(pack, tableName, retrieve = 5, opt = { rollMode: "selfroll" }) {
+    static async drawManyFromPack(pack, tableName, retrieve = 5, opt = { messageMode: "self" }) {
         const comp = await game.packs.get(pack);
         if (!comp) {
             console.log(`L5R5E | Helpers | Pack not found[${pack}]`);

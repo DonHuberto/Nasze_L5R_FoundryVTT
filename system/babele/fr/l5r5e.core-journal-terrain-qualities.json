@@ -1,32 +1,30 @@
 {
-    "label": "Propriétés de terrain",
-    "mapping": {
-        "text": "text"
-    },
+    "label": "Propri\u00e9t\u00e9s de terrain",
+    "mapping": {},
     "entries": {
         "Dangerous": {
             "name": "Dangereux",
             "pages": {
                 "Figure: Dangerous": {
                     "name": "Dangereux - Image",
-                    "src": "icons/svg/trap.svg"
+                    "src": "icons\/svg\/trap.svg"
                 },
                 "Dangerous": {
                     "name": "Dangereux",
-                    "text": "<blockquote>Livre de Règles p.267</blockquote>"
+                    "text": "<blockquote>Livre de R\u00e8gles p.267<\/blockquote>"
                 }
             }
         },
         "Defiled": {
-            "name": "Profané",
+            "name": "Profan\u00e9",
             "pages": {
                 "Figure: Defiled": {
-                    "name": "Profané - Image",
-                    "src": "icons/svg/ruins.svg"
+                    "name": "Profan\u00e9 - Image",
+                    "src": "icons\/svg\/ruins.svg"
                 },
                 "Defiled": {
-                    "name": "Profané",
-                    "text": "<blockquote>Livre de Règles p.267</blockquote>"
+                    "name": "Profan\u00e9",
+                    "text": "<blockquote>Livre de R\u00e8gles p.267<\/blockquote>"
                 }
             }
         },
@@ -35,76 +33,76 @@
             "pages": {
                 "Figure: Entangling": {
                     "name": "Handicapant - Image",
-                    "src": "icons/svg/lightning.svg"
+                    "src": "icons\/svg\/lightning.svg"
                 },
                 "Entangling": {
                     "name": "Handicapant",
-                    "text": "<blockquote>Livre de Règles p.267</blockquote>"
+                    "text": "<blockquote>Livre de R\u00e8gles p.267<\/blockquote>"
                 }
             }
         },
         "Hallowed (One or More Elements)": {
-            "name": "Sanctifié (un ou plusieurs éléments)",
+            "name": "Sanctifi\u00e9 (un ou plusieurs \u00e9l\u00e9ments)",
             "pages": {
                 "Figure: Hallowed (One or More Elements)": {
-                    "name": "Sanctifié (un ou plusieurs éléments) - Image",
-                    "src": "icons/svg/oak.svg"
+                    "name": "Sanctifi\u00e9 (un ou plusieurs \u00e9l\u00e9ments) - Image",
+                    "src": "icons\/svg\/oak.svg"
                 },
                 "Hallowed (One or More Elements)": {
-                    "name": "Sanctifié (un ou plusieurs éléments)",
-                    "text": "<blockquote>Livre de Règles p.267</blockquote>"
+                    "name": "Sanctifi\u00e9 (un ou plusieurs \u00e9l\u00e9ments)",
+                    "text": "<blockquote>Livre de R\u00e8gles p.267<\/blockquote>"
                 }
             }
         },
         "Imbalanced (One or More Elements)": {
-            "name": "Déséquilibré (un ou plusieurs éléments)",
+            "name": "D\u00e9s\u00e9quilibr\u00e9 (un ou plusieurs \u00e9l\u00e9ments)",
             "pages": {
                 "Figure: Imbalanced (One or More Elements)": {
-                    "name": "Déséquilibré (un ou plusieurs éléments) - Image",
-                    "src": "icons/svg/stoned.svg"
+                    "name": "D\u00e9s\u00e9quilibr\u00e9 (un ou plusieurs \u00e9l\u00e9ments) - Image",
+                    "src": "icons\/svg\/stoned.svg"
                 },
                 "Imbalanced (One or More Elements)": {
-                    "name": "Déséquilibré (un ou plusieurs éléments)",
-                    "text": "<blockquote>Livre de Règles p.267</blockquote>"
+                    "name": "D\u00e9s\u00e9quilibr\u00e9 (un ou plusieurs \u00e9l\u00e9ments)",
+                    "text": "<blockquote>Livre de R\u00e8gles p.267<\/blockquote>"
                 }
             }
         },
         "Obscuring": {
-            "name": "Voilé",
+            "name": "Voil\u00e9",
             "pages": {
                 "Figure: Obscuring": {
-                    "name": "Voilé - Image",
-                    "src": "icons/svg/cowled.svg"
+                    "name": "Voil\u00e9 - Image",
+                    "src": "icons\/svg\/cowled.svg"
                 },
                 "Obscuring": {
-                    "name": "Voilé",
-                    "text": "<blockquote>Livre de Règles p.267</blockquote>"
+                    "name": "Voil\u00e9",
+                    "text": "<blockquote>Livre de R\u00e8gles p.267<\/blockquote>"
                 }
             }
         },
         "Confining": {
-            "name": "Confiné",
+            "name": "Confin\u00e9",
             "pages": {
                 "Figure: Confining": {
-                    "name": "Confiné - Image",
-                    "src": "icons/svg/stone-path.svg"
+                    "name": "Confin\u00e9 - Image",
+                    "src": "icons\/svg\/stone-path.svg"
                 },
                 "Confining": {
-                    "name": "Confiné",
-                    "text": "<blockquote>Les Champs de la Victoire p.122</blockquote>"
+                    "name": "Confin\u00e9",
+                    "text": "<blockquote>Les Champs de la Victoire p.122<\/blockquote>"
                 }
             }
         },
         "Elevated": {
-            "name": "Surélevé",
+            "name": "Sur\u00e9lev\u00e9",
             "pages": {
                 "Figure: Elevated": {
-                    "name": "Surélevé - Image",
-                    "src": "icons/svg/up.svg"
+                    "name": "Sur\u00e9lev\u00e9 - Image",
+                    "src": "icons\/svg\/up.svg"
                 },
                 "Elevated": {
-                    "name": "Surélevé",
-                    "text": "<blockquote>Les Champs de la Victoire p.122</blockquote>"
+                    "name": "Sur\u00e9lev\u00e9",
+                    "text": "<blockquote>Les Champs de la Victoire p.122<\/blockquote>"
                 }
             }
         },
@@ -113,37 +111,37 @@
             "pages": {
                 "Figure: Open": {
                     "name": "Ouvert - Image",
-                    "src": "icons/svg/mountain.svg"
+                    "src": "icons\/svg\/mountain.svg"
                 },
                 "Open": {
                     "name": "Ouvert",
-                    "text": "<blockquote>Les Champs de la Victoire p.122</blockquote>"
+                    "text": "<blockquote>Les Champs de la Victoire p.122<\/blockquote>"
                 }
             }
         },
         "Recessed": {
-            "name": "Encaissé",
+            "name": "Encaiss\u00e9",
             "pages": {
                 "Figure: Recessed": {
-                    "name": "Encaissé - Image",
-                    "src": "icons/svg/down.svg"
+                    "name": "Encaiss\u00e9 - Image",
+                    "src": "icons\/svg\/down.svg"
                 },
                 "Recessed": {
-                    "name": "Encaissé",
-                    "text": "<blockquote>Les Champs de la Victoire p.122</blockquote>"
+                    "name": "Encaiss\u00e9",
+                    "text": "<blockquote>Les Champs de la Victoire p.122<\/blockquote>"
                 }
             }
         },
         "Imbalanced (One or More Elements) Variant": {
-            "name": "Déséquilibré (un ou plusieurs éléments) – variante",
+            "name": "D\u00e9s\u00e9quilibr\u00e9 (un ou plusieurs \u00e9l\u00e9ments) \u2013 variante",
             "pages": {
                 "Figure: Imbalanced (One or More Elements) Variant": {
-                    "name": "Déséquilibré (un ou plusieurs éléments) – variante - Image",
-                    "src": "icons/svg/stoned.svg"
+                    "name": "D\u00e9s\u00e9quilibr\u00e9 (un ou plusieurs \u00e9l\u00e9ments) \u2013 variante - Image",
+                    "src": "icons\/svg\/stoned.svg"
                 },
                 "Imbalanced (One or More Elements) Variant": {
-                    "name": "Déséquilibré (un ou plusieurs éléments) – variante",
-                    "text": "<blockquote>Les Édits de la Nature p.139</blockquote>"
+                    "name": "D\u00e9s\u00e9quilibr\u00e9 (un ou plusieurs \u00e9l\u00e9ments) \u2013 variante",
+                    "text": "<blockquote>Les \u00c9dits de la Nature p.139<\/blockquote>"
                 }
             }
         }

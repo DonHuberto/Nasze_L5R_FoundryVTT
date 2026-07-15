@@ -7,7 +7,7 @@
         <label class="attribute-label">
             <strong>{{localize 'l5r5e.attributes.fatigue'}}</strong>
             <input class="centered-input select-on-focus" type="number" name="system.fatigue.value" value="{{data.system.fatigue.value}}" data-dtype="Number" min="0" placeholder="0" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
-            <span class="attributes-buttons">
+            <span class="increment-control fatigue">
                 <i class="addsub-control pointer-choice fa fa-plus-square" data-type="fatigue" data-value="1"></i>
                 <i class="addsub-control pointer-choice fa fa-minus-square" data-type="fatigue" data-value="-1"></i>
             </span>
@@ -22,7 +22,7 @@
         <label class="attribute-label">
             <strong>{{localize 'l5r5e.attributes.strife'}}</strong>
             <input class="centered-input select-on-focus" type="number" name="system.strife.value" value="{{data.system.strife.value}}" data-dtype="Number" min="0" placeholder="0" {{^if data.editable_not_soft_locked}}disabled{{/if}}/>
-            <span class="attributes-buttons">
+            <span class="increment-control strife">
                 <i class="addsub-control pointer-choice fa fa-plus-square" data-type="strife" data-value="1"></i>
                 <i class="addsub-control pointer-choice fa fa-minus-square" data-type="strife" data-value="-1"></i>
             </span>

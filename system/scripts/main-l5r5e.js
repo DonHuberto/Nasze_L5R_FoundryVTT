@@ -11,6 +11,7 @@ import { ActorL5r5e } from "./actor.js";
 import { CharacterSheetL5r5e } from "./actors/character-sheet.js";
 import { NpcSheetL5r5e } from "./actors/npc-sheet.js";
 import { ArmySheetL5r5e } from "./actors/army-sheet.js";
+import { RulerL5r5e, TokenRulerL5r5e } from "./tatical-grid-rulers.js";
 // Dice and rolls
 import { L5rBaseDie } from "./dice/dietype/l5r-base-die.js";
 import { AbilityDie } from "./dice/dietype/ability-die.js";
@@ -37,6 +38,8 @@ import { ArmyFortificationSheetL5r5e } from "./items/army-fortification-sheet.js
 // JournalEntry
 import { JournalL5r5e } from "./journal.js";
 import { BaseJournalSheetL5r5e } from "./journals/base-journal-sheet.js";
+// Compendium
+import { CompendiumDirectoryL5r5e } from "./compendium/l5r5e-compendium-directory.js";
 // Specific
 import { MigrationL5r5e } from "./migration.js";
 import { GmToolbox } from "./gm/gm-toolbox.js";
@@ -44,8 +47,10 @@ import { GmMonitor } from "./gm/gm-monitor.js";
 import { Storage } from "./storage.js";
 // Misc
 import { L5r5eHtmlMultiSelectElement } from "./misc/l5r5e-multiselect.js";
+import { L5R5eHtmlComboBoxElement } from "./misc/l5r5e-combo-box.js";
 
 window.customElements.define(L5r5eHtmlMultiSelectElement.tagName, L5r5eHtmlMultiSelectElement);
+window.customElements.define(L5R5eHtmlComboBoxElement.tagName, L5R5eHtmlComboBoxElement);
 
 /* ------------------------------------ */
 /* Initialize system                    */
@@ -65,6 +70,23 @@ Hooks.once("init", async () => {
     // Global access to L5R Config
     CONFIG.l5r5e = L5R5E;
 
+    // Setting up sidebar icons
+    CONFIG.ChatMessage.sidebarIcon = "l5r5e chatIcon";
+    CONFIG.Combat.sidebarIcon = "l5r5e combatIcon";
+    CONFIG.Scene.sidebarIcon = "l5r5e sceneIcon";
+    CONFIG.Actor.sidebarIcon = "l5r5e actorIcon";
+    CONFIG.Item.sidebarIcon = "l5r5e itemIcon";
+    CONFIG.JournalEntry.sidebarIcon = "l5r5e journalIcon";
+    CONFIG.RollTable.sidebarIcon = "l5r5e rolltableIcon";
+    CONFIG.Playlist.sidebarIcon = "l5r5e playlistIcon";
+    // Note: We don't have any custom icons here so just append l5r5e and type
+    CONFIG.Cards.sidebarIcon += " l5r5e cardsIcon";
+    CONFIG.Macro.sidebarIcon += " l5r5e macroIcon";
+
+    // The compendium and the settings menu is registered a little different.
+    foundry.applications.sidebar.Sidebar.TABS.compendium.icon = "l5r5e compendiumIcon";
+    foundry.applications.sidebar.Sidebar.TABS.settings.icon = "l5r5e settingsIcon";
+
     // Assign custom classes and constants here
     CONFIG.Combat.documentClass = CombatL5r5e;
     CONFIG.Actor.documentClass = ActorL5r5e;
@@ -72,6 +94,10 @@ Hooks.once("init", async () => {
     CONFIG.Item.documentClass = ItemL5r5e;
     CONFIG.JournalEntry.documentClass = JournalL5r5e;
     CONFIG.JournalEntry.sheetClass = BaseJournalSheetL5r5e;
+    CONFIG.Token.rulerClass = TokenRulerL5r5e;
+    CONFIG.Canvas.rulerClass = RulerL5r5e;
+
+    CONFIG.ui.compendium = CompendiumDirectoryL5r5e;
 
     // Define custom Roll class
     CONFIG.Dice.rolls.unshift(RollL5r5e);
@@ -253,6 +279,7 @@ Hooks.once("init", async () => {
 Hooks.once("setup", HooksL5r5e.setup);
 Hooks.once("ready", HooksL5r5e.ready);
 Hooks.once("init", HooksL5r5e.init);
+Hooks.once("babele.init", (babele) => HooksL5r5e.babeleInit(babele));
 Hooks.once("diceSoNiceReady", (dice3d) => HooksL5r5e.diceSoNiceReady(dice3d));
 
 /* ------------------------------------ */
@@ -262,6 +289,4 @@ Hooks.on("renderSidebarTab", (app, html, data) => HooksL5r5e.renderSidebarTab(ap
 Hooks.on("activateSettings", async (app)=> HooksL5r5e.activateSettings(app));
 Hooks.on("renderChatMessageHTML", (message, html, data) => HooksL5r5e.renderChatMessage(message, html, data));
 Hooks.on("renderCombatTracker", (app, html, data) => HooksL5r5e.renderCombatTracker(app, html, data));
-Hooks.on("renderCompendium", async (app, html, data) => HooksL5r5e.renderCompendium(app, html, data));
 Hooks.on("diceSoNiceRollStart", (messageId, context) => HooksL5r5e.diceSoNiceRollStart(messageId, context));
-Hooks.on("updateCompendium", (pack, documents, options, userId) => HooksL5r5e.updateCompendium(pack, documents, options, userId));

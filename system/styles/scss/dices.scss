@@ -5,9 +5,55 @@
     cursor: url("../assets/cursors/pointer.webp"), pointer;
 }
 
+// define a mixin
+@mixin roll-effects-base {
+    clear: both;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px 4px;
+
+    .effect-container {
+        border: 1px solid #5a6e5a;
+        border-radius: 4px;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding: 3px;
+        display: flex;
+    }
+
+    .effect-delete {
+        width: 16px;
+        height: 16px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        text-align: end;
+        cursor: url("../assets/cursors/pointer.webp"), pointer;
+    }
+
+    .effect-icon {
+        width: 16px;
+        height: 16px;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    .effect-name {
+        vertical-align: top;
+        white-space: nowrap;
+        color: $white;
+        margin-left: 4px;
+        font-size: 14px;
+        line-height: 16px;
+    }
+}
+
 // Dice Picker
 .dice-picker-dialog {
-    min-width: 35rem;
+    .effects {
+        @include roll-effects-base();
+    }
+
+    width: 35rem;
     min-height: auto;
     // Utility
     * {
@@ -258,6 +304,7 @@
                 td {
                     margin: 0;
                     padding: 0;
+                    text-align: center;
                 }
             }
         }
@@ -297,6 +344,12 @@
 
     .profil {
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column; // stack profile ul and effects ul vertically
+
+        .effects {
+            @include roll-effects-base();
+        }
     }
 
     .dropbox {
@@ -349,6 +402,7 @@
     .dice-ct {
         position: relative;
         padding: 0.25rem;
+        width: 48px;
         &:before {
             content: "";
             position: absolute;
