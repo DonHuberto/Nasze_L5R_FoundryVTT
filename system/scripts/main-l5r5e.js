@@ -44,6 +44,7 @@ import { DamageService } from "./services/damage-service.js";
 import { GmAuthorityService } from "./services/gm-authority-service.js";
 import { InitiativeService } from "./services/initiative-service.js";
 import { ItemQualityService } from "./services/item-quality-service.js";
+import { LateArrivalService } from "./services/late-arrival-service.js";
 import { MovementService, RangeBandService } from "./services/movement-service.js";
 import { OpportunityRepository } from "./services/opportunity-repository.js";
 import { OpportunityService } from "./services/opportunity-service.js";
@@ -137,6 +138,7 @@ Hooks.once("init", async () => {
     const movement = new MovementService({ turnStateService: turns, conditionService: conditions, actionService: actions });
     const initiative = new InitiativeService({ opportunityService: opportunities });
     const authority = new GmAuthorityService();
+    const lateArrivals = new LateArrivalService({ authorityService: authority });
     const sockets = new SocketHandlerL5r5e();
 
     // Add classes and the stable public API to game.
@@ -170,6 +172,7 @@ Hooks.once("init", async () => {
         initiative,
         transactions,
         authority,
+        lateArrivals,
         rollResolution,
     };
     sockets.registerAuthorityHandler("applyTransaction", async ({ transaction, parentMessageUuid = null }) => {
@@ -371,3 +374,7 @@ Hooks.on("preMoveToken", (tokenDocument, movement, operation, userId) => HooksL5
 Hooks.on("recordToken", (tokenDocument, movement, operation, userId) => HooksL5r5e.recordToken(tokenDocument, movement, operation, userId));
 Hooks.on("preUpdateCombat", (combat, changes, options) => HooksL5r5e.preUpdateCombat(combat, changes, options));
 Hooks.on("updateCombat", (combat, changes, options) => HooksL5r5e.updateCombat(combat, changes, options));
+Hooks.on("preCreateCombatant", (combatant, data, options, userId) => game.l5r5e?.lateArrivals?.preCreate(combatant, data, options, userId));
+Hooks.on("createCombatant", (combatant) => game.l5r5e?.lateArrivals?.onCreate(combatant));
+Hooks.on("updateCombatant", (combatant, changes) => game.l5r5e?.lateArrivals?.onCombatantUpdate(combatant, changes));
+Hooks.on("updateCombat", (combat, changes) => game.l5r5e?.lateArrivals?.onCombatUpdate(combat, changes));

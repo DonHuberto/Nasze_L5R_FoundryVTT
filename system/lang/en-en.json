@@ -892,6 +892,9 @@
             "hostileOccupied": "A hostile token occupies a grid space on this path. A GM may use an explicit override.",
             "gridless": "Tactical movement automation is disabled on gridless scenes."
             },
+            "lateArrival": {
+                "duelThirdParticipant": "A third participant cannot join an active duel."
+            },
         "transaction": {
             "conflict": "The document changed after this resolution. Review the difference before replaying it.",
             "conflictTitle": "Resolution conflict",

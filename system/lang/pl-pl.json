@@ -50,6 +50,9 @@
             "hostileOccupied": "Wrogi token zajmuje pole na tej trasie. MG może użyć jawnego obejścia reguły.",
             "gridless": "Automatyzacja ruchu taktycznego jest wyłączona na scenach bez siatki."
             },
+            "lateArrival": {
+                "duelThirdParticipant": "Do trwającego pojedynku nie można dodać trzeciego uczestnika."
+            },
         "transaction": {
             "conflict": "Dokument zmienił się po rozstrzygnięciu. Przejrzyj różnice przed ponownym wykonaniem.",
             "conflictTitle": "Konflikt rozstrzygnięcia",

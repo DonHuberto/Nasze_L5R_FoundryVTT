@@ -23,6 +23,7 @@ The HUD should be a frontend over `game.l5r5e`; it must not maintain a second ac
 - `game.l5r5e.movement`: `remaining`, `maneuverBudget`, `techniqueBudget`, `startFreeMovement`, `startManeuver`, `cancelManeuver`, `executeManeuver`, `startTechniqueMovement`, `plan`, `measure`, `execute`, `undoMovement`, `reachableFields`.
 - `game.l5r5e.rangeBands`: `fieldsPerBand`, `toBudget`, `fromCost`.
 - `game.l5r5e.initiative`: Prepared/base/score/ring/optimizer/tie/group helpers.
+- `game.l5r5e.lateArrivals`: `getFlag`, `canCreate`, `ruleFor`, `resolveEligible`; hook handlers persist and resolve late-join state without replacing Foundry's native `Combatant#roundJoined`.
 - `game.l5r5e.rollResolution`: `preview` and canonical `resolve`.
 - `game.l5r5e.transactions`: create/apply/revert/replay/history.
 - `game.l5r5e.authority` and `game.l5r5e.sockets.requestAuthority`: single-GM mutations.
@@ -32,3 +33,5 @@ HUD buttons may call `actions.reserveAndPersist` when the user confirms an actio
 For movement, call `movement.plan(token, {maxCost: movement.remaining(combatant)})`, then `movement.execute`. The service uses V14 `preventDrop`; public movement hooks cover ordinary dragging and keyboard movement. Use `reachableFields` only for visualization. Call `undoMovement` only when the getter reports availability.
 
 Subscribe to `l5r5e.turnStateChanged`, `l5r5e.actionResolved`, `l5r5e.movementBudgetChanged` and `l5r5e.rollResolutionChanged`; polling and writes to the HUD module namespace are unnecessary.
+
+The dock may call the public `Combat#rollInitiative` and inherited `Combat#rollNPC` entry points. Pass L5R-specific roll overrides through `messageOptions`, for example `{skillId: "tactics", difficulty: 2, difficultyHidden: true}`.

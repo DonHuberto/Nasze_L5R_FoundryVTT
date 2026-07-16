@@ -6,6 +6,14 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.103 - 16/07/2026 - Combat tracker dock backend
+
+- Expose `game.l5r5e.lateArrivals` for combatants joining an active conflict.
+- Resolve Intrigue arrivals immediately and Skirmish/Mass Battle arrivals at the next round with the conflict-specific skill and TN.
+- Reject a third participant in an active Duel without creating fake Defeated state.
+- Honor per-call initiative TN and visibility options for both automated adversaries and interactive rolls.
+- Use the receiving Combat document when resolving initiative instead of the globally active combat.
+
 ## 1.14.102 - 16/07/2026 - Native Core Automation
 
 ### Roll resolution and actions

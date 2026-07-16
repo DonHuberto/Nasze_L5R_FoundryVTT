@@ -24,8 +24,14 @@ export class CombatL5r5e extends Combat {
 
         // Get global modifiers
         const cfg = {
-            difficulty: game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-value"),
-            difficultyHidden: game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-hidden"),
+            difficulty:
+                messageOptions.difficulty !== undefined
+                    ? messageOptions.difficulty
+                    : game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-value"),
+            difficultyHidden:
+                messageOptions.difficultyHidden !== undefined
+                    ? messageOptions.difficultyHidden
+                    : game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-hidden"),
         };
 
         // SkillId from DicePicker or global
@@ -38,7 +44,7 @@ export class CombatL5r5e extends Combat {
         const networkActors = [];
         const updatedCombatants = [];
         for (const combatantId of ids) {
-            const combatant = game.combat.combatants.find((c) => c.id === combatantId);
+            const combatant = this.combatants.find((c) => c.id === combatantId);
             if (!combatant || !combatant.actor || combatant.isDefeated) {
                 continue;
             }
