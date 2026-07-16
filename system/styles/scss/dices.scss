@@ -582,3 +582,38 @@
         }
     }
 }
+.roll-n-keep-dialog {
+    .toggle-opportunities.compact {
+        margin: 0.35rem auto;
+        width: auto;
+    }
+
+    .opportunity-panel,
+    .resolution-summary {
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid var(--color-border-light-2, #777);
+        border-radius: 4px;
+        margin: 0.5rem 0;
+        max-height: 22rem;
+        overflow-y: auto;
+        padding: 0.5rem;
+    }
+
+    .opportunity-row {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        padding: 0.35rem 0;
+
+        &.unreachable { opacity: 0.55; }
+        p { margin: 0.25rem 0; }
+    }
+
+    .opportunity-counter {
+        align-items: center;
+        display: flex;
+        gap: 0.35rem;
+
+        button { flex: 0 0 2rem; }
+    }
+
+    .resolution-errors { color: var(--color-level-error, #8b0000); }
+}

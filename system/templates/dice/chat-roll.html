@@ -127,6 +127,21 @@
                 {{#if l5r5e.strifeApplied}}
                     <div class="applied-result">{{ localize 'l5r5e.dice.roll_n_keep.strife_received_label' }} {{l5r5e.strifeApplied}}</div>
                 {{/if}}
+                {{#if l5r5e.resolution}}
+                    <div class="resolution-audit">
+                        <strong>{{localize "l5r5e.automation.roll.summary"}}</strong>
+                        <div>{{localize "l5r5e.automation.roll.bonusSuccesses"}}: {{l5r5e.resolution.effective.bonusSuccesses}}</div>
+                        <div><i class="i_opportunity"></i> {{l5r5e.resolution.opportunities.generated}} / {{localize "l5r5e.automation.opportunity.spent"}} {{l5r5e.resolution.opportunities.spent}}</div>
+                        {{#each l5r5e.resolution.opportunities.selections}}<div>{{rulesKey}} ({{cost}})</div>{{/each}}
+                    </div>
+                {{/if}}
+                {{#if l5r5e.resolution.effects.action.critical}}
+                    <div class="resolution-audit critical-result">
+                        <strong>{{localize "l5r5e.automation.critical.result"}}</strong>
+                        <div>{{localize "l5r5e.automation.critical.severity"}}: {{l5r5e.resolution.effects.action.critical.finalSeverity}}</div>
+                        {{#each l5r5e.resolution.effects.action.critical.outcome.conditions}}<div>{{this}}</div>{{/each}}
+                    </div>
+                {{/if}}
                 {{#if l5r5e.fatigueApplied}}
                     <div class="applied-result">{{ localize 'l5r5e.dice.roll_n_keep.fatigue_to_character_label' }} {{l5r5e.fatigueApplied}}</div>
                 {{/if}}

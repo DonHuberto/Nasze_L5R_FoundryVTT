@@ -42,6 +42,15 @@
                 {{localize 'l5r5e.dice.dicepicker.difficulty_title'}}
                 <input class="select-on-focus" type="text" name="system.difficulty" value="{{data.system.difficulty}}" data-dtype="String"/>
             </label>
+            <fieldset class="stats">
+                <legend>{{localize "l5r5e.automation.item.activation"}}</legend>
+                <label><input type="checkbox" name="system.activation.requires_check" {{checked data.system.activation.requires_check}}> {{localize "l5r5e.automation.item.requiresCheck"}}</label>
+                <label>{{localize "l5r5e.automation.item.actionTypes"}} <input name="actionTypesCsv" value="{{data.actionTypesCsv}}" placeholder="attack, support"></label>
+                <label>{{localize "l5r5e.automation.item.targetMode"}} <select name="system.activation.target.mode"><option value="none">none</option><option value="self">self</option><option value="single">single</option><option value="multiple">multiple</option><option value="rollTarget">rollTarget</option></select></label>
+                <label>{{localize "l5r5e.automation.item.range"}} <input type="number" name="system.activation.range.minimum" value="{{data.system.activation.range.minimum}}" min="0">–<input type="number" name="system.activation.range.maximum" value="{{data.system.activation.range.maximum}}" min="0"></label>
+                <label>{{localize "l5r5e.automation.item.movementBands"}} <input type="number" name="system.activation.movement.bands" value="{{data.system.activation.movement.bands}}" min="0"></label>
+                <label>{{localize "l5r5e.automation.item.opportunityKeys"}} <input name="opportunityKeysCsv" value="{{data.opportunityKeysCsv}}"></label>
+            </fieldset>
         </article>
         {{> 'systems/l5r5e/templates/items/item/item-infos.html'}}
     </section>

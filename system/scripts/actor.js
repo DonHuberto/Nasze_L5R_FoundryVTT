@@ -128,16 +128,22 @@ export class ActorL5r5e extends Actor {
     /** @inheritDoc */
     async _preUpdate(changes, options, user) {
         if (this.isCharacterType) {
-            // apply compromised condition if strife goes beyond max
-            const strife = changes.system?.strife?.value ?? this.system.strife.value;
-            const isCompromised = strife > this.system.composure;
-            // apply incapacitated if fatigue goes beyond max endurance
-            const fatigue = changes.system?.fatigue?.value ?? this.system.fatigue.value;
-            const isIncapacitated = fatigue > this.system.endurance;
+            const projected = foundry.utils.deepClone(changes);
+            if (this.isCharacter && changes.system?.rings) {
+                const rings = { ...this.system.rings, ...changes.system.rings };
+                projected.system ??= {};
+                projected.system.endurance ??= (Number(rings.earth) + Number(rings.fire)) * 2;
+                projected.system.composure ??= (Number(rings.earth) + Number(rings.water)) * 2;
+            }
+            const thresholds = game.l5r5e.conditions.thresholdState(this, projected);
             await Promise.all([
-                this.toggleStatusEffect('compromised', {active: isCompromised}),
-                this.toggleStatusEffect('incapacitated', {active: isIncapacitated}),
+                this.toggleStatusEffect("compromised", { active: thresholds.compromised }),
+                this.toggleStatusEffect("incapacitated", { active: thresholds.incapacitated }),
             ]);
+            if (this.isMinion && thresholds.defeated) {
+                const combatants = [...(game.combats ?? [])].flatMap((combat) => combat.combatants.filter((combatant) => combatant.actor?.uuid === this.uuid));
+                await Promise.all(combatants.map((combatant) => combatant.update({ defeated: true, "flags.l5r5e.defeatOutcome": options.l5r5eDefeatOutcome ?? "nonLethal" })));
+            }
         }
     }
 
@@ -332,7 +338,7 @@ export class ActorL5r5e extends Actor {
      */
     get canDoInitiativeRoll() {
         return game.combat?.combatants.some(
-            (c) => !c.initiative && (c.tokenId === this.token?._id || (!this.token && c.actorId === this._id))
+            (c) => c.initiative === null && (c.tokenId === this.token?._id || (!this.token && c.actorId === this._id))
         );
     }
 
@@ -375,13 +381,10 @@ export class ActorL5r5e extends Actor {
             minion: game.settings.get(CONFIG.l5r5e.namespace, "initiative-prepared-minion"),
         };
 
-        // Prepared is a boolean or if null we get the info in the actor
-        let isPrepared = this.isCharacter ? cfg.character : cfg[this.system.type];
-        if (isPrepared === "actor") {
-            isPrepared = this.system.prepared ? "true" : "false";
-        }
-
-        return isPrepared;
+        const prepared = this.isCharacter ? cfg.character : cfg[this.system.type];
+        if (prepared === "actor") return Boolean(this.system.prepared);
+        if (typeof prepared === "boolean") return prepared;
+        return prepared === "true";
     }
 
     /**

@@ -1,4 +1,4 @@
-import { defaultActionsState, getRollActionTypes, normalizeActions } from "./action-types.js";
+import { defaultActionsState, getRollActionTypes, inferActions, normalizeActions } from "./action-types.js";
 
 /**
  * L5R Dice picker dialog
@@ -42,6 +42,8 @@ export class DicePickerDialog extends FormApplication {
      * @private
      */
     _baseDifficulty = 2;
+    _allowedRings = null;
+    _rollContext = null;
 
     /**
      * Payload Object
@@ -69,6 +71,7 @@ export class DicePickerDialog extends FormApplication {
         },
         useVoidPoint: false,
         isInitiativeRoll: false,
+        conflictType: null,
         actions: {},
     };
 
@@ -141,6 +144,9 @@ export class DicePickerDialog extends FormApplication {
     constructor(options = {}) {
         super({}, options);
 
+        this._allowedRings = Array.isArray(options.allowedRings) ? [...new Set(options.allowedRings.filter((ring) => CONFIG.l5r5e.stances.includes(ring)))] : null;
+        this._rollContext = options.rollContext ? foundry.utils.deepClone(options.rollContext) : null;
+
         // Try to get Actor from: options, first selected token or player's selected character
         [
             options?.actor,
@@ -158,6 +164,7 @@ export class DicePickerDialog extends FormApplication {
         if (options.ringId) {
             this.ringId = options.ringId;
         }
+        if (this._allowedRings?.length && !this._allowedRings.includes(this.object.ring.id)) this.ringId = this._allowedRings[0];
 
         // SkillList
         if (options.skillsList) {
@@ -199,6 +206,7 @@ export class DicePickerDialog extends FormApplication {
 
         // InitiativeRoll
         this.object.isInitiativeRoll = !!options.isInitiativeRoll;
+        this.object.conflictType = options.conflictType ?? (this.object.isInitiativeRoll ? "conflict" : null);
 
         // Item (weapon/technique)
         if (options.item) {
@@ -208,11 +216,11 @@ export class DicePickerDialog extends FormApplication {
         }
 
         const actionDefaults = options.actions ?? options.actionTypes ?? options.actionTypeTags;
-        this.object.actions = defaultActionsState(actionDefaults === undefined && !this.object.isInitiativeRoll );
+        this.object.actions = defaultActionsState(false);
         if (actionDefaults !== undefined) {
             this.actions = actionDefaults;
         } else {
-            this._recalculateDifficulty();
+            this.actions = inferActions(this._item);
         }
     }
 
@@ -256,6 +264,7 @@ export class DicePickerDialog extends FormApplication {
             return;
         }
         this._item = item;
+        if (!Object.values(this.object.actions ?? {}).some(Boolean)) this.actions = inferActions(item);
     }
 
     /**
@@ -379,14 +388,14 @@ export class DicePickerDialog extends FormApplication {
             return;
         }
         difficulty = parseInt(difficulty);
-        if (isNaN(difficulty) || difficulty < 0) {
+        if (isNaN(difficulty) || difficulty < 1) {
             difficulty = 2;
             if (this.object.isInitiativeRoll) {
                 difficulty = 1;
             }
         }
-        this._baseDifficulty = difficulty;
-        this.object.difficulty.base = difficulty;
+        this._baseDifficulty = Math.max(1, difficulty);
+        this.object.difficulty.base = this._baseDifficulty;
         this._recalculateDifficulty();
     }
 
@@ -429,7 +438,7 @@ export class DicePickerDialog extends FormApplication {
     async getData(options = null) {
         return {
             ...(await super.getData(options)),
-            ringsList: game.l5r5e.HelpersL5r5e.getRingsList(this._actor),
+            ringsList: game.l5r5e.HelpersL5r5e.getRingsList(this._actor).filter((ring) => !this._allowedRings?.length || this._allowedRings.includes(ring.id)),
             data: this.object,
             actor: this._actor,
             useCategory: this.useCategory,
@@ -484,6 +493,7 @@ export class DicePickerDialog extends FormApplication {
         html.find('input[name="approach"]').on("click", async (event) => {
             event.preventDefault();
             event.stopPropagation();
+            if (this._allowedRings?.length && !this._allowedRings.includes(event.target.dataset.ringid)) return;
             this.ringId = event.target.dataset.ringid;
             this.object.ring.value = parseInt(event.target.value) + (this.object.useVoidPoint ? 1 : 0);
             this.render(false);
@@ -666,10 +676,36 @@ export class DicePickerDialog extends FormApplication {
             roll.l5r5e.skillId = this.object.skill.id;
             roll.l5r5e.skillCatId = this.object.skill.cat;
             roll.l5r5e.difficulty = this.object.difficulty.value;
+            roll.l5r5e.baseDifficulty = this._baseDifficulty;
             roll.l5r5e.voidPointUsed = this.object.useVoidPoint;
             roll.l5r5e.skillAssistance = this.object.skill.assistance;
             roll.l5r5e.difficultyHidden = this.object.difficulty.hidden;
             roll.l5r5e.actions = foundry.utils.deepClone(this.object.actions);
+            roll.l5r5e.actionTypes = Object.entries(this.object.actions).filter(([, active]) => active).map(([type]) => type);
+            const combatant = game.combat?.combatants?.find((entry) => entry.actor?.uuid === this._actor?.uuid);
+            if (!this._rollContext && combatant === game.combat?.combatant && roll.l5r5e.actionTypes.length) {
+                const lifecycle = { combatId: game.combat.id, round: game.combat.round, turn: game.combat.turn };
+                const reservation = await game.l5r5e.actions.reserveAndPersist(combatant, { actionTypes: roll.l5r5e.actionTypes, requiresCheck: true, lifecycle });
+                if (!reservation.ok) {
+                    ui.notifications.warn(game.i18n.localize("l5r5e.automation.action.unavailable"));
+                    return false;
+                }
+                roll.l5r5e.actionReservation = { combatantUuid: combatant.uuid, reservationId: reservation.reservationId, lifecycle };
+            }
+            roll.l5r5e.conflictType = this.object.conflictType;
+            roll.l5r5e.provisionalLegality = game.l5r5e.actions.assess({
+                actor: this._actor,
+                target: this._target,
+                item: this._item,
+                ring: this.object.ring.id,
+                actionTypes: roll.l5r5e.actionTypes,
+                conflictType: this.object.conflictType,
+                techniqueType: this._item?.system?.technique_type,
+                requiresCheck: true,
+                baseTn: this._baseDifficulty,
+                turnState: combatant ? game.l5r5e.turns.getState(combatant) : null,
+            }).legality;
+            roll.l5r5e.rollContext = this._rollContext ? foundry.utils.deepClone(this._rollContext) : null;
 
             await roll.roll();
             message = await roll.toMessage();
@@ -693,7 +729,7 @@ export class DicePickerDialog extends FormApplication {
         if (element === "difficulty") {
             const currentBase = parseInt(this.object.difficulty.base);
             const base = Number.isInteger(currentBase) ? currentBase : this._baseDifficulty;
-            this.object.difficulty.base = Math.max(Math.min(base + add, 9), 0);
+            this.object.difficulty.base = Math.max(Math.min(base + add, 9), 1);
             this._baseDifficulty = this.object.difficulty.base;
             this._recalculateDifficulty();
             return;
@@ -707,14 +743,14 @@ export class DicePickerDialog extends FormApplication {
      */
     _recalculateDifficulty() {
         const parsedBase = Number(this.object.difficulty.base);
-        const base = Math.max(Math.min(Number.isFinite(parsedBase) ? parsedBase : this._baseDifficulty, 9), 0);
+        const base = Math.max(Math.min(Number.isFinite(parsedBase) ? parsedBase : this._baseDifficulty, 9), 1);
         this.object.difficulty.base = base;
         this._baseDifficulty = base;
 
         const modifier = this._computeDifficultyModifier();
         this.object.difficulty.modifier = modifier;
 
-        const value = Math.max(Math.min(base + modifier, 9), 0);
+        const value = Math.max(Math.min(base + modifier, 9), 1);
         this.object.difficulty.value = value;
     }
 
@@ -724,54 +760,18 @@ export class DicePickerDialog extends FormApplication {
      * @private
      */
     _computeDifficultyModifier() {
-        let modifier = 0;
-        const actor = this._actor;
-        const ringId = this.object?.ring?.id;
-
-        if (actor) {
-            const statuses = actor.statuses ?? new Set();
-
-            if (ringId) {
-                if (statuses.has(`lightly_wounded_${ringId}`)) {
-                    modifier += 1;
-                }
-                if (statuses.has(`severely_wounded_${ringId}`)) {
-                    modifier += 3;
-                }
-            }
-
-            if (this._isAnyActionSelected(["attack", "scheme"])) {
-                if (statuses.has("dazed")) {
-                    modifier += 2;
-                }
-            }
-
-            if (this._isAnyActionSelected(["move", "support"])) {
-                if (statuses.has("disoriented")) {
-                    modifier += 2;
-                }
-            }
-
-            if (this._isAnyActionSelected(["scheme"])) {
-                if (statuses.has("silenced")) {
-                    modifier += 3;
-                }
-            }
-        }
-
-        const targetActor = this._target?.actor;
-        if (targetActor?.system?.stance === "air" && this._isAnyActionSelected(["attack", "scheme"])) {
-            modifier += 1;
-            const targetRank = Number(targetActor?.system?.identity?.school_rank ??
-				targetActor?.system?.conflict_rank?.martial ??
-                targetActor?.martialRank ??               
-                0);
-            if (Number.isFinite(targetRank) && targetRank > 3) {
-                modifier += 1;
-            }
-        }
-
-        return modifier;
+        const actionTypes = Object.entries(this.object.actions ?? {}).filter(([, active]) => active).map(([type]) => type);
+        const combatant = game.combat?.combatants?.find((entry) => entry.actor?.uuid === this._actor?.uuid);
+        return game.l5r5e.conditions.difficultyModifiers({
+            actor: this._actor,
+            targetActor: this._target?.actor,
+            ring: this.object?.ring?.id,
+            actionTypes,
+            conflictType: this.object.conflictType,
+            techniqueType: this._item?.system?.technique_type,
+            item: this._item,
+            turnState: combatant ? game.l5r5e.turns.getState(combatant) : null,
+        }).total;
     }
 
     /**
@@ -968,7 +968,7 @@ export class DicePickerDialog extends FormApplication {
 
         // finally
         difficulty = parseInt(difficulty);
-        if (isNaN(difficulty) || difficulty < 0) {
+        if (isNaN(difficulty) || difficulty < 1) {
             return false;
         }
         this.difficulty = difficulty;

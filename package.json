@@ -1,11 +1,18 @@
 {
     "name": "l5r5e",
+    "type": "module",
     "version": "1.0.0",
     "description": "This is a game system for Legend of the Five Rings (5th edition) by Edge Studio",
     "main": "index.js",
     "scripts": {
-        "compile": "gulp css",
-        "watch": "gulp",
+        "compile": "gulp --gulpfile gulpfile.cjs css",
+        "watch": "gulp --gulpfile gulpfile.cjs",
+        "test": "node --test \"tests/*.test.js\"",
+        "lint": "eslint --ext .js,.mjs --ignore-pattern system/scripts/config.js --ignore-pattern system/scripts/gm/gm-monitor.js --ignore-pattern system/scripts/helpers.js system/scripts tests scripts",
+        "syntax": "node scripts/check-syntax.mjs",
+        "data:normalize": "node scripts/normalize-core-data.mjs",
+        "data:build": "node scripts/build-core-opportunities.mjs && node scripts/normalize-core-data.mjs",
+        "ci": "npm run data:build && npm run syntax && npm test && npm run lint && npm run compile",
         "prettier": "prettier --quote-props=preserve --print-width=5000 --write"
     },
     "repository": {

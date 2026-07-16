@@ -6,6 +6,59 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.102 - 16/07/2026 - Native Core Automation
+
+### Roll resolution and actions
+- Add a canonical, phased `RollResolutionService` shared by ordinary checks, attacks, damage and initiative.
+- Store complete resolution snapshots, decisions, audit phases, transaction IDs and revisions on roll messages.
+- Correct action-type inference so ordinary checks start without every action tag enabled while structured items provide stable metadata.
+- Enforce minimum TN 1 and apply Air stance, conditions, wounds, Silenced and item modifiers exactly once.
+- Correct Fire stance so kept Strife adds bonus successes only after the raw roll already succeeds.
+- Move turn state to `Combatant.flags.l5r5e`, including primary actions, free movement, Water extra actions, reservations, movement history, Wait and Guard state.
+- Make action completion atomic with roll mutations; cancelling a dialog releases its reservation without spending the action.
+
+### Native Opportunities
+- Add a native `opportunity` Item type, ApplicationV2 editor and the `core-opportunities` system compendium with 65 stable, structured definitions.
+- Add contextual filtering by Ring, conflict/check/action/skill/technique/item context, success state and target stance.
+- Add safe whitelisted executors for resources, Strife reduction, conditions, TN/resistance/critical modifiers, movement, range, targets, reserved dice and direct critical strikes.
+- Preserve unknown or narrative effects as explicit manual audit entries without evaluating pack JavaScript.
+- Add informational and final spending panels to Roll and Keep, including checkbox and scalable `op+` controls, required target/Ring/condition choices and overspend protection.
+- Replace manual applied-Strife controls with an exact ledger for kept Strife, Void prevention, universal and Water reductions, Intoxicated and other gains.
+
+### Conditions, damage and critical strikes
+- Centralize condition activity, suspension, TN modifiers and end-action/end-turn/end-scene lifecycle behavior.
+- Add Burning, Bleeding through the damage pipeline, Dying countdown, threshold synchronization, scene recovery and Exhausted handling.
+- Resolve damage in rules order: increases, reductions, physical/supernatural resistance, defense, Fatigue and critical redirection.
+- Delegate defense decisions to an active target owner with authoritative-GM fallback.
+- Correct minion defeat, lethal/non-lethal outcomes and critical-to-Fatigue conversion.
+- Add atomic Durable, Damaged and Destroyed transitions, damaged equipment penalties and Razor-Edged zero-damage handling.
+- Add structured weapon grips, damage type and technique activation/target/range/movement/Opportunity metadata.
+- Implement the full critical workflow: Fitness mitigation, Enraged/Unconscious modifiers, Shattering Parry before commit, armor/weapon damage, complete severity table, wounds, Bleeding, Dying, Dead and Incapacitated to Unconscious.
+- Create scars from tagged compendium documents by UUID and support repeated-injury choice of Dying 5.
+
+### Tactical movement and initiative
+- Use Foundry VTT 14 public movement planning, waypoint measurement, movement IDs/history and recorded-movement rollback.
+- Add orthogonal, diagonal and difficult-square costs, hostile occupied-space blocking, explicit GM override, gridless fallback and safe Region-conflict warnings.
+- Add free movement, checked/unchecked Maneuver, Water Maneuver and structured technique movement budgets.
+- Add authoritative secret adversary initiative with Ring selection, legal keep/explosion optimization and native Opportunity policy.
+- Correct Prepared booleans, zero initiative, minion Focus/Vigilance scoring, Fire bonuses, stable Honor/type/tie-key sorting and structural initiative groups.
+
+### GM tools, transactions and HUD API
+- Add one-active-GM authority election, socket request deduplication and owner/GM decision routing.
+- Add message tools to change TN, assign/change target, reopen Opportunity resolution and inspect history.
+- Add versioned compare-before-write transactions with same-path coalescing, idempotency, created-document snapshots and safe conflict diffs.
+- Replay now checks, reverts, recalculates against restored documents and restores the previous revision if the new application fails.
+- Recalculate target-dependent Air, resistance, defense, damage, Bleeding and critical effects when TN or target changes.
+- Expose stable `game.l5r5e` service APIs and hooks so future HUD versions can remain a thin frontend without duplicate state.
+
+### Data, migration, localization and quality
+- Add automation schema migration for Actors, embedded/world Items, synthetic token actors, Combatants and world compendia.
+- Add stable `rulesKey` values, scar tags, structured weapon/technique data and normalized Prepared values.
+- Correct missing scalable Opportunity symbols and the Earth invocation duration typo in the reference journal.
+- Add Polish localization for the new automation UI with English/Polish key-parity validation.
+- Add architecture, Opportunity schema, HUD API and Foundry VTT 14 manual smoke-test documentation.
+- Add deterministic data builders, syntax/lint/compile CI and 40 Node tests covering rules, movement, initiative, transactions, authority and migrations.
+
 ## 1.14.101 - 15/07/2026 - Foundry v14 fork update
 - Merge the official v1.14.0 Foundry VTT v14 compatibility update.
 - Preserve the fork's custom roll automation and Roll & Keep behaviour.

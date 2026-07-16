@@ -28,14 +28,18 @@ export class RollnKeepDialog extends FormApplication {
      * @param {RollL5r5e} roll
      */
     roll = null;
+    _reservationFinalized = false;
 
     /**
      * Payload Object
      */
     object = {
         currentStep: 0,
-        strifeApplied: 0,
         submitDisabled: false,
+        opportunityPanelOpen: false,
+        opportunitySpend: {},
+        opportunityDecisions: {},
+        availableOpportunities: [],
         swapDiceFaces: {
             rings: [],
             skills: [],
@@ -234,6 +238,7 @@ export class RollnKeepDialog extends FormApplication {
         // Disable submit / edition
         this.options.classes = this.options.classes.filter((e) => e !== "finalized");
         this.object.submitDisabled = false;
+        await this._prepareOpportunityData();
 
         const applyFlags = foundry.utils.mergeObject(
             {
@@ -249,13 +254,8 @@ export class RollnKeepDialog extends FormApplication {
 
         const actor = rollData.actor || null;
         const targetActor = rollData.target?.actor || null;
-        const actorHasBleeding = typeof actor?.statuses?.has === "function" ? actor.statuses.has("bleeding") : false;
-        const canApplyStrifeToCharacter = applyFlags.strifeToCharacter && rollData.actor?.isCharacterType;
-        const bleedingCanApplyFatigue = actorHasBleeding && !!actor;
-        if (bleedingCanApplyFatigue && !applyFlags.fatigueToCharacter) {
-            applyFlags.fatigueToCharacter = true;
-        }
-        const canApplyFatigueToCharacter = (applyFlags.fatigueToCharacter && !!actor) || bleedingCanApplyFatigue;
+        const canApplyStrifeToCharacter = false;
+        const canApplyFatigueToCharacter = applyFlags.fatigueToCharacter && !!actor;
         const canApplyStrifeToTarget = applyFlags.strifeToTarget && !!targetActor;
         const canApplyFatigueToTarget = applyFlags.fatigueToTarget && !!targetActor;
         const hasApplyOptions =
@@ -271,32 +271,9 @@ export class RollnKeepDialog extends FormApplication {
             const kept = this._getKeepCount(this.object.currentStep);
             this.object.submitDisabled = kept < 1 || kept > rollData.keepLimit;
         } else if (!this.object.dicesList[this.object.currentStep]) {
-            const stance = String(rollData?.stance ?? "").toLowerCase();
-            if (stance !== "void" && this.roll.l5r5e.strifeApplied === undefined) {
-                this.roll.l5r5e.strifeApplied = rollData.summary.strife;
-                if (typeof rollData.actor?.statuses?.has === "function" && rollData.actor.statuses.has("intoxicated")) {
-                    this.roll.l5r5e.strifeApplied += rollData.summary.strife;
-                }
-            }
+            delete this.roll.l5r5e._bleedingFatigueDefault;
 
-            if (bleedingCanApplyFatigue) {
-                const bleedingDefault = this.roll.l5r5e._bleedingFatigueDefault;
-                const currentFatigue = this.roll.l5r5e.fatigueApplied;
-                const summaryStrife = rollData.summary.strife;
-                if (
-                    currentFatigue === undefined ||
-                    bleedingDefault === undefined ||
-                    currentFatigue === bleedingDefault
-                ) {
-                    this.roll.l5r5e.fatigueApplied = summaryStrife;
-                }
-                this.roll.l5r5e._bleedingFatigueDefault = summaryStrife;
-            } else {
-                delete this.roll.l5r5e._bleedingFatigueDefault;
-            }
-
-            const canEditResults =
-                (rollData.summary.strife > 0 && rollData.actor?.isCharacterType) || hasApplyOptions;
+            const canEditResults = true;
             this.options.editable = this.isOwner && canEditResults;
             this.options.classes.push("finalized");
         }
@@ -307,6 +284,7 @@ export class RollnKeepDialog extends FormApplication {
             ...(await super.getData(options)),
             isGM: game.user.isGM,
             showChoices: isEditable && !rollData.rnkEnded,
+            showFinalSubmit: isEditable && rollData.rnkEnded,
             showApplyResults: isEditable && hasApplyOptions,
             applyOptions: {
                 strifeToCharacter: canApplyStrifeToCharacter,
@@ -317,7 +295,101 @@ export class RollnKeepDialog extends FormApplication {
             cssClass: this.options.classes.join(" "),
             data: this.object,
             l5r5e: rollData,
+            resolutionPreview: rollData.resolutionPreview,
         };
+    }
+
+    async close(options = {}) {
+        const reservation = this.roll?.l5r5e?.actionReservation;
+        if (reservation && !this._reservationFinalized && this.isOwner) {
+            const combatant = await fromUuid(reservation.combatantUuid);
+            if (combatant) await game.l5r5e.actions.cancel(combatant, reservation.reservationId, reservation.lifecycle);
+            this._reservationFinalized = true;
+        }
+        return super.close(options);
+    }
+
+    _resolutionContext() {
+        const rollData = this.roll?.l5r5e ?? {};
+        const actionTypes = rollData.actionTypes ?? Object.entries(rollData.actions ?? {}).filter(([, active]) => active).map(([type]) => type);
+        const combat = game.combat;
+        const combatant = combat?.combatants?.find((entry) => entry.actor?.uuid === rollData.actor?.uuid);
+        return {
+            actor: rollData.actor,
+            target: rollData.target,
+            targetActor: rollData.target?.actor,
+            item: rollData.item,
+            ring: rollData.stance,
+            stance: rollData.stance,
+            skillId: rollData.skillId,
+            skillGroup: rollData.skillCatId,
+            conflictType: rollData.conflictType,
+            techniqueType: rollData.item?.system?.technique_type,
+            directOpportunityKeys: rollData.item?.system?.activation?.opportunity_rules_keys ?? [],
+            unarmedProfile: rollData.rollContext?.unarmedProfile ?? rollData.unarmedProfile,
+            actionTypes,
+            initiative: Boolean(rollData.isInitiativeRoll),
+            checkKind: rollData.isInitiativeRoll ? "initiative" : "skill",
+            baseTn: rollData.baseDifficulty ?? rollData.difficulty,
+            tn: rollData.difficulty,
+            requiresCheck: true,
+            isCheck: true,
+            lifecycle: combat ? { combatId: combat.id, round: combat.round, turn: combat.turn } : {},
+            conditionSuspensionExpiry: combat ? { round: Number(combat.round ?? 0) + 1, turn: Number(combat.turn ?? 0) } : { sceneEnd: true },
+            turnState: combatant ? game.l5r5e.turns.getState(combatant) : null,
+        };
+    }
+
+    async _prepareOpportunityData() {
+        const rollData = this.roll?.l5r5e;
+        if (!rollData?.summary) return;
+        const raw = {
+            success: Number(rollData.summary.success) || 0,
+            explosive: Number(rollData.summary.explosive) || 0,
+            opportunity: Number(rollData.summary.opportunity) || 0,
+            strife: Number(rollData.summary.strife) || 0,
+        };
+        const preview = game.l5r5e.rollResolution.preview(this._resolutionContext(), raw);
+        const available = await game.l5r5e.opportunities.available({ ...preview.context, provisionalSuccess: preview.provisionalSuccess });
+        const spent = Object.values(this.object.opportunitySpend).reduce((sum, value) => sum + (Number(value) || 0), 0);
+        const targetDocuments = [rollData.target, ...game.user.targets].map((target) => target?.document ?? target).filter(Boolean);
+        const targetChoices = [...new Map(targetDocuments.map((target) => [target.uuid, { value: target.uuid, label: target.name ?? target.actor?.name ?? target.uuid }])).values()];
+        this.object.availableOpportunities = available.map((definition) => {
+            const selectedSpend = Number(this.object.opportunitySpend[definition.rulesKey]) || 0;
+            const decision = this.object.opportunityDecisions[definition.rulesKey] ?? {};
+            return {
+                ...definition,
+                selectedSpend,
+                selected: selectedSpend > 0,
+                selectedCondition: decision.condition ?? "",
+                selectedRing: decision.ring ?? "",
+                ringChoice: Boolean(definition.requirements?.ringChoice),
+                rings: ["air", "earth", "fire", "water"].map((ring) => ({ value: ring, label: game.i18n.localize(`l5r5e.rings.${ring}`) })),
+                selectedTargetUuid: decision.targetUuid ?? rollData.target?.uuid ?? "",
+                targetChoice: ["single", "multiple", "gm"].includes(definition.target?.mode),
+                multipleTargets: definition.target?.mode === "multiple",
+                targetChoices,
+                reachable: definition.cost.base <= raw.opportunity,
+                conditionChoice: Boolean(definition.requirements?.conditionChoice),
+                conditions: [...(rollData.actor?.statuses ?? [])].map((condition) => ({ value: condition, label: condition })),
+            };
+        });
+        rollData.resolutionPreview = {
+            rawSuccesses: preview.totalSuccess,
+            success: preview.provisionalSuccess,
+            rawBonusSuccesses: preview.rawBonusSuccesses,
+            fireBonusSuccesses: preview.fireBonusSuccesses,
+            bonusSuccesses: preview.bonusSuccesses,
+            rawStrife: raw.strife,
+            generatedOpportunity: raw.opportunity,
+            spentOpportunity: spent,
+            remainingOpportunity: Math.max(0, raw.opportunity - spent),
+        };
+        const currentPlan = Object.entries(this.object.opportunitySpend).filter(([, value]) => Number(value) > 0).map(([rulesKey, value]) => ({ rulesKey, spend: Number(value) }));
+        const currentDecisions = Object.fromEntries(currentPlan.map(({ rulesKey }) => [rulesKey, { ...(this.object.opportunityDecisions[rulesKey] ?? {}), targetUuid: this.object.opportunityDecisions[rulesKey]?.targetUuid ?? rollData.target?.uuid ?? undefined }]));
+        const currentResolution = await game.l5r5e.rollResolution.resolve({ context: this._resolutionContext(), rawSymbols: raw, opportunityPlan: currentPlan, decisions: currentDecisions });
+        rollData.resolutionPreview.strifeLedger = currentResolution.strife ?? game.l5r5e.conditions.calculateStrife({ actor: rollData.actor, stance: rollData.stance, rawKeptStrife: raw.strife });
+        this.object.submitDisabled ||= spent > raw.opportunity;
     }
 
     /**
@@ -405,6 +477,15 @@ export class RollnKeepDialog extends FormApplication {
 
         // Open journal on effect name
         html.find(".effect-name").on("click", this._openEffectJournal.bind(this));
+        html.find(".toggle-opportunities").on("click", (event) => {
+            event.preventDefault();
+            this.object.opportunityPanelOpen = !this.object.opportunityPanelOpen;
+            this.render(false);
+        });
+        html.find(".back-to-dice").on("click", (event) => {
+            event.preventDefault();
+            this._undoLastStepChoices();
+        });
 
         // *** Everything below here is only needed if the sheet is editable ***
         if (!this.isEditable) {
@@ -469,6 +550,40 @@ export class RollnKeepDialog extends FormApplication {
         ["strifeApplied", "fatigueApplied", "targetStrifeApplied", "targetFatigueApplied"].forEach((field) =>
             registerValuePicker(field)
         );
+
+        html.find(".opportunity-select").on("change", (event) => {
+            const key = event.currentTarget.dataset.key;
+            const base = Number(event.currentTarget.dataset.base) || 1;
+            this.object.opportunitySpend[key] = event.currentTarget.checked ? base : 0;
+            this.render(false);
+        });
+        html.find(".opportunity-adjust").on("click", (event) => {
+            event.preventDefault();
+            const key = event.currentTarget.dataset.key;
+            const delta = Number(event.currentTarget.dataset.delta) || 0;
+            const definition = this.object.availableOpportunities.find((entry) => entry.rulesKey === key);
+            if (!definition) return;
+            const base = Number(definition.cost.base) || 1;
+            const maximum = definition.cost.maxSpend ?? this.roll.l5r5e.summary.opportunity;
+            const current = Number(this.object.opportunitySpend[key]) || 0;
+            this.object.opportunitySpend[key] = Math.max(0, Math.min(maximum, current === 0 && delta > 0 ? base : current + delta));
+            this.render(false);
+        });
+        html.find(".opportunity-condition").on("change", (event) => {
+            const key = event.currentTarget.dataset.key;
+            this.object.opportunityDecisions[key] = { ...(this.object.opportunityDecisions[key] ?? {}), condition: event.currentTarget.value };
+        });
+        html.find(".opportunity-ring").on("change", (event) => {
+            const key = event.currentTarget.dataset.key;
+            this.object.opportunityDecisions[key] = { ...(this.object.opportunityDecisions[key] ?? {}), ring: event.currentTarget.value };
+            this.render(false);
+        });
+        html.find(".opportunity-target").on("change", (event) => {
+            const key = event.currentTarget.dataset.key;
+            const values = [...event.currentTarget.selectedOptions].map((option) => option.value).filter(Boolean);
+            this.object.opportunityDecisions[key] = { ...(this.object.opportunityDecisions[key] ?? {}), ...(event.currentTarget.multiple ? { targetUuids: values, targetUuid: undefined } : { targetUuid: values[0], targetUuids: undefined }) };
+            this.render(false);
+        });
 
         const diceSelector = ".dice.draggable";
         html.find(diceSelector).on("click", this._onDiceKeep.bind(this));
@@ -822,18 +937,8 @@ export class RollnKeepDialog extends FormApplication {
      * @returns {string|null}
      * @private
      */
-    _getDefaultChoiceForDie(dieType, dieFace) {
-        if (!this._isActorCompromised()) {
-            return RollnKeepDialog.CHOICES.nothing;
-        }
-
-        const dieFaces = game.l5r5e?.[dieType]?.FACES;
-        if (!dieFaces) {
-            return RollnKeepDialog.CHOICES.nothing;
-        }
-
-        const hasStrife = Boolean(dieFaces?.[dieFace]?.strife);
-        return hasStrife ? RollnKeepDialog.CHOICES.discard : RollnKeepDialog.CHOICES.nothing;
+    _getDefaultChoiceForDie() {
+        return RollnKeepDialog.CHOICES.nothing;
     }
 
     /**
@@ -993,33 +1098,172 @@ export class RollnKeepDialog extends FormApplication {
         // Last step strife choice
         if (this.roll?.l5r5e?.rnkEnded) {
             const rollData = this.roll.l5r5e;
-            const summary = rollData.summary;
             const actor = rollData.actor;
             const targetActor = rollData.target?.actor || null;
             let updated = false;
 
-            if (formData.strifeApplied !== undefined && rollData.applyFlags?.strifeToCharacter && actor?.isCharacterType) {
-                const parsed = Number(formData.strifeApplied);
-                const strifeApplied = Math.max(0, Number.isNaN(parsed) ? 0 : Math.round(parsed));
-                const previousApplied = Number.isNaN(Number(rollData._strifeAppliedToActor))
-                    ? 0
-                    : Number(rollData._strifeAppliedToActor);
-                const actorMod = strifeApplied - previousApplied;
-                if (actorMod !== 0) {
-                    await actor.update({
-                        system: {
-                            strife: {
-                                value: Math.max(0, actor.system.strife.value + actorMod),
-                            },
-                        },
-                    });
-                    rollData.strifeApplied = strifeApplied;
-                    rollData._strifeAppliedToActor = strifeApplied;
-                    updated = true;
-                } else {
-                    rollData.strifeApplied = strifeApplied;
+            const opportunityPlan = Object.entries(this.object.opportunitySpend)
+                .filter(([, spend]) => Number(spend) > 0)
+                .map(([rulesKey, spend]) => ({ rulesKey, spend: Number(spend) }));
+            const opportunityDecisions = Object.fromEntries(opportunityPlan.map(({ rulesKey }) => [
+                rulesKey,
+                {
+                    ...(this.object.opportunityDecisions[rulesKey] ?? {}),
+                    targetUuid: this.object.opportunityDecisions[rulesKey]?.targetUuid ?? rollData.target?.uuid ?? undefined,
+                },
+            ]));
+            const resolutionDecisions = { ...opportunityDecisions };
+            let resolution = await game.l5r5e.rollResolution.resolve({
+                context: this._resolutionContext(),
+                rawSymbols: {
+                    success: Number(rollData.summary.success) || 0,
+                    explosive: Number(rollData.summary.explosive) || 0,
+                    opportunity: Number(rollData.summary.opportunity) || 0,
+                    strife: Number(rollData.summary.strife) || 0,
+                },
+                opportunityPlan,
+                decisions: resolutionDecisions,
+            });
+            const pendingDamage = resolution.effects?.action?.damage;
+            if (pendingDamage?.requiresDefenseDecision && targetActor) {
+                resolutionDecisions.defense = { choice: await game.l5r5e.damage.requestDefense({ target: targetActor, damage: pendingDamage }) };
+                resolution = await game.l5r5e.rollResolution.resolve({
+                    context: this._resolutionContext(),
+                    rawSymbols: {
+                        success: Number(rollData.summary.success) || 0,
+                        explosive: Number(rollData.summary.explosive) || 0,
+                        opportunity: Number(rollData.summary.opportunity) || 0,
+                        strife: Number(rollData.summary.strife) || 0,
+                    },
+                    opportunityPlan,
+                    decisions: resolutionDecisions,
+                });
+            }
+            rollData.resolution = resolution;
+            if (resolution.status === "blocked") {
+                rollData.resolutionErrors = resolution.errors;
+                ui.notifications.error(game.i18n.localize("l5r5e.automation.roll.blocked"));
+                await this._toChatMessage();
+                return this.render(false);
+            }
+            delete rollData.resolutionErrors;
+
+            let criticalWorkflow = null;
+            if (rollData.rollContext?.type === "critical-mitigation") {
+                criticalWorkflow = await game.l5r5e.critical.handleMitigationRoll({ roll: this.roll, resolution });
+                rollData.criticalWorkflow = criticalWorkflow;
+                if (criticalWorkflow?.deferred) {
+                    resolution.status = "superseded";
+                    await this._toChatMessage();
+                    return this.close();
+                }
+                if (criticalWorkflow?.result) {
+                    resolution.effects.action.critical = criticalWorkflow.result;
+                    resolution.audit.push({ phase: "criticalWorkflow", result: foundry.utils.deepClone(criticalWorkflow.result) });
                 }
             }
+
+            const mutations = await game.l5r5e.rollResolution.buildMutations(resolution, { actor, targetActor, item: rollData.item });
+            mutations.push(...(criticalWorkflow?.mutations ?? []));
+            if (actor) {
+                const strifeMutation = mutations.find((entry) => entry.documentUuid === actor.uuid && entry.path === "system.strife.value");
+                rollData.strifeApplied = strifeMutation ? strifeMutation.after - strifeMutation.before : 0;
+                rollData.strifeLedger = resolution.strife;
+                if (actor.statuses?.has("bleeding") && resolution.strife.gained > 0) {
+                    const canDefend = !game.l5r5e.conditions.isActive(actor, "incapacitated", this._resolutionContext().lifecycle);
+                    let bleeding = game.l5r5e.damage.resolveBleeding({ actor, strifeReceived: resolution.strife.gained, canDefend });
+                    const defenseChoice = bleeding.requiresDefenseDecision ? await game.l5r5e.damage.requestDefense({ target: actor, damage: bleeding }) : bleeding.defenseChoice;
+                    bleeding = game.l5r5e.damage.resolveBleeding({ actor, strifeReceived: resolution.strife.gained, canDefend, defenseChoice });
+                    resolutionDecisions.bleedingDefense = { choice: defenseChoice };
+                    rollData.bleedingResolution = bleeding;
+                    if (bleeding.fatigue > 0) {
+                        const before = Number(actor.system.fatigue.value) || 0;
+                        mutations.push({ documentUuid: actor.uuid, path: "system.fatigue.value", before, after: Math.max(0, before + bleeding.fatigue), reason: "bleeding" });
+                    }
+                    if (bleeding.voidSpent > 0) {
+                        const before = Number(actor.system.void_points.value) || 0;
+                        mutations.push({ documentUuid: actor.uuid, path: "system.void_points.value", before, after: Math.max(0, before - bleeding.voidSpent), reason: "declineDefense" });
+                    }
+                }
+            }
+            const reservation = rollData.actionReservation;
+            const reservedCombatant = reservation ? await fromUuid(reservation.combatantUuid) : null;
+            const preparedAction = reservation && reservedCombatant
+                ? game.l5r5e.actions.prepareCommit(reservedCombatant, reservation.reservationId, resolution)
+                : reservation
+                    ? { ok: false, code: "combatantMissing" }
+                    : null;
+            if (preparedAction && !preparedAction.ok) {
+                ui.notifications.warn(game.i18n.localize("l5r5e.automation.action.commitFailed"));
+                return this.render(false);
+            }
+            mutations.push(...(preparedAction?.mutations ?? []));
+            const transaction = game.l5r5e.transactions.create({ transactionId: resolution.transactionId, revision: resolution.revision, rollMessageUuid: this.message.uuid, inputs: { context: resolution.context, raw: resolution.raw }, decisions: resolutionDecisions, mutations, createdDocuments: criticalWorkflow?.createdDocuments ?? [] });
+            const locallyOwned = game.user.isGM || mutations.every((mutation) => fromUuidSync(mutation.documentUuid)?.isOwner);
+            const parentMessageUuid = rollData.rollContext?.critical?.parentRollMessageUuid ?? null;
+            const applied = parentMessageUuid
+                ? await game.l5r5e.sockets.requestAuthority("applyTransaction", { transaction, parentMessageUuid })
+                : locallyOwned
+                    ? await game.l5r5e.transactions.apply(transaction)
+                    : await game.l5r5e.sockets.requestAuthority("applyTransaction", { transaction });
+            if (applied.ok === false) {
+                resolution.status = "conflict";
+                ui.notifications.error(game.i18n.localize("l5r5e.automation.transaction.conflict"));
+                return this.render(false);
+            }
+            resolution.transaction = transaction;
+            resolution.status = "applied";
+            updated ||= mutations.length > 0 || (criticalWorkflow?.createdDocuments?.length ?? 0) > 0;
+
+            if (preparedAction) {
+                game.l5r5e.actions.finalizeCommit(reservedCombatant, preparedAction, resolution);
+                this._reservationFinalized = true;
+            }
+
+            const pendingCriticalWorkflows = [];
+            const attackCritical = resolution.effects?.action?.damage?.critical;
+            if (attackCritical?.required && targetActor) pendingCriticalWorkflows.push({
+                sourceActor: actor,
+                target: targetActor,
+                severity: attackCritical.severity,
+                stance: targetActor.system?.stance,
+                conflict: Boolean(game.combat?.started),
+                razorEdged: game.l5r5e.qualities.has(rollData.item, "razor-edged"),
+                sourceItem: rollData.item,
+                parentTransactionId: resolution.transactionId,
+            });
+            const bleedingCritical = rollData.bleedingResolution?.critical;
+            if (bleedingCritical?.required && actor) pendingCriticalWorkflows.push({
+                sourceActor: actor,
+                target: actor,
+                severity: bleedingCritical.severity,
+                stance: actor.system?.stance,
+                conflict: Boolean(game.combat?.started),
+                parentTransactionId: resolution.transactionId,
+            });
+            for (const directCritical of resolution.effects?.action?.directCriticals ?? []) {
+                const targetDocument = directCritical.targetUuid ? await fromUuid(directCritical.targetUuid) : targetActor;
+                const directTarget = targetDocument?.actor ?? targetDocument;
+                if (!directTarget) continue;
+                pendingCriticalWorkflows.push({
+                    sourceActor: actor,
+                    target: directTarget,
+                    severity: directCritical.severity,
+                    stance: directTarget.system?.stance,
+                    conflict: Boolean(game.combat?.started),
+                    razorEdged: game.l5r5e.qualities.has(rollData.item, "razor-edged"),
+                    sourceItem: rollData.item,
+                    parentTransactionId: resolution.transactionId,
+                });
+            }
+            if (criticalWorkflow?.followUpCritical && actor) pendingCriticalWorkflows.push({
+                sourceActor: actor,
+                target: actor,
+                severity: criticalWorkflow.followUpCritical.severity,
+                stance: actor.system?.stance,
+                conflict: Boolean(game.combat?.started),
+                parentTransactionId: resolution.transactionId,
+            });
 
             if (formData.fatigueApplied !== undefined && rollData.applyFlags?.fatigueToCharacter && actor) {
                 const parsed = Number(formData.fatigueApplied);
@@ -1091,14 +1335,15 @@ export class RollnKeepDialog extends FormApplication {
             }
 
             rollData.hasAppliedResults =
+                updated ||
                 (rollData.strifeApplied || 0) > 0 ||
                 (rollData.fatigueApplied || 0) > 0 ||
                 (rollData.targetStrifeApplied || 0) > 0 ||
                 (rollData.targetFatigueApplied || 0) > 0;
 
-            if (updated) {
-                await this._toChatMessage();
-            }
+            await this._toChatMessage();
+            Hooks.callAll("l5r5e.rollResolutionChanged", this.message, resolution);
+            for (const workflow of pendingCriticalWorkflows) await game.l5r5e.critical.startWorkflow({ ...workflow, parentRollMessageUuid: this.message.uuid });
             return this.close();
         }
 
@@ -1118,7 +1363,7 @@ export class RollnKeepDialog extends FormApplication {
         await this._toChatMessage();
 
         // If a next step exist or strife, rerender, else close
-        if (this.object.dicesList[this.object.currentStep] || this.roll.l5r5e.summary.strife > 0) {
+        if (this.object.dicesList[this.object.currentStep] || this.roll.l5r5e.rnkEnded) {
             return this.render(false);
         }
         return this.close();

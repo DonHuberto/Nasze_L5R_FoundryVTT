@@ -63,6 +63,7 @@
             "armor": "Armor",
             "weapon": "Weapon",
             "technique": "Technique",
+            "opportunity": "Opportunity",
             "property": "Property",
             "peculiarity": "Peculiarity",
             "advancement": "Advancement",
@@ -193,6 +194,7 @@
             "upbringing": "Upbringing",
             "school": "School",
             "description": "Description",
+            "target": "Target",
             "bought_at_rank": "Bought at rank",
             "types": "Types",
             "source_reference": {
@@ -848,6 +850,99 @@
             "the_scroll_or_the_blade": "The Scroll or the Blade",
             "legacies_of_war": "Legacies of War",
             "children_of_the_five_winds": "Children of the Five Winds"
+        },
+        "automation": {
+            "opportunity": {
+                "available": "Available opportunities",
+                "choose": "Choose opportunity spending",
+                "spend": "Spend opportunity",
+                "spent": "spent",
+                "remaining": "remaining",
+                "rulesKey": "Stable rules key",
+                "ring": "Ring",
+                "timing": "Timing",
+                "automation": "Automation",
+                "cost": "Cost / scaling",
+                "description": "Description",
+                "target": "Target",
+                "invalidJson": "Invalid JSON in {field}: {error}",
+                "invalidSchema": "Invalid Opportunity fields: {fields}"
+            },
+            "roll": {
+                "summary": "Final resolution",
+                "rawSuccesses": "Raw successes",
+                "success": "success",
+                "failure": "failure",
+                "bonusSuccesses": "Effective bonus successes",
+                "fireBonus": "Fire",
+            "strife": "Kept Strife",
+            "voidPrevented": "prevented by Void",
+            "checkRemoved": "removed from this check",
+            "priorRemoved": "removed from prior Strife",
+            "multiplier": "Intoxicated multiplier",
+            "finalStrife": "final Strife change",
+                "blocked": "The roll is provisionally illegal. Choose an applicable pre-validation effect or return to the dice.",
+                "backToDice": "Return to kept dice"
+            },
+            "movement": {
+                "budgetExceeded": "The movement path exceeds the available budget.",
+                "undoUnavailable": "This movement can no longer be undone.",
+            "undoConflict": "Movement history changed and cannot be undone automatically. Ask the GM to resolve it.",
+            "immobilized": "Immobilized prevents this movement.",
+            "hostileOccupied": "A hostile token occupies a grid space on this path. A GM may use an explicit override.",
+            "gridless": "Tactical movement automation is disabled on gridless scenes."
+            },
+        "transaction": {
+            "conflict": "The document changed after this resolution. Review the difference before replaying it.",
+            "conflictTitle": "Resolution conflict",
+            "conflictDiff": "The replay was not applied. These current values differ from the transaction snapshot:",
+            "history": "Resolution history"
+            },
+            "gm": {
+                "changeTn": "Change TN",
+                "assignTarget": "Assign or change target",
+                "selectTarget": "Target a token first.",
+                "reopenOpportunity": "Reopen opportunity resolution",
+                "history": "Show resolution history"
+            },
+            "item": {
+                "activeGrip": "Active grip",
+                "activation": "Structured activation",
+                "requiresCheck": "Requires a check",
+                "actionTypes": "Action types",
+                "targetMode": "Target mode",
+                "range": "Range bands",
+                "movementBands": "Movement bands",
+                "damageType": "Damage type",
+                "physical": "Physical",
+                "supernatural": "Supernatural",
+                "opportunityKeys": "Direct opportunity rules keys"
+            },
+        "damage": {
+            "defenseTitle": "Defense decision",
+            "defensePrompt": "Defend and receive the damage as Fatigue? Choosing no spends 1 Void point and takes a critical strike instead.",
+            "defend": "Defend",
+            "voidCritical": "Spend Void / critical"
+        },
+        "critical": {
+            "shatteringTitle": "Shattering Parry",
+            "shatteringPrompt": "Use Shattering Parry to reroll every die in this mitigation check? The selected readied weapon becomes Damaged and this can be used only once this session.",
+            "shatteringUse": "Use Shattering Parry",
+            "shatteringSkip": "Keep this result",
+            "shatteringWeapon": "Choose the readied weapon",
+            "scarTitle": "Critical scar",
+            "scarPrompt": "Choose the appropriate scar disadvantage from the core compendium",
+            "repeatedScarTitle": "Repeated injury",
+            "repeatedScarPrompt": "The target already has this scar. Apply Dying (5 rounds) instead?",
+            "applyDying5": "Apply Dying 5",
+            "addScarAgain": "Add the scar again",
+            "result": "Critical strike",
+            "severity": "Final severity"
+        },
+        "action": {
+            "unavailable": "No legal action slot is available for this check.",
+            "commitFailed": "The reserved action could not be committed because the turn state changed."
+        }
         },
         "tactical_grid": {
             "settings": {

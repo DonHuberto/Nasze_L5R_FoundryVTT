@@ -29,6 +29,8 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
             TechniqueSheetL5r5e.formatSkillList(sheetData.data.system.skill.split(",")),
             false
         ).join(", ");
+        sheetData.data.actionTypesCsv = (sheetData.data.system.activation?.action_types ?? []).join(", ");
+        sheetData.data.opportunityKeysCsv = (sheetData.data.system.activation?.opportunity_rules_keys ?? []).join(", ");
 
         return sheetData;
     }
@@ -54,6 +56,14 @@ export class TechniqueSheetL5r5e extends ItemSheetL5r5e {
         formData["system.skill"] = TechniqueSheetL5r5e.formatSkillList(
             TechniqueSheetL5r5e.translateSkillsList(formData["system.skill"].split(","), true)
         ).join(",");
+        if (formData["actionTypesCsv"] !== undefined) {
+            formData["system.activation.action_types"] = game.l5r5e.actions.inferActionTypes({}, formData["actionTypesCsv"]);
+            delete formData.actionTypesCsv;
+        }
+        if (formData["opportunityKeysCsv"] !== undefined) {
+            formData["system.activation.opportunity_rules_keys"] = [...new Set(String(formData.opportunityKeysCsv).split(",").map((value) => value.trim()).filter(Boolean))];
+            delete formData.opportunityKeysCsv;
+        }
 
         return super._updateObject(event, formData);
     }

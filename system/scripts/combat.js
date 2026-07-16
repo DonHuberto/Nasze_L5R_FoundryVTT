@@ -61,14 +61,27 @@ export class CombatL5r5e extends Combat {
             // If the character was ready for the conflict, their base initiative value is their focus attribute.
             // If the character was unprepared (such as when surprised), their base initiative value is their vigilance attribute.
             // Minion NPCs can generate initiative value without a check, using their focus or vigilance attribute
-            let initiative =
-                isPrepared === "true" ? actorSystem.focus : actorSystem.is_afflicted_or_compromised ? 1 : actorSystem.vigilance;
+            let initiative = isPrepared ? actorSystem.focus : actorSystem.is_afflicted_or_compromised ? 1 : actorSystem.vigilance;
+
+            if (combatant.actor.isAdversary && !formula && combatant.initiative === null) {
+                if (!game.l5r5e.authority.isAuthority()) continue;
+                const automated = await game.l5r5e.initiative.rollAdversary(combatant.actor, {
+                    skillId,
+                    skillGroup: skillCat,
+                    tn: cfg.difficulty,
+                    prepared: isPrepared,
+                });
+                initiative = automated.initiative;
+                await combatant.actor.update({ "system.stance": automated.ring });
+                updatedCombatants.push({ _id: combatant.id, initiative, "flags.l5r5e.groupStance": automated.ring, "flags.l5r5e.initiativeTieKey": game.l5r5e.initiative.ensureTieKey(combatant) });
+                continue;
+            }
 
             // Roll only for PC and Adversary
             if (isPc || combatant.actor.isAdversary) {
                 // DicePicker management
                 // formula is empty on the fist call (combat tab buttons)
-                if (!formula && !combatant.initiative) {
+                if (!formula && combatant.initiative === null) {
                     // if a player is currently active for this actor
                     const havePlayer = combatant.players.some((u) => u.active);
                     const isMyCharacter = combatant.players.some((u) => u._id === game.user.id);
@@ -143,13 +156,14 @@ export class CombatL5r5e extends Combat {
                 // plus an additional amount equal to their bonus successes.
                 const successes = roll.l5r5e.summary.totalSuccess;
                 if (successes >= roll.l5r5e.difficulty) {
-                    initiative = initiative + 1 + Math.max(successes - roll.l5r5e.difficulty, 0);
+                    initiative = initiative + 1 + Math.max(roll.l5r5e.summary.totalBonus ?? successes - roll.l5r5e.difficulty, 0);
                 }
             }
 
             updatedCombatants.push({
                 _id: combatant.id,
                 initiative: initiative,
+                "flags.l5r5e.initiativeTieKey": game.l5r5e.initiative.ensureTieKey(combatant),
             });
         }
 
@@ -166,8 +180,17 @@ export class CombatL5r5e extends Combat {
             });
         }
 
-        // Update all combatants at once
-        await this.updateEmbeddedDocuments("Combatant", updatedCombatants);
+        // Expand structural initiative groups without requiring Tagger.
+        const groupedUpdates = new Map(updatedCombatants.map((update) => [update._id, update]));
+        for (const update of updatedCombatants) {
+            const source = this.combatants.get(update._id);
+            const groupId = source?.flags?.l5r5e?.initiativeGroupId;
+            if (!groupId) continue;
+            for (const member of this.combatants.filter((combatant) => combatant.flags?.l5r5e?.initiativeGroupId === groupId)) {
+                groupedUpdates.set(member.id, { _id: member.id, initiative: update.initiative, "flags.l5r5e.groupStance": source.actor?.system?.stance, "flags.l5r5e.initiativeTieKey": game.l5r5e.initiative.ensureTieKey(member) });
+            }
+        }
+        await this.updateEmbeddedDocuments("Combatant", [...groupedUpdates.values()]);
         return this;
     }
 
@@ -178,6 +201,7 @@ export class CombatL5r5e extends Combat {
      * @private
      */
     _sortCombatants(a, b) {
+        if (a.actor && b.actor && game.l5r5e?.initiative) return game.l5r5e.initiative.compare(a, b);
         // if tie : sort by honor, less honorable first
         if (a.initiative === b.initiative) {
             // skip if no actor or if armies
@@ -199,6 +223,6 @@ export class CombatL5r5e extends Combat {
      * @private
      */
     static _getWeightByActorType(actor) {
-        return actor.type === "npc" ? (actor.type === "minion" ? 3 : 2) : 1;
+        return actor.type === "npc" ? (actor.system.type === "minion" ? 3 : 2) : 1;
     }
 }

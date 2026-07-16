@@ -6,6 +6,10 @@ export class SocketHandlerL5r5e {
      * Namespace in FVTT
      */
     static SOCKET_NAME = "system.l5r5e";
+    authorityHandlers = new Map();
+    pendingAuthorityRequests = new Map();
+    decisionHandlers = new Map();
+    pendingDecisionRequests = new Map();
 
     constructor() {
         this.registerSocketListeners();
@@ -33,11 +37,118 @@ export class SocketHandlerL5r5e {
                     this._onOpenDicePicker(payload);
                     break;
 
+                case "authorityRequest":
+                    this._onAuthorityRequest(payload);
+                    break;
+
+                case "authorityResponse":
+                    this._onAuthorityResponse(payload);
+                    break;
+
+                case "decisionRequest":
+                    this._onDecisionRequest(payload);
+                    break;
+
+                case "decisionResponse":
+                    this._onDecisionResponse(payload);
+                    break;
+
                 default:
                     console.warn(new Error("L5R5E | SH | This socket event is not supported"), payload);
                     break;
             }
         });
+    }
+
+    registerAuthorityHandler(type, handler) {
+        if (!type || typeof handler !== "function") throw new TypeError("Authority handler requires a type and function");
+        this.authorityHandlers.set(type, handler);
+    }
+
+    registerDecisionHandler(type, handler) {
+        if (!type || typeof handler !== "function") throw new TypeError("Decision handler requires a type and function");
+        this.decisionHandlers.set(type, handler);
+    }
+
+    requestDecision(type, data = {}, { userId, timeout = 60000 } = {}) {
+        if (!userId) return Promise.reject(new Error("A target user is required for the decision"));
+        const request = game.l5r5e.authority.request(type, data);
+        request.requesterUserId = game.user.id;
+        request.decisionUserId = userId;
+        const handler = this.decisionHandlers.get(type);
+        if (userId === game.user.id && handler) return Promise.resolve(handler(data, request));
+        return new Promise((resolve, reject) => {
+            const timer = setTimeout(() => {
+                this.pendingDecisionRequests.delete(request.requestId);
+                reject(new Error(`Decision request timed out: ${type}`));
+            }, timeout);
+            this.pendingDecisionRequests.set(request.requestId, { resolve, reject, timer });
+            game.socket.emit(SocketHandlerL5r5e.SOCKET_NAME, { type: "decisionRequest", request });
+        });
+    }
+
+    async _onDecisionRequest(payload) {
+        const request = payload.request;
+        if (!request || request.decisionUserId !== game.user.id) return;
+        const handler = this.decisionHandlers.get(request.type);
+        let response;
+        try {
+            if (!handler) throw new Error(`Unknown decision operation: ${request.type}`);
+            response = { requestId: request.requestId, ok: true, result: await handler(request.data, request) };
+        } catch (error) {
+            response = { requestId: request.requestId, ok: false, error: error.message };
+        }
+        game.socket.emit(SocketHandlerL5r5e.SOCKET_NAME, { type: "decisionResponse", requesterUserId: request.requesterUserId, response });
+    }
+
+    _onDecisionResponse(payload) {
+        if (payload.requesterUserId !== game.user.id) return;
+        const pending = this.pendingDecisionRequests.get(payload.response?.requestId);
+        if (!pending) return;
+        clearTimeout(pending.timer);
+        this.pendingDecisionRequests.delete(payload.response.requestId);
+        if (payload.response.ok) pending.resolve(payload.response.result);
+        else pending.reject(new Error(payload.response.error ?? "Target decision failed"));
+    }
+
+    requestAuthority(type, data = {}, { timeout = 15000 } = {}) {
+        const request = game.l5r5e.authority.request(type, data);
+        request.requesterUserId = game.user.id;
+        const handler = this.authorityHandlers.get(type);
+        if (game.l5r5e.authority.isAuthority() && handler) return game.l5r5e.authority.execute(request, handler).then((response) => response.result);
+        if (!request.authorityUserId) return Promise.reject(new Error("No active GM is available for the authoritative operation"));
+        return new Promise((resolve, reject) => {
+            const timer = setTimeout(() => {
+                this.pendingAuthorityRequests.delete(request.requestId);
+                reject(new Error(`Authority request timed out: ${type}`));
+            }, timeout);
+            this.pendingAuthorityRequests.set(request.requestId, { resolve, reject, timer });
+            game.socket.emit(SocketHandlerL5r5e.SOCKET_NAME, { type: "authorityRequest", request });
+        });
+    }
+
+    async _onAuthorityRequest(payload) {
+        const request = payload.request;
+        if (!request || !game.l5r5e.authority.isAuthority() || request.authorityUserId !== game.user.id) return;
+        const handler = this.authorityHandlers.get(request.type);
+        let response;
+        try {
+            if (!handler) throw new Error(`Unknown authority operation: ${request.type}`);
+            response = await game.l5r5e.authority.execute(request, handler);
+        } catch (error) {
+            response = { requestId: request.requestId, ok: false, error: error.message };
+        }
+        game.socket.emit(SocketHandlerL5r5e.SOCKET_NAME, { type: "authorityResponse", requesterUserId: request.requesterUserId, response });
+    }
+
+    _onAuthorityResponse(payload) {
+        if (payload.requesterUserId !== game.user.id) return;
+        const pending = this.pendingAuthorityRequests.get(payload.response?.requestId);
+        if (!pending) return;
+        clearTimeout(pending.timer);
+        this.pendingAuthorityRequests.delete(payload.response.requestId);
+        if (payload.response.ok) pending.resolve(payload.response.result);
+        else pending.reject(new Error(payload.response.error ?? "Authority operation failed"));
     }
 
     /**

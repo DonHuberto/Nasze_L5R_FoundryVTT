@@ -396,6 +396,11 @@ export class RollL5r5e extends Roll {
             messageData
         );
         messageData.rolls = [this];
+        if (this.l5r5e.resolution) {
+            messageData.flags ??= {};
+            messageData.flags.l5r5e ??= {};
+            messageData.flags.l5r5e.resolution = foundry.utils.deepClone(this.l5r5e.resolution);
+        }
 
         // Message mode
         const mMode = messageMode || messageData.messageMode || game.settings.get("core", "messageMode");

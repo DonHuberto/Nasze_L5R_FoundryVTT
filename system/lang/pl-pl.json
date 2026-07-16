@@ -1,0 +1,106 @@
+{
+    "I18N": {
+        "Language": "Polski",
+        "Maintainers": ["DonHuberto"]
+    },
+    "TYPES": {
+        "Item": {
+            "opportunity": "Okazja"
+        }
+    },
+    "l5r5e": {
+        "automation": {
+            "opportunity": {
+                "available": "Dostępne okazje",
+                "choose": "Wybierz wydatki okazji",
+                "spend": "Wydaj okazję",
+                "spent": "wydano",
+                "remaining": "pozostało",
+                "rulesKey": "Stabilny klucz reguły",
+                "ring": "Krąg",
+                "timing": "Moment rozstrzygnięcia",
+                "automation": "Automatyzacja",
+                "cost": "Koszt / skalowanie",
+            "description": "Opis",
+            "target": "Cel",
+                "invalidJson": "Niepoprawny JSON w polu {field}: {error}",
+                "invalidSchema": "Niepoprawne pola okazji: {fields}"
+            },
+            "roll": {
+                "summary": "Końcowe rozstrzygnięcie",
+                "rawSuccesses": "Surowe sukcesy",
+                "success": "sukces",
+                "failure": "porażka",
+                "bonusSuccesses": "Efektywne dodatkowe sukcesy",
+                "fireBonus": "Ogień",
+            "strife": "Konflikt z zachowanych kości",
+            "voidPrevented": "anulowano przez Pustkę",
+            "checkRemoved": "usunięto z tego testu",
+            "priorRemoved": "usunięto z wcześniejszego Konfliktu",
+            "multiplier": "mnożnik Odurzenia",
+            "finalStrife": "końcowa zmiana Konfliktu",
+                "blocked": "Rzut jest prowizorycznie nielegalny. Wybierz właściwy efekt przed walidacją albo wróć do kości.",
+                "backToDice": "Wróć do zachowanych kości"
+            },
+            "movement": {
+                "budgetExceeded": "Ścieżka przekracza dostępny budżet ruchu.",
+                "undoUnavailable": "Tego ruchu nie można już cofnąć.",
+            "undoConflict": "Historia ruchu uległa zmianie i nie można jej cofnąć automatycznie. Poproś MG o rozstrzygnięcie.",
+            "immobilized": "Unieruchomienie uniemożliwia ten ruch.",
+            "hostileOccupied": "Wrogi token zajmuje pole na tej trasie. MG może użyć jawnego obejścia reguły.",
+            "gridless": "Automatyzacja ruchu taktycznego jest wyłączona na scenach bez siatki."
+            },
+        "transaction": {
+            "conflict": "Dokument zmienił się po rozstrzygnięciu. Przejrzyj różnice przed ponownym wykonaniem.",
+            "conflictTitle": "Konflikt rozstrzygnięcia",
+            "conflictDiff": "Ponowne rozstrzygnięcie nie zostało zastosowane. Te bieżące wartości różnią się od migawki transakcji:",
+            "history": "Historia rozstrzygnięcia"
+            },
+            "gm": {
+                "changeTn": "Zmień TN",
+                "assignTarget": "Przypisz lub zmień cel",
+                "selectTarget": "Najpierw wskaż token jako cel.",
+                "reopenOpportunity": "Otwórz ponownie rozstrzygnięcie okazji",
+                "history": "Pokaż historię rozstrzygnięcia"
+            },
+            "item": {
+                "activeGrip": "Aktywny chwyt",
+                "activation": "Strukturalna aktywacja",
+                "requiresCheck": "Wymaga testu",
+                "actionTypes": "Typy akcji",
+                "targetMode": "Tryb celu",
+                "range": "Przedziały zasięgu",
+                "movementBands": "Przedziały ruchu",
+                "damageType": "Rodzaj obrażeń",
+                "physical": "Fizyczne",
+                "supernatural": "Nadnaturalne",
+                "opportunityKeys": "Bezpośrednie klucze reguł okazji"
+            },
+        "damage": {
+            "defenseTitle": "Decyzja o obronie",
+            "defensePrompt": "Bronić się i przyjąć obrażenia jako Zmęczenie? Wybór „nie” wydaje 1 punkt Pustki i zamiast tego powoduje trafienie krytyczne.",
+            "defend": "Broń się",
+            "voidCritical": "Wydaj Pustkę / krytyk"
+        },
+        "critical": {
+            "shatteringTitle": "Roztrzaskujące Parowanie",
+            "shatteringPrompt": "Użyć Roztrzaskującego Parowania, aby przerzucić wszystkie kości tego testu redukcji? Wybrana przygotowana broń zostanie Uszkodzona, a zdolności można użyć tylko raz na sesję.",
+            "shatteringUse": "Użyj parowania",
+            "shatteringSkip": "Zachowaj wynik",
+            "shatteringWeapon": "Wybierz przygotowaną broń",
+            "scarTitle": "Blizna po trafieniu krytycznym",
+            "scarPrompt": "Wybierz odpowiednią wadę typu Blizna z kompendium core",
+            "repeatedScarTitle": "Powtórny uraz",
+            "repeatedScarPrompt": "Cel ma już tę Bliznę. Zamiast niej zastosować Umieranie (5 rund)?",
+            "applyDying5": "Zastosuj Umieranie 5",
+            "addScarAgain": "Dodaj Bliznę ponownie",
+            "result": "Trafienie krytyczne",
+            "severity": "Końcowa dotkliwość"
+        },
+        "action": {
+            "unavailable": "Brak legalnego miejsca na akcję dla tego testu.",
+            "commitFailed": "Nie udało się zatwierdzić zarezerwowanej akcji, ponieważ zmienił się stan tury."
+        }
+        }
+    }
+}

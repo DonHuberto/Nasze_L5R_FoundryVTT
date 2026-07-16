@@ -7,6 +7,19 @@ import { TacticalGridSettingsL5R5E } from "./settings/tactical-grid-settings.js"
 export const RegisterSettings = function () {
     const isBabeleRegistered = (typeof Babele !== "undefined");
 
+    game.settings.register(CONFIG.l5r5e.namespace, "automationSchemaVersion", {
+        scope: "world",
+        config: false,
+        default: 0,
+        type: Number,
+    });
+    game.settings.register(CONFIG.l5r5e.namespace, "automationSessionId", {
+        scope: "world",
+        config: false,
+        default: "",
+        type: String,
+    });
+
     /* ------------------------------------ */
     /* User settings                        */
     /* ------------------------------------ */

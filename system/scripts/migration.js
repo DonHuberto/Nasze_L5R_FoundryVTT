@@ -7,6 +7,11 @@ export class MigrationL5r5e {
      * @type {string}
      */
     static NEEDED_VERSION = "1.13.0";
+    static AUTOMATION_SCHEMA_VERSION = 1;
+
+    static needsAutomationMigration() {
+        return Number(game.settings.get(CONFIG.l5r5e.namespace, "automationSchemaVersion") ?? 0) < this.AUTOMATION_SCHEMA_VERSION;
+    }
 
     /**
      * Return true if the version need some updates
@@ -122,10 +127,25 @@ export class MigrationL5r5e {
             console.error(err);
         }
 
+        // Turn state belongs to Combatants, never to Actors or the HUD module namespace.
+        for (const combat of game.combats ?? []) {
+            const updates = combat.combatants.map((combatant) => {
+                const existing = combatant.flags?.l5r5e?.turnState;
+                const next = game.l5r5e.turns.getState(combatant, { combat });
+                const tieKey = game.l5r5e.initiative.ensureTieKey(combatant);
+                const update = { _id: combatant.id };
+                if (JSON.stringify(existing) !== JSON.stringify(next)) update["flags.l5r5e.turnState"] = next;
+                if (combatant.flags?.l5r5e?.initiativeTieKey !== tieKey) update["flags.l5r5e.initiativeTieKey"] = tieKey;
+                return Object.keys(update).length > 1 ? update : null;
+            }).filter(Boolean);
+            if (updates.length) await combat.updateEmbeddedDocuments("Combatant", updates);
+        }
+
         console.groupEnd();
 
         // Set the migration as complete
         await game.settings.set(CONFIG.l5r5e.namespace, "systemMigrationVersion", game.system.version);
+        await game.settings.set(CONFIG.l5r5e.namespace, "automationSchemaVersion", MigrationL5r5e.AUTOMATION_SCHEMA_VERSION);
         ui.notifications.info(`L5R5e System Migration to version ${game.system.version} completed!`, {
             permanent: true,
         });
@@ -309,6 +329,10 @@ export class MigrationL5r5e {
         }
         // ***** End of 1.3.0 *****
 
+        if (options?.force || MigrationL5r5e.needsAutomationMigration()) {
+            if (typeof system.prepared !== "boolean") updateData["system.prepared"] = system.prepared === undefined ? (updateData["system.prepared"] ?? true) : system.prepared === "true";
+        }
+
         return updateData;
     }
 
@@ -340,7 +364,51 @@ export class MigrationL5r5e {
         }
         // ***** End of 1.12.3 *****
 
+        if (options?.force || MigrationL5r5e.needsAutomationMigration()) {
+            const rulesKey = MigrationL5r5e._rulesKeyForItem(item);
+            if (!item.system.rulesKey && rulesKey) updateData["system.rulesKey"] = rulesKey;
+            if (item.type === "weapon") {
+                if (!item.system.active_grip) updateData["system.active_grip"] = "one-handed";
+                if (!item.system.damage_type) updateData["system.damage_type"] = "physical";
+                if (!item.system.grip_profiles) {
+                    updateData["system.grip_profiles"] = {
+                        "one-handed": { label: item.system.grip_1 ?? "", damage_modifier: 0, deadliness_modifier: 0, range_min: 0, range_max: Number(item.system.range) || 0 },
+                        "two-handed": { label: item.system.grip_2 ?? "", damage_modifier: 0, deadliness_modifier: 0, range_min: 0, range_max: Number(item.system.range) || 0 },
+                    };
+                }
+            }
+            if (item.type === "technique" && !item.system.activation) {
+                updateData["system.activation"] = { requires_check: Boolean(item.system.skill || item.system.difficulty), action_types: [], target: { mode: "none", filters: {} }, range: { minimum: 0, maximum: 0 }, movement: { mode: "none", bands: 0, multiplier: 1 }, opportunity_rules_keys: [] };
+            }
+            if (item.type === "peculiarity" && !item.system.automationTags) {
+                updateData["system.automationTags"] = /\bScar\b/i.test(item.system.types ?? "") ? ["scar"] : [];
+            }
+            if (Array.isArray(item.system.properties) && item.system.properties.some((property) => !property.rulesKey)) {
+                updateData["system.properties"] = item.system.properties.map((property) => ({ ...property, rulesKey: property.rulesKey ?? MigrationL5r5e._rulesKeyForProperty(property) }));
+            }
+        }
+
         return updateData;
+    }
+
+    static _rulesKeyForProperty(property) {
+        const byId = {
+            L5RCorePro000001: "razor-edged",
+            L5RCorePro000003: "damaged",
+            L5RCorePro000004: "destroyed",
+            L5RCorePro000006: "cumbersome",
+            L5RCorePro000015: "durable",
+        };
+        return byId[property.id ?? property._id] ?? MigrationL5r5e._slug(property.name);
+    }
+
+    static _rulesKeyForItem(item) {
+        if (item.type === "property") return MigrationL5r5e._rulesKeyForProperty(item);
+        return ["opportunity", "technique", "weapon", "armor", "peculiarity"].includes(item.type) ? item.system.rulesKey ?? MigrationL5r5e._slug(item.name) : null;
+    }
+
+    static _slug(value) {
+        return String(value ?? "").normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
     }
 
     /**

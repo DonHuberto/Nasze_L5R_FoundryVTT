@@ -40,9 +40,23 @@
                     {{localize 'l5r5e.weapons.deadliness'}}
                     <input class="select-on-focus" type="number" name="system.deadliness" value="{{data.system.deadliness}}" data-dtype="Number" min="0" placeholder="0"/>
                 </label>
+                <label>
+                    {{localize 'l5r5e.automation.item.damageType'}}
+                    <select name="system.damage_type">
+                        <option value="physical" {{#ifCond data.system.damage_type '==' 'physical'}}selected{{/ifCond}}>{{localize 'l5r5e.automation.item.physical'}}</option>
+                        <option value="supernatural" {{#ifCond data.system.damage_type '==' 'supernatural'}}selected{{/ifCond}}>{{localize 'l5r5e.automation.item.supernatural'}}</option>
+                    </select>
+                </label>
             </fieldset>
             <fieldset class="stats">
                 <legend class="text-block-header">{{localize 'l5r5e.weapons.grips'}}</legend>
+                <label>
+                    {{localize 'l5r5e.automation.item.activeGrip'}}
+                    <select name="system.active_grip">
+                        <option value="one-handed" {{#ifCond data.system.active_grip '==' 'one-handed'}}selected{{/ifCond}}>{{localize 'l5r5e.weapons.1hand'}}</option>
+                        <option value="two-handed" {{#ifCond data.system.active_grip '==' 'two-handed'}}selected{{/ifCond}}>{{localize 'l5r5e.weapons.2hand'}}</option>
+                    </select>
+                </label>
                 <label>
                     {{localize 'l5r5e.weapons.1hand'}}
                     <input class="grip" type="text" name="system.grip_1" value="{{data.system.grip_1}}" />
@@ -51,6 +65,12 @@
                     {{localize 'l5r5e.weapons.2hand'}}
                     <input class="grip" type="text" name="system.grip_2" value="{{data.system.grip_2}}" />
                 </label>
+                <label>1H Δ Damage <input type="number" name="system.grip_profiles.one-handed.damage_modifier" value="{{data.system.grip_profiles.one-handed.damage_modifier}}"></label>
+                <label>1H Δ Deadliness <input type="number" name="system.grip_profiles.one-handed.deadliness_modifier" value="{{data.system.grip_profiles.one-handed.deadliness_modifier}}"></label>
+                <label>1H Range <input type="number" name="system.grip_profiles.one-handed.range_min" value="{{data.system.grip_profiles.one-handed.range_min}}" min="0">–<input type="number" name="system.grip_profiles.one-handed.range_max" value="{{data.system.grip_profiles.one-handed.range_max}}" min="0"></label>
+                <label>2H Δ Damage <input type="number" name="system.grip_profiles.two-handed.damage_modifier" value="{{data.system.grip_profiles.two-handed.damage_modifier}}"></label>
+                <label>2H Δ Deadliness <input type="number" name="system.grip_profiles.two-handed.deadliness_modifier" value="{{data.system.grip_profiles.two-handed.deadliness_modifier}}"></label>
+                <label>2H Range <input type="number" name="system.grip_profiles.two-handed.range_min" value="{{data.system.grip_profiles.two-handed.range_min}}" min="0">–<input type="number" name="system.grip_profiles.two-handed.range_max" value="{{data.system.grip_profiles.two-handed.range_max}}" min="0"></label>
             </fieldset>
         </article>
         <article class="properties" data-group="primary" data-tab="properties">

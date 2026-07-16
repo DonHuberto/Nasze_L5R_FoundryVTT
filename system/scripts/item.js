@@ -132,6 +132,27 @@ export class ItemL5r5e extends Item {
         }
     }
 
+    get activeGripProfile() {
+        if (this.type !== "weapon") return null;
+        const key = this.system.active_grip ?? "one-handed";
+        return this.system.grip_profiles?.[key] ?? null;
+    }
+
+    get attackProfile() {
+        if (this.type !== "weapon") return null;
+        const grip = this.activeGripProfile ?? {};
+        return {
+            itemUuid: this.uuid,
+            grip: this.system.active_grip ?? "one-handed",
+            skillId: this.system.skill,
+            damage: Math.max(0, Number(this.system.damage) + Number(grip.damage_modifier ?? 0)),
+            deadliness: Math.max(0, Number(this.system.deadliness) + Number(grip.deadliness_modifier ?? 0)),
+            damageType: this.system.damage_type === "supernatural" ? "supernatural" : "physical",
+            range: { minimum: Number(grip.range_min ?? 0), maximum: Number(grip.range_max ?? this.system.range ?? 0) },
+            usable: game.l5r5e.qualities.usage(this).usable,
+        };
+    }
+
     // ***** parent ids management *****
     /**
      * Return a string with idemId + actorId if any

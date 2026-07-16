@@ -1,4 +1,5 @@
 import { L5R5E } from "../config.js";
+import { inferActionTypes as inferStructuralActionTypes } from "../services/rule-utils.js";
 
 export function getRollActionTypes() {
     const configured = globalThis.CONFIG?.l5r5e?.rollActionTypes ?? L5R5E.rollActionTypes;
@@ -44,4 +45,8 @@ export function normalizeActions(actions) {
     }
 
     return normalized;
+}
+
+export function inferActions(source) {
+    return normalizeActions(inferStructuralActionTypes(source));
 }

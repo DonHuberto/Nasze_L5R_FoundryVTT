@@ -42,8 +42,11 @@ export default class HooksL5r5e {
             },
         });
 
+        // A world-scoped marker gives Shattering Parry an authoritative once-per-play-session guard.
+        if (game.user.isFirstGM) await game.settings.set(CONFIG.l5r5e.namespace, "automationSessionId", foundry.utils.randomID());
+
         // Migration stuff
-        if (game.user.isFirstGM && game.l5r5e.migrations.needUpdate(game.l5r5e.migrations.NEEDED_VERSION)) {
+        if (game.user.isFirstGM && (game.l5r5e.migrations.needUpdate(game.l5r5e.migrations.NEEDED_VERSION) || game.l5r5e.migrations.needsAutomationMigration())) {
             game.l5r5e.migrations.migrateWorld({ force: false }).then();
         }
 
@@ -354,5 +357,47 @@ export default class HooksL5r5e {
         console.log(document, options, userId);
 
         new game.l5r5e.CombatActions().render(true);
+    }
+
+    static preMoveToken(tokenDocument, movement, operation, userId) {
+        if (userId && userId !== game.user.id) return;
+        if (!game.settings.get(CONFIG.l5r5e.namespace, "tactical-grid-settings-world")?.enabled) return;
+        const combatant = tokenDocument.combatant;
+        if (!combatant || combatant !== game.combat?.combatant) return;
+        const result = game.l5r5e.movement.validateHookMovement(tokenDocument, movement, combatant, { gmOverride: Boolean(operation?.l5r5e?.gmOverride && game.user.isGM) });
+        if (result.ok) return;
+        const key = result.code === "movementBudgetExceeded" ? "budgetExceeded" : result.code === "hostileOccupied" ? "hostileOccupied" : "immobilized";
+        ui.notifications.warn(game.i18n.localize(`l5r5e.automation.movement.${key}`));
+        return false;
+    }
+
+    static async recordToken(tokenDocument, movement, operation, userId) {
+        if (userId && userId !== game.user.id) return;
+        if (!game.settings.get(CONFIG.l5r5e.namespace, "tactical-grid-settings-world")?.enabled) return;
+        const combatant = tokenDocument.combatant;
+        if (!combatant || combatant !== game.combat?.combatant) return;
+        await game.l5r5e.movement.recordHookMovement(tokenDocument, movement, combatant);
+    }
+
+    static preUpdateCombat(combat, changes, options) {
+        if (changes.turn === undefined && changes.round === undefined) return;
+        options.l5r5ePreviousCombatantId = combat.combatant?.id ?? null;
+        options.l5r5ePreviousRound = combat.round;
+        options.l5r5ePreviousTurn = combat.turn;
+    }
+
+    static async updateCombat(combat, changes, options) {
+        if ((changes.turn === undefined && changes.round === undefined) || !game.l5r5e.authority.isAuthority()) return;
+        const previous = combat.combatants.get(options.l5r5ePreviousCombatantId);
+        if (previous?.actor) {
+            const state = game.l5r5e.turns.getState(previous, { combatId: combat.id, round: options.l5r5ePreviousRound, turn: options.l5r5ePreviousTurn });
+            await game.l5r5e.conditions.endTurn(previous.actor, state, { combatId: combat.id, round: combat.round, turn: combat.turn });
+            await game.l5r5e.turns.persist(previous, game.l5r5e.turns.completeTurn(state), { ended: true });
+        }
+        for (const combatant of combat.combatants) {
+            if (!combatant.actor) continue;
+            const active = game.l5r5e.conditions.activeSuspensions(combatant.actor, { combatId: combat.id, round: combat.round, turn: combat.turn });
+            if (JSON.stringify(active) !== JSON.stringify(combatant.actor.flags?.l5r5e?.conditionSuspensions ?? {})) await combatant.actor.setFlag("l5r5e", "conditionSuspensions", active);
+        }
     }
 }

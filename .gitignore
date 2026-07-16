@@ -11,5 +11,8 @@ node_modules
 # Foundry Lock files
 system/l5r5e.lock
 
+# Release archive
+system.zip
+
 # v11 db files (will be added later)
 system/packs/*/**

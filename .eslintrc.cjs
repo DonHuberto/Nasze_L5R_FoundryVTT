@@ -6,12 +6,13 @@ module.exports = {
         node: true,
     },
     extends: ["eslint:recommended", "plugin:prettier/recommended"],
-    parser: "babel-eslint",
     parserOptions: {
-        ecmaVersion: 12,
+        ecmaVersion: "latest",
         sourceType: "module",
     },
     rules: {
+        // Formatting is handled by the existing Prettier script; lint remains semantic and line-ending agnostic.
+        "prettier/prettier": "off",
         // Required for Foundry compatibility
         "no-underscore-dangle": "off",
         "import/extensions": "off",

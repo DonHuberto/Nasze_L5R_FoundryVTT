@@ -230,29 +230,8 @@ export class GmToolbox extends HandlebarsApplicationMixin(ApplicationV2) {
      */
     static async #onSceneEnd(event) {
         const allActors = event.button !== 0;
-        for await (const actor of game.actors.contents) {
-            if (!GmToolbox.#updatableCharacter(allActors, actor)
-                || actor.statuses.has("exhausted")) {
-                continue;
-            }
-
-            await actor.update({
-                system: {
-                    fatigue: {
-                        value: Math.min(
-                            actor.system.fatigue.value,
-                            Math.ceil(actor.system.fatigue.max / 2)
-                        )
-                    },
-                    strife: {
-                        value: Math.min(
-                            actor.system.strife.value,
-                            Math.ceil(actor.system.strife.max / 2)
-                        )
-                    }
-                }
-            });
-        }
+        const actors = game.actors.contents.filter((actor) => GmToolbox.#updatableCharacter(allActors, actor));
+        await game.l5r5e.conditions.recoverScene(actors);
 
         GmToolbox.#uiNotification(allActors, "scene_end");
     }

@@ -6,9 +6,9 @@
     "readme": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/blob/master/README.md",
     "changelog": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/blob/master/CHANGELOG.md",
     "license": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/blob/master/LICENSE.md",
-    "manifest": "https://raw.githubusercontent.com/DonHuberto/Nasze_L5R_FoundryVTT/refs/tags/v1.14.101/system/system.json",
-    "download": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/releases/download/v1.14.101/system.zip",
-    "version": "1.14.101",
+    "manifest": "https://raw.githubusercontent.com/DonHuberto/Nasze_L5R_FoundryVTT/refs/tags/v1.14.102/system/system.json",
+    "download": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/releases/download/v1.14.102/system.zip",
+    "version": "1.14.102",
     "compatibility": {
         "minimum": "14",
         "verified": "14",
@@ -111,7 +111,8 @@
                     "packs": [
                         "core-journal-conditions",
                         "core-journal-terrain-qualities",
-                        "core-journal-opportunities"
+                        "core-journal-opportunities",
+                        "core-opportunities"
                     ]
                 },
                 {
@@ -331,6 +332,13 @@
             "system": "l5r5e"
         },
         {
+            "name": "core-opportunities",
+            "label": "Structured Opportunities",
+            "path": "packs/core-opportunities.db",
+            "type": "Item",
+            "system": "l5r5e"
+        },
+        {
             "name": "core-name-tables",
             "label": "Name Tables",
             "path": "packs/core-name-tables.db",
@@ -365,6 +373,11 @@
             "lang": "it",
             "name": "Italian (Italy)",
             "path": "lang/it-it.json"
+        },
+        {
+            "lang": "pl",
+            "name": "Polski",
+            "path": "lang/pl-pl.json"
         }
     ],
     "media": [
