@@ -12,7 +12,9 @@
         "syntax": "node scripts/check-syntax.mjs",
         "data:normalize": "node scripts/normalize-core-data.mjs",
         "data:build": "node scripts/build-core-opportunities.mjs && node scripts/normalize-core-data.mjs",
-        "ci": "npm run data:build && npm run syntax && npm test && npm run lint && npm run compile",
+        "validate:release": "node scripts/validate-release.mjs",
+        "audit:ui": "node scripts/validate-release.mjs",
+        "ci": "npm run data:build && npm run syntax && npm test && npm run lint && npm run compile && npm run validate:release",
         "prettier": "prettier --quote-props=preserve --print-width=5000 --write"
     },
     "repository": {

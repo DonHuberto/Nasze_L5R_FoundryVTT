@@ -1,5 +1,7 @@
 // Import Commons Modules
 import { L5R5E } from "./config.js";
+import { ACTOR_DATA_MODELS } from "./data-models/actors/models.js";
+import { ITEM_DATA_MODELS } from "./data-models/items/models.js";
 import { HelpersL5r5e } from "./helpers.js";
 import { SocketHandlerL5r5e } from "./socket-handler.js";
 import { RegisterSettings } from "./settings.js";
@@ -39,6 +41,7 @@ import { ArmyFortificationSheetL5r5e } from "./items/army-fortification-sheet.js
 import { OpportunitySheetL5r5e } from "./items/opportunity-sheet.js";
 // Core automation services
 import { ActionService } from "./services/action-service.js";
+import { ACTION_REGISTRY } from "./services/action-registry.js";
 import { ConditionService } from "./services/condition-service.js";
 import { CriticalService } from "./services/critical-service.js";
 import { DamageService } from "./services/damage-service.js";
@@ -89,6 +92,8 @@ Hooks.once("init", async () => {
     // ***** Config *****
     // Global access to L5R Config
     CONFIG.l5r5e = L5R5E;
+    Object.assign(CONFIG.Actor.dataModels, ACTOR_DATA_MODELS);
+    Object.assign(CONFIG.Item.dataModels, ITEM_DATA_MODELS);
 
     // Setting up sidebar icons
     CONFIG.ChatMessage.sidebarIcon = "l5r5e chatIcon";
@@ -164,6 +169,7 @@ Hooks.once("init", async () => {
         sockets,
         migrations: MigrationL5r5e,
         actions,
+        actionRegistry: ACTION_REGISTRY,
         turns,
         conditions,
         opportunities,

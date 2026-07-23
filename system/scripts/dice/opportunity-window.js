@@ -53,9 +53,19 @@ export class OpportunityWindow extends HandlebarsApplicationMixin(ApplicationV2)
         this.element.querySelector("[data-opportunity-confirm]")?.addEventListener("click", async (event) => {
             event.preventDefault();
             if (!this.parent.getOpportunityWindowContext(this.mode).valid) return;
-            await this.parent.render(false);
+            await this.refreshParentRoll();
             await this.close();
         });
+    }
+
+    /** Refresh the ApplicationV1 parent with its native boolean signature. */
+    refreshParentRoll() {
+        return this.parent.render(false);
+    }
+
+    /** Refresh this ApplicationV2 child with an options object. */
+    refreshOpportunityWindow() {
+        return this.render({ force: true });
     }
 
     async close(options = {}) {

@@ -299,16 +299,20 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
     activateListeners(html) {
         super.activateListeners(html);
 
+        // Rolls are document actions, not form edits. Soft-locking a sheet must
+        // not remove them for a GM or an actor owner.
+        html.find(".dice-picker").on("click", this._openDicePickerForSkill.bind(this));
+        html.find(".dice-picker-tech").on("click", this._openDicePickerForTechnique.bind(this));
+        html.find(".dice-picker, .dice-picker-tech").on("keydown", (event) => {
+            if (event.key !== "Enter" && event.key !== " ") return;
+            event.preventDefault();
+            event.currentTarget.click();
+        });
+
         // *** Everything below here is only needed if the sheet is editable ***
         if (!this.isEditable) {
             return;
         }
-
-        // Dice event on Skills clic
-        html.find(".dice-picker").on("click", this._openDicePickerForSkill.bind(this));
-
-        // Dice event on Technique clic
-        html.find(".dice-picker-tech").on("click", this._openDicePickerForTechnique.bind(this));
 
         // Prepared (Initiative)
         html.find(".prepared-control").on("click", this._switchPrepared.bind(this));
@@ -726,8 +730,8 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
         event.preventDefault();
         event.stopPropagation();
 
-        // In Fvtt v13+ "Enter" trigger that mouse event, we ignore that below
-        if (event.clientX ===  0 && event.clientY === 0) {
+        if (!game.user.isGM && !this.actor.testUserPermission(game.user, "OWNER")) {
+            ui.notifications.warn(game.i18n.localize("l5r5e.automation.actorOwnerRequired"));
             return;
         }
 
@@ -772,6 +776,11 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
     async _openDicePickerForTechnique(event) {
         event.preventDefault();
         event.stopPropagation();
+
+        if (!game.user.isGM && !this.actor.testUserPermission(game.user, "OWNER")) {
+            ui.notifications.warn(game.i18n.localize("l5r5e.automation.actorOwnerRequired"));
+            return;
+        }
 
         // Required for tech in titles, search in sub items
         const item = await game.l5r5e.HelpersL5r5e.getEmbedItemByEvent(event, this.actor);

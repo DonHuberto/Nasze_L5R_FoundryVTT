@@ -366,7 +366,7 @@ export default class HooksL5r5e {
         if (!combatant || combatant !== game.combat?.combatant) return;
         const result = game.l5r5e.movement.validateHookMovement(tokenDocument, movement, combatant, { gmOverride: Boolean(operation?.l5r5e?.gmOverride && game.user.isGM) });
         if (result.ok) return;
-        const key = result.code === "movementBudgetExceeded" ? "budgetExceeded" : result.code === "hostileOccupied" ? "hostileOccupied" : "immobilized";
+        const key = result.code === "movementBudgetExceeded" ? "budgetExceeded" : result.code === "tokenOccupied" ? "hostileOccupied" : "immobilized";
         ui.notifications.warn(game.i18n.localize(`l5r5e.automation.movement.${key}`));
         return false;
     }

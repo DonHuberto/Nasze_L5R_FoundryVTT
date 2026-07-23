@@ -17,7 +17,8 @@ export class ActionService {
 
     normalizeContext(context = {}) {
         const actionTypes = this.inferActionTypes(context.item ?? context.technique ?? context, context.actionTypes);
-        return { ...context, actionTypes, actions: actionState(actionTypes), requiresCheck: context.requiresCheck !== false };
+        const actionId = typeof context.actionId === "string" && context.actionId.trim() ? context.actionId.trim() : undefined;
+        return { ...context, actionId, actionTypes, actions: actionState(actionTypes), requiresCheck: context.requiresCheck !== false };
     }
 
     assess(context = {}) {
@@ -42,7 +43,26 @@ export class ActionService {
         const result = this.turns.commitReservation(before, reservationId);
         if (!result.ok) return result;
         const conditionEffects = this.conditions.afterActionEffects(combatant.actor, resolution.context?.lifecycle);
-        const mutations = [{ documentUuid: combatant.uuid, path: "flags.l5r5e.turnState", before, after: result.state, reason: "actionCommit" }];
+        const stablePaths = [
+            "primaryAction",
+            "waterExtraAction",
+            "actionTypesUsed",
+            "movedThisTurn",
+            "movementUndoAvailable",
+            "movementAnchor",
+            "freeMovement.movementIds",
+            "freeMovement.movementCosts",
+        ];
+        const get = (object, path) => path.split(".").reduce((value, key) => value?.[key], object);
+        const mutations = stablePaths
+            .filter((path) => JSON.stringify(get(before, path)) !== JSON.stringify(get(result.state, path)))
+            .map((path) => ({
+                documentUuid: combatant.uuid,
+                path: `flags.l5r5e.turnState.${path}`,
+                before: get(before, path),
+                after: get(result.state, path),
+                reason: "actionCommit",
+            }));
         for (const effect of conditionEffects) {
             if (effect.type !== "resource" || !combatant.actor?.uuid) continue;
             const current = Number(combatant.actor.system?.[effect.resource]?.value) || 0;
@@ -51,11 +71,17 @@ export class ActionService {
         return { ...result, before, mutations, conditionEffects };
     }
 
-    finalizeCommit(combatant, prepared, resolution = {}) {
+    async finalizeCommit(combatant, prepared, resolution = {}) {
+        const reservationId = prepared.reservation?.reservationId;
+        if (reservationId) {
+            const current = this.turns.getState(combatant, resolution.context?.lifecycle);
+            const consumed = this.turns.consumeReservation(current, reservationId);
+            if (!consumed.idempotent) await this.turns.persist(combatant, consumed.state, { reservationId, consumed: true });
+        }
         resolution.conditionEffects = [...(resolution.conditionEffects ?? []), ...(prepared.conditionEffects ?? [])];
         globalThis.Hooks?.callAll?.("l5r5e.turnStateChanged", combatant, prepared.state, { reservationId: prepared.reservation?.reservationId, actionId: prepared.reservation?.actionId, committed: true });
         globalThis.Hooks?.callAll?.("l5r5e.actionResolved", resolution);
-        return prepared;
+        return { ...prepared, reservationConsumed: Boolean(reservationId) };
     }
 
     async commit(combatant, reservationId, resolution = {}) {
@@ -79,5 +105,37 @@ export class ActionService {
         const state = this.turns.cancelReservation(this.turns.getState(combatant, lifecycle), reservationId);
         await this.turns.persist(combatant, state, { reservationId, cancelled: true });
         return state;
+    }
+
+    async executeImmediate(combatant, { context = {}, mutations = [], turnStateChanges = {} } = {}) {
+        if (!this.rolls?.transactions) return { ok: false, code: "transactionServiceMissing" };
+        const reservation = await this.reserveAndPersist(combatant, { ...context, requiresCheck: false });
+        if (!reservation.ok) return reservation;
+        const prepared = this.prepareCommit(combatant, reservation.reservationId, { context });
+        if (!prepared.ok) {
+            await this.cancel(combatant, reservation.reservationId, context.lifecycle);
+            return prepared;
+        }
+        for (const [path, after] of Object.entries(turnStateChanges)) {
+            const before = path.split(".").reduce((value, key) => value?.[key], this.turns.getState(combatant, context.lifecycle));
+            prepared.mutations.push({
+                documentUuid: combatant.uuid,
+                path: `flags.l5r5e.turnState.${path}`,
+                before,
+                after,
+                reason: context.actionId ?? "immediateAction",
+            });
+        }
+        const transaction = this.rolls.transactions.create({
+            inputs: { context },
+            mutations: [...prepared.mutations, ...mutations],
+        });
+        const applied = await this.rolls.transactions.apply(transaction);
+        if (!applied.ok) {
+            await this.cancel(combatant, reservation.reservationId, context.lifecycle);
+            return applied;
+        }
+        await this.finalizeCommit(combatant, prepared, { context, transaction });
+        return { ok: true, transaction, state: prepared.state, reservationId: reservation.reservationId };
     }
 }

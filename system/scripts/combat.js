@@ -1,5 +1,13 @@
 import { resolveInitiativeMessageMode } from "./dice/message-mode.js";
 
+export function canOpenLocalInitiativePicker({ user, combatant }) {
+    if (!user || !combatant?.actor) return false;
+    if (user.isGM) return true;
+    return combatant.actor.testUserPermission?.(user, "OWNER") ??
+        combatant.players?.some((owner) => owner.id === user.id || owner._id === user.id) ??
+        false;
+}
+
 /**
  * Extends the actor to process special things from L5R.
  */
@@ -44,7 +52,6 @@ export class CombatL5r5e extends Combat {
         const skillCat = CONFIG.l5r5e.skills.get(skillId);
 
         // Get score for each combatant
-        const networkActors = [];
         const updatedCombatants = [];
         for (const combatantId of ids) {
             const combatant = this.combatants.find((c) => c.id === combatantId);
@@ -92,15 +99,7 @@ export class CombatL5r5e extends Combat {
                 // DicePicker management
                 // formula is empty on the fist call (combat tab buttons)
                 if (!formula && combatant.initiative === null) {
-                    // if a player is currently active for this actor
-                    const havePlayer = combatant.players.some((u) => u.active);
-                    const isMyCharacter = combatant.players.some((u) => u._id === game.user.id);
-
-                    if (game.user.isGM && havePlayer && !isMyCharacter) {
-                        // Open the DP on player side
-                        networkActors.push(combatant.actor);
-                        continue;
-                    } else if (isMyCharacter || (game.user.isGM && !havePlayer)) {
+                    if (canOpenLocalInitiativePicker({ user: game.user, combatant })) {
                         // Open the DP locally
                         new game.l5r5e.DicePickerDialog({
                             actor: combatant.actor,
@@ -112,6 +111,7 @@ export class CombatL5r5e extends Combat {
                         }).render(true);
                         continue;
                     }
+                    continue;
                 }
 
                 // Roll formula
@@ -175,20 +175,6 @@ export class CombatL5r5e extends Combat {
                 _id: combatant.id,
                 initiative: initiative,
                 "flags.l5r5e.initiativeTieKey": game.l5r5e.initiative.ensureTieKey(combatant),
-            });
-        }
-
-        // If any network actor users to notify
-        if (!foundry.utils.isEmpty(networkActors)) {
-            game.l5r5e.sockets.openDicePicker({
-                actors: networkActors,
-                dpOptions: {
-                    skillId: skillId,
-                    difficulty: cfg.difficulty,
-                    difficultyHidden: cfg.difficultyHidden,
-                    isInitiativeRoll: true,
-                    messageMode: resolvedMessageMode,
-                },
             });
         }
 

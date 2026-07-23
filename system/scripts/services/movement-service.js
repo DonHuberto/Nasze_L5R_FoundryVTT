@@ -1,14 +1,14 @@
 import { makeId, toFiniteNumber } from "./rule-utils.js";
 
-export function movementStepCost(from, to, { difficult = false } = {}) {
+export function movementStepCost(from, to, { difficult = false, enemyExit = false } = {}) {
     const dx = Math.abs(toFiniteNumber(to.x, 0) - toFiniteNumber(from.x, 0));
     const dy = Math.abs(toFiniteNumber(to.y, 0) - toFiniteNumber(from.y, 0));
     if (dx === 0 && dy === 0) return 0;
     const diagonal = dx > 0 && dy > 0;
-    return Math.min(3, (diagonal ? 2 : 1) + (difficult ? 1 : 0));
+    return Math.min(3, (diagonal ? 2 : 1) + (difficult ? 1 : 0) + (enemyExit ? 1 : 0));
 }
 
-export function measureGridPath(waypoints = [], { difficultSquares = new Set(), blockedSquares = new Set(), gmOverride = false } = {}) {
+export function measureGridPath(waypoints = [], { difficultSquares = new Set(), blockedSquares = new Set(), hostileSquares = new Set(), gmOverride = false } = {}) {
     let cost = 0;
     const steps = [];
     for (let index = 1; index < waypoints.length; index += 1) {
@@ -17,9 +17,10 @@ export function measureGridPath(waypoints = [], { difficultSquares = new Set(), 
         const targetKey = `${to.x},${to.y}`;
         if (blockedSquares.has(targetKey) && !gmOverride) return { valid: false, code: "blocked", cost, steps, blockedAt: to };
         const difficult = difficultSquares.has(`${from.x},${from.y}`);
-        const stepCost = movementStepCost(from, to, { difficult });
+        const enemyExit = hostileSquares.has(`${from.x},${from.y}`);
+        const stepCost = movementStepCost(from, to, { difficult, enemyExit });
         cost += stepCost;
-        steps.push({ from, to, difficult, cost: stepCost, cumulative: cost });
+        steps.push({ from, to, difficult, enemyExit, cost: stepCost, cumulative: cost });
     }
     return { valid: true, cost, steps };
 }
@@ -167,8 +168,8 @@ export class MovementService {
         return hostile;
     }
 
-    validateHostileBlockers(tokenDocument, waypoints = [], { gmOverride = false } = {}) {
-        if (gmOverride || waypoints.length < 2) return { ok: true };
+    validateTokenSpaces(tokenDocument, waypoints = [], { gmOverride = false, tokensBlockSpaces = false } = {}) {
+        if (gmOverride || !tokensBlockSpaces || waypoints.length < 2) return { ok: true };
         const grid = tokenDocument?.parent?.grid;
         if (!grid?.getDirectPath) return { ok: true };
         const blocked = this.hostileOccupiedOffsets(tokenDocument);
@@ -178,9 +179,24 @@ export class MovementService {
             const point = grid.getTopLeftPoint?.(offset) ?? offset;
             const occupied = tokenDocument.getOccupiedGridSpaceOffsets?.({ x: point.x, y: point.y }) ?? [offset];
             const collision = occupied.find((entry) => blocked.has(`${entry.i},${entry.j}`));
-            if (collision) return { ok: false, code: "hostileOccupied", blockedAt: collision };
+            if (collision) return { ok: false, code: "tokenOccupied", blockedAt: collision };
         }
         return { ok: true };
+    }
+
+    enemyExitSurcharge(tokenDocument, waypoints = []) {
+        const grid = tokenDocument?.parent?.grid;
+        if (!grid?.getDirectPath || waypoints.length < 2) return 0;
+        const hostile = this.hostileOccupiedOffsets(tokenDocument);
+        if (!hostile.size) return 0;
+        const path = grid.getDirectPath(waypoints);
+        let surcharge = 0;
+        for (const offset of path.slice(0, -1)) {
+            const point = grid.getTopLeftPoint?.(offset) ?? offset;
+            const occupied = tokenDocument.getOccupiedGridSpaceOffsets?.({ x: point.x, y: point.y }) ?? [offset];
+            if (occupied.some((entry) => hostile.has(`${entry.i},${entry.j}`))) surcharge += 1;
+        }
+        return surcharge;
     }
 
     validateHookMovement(tokenDocument, movement, combatant, { gmOverride = false } = {}) {
@@ -188,10 +204,11 @@ export class MovementService {
         if (!scene?.grid?.type) return { ok: true, gridless: true, cost: 0 };
         if (this.conditions.isActive(combatant?.actor, "immobilized")) return { ok: false, code: "immobilized" };
         const waypoints = movement?.pending?.waypoints ?? movement?.waypoints ?? movement?.path ?? [];
-        const blocker = this.validateHostileBlockers(tokenDocument, waypoints, { gmOverride });
+        const tokensBlockSpaces = Boolean(globalThis.game?.settings?.get?.("l5r5e", "tokensBlockSpaces"));
+        const blocker = this.validateTokenSpaces(tokenDocument, waypoints, { gmOverride, tokensBlockSpaces });
         if (!blocker.ok) return blocker;
         const measured = tokenDocument.measureMovementPath(waypoints);
-        const cost = toFiniteNumber(measured.cost ?? measured.distance, 0);
+        const cost = toFiniteNumber(measured.cost ?? measured.distance, 0) + this.enemyExitSurcharge(tokenDocument, waypoints);
         const remaining = this.remaining(combatant);
         if (cost > remaining && !gmOverride) return { ok: false, code: "movementBudgetExceeded", cost, remaining };
         const id = movement?.id ?? movement?.movementId;
@@ -220,4 +237,21 @@ export const RangeBandService = Object.freeze({
     fieldsPerBand: 3,
     toBudget: (bands) => Math.max(0, toFiniteNumber(bands, 0)) * 3,
     fromCost: (cost) => Math.ceil(Math.max(0, toFiniteNumber(cost, 0)) / 3),
+    measurePath: (waypoints, options = {}) => measureGridPath(waypoints, options),
+    measureTokens: (source, target) => {
+        if (!source || !target) return { gridless: true, cost: 0, range: 0 };
+        const sourceOffsets = source.getOccupiedGridSpaceOffsets?.() ?? [{ i: source.x ?? 0, j: source.y ?? 0 }];
+        const targetOffsets = target.getOccupiedGridSpaceOffsets?.() ?? [{ i: target.x ?? 0, j: target.y ?? 0 }];
+        let cost = Infinity;
+        for (const left of sourceOffsets) for (const right of targetOffsets) {
+            cost = Math.min(cost, Math.max(Math.abs(toFiniteNumber(left.i) - toFiniteNumber(right.i)), Math.abs(toFiniteNumber(left.j) - toFiniteNumber(right.j))));
+        }
+        if (!Number.isFinite(cost)) cost = 0;
+        return { gridless: !source.parent?.grid?.type, cost, range: Math.ceil(cost / 3) };
+    },
+    profileBounds: (profile = {}) => {
+        const minimum = Math.max(0, toFiniteNumber(profile.range_min ?? profile.rangeMin, 0));
+        const maximum = Math.max(minimum, toFiniteNumber(profile.range_max ?? profile.rangeMax, minimum));
+        return { minimum, maximum, innerCost: minimum * 3, outerCost: maximum * 3 };
+    },
 });

@@ -6,6 +6,16 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.105 - 23/07/2026 - V14 UI, replay and DataModel fixes
+
+- Correct ApplicationV2 Opportunity rendering, focus/restoration, guarded refreshes and child-window cleanup while preserving the ApplicationV1 parent API.
+- Restore mouse and keyboard rolls from locked character and NPC sheets for GMs and actor owners, including complete Strike context snapshots.
+- Let a GM roll a player character's initiative locally regardless of active owners.
+- Make action commits transactionally granular, keep transient reservations out of replay comparisons, consume reservations idempotently and prevent empty action IDs.
+- Keep enemy-occupied spaces enterable, charge the enemy-exit movement cost, add an opt-in token-blocking house rule and expose a stable range-band API.
+- Replace deprecated `template.json` with registered Foundry VTT 14 Actor and Item `TypeDataModel` schemas, sanitized HTML declarations, legacy fixtures and loss-preserving migration.
+- Add release-contract, local-link and roll-control audits plus regression coverage for the corrected flows.
+
 ## 1.14.104 - 23/07/2026 - Initiative, Opportunity and equipment foundations
 
 ### Initiative and chat visibility

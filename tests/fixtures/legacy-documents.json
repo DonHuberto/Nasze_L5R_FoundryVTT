@@ -1,0 +1,21 @@
+{
+    "actor": {
+        "type": "character",
+        "system": {
+            "identity": {"school_rank": 3, "clan": "Crab"},
+            "prepared": false,
+            "homebrew_field": {"keep": true}
+        }
+    },
+    "item": {
+        "type": "weapon",
+        "system": {
+            "damage": 7,
+            "active_grip": "two-handed",
+            "grip_profiles": {
+                "two-handed": {"range_min": 1, "range_max": 3}
+            },
+            "third_party": "preserve me"
+        }
+    }
+}

@@ -4,14 +4,19 @@ Use a disposable migrated world with a gridded skirmish scene, a gridless scene,
 
 ## Roll and Opportunity
 
-1. Open an ordinary Dice Picker: no action type is selected. Open a Strike/structured technique: its metadata selects only the declared types; manual toggles remain usable.
-2. Reduce TN with modifiers below 1 and confirm final TN remains 1. Combine Air, Dazed, Wounded, Prone and Silenced contexts and confirm every reason appears once.
-3. Fail a Fire check with kept Strife; Fire cannot turn it into success. Succeed and verify Fire bonus successes affect initiative/damage.
-4. With Compromised, keep a Strife die; with Incapacitated, open and roll a checked action. Both reach final summary but are blocked there.
-5. On the same Void roll spend `conflict-void-ignore-condition` for the relevant condition. Confirm finalization succeeds, the visible condition remains, and its suspension expires at the end of the next turn.
-6. Inspect the informational Opportunity panel while choosing dice, then the selectable final panel. Test checkbox, `op+` counter, overspend, required condition/target, automatic/confirm/manual effects and unknown executor fallback.
-7. Verify the Strife ledger for Void, universal check-only removal, Water removal of prior Strife and Intoxicated. There must be no manual applied-Strife counter.
-8. Spend an Opportunity whose executor inflicts a direct critical strike. Confirm it opens its own mitigation workflow after the parent roll commits and is linked to that roll's transaction history.
+1. From character and NPC sheets, activate a skill, Ring, initiative, weapon and technique with mouse and
+   Enter/Space. Repeat on a soft-locked sheet as GM, OWNER and non-owner; only the last user must be denied.
+2. During Keep, open the separate informational Opportunity window. During Resolution, open the spending
+   window, change spending, reopen it to focus the same instance, then close Roll & Keep and confirm both
+   children are removed.
+3. Open an ordinary Dice Picker: no action type is selected. Open a Strike/structured technique: its metadata selects only the declared types; manual toggles remain usable.
+4. Reduce TN with modifiers below 1 and confirm final TN remains 1. Combine Air, Dazed, Wounded, Prone and Silenced contexts and confirm every reason appears once.
+5. Fail a Fire check with kept Strife; Fire cannot turn it into success. Succeed and verify Fire bonus successes affect initiative/damage.
+6. With Compromised, keep a Strife die; with Incapacitated, open and roll a checked action. Both reach final summary but are blocked there.
+7. On the same Void roll spend `conflict-void-ignore-condition` for the relevant condition. Confirm finalization succeeds, the visible condition remains, and its suspension expires at the end of the next turn.
+8. Inspect the informational Opportunity panel while choosing dice, then the selectable final panel. Test checkbox, `op+` counter, overspend, required condition/target, automatic/confirm/manual effects and unknown executor fallback.
+9. Verify the Strife ledger for Void, universal check-only removal, Water removal of prior Strife and Intoxicated. There must be no manual applied-Strife counter.
+10. Spend an Opportunity whose executor inflicts a direct critical strike. Confirm it opens its own mitigation workflow after the parent roll commits and is linked to that roll's transaction history.
 
 ## Damage and critical
 
@@ -29,7 +34,9 @@ Use a disposable migrated world with a gridded skirmish scene, a gridless scene,
 1. Open/cancel an action dialog; the reservation clears. Complete an action; the primary slot commits. Test Water's no-check extra action with both distinct and overlapping action types.
 2. Trigger Burning after an action, Bleeding after kept Strife, end-turn Dazed/Disoriented/Immobilized cleanup, Dying countdown and scene-end recovery with/without Exhausted.
 3. On a square grid, test orthogonal cost 1, diagonal cost 2 and difficult-square exit surcharge capped at 3. Use multi-waypoint paths.
-4. Confirm walls and impassable Regions block Foundry pathfinding. Put an enemy token in the route and verify ordinary movement blocks it while explicit GM override is audited.
+4. Confirm walls and impassable Regions block Foundry pathfinding. Enter an enemy token's space, then leave it:
+   entry remains legal and exit adds one cost. A friendly token adds no cost. Enable `tokensBlockSpaces`
+   separately and confirm only that opt-in house rule blocks occupied spaces.
 5. Test free movement, unchecked Maneuver, failed TN 2 Maneuver (one band), successful Maneuver (two plus one band per two bonus successes), Water Maneuver and structured technique budget modifiers.
 6. Move by dragging and keyboard. Exceeding budget must prevent drop. Confirm movement ID/history, remaining budget and hook refresh.
 7. Undo before another action: return to the anchor and restore budget without refunding Maneuver/action. After another action, end turn or non-reversible Region effect, verify undo is disabled/warns.
@@ -37,10 +44,21 @@ Use a disposable migrated world with a gridded skirmish scene, a gridless scene,
 
 ## Initiative, authority and replay
 
-1. PC opens its own picker. Adversary rolls once, secretly, by the authoritative GM. Minion uses Focus when Prepared and Vigilance when Unprepared without rolling.
+1. A GM clicks initiative for a player-owned PC and receives a local picker even while its owner is online.
+   A player opens only an owned actor's picker. Adversary rolls once, secretly, by the authoritative GM.
+   Minion uses Focus when Prepared and Vigilance when Unprepared without rolling.
 2. Verify Ring is chosen before one adversary roll, Fire and Opportunity policy are applied, and the raw pool stays GM-only.
 3. Test equal initiative: lower Honor, PC/adversary/minion, then persisted tie key. Test a structural initiative group sharing result/stance.
 4. With two active GMs and two players, apply damage/condition once and inspect transaction/request IDs for deduplication.
 5. From the roll message change TN, assign/change target, reopen Opportunity and show history. Verify Air/resistance/defense/damage/critical are recalculated.
 6. Change a target document independently after resolution, then replay. Confirm a visible conflict/diff and no silent overwrite. With unchanged documents, confirm rollback, incremented revision and updated message history.
 7. Repeat replay for a roll made by a Bleeding actor and for a roll that committed Burning/action state. Confirm the old revision is reverted before new `before` values are calculated and both lifecycle effects remain exactly once.
+
+## V14 Data Models
+
+1. Start the world and confirm there is no deprecated `template.json` warning.
+2. Create, open, edit, save and reopen `character`, `npc` and `army` actors.
+3. Repeat for every Item type declared by `system.json`, including `opportunity`.
+4. Inspect existing migrated documents with legacy custom top-level values; known values remain in place and
+   unknown values are retained under `_legacy`.
+5. Verify token resources, embedded Items and bundled compendia still resolve.

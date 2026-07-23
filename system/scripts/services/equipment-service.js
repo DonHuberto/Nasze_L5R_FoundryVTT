@@ -415,7 +415,7 @@ export class EquipmentService {
         }
         if (preparedAction && this.actions) {
             const combatant = await this.resolver(intent.actionReservation.combatantUuid);
-            this.actions.finalizeCommit(combatant, preparedAction, { context: { actionId: "prepare-item" } });
+            await this.actions.finalizeCommit(combatant, preparedAction, { context: { actionId: "prepare-item" } });
         }
         return { ok: true, status: "committed", intentId: intent.intentId, transaction, releasedGroundDocuments: placed.map(({ groundDocumentUuid }) => groundDocumentUuid) };
     }

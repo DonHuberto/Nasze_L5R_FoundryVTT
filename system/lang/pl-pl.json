@@ -36,6 +36,7 @@
     },
     "l5r5e": {
         "automation": {
+            "actorOwnerRequired": "Ten rzut może wykonać wyłącznie MG lub właściciel aktora.",
             "equipment": {
                 "unarmed": {
                     "punch": "Uderzenie pięścią",
@@ -73,6 +74,7 @@
                 "automation": "Automatyzacja",
                 "cost": "Koszt / skalowanie",
             "description": "Opis",
+            "renderError": "Nie udało się otworzyć okna Okazji. Szczegóły znajdują się w konsoli.",
             "target": "Cel",
                 "invalidJson": "Niepoprawny JSON w polu {field}: {error}",
                 "invalidSchema": "Niepoprawne pola okazji: {fields}",

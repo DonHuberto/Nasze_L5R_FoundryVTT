@@ -691,7 +691,7 @@ export class DicePickerDialog extends FormApplication {
             roll.l5r5e.actionTypes = Object.entries(this.object.actions).filter(([, active]) => active).map(([type]) => type);
             roll.l5r5e.actionId = this._actionId;
             const combatant = game.combat?.combatants?.find((entry) => entry.actor?.uuid === this._actor?.uuid);
-            if (!this._rollContext && combatant === game.combat?.combatant && roll.l5r5e.actionTypes.length) {
+            if (combatant === game.combat?.combatant && roll.l5r5e.actionTypes.length) {
                 const lifecycle = { combatId: game.combat.id, round: game.combat.round, turn: game.combat.turn };
                 const reservation = await game.l5r5e.actions.reserveAndPersist(combatant, { actionId: this._actionId, actionTypes: roll.l5r5e.actionTypes, requiresCheck: true, lifecycle });
                 if (!reservation.ok) {

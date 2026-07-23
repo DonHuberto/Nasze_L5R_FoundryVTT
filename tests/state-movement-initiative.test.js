@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { ConditionService } from "../system/scripts/services/condition-service.js";
 import { TurnStateService, createTurnState, normalizeTurnState } from "../system/scripts/services/turn-state-service.js";
-import { MovementService, measureGridPath, movementStepCost } from "../system/scripts/services/movement-service.js";
+import { MovementService, RangeBandService, measureGridPath, movementStepCost } from "../system/scripts/services/movement-service.js";
 import { InitiativeService } from "../system/scripts/services/initiative-service.js";
 import { ActionService } from "../system/scripts/services/action-service.js";
 
@@ -35,7 +35,7 @@ test("legacy Combatant turn state is filled with new fields without losing its c
     assert.deepEqual(state.reservations, {});
 });
 
-test("action commit prepares turn state and Burning in the same mutation batch", () => {
+test("action commit mutates stable turn fields granularly and never transactions reservations", () => {
     const turns = new TurnStateService();
     const conditions = new ConditionService();
     const actions = new ActionService({ turnStateService: turns, conditionService: conditions });
@@ -46,10 +46,22 @@ test("action commit prepares turn state and Burning in the same mutation batch",
     const prepared = actions.prepareCommit(combatant, reservation.reservationId, { context: { lifecycle: { combatId: "c", round: 1, turn: 0 } } });
     assert.equal(prepared.ok, true);
     assert.equal(prepared.state.primaryAction.used, true);
-    assert.deepEqual(prepared.mutations.map(({ path, after }) => [path, after]), [
-        ["flags.l5r5e.turnState", prepared.state],
-        ["system.strife.value", 5],
-    ]);
+    assert.ok(prepared.mutations.some(({ path }) => path === "flags.l5r5e.turnState.primaryAction"));
+    assert.ok(prepared.mutations.some(({ path }) => path === "flags.l5r5e.turnState.actionTypesUsed"));
+    assert.ok(prepared.mutations.every(({ path }) => path !== "flags.l5r5e.turnState" && !path.endsWith(".reservations")));
+    assert.ok(prepared.mutations.some(({ path, after }) => path === "system.strife.value" && after === 5));
+});
+
+test("reservations use non-empty action ids and are idempotent per intent", () => {
+    const turns = new TurnStateService();
+    const state = createTurnState("c:1:0");
+    const first = turns.reserveAction(state, { actionId: "", actionTypes: ["attack"], intentId: "picker-1" });
+    const second = turns.reserveAction(first.state, { actionId: "", actionTypes: ["attack"], intentId: "picker-1" });
+    assert.equal(first.ok, true);
+    assert.notEqual(first.state.reservations[first.reservationId].actionId, "");
+    assert.equal(second.idempotent, true);
+    assert.equal(second.reservationId, first.reservationId);
+    assert.equal(Object.keys(second.state.reservations).length, 1);
 });
 
 test("movement costs orthogonal, diagonal and difficult exit by actual waypoint", () => {
@@ -59,6 +71,7 @@ test("movement costs orthogonal, diagonal and difficult exit by actual waypoint"
     const measured = measureGridPath([{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 1 }], { difficultSquares: new Set(["1,0"]) });
     assert.equal(measured.cost, 4);
     assert.equal(measureGridPath([{ x: 0, y: 0 }, { x: 1, y: 0 }], { blockedSquares: new Set(["1,0"]) }).valid, false);
+    assert.equal(measureGridPath([{ x: 0, y: 0 }, { x: 1, y: 0 }], { hostileSquares: new Set(["0,0"]) }).cost, 2);
 });
 
 test("Maneuver budgets provide one band on failure and 2+ bands on success", () => {
@@ -132,12 +145,26 @@ test("condition lifecycle handles Dying and scene recovery with Exhausted", () =
     assert.deepEqual(service.sceneEndRecovery(actor), { fatigue: 5, strife: 4 });
 });
 
-test("hostile occupied grid offsets block the real waypoint path unless GM overrides", () => {
+test("hostile spaces are enterable and charge on exit; optional token blocking remains opt-in", () => {
     const service = new MovementService({ turnStateService: new TurnStateService(), conditionService: new ConditionService() });
     const hostile = { id: "enemy", disposition: -1, hidden: false, getOccupiedGridSpaceOffsets: () => [{ i: 1, j: 0 }] };
-    const grid = { getDirectPath: () => [{ i: 0, j: 0 }, { i: 1, j: 0 }], getTopLeftPoint: (offset) => ({ x: offset.i, y: offset.j }) };
+    const grid = {
+        getDirectPath: (waypoints) => waypoints.map(({ x, y }) => ({ i: x, j: y })),
+        getTopLeftPoint: (offset) => ({ x: offset.i, y: offset.j }),
+    };
     const token = { id: "self", disposition: 1, parent: { grid, tokens: [] }, getOccupiedGridSpaceOffsets: ({ x, y } = {}) => [{ i: x ?? 0, j: y ?? 0 }] };
     token.parent.tokens = [token, hostile];
-    assert.equal(service.validateHostileBlockers(token, [{ x: 0, y: 0 }, { x: 1, y: 0 }]).code, "hostileOccupied");
-    assert.equal(service.validateHostileBlockers(token, [{ x: 0, y: 0 }, { x: 1, y: 0 }], { gmOverride: true }).ok, true);
+    const path = [{ x: 0, y: 0 }, { x: 1, y: 0 }];
+    assert.equal(service.validateTokenSpaces(token, path).ok, true);
+    assert.equal(service.validateTokenSpaces(token, path, { tokensBlockSpaces: true }).code, "tokenOccupied");
+    assert.equal(service.validateTokenSpaces(token, path, { tokensBlockSpaces: true, gmOverride: true }).ok, true);
+    assert.equal(service.enemyExitSurcharge(token, [{ x: 1, y: 0 }, { x: 2, y: 0 }]), 1);
+});
+
+test("public range-band API measures large tokens, gridless fallback, and profile bounds", () => {
+    const source = { parent: { grid: { type: 1 } }, getOccupiedGridSpaceOffsets: () => [{ i: 0, j: 0 }, { i: 1, j: 0 }] };
+    const target = { getOccupiedGridSpaceOffsets: () => [{ i: 4, j: 0 }] };
+    assert.deepEqual(RangeBandService.measureTokens(source, target), { gridless: false, cost: 3, range: 1 });
+    assert.deepEqual(RangeBandService.profileBounds({ range_min: 1, range_max: 3 }), { minimum: 1, maximum: 3, innerCost: 3, outerCost: 9 });
+    assert.equal(RangeBandService.measureTokens(null, target).gridless, true);
 });

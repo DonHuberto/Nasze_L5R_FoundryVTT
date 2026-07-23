@@ -6,15 +6,44 @@
     "readme": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/blob/master/README.md",
     "changelog": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/blob/master/CHANGELOG.md",
     "license": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/blob/master/LICENSE.md",
-    "manifest": "https://raw.githubusercontent.com/DonHuberto/Nasze_L5R_FoundryVTT/refs/tags/v1.14.104/system/system.json",
-    "download": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/releases/download/v1.14.104/system.zip",
-    "version": "1.14.104",
+    "manifest": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/releases/latest/download/system.json",
+    "download": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/releases/download/v1.14.105/system.zip",
+    "version": "1.14.105",
     "compatibility": {
         "minimum": "14",
         "verified": "14",
         "maximum": "14"
     },
     "socket": true,
+    "documentTypes": {
+        "Actor": {
+            "character": {
+                "htmlFields": ["description", "notes"]
+            },
+            "npc": {
+                "htmlFields": ["description", "notes"]
+            },
+            "army": {
+                "htmlFields": ["army_abilities", "supplies_logistics", "notes", "description", "past_battles"]
+            }
+        },
+        "Item": {
+            "item": {"htmlFields": ["description"]},
+            "armor": {"htmlFields": ["description"]},
+            "weapon": {"htmlFields": ["description"]},
+            "technique": {"htmlFields": ["description"]},
+            "opportunity": {"htmlFields": ["description"]},
+            "property": {"htmlFields": ["description"]},
+            "peculiarity": {"htmlFields": ["description"]},
+            "advancement": {"htmlFields": ["description"]},
+            "title": {"htmlFields": ["description"]},
+            "bond": {"htmlFields": ["description"]},
+            "signature_scroll": {"htmlFields": ["description"]},
+            "item_pattern": {"htmlFields": ["description"]},
+            "army_cohort": {"htmlFields": ["description", "abilities"]},
+            "army_fortification": {"htmlFields": ["description", "notes"]}
+        }
+    },
     "authors": [
         {
             "name": "Vlyan",

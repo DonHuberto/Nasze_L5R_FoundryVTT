@@ -72,6 +72,14 @@ export const RegisterSettings = function () {
         type: Boolean,
         default: true,
     });
+    game.settings.register(CONFIG.l5r5e.namespace, "tokensBlockSpaces", {
+        name: "Tokens block occupied spaces",
+        hint: "Optional house rule. When disabled (default), tokens do not make grid spaces impassable; leaving an enemy-occupied space still costs extra movement.",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: false,
+    });
     for (const [key, title, hint, defaultValue, range] of [
         ["improvisedThrowTn", "TnTitle", "TnHint", 2, { min: 1, max: 9, step: 1 }],
         ["improvisedThrowMinimumRange", "MinimumRangeTitle", "MinimumRangeHint", 1, { min: 0, max: 6, step: 1 }],

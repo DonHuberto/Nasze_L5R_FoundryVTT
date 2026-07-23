@@ -876,6 +876,7 @@
             "children_of_the_five_winds": "Children of the Five Winds"
         },
         "automation": {
+            "actorOwnerRequired": "Only a GM or an owner of this actor may make this roll.",
             "equipment": {
                 "unarmed": {
                     "punch": "Punch",
@@ -913,6 +914,7 @@
                 "automation": "Automation",
                 "cost": "Cost / scaling",
                 "description": "Description",
+                "renderError": "The Opportunity window could not be opened. See the console for details.",
                 "target": "Target",
                 "invalidJson": "Invalid JSON in {field}: {error}",
                 "invalidSchema": "Invalid Opportunity fields: {fields}",

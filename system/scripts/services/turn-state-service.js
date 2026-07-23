@@ -57,8 +57,12 @@ export class TurnStateService {
         };
     }
 
-    reserveAction(state, { actionId = makeId("action"), actionTypes = [], requiresCheck = true, preferWater = false, gmOverride = false } = {}) {
+    reserveAction(state, { actionId = null, actionTypes = [], requiresCheck = true, preferWater = false, gmOverride = false, intentId = null, ownerId = null } = {}) {
         const next = deepClone(state);
+        const stableActionId = typeof actionId === "string" && actionId.trim() ? actionId.trim() : makeId("action");
+        const stableIntentId = typeof intentId === "string" && intentId.trim() ? intentId.trim() : stableActionId;
+        const existing = Object.values(next.reservations).find((reservation) => reservation.intentId === stableIntentId);
+        if (existing) return { ok: true, idempotent: true, reservationId: existing.reservationId, slot: existing.slot, state: next };
         const types = normalizeActionTypes(actionTypes);
         const usedTypes = new Set(next.actionTypesUsed);
         const canWater = next.waterExtraAction.available && !next.waterExtraAction.used && !requiresCheck && !types.some((type) => usedTypes.has(type));
@@ -69,7 +73,17 @@ export class TurnStateService {
         if (!slot && !gmOverride) return { ok: false, code: "noActionSlot", state };
         slot ??= "primaryAction";
         const reservationId = makeId("reservation");
-        next.reservations[reservationId] = { reservationId, slot, actionId, actionTypes: types, requiresCheck, gmOverride };
+        next.reservations[reservationId] = {
+            reservationId,
+            slot,
+            actionId: stableActionId,
+            actionTypes: types,
+            requiresCheck,
+            gmOverride,
+            intentId: stableIntentId,
+            ownerId,
+            createdAt: Date.now(),
+        };
         return { ok: true, reservationId, slot, state: next };
     }
 
@@ -77,6 +91,13 @@ export class TurnStateService {
         const next = deepClone(state);
         delete next.reservations[reservationId];
         return next;
+    }
+
+    consumeReservation(state, reservationId) {
+        const next = deepClone(state);
+        if (!next.reservations[reservationId]) return { ok: true, idempotent: true, state: next };
+        delete next.reservations[reservationId];
+        return { ok: true, state: next };
     }
 
     commitReservation(state, reservationId) {

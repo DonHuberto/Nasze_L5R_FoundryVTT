@@ -313,17 +313,32 @@ export class RollnKeepDialog extends FormApplication {
         return super.close(options);
     }
 
-    openOpportunityWindow(mode) {
+    async openOpportunityWindow(mode) {
         if (!this.isOwner && mode === "spend") return null;
         const existing = this._opportunityWindows.get(mode);
         if (existing) {
+            await existing.maximize?.();
             existing.bringToFront?.();
-            existing.render(false);
+            existing.element?.focus?.();
+            await this._renderOpportunityWindow(existing);
             return existing;
         }
         const window = new OpportunityWindow(this, mode);
         this._opportunityWindows.set(mode, window);
-        window.render(true);
+        await this._renderOpportunityWindow(window);
+        return window;
+    }
+
+    async _renderOpportunityWindow(window) {
+        try {
+            await window.refreshOpportunityWindow();
+        } catch (error) {
+            const messageId = this.message?.id ?? "roll";
+            console.error(`L5R5E | Opportunity window render failed (mode=${window.mode}, message=${messageId})`, error);
+            ui.notifications.error(game.i18n.localize("l5r5e.automation.opportunity.renderError"));
+            if (this._opportunityWindows.get(window.mode) === window) this._opportunityWindows.delete(window.mode);
+            return null;
+        }
         return window;
     }
 
@@ -332,7 +347,15 @@ export class RollnKeepDialog extends FormApplication {
     }
 
     _refreshOpportunityWindows() {
-        for (const window of this._opportunityWindows.values()) window.render(false);
+        if (this._opportunityRefreshQueued) return;
+        this._opportunityRefreshQueued = true;
+        queueMicrotask(async () => {
+            try {
+                await Promise.all([...this._opportunityWindows.values()].map((window) => this._renderOpportunityWindow(window)));
+            } finally {
+                this._opportunityRefreshQueued = false;
+            }
+        });
     }
 
     getOpportunityWindowContext(mode) {
@@ -469,7 +492,7 @@ export class RollnKeepDialog extends FormApplication {
         };
         rollData.resolutionPreview.strifeLedger = currentResolution.strife ?? game.l5r5e.conditions.calculateStrife({ actor: rollData.actor, stance: rollData.stance, rawKeptStrife: raw.strife });
         this.object.submitDisabled ||= Boolean(rollData.rnkEnded) && currentResolution.status === "blocked";
-        queueMicrotask(() => this._refreshOpportunityWindows());
+        this._refreshOpportunityWindows();
     }
 
     /**
@@ -1261,7 +1284,7 @@ export class RollnKeepDialog extends FormApplication {
             updated ||= mutations.length > 0 || (criticalWorkflow?.createdDocuments?.length ?? 0) > 0;
 
             if (preparedAction) {
-                game.l5r5e.actions.finalizeCommit(reservedCombatant, preparedAction, resolution);
+                await game.l5r5e.actions.finalizeCommit(reservedCombatant, preparedAction, resolution);
                 this._reservationFinalized = true;
             }
 
