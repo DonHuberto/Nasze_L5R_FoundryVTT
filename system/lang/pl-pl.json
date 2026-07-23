@@ -3,6 +3,32 @@
         "Language": "Polski",
         "Maintainers": ["DonHuberto"]
     },
+    "SETTINGS": {
+        "Equipment": {
+            "AllowArmorSwap": {
+                "Title": "Zezwalaj na zmianę zbroi podczas aktywnego konfliktu",
+                "Hint": "Opcjonalna polityka tego forka: pozwala zakładać i zdejmować zbroję w aktywnym konflikcie. Nie jest przedstawiana jako jednoznaczna reguła RAW."
+            },
+            "ImprovisedThrow": {
+                "EnabledTitle": "Włącz improwizowaną akcję Rzuć przedmiot",
+                "EnabledHint": "House rule: pozwala rzucić dowolnym trzymanym przedmiotem przy użyciu poniższego profilu.",
+                "TnTitle": "Rzuć przedmiot: TN",
+                "TnHint": "Poziom trudności testu house rule.",
+                "SkillTitle": "Rzuć przedmiot: umiejętność",
+                "SkillHint": "Umiejętność bojowa używana w teście house rule.",
+                "MinimumRangeTitle": "Rzuć przedmiot: minimalny Zasięg",
+                "MinimumRangeHint": "Najmniejsze legalne pasmo zasięgu.",
+                "MaximumRangeTitle": "Rzuć przedmiot: maksymalny Zasięg",
+                "MaximumRangeHint": "Największe legalne pasmo zasięgu.",
+                "DamageTitle": "Rzuć przedmiot: bazowe obrażenia",
+                "DamageHint": "Bazowe obrażenia; nie używa wartości obrażeń rzucanej broni.",
+                "DeadlinessTitle": "Rzuć przedmiot: śmiertelność",
+                "DeadlinessHint": "Śmiertelność profilu house rule.",
+                "DamageTypeTitle": "Rzuć przedmiot: typ obrażeń",
+                "DamageTypeHint": "Typ obrażeń profilu house rule."
+            }
+        }
+    },
     "TYPES": {
         "Item": {
             "opportunity": "Okazja"
@@ -10,12 +36,37 @@
     },
     "l5r5e": {
         "automation": {
+            "equipment": {
+                "unarmed": {
+                    "punch": "Uderzenie pięścią",
+                    "kick": "Kopnięcie",
+                    "bite": "Ugryzienie"
+                },
+                "houseRule": "House Rule",
+                "errors": {
+                    "occupiedHands": "Brakuje wolnych rąk. Wybierz trzymane przedmioty do schowania lub upuszczenia.",
+                    "occupiedHandsDecision": "Wybrane przedmioty nie zwalniają wystarczającej liczby rąk.",
+                    "armorSwapBlocked": "Polityka świata blokuje zmianę noszonej zbroi podczas aktywnego konfliktu.",
+                    "itemNotHeld": "Przedmiot musi być trzymany, aby można go było upuścić lub rzucić.",
+                    "invalidThrowMode": "Wybrany przedmiot nie obsługuje tego sposobu rzutu RAW.",
+                    "houseRuleDisabled": "House rule Rzuć przedmiot jest wyłączona.",
+                    "groundPlacementFailed": "Nie udało się utworzyć przedmiotu na mapie; zmiany ekwipunku wycofano.",
+                    "pickupFailed": "Nie udało się podnieść przedmiotu; nie pozostawiono duplikatu."
+                }
+            },
             "opportunity": {
                 "available": "Dostępne okazje",
                 "choose": "Wybierz wydatki okazji",
+                "titleReference": "Lista okazji",
+                "titleSpend": "Wydawanie okazji",
+                "generated": "uzyskano",
                 "spend": "Wydaj okazję",
                 "spent": "wydano",
                 "remaining": "pozostało",
+                "reachable": "obecnie osiągalna",
+                "unreachable": "obecnie nieosiągalna",
+                "confirm": "Zastosuj wybory",
+                "condition": "Stan",
                 "rulesKey": "Stabilny klucz reguły",
                 "ring": "Krąg",
                 "timing": "Moment rozstrzygnięcia",
@@ -24,7 +75,17 @@
             "description": "Opis",
             "target": "Cel",
                 "invalidJson": "Niepoprawny JSON w polu {field}: {error}",
-                "invalidSchema": "Niepoprawne pola okazji: {fields}"
+                "invalidSchema": "Niepoprawne pola okazji: {fields}",
+                "error": {
+                    "unknown": "Wybrana okazja nie jest dostępna dla tego rzutu.",
+                    "duplicate": "Nieskalowalną okazję można wybrać tylko raz.",
+                    "targetRequired": "Wybierz cel dla wybranej okazji.",
+                    "conditionRequired": "Wybierz stan dla wybranej okazji.",
+                    "ringRequired": "Wybierz Krąg dla wybranej okazji.",
+                    "overspend": "Plan wydaje {spent} okazji z dostępnego budżetu {budget}.",
+                    "provisionalIllegality": "Ten rzut pozostaje prowizorycznie nielegalny.",
+                    "blocked": "Planu okazji nie można obecnie rozstrzygnąć."
+                }
             },
             "roll": {
                 "summary": "Końcowe rozstrzygnięcie",

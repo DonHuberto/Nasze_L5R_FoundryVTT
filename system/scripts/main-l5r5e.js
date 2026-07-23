@@ -19,6 +19,7 @@ import { RingDie } from "./dice/dietype/ring-die.js";
 import { RollL5r5e } from "./dice/roll.js";
 import { DicePickerDialog } from "./dice/dice-picker-dialog.js";
 import { RollnKeepDialog } from "./dice/roll-n-keep-dialog.js";
+import { OpportunityWindow } from "./dice/opportunity-window.js";
 import { CombatL5r5e } from "./combat.js";
 // Items
 import { ItemL5r5e } from "./item.js";
@@ -41,6 +42,7 @@ import { ActionService } from "./services/action-service.js";
 import { ConditionService } from "./services/condition-service.js";
 import { CriticalService } from "./services/critical-service.js";
 import { DamageService } from "./services/damage-service.js";
+import { EquipmentService } from "./services/equipment-service.js";
 import { GmAuthorityService } from "./services/gm-authority-service.js";
 import { InitiativeService } from "./services/initiative-service.js";
 import { ItemQualityService } from "./services/item-quality-service.js";
@@ -135,6 +137,7 @@ Hooks.once("init", async () => {
     const transactions = new ResolutionTransactionService();
     const rollResolution = new RollResolutionService({ opportunityService: opportunities, conditionService: conditions, damageService: damage, criticalService: critical, transactionService: transactions });
     const actions = new ActionService({ turnStateService: turns, conditionService: conditions, rollResolutionService: rollResolution });
+    const equipment = new EquipmentService({ qualityService: qualities, transactionService: transactions, actionService: actions });
     const movement = new MovementService({ turnStateService: turns, conditionService: conditions, actionService: actions });
     const initiative = new InitiativeService({ opportunityService: opportunities });
     const authority = new GmAuthorityService();
@@ -153,6 +156,7 @@ Hooks.once("init", async () => {
         ActorL5r5e,
         DicePickerDialog,
         RollnKeepDialog,
+        OpportunityWindow,
         GmToolbox,
         GmMonitor,
         ResolutionToolsL5r5e,
@@ -167,6 +171,7 @@ Hooks.once("init", async () => {
         damage,
         critical,
         qualities,
+        equipment,
         movement,
         rangeBands: RangeBandService,
         initiative,
@@ -190,6 +195,7 @@ Hooks.once("init", async () => {
         return applied;
     });
     sockets.registerAuthorityHandler("revertTransaction", async ({ transaction }) => transactions.revert(transaction));
+    sockets.registerAuthorityHandler("equipmentCommit", async ({ intent }) => equipment.execute(intent));
     sockets.registerDecisionHandler("defense", async ({ targetUuid, damage: pendingDamage }) => {
         const target = await fromUuid(targetUuid);
         if (!target) throw new Error(`Defense target is unavailable: ${targetUuid}`);

@@ -64,9 +64,15 @@ await rewriteJsonLines("system/packs/core-weapons.db", (document) => {
     system.damage_type ??= "physical";
     system.active_grip = twoHandedOnly.has(document._id) ? "two-handed" : "one-handed";
     system.grip_profiles = {
-        "one-handed": { label: system.grip_1 ?? "", damage_modifier: 0, deadliness_modifier: 0, ...baseRange, ...(override.one ?? {}) },
-        "two-handed": { label: system.grip_2 ?? "", damage_modifier: 0, deadliness_modifier: 0, ...baseRange, ...(override.two ?? {}) },
+        "one-handed": { label: system.grip_1 ?? "", damage_modifier: 0, deadliness_modifier: 0, skill_id: system.skill, hands: 1, ...baseRange, ...(override.one ?? {}) },
+        "two-handed": { label: system.grip_2 ?? "", damage_modifier: 0, deadliness_modifier: 0, skill_id: system.skill, hands: 2, ...baseRange, ...(override.two ?? {}) },
     };
+    if (document._id === "L5RCoreWea000035") {
+        system.skill = "melee";
+        system.grip_profiles["one-handed"] = { ...system.grip_profiles["one-handed"], label: "Melee", skill_id: "melee", hands: 1, range_min: 0, range_max: 0 };
+        system.grip_profiles["two-handed"] = { ...system.grip_profiles["two-handed"], skill_id: "melee", hands: 2 };
+        system.grip_profiles.thrown = { label: "Thrown", damage_modifier: 0, deadliness_modifier: 0, skill_id: "ranged", hands: 1, range_min: 1, range_max: 3 };
+    }
     system.properties = (system.properties ?? []).map((property) => ({ ...property, rulesKey: property.rulesKey ?? propertyKeys.get(property.id ?? property._id) }));
     return document;
 });
@@ -84,6 +90,20 @@ for (const pack of techniquePacks) {
             movement: { mode: "none", bands: 0, multiplier: 1 },
             opportunity_rules_keys: [],
         };
+        if (document._id === "L5RCoreKat000009") {
+            system.rulesKey = "soaring-slice";
+            system.activation = {
+                requires_check: true,
+                action_types: ["attack"],
+                action_id: "soaring-slice",
+                target: { mode: "single", filters: { range: { minimum: 2, maximum: 3 } } },
+                range: { minimum: 2, maximum: 3 },
+                movement: { mode: "none", bands: 0, multiplier: 1 },
+                weapon: { required: true, quantity: 1, readied: true, grip: "one-handed", skill_mode: "active-profile" },
+                outcome: { damage: "active-profile-plus-bonus-successes", defended: "ground-range-1-from-target", critical: "embedded-in-target", failure: "maximum-range-toward-target" },
+                opportunity_rules_keys: ["soaring-slice-range"],
+            };
+        }
         return document;
     });
 }

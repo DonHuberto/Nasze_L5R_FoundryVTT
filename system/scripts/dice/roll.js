@@ -1,4 +1,5 @@
 import { normalizeActions } from "./action-types.js";
+import { normalizeMessageMode } from "./message-mode.js";
 
 /**
  * Roll for L5R5e
@@ -403,12 +404,14 @@ export class RollL5r5e extends Roll {
         }
 
         // Message mode
-        const mMode = messageMode || messageData.messageMode || game.settings.get("core", "messageMode");
-        if (mMode) {
-            messageData = ChatMessage.applyMode(messageData, mMode);
-        }
+        const configuredMode = game.settings.get("core", "messageMode");
+        const mMode = normalizeMessageMode(messageMode ?? messageData.messageMode ?? configuredMode, {
+            fallbackMode: configuredMode,
+        });
+        delete messageData.messageMode;
 
-        // Either create the message or just return the chat data
+        // Foundry applies the normalized mode during creation. Do not transform
+        // whisper/blind data a second time with ChatMessage.applyMode.
         return ChatMessage.implementation.create(messageData, {
             messageMode: mMode,
         });

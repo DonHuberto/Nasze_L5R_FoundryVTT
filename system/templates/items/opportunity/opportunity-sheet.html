@@ -10,6 +10,7 @@
         <div class="form-group"><label>{{localize "l5r5e.automation.opportunity.automation"}}</label><select name="system.automation">{{selectOptions automations selected=system.automation localize=false}}</select></div>
         <div class="form-group"><label>{{localize "l5r5e.automation.opportunity.cost"}}</label><input type="number" name="system.cost.base" value="{{system.cost.base}}" min="1"><label><input type="checkbox" name="system.cost.scalable" {{checked system.cost.scalable}}> op+</label><input type="number" name="system.cost.increment" value="{{system.cost.increment}}" min="1"></div>
         <div class="form-group stacked"><label>{{localize "l5r5e.automation.opportunity.description"}}</label>{{editor system.description target="system.description" button=true editable=editable}}</div>
+        <div class="form-group"><label>Action IDs</label><input name="actionIdsCsv" value="{{actionIdsCsv}}" placeholder="strike, guard"></div>
         <div class="form-group stacked"><label>contexts JSON</label><textarea name="contextsJson" rows="9">{{contextsJson}}</textarea></div>
         <div class="form-group stacked"><label>requirements JSON</label><textarea name="requirementsJson" rows="5">{{requirementsJson}}</textarea></div>
         <div class="form-group stacked"><label>target JSON</label><textarea name="targetJson" rows="5">{{targetJson}}</textarea></div>

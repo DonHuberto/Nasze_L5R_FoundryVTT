@@ -44,6 +44,8 @@ export class DicePickerDialog extends FormApplication {
     _baseDifficulty = 2;
     _allowedRings = null;
     _rollContext = null;
+    _messageMode = null;
+    _actionId = null;
 
     /**
      * Payload Object
@@ -146,6 +148,7 @@ export class DicePickerDialog extends FormApplication {
 
         this._allowedRings = Array.isArray(options.allowedRings) ? [...new Set(options.allowedRings.filter((ring) => CONFIG.l5r5e.stances.includes(ring)))] : null;
         this._rollContext = options.rollContext ? foundry.utils.deepClone(options.rollContext) : null;
+        this._messageMode = options.messageMode ?? null;
 
         // Try to get Actor from: options, first selected token or player's selected character
         [
@@ -206,7 +209,9 @@ export class DicePickerDialog extends FormApplication {
 
         // InitiativeRoll
         this.object.isInitiativeRoll = !!options.isInitiativeRoll;
-        this.object.conflictType = options.conflictType ?? (this.object.isInitiativeRoll ? "conflict" : null);
+        this.object.conflictType = options.conflictType ?? (game.combat?.started
+            ? game.settings.get(CONFIG.l5r5e.namespace, "initiative-encounter") ?? "conflict"
+            : this.object.isInitiativeRoll ? "conflict" : null);
 
         // Item (weapon/technique)
         if (options.item) {
@@ -214,6 +219,7 @@ export class DicePickerDialog extends FormApplication {
         } else if (options.itemUuid) {
             this.item = fromUuidSync(options.itemUuid);
         }
+        this._actionId = options.actionId ?? this._rollContext?.actionId ?? this._item?.system?.rulesKey ?? null;
 
         const actionDefaults = options.actions ?? options.actionTypes ?? options.actionTypeTags;
         this.object.actions = defaultActionsState(false);
@@ -652,6 +658,7 @@ export class DicePickerDialog extends FormApplication {
                 skillAssistance: this.object.skill.assistance,
                 difficultyHidden: this.object.difficulty.hidden,
                 actions: foundry.utils.deepClone(this.object.actions),
+                messageMode: this._messageMode,
             };
 
             await this._actor.rollInitiative({
@@ -682,10 +689,11 @@ export class DicePickerDialog extends FormApplication {
             roll.l5r5e.difficultyHidden = this.object.difficulty.hidden;
             roll.l5r5e.actions = foundry.utils.deepClone(this.object.actions);
             roll.l5r5e.actionTypes = Object.entries(this.object.actions).filter(([, active]) => active).map(([type]) => type);
+            roll.l5r5e.actionId = this._actionId;
             const combatant = game.combat?.combatants?.find((entry) => entry.actor?.uuid === this._actor?.uuid);
             if (!this._rollContext && combatant === game.combat?.combatant && roll.l5r5e.actionTypes.length) {
                 const lifecycle = { combatId: game.combat.id, round: game.combat.round, turn: game.combat.turn };
-                const reservation = await game.l5r5e.actions.reserveAndPersist(combatant, { actionTypes: roll.l5r5e.actionTypes, requiresCheck: true, lifecycle });
+                const reservation = await game.l5r5e.actions.reserveAndPersist(combatant, { actionId: this._actionId, actionTypes: roll.l5r5e.actionTypes, requiresCheck: true, lifecycle });
                 if (!reservation.ok) {
                     ui.notifications.warn(game.i18n.localize("l5r5e.automation.action.unavailable"));
                     return false;
@@ -699,13 +707,20 @@ export class DicePickerDialog extends FormApplication {
                 item: this._item,
                 ring: this.object.ring.id,
                 actionTypes: roll.l5r5e.actionTypes,
+                actionId: this._actionId,
                 conflictType: this.object.conflictType,
                 techniqueType: this._item?.system?.technique_type,
                 requiresCheck: true,
                 baseTn: this._baseDifficulty,
                 turnState: combatant ? game.l5r5e.turns.getState(combatant) : null,
             }).legality;
-            roll.l5r5e.rollContext = this._rollContext ? foundry.utils.deepClone(this._rollContext) : null;
+            const suppliedContext = this._rollContext ? foundry.utils.deepClone(this._rollContext) : {};
+            const attackProfileSnapshot = suppliedContext.attackProfileSnapshot ?? this._item?.attackProfile ?? suppliedContext.unarmedProfile ?? null;
+            roll.l5r5e.rollContext = {
+                ...suppliedContext,
+                actionId: this._actionId,
+                attackProfileSnapshot: attackProfileSnapshot ? foundry.utils.deepClone(attackProfileSnapshot) : null,
+            };
 
             await roll.roll();
             message = await roll.toMessage();

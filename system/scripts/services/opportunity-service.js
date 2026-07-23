@@ -19,6 +19,7 @@ export function validateOpportunityDefinition(definition = {}) {
     if (!AUTOMATION.includes(definition.automation)) errors.push("automation");
     if (toFiniteNumber(definition?.cost?.base, 0) < 1) errors.push("cost.base");
     if (!String(definition?.effect?.type ?? "").trim()) errors.push("effect.type");
+    if (definition?.contexts?.actionIds !== undefined && !Array.isArray(definition.contexts.actionIds)) errors.push("contexts.actionIds");
     return { valid: errors.length === 0, errors };
 }
 
@@ -49,6 +50,7 @@ export class OpportunityService {
         if (!direct && !matchesList(filters.conflictTypes, context.conflictType)) return false;
         if (!direct && !matchesList(filters.checkKinds, context.checkKind)) return false;
         if (!direct && !matchesList(filters.actionTypes, normalizeActionTypes(context.actionTypes))) return false;
+        if (!direct && !matchesList(filters.actionIds, context.actionId)) return false;
         if (!direct && !matchesList(filters.skillGroups, context.skillGroup ?? context.skillCatId)) return false;
         if (!direct && !matchesList(filters.skillIds, context.skillId)) return false;
         if (!direct && !matchesList(filters.techniqueTypes, context.techniqueType ?? context.item?.system?.technique_type)) return false;
@@ -98,7 +100,7 @@ export class OpportunityService {
             const cost = this.costFor(definition, selection.spend);
             const decision = decisions[selection.rulesKey] ?? selection.decision ?? {};
             const targetMode = definition.target?.mode ?? "none";
-            if (["single", "multiple", "gm"].includes(targetMode) && !decision.targetUuid && !decision.targetUuids?.length) {
+            if (["single", "multiple", "gm", "rollTarget"].includes(targetMode) && !decision.targetUuid && !decision.targetUuids?.length) {
                 errors.push({ code: "targetRequired", rulesKey: selection.rulesKey });
             }
             if (definition.requirements?.conditionChoice && !decision.condition) errors.push({ code: "conditionRequired", rulesKey: selection.rulesKey });
@@ -146,6 +148,13 @@ export class OpportunityService {
         this.registerExecutor("ignore-terrain", (selection) => ({ type: "ignoreTerrain", quality: selection.decision.terrainQuality, rulesKey: selection.rulesKey }));
         this.registerExecutor("target", (selection) => ({ type: "target", operation: selection.definition.effect.params.operation ?? "add", targetUuid: selection.decision.targetUuid, rulesKey: selection.rulesKey }));
         this.registerExecutor("reserve-die", (selection) => ({ type: "reserveDie", die: selection.decision.die, rulesKey: selection.rulesKey }));
-        this.registerExecutor("critical", (selection) => ({ type: "critical", severity: amount(selection), targetUuid: selection.decision.targetUuid, rulesKey: selection.rulesKey }));
+        this.registerExecutor("critical", (selection, context) => ({
+            type: "critical",
+            severity: selection.definition.effect?.params?.severityMode === "activeAttackProfileDeadliness"
+                ? Math.max(0, toFiniteNumber(context.attackProfileSnapshot?.deadliness, 0))
+                : amount(selection),
+            targetUuid: selection.decision.targetUuid ?? context.targetUuid,
+            rulesKey: selection.rulesKey,
+        }));
     }
 }

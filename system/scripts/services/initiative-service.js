@@ -76,7 +76,7 @@ export class InitiativeService {
         })[0] ?? null;
     }
 
-    async rollAdversary(actor, { skillId, skillGroup, tn = 1, prepared = this.isPrepared(actor), ringOrder, messageMode = "blindroll" } = {}) {
+    async rollAdversary(actor, { skillId, skillGroup, tn = 1, prepared = this.isPrepared(actor), ringOrder, messageMode = "blind" } = {}) {
         const ring = this.chooseRing(actor, { order: ringOrder });
         const ringDice = Math.max(0, toFiniteNumber(actor.system.rings?.[ring], 0));
         const skillDice = Math.max(0, toFiniteNumber(actor.system.skills?.[skillGroup], 0));
@@ -135,11 +135,21 @@ export class InitiativeService {
         const mutations = await game.l5r5e.rollResolution.buildMutations(resolution, { actor });
         const transaction = game.l5r5e.transactions.create({ transactionId: resolution.transactionId, revision: resolution.revision, rollMessageUuid: message.uuid, inputs: { context: resolution.context, raw: resolution.raw }, decisions, mutations });
         const applied = await game.l5r5e.transactions.apply(transaction);
-        if (!applied.ok) throw new Error(`Adversary initiative transaction failed: ${applied.code}`);
+        if (!applied.ok) {
+            await message.delete?.().catch?.(() => undefined);
+            throw new Error(`Adversary initiative transaction failed: ${applied.code}`);
+        }
         resolution.transaction = transaction;
         resolution.status = "applied";
         roll.l5r5e.resolution = resolution;
-        await message.update({ "flags.l5r5e.resolution": resolution, rolls: [roll.toJSON()], content: await roll.render({}) });
+        try {
+            await message.update({ "flags.l5r5e.resolution": resolution, rolls: [roll.toJSON()], content: await roll.render({}) });
+        } catch (error) {
+            const reverted = await game.l5r5e.transactions.revert(transaction);
+            if (!reverted.ok) console.warn("L5R5E | Failed to roll back an adversary initiative transaction after a chat-message error.", reverted);
+            await message.delete?.().catch?.(() => undefined);
+            throw error;
+        }
         globalThis.Hooks?.callAll?.("l5r5e.rollResolutionChanged", message, resolution);
         return { initiative, ring, selected, resolution, message };
     }

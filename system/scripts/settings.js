@@ -56,6 +56,55 @@ export const RegisterSettings = function () {
         type: Boolean,
         default: false,
     });
+    game.settings.register(CONFIG.l5r5e.namespace, "allowArmorSwapInConflict", {
+        name: "SETTINGS.Equipment.AllowArmorSwap.Title",
+        hint: "SETTINGS.Equipment.AllowArmorSwap.Hint",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: false,
+    });
+    game.settings.register(CONFIG.l5r5e.namespace, "enableImprovisedThrowAction", {
+        name: "SETTINGS.Equipment.ImprovisedThrow.EnabledTitle",
+        hint: "SETTINGS.Equipment.ImprovisedThrow.EnabledHint",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: true,
+    });
+    for (const [key, title, hint, defaultValue, range] of [
+        ["improvisedThrowTn", "TnTitle", "TnHint", 2, { min: 1, max: 9, step: 1 }],
+        ["improvisedThrowMinimumRange", "MinimumRangeTitle", "MinimumRangeHint", 1, { min: 0, max: 6, step: 1 }],
+        ["improvisedThrowMaximumRange", "MaximumRangeTitle", "MaximumRangeHint", 2, { min: 0, max: 6, step: 1 }],
+        ["improvisedThrowDamage", "DamageTitle", "DamageHint", 1, { min: 0, max: 20, step: 1 }],
+        ["improvisedThrowDeadliness", "DeadlinessTitle", "DeadlinessHint", 1, { min: 0, max: 20, step: 1 }],
+    ]) game.settings.register(CONFIG.l5r5e.namespace, key, {
+        name: `SETTINGS.Equipment.ImprovisedThrow.${title}`,
+        hint: `SETTINGS.Equipment.ImprovisedThrow.${hint}`,
+        scope: "world",
+        config: true,
+        type: Number,
+        range,
+        default: defaultValue,
+    });
+    game.settings.register(CONFIG.l5r5e.namespace, "improvisedThrowSkill", {
+        name: "SETTINGS.Equipment.ImprovisedThrow.SkillTitle",
+        hint: "SETTINGS.Equipment.ImprovisedThrow.SkillHint",
+        scope: "world",
+        config: true,
+        type: String,
+        default: "ranged",
+        choices: { ranged: "l5r5e.skills.martial.ranged", melee: "l5r5e.skills.martial.melee", unarmed: "l5r5e.skills.martial.unarmed" },
+    });
+    game.settings.register(CONFIG.l5r5e.namespace, "improvisedThrowDamageType", {
+        name: "SETTINGS.Equipment.ImprovisedThrow.DamageTypeTitle",
+        hint: "SETTINGS.Equipment.ImprovisedThrow.DamageTypeHint",
+        scope: "world",
+        config: true,
+        type: String,
+        default: "physical",
+        choices: { physical: "l5r5e.automation.item.physical", supernatural: "l5r5e.automation.item.supernatural" },
+    });
 
 
     /* -------------------------------------- */

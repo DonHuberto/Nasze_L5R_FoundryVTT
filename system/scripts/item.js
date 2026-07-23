@@ -144,7 +144,8 @@ export class ItemL5r5e extends Item {
         return {
             itemUuid: this.uuid,
             grip: this.system.active_grip ?? "one-handed",
-            skillId: this.system.skill,
+            skillId: grip.skill_id ?? this.system.skill,
+            hands: Number.isFinite(Number(grip.hands)) ? Math.max(0, Number(grip.hands)) : (this.system.active_grip ?? "one-handed") === "two-handed" ? 2 : 1,
             damage: Math.max(0, Number(this.system.damage) + Number(grip.damage_modifier ?? 0)),
             deadliness: Math.max(0, Number(this.system.deadliness) + Number(grip.deadliness_modifier ?? 0)),
             damageType: this.system.damage_type === "supernatural" ? "supernatural" : "physical",

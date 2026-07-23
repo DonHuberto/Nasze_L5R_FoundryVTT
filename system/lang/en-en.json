@@ -29,6 +29,30 @@
             "Title": "Use custom techniques",
             "Hint": "Add 'Specificity' technique type to serve as a catch-all."
         },
+        "Equipment": {
+            "AllowArmorSwap": {
+                "Title": "Allow armor changes during an active conflict",
+                "Hint": "Fork policy override: permit equipping or removing armor while a conflict is active. This is not presented as a definitive RAW timing rule."
+            },
+            "ImprovisedThrow": {
+                "EnabledTitle": "Enable the improvised Throw Item action",
+                "EnabledHint": "House rule: allow an Attack action which throws any held item using the configurable profile below.",
+                "TnTitle": "Throw Item: TN",
+                "TnHint": "Target number for the house-rule check.",
+                "SkillTitle": "Throw Item: skill",
+                "SkillHint": "Martial skill used by the house-rule check.",
+                "MinimumRangeTitle": "Throw Item: minimum Range",
+                "MinimumRangeHint": "Minimum legal range band.",
+                "MaximumRangeTitle": "Throw Item: maximum Range",
+                "MaximumRangeHint": "Maximum legal range band.",
+                "DamageTitle": "Throw Item: base damage",
+                "DamageHint": "Base physical or supernatural damage; the held item's weapon damage is not used.",
+                "DeadlinessTitle": "Throw Item: deadliness",
+                "DeadlinessHint": "Deadliness of the house-rule profile.",
+                "DamageTypeTitle": "Throw Item: damage type",
+                "DamageTypeHint": "Damage type used by the house-rule profile."
+            }
+        },
         "CustomItemsHeight": {
             "Title": "Default items windows height",
             "Hint": "Set the default height for 'Items' windows types (techniques, weapons...), in pixels"
@@ -852,12 +876,37 @@
             "children_of_the_five_winds": "Children of the Five Winds"
         },
         "automation": {
+            "equipment": {
+                "unarmed": {
+                    "punch": "Punch",
+                    "kick": "Kick",
+                    "bite": "Bite"
+                },
+                "houseRule": "House Rule",
+                "errors": {
+                    "occupiedHands": "Not enough free hands. Choose held items to stow or drop.",
+                    "occupiedHandsDecision": "The selected items do not free enough hands.",
+                    "armorSwapBlocked": "Changing worn armor is disabled during an active conflict by world policy.",
+                    "itemNotHeld": "The item must be held before it can be dropped or thrown.",
+                    "invalidThrowMode": "The selected item does not support this RAW throwing mode.",
+                    "houseRuleDisabled": "The improvised Throw Item house rule is disabled.",
+                    "groundPlacementFailed": "The ground item could not be created; inventory changes were rolled back.",
+                    "pickupFailed": "The item could not be picked up; no duplicate was left behind."
+                }
+            },
             "opportunity": {
                 "available": "Available opportunities",
                 "choose": "Choose opportunity spending",
+                "titleReference": "Opportunity reference",
+                "titleSpend": "Spend Opportunity",
+                "generated": "generated",
                 "spend": "Spend opportunity",
                 "spent": "spent",
                 "remaining": "remaining",
+                "reachable": "available now",
+                "unreachable": "not currently affordable",
+                "confirm": "Apply selections",
+                "condition": "Condition",
                 "rulesKey": "Stable rules key",
                 "ring": "Ring",
                 "timing": "Timing",
@@ -866,7 +915,17 @@
                 "description": "Description",
                 "target": "Target",
                 "invalidJson": "Invalid JSON in {field}: {error}",
-                "invalidSchema": "Invalid Opportunity fields: {fields}"
+                "invalidSchema": "Invalid Opportunity fields: {fields}",
+                "error": {
+                    "unknown": "The selected Opportunity is not available for this roll.",
+                    "duplicate": "A non-scalable Opportunity can only be selected once.",
+                    "targetRequired": "Choose a target for the selected Opportunity.",
+                    "conditionRequired": "Choose a condition for the selected Opportunity.",
+                    "ringRequired": "Choose a Ring for the selected Opportunity.",
+                    "overspend": "The plan spends {spent} Opportunity from a budget of {budget}.",
+                    "provisionalIllegality": "This roll remains provisionally illegal.",
+                    "blocked": "The Opportunity plan cannot currently be resolved."
+                }
             },
             "roll": {
                 "summary": "Final resolution",

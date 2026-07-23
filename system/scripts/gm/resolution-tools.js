@@ -222,15 +222,16 @@ export class ResolutionToolsL5r5e {
         return resolution;
     }
 
-    static reopenOpportunity(message) {
+    static async reopenOpportunity(message) {
         const dialog = new game.l5r5e.RollnKeepDialog(message.id);
         const resolution = this.resolution(message);
         for (const selection of resolution?.opportunities?.selections ?? []) {
             dialog.object.opportunitySpend[selection.rulesKey] = selection.cost;
             dialog.object.opportunityDecisions[selection.rulesKey] = selection.decision ?? {};
         }
-        dialog.object.opportunityPanelOpen = true;
-        return dialog.render(true);
+        await dialog.render(true);
+        dialog.openOpportunityWindow("spend");
+        return dialog;
     }
 
     static async showHistory(message) {

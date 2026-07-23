@@ -250,6 +250,8 @@
                     "label": "",
                     "damage_modifier": 0,
                     "deadliness_modifier": 0,
+                    "skill_id": "melee",
+                    "hands": 1,
                     "range_min": 0,
                     "range_max": 0
                 },
@@ -257,6 +259,8 @@
                     "label": "",
                     "damage_modifier": 0,
                     "deadliness_modifier": 0,
+                    "skill_id": "melee",
+                    "hands": 2,
                     "range_min": 0,
                     "range_max": 0
                 }
@@ -272,6 +276,7 @@
             "activation": {
                 "requires_check": true,
                 "action_types": [],
+                "action_id": "",
                 "target": {
                     "mode": "none",
                     "filters": {}
@@ -285,6 +290,14 @@
                     "bands": 0,
                     "multiplier": 1
                 },
+                "weapon": {
+                    "required": false,
+                    "quantity": 1,
+                    "readied": false,
+                    "grip": "",
+                    "skill_mode": ""
+                },
+                "outcome": {},
                 "opportunity_rules_keys": []
             }
         },
@@ -299,6 +312,7 @@
                 "conflictTypes": [],
                 "checkKinds": [],
                 "actionTypes": [],
+                "actionIds": [],
                 "skillGroups": [],
                 "skillIds": [],
                 "techniqueTypes": [],

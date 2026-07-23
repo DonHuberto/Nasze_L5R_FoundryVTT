@@ -376,10 +376,29 @@ export class MigrationL5r5e {
                         "two-handed": { label: item.system.grip_2 ?? "", damage_modifier: 0, deadliness_modifier: 0, range_min: 0, range_max: Number(item.system.range) || 0 },
                     };
                 }
+                if (rulesKey === "shuriken") {
+                    updateData["system.skill"] = "melee";
+                    updateData["system.grip_profiles.one-handed"] = { label: "Melee", damage_modifier: 0, deadliness_modifier: 0, skill_id: "melee", hands: 1, range_min: 0, range_max: 0 };
+                    updateData["system.grip_profiles.thrown"] = { label: "Thrown", damage_modifier: 0, deadliness_modifier: 0, skill_id: "ranged", hands: 1, range_min: 1, range_max: 3 };
+                }
             }
             if (item.type === "technique" && !item.system.activation) {
                 updateData["system.activation"] = { requires_check: Boolean(item.system.skill || item.system.difficulty), action_types: [], target: { mode: "none", filters: {} }, range: { minimum: 0, maximum: 0 }, movement: { mode: "none", bands: 0, multiplier: 1 }, opportunity_rules_keys: [] };
             }
+            if (item.type === "technique" && rulesKey === "soaring-slice") {
+                updateData["system.activation"] = {
+                    requires_check: true,
+                    action_types: ["attack"],
+                    action_id: "soaring-slice",
+                    target: { mode: "single", filters: { range: { minimum: 2, maximum: 3 } } },
+                    range: { minimum: 2, maximum: 3 },
+                    movement: { mode: "none", bands: 0, multiplier: 1 },
+                    weapon: { required: true, quantity: 1, readied: true, grip: "one-handed", skill_mode: "active-profile" },
+                    outcome: { damage: "active-profile-plus-bonus-successes", defended: "ground-range-1-from-target", critical: "embedded-in-target", failure: "maximum-range-toward-target" },
+                    opportunity_rules_keys: ["soaring-slice-range"],
+                };
+            }
+            if (item.type === "opportunity" && !Array.isArray(item.system.contexts?.actionIds)) updateData["system.contexts.actionIds"] = [];
             if (item.type === "peculiarity" && !item.system.automationTags) {
                 updateData["system.automationTags"] = /\bScar\b/i.test(item.system.types ?? "") ? ["scar"] : [];
             }

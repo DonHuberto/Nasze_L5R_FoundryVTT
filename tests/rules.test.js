@@ -5,10 +5,11 @@ import { ConditionService } from "../system/scripts/services/condition-service.j
 import { OpportunityService } from "../system/scripts/services/opportunity-service.js";
 import { OpportunityRepository } from "../system/scripts/services/opportunity-repository.js";
 import { RollResolutionService } from "../system/scripts/services/roll-resolution-service.js";
+import { CORE_OPPORTUNITIES } from "../system/scripts/data/core-opportunities.js";
 
 const definition = (overrides = {}) => ({
     rulesKey: "test", name: "Test", description: "", sourceReference: {}, ring: "any",
-    contexts: { conflictTypes: [], checkKinds: [], actionTypes: [], skillGroups: [], skillIds: [], techniqueTypes: [], itemTypes: [], initiative: null },
+    contexts: { conflictTypes: [], checkKinds: [], actionTypes: [], actionIds: [], skillGroups: [], skillIds: [], techniqueTypes: [], itemTypes: [], initiative: null },
     cost: { base: 1, increment: 1, scalable: false, maxSpend: null }, requirements: {}, timing: "manual",
     target: { mode: "none", filters: {} }, effect: { type: "manual", params: {} }, duration: null, automation: "manual",
     ...overrides,
@@ -133,4 +134,34 @@ test("an opportunity that inflicts a critical strike becomes an explicit workflo
         decisions: { "air-critical": { targetUuid: target.uuid } },
     });
     assert.deepEqual(resolution.effects.action.directCriticals, [{ type: "critical", severity: 4, targetUuid: target.uuid, rulesKey: "air-critical" }]);
+});
+
+test("Strike critical requires the stable actionId, success, a target, and a non-Earth target", async () => {
+    const strike = CORE_OPPORTUNITIES.find(({ rulesKey }) => rulesKey === "strike-critical");
+    const service = new OpportunityService({ repository: new OpportunityRepository({ definitions: [strike] }) });
+    const base = { ring: "air", conflictType: "skirmish", actionTypes: ["attack"], actionId: "strike", provisionalSuccess: true };
+    assert.deepEqual((await service.available(base)).map(({ rulesKey }) => rulesKey), ["strike-critical"]);
+    assert.equal((await service.available({ ...base, actionId: null })).length, 0);
+    assert.equal((await service.available({ ...base, actionId: "soaring-slice" })).length, 0);
+    assert.equal((await service.available({ ...base, provisionalSuccess: false })).length, 0);
+    assert.equal((await service.available({ ...base, targetActor: { system: { stance: "earth" } } })).length, 0);
+    assert.equal(service.validatePlan([strike], [{ rulesKey: "strike-critical" }], 2).errors[0].code, "targetRequired");
+});
+
+test("Strike critical severity is frozen from the attack-profile snapshot", async () => {
+    const strike = CORE_OPPORTUNITIES.find(({ rulesKey }) => rulesKey === "strike-critical");
+    const conditions = new ConditionService();
+    const opportunities = new OpportunityService({ repository: new OpportunityRepository({ definitions: [strike] }), conditionService: conditions });
+    const damage = { resolve: () => ({ fatigue: 0 }), razorEdgedDamage: () => null, qualities: { armorResistance: () => 0 } };
+    const rolls = new RollResolutionService({ opportunityService: opportunities, conditionService: conditions, damageService: damage });
+    const actor = { uuid: "Actor.A", statuses: new Set() };
+    const target = { uuid: "Actor.T", statuses: new Set(), system: { stance: "air" }, items: [] };
+    const resolution = await rolls.resolve({
+        context: { actor, targetActor: target, stance: "air", tn: 1, conflictType: "skirmish", actionTypes: ["attack"], actionId: "strike", attackProfileSnapshot: { deadliness: 7, damage: 3 } },
+        rawSymbols: { success: 2, explosive: 0, opportunity: 2, strife: 0 },
+        opportunityPlan: [{ rulesKey: "strike-critical", spend: 2 }],
+        decisions: { "strike-critical": { targetUuid: target.uuid } },
+    });
+    assert.deepEqual(resolution.effects.action.directCriticals, [{ type: "critical", severity: 7, targetUuid: target.uuid, rulesKey: "strike-critical" }]);
+    assert.equal(resolution.context.attackProfileSnapshot.deadliness, 7);
 });

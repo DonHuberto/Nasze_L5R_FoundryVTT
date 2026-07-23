@@ -713,6 +713,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
         return {
             uuid: item.uuid,
             skill: item.system.skill,
+            attackProfile: item.attackProfile,
         };
     }
 
@@ -757,6 +758,9 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
             isInitiativeRoll: isInitiative,
             actor: this.actor,
             itemUuid: weapon?.uuid,
+            actions: weapon ? { attack: true } : undefined,
+            actionId: weapon ? "strike" : null,
+            rollContext: weapon ? { actionId: "strike", attackProfileSnapshot: weapon.attackProfile } : null,
         }).render(true);
     }
 

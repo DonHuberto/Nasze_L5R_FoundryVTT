@@ -1,3 +1,5 @@
+import { resolveInitiativeMessageMode } from "./dice/message-mode.js";
+
 /**
  * Extends the actor to process special things from L5R.
  */
@@ -17,10 +19,11 @@ export class CombatL5r5e extends Combat {
      * @param {object} [messageOptions] Additional options with which to customize created Chat Messages
      * @return {Promise<Combat>}        A promise which resolves to the updated Combat entity once updates are complete.
      */
-    async rollInitiative(ids, { formula = null, updateTurn = true, messageOptions = {} } = {}) {
+    async rollInitiative(ids, { formula = null, updateTurn = true, messageMode = null, messageOptions = {} } = {}) {
         if (!Array.isArray(ids)) {
             ids = [ids];
         }
+        const resolvedMessageMode = resolveInitiativeMessageMode({ messageMode, messageOptions });
 
         // Get global modifiers
         const cfg = {
@@ -76,6 +79,7 @@ export class CombatL5r5e extends Combat {
                     skillGroup: skillCat,
                     tn: cfg.difficulty,
                     prepared: isPrepared,
+                    messageMode: resolvedMessageMode ?? "blind",
                 });
                 initiative = automated.initiative;
                 await combatant.actor.update({ "system.stance": automated.ring });
@@ -104,6 +108,7 @@ export class CombatL5r5e extends Combat {
                             difficulty: cfg.difficulty,
                             difficultyHidden: cfg.difficultyHidden,
                             isInitiativeRoll: true,
+                            messageMode: resolvedMessageMode,
                         }).render(true);
                         continue;
                     }
@@ -130,7 +135,7 @@ export class CombatL5r5e extends Combat {
                 if (messageOptions.rnkRoll instanceof game.l5r5e.RollL5r5e && ids.length === 1) {
                     // Specific RnK
                     roll = messageOptions.rnkRoll;
-                    rnkMessage = await roll.toMessage({ flavor }, { messageMode: messageOptions.messageMode || null });
+                    rnkMessage = await roll.toMessage({ flavor }, { messageMode: resolvedMessageMode });
                 } else {
                     // Regular
                     roll = new game.l5r5e.RollL5r5e(formula ?? createFormula.join("+"));
@@ -150,7 +155,7 @@ export class CombatL5r5e extends Combat {
                     roll.l5r5e.skillAssistance = messageOptions.skillAssistance || 0;
 
                     await roll.roll();
-                    rnkMessage = await roll.toMessage({ flavor });
+                    rnkMessage = await roll.toMessage({ flavor }, { messageMode: resolvedMessageMode });
                 }
 
                 // Ugly but work... I need the new message
@@ -182,6 +187,7 @@ export class CombatL5r5e extends Combat {
                     difficulty: cfg.difficulty,
                     difficultyHidden: cfg.difficultyHidden,
                     isInitiativeRoll: true,
+                    messageMode: resolvedMessageMode,
                 },
             });
         }

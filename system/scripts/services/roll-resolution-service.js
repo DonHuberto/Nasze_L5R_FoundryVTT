@@ -27,6 +27,7 @@ export class RollResolutionService {
     }
 
     normalizeContext(context = {}) {
+        const attackProfileSnapshot = deepClone(context.attackProfileSnapshot ?? context.rollContext?.attackProfileSnapshot ?? context.item?.attackProfile ?? context.unarmedProfile ?? null);
         return {
             ...context,
             actor: context.actor,
@@ -39,6 +40,8 @@ export class RollResolutionService {
             ring: String(context.ring ?? context.stance ?? "void").toLowerCase(),
             stance: String(context.stance ?? context.ring ?? "void").toLowerCase(),
             actionTypes: normalizeActionTypes(context.actionTypes),
+            actionId: typeof context.actionId === "string" && context.actionId.trim() ? context.actionId.trim().toLowerCase() : null,
+            attackProfileSnapshot,
             directOpportunityKeys: [...new Set(context.directOpportunityKeys ?? context.item?.system?.activation?.opportunity_rules_keys ?? [])],
             requiresCheck: context.requiresCheck !== false,
             isCheck: context.isCheck !== false,
@@ -124,7 +127,7 @@ export class RollResolutionService {
         };
         if (success && context.damage) actionEffects.damage = this.damage.resolve({ ...context.damage, resistance: adjustedResistance(context.damage.resistance), source: context.actor, target: preview.context.targetActor, bonusSuccesses, success, defenseChoice: decisions.defense?.choice ?? context.damage.defenseChoice });
         else if (success && preview.context.actionTypes.includes("attack")) {
-            const profile = context.item?.attackProfile ?? context.unarmedProfile;
+            const profile = preview.context.attackProfileSnapshot;
             if (profile && preview.context.targetActor) {
                 const wornArmor = [...(preview.context.targetActor.items ?? [])].find((candidate) => candidate.type === "armor" && candidate.system?.equipped);
                 const resistance = context.resistance ?? (wornArmor ? this.qualities?.armorResistance?.(wornArmor) : 0);

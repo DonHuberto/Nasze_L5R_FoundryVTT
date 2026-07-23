@@ -23,6 +23,7 @@ export class OpportunitySheetL5r5e extends api.HandlebarsApplicationMixin(sheets
             system,
             editable: this.isEditable,
             contextsJson: JSON.stringify(system.contexts ?? {}, null, 2),
+            actionIdsCsv: (system.contexts?.actionIds ?? []).join(", "),
             requirementsJson: JSON.stringify(system.requirements ?? {}, null, 2),
             targetJson: JSON.stringify(system.target ?? {}, null, 2),
             effectJson: JSON.stringify(system.effect ?? {}, null, 2),
@@ -44,6 +45,11 @@ export class OpportunitySheetL5r5e extends api.HandlebarsApplicationMixin(sheets
                 throw new Error(game.i18n.format("l5r5e.automation.opportunity.invalidJson", { field, error: error.message }));
             }
             delete data[field];
+        }
+        if (data.actionIdsCsv !== undefined) {
+            data.system.contexts = { ...(this.item.system.contexts ?? {}), ...(data.system.contexts ?? {}) };
+            data.system.contexts.actionIds = [...new Set(String(data.actionIdsCsv).split(/[\s,]+/).map((value) => value.trim().toLowerCase()).filter(Boolean))];
+            delete data.actionIdsCsv;
         }
         const candidate = { ...this.item.system, ...data.system };
         const validation = validateOpportunityDefinition(candidate);

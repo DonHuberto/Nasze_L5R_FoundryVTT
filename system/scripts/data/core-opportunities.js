@@ -1,4 +1,4 @@
-const emptyContexts = () => ({ conflictTypes: [], checkKinds: [], actionTypes: [], skillGroups: [], skillIds: [], techniqueTypes: [], itemTypes: [], initiative: null });
+const emptyContexts = () => ({ conflictTypes: [], checkKinds: [], actionTypes: [], actionIds: [], skillGroups: [], skillIds: [], techniqueTypes: [], itemTypes: [], initiative: null });
 
 function opportunity({ rulesKey, name, description, ring = "any", contexts = {}, cost = {}, requirements = {}, timing = "manual", target = {}, effect = {}, duration = null, automation = "manual", page = 328 }) {
     return {
@@ -51,6 +51,32 @@ export const CORE_OPPORTUNITIES = Object.freeze([
     opportunity({ rulesKey: "conflict-void-ignore-terrain-next-attack", name: "Unhindered attack", description: "Ignore one terrain quality during your next Attack check before the end of your next turn.", ring: "void", contexts: { conflictTypes: ["conflict", "skirmish"] }, timing: "deferred", effect: { type: "ignore-terrain" }, duration: { until: "endNextTurn" }, automation: "confirm" }),
     opportunity({ rulesKey: "conflict-void-support-initiative", name: "Centered support", description: "During a Support check, increase Initiative by 1 per spend.", ring: "void", contexts: { conflictTypes: ["conflict", "skirmish"], actionTypes: ["support"] }, cost: { scalable: true }, timing: "afterSuccess", effect: { type: "resource", params: { resource: "initiative", amount: 1 } }, automation: "automatic" }),
     opportunity({ rulesKey: "conflict-void-ignore-condition", name: "Transcend condition", description: "Ignore one suffered condition until the end of your next turn.", ring: "void", contexts: { conflictTypes: ["conflict", "skirmish"] }, cost: { base: 2 }, requirements: { conditionChoice: true }, timing: "preValidation", effect: { type: "ignore-condition" }, duration: { until: "endNextTurn" }, automation: "confirm" }),
+
+    opportunity({
+        rulesKey: "soaring-slice-range",
+        name: "Soaring Slice range",
+        description: "Increase Soaring Slice's maximum range by one band per Opportunity spent.",
+        contexts: { actionTypes: ["attack"], actionIds: ["soaring-slice"] },
+        cost: { scalable: true },
+        timing: "afterSuccess",
+        effect: { type: "range", params: { amount: 1 } },
+        automation: "automatic",
+        page: 177,
+    }),
+
+    opportunity({
+        rulesKey: "strike-critical",
+        name: "Strike critical",
+        description: "After a successful Strike, inflict a critical strike using the deadliness snapshot of the attack profile.",
+        contexts: { conflictTypes: ["conflict", "skirmish", "duel"], actionTypes: ["attack"], actionIds: ["strike"] },
+        cost: { base: 2 },
+        requirements: { success: true },
+        timing: "afterSuccess",
+        target: { mode: "rollTarget" },
+        effect: { type: "critical", params: { severityMode: "activeAttackProfileDeadliness" } },
+        automation: "confirm",
+        page: 264,
+    }),
 
     ...["air", "earth", "water", "void"].map((ring) => opportunity({ rulesKey: `initiative-${ring}-insight`, name: `Initiative ${ring} insight`, description: "Resolve the Ring-specific informational initiative effect with the GM.", ring, contexts: { initiative: true }, page: 329 })),
     opportunity({ rulesKey: "initiative-fire-focus-when-unprepared", name: "Sudden readiness", description: "Use Focus instead of Vigilance for Initiative when unprepared.", ring: "fire", contexts: { initiative: true }, timing: "beforeSuccess", effect: { type: "resource", params: { resource: "initiativeBase", amount: 0, mode: "focus" } }, automation: "automatic", page: 329 }),

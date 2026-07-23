@@ -6,6 +6,28 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.104 - 23/07/2026 - Initiative, Opportunity and equipment foundations
+
+### Initiative and chat visibility
+- Normalize Foundry VTT 14 message modes and legacy aliases before creating roll messages.
+- Keep automatic adversary initiative blind, preserve selected modes across all initiative branches and roll back partial state when message creation fails.
+
+### Opportunity workflow
+- Move Opportunity reference and spending into separate responsive ApplicationV2 windows with shared parent-owned state.
+- Add stable `actionId` / `contexts.actionIds` metadata and the successful Strike critical option using the frozen active attack-profile deadliness.
+- Preserve Void pre-validation ordering, target decisions, Earth stance protection and authority-side plan validation.
+
+### Equipment and thrown profiles
+- Expose the transactional `game.l5r5e.equipment` API for hands, grip, Prepare Item, armor policy, drop, pickup and throw operations.
+- Add virtual Punch, Kick and Bite profiles without creating persistent Items.
+- Add versioned, sanitized Tile-backed ground items with stack-safe pickup, idempotency and rollback.
+- Add Shuriken's distinct melee and thrown grips, structured Soaring Slice metadata and a clearly labelled configurable improvised Throw Item house rule.
+- Add English and Polish settings/localization plus migration and deterministic pack normalization.
+
+### Verification
+- Add integrated initiative, Opportunity, equipment, landing, rollback and data tests.
+- Pass data build, syntax, 61 Node tests, ESLint and SCSS compilation on Foundry VTT 14 sources.
+
 ## 1.14.103 - 16/07/2026 - Combat tracker dock backend
 
 - Expose `game.l5r5e.lateArrivals` for combatants joining an active conflict.

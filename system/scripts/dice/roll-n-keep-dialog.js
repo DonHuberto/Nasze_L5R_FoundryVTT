@@ -1,4 +1,5 @@
 import { HelpersL5r5e } from "../helpers.js";
+import { OpportunityWindow } from "./opportunity-window.js";
 
 /**
  * L5R Dice Roll n Keep dialog
@@ -29,6 +30,7 @@ export class RollnKeepDialog extends FormApplication {
      */
     roll = null;
     _reservationFinalized = false;
+    _opportunityWindows = new Map();
 
     /**
      * Payload Object
@@ -36,7 +38,6 @@ export class RollnKeepDialog extends FormApplication {
     object = {
         currentStep: 0,
         submitDisabled: false,
-        opportunityPanelOpen: false,
         opportunitySpend: {},
         opportunityDecisions: {},
         availableOpportunities: [],
@@ -300,6 +301,9 @@ export class RollnKeepDialog extends FormApplication {
     }
 
     async close(options = {}) {
+        const windows = [...this._opportunityWindows.values()];
+        this._opportunityWindows.clear();
+        await Promise.all(windows.map((window) => window.close({ parentClosing: true })));
         const reservation = this.roll?.l5r5e?.actionReservation;
         if (reservation && !this._reservationFinalized && this.isOwner) {
             const combatant = await fromUuid(reservation.combatantUuid);
@@ -307,6 +311,77 @@ export class RollnKeepDialog extends FormApplication {
             this._reservationFinalized = true;
         }
         return super.close(options);
+    }
+
+    openOpportunityWindow(mode) {
+        if (!this.isOwner && mode === "spend") return null;
+        const existing = this._opportunityWindows.get(mode);
+        if (existing) {
+            existing.bringToFront?.();
+            existing.render(false);
+            return existing;
+        }
+        const window = new OpportunityWindow(this, mode);
+        this._opportunityWindows.set(mode, window);
+        window.render(true);
+        return window;
+    }
+
+    _forgetOpportunityWindow(mode, window) {
+        if (this._opportunityWindows.get(mode) === window) this._opportunityWindows.delete(mode);
+    }
+
+    _refreshOpportunityWindows() {
+        for (const window of this._opportunityWindows.values()) window.render(false);
+    }
+
+    getOpportunityWindowContext(mode) {
+        const preview = this.roll?.l5r5e?.resolutionPreview ?? {};
+        const errors = (preview.validationErrors ?? []).map((error) => {
+            const key = `l5r5e.automation.opportunity.error.${error.code ?? error.key ?? "blocked"}`;
+            return game.i18n.has?.(key) ? game.i18n.format(key, error) : `${error.code ?? error.key ?? "blocked"}`;
+        });
+        return {
+            mode,
+            referenceMode: mode === "reference",
+            spendMode: mode === "spend",
+            opportunities: this.object.availableOpportunities,
+            budget: { generated: preview.generatedOpportunity ?? 0, spent: preview.spentOpportunity ?? 0, remaining: preview.remainingOpportunity ?? 0 },
+            errors,
+            valid: errors.length === 0,
+        };
+    }
+
+    setOpportunitySelected(key, selected) {
+        const definition = this.object.availableOpportunities.find((entry) => entry.rulesKey === key);
+        if (!definition) return;
+        this.object.opportunitySpend[key] = selected ? Number(definition.cost.base) || 1 : 0;
+        this.render(false);
+    }
+
+    adjustOpportunitySpend(key, direction) {
+        const definition = this.object.availableOpportunities.find((entry) => entry.rulesKey === key);
+        if (!definition?.cost?.scalable) return;
+        const base = Number(definition.cost.base) || 1;
+        const increment = Math.max(1, Number(definition.cost.increment) || 1);
+        const maximum = definition.cost.maxSpend ?? this.roll?.l5r5e?.summary?.opportunity ?? base;
+        const current = Number(this.object.opportunitySpend[key]) || 0;
+        const next = current === 0 && direction > 0 ? base : current + Math.sign(direction) * increment;
+        this.object.opportunitySpend[key] = Math.max(0, Math.min(maximum, next));
+        this.render(false);
+    }
+
+    setOpportunityDecision(key, field, value) {
+        const decision = { ...(this.object.opportunityDecisions[key] ?? {}) };
+        if (field === "targetUuids") {
+            decision.targetUuids = value;
+            delete decision.targetUuid;
+        } else {
+            decision[field] = value || undefined;
+            if (field === "targetUuid") delete decision.targetUuids;
+        }
+        this.object.opportunityDecisions[key] = decision;
+        this.render(false);
     }
 
     _resolutionContext() {
@@ -327,6 +402,8 @@ export class RollnKeepDialog extends FormApplication {
             techniqueType: rollData.item?.system?.technique_type,
             directOpportunityKeys: rollData.item?.system?.activation?.opportunity_rules_keys ?? [],
             unarmedProfile: rollData.rollContext?.unarmedProfile ?? rollData.unarmedProfile,
+            actionId: rollData.actionId ?? rollData.rollContext?.actionId ?? null,
+            attackProfileSnapshot: rollData.rollContext?.attackProfileSnapshot ?? null,
             actionTypes,
             initiative: Boolean(rollData.isInitiativeRoll),
             checkKind: rollData.isInitiativeRoll ? "initiative" : "skill",
@@ -351,7 +428,6 @@ export class RollnKeepDialog extends FormApplication {
         };
         const preview = game.l5r5e.rollResolution.preview(this._resolutionContext(), raw);
         const available = await game.l5r5e.opportunities.available({ ...preview.context, provisionalSuccess: preview.provisionalSuccess });
-        const spent = Object.values(this.object.opportunitySpend).reduce((sum, value) => sum + (Number(value) || 0), 0);
         const targetDocuments = [rollData.target, ...game.user.targets].map((target) => target?.document ?? target).filter(Boolean);
         const targetChoices = [...new Map(targetDocuments.map((target) => [target.uuid, { value: target.uuid, label: target.name ?? target.actor?.name ?? target.uuid }])).values()];
         this.object.availableOpportunities = available.map((definition) => {
@@ -374,6 +450,11 @@ export class RollnKeepDialog extends FormApplication {
                 conditions: [...(rollData.actor?.statuses ?? [])].map((condition) => ({ value: condition, label: condition })),
             };
         });
+        const currentPlan = Object.entries(this.object.opportunitySpend).filter(([, value]) => Number(value) > 0).map(([rulesKey, value]) => ({ rulesKey, spend: Number(value) }));
+        const currentDecisions = Object.fromEntries(currentPlan.map(({ rulesKey }) => [rulesKey, { ...(this.object.opportunityDecisions[rulesKey] ?? {}), targetUuid: this.object.opportunityDecisions[rulesKey]?.targetUuid ?? rollData.target?.uuid ?? undefined }]));
+        const validation = game.l5r5e.opportunities.validatePlan(available, currentPlan, raw.opportunity, currentDecisions);
+        this.object.opportunityValidation = validation;
+        const currentResolution = await game.l5r5e.rollResolution.resolve({ context: this._resolutionContext(), rawSymbols: raw, opportunityPlan: currentPlan, decisions: currentDecisions });
         rollData.resolutionPreview = {
             rawSuccesses: preview.totalSuccess,
             success: preview.provisionalSuccess,
@@ -382,14 +463,13 @@ export class RollnKeepDialog extends FormApplication {
             bonusSuccesses: preview.bonusSuccesses,
             rawStrife: raw.strife,
             generatedOpportunity: raw.opportunity,
-            spentOpportunity: spent,
-            remainingOpportunity: Math.max(0, raw.opportunity - spent),
+            spentOpportunity: validation.spent,
+            remainingOpportunity: validation.remaining,
+            validationErrors: currentResolution.status === "blocked" ? currentResolution.errors ?? [{ code: currentResolution.reason ?? "blocked" }] : [],
         };
-        const currentPlan = Object.entries(this.object.opportunitySpend).filter(([, value]) => Number(value) > 0).map(([rulesKey, value]) => ({ rulesKey, spend: Number(value) }));
-        const currentDecisions = Object.fromEntries(currentPlan.map(({ rulesKey }) => [rulesKey, { ...(this.object.opportunityDecisions[rulesKey] ?? {}), targetUuid: this.object.opportunityDecisions[rulesKey]?.targetUuid ?? rollData.target?.uuid ?? undefined }]));
-        const currentResolution = await game.l5r5e.rollResolution.resolve({ context: this._resolutionContext(), rawSymbols: raw, opportunityPlan: currentPlan, decisions: currentDecisions });
         rollData.resolutionPreview.strifeLedger = currentResolution.strife ?? game.l5r5e.conditions.calculateStrife({ actor: rollData.actor, stance: rollData.stance, rawKeptStrife: raw.strife });
-        this.object.submitDisabled ||= spent > raw.opportunity;
+        this.object.submitDisabled ||= Boolean(rollData.rnkEnded) && currentResolution.status === "blocked";
+        queueMicrotask(() => this._refreshOpportunityWindows());
     }
 
     /**
@@ -479,8 +559,7 @@ export class RollnKeepDialog extends FormApplication {
         html.find(".effect-name").on("click", this._openEffectJournal.bind(this));
         html.find(".toggle-opportunities").on("click", (event) => {
             event.preventDefault();
-            this.object.opportunityPanelOpen = !this.object.opportunityPanelOpen;
-            this.render(false);
+            this.openOpportunityWindow(event.currentTarget.dataset.mode ?? (this.roll?.l5r5e?.rnkEnded ? "spend" : "reference"));
         });
         html.find(".back-to-dice").on("click", (event) => {
             event.preventDefault();
@@ -550,40 +629,6 @@ export class RollnKeepDialog extends FormApplication {
         ["strifeApplied", "fatigueApplied", "targetStrifeApplied", "targetFatigueApplied"].forEach((field) =>
             registerValuePicker(field)
         );
-
-        html.find(".opportunity-select").on("change", (event) => {
-            const key = event.currentTarget.dataset.key;
-            const base = Number(event.currentTarget.dataset.base) || 1;
-            this.object.opportunitySpend[key] = event.currentTarget.checked ? base : 0;
-            this.render(false);
-        });
-        html.find(".opportunity-adjust").on("click", (event) => {
-            event.preventDefault();
-            const key = event.currentTarget.dataset.key;
-            const delta = Number(event.currentTarget.dataset.delta) || 0;
-            const definition = this.object.availableOpportunities.find((entry) => entry.rulesKey === key);
-            if (!definition) return;
-            const base = Number(definition.cost.base) || 1;
-            const maximum = definition.cost.maxSpend ?? this.roll.l5r5e.summary.opportunity;
-            const current = Number(this.object.opportunitySpend[key]) || 0;
-            this.object.opportunitySpend[key] = Math.max(0, Math.min(maximum, current === 0 && delta > 0 ? base : current + delta));
-            this.render(false);
-        });
-        html.find(".opportunity-condition").on("change", (event) => {
-            const key = event.currentTarget.dataset.key;
-            this.object.opportunityDecisions[key] = { ...(this.object.opportunityDecisions[key] ?? {}), condition: event.currentTarget.value };
-        });
-        html.find(".opportunity-ring").on("change", (event) => {
-            const key = event.currentTarget.dataset.key;
-            this.object.opportunityDecisions[key] = { ...(this.object.opportunityDecisions[key] ?? {}), ring: event.currentTarget.value };
-            this.render(false);
-        });
-        html.find(".opportunity-target").on("change", (event) => {
-            const key = event.currentTarget.dataset.key;
-            const values = [...event.currentTarget.selectedOptions].map((option) => option.value).filter(Boolean);
-            this.object.opportunityDecisions[key] = { ...(this.object.opportunityDecisions[key] ?? {}), ...(event.currentTarget.multiple ? { targetUuids: values, targetUuid: undefined } : { targetUuid: values[0], targetUuids: undefined }) };
-            this.render(false);
-        });
 
         const diceSelector = ".dice.draggable";
         html.find(diceSelector).on("click", this._onDiceKeep.bind(this));
