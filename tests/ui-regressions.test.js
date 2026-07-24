@@ -7,6 +7,7 @@ test("ApplicationV2 Opportunity child uses object render options", async (t) => 
     t.after(() => { globalThis.foundry = previousFoundry; });
     class ApplicationV2 {
         constructor(options) { this.options = options; }
+        get parent() { return "foundry-managed-parent"; }
         render(options) { this.renderOptions = options; return this; }
         close() {}
     }
@@ -25,10 +26,19 @@ test("ApplicationV2 Opportunity child uses object render options", async (t) => 
         getOpportunityWindowContext: () => ({}),
     };
     const window = new OpportunityWindow(parent, "reference");
+    assert.equal(window.parent, "foundry-managed-parent");
+    assert.equal(window.rollParent, parent);
     await window.refreshOpportunityWindow();
     assert.deepEqual(window.renderOptions, { force: true });
     await window.refreshParentRoll();
     assert.equal(parent.renderForce, false);
+});
+
+test("GM resolution context menu uses the Foundry V14 visible property", () => {
+    const source = fs.readFileSync(new URL("../system/scripts/gm/resolution-tools.js", import.meta.url), "utf8");
+    const contextOptions = source.slice(source.indexOf("static contextOptions()"), source.indexOf("static async changeTn"));
+    assert.match(contextOptions, /\bvisible\b/);
+    assert.doesNotMatch(contextOptions, /\bcondition\b/);
 });
 
 test("sheet roll controls remain available outside editable-only listeners and are semantic", () => {

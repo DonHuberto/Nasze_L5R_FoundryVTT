@@ -6,6 +6,13 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.106 - 24/07/2026 - Opportunity window and GM replay hotfix
+
+- Restore the separate Available Opportunities window on Foundry VTT 14 by avoiding the framework-managed `ApplicationV2.parent` property.
+- Restore retrospective attack target and TN changes, including critical-mitigation follow-ups which do not have an associated Item.
+- Migrate GM roll context-menu visibility from deprecated `condition` entries to the Foundry VTT 14 `visible` API.
+- Add regression coverage for the ApplicationV2 property collision, nullable action inference and V14 context-menu entries.
+
 ## 1.14.105 - 23/07/2026 - V14 UI, replay and DataModel fixes
 
 - Correct ApplicationV2 Opportunity rendering, focus/restoration, guarded refreshes and child-window cleanup while preserving the ApplicationV1 parent API.

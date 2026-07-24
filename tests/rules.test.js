@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { actionState, clampCheckTn, getActorKind, inferActionTypes } from "../system/scripts/services/rule-utils.js";
+import { inferActions } from "../system/scripts/dice/action-types.js";
 import { ConditionService } from "../system/scripts/services/condition-service.js";
 import { OpportunityService } from "../system/scripts/services/opportunity-service.js";
 import { OpportunityRepository } from "../system/scripts/services/opportunity-repository.js";
@@ -17,6 +18,8 @@ const definition = (overrides = {}) => ({
 
 test("ordinary rolls have no default action tags and metadata is structural", () => {
     assert.deepEqual(actionState(), { attack: false, scheme: false, move: false, support: false });
+    assert.deepEqual(inferActionTypes(null), []);
+    assert.deepEqual(inferActions(null), { attack: false, scheme: false, support: false, move: false });
     assert.deepEqual(inferActionTypes({ system: { activation: { actionTypes: ["Attack", "Movement"] } } }), ["attack", "move"]);
     assert.equal(clampCheckTn(0), 1);
 });

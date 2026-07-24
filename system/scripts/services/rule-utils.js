@@ -32,8 +32,8 @@ export function actionState(values = []) {
 export function inferActionTypes(source = {}) {
     const system = source?.system ?? source ?? {};
     const candidates = [
-        source.actionTypes,
-        source.actions,
+        source?.actionTypes,
+        source?.actions,
         system.actionTypes,
         system.action_types,
         system.activation?.actionTypes,

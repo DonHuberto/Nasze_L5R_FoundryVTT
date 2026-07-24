@@ -21,24 +21,24 @@ export class OpportunityWindow extends HandlebarsApplicationMixin(ApplicationV2)
             id: `l5r5e-opportunity-${mode}-${parent.message?.id ?? "roll"}`,
             window: { title: `l5r5e.automation.opportunity.title${mode === "reference" ? "Reference" : "Spend"}` },
         });
-        this.parent = parent;
+        this.rollParent = parent;
         this.mode = mode;
     }
 
     async _prepareContext() {
-        return this.parent.getOpportunityWindowContext(this.mode);
+        return this.rollParent.getOpportunityWindowContext(this.mode);
     }
 
     async _onRender(context, options) {
         await super._onRender(context, options);
         if (this.mode !== "spend") return;
         for (const element of this.element.querySelectorAll("[data-opportunity-toggle]")) {
-            element.addEventListener("change", (event) => this.parent.setOpportunitySelected(event.currentTarget.dataset.opportunityToggle, event.currentTarget.checked));
+            element.addEventListener("change", (event) => this.rollParent.setOpportunitySelected(event.currentTarget.dataset.opportunityToggle, event.currentTarget.checked));
         }
         for (const element of this.element.querySelectorAll("[data-opportunity-adjust]")) {
             element.addEventListener("click", (event) => {
                 event.preventDefault();
-                this.parent.adjustOpportunitySpend(event.currentTarget.dataset.opportunityAdjust, Number(event.currentTarget.dataset.delta) || 0);
+                this.rollParent.adjustOpportunitySpend(event.currentTarget.dataset.opportunityAdjust, Number(event.currentTarget.dataset.delta) || 0);
             });
         }
         for (const element of this.element.querySelectorAll("[data-opportunity-decision]")) {
@@ -47,12 +47,12 @@ export class OpportunityWindow extends HandlebarsApplicationMixin(ApplicationV2)
                 const value = event.currentTarget.multiple
                     ? [...event.currentTarget.selectedOptions].map((option) => option.value).filter(Boolean)
                     : event.currentTarget.value;
-                this.parent.setOpportunityDecision(key, field, value);
+                this.rollParent.setOpportunityDecision(key, field, value);
             });
         }
         this.element.querySelector("[data-opportunity-confirm]")?.addEventListener("click", async (event) => {
             event.preventDefault();
-            if (!this.parent.getOpportunityWindowContext(this.mode).valid) return;
+            if (!this.rollParent.getOpportunityWindowContext(this.mode).valid) return;
             await this.refreshParentRoll();
             await this.close();
         });
@@ -60,7 +60,7 @@ export class OpportunityWindow extends HandlebarsApplicationMixin(ApplicationV2)
 
     /** Refresh the ApplicationV1 parent with its native boolean signature. */
     refreshParentRoll() {
-        return this.parent.render(false);
+        return this.rollParent.render(false);
     }
 
     /** Refresh this ApplicationV2 child with an options object. */
@@ -69,7 +69,7 @@ export class OpportunityWindow extends HandlebarsApplicationMixin(ApplicationV2)
     }
 
     async close(options = {}) {
-        this.parent?._forgetOpportunityWindow?.(this.mode, this);
+        this.rollParent?._forgetOpportunityWindow?.(this.mode, this);
         return super.close(options);
     }
 }
