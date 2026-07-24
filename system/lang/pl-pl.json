@@ -152,7 +152,8 @@
                 "assignTarget": "Przypisz lub zmień cel",
                 "selectTarget": "Najpierw wskaż token jako cel.",
                 "reopenOpportunity": "Otwórz ponownie rozstrzygnięcie okazji",
-                "history": "Pokaż historię rozstrzygnięcia"
+                "history": "Pokaż historię rozstrzygnięcia",
+                "missingResolution": "Wybrany wpis czatu nie zawiera już danych rozstrzygnięcia rzutu."
             },
             "item": {
                 "activeGrip": "Aktywny chwyt",

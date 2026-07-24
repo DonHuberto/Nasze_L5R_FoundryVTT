@@ -48,7 +48,7 @@
 }
 
 // Dice Picker
-.dice-picker-dialog {
+&.dice-picker-dialog {
     .effects {
         @include roll-effects-base();
     }
@@ -282,7 +282,7 @@
     }
 }
 
-.roll-n-keep-dialog {
+&.roll-n-keep-dialog {
     min-width: 600px;
     max-width: 800px;
     &.finalized {
@@ -560,8 +560,8 @@
     }
 }
 
-.dice-picker-dialog,
-.roll-n-keep-dialog {
+&.dice-picker-dialog,
+&.roll-n-keep-dialog {
     button {
         cursor: default;
         color: $white;
@@ -604,7 +604,7 @@
         }
     }
 }
-.roll-n-keep-dialog {
+&.roll-n-keep-dialog {
     .toggle-opportunities.compact {
         margin: 0.35rem auto;
         width: auto;
@@ -652,7 +652,31 @@
     }
 }
 
-.l5r5e-opportunity-window {
+&.application.roll-n-keep-dialog,
+&.application.l5r5e-opportunity-window {
+    color: #251b17;
+    color-scheme: light;
+
+    .window-content {
+        background: #fffae6 url("../assets/imgs/bg-scroll.webp") no-repeat center !important;
+        background-size: cover !important;
+        color: #251b17 !important;
+    }
+
+    input,
+    output,
+    select {
+        color: #251b17 !important;
+    }
+
+    input,
+    select {
+        background: rgba(255, 255, 255, 0.72) !important;
+        border-color: rgba(74, 48, 36, 0.45) !important;
+    }
+}
+
+&.l5r5e-opportunity-window {
     .window-content { padding: 0; }
 
     .opportunity-window-content {
@@ -660,7 +684,7 @@
         flex-direction: column;
         gap: 0.65rem;
         max-height: min(72vh, 46rem);
-        min-width: min(28rem, 80vw);
+        min-width: min(50rem, 88vw);
         padding: 0.75rem;
     }
 
@@ -679,11 +703,12 @@
     }
 
     .opportunity-row {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-        padding: 0.6rem;
+        border: 1px solid rgba(67, 43, 31, 0.32);
+        border-bottom-width: 2px;
+        padding: 0.7rem;
 
-        &:nth-child(odd) { background: rgba(127, 127, 127, 0.16); }
-        &:nth-child(even) { background: rgba(127, 127, 127, 0.06); }
+        &:nth-child(odd) { background: rgba(116, 69, 43, 0.17) !important; }
+        &:nth-child(even) { background: rgba(255, 255, 255, 0.52) !important; }
         .opportunity-details > header { display: flex; align-items: center; gap: 0.4rem; }
         p { margin: 0.3rem 0; }
         &.unreachable { opacity: 0.55; }
@@ -691,9 +716,9 @@
 
     .opportunity-entry-grid.with-spend-control {
         align-items: start;
-        display: grid;
-        gap: 0.75rem;
-        grid-template-columns: 6.5rem minmax(0, 1fr);
+        display: grid !important;
+        gap: 0;
+        grid-template-columns: 8rem minmax(20rem, 1.45fr) minmax(14rem, 1fr) !important;
     }
     .opportunity-spend-control {
         align-items: center;
@@ -701,7 +726,7 @@
         border-right: 1px solid rgba(127, 127, 127, 0.3);
         display: flex;
         justify-content: center;
-        padding-right: 0.75rem;
+        padding: 0 0.75rem;
     }
     .opportunity-spend-control > label {
         align-items: center;
@@ -712,7 +737,13 @@
     }
     .opportunity-cost { margin-left: auto; white-space: nowrap; }
     .opportunity-reachability { font-size: 0.75rem; opacity: 0.8; }
-    .opportunity-decisions { display: grid; gap: 0.4rem; margin-top: 0.45rem; }
+    .opportunity-decision-column {
+        align-self: stretch;
+        border-left: 1px solid rgba(67, 43, 31, 0.3);
+        min-width: 0;
+        padding-left: 0.75rem;
+    }
+    .opportunity-decisions { display: grid; gap: 0.55rem; }
     .opportunity-decisions label { display: grid; grid-template-columns: auto minmax(10rem, 1fr); align-items: center; gap: 0.5rem; }
     .opportunity-counter { display: flex; align-items: center; gap: 0.35rem; }
     .opportunity-counter button { width: 2rem; }
@@ -724,6 +755,11 @@
     @media (max-width: 720px) {
         .opportunity-window-content { min-width: 0; }
         .opportunity-entry-grid.with-spend-control { grid-template-columns: 5.5rem minmax(0, 1fr); }
+        .opportunity-decision-column {
+            border-left: 0;
+            grid-column: 2;
+            padding: 0.5rem 0 0;
+        }
         .opportunity-decisions label { grid-template-columns: 1fr; }
     }
 }

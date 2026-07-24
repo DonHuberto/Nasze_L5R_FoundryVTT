@@ -4,22 +4,27 @@ export class ResolutionToolsL5r5e {
     }
 
     static messageFromEntry(entry) {
-        const id = entry?.dataset?.messageId ?? entry?.data?.("messageId") ?? entry?.attr?.("data-message-id");
+        const candidate = entry?.currentTarget ?? entry?.target ?? entry?.[0] ?? entry;
+        const messageElement = candidate?.closest?.("[data-message-id]") ?? candidate;
+        const id = messageElement?.dataset?.messageId
+            ?? entry?.data?.("messageId")
+            ?? entry?.attr?.("data-message-id");
         return game.messages.get(id);
     }
 
     static contextOptions() {
         const visible = (entry) => game.user.isGM && Boolean(this.resolution(this.messageFromEntry(entry)));
         return [
-            { label: "l5r5e.automation.gm.changeTn", icon: "<i class='fas fa-bullseye'></i>", visible, onClick: (entry) => this.changeTn(this.messageFromEntry(entry)) },
-            { label: "l5r5e.automation.gm.assignTarget", icon: "<i class='fas fa-crosshairs'></i>", visible, onClick: (entry) => this.changeTarget(this.messageFromEntry(entry)) },
-            { label: "l5r5e.automation.gm.reopenOpportunity", icon: "<i class='fas fa-redo'></i>", visible, onClick: (entry) => this.reopenOpportunity(this.messageFromEntry(entry)) },
-            { label: "l5r5e.automation.gm.history", icon: "<i class='fas fa-history'></i>", visible, onClick: (entry) => this.showHistory(this.messageFromEntry(entry)) },
+            { label: "l5r5e.automation.gm.changeTn", icon: "<i class='fas fa-bullseye'></i>", visible, onClick: (_event, entry) => this.changeTn(this.messageFromEntry(entry)) },
+            { label: "l5r5e.automation.gm.assignTarget", icon: "<i class='fas fa-crosshairs'></i>", visible, onClick: (_event, entry) => this.changeTarget(this.messageFromEntry(entry)) },
+            { label: "l5r5e.automation.gm.reopenOpportunity", icon: "<i class='fas fa-redo'></i>", visible, onClick: (_event, entry) => this.reopenOpportunity(this.messageFromEntry(entry)) },
+            { label: "l5r5e.automation.gm.history", icon: "<i class='fas fa-history'></i>", visible, onClick: (_event, entry) => this.showHistory(this.messageFromEntry(entry)) },
         ];
     }
 
     static async changeTn(message) {
         const resolution = this.resolution(message);
+        if (!resolution) return this.notifyMissingResolution();
         const value = await foundry.applications.api.DialogV2.prompt({
             window: { title: game.i18n.localize("l5r5e.automation.gm.changeTn") },
             content: `<label>TN <input type="number" name="tn" min="1" value="${resolution.tn.value}"></label>`,
@@ -30,6 +35,7 @@ export class ResolutionToolsL5r5e {
     }
 
     static async changeTarget(message) {
+        if (!this.resolution(message)) return this.notifyMissingResolution();
         const target = [...game.user.targets][0]?.document;
         if (!target) return ui.notifications.warn(game.i18n.localize("l5r5e.automation.gm.selectTarget"));
         return this.replay(message, { target });
@@ -223,6 +229,7 @@ export class ResolutionToolsL5r5e {
     }
 
     static async reopenOpportunity(message) {
+        if (!this.resolution(message)) return this.notifyMissingResolution();
         const dialog = new game.l5r5e.RollnKeepDialog(message.id);
         const resolution = this.resolution(message);
         for (const selection of resolution?.opportunities?.selections ?? []) {
@@ -235,6 +242,7 @@ export class ResolutionToolsL5r5e {
     }
 
     static async showHistory(message) {
+        if (!this.resolution(message)) return this.notifyMissingResolution();
         const history = { resolutions: [...(message.flags?.l5r5e?.resolutionHistory ?? []), this.resolution(message)].filter(Boolean), relatedTransactions: [...(message.flags?.l5r5e?.relatedTransactionHistory ?? []), ...(message.flags?.l5r5e?.relatedTransactions ?? [])] };
         const escaped = foundry.utils.escapeHTML(JSON.stringify(history, null, 2));
         return foundry.applications.api.DialogV2.prompt({
@@ -251,5 +259,14 @@ export class ResolutionToolsL5r5e {
             content: `<p>${game.i18n.localize("l5r5e.automation.transaction.conflictDiff")}</p><pre class="l5r5e-resolution-history">${escaped}</pre>`,
             ok: { label: "Close", callback: () => true },
         });
+    }
+
+    static notifyMissingResolution() {
+        const key = "l5r5e.automation.gm.missingResolution";
+        const message = game.i18n.has?.(key)
+            ? game.i18n.localize(key)
+            : "The selected chat entry no longer contains roll resolution data.";
+        ui.notifications.warn(message);
+        return null;
     }
 }

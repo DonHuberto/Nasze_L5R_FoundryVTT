@@ -6,6 +6,15 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.109 - 25/07/2026 - Live-tested V14 sheets and roll-window regression fixes
+
+- Fix PC and NPC sheet rendering on Foundry VTT 14 by building detached snapshots from document sources and prepared system data without cloning the read-only document `_id`.
+- Correct V14 roll context-menu callbacks to consume the actual context target argument, preserving Change TN, target reassignment, Opportunity reopening and resolution history.
+- Restore the light Roll & Keep presentation and apply ApplicationV2 root selectors correctly despite the system stylesheet namespace.
+- Widen Opportunity windows, enforce a readable three-column spending layout and apply alternating row backgrounds above Foundry's unlayered ApplicationV2 styles.
+- Keep disabled Finalize guidance in the global viewport tooltip layer and add localized fallback guidance when a roll message cannot be resolved.
+- Extend UI regression coverage for V14 sheets, context menus, roll-window styling, Opportunity structure and legal target filtering.
+
 ## 1.14.108 - 24/07/2026 - ApplicationV2 sheets, recoverable rolls and completed throwing
 
 - Migrate Actor and Item sheets, Roll & Keep, Dice Picker, character-generation dialogs and remaining confirmation prompts to the Foundry VTT 14 ApplicationV2 framework.

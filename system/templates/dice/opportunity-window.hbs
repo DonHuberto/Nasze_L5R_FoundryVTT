@@ -40,8 +40,10 @@
                     </header>
                     <p>{{description}}</p>
                     <small>{{sourceReference.source}} {{sourceReference.page}} · {{automation}}</small>
+                </div>
 
-                    {{#if ../spendMode}}
+                {{#if ../spendMode}}
+                <div class="opportunity-decision-column">
                     <div class="opportunity-decisions">
                         {{#if conditionChoice}}
                         <label>{{localize "l5r5e.automation.opportunity.condition"}} <select data-opportunity-decision="{{rulesKey}}" data-field="condition"><option value="">—</option>{{selectOptions conditions selected=selectedCondition valueAttr="value" labelAttr="label"}}</select></label>
@@ -53,8 +55,8 @@
                         <label>{{localize "l5r5e.automation.opportunity.target"}} <select data-opportunity-decision="{{rulesKey}}" data-field="{{#if multipleTargets}}targetUuids{{else}}targetUuid{{/if}}" {{#if multipleTargets}}multiple{{/if}}><option value="">—</option>{{selectOptions targetChoices selected=selectedTargetUuid valueAttr="value" labelAttr="label"}}</select></label>
                         {{/if}}
                     </div>
-                    {{/if}}
                 </div>
+                {{/if}}
             </div>
         </article>
         {{/each}}

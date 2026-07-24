@@ -5,6 +5,19 @@ function legacyOptions(applicationClass) {
     return applicationClass.defaultOptions ?? {};
 }
 
+/**
+ * Build a detached template context without asking Foundry to serialize the
+ * whole document. Legacy worlds can contain values which a newer DataModel
+ * refuses to serialize (notably old embedded-item collections), while the
+ * prepared `system` model itself remains usable by the sheet.
+ */
+function legacyDocumentSnapshot(document) {
+    if (!document?._source) return document?.toObject?.(false) ?? {};
+    const data = foundry.utils.deepClone(document._source);
+    if (document.system) data.system = foundry.utils.deepClone(document.system);
+    return data;
+}
+
 function v2Options(applicationClass, options = {}) {
     const legacy = legacyOptions(applicationClass);
     return {
@@ -236,8 +249,9 @@ export class LegacyActorSheetV2 extends HandlebarsApplicationMixin(ActorSheetV2)
 
     async getData(options = {}) {
         const context = await super._prepareContext(options);
-        const data = this.actor.toObject(false);
-        const items = this.actor.items.map((item) => item.toObject(false));
+        const data = legacyDocumentSnapshot(this.actor);
+        const items = this.actor.items.map((item) => legacyDocumentSnapshot(item));
+        data.items = items;
         const defaults = legacyOptions(this.constructor);
         return {
             ...context,
@@ -336,7 +350,7 @@ export class LegacyItemSheetV2 extends HandlebarsApplicationMixin(ItemSheetV2) {
 
     async getData(options = {}) {
         const context = await super._prepareContext(options);
-        const data = this.item.toObject(false);
+        const data = legacyDocumentSnapshot(this.item);
         const defaults = legacyOptions(this.constructor);
         return {
             ...context,

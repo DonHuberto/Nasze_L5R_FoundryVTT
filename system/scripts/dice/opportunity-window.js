@@ -4,7 +4,7 @@ const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 export class OpportunityWindow extends HandlebarsApplicationMixin(ApplicationV2) {
     static DEFAULT_OPTIONS = {
         classes: ["l5r5e", "l5r5e-opportunity-window"],
-        position: { width: 560, height: "auto" },
+        position: { width: 900, height: "auto" },
         window: { resizable: true, minimizable: true },
     };
 

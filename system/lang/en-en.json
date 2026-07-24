@@ -992,7 +992,8 @@
                 "assignTarget": "Assign or change target",
                 "selectTarget": "Target a token first.",
                 "reopenOpportunity": "Reopen opportunity resolution",
-                "history": "Show resolution history"
+                "history": "Show resolution history",
+                "missingResolution": "The selected chat entry no longer contains roll resolution data."
             },
             "item": {
                 "activeGrip": "Active grip",

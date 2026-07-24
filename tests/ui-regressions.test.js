@@ -69,6 +69,7 @@ test("ApplicationV2 actor sheets render detached data and never submit _id", asy
             sheets: { ActorSheetV2, ItemSheetV2 },
         },
         utils: {
+            deepClone: (value) => structuredClone(value),
             mergeObject: (left, right) => ({ ...left, ...right }),
             expandObject: (value) => value,
         },
@@ -88,8 +89,13 @@ test("ApplicationV2 actor sheets render detached data and never submit _id", asy
         limited: true,
         isOwner: true,
         system: { strife: { value: 3 } },
-        items: [{ toObject: () => ({ _id: "item-1", name: "Katana" }) }],
-        toObject: () => ({ _id: "actor-1", system: { strife: { value: 3 } } }),
+        _source: { _id: "actor-1", system: { strife: { value: 2 } } },
+        items: [{
+            _source: { _id: "item-1", name: "Katana", system: {} },
+            system: {},
+            toObject: () => { throw new TypeError("value.map is not a function"); },
+        }],
+        toObject: () => { throw new TypeError("value.map is not a function"); },
         update: async (data) => { submitted = data; },
     };
     const sheet = new TestSheet({ document: actor });
@@ -97,6 +103,7 @@ test("ApplicationV2 actor sheets render detached data and never submit _id", asy
     context.data.system.strife.value = 99;
     assert.equal(actor.system.strife.value, 3);
     assert.equal(context.rootId, "sheet-root");
+    assert.equal(context.items[0].name, "Katana");
     assert.equal(sheet._configureRenderParts({}).form.template, "limited-sheet.hbs");
 
     await sheet._updateObject({}, { _id: "actor-1", "system.strife.value": 4 });
@@ -112,6 +119,9 @@ test("GM resolution context menu uses the Foundry V14 label and visible properti
     assert.doesNotMatch(contextOptions, /\bname:/);
     assert.doesNotMatch(contextOptions, /\bcallback:/);
     assert.doesNotMatch(contextOptions, /\bcondition\b/);
+    assert.match(contextOptions, /onClick:\s*\(_event,\s*entry\)/);
+    assert.match(source, /closest\?\.\("\[data-message-id\]"\)/);
+    assert.match(source, /notifyMissingResolution/);
 });
 
 test("roll context menu uses the Foundry V14 label property", () => {
@@ -145,7 +155,11 @@ test("Opportunity rows and disabled finalize controls expose the requested UI st
     const styles = fs.readFileSync(new URL("../system/styles/scss/dices.scss", import.meta.url), "utf8");
     assert.match(opportunity, /opportunity-entry-grid/);
     assert.match(opportunity, /opportunity-spend-control/);
+    assert.match(opportunity, /opportunity-decision-column/);
+    assert.match(styles, /grid-template-columns:\s*8rem minmax\(20rem,\s*1\.45fr\) minmax\(14rem,\s*1fr\)/);
     assert.match(styles, /\.opportunity-row[\s\S]*&:nth-child\(odd\)/);
+    assert.match(styles, /&\.application\.roll-n-keep-dialog[\s\S]*bg-scroll\.webp/);
+    assert.match(styles, /&\.l5r5e-opportunity-window/);
     assert.match(roll, /data-tooltip="{{data\.submitDisabledReason}}"/);
     assert.doesNotMatch(roll, /finalize-disabled-reason/);
     assert.match(roll, /class="restart-roll"/);
