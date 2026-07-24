@@ -1,5 +1,6 @@
 import { HelpersL5r5e } from "../helpers.js";
 import { OpportunityWindow } from "./opportunity-window.js";
+import { buildOpportunityTargetChoices } from "./opportunity-targets.js";
 
 /**
  * L5R Dice Roll n Keep dialog
@@ -38,6 +39,7 @@ export class RollnKeepDialog extends FormApplication {
     object = {
         currentStep: 0,
         submitDisabled: false,
+        submitDisabledReasons: [],
         opportunitySpend: {},
         opportunityDecisions: {},
         availableOpportunities: [],
@@ -239,6 +241,7 @@ export class RollnKeepDialog extends FormApplication {
         // Disable submit / edition
         this.options.classes = this.options.classes.filter((e) => e !== "finalized");
         this.object.submitDisabled = false;
+        this.object.submitDisabledReasons = [];
         await this._prepareOpportunityData();
 
         const applyFlags = foundry.utils.mergeObject(
@@ -271,6 +274,14 @@ export class RollnKeepDialog extends FormApplication {
         if (this._checkKeepCount(this.object.currentStep)) {
             const kept = this._getKeepCount(this.object.currentStep);
             this.object.submitDisabled = kept < 1 || kept > rollData.keepLimit;
+            if (kept < 1) {
+                this.object.submitDisabledReasons.push(game.i18n.localize("l5r5e.automation.roll.error.keepRequired"));
+            } else if (kept > rollData.keepLimit) {
+                this.object.submitDisabledReasons.push(game.i18n.format("l5r5e.automation.roll.error.keepLimit", {
+                    kept,
+                    limit: rollData.keepLimit,
+                }));
+            }
         } else if (!this.object.dicesList[this.object.currentStep]) {
             delete this.roll.l5r5e._bleedingFatigueDefault;
 
@@ -280,6 +291,7 @@ export class RollnKeepDialog extends FormApplication {
         }
 
         const isEditable = options?.editable ?? this.options.editable;
+        this.object.submitDisabledReason = this.object.submitDisabledReasons.join(" ");
 
         return {
             ...(await super.getData(options)),
@@ -360,10 +372,7 @@ export class RollnKeepDialog extends FormApplication {
 
     getOpportunityWindowContext(mode) {
         const preview = this.roll?.l5r5e?.resolutionPreview ?? {};
-        const errors = (preview.validationErrors ?? []).map((error) => {
-            const key = `l5r5e.automation.opportunity.error.${error.code ?? error.key ?? "blocked"}`;
-            return game.i18n.has?.(key) ? game.i18n.format(key, error) : `${error.code ?? error.key ?? "blocked"}`;
-        });
+        const errors = preview.validationMessages ?? (preview.validationErrors ?? []).map((error) => this._localizeResolutionError(error));
         return {
             mode,
             referenceMode: mode === "reference",
@@ -405,6 +414,16 @@ export class RollnKeepDialog extends FormApplication {
         }
         this.object.opportunityDecisions[key] = decision;
         this.render(false);
+    }
+
+    _localizeResolutionError(error = {}) {
+        const code = String(error.code ?? error.key ?? "blocked");
+        const suffix = code.split(".").pop();
+        const keys = code.startsWith("condition.") || code.startsWith("item.")
+            ? [`l5r5e.automation.roll.error.${suffix}`]
+            : [`l5r5e.automation.opportunity.error.${code}`, `l5r5e.automation.roll.error.${suffix}`];
+        const key = keys.find((candidate) => game.i18n.has?.(candidate));
+        return key ? game.i18n.format(key, error) : game.i18n.format("l5r5e.automation.roll.error.blocked", { code });
     }
 
     _resolutionContext() {
@@ -451,11 +470,18 @@ export class RollnKeepDialog extends FormApplication {
         };
         const preview = game.l5r5e.rollResolution.preview(this._resolutionContext(), raw);
         const available = await game.l5r5e.opportunities.available({ ...preview.context, provisionalSuccess: preview.provisionalSuccess });
-        const targetDocuments = [rollData.target, ...game.user.targets].map((target) => target?.document ?? target).filter(Boolean);
-        const targetChoices = [...new Map(targetDocuments.map((target) => [target.uuid, { value: target.uuid, label: target.name ?? target.actor?.name ?? target.uuid }])).values()];
+        const targetChoices = buildOpportunityTargetChoices({
+            combat: game.combat,
+            fallbackTargets: [rollData.target, ...game.user.targets],
+        });
+        const legalTargetUuids = new Set(targetChoices.map(({ value }) => value));
+        const rollTargetActor = rollData.target?.actor ?? rollData.target?.document?.actor ?? rollData.target;
+        const defaultTargetUuid = legalTargetUuids.has(rollTargetActor?.uuid) ? rollTargetActor.uuid : "";
         this.object.availableOpportunities = available.map((definition) => {
             const selectedSpend = Number(this.object.opportunitySpend[definition.rulesKey]) || 0;
             const decision = this.object.opportunityDecisions[definition.rulesKey] ?? {};
+            const selectedTargetUuids = (decision.targetUuids ?? []).filter((uuid) => legalTargetUuids.has(uuid));
+            const selectedTargetUuid = legalTargetUuids.has(decision.targetUuid) ? decision.targetUuid : defaultTargetUuid;
             return {
                 ...definition,
                 selectedSpend,
@@ -464,7 +490,7 @@ export class RollnKeepDialog extends FormApplication {
                 selectedRing: decision.ring ?? "",
                 ringChoice: Boolean(definition.requirements?.ringChoice),
                 rings: ["air", "earth", "fire", "water"].map((ring) => ({ value: ring, label: game.i18n.localize(`l5r5e.rings.${ring}`) })),
-                selectedTargetUuid: decision.targetUuid ?? rollData.target?.uuid ?? "",
+                selectedTargetUuid: definition.target?.mode === "multiple" ? selectedTargetUuids : selectedTargetUuid,
                 targetChoice: ["single", "multiple", "gm"].includes(definition.target?.mode),
                 multipleTargets: definition.target?.mode === "multiple",
                 targetChoices,
@@ -474,7 +500,7 @@ export class RollnKeepDialog extends FormApplication {
             };
         });
         const currentPlan = Object.entries(this.object.opportunitySpend).filter(([, value]) => Number(value) > 0).map(([rulesKey, value]) => ({ rulesKey, spend: Number(value) }));
-        const currentDecisions = Object.fromEntries(currentPlan.map(({ rulesKey }) => [rulesKey, { ...(this.object.opportunityDecisions[rulesKey] ?? {}), targetUuid: this.object.opportunityDecisions[rulesKey]?.targetUuid ?? rollData.target?.uuid ?? undefined }]));
+        const currentDecisions = this._resolvedOpportunityDecisions(currentPlan, available, legalTargetUuids, defaultTargetUuid);
         const validation = game.l5r5e.opportunities.validatePlan(available, currentPlan, raw.opportunity, currentDecisions);
         this.object.opportunityValidation = validation;
         const currentResolution = await game.l5r5e.rollResolution.resolve({ context: this._resolutionContext(), rawSymbols: raw, opportunityPlan: currentPlan, decisions: currentDecisions });
@@ -490,9 +516,38 @@ export class RollnKeepDialog extends FormApplication {
             remainingOpportunity: validation.remaining,
             validationErrors: currentResolution.status === "blocked" ? currentResolution.errors ?? [{ code: currentResolution.reason ?? "blocked" }] : [],
         };
+        rollData.resolutionPreview.validationMessages = rollData.resolutionPreview.validationErrors.map((error) => this._localizeResolutionError(error));
         rollData.resolutionPreview.strifeLedger = currentResolution.strife ?? game.l5r5e.conditions.calculateStrife({ actor: rollData.actor, stance: rollData.stance, rawKeptStrife: raw.strife });
-        this.object.submitDisabled ||= Boolean(rollData.rnkEnded) && currentResolution.status === "blocked";
+        if (rollData.rnkEnded && currentResolution.status === "blocked") {
+            this.object.submitDisabled = true;
+            this.object.submitDisabledReasons.push(...rollData.resolutionPreview.validationMessages);
+        }
         this._refreshOpportunityWindows();
+    }
+
+    _resolvedOpportunityDecisions(plan, definitions, legalTargetUuids, defaultTargetUuid) {
+        const definitionsByKey = new Map(definitions.map((definition) => [definition.rulesKey, definition]));
+        const rollData = this.roll?.l5r5e ?? {};
+        const rollTargetActor = rollData.target?.actor ?? rollData.target?.document?.actor ?? rollData.target;
+        return Object.fromEntries(plan.map(({ rulesKey }) => {
+            const definition = definitionsByKey.get(rulesKey);
+            const mode = definition?.target?.mode ?? "none";
+            const decision = { ...(this.object.opportunityDecisions[rulesKey] ?? {}) };
+            if (mode === "multiple") {
+                decision.targetUuids = (decision.targetUuids ?? []).filter((uuid) => legalTargetUuids.has(uuid));
+                delete decision.targetUuid;
+            } else if (["single", "gm"].includes(mode)) {
+                decision.targetUuid = legalTargetUuids.has(decision.targetUuid) ? decision.targetUuid : defaultTargetUuid || undefined;
+                delete decision.targetUuids;
+            } else if (mode === "rollTarget") {
+                decision.targetUuid = rollTargetActor?.uuid ?? undefined;
+                delete decision.targetUuids;
+            } else {
+                delete decision.targetUuid;
+                delete decision.targetUuids;
+            }
+            return [rulesKey, decision];
+        }));
     }
 
     /**
@@ -571,7 +626,7 @@ export class RollnKeepDialog extends FormApplication {
             // Add Context menu to rollback choices
             new foundry.applications.ux.ContextMenu.implementation(html[0], ".l5r5e.profil", [
                 {
-                    name: game.i18n.localize("l5r5e.dice.roll_n_keep.undo"),
+                    label: game.i18n.localize("l5r5e.dice.roll_n_keep.undo"),
                     icon: '<i class="fas fa-undo"></i>',
                     callback: () => this._undoLastStepChoices(),
                 },
@@ -1173,13 +1228,16 @@ export class RollnKeepDialog extends FormApplication {
             const opportunityPlan = Object.entries(this.object.opportunitySpend)
                 .filter(([, spend]) => Number(spend) > 0)
                 .map(([rulesKey, spend]) => ({ rulesKey, spend: Number(spend) }));
-            const opportunityDecisions = Object.fromEntries(opportunityPlan.map(({ rulesKey }) => [
-                rulesKey,
-                {
-                    ...(this.object.opportunityDecisions[rulesKey] ?? {}),
-                    targetUuid: this.object.opportunityDecisions[rulesKey]?.targetUuid ?? rollData.target?.uuid ?? undefined,
-                },
-            ]));
+            const targetChoices = this.object.availableOpportunities.find((entry) => entry.targetChoice)?.targetChoices ?? [];
+            const legalTargetUuids = new Set(targetChoices.map(({ value }) => value));
+            const rollTargetActor = rollData.target?.actor ?? rollData.target?.document?.actor ?? rollData.target;
+            const defaultTargetUuid = legalTargetUuids.has(rollTargetActor?.uuid) ? rollTargetActor.uuid : "";
+            const opportunityDecisions = this._resolvedOpportunityDecisions(
+                opportunityPlan,
+                this.object.availableOpportunities,
+                legalTargetUuids,
+                defaultTargetUuid
+            );
             const resolutionDecisions = { ...opportunityDecisions };
             let resolution = await game.l5r5e.rollResolution.resolve({
                 context: this._resolutionContext(),

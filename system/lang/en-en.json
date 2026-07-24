@@ -943,7 +943,18 @@
             "multiplier": "Intoxicated multiplier",
             "finalStrife": "final Strife change",
                 "blocked": "The roll is provisionally illegal. Choose an applicable pre-validation effect or return to the dice.",
-                "backToDice": "Return to kept dice"
+                "backToDice": "Return to kept dice",
+                "error": {
+                    "keepRequired": "Keep at least one die to finalize this step.",
+                    "keepLimit": "You kept {kept} dice, but the limit is {limit}. Discard dice until the limit is met.",
+                    "dead": "A Dead character cannot act.",
+                    "unconscious": "An Unconscious character cannot act.",
+                    "incapacitatedCheck": "An Incapacitated character cannot perform a check. Return to the dice and, if available, spend a Void Opportunity to ignore Incapacitated.",
+                    "immobilizedMovement": "An Immobilized character cannot perform this Movement action.",
+                    "destroyed": "A Destroyed item cannot be used for this action.",
+                    "compromisedStrife": "A Compromised character cannot keep dice showing Strife. Return to the dice and change the kept dice or ignore Compromised.",
+                    "blocked": "This step is blocked: {code}."
+                }
             },
             "movement": {
                 "budgetExceeded": "The movement path exceeds the available budget.",

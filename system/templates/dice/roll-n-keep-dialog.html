@@ -131,9 +131,12 @@
                 | <i class="i_strife"></i> {{localize 'l5r5e.dice.chat.strife'}}
             </p>
             <button type="button" class="toggle-opportunities compact" data-mode="reference"><i class="i_opportunity"></i> {{localize "l5r5e.automation.opportunity.available"}}</button>
-            <button id="finalize" name="finalize" type="button" {{#if data.submitDisabled}}disabled{{/if}}>
-                {{ localize 'l5r5e.dice.roll_n_keep.bt_validate' }} <i class="fas fa-arrow-circle-right"></i>
-            </button>
+            <div class="finalize-control {{#if data.submitDisabled}}is-disabled{{/if}}" {{#if data.submitDisabledReason}}tabindex="0"{{/if}}>
+                <button id="finalize" name="finalize" type="button" {{#if data.submitDisabled}}disabled{{/if}}>
+                    {{ localize 'l5r5e.dice.roll_n_keep.bt_validate' }} <i class="fas fa-arrow-circle-right"></i>
+                </button>
+                {{#if data.submitDisabledReason}}<span class="finalize-disabled-reason" role="tooltip">{{data.submitDisabledReason}}</span>{{/if}}
+            </div>
         {{else}}
             <table>
                 {{!-- Non editable DiceList history --}}
@@ -175,7 +178,7 @@
                 <div><i class="i_opportunity"></i> {{resolutionPreview.generatedOpportunity}} / {{localize "l5r5e.automation.opportunity.spent"}} {{resolutionPreview.spentOpportunity}} / {{localize "l5r5e.automation.opportunity.remaining"}} {{resolutionPreview.remainingOpportunity}}</div>
                 {{#if l5r5e.resolutionErrors}}
                 <div class="resolution-errors">
-                    {{#each l5r5e.resolutionErrors}}<p>{{code}} {{key}}</p>{{/each}}
+                    {{#each resolutionPreview.validationMessages}}<p>{{this}}</p>{{/each}}
                     <button type="button" class="back-to-dice"><i class="fas fa-arrow-left"></i> {{localize "l5r5e.automation.roll.backToDice"}}</button>
                 </div>
                 {{/if}}
@@ -231,9 +234,12 @@
             </div>
             {{/if}}
             {{#if showFinalSubmit}}
-            <button id="finalize" name="finalize" type="button" {{#if data.submitDisabled}}disabled{{/if}}>
-                {{ localize 'l5r5e.dice.roll_n_keep.bt_validate' }} <i class="fas fa-arrow-circle-right"></i>
-            </button>
+            <div class="finalize-control {{#if data.submitDisabled}}is-disabled{{/if}}" {{#if data.submitDisabledReason}}tabindex="0"{{/if}}>
+                <button id="finalize" name="finalize" type="button" {{#if data.submitDisabled}}disabled{{/if}}>
+                    {{ localize 'l5r5e.dice.roll_n_keep.bt_validate' }} <i class="fas fa-arrow-circle-right"></i>
+                </button>
+                {{#if data.submitDisabledReason}}<span class="finalize-disabled-reason" role="tooltip">{{data.submitDisabledReason}}</span>{{/if}}
+            </div>
             {{/if}}
         {{/if}}
     </section>

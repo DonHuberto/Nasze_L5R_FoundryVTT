@@ -6,6 +6,14 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.107 - 24/07/2026 - Opportunity readability and validation guidance
+
+- Finish the Foundry VTT 14 context-menu migration by replacing the deprecated roll-menu `name` entry with `label`.
+- Add alternating Opportunity row backgrounds in both reference and spending windows, and restore first-column spending controls beside their corresponding entries.
+- Populate target-required Opportunities from visible, undefeated combatants only and apply selected effects to their Actor documents.
+- Replace raw condition validation codes with localized explanations and show the exact blocking reason when hovering or focusing a disabled Finalize button.
+- Add regression coverage for V14 context-menu entries, combat target filtering, row structure and disabled-button guidance.
+
 ## 1.14.106 - 24/07/2026 - Opportunity window and GM replay hotfix
 
 - Restore the separate Available Opportunities window on Foundry VTT 14 by avoiding the framework-managed `ApplicationV2.parent` property.

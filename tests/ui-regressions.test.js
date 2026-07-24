@@ -41,6 +41,40 @@ test("GM resolution context menu uses the Foundry V14 visible property", () => {
     assert.doesNotMatch(contextOptions, /\bcondition\b/);
 });
 
+test("roll context menu uses the Foundry V14 label property", () => {
+    const source = fs.readFileSync(new URL("../system/scripts/dice/roll-n-keep-dialog.js", import.meta.url), "utf8");
+    const contextMenu = source.slice(source.indexOf("new foundry.applications.ux.ContextMenu"), source.indexOf("// Open journal on effect name"));
+    assert.match(contextMenu, /\blabel:/);
+    assert.doesNotMatch(contextMenu, /\bname:/);
+});
+
+test("Opportunity targets include only visible undefeated combatants", async () => {
+    const { buildOpportunityTargetChoices } = await import(`../system/scripts/dice/opportunity-targets.js?test=${Date.now()}`);
+    const actor = (id, name) => ({ uuid: `Actor.${id}`, name });
+    const choices = buildOpportunityTargetChoices({
+        combat: {
+            combatants: [
+                { actor: actor("visible", "Visible"), name: "Visible combatant", hidden: false, isDefeated: false },
+                { actor: actor("hidden", "Hidden"), hidden: true, isDefeated: false },
+                { actor: actor("token-hidden", "Token hidden"), hidden: false, token: { hidden: true }, isDefeated: false },
+                { actor: actor("defeated", "Defeated"), hidden: false, isDefeated: true },
+            ],
+        },
+    });
+    assert.deepEqual(choices, [{ value: "Actor.visible", label: "Visible combatant" }]);
+});
+
+test("Opportunity rows and disabled finalize controls expose the requested UI structure", () => {
+    const opportunity = fs.readFileSync(new URL("../system/templates/dice/opportunity-window.hbs", import.meta.url), "utf8");
+    const roll = fs.readFileSync(new URL("../system/templates/dice/roll-n-keep-dialog.html", import.meta.url), "utf8");
+    const styles = fs.readFileSync(new URL("../system/styles/scss/dices.scss", import.meta.url), "utf8");
+    assert.match(opportunity, /opportunity-entry-grid/);
+    assert.match(opportunity, /opportunity-spend-control/);
+    assert.match(styles, /\.opportunity-row[\s\S]*&:nth-child\(odd\)/);
+    assert.match(roll, /finalize-disabled-reason/);
+    assert.match(styles, /\.finalize-control\.is-disabled:hover/);
+});
+
 test("sheet roll controls remain available outside editable-only listeners and are semantic", () => {
     const source = fs.readFileSync(new URL("../system/scripts/actors/base-character-sheet.js", import.meta.url), "utf8");
     assert.ok(source.indexOf('html.find(".dice-picker").on') < source.indexOf("if (!this.isEditable)"));

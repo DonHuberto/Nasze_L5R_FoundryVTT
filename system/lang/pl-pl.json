@@ -103,7 +103,18 @@
             "multiplier": "mnożnik Odurzenia",
             "finalStrife": "końcowa zmiana Konfliktu",
                 "blocked": "Rzut jest prowizorycznie nielegalny. Wybierz właściwy efekt przed walidacją albo wróć do kości.",
-                "backToDice": "Wróć do zachowanych kości"
+                "backToDice": "Wróć do zachowanych kości",
+                "error": {
+                    "keepRequired": "Zachowaj co najmniej jedną kość, aby zakończyć ten krok.",
+                    "keepLimit": "Zachowano {kept} kości, ale limit wynosi {limit}. Odrzuć kości, aż limit zostanie spełniony.",
+                    "dead": "Martwa postać nie może działać.",
+                    "unconscious": "Nieprzytomna postać nie może działać.",
+                    "incapacitatedCheck": "Postać Niezdolna do działania nie może wykonywać testu. Wróć do kości i, jeśli to możliwe, wydaj Okazję Pustki, aby zignorować ten stan.",
+                    "immobilizedMovement": "Unieruchomiona postać nie może wykonać tej akcji Ruchu.",
+                    "destroyed": "Zniszczonego przedmiotu nie można użyć do tej akcji.",
+                    "compromisedStrife": "Postać Roztrzęsiona nie może zachować kości z Konfliktem. Wróć do kości i zmień wybór albo zignoruj ten stan.",
+                    "blocked": "Ten krok jest zablokowany: {code}."
+                }
             },
             "movement": {
                 "budgetExceeded": "Ścieżka przekracza dostępny budżet ruchu.",

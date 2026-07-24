@@ -16,37 +16,46 @@
     <div class="opportunity-list">
         {{#each opportunities}}
         <article class="opportunity-row {{#unless reachable}}unreachable{{/unless}}" data-rules-key="{{rulesKey}}">
-            <header>
-                <i class="i_{{ring}}" aria-hidden="true"></i>
-                <strong>{{name}}</strong>
-                <span class="opportunity-cost">{{cost.base}}{{#if cost.scalable}}+{{/if}} <i class="i_opportunity" aria-hidden="true"></i></span>
-                <span class="opportunity-reachability">{{#if reachable}}{{localize "l5r5e.automation.opportunity.reachable"}}{{else}}{{localize "l5r5e.automation.opportunity.unreachable"}}{{/if}}</span>
-            </header>
-            <p>{{description}}</p>
-            <small>{{sourceReference.source}} {{sourceReference.page}} · {{automation}}</small>
-
-            {{#if ../spendMode}}
-            <div class="opportunity-controls">
-                {{#if cost.scalable}}
-                <div class="opportunity-counter" role="group" aria-label="{{name}}">
-                    <button type="button" data-opportunity-adjust="{{rulesKey}}" data-delta="-1" aria-label="−">−</button>
-                    <output>{{selectedSpend}}</output>
-                    <button type="button" data-opportunity-adjust="{{rulesKey}}" data-delta="1" aria-label="+">+</button>
+            <div class="opportunity-entry-grid {{#if ../spendMode}}with-spend-control{{/if}}">
+                {{#if ../spendMode}}
+                <div class="opportunity-spend-control">
+                    {{#if cost.scalable}}
+                    <div class="opportunity-counter" role="group" aria-label="{{name}}">
+                        <button type="button" data-opportunity-adjust="{{rulesKey}}" data-delta="-1" aria-label="−">−</button>
+                        <output>{{selectedSpend}}</output>
+                        <button type="button" data-opportunity-adjust="{{rulesKey}}" data-delta="1" aria-label="+">+</button>
+                    </div>
+                    {{else}}
+                    <label><input type="checkbox" data-opportunity-toggle="{{rulesKey}}" {{checked selected}} {{#unless reachable}}disabled{{/unless}}> {{localize "l5r5e.automation.opportunity.spend"}}</label>
+                    {{/if}}
                 </div>
-                {{else}}
-                <label><input type="checkbox" data-opportunity-toggle="{{rulesKey}}" {{checked selected}} {{#unless reachable}}disabled{{/unless}}> {{localize "l5r5e.automation.opportunity.spend"}}</label>
                 {{/if}}
-                {{#if conditionChoice}}
-                <label>{{localize "l5r5e.automation.opportunity.condition"}} <select data-opportunity-decision="{{rulesKey}}" data-field="condition"><option value="">—</option>{{selectOptions conditions selected=selectedCondition valueAttr="value" labelAttr="label"}}</select></label>
-                {{/if}}
-                {{#if ringChoice}}
-                <label>{{localize "l5r5e.automation.opportunity.ring"}} <select data-opportunity-decision="{{rulesKey}}" data-field="ring"><option value="">—</option>{{selectOptions rings selected=selectedRing valueAttr="value" labelAttr="label"}}</select></label>
-                {{/if}}
-                {{#if targetChoice}}
-                <label>{{localize "l5r5e.automation.opportunity.target"}} <select data-opportunity-decision="{{rulesKey}}" data-field="{{#if multipleTargets}}targetUuids{{else}}targetUuid{{/if}}" {{#if multipleTargets}}multiple{{/if}}><option value="">—</option>{{selectOptions targetChoices selected=selectedTargetUuid valueAttr="value" labelAttr="label"}}</select></label>
-                {{/if}}
+
+                <div class="opportunity-details">
+                    <header>
+                        <i class="i_{{ring}}" aria-hidden="true"></i>
+                        <strong>{{name}}</strong>
+                        <span class="opportunity-cost">{{cost.base}}{{#if cost.scalable}}+{{/if}} <i class="i_opportunity" aria-hidden="true"></i></span>
+                        <span class="opportunity-reachability">{{#if reachable}}{{localize "l5r5e.automation.opportunity.reachable"}}{{else}}{{localize "l5r5e.automation.opportunity.unreachable"}}{{/if}}</span>
+                    </header>
+                    <p>{{description}}</p>
+                    <small>{{sourceReference.source}} {{sourceReference.page}} · {{automation}}</small>
+
+                    {{#if ../spendMode}}
+                    <div class="opportunity-decisions">
+                        {{#if conditionChoice}}
+                        <label>{{localize "l5r5e.automation.opportunity.condition"}} <select data-opportunity-decision="{{rulesKey}}" data-field="condition"><option value="">—</option>{{selectOptions conditions selected=selectedCondition valueAttr="value" labelAttr="label"}}</select></label>
+                        {{/if}}
+                        {{#if ringChoice}}
+                        <label>{{localize "l5r5e.automation.opportunity.ring"}} <select data-opportunity-decision="{{rulesKey}}" data-field="ring"><option value="">—</option>{{selectOptions rings selected=selectedRing valueAttr="value" labelAttr="label"}}</select></label>
+                        {{/if}}
+                        {{#if targetChoice}}
+                        <label>{{localize "l5r5e.automation.opportunity.target"}} <select data-opportunity-decision="{{rulesKey}}" data-field="{{#if multipleTargets}}targetUuids{{else}}targetUuid{{/if}}" {{#if multipleTargets}}multiple{{/if}}><option value="">—</option>{{selectOptions targetChoices selected=selectedTargetUuid valueAttr="value" labelAttr="label"}}</select></label>
+                        {{/if}}
+                    </div>
+                    {{/if}}
+                </div>
             </div>
-            {{/if}}
         </article>
         {{/each}}
     </div>
