@@ -1,4 +1,4 @@
-<form class="{{cssClass}}" autocomplete="off">
+<div class="{{cssClass}}" autocomplete="off">
     {{!-- Profil --}}
     <header class="l5r5e profil part-header flexrow chat-profil">
         <ul>
@@ -91,11 +91,11 @@
                             <td>
                                 {{#if dice.face}}
                                     {{#if dice.newFace}}
-                                        <span class="fas dice-ct {{dice.choice}}">
+                                        <span class="fas dice-ct {{dice.choice}}{{#if dice.invalidKeep}} invalid-keep{{/if}}" {{#if dice.invalidKeep}}data-tooltip="{{localize 'l5r5e.automation.roll.invalidKeptDie'}}"{{/if}}>
                                             <img class="dice {{dice.choice}}{{#ifCond ../../data.currentStep '==' idxStep}} draggable{{/ifCond}}" data-step="{{idxStep}}" data-die="{{idxDie}}" src="{{getDiceFaceUrl dice.type dice.newFace}}" alt="{{idxStep}}_{{idxDie}}" />
                                         </span>
                                     {{else}}
-                                        <span class="fas dice-ct {{dice.choice}}">
+                                        <span class="fas dice-ct {{dice.choice}}{{#if dice.invalidKeep}} invalid-keep{{/if}}" {{#if dice.invalidKeep}}data-tooltip="{{localize 'l5r5e.automation.roll.invalidKeptDie'}}"{{/if}}>
                                             <img class="dice {{dice.choice}}{{#ifCond ../../data.currentStep '==' idxStep}} draggable{{/ifCond}}" data-step="{{idxStep}}" data-die="{{idxDie}}" src="{{getDiceFaceUrl dice.type dice.face}}" alt="{{idxStep}}_{{idxDie}}" />
                                         </span>
                                     {{/if}}
@@ -130,12 +130,16 @@
                 | <i class="i_opportunity"></i> {{localize 'l5r5e.dice.chat.opportunities'}}
                 | <i class="i_strife"></i> {{localize 'l5r5e.dice.chat.strife'}}
             </p>
+            {{#if canRestartRoll}}
+            <button type="button" class="restart-roll" data-tooltip="{{localize 'l5r5e.automation.roll.restartHint'}}">
+                <i class="fas fa-rotate-left" aria-hidden="true"></i> {{localize "l5r5e.automation.roll.restart"}}
+            </button>
+            {{/if}}
             <button type="button" class="toggle-opportunities compact" data-mode="reference"><i class="i_opportunity"></i> {{localize "l5r5e.automation.opportunity.available"}}</button>
-            <div class="finalize-control {{#if data.submitDisabled}}is-disabled{{/if}}" {{#if data.submitDisabledReason}}tabindex="0"{{/if}}>
+            <div class="finalize-control {{#if data.submitDisabled}}is-disabled{{/if}}" {{#if data.submitDisabledReason}}tabindex="0" data-tooltip="{{data.submitDisabledReason}}" data-tooltip-direction="UP"{{/if}}>
                 <button id="finalize" name="finalize" type="button" {{#if data.submitDisabled}}disabled{{/if}}>
                     {{ localize 'l5r5e.dice.roll_n_keep.bt_validate' }} <i class="fas fa-arrow-circle-right"></i>
                 </button>
-                {{#if data.submitDisabledReason}}<span class="finalize-disabled-reason" role="tooltip">{{data.submitDisabledReason}}</span>{{/if}}
             </div>
         {{else}}
             <table>
@@ -146,11 +150,11 @@
                             <td>
                                 {{#if dice.face}}
                                     {{#if dice.newFace}}
-                                        <span class="fas dice-ct {{dice.choice}}">
+                                        <span class="fas dice-ct {{dice.choice}}{{#if dice.invalidKeep}} invalid-keep{{/if}}" {{#if dice.invalidKeep}}data-tooltip="{{localize 'l5r5e.automation.roll.invalidKeptDie'}}"{{/if}}>
                                             <img class="dice {{dice.choice}}" src="{{getDiceFaceUrl dice.type dice.newFace}}" alt="{{idxStep}}_{{idxDie}}" />
                                         </span>
                                     {{else}}
-                                        <span class="fas dice-ct {{dice.choice}}">
+                                        <span class="fas dice-ct {{dice.choice}}{{#if dice.invalidKeep}} invalid-keep{{/if}}" {{#if dice.invalidKeep}}data-tooltip="{{localize 'l5r5e.automation.roll.invalidKeptDie'}}"{{/if}}>
                                             <img class="dice {{dice.choice}}" src="{{getDiceFaceUrl dice.type dice.face}}" alt="{{idxStep}}_{{idxDie}}" />
                                         </span>
                                     {{/if}}
@@ -176,6 +180,12 @@
                 </div>
                 {{/with}}
                 <div><i class="i_opportunity"></i> {{resolutionPreview.generatedOpportunity}} / {{localize "l5r5e.automation.opportunity.spent"}} {{resolutionPreview.spentOpportunity}} / {{localize "l5r5e.automation.opportunity.remaining"}} {{resolutionPreview.remainingOpportunity}}</div>
+                {{#if resolutionPreview.invalidKeptDice.length}}
+                <div class="invalid-kept-summary" role="status">
+                    <i class="fas fa-ban" aria-hidden="true"></i>
+                    {{localize "l5r5e.automation.roll.invalidKeptDiceSummary" count=resolutionPreview.invalidKeptDice.length}}
+                </div>
+                {{/if}}
                 {{#if l5r5e.resolutionErrors}}
                 <div class="resolution-errors">
                     {{#each resolutionPreview.validationMessages}}<p>{{this}}</p>{{/each}}
@@ -183,6 +193,11 @@
                 </div>
                 {{/if}}
             </section>
+            {{#if canRestartRoll}}
+            <button type="button" class="restart-roll" data-tooltip="{{localize 'l5r5e.automation.roll.restartHint'}}">
+                <i class="fas fa-rotate-left" aria-hidden="true"></i> {{localize "l5r5e.automation.roll.restart"}}
+            </button>
+            {{/if}}
             <button type="button" class="toggle-opportunities compact" data-mode="spend"><i class="i_opportunity"></i> {{localize "l5r5e.automation.opportunity.choose"}}</button>
             {{/if}}
             {{!-- Apply results selection --}}
@@ -234,13 +249,12 @@
             </div>
             {{/if}}
             {{#if showFinalSubmit}}
-            <div class="finalize-control {{#if data.submitDisabled}}is-disabled{{/if}}" {{#if data.submitDisabledReason}}tabindex="0"{{/if}}>
+            <div class="finalize-control {{#if data.submitDisabled}}is-disabled{{/if}}" {{#if data.submitDisabledReason}}tabindex="0" data-tooltip="{{data.submitDisabledReason}}" data-tooltip-direction="UP"{{/if}}>
                 <button id="finalize" name="finalize" type="button" {{#if data.submitDisabled}}disabled{{/if}}>
                     {{ localize 'l5r5e.dice.roll_n_keep.bt_validate' }} <i class="fas fa-arrow-circle-right"></i>
                 </button>
-                {{#if data.submitDisabledReason}}<span class="finalize-disabled-reason" role="tooltip">{{data.submitDisabledReason}}</span>{{/if}}
             </div>
             {{/if}}
         {{/if}}
     </section>
-</form>
+</div>

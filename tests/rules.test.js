@@ -45,6 +45,14 @@ test("TN modifiers are applied once and Silenced uses intrigue/technique context
     assert.equal(service.thresholdState(thresholdActor, { "system.composure": 1 }).compromised, true);
 });
 
+test("Incapacitated restricts a check to Void while other actors retain configured Rings", () => {
+    const service = new ConditionService();
+    const incapacitated = { statuses: new Set(["incapacitated"]) };
+    assert.deepEqual(service.allowedRingsForCheck(incapacitated), ["void"]);
+    assert.deepEqual(service.allowedRingsForCheck(incapacitated, { allowedRings: ["air", "fire"] }), ["void"]);
+    assert.deepEqual(service.allowedRingsForCheck({ statuses: new Set() }, { allowedRings: ["air", "fire"] }), ["air", "fire"]);
+});
+
 test("Fire adds effective bonus successes only after raw success", async () => {
     const conditions = new ConditionService();
     const opportunities = new OpportunityService({ repository: new OpportunityRepository({ definitions: [] }), conditionService: conditions });

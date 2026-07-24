@@ -884,6 +884,15 @@
                     "bite": "Bite"
                 },
                 "houseRule": "House Rule",
+                "throwCommitFailed": "The roll was resolved, but the thrown item could not be placed on the scene.",
+                "throwApiUnavailable": "The core equipment API required to throw an item is unavailable.",
+                "throwReservationFailed": "The item could not be reserved for this throw ({reason}).",
+                "soaringSliceWeaponMissing": "Soaring Slice requires a readied weapon in a one-handed grip.",
+                "soaringSliceWeaponTitle": "Soaring Slice: choose weapon",
+                "soaringSliceWeaponPrompt": "Weapon to throw",
+                "soaringSliceDirectionTitle": "Soaring Slice: choose landing direction",
+                "soaringSliceDirectionPrompt": "Legal Range 1 field",
+                "throwLandingRequired": "Choose a legal landing field before finalizing the throw ({reason}).",
                 "errors": {
                     "occupiedHands": "Not enough free hands. Choose held items to stow or drop.",
                     "occupiedHandsDecision": "The selected items do not free enough hands.",
@@ -944,15 +953,20 @@
             "finalStrife": "final Strife change",
                 "blocked": "The roll is provisionally illegal. Choose an applicable pre-validation effect or return to the dice.",
                 "backToDice": "Return to kept dice",
+                "restart": "Return to Ring selection",
+                "restartHint": "Cancel this result and reopen the roll setup. An Incapacitated character may select only Void.",
+                "incapacitatedVoidOnly": "An Incapacitated character may perform a check only with the Void Ring.",
+                "invalidKeptDie": "This kept die is illegal and is excluded from the result.",
+                "invalidKeptDiceSummary": "{count} illegal kept dice were marked and excluded from the resolution.",
                 "error": {
                     "keepRequired": "Keep at least one die to finalize this step.",
                     "keepLimit": "You kept {kept} dice, but the limit is {limit}. Discard dice until the limit is met.",
                     "dead": "A Dead character cannot act.",
                     "unconscious": "An Unconscious character cannot act.",
-                    "incapacitatedCheck": "An Incapacitated character cannot perform a check. Return to the dice and, if available, spend a Void Opportunity to ignore Incapacitated.",
+                    "incapacitatedCheck": "An Incapacitated character must use Void and spend 2 Void Opportunity to suspend Incapacitated. Return to Ring selection if this check used another Ring.",
                     "immobilizedMovement": "An Immobilized character cannot perform this Movement action.",
                     "destroyed": "A Destroyed item cannot be used for this action.",
-                    "compromisedStrife": "A Compromised character cannot keep dice showing Strife. Return to the dice and change the kept dice or ignore Compromised.",
+                    "compromisedStrife": "A Compromised character cannot keep dice showing Strife. Those dice are excluded from the resolution.",
                     "blocked": "This step is blocked: {code}."
                 }
             },

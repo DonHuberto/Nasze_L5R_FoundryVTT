@@ -45,7 +45,7 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
         const sheetData = await super.getData(options);
 
         // Min rank = 1
-        this.actor.system.identity.school_rank = Math.max(1, this.actor.system.identity.school_rank);
+        sheetData.data.system.identity.school_rank = Math.max(1, sheetData.data.system.identity.school_rank);
 
         // Split Money
         sheetData.data.system.money = this._zeniToMoney(this.actor.system.zeni);
@@ -57,8 +57,6 @@ export class CharacterSheetL5r5e extends BaseCharacterSheetL5r5e {
         this._prepareOthersAdvancement(sheetData);
 
         // Update spent_xp to actor
-        this.actor.system.xp_spent = sheetData.data.system.xp_spent;
-
         // Total
         sheetData.data.system.xp_saved = Math.floor(
             parseInt(sheetData.data.system.xp_total) - parseInt(sheetData.data.system.xp_spent)

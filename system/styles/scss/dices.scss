@@ -452,6 +452,16 @@
                 background: fuchsia;
             }
         }
+        &.invalid-keep {
+            filter: grayscale(0.85) opacity(0.55);
+            outline: 2px solid var(--color-level-error, #8b0000);
+            outline-offset: -2px;
+
+            &:after {
+                content: "\f05e";
+                background: var(--color-level-error, #8b0000);
+            }
+        }
     }
 
     tr:first-child .dice-ct {
@@ -494,34 +504,6 @@
                 pointer-events: none;
             }
         }
-    }
-    .finalize-disabled-reason {
-        background: var(--color-cool-5, #28242c);
-        border: 1px solid var(--color-border-light-2, #777);
-        border-radius: 4px;
-        bottom: calc(100% + 0.35rem);
-        color: var(--color-light-1, #f5f5f5);
-        font-size: 0.75rem;
-        left: 50%;
-        line-height: 1.25;
-        max-width: min(28rem, 85vw);
-        opacity: 0;
-        padding: 0.4rem 0.55rem;
-        pointer-events: none;
-        position: absolute;
-        text-align: left;
-        transform: translate(-50%, 0.2rem);
-        transition: opacity 120ms ease, transform 120ms ease;
-        visibility: hidden;
-        width: max-content;
-        z-index: 100;
-    }
-    .finalize-control.is-disabled:hover .finalize-disabled-reason,
-    .finalize-control.is-disabled:focus .finalize-disabled-reason,
-    .finalize-control.is-disabled:focus-within .finalize-disabled-reason {
-        opacity: 1;
-        transform: translate(-50%, 0);
-        visibility: visible;
     }
     .section-header {
         i {
@@ -656,6 +638,18 @@
     }
 
     .resolution-errors { color: var(--color-level-error, #8b0000); }
+
+    .invalid-kept-summary {
+        background: color-mix(in srgb, var(--color-level-error, #8b0000) 12%, transparent);
+        border-left: 3px solid var(--color-level-error, #8b0000);
+        margin-top: 0.4rem;
+        padding: 0.35rem 0.5rem;
+    }
+
+    .restart-roll {
+        margin: 0.35rem auto;
+        width: auto;
+    }
 }
 
 .l5r5e-opportunity-window {

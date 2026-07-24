@@ -1,11 +1,12 @@
 import { CharacterGenerator } from "./character-generator.js";
+import { LegacyApplicationV2 } from "../applications/legacy-v2-application.js";
 
 /**
  * L5R NPC Generator form
  *
- * @extends {FormApplication}
+ * @extends {ApplicationV2}
  */
-export class CharacterGeneratorDialog extends FormApplication {
+export class CharacterGeneratorDialog extends LegacyApplicationV2 {
     /**
      * Current actor data
      */
@@ -50,17 +51,10 @@ export class CharacterGeneratorDialog extends FormApplication {
     }
 
     /**
-     * Define a unique and dynamic element ID for the rendered ActorSheet application
-     */
-    get id() {
-        return `l5r5e-npc-generator-dialog-${this.actor.id}`;
-    }
-
-    /**
      * Create dialog
      */
     constructor(actor = null, options = {}) {
-        super({}, options);
+        super({}, { ...options, id: `l5r5e-npc-generator-dialog-${actor?.id ?? "actor"}` });
         this.actor = actor;
         this.initializeFromActor();
     }

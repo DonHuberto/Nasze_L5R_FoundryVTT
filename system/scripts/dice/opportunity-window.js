@@ -58,7 +58,7 @@ export class OpportunityWindow extends HandlebarsApplicationMixin(ApplicationV2)
         });
     }
 
-    /** Refresh the ApplicationV1 parent with its native boolean signature. */
+    /** Refresh the parent; the V2 compatibility bridge normalizes this legacy call shape. */
     refreshParentRoll() {
         return this.rollParent.render(false);
     }

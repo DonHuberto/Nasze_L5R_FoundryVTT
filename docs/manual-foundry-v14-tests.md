@@ -12,11 +12,13 @@ Use a disposable migrated world with a gridded skirmish scene, a gridless scene,
 3. Open an ordinary Dice Picker: no action type is selected. Open a Strike/structured technique: its metadata selects only the declared types; manual toggles remain usable.
 4. Reduce TN with modifiers below 1 and confirm final TN remains 1. Combine Air, Dazed, Wounded, Prone and Silenced contexts and confirm every reason appears once.
 5. Fail a Fire check with kept Strife; Fire cannot turn it into success. Succeed and verify Fire bonus successes affect initiative/damage.
-6. With Compromised, keep a Strife die; with Incapacitated, open and roll a checked action. Both reach final summary but are blocked there.
-7. On the same Void roll spend `conflict-void-ignore-condition` for the relevant condition. Confirm finalization succeeds, the visible condition remains, and its suspension expires at the end of the next turn.
+6. With Compromised, keep one or more Strife dice. At final summary those dice are visibly invalid, excluded from all totals and do not block Finalize; if every kept die is excluded, the result is 0 Success, 0 Opportunity and 0 Strife.
+7. With Incapacitated, open a checked action. Only Void is available. Use the return-to-Ring-selection button, roll again, then spend `conflict-void-ignore-condition`. Confirm finalization succeeds, the visible condition remains, and its suspension expires at the end of the next turn.
 8. Inspect the informational Opportunity panel while choosing dice, then the selectable final panel. Test checkbox, `op+` counter, overspend, required condition/target, automatic/confirm/manual effects and unknown executor fallback.
 9. Verify the Strife ledger for Void, universal check-only removal, Water removal of prior Strife and Intoxicated. There must be no manual applied-Strife counter.
 10. Spend an Opportunity whose executor inflicts a direct critical strike. Confirm it opens its own mitigation workflow after the parent roll commits and is linked to that roll's transaction history.
+11. Hover and keyboard-focus a disabled Finalize control near every window edge. The full localized explanation must remain inside the viewport and must not be clipped by Roll & Keep.
+12. Open both Opportunity windows and verify alternating row backgrounds. In spending mode the checkbox or −/counter/+ group remains in the first column beside its own entry. Target selectors list only visible, undefeated Combatants.
 
 ## Damage and critical
 
@@ -28,6 +30,15 @@ Use a disposable migrated world with a gridded skirmish scene, a gridless scene,
 6. Apply a critical to a minion and confirm Fatigue equal to severity instead of the standard table. Defeat minions with source damage 6 and 7 to verify non-lethal/lethal outcomes.
 7. Create a repeated scar and confirm the GM choice for Dying 5 uses a compendium UUID.
 8. Edit or rename the newly embedded scar, then attempt replay. Confirm rollback reports a conflict and does not delete the edited Item.
+
+## Equipment and throwing
+
+1. Switch a two-weapon loadout with insufficient hands; the whole change is rejected. Switch a legal loadout; all readied states change in one transaction.
+2. Enable improvised Throw Item. The HUD button appears only with a held item, opens the normal Martial Arts [Ranged] picker and disappears when the house rule is disabled.
+3. Cancel Throw Item in Dice Picker and Roll & Keep, then retry from Ring selection. No action, quantity or equipment reservation is consumed by either cancel path.
+4. Resolve an improvised hit and miss. A hit lands on the target field; a miss uses a deterministic legal field between source and target, excluding the origin and respecting scene bounds/walls.
+5. Use Soaring Slice with multiple one-handed weapons, select the weapon and resolve defense/critical/failure branches. Defense requests a legal Range 1 direction; critical embeds the item; failure follows the legal path.
+6. Confirm a thrown-grip weapon still uses Strike and that Soaring Slice remains a technique rather than appearing under the improvised Throw Item button.
 
 ## Turns, conditions and movement
 
@@ -56,8 +67,8 @@ Use a disposable migrated world with a gridded skirmish scene, a gridless scene,
 
 ## V14 Data Models
 
-1. Start the world and confirm there is no deprecated `template.json` warning.
-2. Create, open, edit, save and reopen `character`, `npc` and `army` actors.
+1. Start the world and confirm there are no deprecated `template.json`, ApplicationV1, `ContextMenuEntry#name`, `callback` or legacy editor-helper warnings.
+2. Double-click a token, then create, open, edit, save and reopen `character`, `npc` and `army` actors. In particular, confirm token-opened character sheets do not throw `"_id" is read-only`.
 3. Repeat for every Item type declared by `system.json`, including `opportunity`.
 4. Inspect existing migrated documents with legacy custom top-level values; known values remain in place and
    unknown values are retained under `_legacy`.

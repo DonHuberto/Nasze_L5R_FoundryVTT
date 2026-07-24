@@ -60,6 +60,14 @@ export class ConditionService {
         return [...statusSet(actor)].filter((condition) => this.isActive(actor, condition, lifecycle, ignored));
     }
 
+    allowedRingsForCheck(actor, { allowedRings = null, lifecycle = {}, ignoredConditions = [] } = {}) {
+        const configured = Array.isArray(allowedRings)
+            ? [...new Set(allowedRings.map((ring) => String(ring).toLowerCase()))]
+            : ["air", "earth", "fire", "water", "void"];
+        if (this.isActive(actor, "incapacitated", lifecycle, ignoredConditions)) return ["void"];
+        return configured;
+    }
+
     difficultyModifiers(context = {}) {
         const actor = context.actor;
         const target = context.targetActor ?? context.target?.actor;

@@ -1,4 +1,4 @@
-<form class="{{cssClass}}" autocomplete="off">
+<div class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" width="64" height="64">
         <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'Name'}}">
@@ -9,7 +9,15 @@
         <div class="form-group"><label>{{localize "l5r5e.automation.opportunity.timing"}}</label><select name="system.timing">{{selectOptions timings selected=system.timing localize=false}}</select></div>
         <div class="form-group"><label>{{localize "l5r5e.automation.opportunity.automation"}}</label><select name="system.automation">{{selectOptions automations selected=system.automation localize=false}}</select></div>
         <div class="form-group"><label>{{localize "l5r5e.automation.opportunity.cost"}}</label><input type="number" name="system.cost.base" value="{{system.cost.base}}" min="1"><label><input type="checkbox" name="system.cost.scalable" {{checked system.cost.scalable}}> op+</label><input type="number" name="system.cost.increment" value="{{system.cost.increment}}" min="1"></div>
-        <div class="form-group stacked"><label>{{localize "l5r5e.automation.opportunity.description"}}</label>{{editor system.description target="system.description" button=true editable=editable}}</div>
+        <div class="form-group stacked">
+            <label>{{localize "l5r5e.automation.opportunity.description"}}</label>
+            {{#if editable}}
+            <prose-mirror name="system.description" button="true" editable="true" toggled="false"
+                value="{{system.description}}">{{{descriptionHtml}}}</prose-mirror>
+            {{else}}
+            {{{descriptionHtml}}}
+            {{/if}}
+        </div>
         <div class="form-group"><label>Action IDs</label><input name="actionIdsCsv" value="{{actionIdsCsv}}" placeholder="strike, guard"></div>
         <div class="form-group stacked"><label>contexts JSON</label><textarea name="contextsJson" rows="9">{{contextsJson}}</textarea></div>
         <div class="form-group stacked"><label>requirements JSON</label><textarea name="requirementsJson" rows="5">{{requirementsJson}}</textarea></div>
@@ -17,4 +25,4 @@
         <div class="form-group stacked"><label>effect JSON</label><textarea name="effectJson" rows="6">{{effectJson}}</textarea></div>
         <div class="form-group stacked"><label>duration JSON</label><textarea name="durationJson" rows="3">{{durationJson}}</textarea></div>
     </section>
-</form>
+</div>

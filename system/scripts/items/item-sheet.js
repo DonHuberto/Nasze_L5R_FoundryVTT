@@ -80,7 +80,7 @@ export class ItemSheetL5r5e extends BaseItemSheetL5r5e {
      */
     _createDragDropHandlers() {
         // "this.isEditable" fail for tooltips (undefined "this.document")
-        const isEditable = this.options.editable;
+        const isEditable = this.isEditable;
         return [
             new foundry.applications.ux.DragDrop.implementation({
                 dragSelector: ".property",

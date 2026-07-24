@@ -81,13 +81,8 @@ export class ActorL5r5e extends Actor {
      * @override
      */
     async update(docData = {}, context = {}) {
-        // fix foundry v0.8.8 (config token=object, update=flat array)
         docData = foundry.utils.flattenObject(docData);
-
-        // Need a _id
-        if (!docData["_id"]) {
-            docData["_id"] = this.id;
-        }
+        delete docData._id;
 
         // Context informations (needed for unlinked token update)
         context.parent = this.parent;
@@ -117,11 +112,12 @@ export class ActorL5r5e extends Actor {
             });
         }
 
-        return Actor.updateDocuments([docData], context).then(() => {
+        return super.update(docData, context).then((updated) => {
             // Notify the "Gm Monitor" if this actor is watched
             if (game.settings.get(CONFIG.l5r5e.namespace, "gm-monitor-actors").some((uuid) => uuid === this.uuid)) {
                 game.l5r5e.HelpersL5r5e.refreshLocalAndSocket("l5r5e-gm-monitor");
             }
+            return updated;
         });
     }
 

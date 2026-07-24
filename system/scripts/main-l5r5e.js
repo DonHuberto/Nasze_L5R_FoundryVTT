@@ -59,7 +59,6 @@ import { TurnStateService } from "./services/turn-state-service.js";
 import { CORE_OPPORTUNITIES } from "./data/core-opportunities.js";
 // JournalEntry
 import { JournalL5r5e } from "./journal.js";
-import { BaseJournalSheetL5r5e } from "./journals/base-journal-sheet.js";
 // Compendium
 import { CompendiumDirectoryL5r5e } from "./compendium/l5r5e-compendium-directory.js";
 // Specific
@@ -115,10 +114,8 @@ Hooks.once("init", async () => {
     // Assign custom classes and constants here
     CONFIG.Combat.documentClass = CombatL5r5e;
     CONFIG.Actor.documentClass = ActorL5r5e;
-    CONFIG.Actor.sheetClasses = CharacterSheetL5r5e;
     CONFIG.Item.documentClass = ItemL5r5e;
     CONFIG.JournalEntry.documentClass = JournalL5r5e;
-    CONFIG.JournalEntry.sheetClass = BaseJournalSheetL5r5e;
     CONFIG.Token.rulerClass = TokenRulerL5r5e;
     CONFIG.Canvas.rulerClass = RulerL5r5e;
 
@@ -221,104 +218,94 @@ Hooks.once("init", async () => {
     PreloadTemplates().then(() => {});
 
     // ***** Register custom sheets *****
-    const fdc = foundry.documents.collections;
-    const fav1s = foundry.appv1.sheets;
+    const documentSheets = foundry.applications.apps.DocumentSheetConfig;
 
     // Actors
-    fdc.Actors.unregisterSheet("core", fav1s.ActorSheet);
-    fdc.Actors.registerSheet(L5R5E.namespace, CharacterSheetL5r5e, {
+    documentSheets.registerSheet(foundry.documents.Actor, L5R5E.namespace, CharacterSheetL5r5e, {
         types: ["character"],
         label: "TYPES.Actor.character",
         makeDefault: true,
     });
-    fdc.Actors.registerSheet(L5R5E.namespace, NpcSheetL5r5e, {
+    documentSheets.registerSheet(foundry.documents.Actor, L5R5E.namespace, NpcSheetL5r5e, {
         types: ["npc"],
         label: "TYPES.Actor.npc",
         makeDefault: true,
     });
-    fdc.Actors.registerSheet(L5R5E.namespace, ArmySheetL5r5e, {
+    documentSheets.registerSheet(foundry.documents.Actor, L5R5E.namespace, ArmySheetL5r5e, {
         types: ["army"],
         label: "TYPES.Actor.army",
         makeDefault: true,
     });
 
     // Items
-    fdc.Items.unregisterSheet("core", fav1s.ItemSheet);
-    fdc.Items.registerSheet(L5R5E.namespace, ItemSheetL5r5e, {
+    documentSheets.registerSheet(foundry.documents.Item, L5R5E.namespace, ItemSheetL5r5e, {
         types: ["item"],
         label: "TYPES.Item.item",
         makeDefault: true,
     });
-    fdc.Items.registerSheet(L5R5E.namespace, ArmorSheetL5r5e, {
+    documentSheets.registerSheet(foundry.documents.Item, L5R5E.namespace, ArmorSheetL5r5e, {
         types: ["armor"],
         label: "TYPES.Item.armor",
         makeDefault: true,
     });
-    fdc.Items.registerSheet(L5R5E.namespace, WeaponSheetL5r5e, {
+    documentSheets.registerSheet(foundry.documents.Item, L5R5E.namespace, WeaponSheetL5r5e, {
         types: ["weapon"],
         label: "TYPES.Item.weapon",
         makeDefault: true,
     });
-    fdc.Items.registerSheet(L5R5E.namespace, TechniqueSheetL5r5e, {
+    documentSheets.registerSheet(foundry.documents.Item, L5R5E.namespace, TechniqueSheetL5r5e, {
         types: ["technique"],
         label: "TYPES.Item.technique",
         makeDefault: true,
     });
-    fdc.Items.registerSheet(L5R5E.namespace, PropertySheetL5r5e, {
+    documentSheets.registerSheet(foundry.documents.Item, L5R5E.namespace, PropertySheetL5r5e, {
         types: ["property"],
         label: "TYPES.Item.property",
         makeDefault: true,
     });
-    fdc.Items.registerSheet(L5R5E.namespace, PeculiaritySheetL5r5e, {
+    documentSheets.registerSheet(foundry.documents.Item, L5R5E.namespace, PeculiaritySheetL5r5e, {
         types: ["peculiarity"],
         label: "TYPES.Item.peculiarity",
         makeDefault: true,
     });
-    fdc.Items.registerSheet(L5R5E.namespace, AdvancementSheetL5r5e, {
+    documentSheets.registerSheet(foundry.documents.Item, L5R5E.namespace, AdvancementSheetL5r5e, {
         types: ["advancement"],
         label: "TYPES.Item.advancement",
         makeDefault: true,
     });
-    fdc.Items.registerSheet(L5R5E.namespace, TitleSheetL5r5e, {
+    documentSheets.registerSheet(foundry.documents.Item, L5R5E.namespace, TitleSheetL5r5e, {
         types: ["title"],
         label: "TYPES.Item.title",
         makeDefault: true,
     });
-    fdc.Items.registerSheet(L5R5E.namespace, BondSheetL5r5e, {
+    documentSheets.registerSheet(foundry.documents.Item, L5R5E.namespace, BondSheetL5r5e, {
         types: ["bond"],
         label: "TYPES.Item.bond",
         makeDefault: true,
     });
-    fdc.Items.registerSheet(L5R5E.namespace, SignatureScrollSheetL5r5e, {
+    documentSheets.registerSheet(foundry.documents.Item, L5R5E.namespace, SignatureScrollSheetL5r5e, {
         types: ["signature_scroll"],
         label: "TYPES.Item.signature_scroll",
         makeDefault: true,
     });
-    fdc.Items.registerSheet(L5R5E.namespace, ItemPatternSheetL5r5e, {
+    documentSheets.registerSheet(foundry.documents.Item, L5R5E.namespace, ItemPatternSheetL5r5e, {
         types: ["item_pattern"],
         label: "TYPES.Item.item_pattern",
         makeDefault: true,
     });
-    fdc.Items.registerSheet(L5R5E.namespace, ArmyCohortSheetL5r5e, {
+    documentSheets.registerSheet(foundry.documents.Item, L5R5E.namespace, ArmyCohortSheetL5r5e, {
         types: ["army_cohort"],
         label: "TYPES.Item.army_cohort",
         makeDefault: true,
     });
-    fdc.Items.registerSheet(L5R5E.namespace, ArmyFortificationSheetL5r5e, {
+    documentSheets.registerSheet(foundry.documents.Item, L5R5E.namespace, ArmyFortificationSheetL5r5e, {
         types: ["army_fortification"],
         label: "TYPES.Item.army_fortification",
         makeDefault: true,
     });
-    foundry.applications.apps.DocumentSheetConfig.registerSheet(foundry.documents.Item, L5R5E.namespace, OpportunitySheetL5r5e, {
+    documentSheets.registerSheet(foundry.documents.Item, L5R5E.namespace, OpportunitySheetL5r5e, {
         types: ["opportunity"],
         label: "TYPES.Item.opportunity",
-        makeDefault: true,
-    });
-
-    // Journal
-    fdc.Journal.unregisterSheet("core", fav1s.JournalSheet);
-    fdc.Journal.registerSheet(L5R5E.namespace, BaseJournalSheetL5r5e, {
-        label: "TYPES.Journal.journal",
         makeDefault: true,
     });
 

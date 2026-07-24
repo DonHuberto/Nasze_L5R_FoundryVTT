@@ -6,6 +6,17 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.108 - 24/07/2026 - ApplicationV2 sheets, recoverable rolls and completed throwing
+
+- Migrate Actor and Item sheets, Roll & Keep, Dice Picker, character-generation dialogs and remaining confirmation prompts to the Foundry VTT 14 ApplicationV2 framework.
+- Fix token-opened character sheets by rendering detached document data, stripping the read-only `_id` field from submissions and removing the unsafe bulk Actor update path.
+- Finish the V14 ContextMenu migration with `label`, `visible` and `onClick` entries in both Roll & Keep and GM message tools.
+- Restrict Incapacitated checks to Void, add a return-to-Ring-selection workflow and exclude visibly marked illegal kept dice from final totals without blocking a zero-result roll.
+- Keep Finalize guidance in Foundry's viewport-level tooltip layer, localize validation codes and preserve the separate zebra-striped Opportunity reference/spending windows with legal combatant targets.
+- Add core-backed improvised Throw Item completion, real Soaring Slice weapon reservations, legal wall/bounds-aware landing fields, direction choice and deterministic nearest fallback behavior.
+- Add atomic weapon-set transactions with hand validation and ensure cancelled/restarted throws leave no action or equipment reservation behind.
+- Expand regression coverage to 83 tests and pass data normalization, syntax, ESLint, SCSS compilation and release validation.
+
 ## 1.14.107 - 24/07/2026 - Opportunity readability and validation guidance
 
 - Finish the Foundry VTT 14 context-menu migration by replacing the deprecated roll-menu `name` entry with `label`.

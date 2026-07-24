@@ -1,11 +1,12 @@
 import { TwentyQuestions } from "./twenty-questions.js";
+import { LegacyApplicationV2 } from "../applications/legacy-v2-application.js";
 
 /**
  * L5R Twenty Questions form
  *
- * @extends {FormApplication}
+ * @extends {ApplicationV2}
  */
-export class TwentyQuestionsDialog extends FormApplication {
+export class TwentyQuestionsDialog extends LegacyApplicationV2 {
     /**
      * Current actor data
      */
@@ -48,17 +49,10 @@ export class TwentyQuestionsDialog extends FormApplication {
     }
 
     /**
-     * Define a unique and dynamic element ID for the rendered ActorSheet application
-     */
-    get id() {
-        return `l5r5e-twenty-questions-dialog-${this.actor.id}`;
-    }
-
-    /**
      * Create dialog
      */
     constructor(actor = null, options = {}) {
-        super({}, options);
+        super({}, { ...options, id: `l5r5e-twenty-questions-dialog-${actor?.id ?? "actor"}` });
         this._initialize(actor);
     }
 
@@ -88,11 +82,11 @@ export class TwentyQuestionsDialog extends FormApplication {
      * Construct async cache here
      * @override
      */
-    async _render(force = false, options = {}) {
+    render(force = false, options = {}) {
         if (this.cache === null) {
-            await this._constructCache();
+            return this._constructCache().then(() => super.render(force, options));
         }
-        return super._render(force, options);
+        return super.render(force, options);
     }
 
     /**

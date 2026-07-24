@@ -109,6 +109,36 @@ test("hand assessment requires explicit, unique release decisions", () => {
     assert.equal(equipment.confirm(intent, { releases: [{ itemUuid: weapon.uuid, mode: "stow" }] }).status, "confirmed");
 });
 
+test("weapon-set changes validate hands and commit the entire loadout atomically", async () => {
+    const { actor, equipment, makeItem, weapon } = fixture();
+    const wakizashi = makeItem({
+        _id: "W2",
+        name: "Wakizashi",
+        type: "weapon",
+        system: { quantity: 1, equipped: true, readied: false, active_grip: "one-handed", grip_profiles: { "one-handed": { hands: 1 } } },
+    });
+    const blockedWeapon = makeItem({
+        _id: "W3",
+        name: "Nodachi",
+        type: "weapon",
+        system: { quantity: 1, equipped: true, readied: false, active_grip: "two-handed", grip_profiles: { "two-handed": { hands: 2 } } },
+    });
+
+    const blocked = equipment.changeLoadout(actor, [wakizashi, blockedWeapon]);
+    assert.equal(blocked.ok, false);
+    assert.equal(blocked.assessment.code, "loadoutHandsExceeded");
+    assert.equal(weapon.system.readied, true);
+    assert.equal(wakizashi.system.readied, false);
+
+    const intent = equipment.changeLoadout(actor, [wakizashi]);
+    const committed = await equipment.commit(await equipment.reserve(equipment.confirm(intent)));
+    assert.equal(committed.ok, true);
+    assert.equal(weapon.system.readied, false);
+    assert.equal(wakizashi.system.equipped, true);
+    assert.equal(wakizashi.system.readied, true);
+    assert.equal(blockedWeapon.system.readied, false);
+});
+
 test("armor changes are blocked in conflict unless the world policy overrides them", () => {
     const previousGame = globalThis.game;
     globalThis.game = { combat: { started: true } };
@@ -147,6 +177,19 @@ test("landing field selection is deterministic, legal and excludes the origin", 
     assert.notDeepEqual(first.field, input.originField);
     assert.ok(input.legalFields.some((field) => field.x === first.field.x && field.y === first.field.y));
     assert.deepEqual(deterministicLandingField({ ...input, hit: true }).field, input.targetField);
+});
+
+test("throw fallback selects a nearest legal field and never the origin", () => {
+    const result = deterministicLandingField({
+        hit: false,
+        originField: { x: 0, y: 0 },
+        targetField: { x: 3, y: 0 },
+        pathFields: [],
+        legalFields: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 3, y: 2 }, { x: 2, y: 0 }],
+        transactionId: "nearest",
+    });
+    assert.deepEqual(result.field, { x: 2, y: 0 });
+    assert.equal(result.fallback, true);
 });
 
 test("Soaring Slice uses a chosen Range 1 field, embeds on critical and never randomizes a failure path", () => {

@@ -11,10 +11,10 @@ export class ResolutionToolsL5r5e {
     static contextOptions() {
         const visible = (entry) => game.user.isGM && Boolean(this.resolution(this.messageFromEntry(entry)));
         return [
-            { name: "l5r5e.automation.gm.changeTn", icon: "<i class='fas fa-bullseye'></i>", visible, callback: (entry) => this.changeTn(this.messageFromEntry(entry)) },
-            { name: "l5r5e.automation.gm.assignTarget", icon: "<i class='fas fa-crosshairs'></i>", visible, callback: (entry) => this.changeTarget(this.messageFromEntry(entry)) },
-            { name: "l5r5e.automation.gm.reopenOpportunity", icon: "<i class='fas fa-redo'></i>", visible, callback: (entry) => this.reopenOpportunity(this.messageFromEntry(entry)) },
-            { name: "l5r5e.automation.gm.history", icon: "<i class='fas fa-history'></i>", visible, callback: (entry) => this.showHistory(this.messageFromEntry(entry)) },
+            { label: "l5r5e.automation.gm.changeTn", icon: "<i class='fas fa-bullseye'></i>", visible, onClick: (entry) => this.changeTn(this.messageFromEntry(entry)) },
+            { label: "l5r5e.automation.gm.assignTarget", icon: "<i class='fas fa-crosshairs'></i>", visible, onClick: (entry) => this.changeTarget(this.messageFromEntry(entry)) },
+            { label: "l5r5e.automation.gm.reopenOpportunity", icon: "<i class='fas fa-redo'></i>", visible, onClick: (entry) => this.reopenOpportunity(this.messageFromEntry(entry)) },
+            { label: "l5r5e.automation.gm.history", icon: "<i class='fas fa-history'></i>", visible, onClick: (entry) => this.showHistory(this.messageFromEntry(entry)) },
         ];
     }
 

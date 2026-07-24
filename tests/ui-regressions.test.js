@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import { fileURLToPath } from "node:url";
 
 test("ApplicationV2 Opportunity child uses object render options", async (t) => {
     const previousFoundry = globalThis.foundry;
@@ -34,10 +35,82 @@ test("ApplicationV2 Opportunity child uses object render options", async (t) => 
     assert.equal(parent.renderForce, false);
 });
 
-test("GM resolution context menu uses the Foundry V14 visible property", () => {
+test("ApplicationV2 actor sheets render detached data and never submit _id", async (t) => {
+    const previousFoundry = globalThis.foundry;
+    t.after(() => { globalThis.foundry = previousFoundry; });
+
+    class ApplicationV2 {
+        constructor(options) {
+            this.options = options;
+            this.document = options.document;
+            this.element = { querySelector: () => null };
+        }
+        async _prepareContext() { return { rootId: "sheet-root" }; }
+        _configureRenderParts() { return { form: { template: "placeholder" } }; }
+        _getHeaderControls() { return []; }
+        async _onRender() {}
+        render(options) { this.renderOptions = options; return this; }
+    }
+    class ActorSheetV2 extends ApplicationV2 {
+        get actor() { return this.document; }
+        get isEditable() { return true; }
+    }
+    class ItemSheetV2 extends ApplicationV2 {
+        get item() { return this.document; }
+        get actor() { return this.document?.actor ?? null; }
+        get isEditable() { return true; }
+    }
+    globalThis.foundry = {
+        applications: {
+            api: {
+                ApplicationV2,
+                HandlebarsApplicationMixin: (Base) => class extends Base {},
+            },
+            sheets: { ActorSheetV2, ItemSheetV2 },
+        },
+        utils: {
+            mergeObject: (left, right) => ({ ...left, ...right }),
+            expandObject: (value) => value,
+        },
+    };
+
+    const { LegacyActorSheetV2 } = await import(`../system/scripts/applications/legacy-v2-application.js?test=${Date.now()}`);
+    class TestSheet extends LegacyActorSheetV2 {
+        static get defaultOptions() {
+            return { ...super.defaultOptions, template: "full-sheet.hbs" };
+        }
+        get template() { return this.actor.limited ? "limited-sheet.hbs" : "full-sheet.hbs"; }
+    }
+
+    let submitted;
+    const actor = {
+        id: "actor-1",
+        limited: true,
+        isOwner: true,
+        system: { strife: { value: 3 } },
+        items: [{ toObject: () => ({ _id: "item-1", name: "Katana" }) }],
+        toObject: () => ({ _id: "actor-1", system: { strife: { value: 3 } } }),
+        update: async (data) => { submitted = data; },
+    };
+    const sheet = new TestSheet({ document: actor });
+    const context = await sheet._prepareContext({});
+    context.data.system.strife.value = 99;
+    assert.equal(actor.system.strife.value, 3);
+    assert.equal(context.rootId, "sheet-root");
+    assert.equal(sheet._configureRenderParts({}).form.template, "limited-sheet.hbs");
+
+    await sheet._updateObject({}, { _id: "actor-1", "system.strife.value": 4 });
+    assert.deepEqual(submitted, { "system.strife.value": 4 });
+});
+
+test("GM resolution context menu uses the Foundry V14 label and visible properties", () => {
     const source = fs.readFileSync(new URL("../system/scripts/gm/resolution-tools.js", import.meta.url), "utf8");
     const contextOptions = source.slice(source.indexOf("static contextOptions()"), source.indexOf("static async changeTn"));
     assert.match(contextOptions, /\bvisible\b/);
+    assert.match(contextOptions, /\blabel:/);
+    assert.match(contextOptions, /\bonClick:/);
+    assert.doesNotMatch(contextOptions, /\bname:/);
+    assert.doesNotMatch(contextOptions, /\bcallback:/);
     assert.doesNotMatch(contextOptions, /\bcondition\b/);
 });
 
@@ -45,7 +118,9 @@ test("roll context menu uses the Foundry V14 label property", () => {
     const source = fs.readFileSync(new URL("../system/scripts/dice/roll-n-keep-dialog.js", import.meta.url), "utf8");
     const contextMenu = source.slice(source.indexOf("new foundry.applications.ux.ContextMenu"), source.indexOf("// Open journal on effect name"));
     assert.match(contextMenu, /\blabel:/);
+    assert.match(contextMenu, /\bonClick:/);
     assert.doesNotMatch(contextMenu, /\bname:/);
+    assert.doesNotMatch(contextMenu, /\bcallback:/);
 });
 
 test("Opportunity targets include only visible undefeated combatants", async () => {
@@ -71,8 +146,80 @@ test("Opportunity rows and disabled finalize controls expose the requested UI st
     assert.match(opportunity, /opportunity-entry-grid/);
     assert.match(opportunity, /opportunity-spend-control/);
     assert.match(styles, /\.opportunity-row[\s\S]*&:nth-child\(odd\)/);
-    assert.match(roll, /finalize-disabled-reason/);
-    assert.match(styles, /\.finalize-control\.is-disabled:hover/);
+    assert.match(roll, /data-tooltip="{{data\.submitDisabledReason}}"/);
+    assert.doesNotMatch(roll, /finalize-disabled-reason/);
+    assert.match(roll, /class="restart-roll"/);
+    assert.match(roll, /invalid-kept-summary/);
+    assert.match(styles, /\.invalid-keep/);
+});
+
+test("cancelled and restarted throw checks preserve no orphaned equipment reservations", () => {
+    const picker = fs.readFileSync(new URL("../system/scripts/dice/dice-picker-dialog.js", import.meta.url), "utf8");
+    const roll = fs.readFileSync(new URL("../system/scripts/dice/roll-n-keep-dialog.js", import.meta.url), "utf8");
+    assert.match(picker, /equipmentIntentId[\s\S]*!this\._rollTransferred[\s\S]*equipment\?\.cancel/);
+    assert.match(picker, /this\._rollTransferred = true/);
+    assert.match(roll, /!this\._preserveEquipmentIntent[\s\S]*equipment\?\.cancel/);
+    assert.match(roll, /this\._preserveEquipmentIntent = Boolean/);
+});
+
+test("Soaring Slice reserves a real one-handed weapon through the core equipment API", () => {
+    const picker = fs.readFileSync(new URL("../system/scripts/dice/dice-picker-dialog.js", import.meta.url), "utf8");
+    assert.match(picker, /_prepareSoaringSliceIntent/);
+    assert.match(picker, /this\._actionId !== "soaring-slice"/);
+    assert.match(picker, /item\.attackProfile\?\.grip === "one-handed"/);
+    assert.match(picker, /equipment\.throw\(this\._actor,\s*weapon,\s*\{\s*mode:\s*"soaring-slice"/);
+    assert.match(picker, /equipmentIntentId:\s*reserved\.intentId/);
+});
+
+test("throw resolution validates scene bounds and walls before commit and asks for Soaring Slice direction", () => {
+    const roll = fs.readFileSync(new URL("../system/scripts/dice/roll-n-keep-dialog.js", import.meta.url), "utf8");
+    assert.match(roll, /_prepareThrowOutcome/);
+    assert.match(roll, /dimensions\?\.rect/);
+    assert.match(roll, /polygonBackends\?\.move/);
+    assert.match(roll, /soaringSliceDirectionTitle/);
+    assert.match(roll, /resolutionDecisions\.throwLanding/);
+    assert.match(roll, /completeThrow\(equipmentIntentId,\s*pendingThrow\.outcome\)/);
+});
+
+test("all system-owned sheets and roll dialogs use the Foundry V14 ApplicationV2 framework", () => {
+    const roots = [
+        new URL("../system/scripts/actors", import.meta.url),
+        new URL("../system/scripts/items", import.meta.url),
+        new URL("../system/scripts/dice", import.meta.url),
+        new URL("../system/scripts/applications", import.meta.url),
+        new URL("../system/scripts/main-l5r5e.js", import.meta.url),
+    ];
+    const files = roots.flatMap((root) => {
+        const path = fileURLToPath(root);
+        if (path.endsWith(".js")) return [path];
+        return fs.readdirSync(path, { recursive: true })
+            .filter((entry) => String(entry).endsWith(".js"))
+            .map((entry) => `${path}/${entry}`);
+    });
+    const source = files.map((file) => fs.readFileSync(file, "utf8")).join("\n");
+    assert.doesNotMatch(source, /foundry\.appv1/);
+    assert.doesNotMatch(source, /extends\s+FormApplication/);
+    assert.doesNotMatch(source, /foundry\.documents\.collections\.(Actors|Items)\.registerSheet/);
+    assert.match(source, /ActorSheetV2/);
+    assert.match(source, /ItemSheetV2/);
+    assert.match(source, /DocumentSheetConfig/);
+});
+
+test("system dialogs use DialogV2 instead of the deprecated V1 Dialog", () => {
+    const helpers = fs.readFileSync(new URL("../system/scripts/helpers.js", import.meta.url), "utf8");
+    assert.match(helpers, /DialogV2\.confirm/);
+    assert.match(helpers, /DialogV2\.prompt/);
+    assert.doesNotMatch(helpers, /\bnew\s+Dialog\b/);
+    assert.doesNotMatch(helpers, /\bDialog\.prompt\b/);
+});
+
+test("Actor instance updates never inject the read-only _id field", () => {
+    const source = fs.readFileSync(new URL("../system/scripts/actor.js", import.meta.url), "utf8");
+    const method = source.slice(source.indexOf("async update(docData"), source.indexOf("/** @inheritDoc */"));
+    assert.match(method, /delete docData\._id/);
+    assert.match(method, /super\.update\(docData, context\)/);
+    assert.doesNotMatch(method, /Actor\.updateDocuments/);
+    assert.doesNotMatch(method, /docData\["_id"\]\s*=/);
 });
 
 test("sheet roll controls remain available outside editable-only listeners and are semantic", () => {

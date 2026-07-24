@@ -1,7 +1,9 @@
+import { LegacyActorSheetV2 } from "../applications/legacy-v2-application.js";
+
 /**
  * Base Sheet for Actor and Npc
  */
-export class BaseSheetL5r5e extends foundry.appv1.sheets.ActorSheet {
+export class BaseSheetL5r5e extends LegacyActorSheetV2 {
     /**
      * Commons options
      */
@@ -99,22 +101,7 @@ export class BaseSheetL5r5e extends foundry.appv1.sheets.ActorSheet {
         if (!game.user.isGM && this.actor.limited) {
             return `${CONFIG.l5r5e.paths.templates}actors/limited-sheet.html`;
         }
-        return this.options.template;
-    }
-
-    /**
-     * Activate a named TinyMCE text editor
-     * @param {string} name             The named data field which the editor modifies.
-     * @param {object} options          TinyMCE initialization options passed to TextEditor.create
-     * @param {string} initialContent   Initial text content for the editor area.
-     * @override
-     */
-    activateEditor(name, options = {}, initialContent = "") {
-        // Symbols Compatibility with old compendium modules (PRE l5r v1.7.2)
-        if (["system.notes", "system.description"].includes(name) && initialContent) {
-            initialContent = game.l5r5e.HelpersL5r5e.convertSymbols(initialContent, false);
-        }
-        return super.activateEditor(name, options, initialContent);
+        return this.constructor.defaultOptions.template;
     }
 
     /**

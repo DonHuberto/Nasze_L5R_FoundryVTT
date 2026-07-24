@@ -1,8 +1,10 @@
+import { LegacyItemSheetV2 } from "../applications/legacy-v2-application.js";
+
 /**
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
  */
-export class BaseItemSheetL5r5e extends foundry.appv1.sheets.ItemSheet {
+export class BaseItemSheetL5r5e extends LegacyItemSheetV2 {
     /** @override */
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
@@ -83,21 +85,6 @@ export class BaseItemSheetL5r5e extends foundry.appv1.sheets.ItemSheet {
         }
 
         return super._updateObject(event,formData);
-    }
-
-    /**
-     * Activate a named TinyMCE text editor
-     * @param {string} name             The named data field which the editor modifies.
-     * @param {object} options          TinyMCE initialization options passed to TextEditor.create
-     * @param {string} initialContent   Initial text content for the editor area.
-     * @override
-     */
-    activateEditor(name, options = {}, initialContent = "") {
-        // Symbols Compatibility with old compendium modules (PRE l5r v1.7.2)
-        if (name === "system.description" && initialContent) {
-            initialContent = game.l5r5e.HelpersL5r5e.convertSymbols(initialContent, false);
-        }
-        return super.activateEditor(name, options, initialContent);
     }
 
     /**

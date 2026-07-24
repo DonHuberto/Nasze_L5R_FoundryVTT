@@ -20,6 +20,7 @@ The HUD should be a frontend over `game.l5r5e`; it must not maintain a second ac
 - `game.l5r5e.opportunities`: `available`, `validatePlan`, `executeTiming`, `registerExecutor`.
 - `game.l5r5e.damage`: damage and Bleeding resolution DTOs.
 - `game.l5r5e.critical`: preparation, mitigation/outcome and repeated-scar DTOs.
+- `game.l5r5e.equipment`: `heldItems`, `getAttackProfiles`, `prepare`, `changeGrip`, `changeLoadout`, `drop`, `throw`, `pickup`, `confirm`, `reserve`, `commit`, `cancel`, `completeThrow`.
 - `game.l5r5e.movement`: `remaining`, `maneuverBudget`, `techniqueBudget`, `startFreeMovement`, `startManeuver`, `cancelManeuver`, `executeManeuver`, `startTechniqueMovement`, `plan`, `measure`, `execute`, `undoMovement`, `reachableFields`.
 - `game.l5r5e.rangeBands`: `fieldsPerBand`, `toBudget`, `fromCost`.
 - `game.l5r5e.initiative`: Prepared/base/score/ring/optimizer/tie/group helpers.
@@ -31,6 +32,8 @@ The HUD should be a frontend over `game.l5r5e`; it must not maintain a second ac
 HUD buttons may call `actions.reserveAndPersist` when the user confirms an action and before its roll begins. Merely previewing/opening a picker must not consume a slot. Cancel calls `actions.cancel`; a completed custom no-check action calls `actions.commit`. Core checked rolls prepare the action commit together with roll mutations. A Water slot is never consumed by a checked action and is rejected when its action type overlaps an earlier action.
 
 For movement, call `movement.plan(token, {maxCost: movement.remaining(combatant)})`, then `movement.execute`. The service uses V14 `preventDrop`; public movement hooks cover ordinary dragging and keyboard movement. Use `reachableFields` only for visualization. Call `undoMovement` only when the getter reports availability.
+
+For equipment, assess through one of the operation methods, collect any required hand-release decisions, then call `confirm`, `reserve` and `commit`. A weapon-set change must use one `changeLoadout` intent. A checked throw transfers its reserved intent ID in `rollContext.equipmentIntentId`; Roll & Keep calls `completeThrow` only after resolving a legal landing field.
 
 Subscribe to `l5r5e.turnStateChanged`, `l5r5e.actionResolved`, `l5r5e.movementBudgetChanged` and `l5r5e.rollResolutionChanged`; polling and writes to the HUD module namespace are unnecessary.
 

@@ -30,12 +30,12 @@ No installed Argon/Tactical Grid manifests were found under the local user profi
 - [x] 2. Core stable `actionId`, Strike critical opportunity, and separate Opportunity windows.
 - [x] 3. Core equipment/hands/unarmed/ground-item transaction API.
 - [x] 4. Core thrown profile, Soaring Slice metadata/workflow, and opt-in improvised throw.
-- [ ] 5. Core movement path costs and public Range Band API.
-- [ ] 6. Core tests and `docs/hud-api.md`.
-- [ ] 7. HUD core-state integration, action registry, NPC support, equipment/throw/Tactical Grid.
-- [ ] 8. HUD responsive L5R theme and interaction layout.
-- [ ] 9. Dock visibility controller and Scene Controls toggle.
-- [ ] 10. Cross-repository CI, diff checks, and manual Foundry 14 smoke-test instructions.
+- [x] 5. Core movement path costs and public Range Band API.
+- [x] 6. Core tests and `docs/hud-api.md`.
+- [x] 7. HUD core-state integration, action registry, NPC support, equipment/throw/Tactical Grid.
+- [x] 8. HUD responsive L5R theme and interaction layout.
+- [x] 9. Dock visibility controller and Scene Controls toggle.
+- [x] 10. Cross-repository CI, diff checks, and manual Foundry 14 smoke-test instructions.
 
 ## Public integration points
 
@@ -54,3 +54,5 @@ No installed Argon/Tactical Grid manifests were found under the local user profi
 - Baseline: dock `npm test` passed (26/26).
 - Stage 1: core `npm test` passed (50/50); `npm run syntax` and `npm run lint` passed.
 - Stages 2–4: core `npm run ci` passed (61/61 tests plus data build, syntax, lint and SCSS compilation).
+- Final release audit: core `npm run ci` passed (83/83), HUD (21/21), dock (33/33) and Tactical Grid (4/4).
+- Browser-backed Foundry smoke testing remained unavailable because no browser window was exposed; `docs/manual-foundry-v14-tests.md` and the HUD smoke checklist retain the required live checks.

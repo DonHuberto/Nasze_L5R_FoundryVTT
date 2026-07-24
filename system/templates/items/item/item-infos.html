@@ -1,7 +1,12 @@
 <article class="tab infos active" data-group="primary" data-tab="infos">
     <fieldset>
         <legend class="text-block-header">{{localize 'l5r5e.sheets.description'}}</legend>
-        {{editor data.enrichedHtml.description target="system.description" button=true owner=owner editable=editable engine="prosemirror" collaborate=false}}
+        {{#if editable}}
+        <prose-mirror name="system.description" button="true" editable="true" toggled="false"
+            value="{{data.system.description}}">{{{data.enrichedHtml.description}}}</prose-mirror>
+        {{else}}
+        {{{data.enrichedHtml.description}}}
+        {{/if}}
     </fieldset>
     <label class="reference">
         {{localize 'l5r5e.sheets.source_reference.reference'}}

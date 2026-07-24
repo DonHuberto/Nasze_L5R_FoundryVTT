@@ -1,23 +1,43 @@
 {{!-- Supplies and Logistics --}}
 <fieldset class="supplies_logistics">
     <legend class="text-block-header">{{localize 'l5r5e.army.supplies_logistics'}}</legend>
-    {{editor data.enrichedHtml.supplies_logistics target="system.supplies_logistics" button=true editable=options.editable engine="prosemirror" collaborate=false}}
+    {{#if options.editable}}
+    <prose-mirror name="system.supplies_logistics" button="true" editable="true" toggled="false"
+        value="{{data.system.supplies_logistics}}">{{{data.enrichedHtml.supplies_logistics}}}</prose-mirror>
+    {{else}}
+    {{{data.enrichedHtml.supplies_logistics}}}
+    {{/if}}
 </fieldset>
 
 {{!-- Past Battles --}}
 <fieldset class="past_battles">
     <legend class="text-block-header">{{localize 'l5r5e.army.past_battles'}}</legend>
-    {{editor data.enrichedHtml.past_battles target="system.past_battles" button=true editable=options.editable engine="prosemirror" collaborate=false}}
+    {{#if options.editable}}
+    <prose-mirror name="system.past_battles" button="true" editable="true" toggled="false"
+        value="{{data.system.past_battles}}">{{{data.enrichedHtml.past_battles}}}</prose-mirror>
+    {{else}}
+    {{{data.enrichedHtml.past_battles}}}
+    {{/if}}
 </fieldset>
 
 {{!-- Description (public) --}}
 <fieldset class="description">
     <legend class="text-block-header">{{localize 'l5r5e.sheets.description'}}</legend>
-    {{editor data.enrichedHtml.description target="system.description" button=true editable=options.editable engine="prosemirror" collaborate=false}}
+    {{#if options.editable}}
+    <prose-mirror name="system.description" button="true" editable="true" toggled="false"
+        value="{{data.system.description}}">{{{data.enrichedHtml.description}}}</prose-mirror>
+    {{else}}
+    {{{data.enrichedHtml.description}}}
+    {{/if}}
 </fieldset>
 
 {{!-- Notes (private) --}}
 <fieldset class="note">
     <legend class="text-block-header">{{localize 'l5r5e.sheets.notes'}}</legend>
-    {{editor data.enrichedHtml.notes target="system.notes" button=true editable=options.editable engine="prosemirror" collaborate=false}}
+    {{#if options.editable}}
+    <prose-mirror name="system.notes" button="true" editable="true" toggled="false"
+        value="{{data.system.notes}}">{{{data.enrichedHtml.notes}}}</prose-mirror>
+    {{else}}
+    {{{data.enrichedHtml.notes}}}
+    {{/if}}
 </fieldset>

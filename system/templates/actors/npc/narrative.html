@@ -78,11 +78,21 @@
     {{!-- Description (public) --}}
     <fieldset class="narrative-description">
         <legend class="text-block-header">{{localize 'l5r5e.sheets.description' }}</legend>
-        {{editor data.enrichedHtml.description target="system.description" button=true editable=options.editable engine="prosemirror" collaborate=false}}
+        {{#if options.editable}}
+        <prose-mirror name="system.description" button="true" editable="true" toggled="false"
+            value="{{data.system.description}}">{{{data.enrichedHtml.description}}}</prose-mirror>
+        {{else}}
+        {{{data.enrichedHtml.description}}}
+        {{/if}}
     </fieldset>
     {{!-- Notes (private) --}}
     <fieldset class="narrative-note">
         <legend class="text-block-header">{{localize 'l5r5e.sheets.notes' }}</legend>
-        {{editor data.enrichedHtml.notes target="system.notes" button=true editable=options.editable engine="prosemirror" collaborate=false}}
+        {{#if options.editable}}
+        <prose-mirror name="system.notes" button="true" editable="true" toggled="false"
+            value="{{data.system.notes}}">{{{data.enrichedHtml.notes}}}</prose-mirror>
+        {{else}}
+        {{{data.enrichedHtml.notes}}}
+        {{/if}}
     </fieldset>
 </div>

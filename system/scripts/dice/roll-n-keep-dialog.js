@@ -1,12 +1,14 @@
 import { HelpersL5r5e } from "../helpers.js";
+import { LegacyApplicationV2 } from "../applications/legacy-v2-application.js";
 import { OpportunityWindow } from "./opportunity-window.js";
 import { buildOpportunityTargetChoices } from "./opportunity-targets.js";
+import { DicePickerDialog } from "./dice-picker-dialog.js";
 
 /**
  * L5R Dice Roll n Keep dialog
- * @extends {FormApplication}
+ * @extends {ApplicationV2}
  */
-export class RollnKeepDialog extends FormApplication {
+export class RollnKeepDialog extends LegacyApplicationV2 {
     /**
      * Player choice list
      */
@@ -32,6 +34,9 @@ export class RollnKeepDialog extends FormApplication {
     roll = null;
     _reservationFinalized = false;
     _opportunityWindows = new Map();
+    _editable = false;
+    _finalized = false;
+    _preserveEquipmentIntent = false;
 
     /**
      * Payload Object
@@ -62,13 +67,6 @@ export class RollnKeepDialog extends FormApplication {
             title: game.i18n.localize("l5r5e.dice.roll_n_keep.title"),
             closeOnSubmit: false,
         });
-    }
-
-    /**
-     * Define a unique and dynamic element ID for the rendered application
-     */
-    get id() {
-        return `l5r5e-roll-n-keep-dialog-${this._message.id}`;
     }
 
     /**
@@ -103,15 +101,19 @@ export class RollnKeepDialog extends FormApplication {
         return this._message?.isAuthor || this.messageRoll?.l5r5e.actor?.isOwner || this._message?.isOwner || false;
     }
 
+    get isEditable() {
+        return this._editable;
+    }
+
     /**
      * Create the Roll n Keep dialog
      * @param {number} messageId
-     * @param {FormApplicationOptions} options
+     * @param {ApplicationConfiguration} options
      */
     constructor(messageId, options = {}) {
-        super({}, options);
+        super({}, { ...options, id: `l5r5e-roll-n-keep-dialog-${messageId ?? "roll"}` });
         this.message = game.messages.get(messageId);
-        this.options.editable = this.isOwner;
+        this._editable = this.isOwner;
 
         this._initializeDiceFaces();
         this._initializeHistory();
@@ -239,7 +241,7 @@ export class RollnKeepDialog extends FormApplication {
         const rollData = this.roll.l5r5e;
 
         // Disable submit / edition
-        this.options.classes = this.options.classes.filter((e) => e !== "finalized");
+        this._finalized = false;
         this.object.submitDisabled = false;
         this.object.submitDisabledReasons = [];
         await this._prepareOpportunityData();
@@ -286,11 +288,11 @@ export class RollnKeepDialog extends FormApplication {
             delete this.roll.l5r5e._bleedingFatigueDefault;
 
             const canEditResults = true;
-            this.options.editable = this.isOwner && canEditResults;
-            this.options.classes.push("finalized");
+            this._editable = this.isOwner && canEditResults;
+            this._finalized = true;
         }
 
-        const isEditable = options?.editable ?? this.options.editable;
+        const isEditable = options?.editable ?? this._editable;
         this.object.submitDisabledReason = this.object.submitDisabledReasons.join(" ");
 
         return {
@@ -305,10 +307,11 @@ export class RollnKeepDialog extends FormApplication {
                 strifeToTarget: canApplyStrifeToTarget,
                 fatigueToTarget: canApplyFatigueToTarget,
             },
-            cssClass: this.options.classes.join(" "),
+            cssClass: [...(this.constructor.defaultOptions.classes ?? []), ...(this._finalized ? ["finalized"] : [])].join(" "),
             data: this.object,
             l5r5e: rollData,
             resolutionPreview: rollData.resolutionPreview,
+            canRestartRoll: this.isOwner && !rollData.resolution?.transaction,
         };
     }
 
@@ -321,6 +324,10 @@ export class RollnKeepDialog extends FormApplication {
             const combatant = await fromUuid(reservation.combatantUuid);
             if (combatant) await game.l5r5e.actions.cancel(combatant, reservation.reservationId, reservation.lifecycle);
             this._reservationFinalized = true;
+        }
+        const equipmentIntentId = this.roll?.l5r5e?.rollContext?.equipmentIntentId;
+        if (equipmentIntentId && !this._preserveEquipmentIntent && !this.roll?.l5r5e?.equipmentResolution?.ok) {
+            await game.l5r5e?.equipment?.cancel?.({ intentId: equipmentIntentId });
         }
         return super.close(options);
     }
@@ -515,6 +522,7 @@ export class RollnKeepDialog extends FormApplication {
             spentOpportunity: validation.spent,
             remainingOpportunity: validation.remaining,
             validationErrors: currentResolution.status === "blocked" ? currentResolution.errors ?? [{ code: currentResolution.reason ?? "blocked" }] : [],
+            invalidKeptDice: foundry.utils.deepClone(rollData.invalidKeptDice ?? []),
         };
         rollData.resolutionPreview.validationMessages = rollData.resolutionPreview.validationErrors.map((error) => this._localizeResolutionError(error));
         rollData.resolutionPreview.strifeLedger = currentResolution.strife ?? game.l5r5e.conditions.calculateStrife({ actor: rollData.actor, stance: rollData.stance, rawKeptStrife: raw.strife });
@@ -550,6 +558,102 @@ export class RollnKeepDialog extends FormApplication {
         }));
     }
 
+    async _prepareThrowOutcome(resolution, actor, targetActor) {
+        const equipmentIntentId = this.roll?.l5r5e?.rollContext?.equipmentIntentId;
+        if (!equipmentIntentId) return null;
+        const sourceToken = actor?.getActiveTokens?.(true, true)?.[0]?.document ?? actor?.token ?? null;
+        const target = this.roll?.l5r5e?.target;
+        const targetToken = target?.document ?? target ?? null;
+        if (!sourceToken || !targetToken) return { ok: false, code: "throwTokenMissing" };
+
+        const scene = globalThis.canvas?.scene;
+        const gridSize = Number(scene?.grid?.size ?? globalThis.canvas?.grid?.size ?? 100) || 100;
+        const originField = { x: sourceToken.x, y: sourceToken.y, elevation: sourceToken.elevation ?? 0 };
+        const targetField = { x: targetToken.x, y: targetToken.y, elevation: targetToken.elevation ?? 0 };
+        const center = (field) => ({ x: field.x + gridSize / 2, y: field.y + gridSize / 2 });
+        const originCenter = center(originField);
+        const isLegal = async (field) => {
+            const point = center(field);
+            const bounds = scene?.dimensions?.rect;
+            if (bounds?.contains && !bounds.contains(point.x, point.y)) return false;
+            const backend = globalThis.CONFIG?.Canvas?.polygonBackends?.move;
+            if (!backend?.testCollision) return true;
+            try {
+                return !(await backend.testCollision(originCenter, point, { type: "move", mode: "any" }));
+            } catch (_error) {
+                return false;
+            }
+        };
+        const steps = Math.max(
+            1,
+            Math.round(Math.abs(targetField.x - originField.x) / gridSize),
+            Math.round(Math.abs(targetField.y - originField.y) / gridSize),
+        );
+        const pathFields = [];
+        for (let step = 0; step <= steps; step += 1) {
+            const field = {
+                x: Math.round((originField.x + ((targetField.x - originField.x) * step) / steps) / gridSize) * gridSize,
+                y: Math.round((originField.y + ((targetField.y - originField.y) * step) / steps) / gridSize) * gridSize,
+                elevation: targetField.elevation,
+            };
+            if (await isLegal(field)) pathFields.push(field);
+        }
+        const adjacentFields = [];
+        for (const [dx, dy, label] of [
+            [-1, -1, "↖"], [0, -1, "↑"], [1, -1, "↗"],
+            [-1, 0, "←"], [1, 0, "→"],
+            [-1, 1, "↙"], [0, 1, "↓"], [1, 1, "↘"],
+        ]) {
+            const field = {
+                x: targetField.x + dx * gridSize,
+                y: targetField.y + dy * gridSize,
+                elevation: targetField.elevation,
+                label,
+            };
+            if (await isLegal(field)) adjacentFields.push(field);
+        }
+        const legalByKey = new Map();
+        for (const field of [...pathFields, targetField, ...adjacentFields]) {
+            if (await isLegal(field)) legalByKey.set(`${field.x}:${field.y}:${field.elevation}`, field);
+        }
+        const success = Boolean(resolution.effective?.success);
+        const critical = Boolean(resolution.effects?.action?.damage?.critical?.required);
+        const defended = Boolean(success && !critical);
+        let chosenField = null;
+        if (this.roll.l5r5e.rollContext?.throwMode === "soaring-slice" && defended) {
+            if (!adjacentFields.length) return { ok: false, code: "directionFieldMissing" };
+            const options = adjacentFields.map(
+                (field, index) => `<option value="${index}">${field.label} (${field.x}, ${field.y})</option>`,
+            ).join("");
+            const selected = await foundry.applications.api.DialogV2.prompt({
+                window: { title: game.i18n.localize("l5r5e.automation.equipment.soaringSliceDirectionTitle") },
+                content: `<label>${game.i18n.localize("l5r5e.automation.equipment.soaringSliceDirectionPrompt")} <select name="fieldIndex">${options}</select></label>`,
+                ok: { callback: (_event, button) => Number(button.form.elements.fieldIndex.value) },
+            });
+            if (selected === null || selected === undefined) return { ok: false, code: "directionFieldRequired" };
+            chosenField = adjacentFields[selected];
+            if (!chosenField) return { ok: false, code: "directionFieldRequired" };
+        }
+        const legalFields = [...legalByKey.values()].filter(
+            (field) => success || field.x !== targetField.x || field.y !== targetField.y,
+        );
+        return {
+            ok: true,
+            outcome: {
+                success,
+                defended,
+                critical,
+                originField,
+                targetField,
+                targetUuid: targetActor?.uuid ?? null,
+                chosenField,
+                chosenFieldRangeFromTarget: chosenField ? 1 : null,
+                pathFields,
+                legalFields,
+            },
+        };
+    }
+
     /**
      * Recompute the current summary based on the selected dice.
      * @private
@@ -566,6 +670,7 @@ export class RollnKeepDialog extends FormApplication {
         summary.opportunity = 0;
         summary.strife = 0;
         summary.totalSuccess = 0;
+        rollData.invalidKeptDice = [];
 
         this.object.dicesList.forEach((step, stepIdx) => {
             if (!Array.isArray(step)) {
@@ -576,10 +681,11 @@ export class RollnKeepDialog extends FormApplication {
                 stepIdx > 0 &&
                 this._haveChoice(stepIdx - 1, [RollnKeepDialog.CHOICES.reroll, RollnKeepDialog.CHOICES.swap]);
 
-            step.forEach((die) => {
+            step.forEach((die, dieIdx) => {
                 if (!die) {
                     return;
                 }
+                die.invalidKeep = false;
 
                 const includeDie =
                     die.choice === RollnKeepDialog.CHOICES.keep ||
@@ -592,6 +698,24 @@ export class RollnKeepDialog extends FormApplication {
                 const dieFaces = game.l5r5e?.[die.type]?.FACES;
                 const faceData = dieFaces?.[faceValue];
                 if (!faceData) {
+                    return;
+                }
+                const invalidCompromisedKeep =
+                    Number(faceData.strife) > 0 &&
+                    game.l5r5e.conditions.isActive(
+                        rollData.actor,
+                        "compromised",
+                        this._resolutionContext().lifecycle
+                    );
+                if (invalidCompromisedKeep) {
+                    die.invalidKeep = true;
+                    rollData.invalidKeptDice.push({
+                        step: stepIdx,
+                        die: dieIdx,
+                        type: die.type,
+                        face: faceValue,
+                        reason: "condition.compromisedStrife",
+                    });
                     return;
                 }
 
@@ -628,7 +752,7 @@ export class RollnKeepDialog extends FormApplication {
                 {
                     label: game.i18n.localize("l5r5e.dice.roll_n_keep.undo"),
                     icon: '<i class="fas fa-undo"></i>',
-                    callback: () => this._undoLastStepChoices(),
+                    onClick: () => this._undoLastStepChoices(),
                 },
             ], { jQuery: false });
         }
@@ -642,6 +766,10 @@ export class RollnKeepDialog extends FormApplication {
         html.find(".back-to-dice").on("click", (event) => {
             event.preventDefault();
             this._undoLastStepChoices();
+        });
+        html.find(".restart-roll").on("click", (event) => {
+            event.preventDefault();
+            this._restartFromPicker();
         });
 
         // *** Everything below here is only needed if the sheet is editable ***
@@ -1324,6 +1452,14 @@ export class RollnKeepDialog extends FormApplication {
                 return this.render(false);
             }
             mutations.push(...(preparedAction?.mutations ?? []));
+            const pendingThrow = await this._prepareThrowOutcome(resolution, actor, targetActor);
+            if (pendingThrow && !pendingThrow.ok) {
+                ui.notifications.warn(game.i18n.format("l5r5e.automation.equipment.throwLandingRequired", {
+                    reason: pendingThrow.code,
+                }));
+                return this.render(false);
+            }
+            if (pendingThrow) resolutionDecisions.throwLanding = foundry.utils.deepClone(pendingThrow.outcome);
             const transaction = game.l5r5e.transactions.create({ transactionId: resolution.transactionId, revision: resolution.revision, rollMessageUuid: this.message.uuid, inputs: { context: resolution.context, raw: resolution.raw }, decisions: resolutionDecisions, mutations, createdDocuments: criticalWorkflow?.createdDocuments ?? [] });
             const locallyOwned = game.user.isGM || mutations.every((mutation) => fromUuidSync(mutation.documentUuid)?.isOwner);
             const parentMessageUuid = rollData.rollContext?.critical?.parentRollMessageUuid ?? null;
@@ -1340,6 +1476,18 @@ export class RollnKeepDialog extends FormApplication {
             resolution.transaction = transaction;
             resolution.status = "applied";
             updated ||= mutations.length > 0 || (criticalWorkflow?.createdDocuments?.length ?? 0) > 0;
+
+            const equipmentIntentId = rollData.rollContext?.equipmentIntentId;
+            if (equipmentIntentId) {
+                const thrown = await game.l5r5e.equipment.completeThrow(equipmentIntentId, pendingThrow.outcome);
+                rollData.equipmentResolution = thrown;
+                if (!thrown.ok) {
+                    resolution.audit.push({ phase: "equipmentThrow", status: "blocked", code: thrown.code });
+                    ui.notifications.error(game.i18n.localize("l5r5e.automation.equipment.throwCommitFailed"));
+                } else {
+                    resolution.audit.push({ phase: "equipmentThrow", status: "committed", intentId: equipmentIntentId });
+                }
+            }
 
             if (preparedAction) {
                 await game.l5r5e.actions.finalizeCommit(reservedCombatant, preparedAction, resolution);
@@ -1524,10 +1672,40 @@ export class RollnKeepDialog extends FormApplication {
                 return e;
             });
 
-        this.options.editable = this.isOwner;
+        this._editable = this.isOwner;
         await this._rebuildRoll(true);
         await this._toChatMessage();
         return this.render(false);
+    }
+
+    async _restartFromPicker() {
+        if (!this.isOwner || this.roll?.l5r5e?.resolution?.transaction) return false;
+        const rollData = this.roll?.l5r5e ?? {};
+        const saved = rollData.pickerOptions ?? {};
+        const options = {
+            ...foundry.utils.deepClone(saved),
+            actor: rollData.actor,
+            item: rollData.item,
+            target: rollData.target,
+            ringId: saved.ringId ?? rollData.stance,
+            skillId: saved.skillId ?? rollData.skillId,
+            skillCatId: saved.skillCatId ?? rollData.skillCatId,
+            difficulty: saved.difficulty ?? rollData.baseDifficulty ?? rollData.difficulty,
+            difficultyHidden: saved.difficultyHidden ?? rollData.difficultyHidden,
+            actions: foundry.utils.deepClone(saved.actions ?? rollData.actions ?? {}),
+            actionId: saved.actionId ?? rollData.actionId,
+            rollContext: foundry.utils.deepClone(saved.rollContext ?? rollData.rollContext ?? {}),
+        };
+        const oldMessage = this.message;
+        this._preserveEquipmentIntent = Boolean(rollData.rollContext?.equipmentIntentId);
+        await this.close();
+        try {
+            if (oldMessage?.isOwner) await oldMessage.delete();
+            else if (oldMessage?.id) game.l5r5e.sockets.deleteChatMessage(oldMessage.id);
+        } catch (error) {
+            console.warn("L5R5E | Could not remove the superseded roll message", error);
+        }
+        return new DicePickerDialog(options).render(true);
     }
 
     /**

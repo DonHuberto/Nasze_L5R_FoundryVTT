@@ -17,10 +17,16 @@ export class OpportunitySheetL5r5e extends api.HandlebarsApplicationMixin(sheets
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         const system = this.item.system;
+        const descriptionHtml = await foundry.applications.ux.TextEditor.implementation.enrichHTML(system.description ?? "", {
+            async: true,
+            secrets: this.item.isOwner,
+            relativeTo: this.item,
+        });
         return {
             ...context,
             item: this.item,
             system,
+            descriptionHtml,
             editable: this.isEditable,
             contextsJson: JSON.stringify(system.contexts ?? {}, null, 2),
             actionIdsCsv: (system.contexts?.actionIds ?? []).join(", "),

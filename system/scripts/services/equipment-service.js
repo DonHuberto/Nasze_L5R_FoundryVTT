@@ -56,7 +56,11 @@ export function deterministicLandingField({ hit = false, targetField = null, pat
     const legal = new Set(legalFields.map(fieldKey));
     const candidates = pathFields.filter((field) => fieldKey(field) !== originKey && (!legal.size || legal.has(fieldKey(field))));
     const fallbackPool = legalFields.filter((field) => fieldKey(field) !== originKey);
-    const pool = candidates.length ? candidates : fallbackPool;
+    const target = targetField ?? originField ?? { x: 0, y: 0 };
+    const distance = (field) => ((Number(field.x) || 0) - (Number(target.x) || 0)) ** 2 + ((Number(field.y) || 0) - (Number(target.y) || 0)) ** 2;
+    const nearestDistance = fallbackPool.length ? Math.min(...fallbackPool.map(distance)) : Infinity;
+    const nearestFallbacks = fallbackPool.filter((field) => distance(field) === nearestDistance);
+    const pool = candidates.length ? candidates : nearestFallbacks;
     if (!pool.length) return { field: targetField ? deepClone(targetField) : null, fallback: true };
     const index = Number.parseInt(stableHash(`${transactionId}:${pool.map(fieldKey).join("|")}`), 36) % pool.length;
     return { field: deepClone(pool[index]), fallback: !candidates.length };
@@ -153,6 +157,33 @@ export class EquipmentService {
             options: { grip, gmOverride: Boolean(options.gmOverride) },
             assessment: { ok: Boolean(profile) && hands.ok, hands, code: !profile ? "gripMissing" : hands.ok ? null : "occupiedHands" },
             requiresAction: Boolean(globalThis.game?.combat?.started && weapon?.system?.readied && !options.freeGripChange),
+        });
+    }
+
+    changeLoadout(actor, weapons = [], options = {}) {
+        const actorWeapons = [...(actor?.items ?? [])].filter((item) => item.type === "weapon");
+        const actorWeaponUuids = new Set(actorWeapons.map((item) => item.uuid));
+        const itemUuids = [...new Set(weapons.map((item) => typeof item === "string" ? item : item?.uuid).filter((uuid) => actorWeaponUuids.has(uuid)))];
+        const selected = actorWeapons.filter((item) => itemUuids.includes(item.uuid));
+        const required = selected.reduce((sum, item) => sum + handsRequired(item.attackProfile ?? { grip: item.system?.active_grip }), 0);
+        const available = this.bodyState(actor).availableHands;
+        const hands = {
+            ok: required <= available,
+            required,
+            used: required,
+            available,
+            free: Math.max(0, available - required),
+            deficit: Math.max(0, required - available),
+            heldItems: [],
+        };
+        return this.#intent("changeLoadout", actor, null, {
+            options: { itemUuids, gmOverride: Boolean(options.gmOverride) },
+            assessment: {
+                ok: hands.ok,
+                hands,
+                code: hands.ok ? null : "loadoutHandsExceeded",
+            },
+            requiresAction: Boolean(globalThis.game?.combat?.started && !options.freeLoadoutChange),
         });
     }
 
@@ -265,6 +296,17 @@ export class EquipmentService {
         };
     }
 
+    async completeThrow(intentId, outcome = {}) {
+        const reserved = this.reservations.get(intentId);
+        if (!reserved || reserved.operation !== "throw" || reserved.status !== "reserved") {
+            return { ok: false, status: "blocked", code: "intentState", intentId };
+        }
+        const completed = this.withThrowOutcome(reserved, outcome);
+        if (!completed.ok) return completed;
+        this.reservations.set(intentId, deepClone(completed));
+        return this.commit(completed);
+    }
+
     groundItemData(document) {
         const data = document?.flags?.l5r5e?.groundItem;
         if (!data || toFiniteNumber(data.schemaVersion, 0) < 1 || !data.itemSnapshot) return null;
@@ -361,7 +403,9 @@ export class EquipmentService {
     }
 
     async #commitSimple(actor, item, intent) {
-        if (!item) return { ok: false, status: "blocked", code: "itemMissing", intentId: intent.intentId };
+        if (!item && intent.operation !== "changeLoadout") {
+            return { ok: false, status: "blocked", code: "itemMissing", intentId: intent.intentId };
+        }
         const mutations = [];
         const releaseItems = [];
         for (const [index, release] of (intent.decisions?.releases ?? []).entries()) {
@@ -378,6 +422,17 @@ export class EquipmentService {
             if (item.type === "weapon") mutations.push({ documentUuid: item.uuid, path: "system.readied", before: Boolean(item.system?.readied), after: ready, reason: "prepareItem" });
         } else if (intent.operation === "changeGrip") {
             mutations.push({ documentUuid: item.uuid, path: "system.active_grip", before: item.system?.active_grip ?? "one-handed", after: intent.options.grip, reason: "changeGrip" });
+        } else if (intent.operation === "changeLoadout") {
+            const selected = new Set(intent.options.itemUuids ?? []);
+            for (const weapon of [...(actor.items ?? [])].filter((entry) => entry.type === "weapon")) {
+                const ready = selected.has(weapon.uuid);
+                if (ready && !weapon.system?.equipped) {
+                    mutations.push({ documentUuid: weapon.uuid, path: "system.equipped", before: false, after: true, reason: "changeLoadout" });
+                }
+                if (Boolean(weapon.system?.readied) !== ready) {
+                    mutations.push({ documentUuid: weapon.uuid, path: "system.readied", before: Boolean(weapon.system?.readied), after: ready, reason: "changeLoadout" });
+                }
+            }
         }
         let preparedAction = null;
         if (intent.actionReservation && this.actions) {

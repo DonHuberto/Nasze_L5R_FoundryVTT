@@ -44,6 +44,15 @@
                     "bite": "Ugryzienie"
                 },
                 "houseRule": "House Rule",
+                "throwCommitFailed": "Rzut został rozstrzygnięty, ale nie udało się umieścić rzuconego przedmiotu na scenie.",
+                "throwApiUnavailable": "Nie jest dostępne API core wymagane do rzucenia przedmiotem.",
+                "throwReservationFailed": "Nie udało się zarezerwować przedmiotu do tego rzutu ({reason}).",
+                "soaringSliceWeaponMissing": "Soaring Slice wymaga przygotowanej broni trzymanej jedną ręką.",
+                "soaringSliceWeaponTitle": "Soaring Slice: wybierz broń",
+                "soaringSliceWeaponPrompt": "Broń do rzucenia",
+                "soaringSliceDirectionTitle": "Soaring Slice: wybierz kierunek lądowania",
+                "soaringSliceDirectionPrompt": "Legalne pole w Zasięgu 1",
+                "throwLandingRequired": "Przed finalizacją rzutu wybierz legalne pole lądowania ({reason}).",
                 "errors": {
                     "occupiedHands": "Brakuje wolnych rąk. Wybierz trzymane przedmioty do schowania lub upuszczenia.",
                     "occupiedHandsDecision": "Wybrane przedmioty nie zwalniają wystarczającej liczby rąk.",
@@ -104,15 +113,20 @@
             "finalStrife": "końcowa zmiana Konfliktu",
                 "blocked": "Rzut jest prowizorycznie nielegalny. Wybierz właściwy efekt przed walidacją albo wróć do kości.",
                 "backToDice": "Wróć do zachowanych kości",
+                "restart": "Wróć do wyboru Kręgu",
+                "restartHint": "Anuluj ten wynik i ponownie otwórz ustawienia rzutu. Postać Niezdolna do działania może wybrać wyłącznie Pustkę.",
+                "incapacitatedVoidOnly": "Postać Niezdolna do działania może wykonać test wyłącznie w Kręgu Pustki.",
+                "invalidKeptDie": "Ta zachowana kość jest niedozwolona i nie jest uwzględniana w wyniku.",
+                "invalidKeptDiceSummary": "Oznaczono i pominięto w rozstrzygnięciu niedozwolone zachowane kości: {count}.",
                 "error": {
                     "keepRequired": "Zachowaj co najmniej jedną kość, aby zakończyć ten krok.",
                     "keepLimit": "Zachowano {kept} kości, ale limit wynosi {limit}. Odrzuć kości, aż limit zostanie spełniony.",
                     "dead": "Martwa postać nie może działać.",
                     "unconscious": "Nieprzytomna postać nie może działać.",
-                    "incapacitatedCheck": "Postać Niezdolna do działania nie może wykonywać testu. Wróć do kości i, jeśli to możliwe, wydaj Okazję Pustki, aby zignorować ten stan.",
+                    "incapacitatedCheck": "Postać Niezdolna do działania musi użyć Pustki i wydać 2 Okazje Pustki, aby zawiesić ten stan. Jeśli użyto innego Kręgu, wróć do wyboru Kręgu.",
                     "immobilizedMovement": "Unieruchomiona postać nie może wykonać tej akcji Ruchu.",
                     "destroyed": "Zniszczonego przedmiotu nie można użyć do tej akcji.",
-                    "compromisedStrife": "Postać Roztrzęsiona nie może zachować kości z Konfliktem. Wróć do kości i zmień wybór albo zignoruj ten stan.",
+                    "compromisedStrife": "Postać Roztrzęsiona nie może zachować kości z Konfliktem. Takie kości są pomijane w rozstrzygnięciu.",
                     "blocked": "Ten krok jest zablokowany: {code}."
                 }
             },

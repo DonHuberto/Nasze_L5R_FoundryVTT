@@ -353,22 +353,20 @@ export class HelpersL5r5e {
      * @param {string} content
      * @param {function} callback The callback function for confirmed action
      */
-    static confirmDeleteDialog(content, callback) {
-        new Dialog({
-            title: game.i18n.localize("Delete"),
+    static async confirmDeleteDialog(content, callback) {
+        const confirmed = await foundry.applications.api.DialogV2.confirm({
+            window: { title: game.i18n.localize("Delete") },
             content,
-            buttons: {
-                confirm: {
-                    icon: '<i class="fas fa-trash"></i>',
-                    label: game.i18n.localize("Yes"),
-                    callback,
-                },
-                cancel: {
-                    icon: '<i class="fas fa-times"></i>',
-                    label: game.i18n.localize("No"),
-                },
+            yes: {
+                icon: "fas fa-trash",
+                label: game.i18n.localize("Yes"),
             },
-        }).render(true);
+            no: {
+                icon: "fas fa-times",
+                label: game.i18n.localize("No"),
+            },
+        });
+        if (confirmed) return callback();
     }
 
     /**
@@ -394,12 +392,13 @@ export class HelpersL5r5e {
         });
 
         // Display the dialog
-        return Dialog.prompt({
-            title: title,
+        return foundry.applications.api.DialogV2.prompt({
+            window: { title },
             content: html,
-            label: title,
-            callback: (html) => $(html).find("[name='type'] option:selected").val(),
-            rejectClose: false,
+            ok: {
+                label: title,
+                callback: (_event, button) => button.form.elements.type.value,
+            },
         });
     }
 

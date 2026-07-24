@@ -71,24 +71,6 @@ export class ArmySheetL5r5e extends BaseSheetL5r5e {
     }
 
     /**
-     * Activate a named TinyMCE text editor
-     * @param {string} name             The named data field which the editor modifies.
-     * @param {object} options          TinyMCE initialization options passed to TextEditor.create
-     * @param {string} initialContent   Initial text content for the editor area.
-     * @override
-     */
-    activateEditor(name, options = {}, initialContent = "") {
-        // Symbols Compatibility with old compendium modules (PRE l5r v1.7.2)
-        if (
-            ["system.army_abilities", "system.supplies_logistics", "system.past_battles"].includes(name) &&
-            initialContent
-        ) {
-            initialContent = game.l5r5e.HelpersL5r5e.convertSymbols(initialContent, false);
-        }
-        return super.activateEditor(name, options, initialContent);
-    }
-
-    /**
      * Subscribe to events from the sheet.
      * @param {jQuery} html HTML content of the sheet.
      */

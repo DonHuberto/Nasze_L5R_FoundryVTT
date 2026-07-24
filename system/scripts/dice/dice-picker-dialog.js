@@ -1,10 +1,11 @@
 import { defaultActionsState, getRollActionTypes, inferActions, normalizeActions } from "./action-types.js";
+import { LegacyApplicationV2 } from "../applications/legacy-v2-application.js";
 
 /**
  * L5R Dice picker dialog
- * @extends {FormApplication}
+ * @extends {ApplicationV2}
  */
-export class DicePickerDialog extends FormApplication {
+export class DicePickerDialog extends LegacyApplicationV2 {
     /**
      * Current Actor
      * @type {ActorL5r5e}
@@ -43,9 +44,12 @@ export class DicePickerDialog extends FormApplication {
      */
     _baseDifficulty = 2;
     _allowedRings = null;
+    _requestedAllowedRings = null;
+    _skillsListSource = null;
     _rollContext = null;
     _messageMode = null;
     _actionId = null;
+    _rollTransferred = false;
 
     /**
      * Payload Object
@@ -96,13 +100,6 @@ export class DicePickerDialog extends FormApplication {
     }
 
     /**
-     * Define a unique and dynamic element ID for the rendered application
-     */
-    get id() {
-        return `l5r5e-dice-picker-dialog-${this._actor?.id ?? "no-actor"}`;
-    }
-
-    /**
      * Add a create macro button on top of sheet
      * @override
      */
@@ -141,12 +138,21 @@ export class DicePickerDialog extends FormApplication {
      *   skillsList        {string[]}      `skillId`/`skillCatId` list coma separated. Allow the player to select the skill used in a select. Ex : "artisan,design"
      *   target            {TokenDocument} The targeted Token
      *
-     * @param options actor, actorId, actorName, difficulty, difficultyHidden, isInitiativeRoll, item, itemUuid, ringId, skillId, skillCatId, skillsList, target
+    * @param options actor, actorId, actorName, difficulty, difficultyHidden, isInitiativeRoll, item, itemUuid, ringId, skillId, skillCatId, skillsList, target
      */
     constructor(options = {}) {
-        super({}, options);
+        const actorId =
+            options.actor?.id ??
+            options.actorId ??
+            game.actors.getName(options.actorName)?.id ??
+            canvas.tokens.controlled[0]?.actor?.id ??
+            game.user.character?.id ??
+            "no-actor";
+        super({}, { ...options, id: `l5r5e-dice-picker-dialog-${actorId}` });
 
-        this._allowedRings = Array.isArray(options.allowedRings) ? [...new Set(options.allowedRings.filter((ring) => CONFIG.l5r5e.stances.includes(ring)))] : null;
+        this._requestedAllowedRings = Array.isArray(options.allowedRings) ? [...new Set(options.allowedRings.filter((ring) => CONFIG.l5r5e.stances.includes(ring)))] : null;
+        this._allowedRings = this._requestedAllowedRings;
+        this._skillsListSource = options.skillsList ?? null;
         this._rollContext = options.rollContext ? foundry.utils.deepClone(options.rollContext) : null;
         this._messageMode = options.messageMode ?? null;
 
@@ -162,6 +168,7 @@ export class DicePickerDialog extends FormApplication {
                 this.actor = actor;
             }
         });
+        this._refreshAllowedRings();
 
         // Ring
         if (options.ringId) {
@@ -308,6 +315,68 @@ export class DicePickerDialog extends FormApplication {
         this._recalculateDifficulty();
     }
 
+    async _prepareSoaringSliceIntent() {
+        if (this._actionId !== "soaring-slice" || this._rollContext?.equipmentIntentId) return true;
+        const equipment = game.l5r5e?.equipment;
+        if (!equipment?.heldItems || !equipment?.throw || !equipment?.confirm || !equipment?.reserve) {
+            ui.notifications.error(game.i18n.localize("l5r5e.automation.equipment.throwApiUnavailable"));
+            return false;
+        }
+        const weapons = equipment.heldItems(this._actor).filter(
+            (item) => item.type === "weapon" && item.attackProfile?.grip === "one-handed",
+        );
+        if (!weapons.length) {
+            ui.notifications.warn(game.i18n.localize("l5r5e.automation.equipment.soaringSliceWeaponMissing"));
+            return false;
+        }
+        let weapon = weapons[0];
+        if (weapons.length > 1) {
+            const choices = weapons.map(
+                (item) => `<option value="${item.uuid}">${foundry.utils.escapeHTML(item.name)}</option>`,
+            ).join("");
+            const selectedUuid = await foundry.applications.api.DialogV2.prompt({
+                window: { title: game.i18n.localize("l5r5e.automation.equipment.soaringSliceWeaponTitle") },
+                content: `<label>${game.i18n.localize("l5r5e.automation.equipment.soaringSliceWeaponPrompt")} <select name="weaponUuid">${choices}</select></label>`,
+                ok: { callback: (_event, button) => button.form.elements.weaponUuid.value },
+            });
+            weapon = weapons.find((item) => item.uuid === selectedUuid);
+            if (!weapon) return false;
+        }
+        const intent = equipment.throw(this._actor, weapon, { mode: "soaring-slice", trackIndividual: true });
+        const confirmed = equipment.confirm(intent);
+        const reserved = confirmed.ok ? await equipment.reserve(confirmed) : confirmed;
+        if (!reserved.ok) {
+            ui.notifications.warn(game.i18n.format("l5r5e.automation.equipment.throwReservationFailed", {
+                reason: reserved.code ?? reserved.assessment?.code ?? "blocked",
+            }));
+            return false;
+        }
+        this._rollContext = {
+            ...(this._rollContext ?? {}),
+            equipmentIntentId: reserved.intentId,
+            throwMode: "soaring-slice",
+            thrownItemUuid: weapon.uuid,
+            attackProfileSnapshot: foundry.utils.deepClone(reserved.assessment.profile),
+        };
+        return true;
+    }
+
+    async close(options = {}) {
+        const equipmentIntentId = this._rollContext?.equipmentIntentId;
+        if (equipmentIntentId && !this._rollTransferred) {
+            await game.l5r5e?.equipment?.cancel?.({ intentId: equipmentIntentId });
+        }
+        return super.close(options);
+    }
+
+    _refreshAllowedRings() {
+        if (!this._actor || !game.l5r5e?.conditions) return;
+        this._allowedRings = game.l5r5e.conditions.allowedRingsForCheck(this._actor, {
+            allowedRings: this._requestedAllowedRings,
+        });
+        if (!this._allowedRings.includes(this.object.ring.id)) this.ringId = this._allowedRings[0] ?? "void";
+    }
+
     /**
      * Set the list of allowed skill to choose.
      * Coma separated, can be a category names or skill names.
@@ -442,6 +511,7 @@ export class DicePickerDialog extends FormApplication {
      * @return {Object}
      */
     async getData(options = null) {
+        this._refreshAllowedRings();
         return {
             ...(await super.getData(options)),
             ringsList: game.l5r5e.HelpersL5r5e.getRingsList(this._actor).filter((ring) => !this._allowedRings?.length || this._allowedRings.includes(ring.id)),
@@ -590,9 +660,16 @@ export class DicePickerDialog extends FormApplication {
      * @override
      */
     async _updateObject(event, formData) {
+        this._refreshAllowedRings();
+        if (this._allowedRings?.length && !this._allowedRings.includes(this.object.ring.id)) {
+            this.ringId = this._allowedRings[0] ?? "void";
+            ui.notifications.warn(game.i18n.localize("l5r5e.automation.roll.incapacitatedVoidOnly"));
+            return this.render(false);
+        }
         if (this.object.skill.value < 1 && this.object.ring.value < 1) {
             return false;
         }
+        if (!(await this._prepareSoaringSliceIntent())) return false;
 
         // If initiative roll, check if player already have
         if (this.object.isInitiativeRoll) {
@@ -721,12 +798,28 @@ export class DicePickerDialog extends FormApplication {
                 actionId: this._actionId,
                 attackProfileSnapshot: attackProfileSnapshot ? foundry.utils.deepClone(attackProfileSnapshot) : null,
             };
+            roll.l5r5e.pickerOptions = {
+                ringId: this.object.ring.id,
+                skillId: this.object.skill.id || undefined,
+                skillCatId: this.object.skill.cat || undefined,
+                skillsList: this._skillsListSource,
+                allowedRings: this._requestedAllowedRings,
+                difficulty: this._baseDifficulty,
+                difficultyHidden: this.object.difficulty.hidden,
+                isInitiativeRoll: this.object.isInitiativeRoll,
+                conflictType: this.object.conflictType,
+                actions: foundry.utils.deepClone(this.object.actions),
+                actionId: this._actionId,
+                rollContext: foundry.utils.deepClone(this._rollContext ?? {}),
+                messageMode: this._messageMode,
+            };
 
             await roll.roll();
             message = await roll.toMessage();
         }
 
         if (message) {
+            this._rollTransferred = true;
             // if DsN active, delay the popup for 2s
             new Promise((r) => setTimeout(r, !game.dice3d ? 0 : 2000)).then(() => {
                 new game.l5r5e.RollnKeepDialog(message.id).render(true);
