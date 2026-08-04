@@ -160,3 +160,18 @@ $selectors: (
     // otherwise using ESC will result in a long wait and missed trigger events
     transition: max-height 10ms ease-out;
 }
+
+/*
+ * ApplicationV2 no longer has the V1 `.window-content` scroll container.
+ * Actor sheets are rendered into the managed form part instead, so ensure the
+ * form can shrink inside the application frame and own its vertical scroll.
+ */
+.application.l5r5e.sheet {
+    > form {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-gutter: stable;
+    }
+}

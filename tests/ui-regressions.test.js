@@ -255,6 +255,13 @@ test("legacy V2 dialogs keep domain data out of ApplicationV2 options", () => {
     assert.match(v2OptionsSource, /\.\.\.\(document \? \{ document \} : \{\}\)/);
 });
 
+test("ApplicationV2 actor-sheet form owns a vertical scroll container", () => {
+    const source = fs.readFileSync(new URL("../system/styles/scss/global-appv2.scss", import.meta.url), "utf8");
+    assert.match(source, /\.application\.l5r5e\.sheet\s*\{[\s\S]*> form\s*\{/);
+    assert.match(source, /overflow-y:\s*auto/);
+    assert.match(source, /min-height:\s*0/);
+});
+
 test("GM initiative picker is local even when an active player owns the actor", async (t) => {
     const previousCombat = globalThis.Combat;
     globalThis.Combat = class {};

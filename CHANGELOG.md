@@ -10,6 +10,7 @@ Date format : day/month/year
 
 - Pass the Actor/Item `document` through the ApplicationV2 bridge while retaining detached snapshots, restoring sheet opens from the Actors directory, token and portrait entry points.
 - Keep roll-control actions as genuine double-click actions and prevent Dice Picker domain context from being merged as ApplicationV2 configuration, which previously caused Foundry V14 to throw before rendering the dialog.
+- Restore a dedicated vertical scroll container for ApplicationV2 actor sheets, preventing long cards from being clipped below the frame.
 - Add regression coverage for filtered V2 dialog options and rerun the sheet snapshot coverage against documents with embedded items.
 
 ## 1.14.109 - 25/07/2026 - Live-tested V14 sheets and roll-window regression fixes
