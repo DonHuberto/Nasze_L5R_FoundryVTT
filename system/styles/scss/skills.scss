@@ -49,6 +49,28 @@
                         margin: 0.25rem 0;
                         &.skill {
                             text-align: right;
+                            .skill-content {
+                                align-items: center;
+                                display: flex;
+                                gap: 0.25rem;
+                                width: 100%;
+                            }
+                            button.dice-picker {
+                                background: transparent;
+                                border: 0;
+                                border-radius: 0;
+                                box-shadow: none;
+                                color: $l5r5e-black;
+                                display: inline-block;
+                                flex: 1 1 auto;
+                                height: auto;
+                                line-height: 1rem;
+                                margin: 0;
+                                min-width: 0;
+                                padding: 0;
+                                text-align: left;
+                                width: auto;
+                            }
                             span {
                                 color: $l5r5e-black;
                                 &[data-skill="melee"],
@@ -67,6 +89,7 @@
                     }
                 }
                 input {
+                    flex: 0 0 1.75rem;
                     width: 1.75rem;
                     height: 1.75rem;
                     text-align: center;

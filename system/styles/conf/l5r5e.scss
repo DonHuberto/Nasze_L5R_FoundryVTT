@@ -23,3 +23,48 @@
         @import "../scss/tactical-grid";
     }
 }
+
+/*
+ * Foundry's ApplicationV2 form rules are unlayered and therefore outrank the
+ * system layer regardless of selector specificity. Re-emit only the
+ * application-owned L5R presentation outside the layer so migrated V2 windows
+ * retain the established V1 layout without restyling Foundry's surrounding UI.
+ */
+@import "../scss/colors";
+$font-primary: "PatrickHand", sans-serif;
+$font-secondary: "BrushtipTexe", sans-serif;
+$font-tertiary: "Caballar", sans-serif;
+$font-quaternary: "ArchitectsDaughter", sans-serif;
+$font-logoType: "LogotypeL5r", sans-serif;
+
+.application.l5r5e {
+    @import "../scss/dices";
+    @import "../scss/l5r5e-global";
+    @import "../scss/sheets";
+    @import "../scss/npc";
+    @import "../scss/army";
+    @import "../scss/nav";
+    @import "../scss/rings";
+    @import "../scss/skills";
+    @import "../scss/items";
+    @import "../scss/twenty-questions";
+}
+
+.application.l5r5e.sheet {
+    container-type: inline-size;
+}
+
+@container (max-width: 44rem) {
+    .application.l5r5e.sheet {
+        article .narrative-content fieldset,
+        article .skills-wrapper,
+        article .techniques-wrapper {
+            flex-basis: 100%;
+        }
+
+        &.actor .initiative button,
+        &.npc .initiative button {
+            flex-basis: calc(50% - 0.5rem);
+        }
+    }
+}

@@ -608,10 +608,22 @@
         .narrative-content {
             flex: 100%;
             display: flex;
+            flex-wrap: wrap;
             fieldset {
                 flex: 0 0 calc(50% - 0.5rem);
                 label {
+                    align-items: stretch;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.25rem;
                     width: 100%;
+
+                    textarea {
+                        box-sizing: border-box;
+                        min-height: 4.5rem;
+                        resize: vertical;
+                        width: 100%;
+                    }
                 }
             }
         }
@@ -870,9 +882,14 @@
                 height: 100%;
                 align-self: flex-start;
                 text-align: center;
-                display: block;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
             }
             button {
+                display: inline-flex;
+                flex: 0 1 auto;
+                justify-content: center;
                 width: auto;
                 min-width: 20%;
                 margin: 0 0.25rem 0.25rem;

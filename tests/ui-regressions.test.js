@@ -262,6 +262,24 @@ test("ApplicationV2 actor-sheet form owns a vertical scroll container", () => {
     assert.match(source, /min-height:\s*0/);
 });
 
+test("ApplicationV2 windows reapply the legacy L5R layout above core form styles", () => {
+    const entry = fs.readFileSync(new URL("../system/styles/conf/l5r5e.scss", import.meta.url), "utf8");
+    const skills = fs.readFileSync(new URL("../system/styles/scss/skills.scss", import.meta.url), "utf8");
+    const sheets = fs.readFileSync(new URL("../system/styles/scss/sheets.scss", import.meta.url), "utf8");
+    const items = fs.readFileSync(new URL("../system/styles/scss/items.scss", import.meta.url), "utf8");
+
+    const layeredEnd = entry.lastIndexOf("}", entry.indexOf(".application.l5r5e"));
+    assert.ok(layeredEnd >= 0, "the system layer closes before the V2 compatibility rules");
+    assert.match(entry.slice(layeredEnd + 1), /\.application\.l5r5e\s*\{[\s\S]*@import "\.\.\/scss\/sheets"/);
+    assert.match(entry, /container-type:\s*inline-size/);
+    assert.match(entry, /@container \(max-width:\s*44rem\)/);
+    assert.match(skills, /\.skill-content\s*\{[\s\S]*display:\s*flex/);
+    assert.match(skills, /button\.dice-picker\s*\{[\s\S]*width:\s*auto/);
+    assert.match(sheets, /\.narrative-content\s*\{[\s\S]*flex-direction:\s*column/);
+    assert.match(sheets, /&-wrapper\s*\{[\s\S]*display:\s*flex[\s\S]*justify-content:\s*center/);
+    assert.match(items, /\.item-properties\s*\{[\s\S]*flex-wrap:\s*wrap/);
+});
+
 test("GM initiative picker is local even when an active player owns the actor", async (t) => {
     const previousCombat = globalThis.Combat;
     globalThis.Combat = class {};
