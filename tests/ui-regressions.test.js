@@ -291,6 +291,20 @@ test("ApplicationV2 windows reapply the legacy L5R layout above core form styles
     assert.match(items, /\.item-properties\s*\{[\s\S]*flex-wrap:\s*wrap/);
 });
 
+test("ApplicationV2 actor sheets preserve the V1 header, skill, technique and equipment rows", () => {
+    const entry = fs.readFileSync(new URL("../system/styles/conf/l5r5e.scss", import.meta.url), "utf8");
+    const bridge = entry.slice(entry.indexOf("ActorSheetV2 renders the legacy sheet template"));
+
+    assert.match(bridge, /> \.window-content > \.l5r5e\.sheet\s*\{[\s\S]*display:\s*flex[\s\S]*flex-wrap:\s*wrap/);
+    assert.match(bridge, /> \.sheet-header\s*\{[\s\S]*display:\s*flex/);
+    assert.match(bridge, /\.item-list \.item-header\s*\{[\s\S]*flex-wrap:\s*nowrap/);
+    assert.match(bridge, /> \.item-name\s*\{[\s\S]*width:\s*auto[\s\S]*min-width:\s*0/);
+    assert.match(bridge, /> \.icon-stat-container\s*\{[\s\S]*display:\s*inline-flex[\s\S]*flex:\s*0 0 auto/);
+    assert.match(bridge, /\.npc-skill > li\.skill-wrapper\s*\{[\s\S]*display:\s*flex[\s\S]*flex-wrap:\s*nowrap/);
+    assert.match(bridge, /\.techniques-wrapper > \.checklist\s*\{[\s\S]*display:\s*grid[\s\S]*repeat\(auto-fit, minmax\(7rem, 1fr\)\)/);
+    assert.match(bridge, /> input\[type="checkbox"\]\s*\{[\s\S]*flex:\s*0 0 1rem/);
+});
+
 test("GM initiative picker is local even when an active player owns the actor", async (t) => {
     const previousCombat = globalThis.Combat;
     globalThis.Combat = class {};

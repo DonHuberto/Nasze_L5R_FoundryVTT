@@ -6,6 +6,14 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.112 - 04/08/2026 - Restored V1 actor-sheet geometry and action routing
+
+- Restore the V1 flex layout contract inside ActorSheetV2 so player portraits and names share a row, NPC skill types and values remain aligned, and long sheets retain their intended section geometry.
+- Keep equipment controls within both actor-sheet widths and place weapon range, damage and deadliness statistics directly beside their weapon rows.
+- Make the NPC Allowed Techniques checklist responsive and prevent Foundry V2 checkboxes from overlapping their labels.
+- Use the canonical `prepare_item` action ID when equipment changes reserve and finalize combat actions, with regression coverage for both lifecycle calls.
+- Add source-level UI regression coverage for the restored header, skill, techniques and equipment layout contract.
+
 ## 1.14.111 - 04/08/2026 - ApplicationV2 scrolling and visual audit
 
 - Move actor-sheet scrolling to the actual direct `.window-content` element used by Foundry V14, replacing a structurally impossible selector and its false-positive regression test.

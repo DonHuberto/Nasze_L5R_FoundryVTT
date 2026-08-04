@@ -154,6 +154,42 @@ test("armor changes are blocked in conflict unless the world policy overrides th
     }
 });
 
+test("preparing equipment reserves and finalizes the canonical prepare_item action", async () => {
+    const previousGame = globalThis.game;
+    const calls = [];
+    const combatant = { uuid: "Combat.C.Combatant.A", actor: { uuid: "Actor.A" } };
+    globalThis.game = { combat: { started: true, id: "C", round: 2, turn: 1, combatants: [combatant] } };
+    try {
+        const { actor, documents, scene, weapon, transactions } = fixture();
+        const actions = {
+            async reserveAndPersist(_combatant, request) {
+                calls.push(["reserve", request.actionId]);
+                return { ok: true, reservationId: "R" };
+            },
+            prepareCommit() {
+                return { ok: true, reservationId: "R", mutations: [] };
+            },
+            async finalizeCommit(_combatant, _preparedAction, request) {
+                calls.push(["finalize", request.context.actionId]);
+                return { ok: true };
+            },
+        };
+        const equipment = new EquipmentService({
+            transactionService: transactions,
+            actionService: actions,
+            resolver: async (uuid) => uuid === combatant.uuid ? combatant : documents.get(uuid) ?? null,
+            sceneProvider: () => scene,
+            settings: (_key, fallback) => fallback,
+        });
+        const intent = equipment.prepare(actor, weapon, { ready: false });
+        const result = await equipment.commit(await equipment.reserve(equipment.confirm(intent)));
+        assert.equal(result.ok, true);
+        assert.deepEqual(calls, [["reserve", "prepare_item"], ["finalize", "prepare_item"]]);
+    } finally {
+        globalThis.game = previousGame;
+    }
+});
+
 test("RAW and house-rule throw modes keep distinct action IDs and profile values", () => {
     const { actor, equipment, weapon } = fixture();
     weapon.system.active_grip = "thrown";

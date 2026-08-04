@@ -335,7 +335,7 @@ export class EquipmentService {
             const combatant = globalThis.game.combat.combatants?.find?.((entry) => entry.actor?.uuid === intent.actorUuid);
             if (!combatant) return { ...reserved, ok: false, status: "blocked", code: "combatantMissing" };
             const lifecycle = { combatId: globalThis.game.combat.id, round: globalThis.game.combat.round, turn: globalThis.game.combat.turn };
-            const action = await this.actions.reserveAndPersist(combatant, { actionId: "prepare-item", actionTypes: ["support"], requiresCheck: false, lifecycle });
+            const action = await this.actions.reserveAndPersist(combatant, { actionId: "prepare_item", actionTypes: ["support"], requiresCheck: false, lifecycle });
             if (!action.ok) return { ...reserved, ok: false, status: "blocked", code: action.code };
             reserved.actionReservation = { combatantUuid: combatant.uuid, reservationId: action.reservationId, lifecycle };
         }
@@ -470,7 +470,7 @@ export class EquipmentService {
         }
         if (preparedAction && this.actions) {
             const combatant = await this.resolver(intent.actionReservation.combatantUuid);
-            await this.actions.finalizeCommit(combatant, preparedAction, { context: { actionId: "prepare-item" } });
+            await this.actions.finalizeCommit(combatant, preparedAction, { context: { actionId: "prepare_item" } });
         }
         return { ok: true, status: "committed", intentId: intent.intentId, transaction, releasedGroundDocuments: placed.map(({ groundDocumentUuid }) => groundDocumentUuid) };
     }
