@@ -72,6 +72,34 @@ $font-logoType: "LogotypeL5r", sans-serif;
         min-width: 0;
     }
 
+    > .sheet-body,
+    > .effects {
+        box-sizing: border-box;
+        flex-basis: 100%;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .sheet-body,
+    .sheet-body > .sheet-tabs,
+    .sheet-body > article,
+    .sheet-body > article > *,
+    .sheet-body .skills-wrapper,
+    .sheet-body .techniques-wrapper,
+    .sheet-body .checklist {
+        box-sizing: border-box;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .sheet-body fieldset {
+        box-sizing: border-box;
+        min-inline-size: 0;
+        min-width: 0;
+        max-width: 100%;
+    }
+
     .item-list,
     .item-list > .item,
     .item-list .item-header {

@@ -164,7 +164,17 @@ export class TurnStateService {
     }
 
     async persist(combatant, state, diff = {}) {
-        if (typeof combatant?.setFlag === "function") await combatant.setFlag("l5r5e", "turnState", state);
+        if (typeof combatant?.update === "function") {
+            const storedReservations = combatant?.flags?.l5r5e?.turnState?.reservations ?? {};
+            const update = { "flags.l5r5e.turnState": state };
+            for (const reservationId of Object.keys(storedReservations)) {
+                if (!(reservationId in (state.reservations ?? {}))) {
+                    update[`flags.l5r5e.turnState.reservations.-=${reservationId}`] = null;
+                }
+            }
+            await combatant.update(update);
+        }
+        else if (typeof combatant?.setFlag === "function") await combatant.setFlag("l5r5e", "turnState", state);
         else {
             combatant.flags ??= {};
             combatant.flags.l5r5e ??= {};

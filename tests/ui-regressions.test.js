@@ -165,6 +165,10 @@ test("Opportunity rows and disabled finalize controls expose the requested UI st
     assert.match(roll, /class="restart-roll"/);
     assert.match(roll, /invalid-kept-summary/);
     assert.match(styles, /\.invalid-keep/);
+    const rollController = fs.readFileSync(new URL("../system/scripts/dice/roll-n-keep-dialog.js", import.meta.url), "utf8");
+    assert.match(rollController, /this\._submitting = true/);
+    assert.match(rollController, /await this\.submit\(\)/);
+    assert.match(rollController, /button\.prop\("disabled", true\)/);
 });
 
 test("cancelled and restarted throw checks preserve no orphaned equipment reservations", () => {
@@ -297,6 +301,8 @@ test("ApplicationV2 actor sheets preserve the V1 header, skill, technique and eq
 
     assert.match(bridge, /> \.window-content > \.l5r5e\.sheet\s*\{[\s\S]*display:\s*flex[\s\S]*flex-wrap:\s*wrap/);
     assert.match(bridge, /> \.sheet-header\s*\{[\s\S]*display:\s*flex/);
+    assert.match(bridge, /> \.sheet-body,[\s\S]*> \.effects\s*\{[\s\S]*flex-basis:\s*100%[\s\S]*min-width:\s*0/);
+    assert.match(bridge, /\.sheet-body fieldset\s*\{[\s\S]*min-inline-size:\s*0[\s\S]*max-width:\s*100%/);
     assert.match(bridge, /\.item-list \.item-header\s*\{[\s\S]*flex-wrap:\s*nowrap/);
     assert.match(bridge, /> \.item-name\s*\{[\s\S]*width:\s*auto[\s\S]*min-width:\s*0/);
     assert.match(bridge, /> \.icon-stat-container\s*\{[\s\S]*display:\s*inline-flex[\s\S]*flex:\s*0 0 auto/);

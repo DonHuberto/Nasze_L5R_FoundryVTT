@@ -36,6 +36,7 @@ export class RollnKeepDialog extends LegacyApplicationV2 {
     _opportunityWindows = new Map();
     _editable = false;
     _finalized = false;
+    _submitting = false;
     _preserveEquipmentIntent = false;
 
     /**
@@ -778,11 +779,18 @@ export class RollnKeepDialog extends LegacyApplicationV2 {
         }
 
         // Finalize Button
-        html.find("#finalize").on("click", (event) => {
+        html.find("#finalize").on("click", async (event) => {
             event.preventDefault();
             event.stopPropagation();
-            if (!this.object.submitDisabled) {
-                this.submit();
+            if (this.object.submitDisabled || this._submitting) return;
+            this._submitting = true;
+            const button = html.find("#finalize");
+            button.prop("disabled", true);
+            try {
+                await this.submit();
+            } finally {
+                this._submitting = false;
+                if (this.rendered && !this.object.submitDisabled) button.prop("disabled", false);
             }
         });
 

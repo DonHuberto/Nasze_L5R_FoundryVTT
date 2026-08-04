@@ -64,6 +64,23 @@ test("reservations use non-empty action ids and are idempotent per intent", () =
     assert.equal(Object.keys(second.state.reservations).length, 1);
 });
 
+test("persist explicitly removes reservations missing from the next nested flag state", async () => {
+    const turns = new TurnStateService();
+    const previous = createTurnState("c:1:0");
+    previous.reservations.stale = { reservationId: "stale", slot: "primaryAction" };
+    const updates = [];
+    const combatant = {
+        flags: { l5r5e: { turnState: previous } },
+        async update(data) { updates.push(data); },
+    };
+
+    await turns.persist(combatant, createTurnState("c:1:0"));
+
+    assert.equal(updates.length, 1);
+    assert.deepEqual(updates[0]["flags.l5r5e.turnState"].reservations, {});
+    assert.equal(updates[0]["flags.l5r5e.turnState.reservations.-=stale"], null);
+});
+
 test("movement costs orthogonal, diagonal and difficult exit by actual waypoint", () => {
     assert.equal(movementStepCost({ x: 0, y: 0 }, { x: 1, y: 0 }), 1);
     assert.equal(movementStepCost({ x: 0, y: 0 }, { x: 1, y: 1 }), 2);

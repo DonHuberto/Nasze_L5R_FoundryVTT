@@ -6,6 +6,14 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.113 - 04/08/2026 - Three-client actor-sheet overflow fix
+
+- Let the legacy `.sheet-body` flex item shrink to the actual ApplicationV2 window width instead of preserving its 712 px intrinsic minimum.
+- Remove Foundry V2's `fieldset` min-content floor inside actor sheets so Trade, Allowed Techniques, item controls and weapon statistics remain fully visible in 600 px windows.
+- Verify the corrected geometry live on simultaneous GM, Matsu Hayato and Bayushi Mei Lin clients, including PC/NPC sheets, scrolling, skill rolls and equipment rows.
+- Prevent repeated clicks on Finalize while a remote defense decision is pending, avoiding duplicate prompts and duplicate transactions.
+- Delete consumed or cancelled action reservations explicitly when persisting nested Foundry flags, preventing stale reservations from accumulating between checks.
+
 ## 1.14.112 - 04/08/2026 - Restored V1 actor-sheet geometry and action routing
 
 - Restore the V1 flex layout contract inside ActorSheetV2 so player portraits and names share a row, NPC skill types and values remain aligned, and long sheets retain their intended section geometry.
