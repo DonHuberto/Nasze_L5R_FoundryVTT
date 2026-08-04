@@ -6,6 +6,13 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.111 - 04/08/2026 - ApplicationV2 scrolling and visual audit
+
+- Move actor-sheet scrolling to the actual direct `.window-content` element used by Foundry V14, replacing a structurally impossible selector and its false-positive regression test.
+- Give Actor and Dice Picker windows the same fixed light parchment presentation as Roll & Keep, independent of Foundry's selected interface theme.
+- Make the Roll & Keep resize affordance larger and high-contrast while retaining Foundry's native diagonal resize artwork and behaviour.
+- Extend regression coverage to assert the real V2 DOM contract, fixed window backgrounds and the visible resize handle.
+
 ## 1.14.110 - 04/08/2026 - Sheet and Dice Picker V14 interaction hotfix
 
 - Pass the Actor/Item `document` through the ApplicationV2 bridge while retaining detached snapshots, restoring sheet opens from the Actors directory, token and portrait entry points.

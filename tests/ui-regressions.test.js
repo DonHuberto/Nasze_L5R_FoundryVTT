@@ -255,11 +255,22 @@ test("legacy V2 dialogs keep domain data out of ApplicationV2 options", () => {
     assert.match(v2OptionsSource, /\.\.\.\(document \? \{ document \} : \{\}\)/);
 });
 
-test("ApplicationV2 actor-sheet form owns a vertical scroll container", () => {
+test("ApplicationV2 sheet content owns scrolling and uses a fixed light background", () => {
     const source = fs.readFileSync(new URL("../system/styles/scss/global-appv2.scss", import.meta.url), "utf8");
-    assert.match(source, /\.application\.l5r5e\.sheet\s*\{[\s\S]*> form\s*\{/);
-    assert.match(source, /overflow-y:\s*auto/);
-    assert.match(source, /min-height:\s*0/);
+    const scrollRule = source.match(/\.application\.l5r5e\.sheet\s*>\s*\.window-content\s*\{([\s\S]*?)\}/)?.[1] ?? "";
+    assert.match(scrollRule, /overflow-y:\s*auto/);
+    assert.match(scrollRule, /min-height:\s*0/);
+    assert.doesNotMatch(source, /\.application\.l5r5e\.sheet\s*\{[\s\S]*?> form\s*\{/);
+    assert.match(source, /\.application\.l5r5e\.sheet\s*>\s*\.window-content,[\s\S]*\.dice-picker-dialog\s*>\s*\.window-content[\s\S]*#fffae6[\s\S]*bg-scroll\.webp/);
+});
+
+test("Roll and Keep exposes a high-contrast ApplicationV2 resize handle", () => {
+    const source = fs.readFileSync(new URL("../system/styles/scss/dices.scss", import.meta.url), "utf8");
+    const handleRule = source.match(/&\.application\.roll-n-keep-dialog\s*>\s*\.window-resize-handle\s*\{([\s\S]*?)\}/)?.[1] ?? "";
+    assert.match(handleRule, /width:\s*1rem/);
+    assert.match(handleRule, /height:\s*1rem/);
+    assert.match(handleRule, /background-color:/);
+    assert.match(handleRule, /border:/);
 });
 
 test("ApplicationV2 windows reapply the legacy L5R layout above core form styles", () => {

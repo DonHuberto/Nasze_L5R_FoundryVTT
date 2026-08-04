@@ -676,6 +676,17 @@
     }
 }
 
+&.application.roll-n-keep-dialog > .window-resize-handle {
+    width: 1rem;
+    height: 1rem;
+    z-index: 10;
+    background-color: rgba(65, 46, 37, 0.92);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid rgba(255, 250, 230, 0.85);
+    border-radius: 3px 0 0;
+}
+
 &.l5r5e-opportunity-window {
     .window-content { padding: 0; }
 

@@ -161,17 +161,20 @@ $selectors: (
     transition: max-height 10ms ease-out;
 }
 
-/*
- * ApplicationV2 no longer has the V1 `.window-content` scroll container.
- * Actor sheets are rendered into the managed form part instead, so ensure the
- * form can shrink inside the application frame and own its vertical scroll.
- */
-.application.l5r5e.sheet {
-    > form {
-        flex: 1 1 auto;
-        min-height: 0;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-        scrollbar-gutter: stable;
-    }
+/* The V2 sheet root is itself a form; its direct content element owns scrolling. */
+.application.l5r5e.sheet > .window-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+}
+
+/* Keep migrated windows independent of Foundry's active UI colour theme. */
+.application.l5r5e.sheet > .window-content,
+.application.l5r5e.dice-picker-dialog > .window-content {
+    background: #fffae6 url("../assets/imgs/bg-scroll.webp") no-repeat center !important;
+    background-size: cover !important;
+    color: #251b17 !important;
+    color-scheme: light;
 }
