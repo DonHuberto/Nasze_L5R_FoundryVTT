@@ -20,23 +20,42 @@ function legacyDocumentSnapshot(document) {
 
 function v2Options(applicationClass, options = {}) {
     const legacy = legacyOptions(applicationClass);
+    // Legacy dialogs carry domain data (actor, skill, target, roll context,
+    // etc.) in their constructor options. ApplicationV2 must only receive its
+    // own nested configuration, otherwise Foundry tries to merge domain values
+    // as application options.
+    const {
+        id,
+        classes,
+        tag,
+        position,
+        window,
+        form,
+        parts,
+        document,
+    } = options;
     return {
-        classes: [...(legacy.classes ?? [])],
-        tag: "form",
+        ...(id ? { id } : {}),
+        classes: [...(legacy.classes ?? []), ...(classes ?? [])],
+        tag: tag ?? "form",
         position: {
             width: legacy.width ?? "auto",
             height: legacy.height ?? "auto",
+            ...(position ?? {}),
         },
         window: {
             title: legacy.title,
             resizable: legacy.resizable !== false,
+            ...(window ?? {}),
         },
         form: {
             closeOnSubmit: Boolean(legacy.closeOnSubmit),
             submitOnChange: Boolean(legacy.submitOnChange),
             handler: LegacyApplicationV2.formHandler,
+            ...(form ?? {}),
         },
-        ...options,
+        ...(document ? { document } : {}),
+        ...(parts ? { parts } : {}),
     };
 }
 
@@ -250,7 +269,7 @@ export class LegacyActorSheetV2 extends HandlebarsApplicationMixin(ActorSheetV2)
     async getData(options = {}) {
         const context = await super._prepareContext(options);
         const data = legacyDocumentSnapshot(this.actor);
-        const items = this.actor.items.map((item) => legacyDocumentSnapshot(item));
+        const items = [...(this.actor?.items ?? [])].map((item) => legacyDocumentSnapshot(item));
         data.items = items;
         const defaults = legacyOptions(this.constructor);
         return {

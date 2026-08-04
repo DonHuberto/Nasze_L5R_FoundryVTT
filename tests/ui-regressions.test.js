@@ -239,9 +239,20 @@ test("Actor instance updates never inject the read-only _id field", () => {
 test("sheet roll controls remain available outside editable-only listeners and are semantic", () => {
     const source = fs.readFileSync(new URL("../system/scripts/actors/base-character-sheet.js", import.meta.url), "utf8");
     assert.ok(source.indexOf('html.find(".dice-picker").on') < source.indexOf("if (!this.isEditable)"));
+    assert.match(source, /html\.find\("\.dice-picker"\)\.on\("dblclick"/);
+    assert.match(source, /html\.find\("\.dice-picker-tech"\)\.on\("dblclick"/);
     assert.equal(source.includes("event.clientX"), false);
     const characterSkill = fs.readFileSync(new URL("../system/templates/actors/character/skill.html", import.meta.url), "utf8");
     assert.match(characterSkill, /<button type="button" class="dice-picker/);
+});
+
+test("legacy V2 dialogs keep domain data out of ApplicationV2 options", () => {
+    const source = fs.readFileSync(new URL("../system/scripts/applications/legacy-v2-application.js", import.meta.url), "utf8");
+    const v2OptionsSource = source.slice(source.indexOf("function v2Options"), source.indexOf("function activateLegacyTabs"));
+    assert.match(v2OptionsSource, /const \{[\s\S]*id,[\s\S]*parts,[\s\S]*document,[\s\S]*\} = options/);
+    assert.doesNotMatch(v2OptionsSource, /\.\.\.options,/);
+    assert.match(v2OptionsSource, /\.\.\.\(parts \? \{ parts \} : \{\}\)/);
+    assert.match(v2OptionsSource, /\.\.\.\(document \? \{ document \} : \{\}\)/);
 });
 
 test("GM initiative picker is local even when an active player owns the actor", async (t) => {

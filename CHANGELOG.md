@@ -6,6 +6,12 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.110 - 04/08/2026 - Sheet and Dice Picker V14 interaction hotfix
+
+- Pass the Actor/Item `document` through the ApplicationV2 bridge while retaining detached snapshots, restoring sheet opens from the Actors directory, token and portrait entry points.
+- Keep roll-control actions as genuine double-click actions and prevent Dice Picker domain context from being merged as ApplicationV2 configuration, which previously caused Foundry V14 to throw before rendering the dialog.
+- Add regression coverage for filtered V2 dialog options and rerun the sheet snapshot coverage against documents with embedded items.
+
 ## 1.14.109 - 25/07/2026 - Live-tested V14 sheets and roll-window regression fixes
 
 - Fix PC and NPC sheet rendering on Foundry VTT 14 by building detached snapshots from document sources and prepared system data without cloning the read-only document `_id`.

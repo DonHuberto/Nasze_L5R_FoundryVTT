@@ -301,12 +301,13 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
 
         // Rolls are document actions, not form edits. Soft-locking a sheet must
         // not remove them for a GM or an actor owner.
-        html.find(".dice-picker").on("click", this._openDicePickerForSkill.bind(this));
-        html.find(".dice-picker-tech").on("click", this._openDicePickerForTechnique.bind(this));
+        html.find(".dice-picker").on("dblclick", this._openDicePickerForSkill.bind(this));
+        html.find(".dice-picker-tech").on("dblclick", this._openDicePickerForTechnique.bind(this));
         html.find(".dice-picker, .dice-picker-tech").on("keydown", (event) => {
             if (event.key !== "Enter" && event.key !== " ") return;
             event.preventDefault();
-            event.currentTarget.click();
+            if (event.currentTarget.classList.contains("dice-picker-tech")) this._openDicePickerForTechnique(event);
+            else this._openDicePickerForSkill(event);
         });
 
         // *** Everything below here is only needed if the sheet is editable ***
