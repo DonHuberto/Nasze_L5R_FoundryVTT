@@ -6,6 +6,11 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.114 - 05/08/2026 - Native V14 reservation cleanup
+
+- Replace Foundry's deprecated `-=key` deletion syntax with the native V14 `ForcedDeletion` operator when consuming or cancelling action reservations.
+- Keep the three-client action lifecycle cleanup warning-free while preserving the duplicate-finalization guard from 1.14.113.
+
 ## 1.14.113 - 04/08/2026 - Three-client actor-sheet overflow fix
 
 - Let the legacy `.sheet-body` flex item shrink to the actual ApplicationV2 window width instead of preserving its 712 px intrinsic minimum.

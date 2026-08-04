@@ -66,6 +66,9 @@ test("reservations use non-empty action ids and are idempotent per intent", () =
 
 test("persist explicitly removes reservations missing from the next nested flag state", async () => {
     const turns = new TurnStateService();
+    const previousFoundry = globalThis.foundry;
+    class ForcedDeletion {}
+    globalThis.foundry = { data: { operators: { ForcedDeletion } } };
     const previous = createTurnState("c:1:0");
     previous.reservations.stale = { reservationId: "stale", slot: "primaryAction" };
     const updates = [];
@@ -74,11 +77,14 @@ test("persist explicitly removes reservations missing from the next nested flag 
         async update(data) { updates.push(data); },
     };
 
-    await turns.persist(combatant, createTurnState("c:1:0"));
-
-    assert.equal(updates.length, 1);
-    assert.deepEqual(updates[0]["flags.l5r5e.turnState"].reservations, {});
-    assert.equal(updates[0]["flags.l5r5e.turnState.reservations.-=stale"], null);
+    try {
+        await turns.persist(combatant, createTurnState("c:1:0"));
+        assert.equal(updates.length, 1);
+        assert.ok(updates[0]["flags.l5r5e.turnState"].reservations.stale instanceof ForcedDeletion);
+        assert.ok(!Object.keys(updates[0]).some((key) => key.includes("-=")));
+    } finally {
+        globalThis.foundry = previousFoundry;
+    }
 });
 
 test("movement costs orthogonal, diagonal and difficult exit by actual waypoint", () => {

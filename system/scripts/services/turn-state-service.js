@@ -166,13 +166,14 @@ export class TurnStateService {
     async persist(combatant, state, diff = {}) {
         if (typeof combatant?.update === "function") {
             const storedReservations = combatant?.flags?.l5r5e?.turnState?.reservations ?? {};
-            const update = { "flags.l5r5e.turnState": state };
+            const persistedState = deepClone(state);
+            const ForcedDeletion = globalThis.foundry?.data?.operators?.ForcedDeletion;
             for (const reservationId of Object.keys(storedReservations)) {
                 if (!(reservationId in (state.reservations ?? {}))) {
-                    update[`flags.l5r5e.turnState.reservations.-=${reservationId}`] = null;
+                    persistedState.reservations[reservationId] = new ForcedDeletion();
                 }
             }
-            await combatant.update(update);
+            await combatant.update({ "flags.l5r5e.turnState": persistedState });
         }
         else if (typeof combatant?.setFlag === "function") await combatant.setFlag("l5r5e", "turnState", state);
         else {
