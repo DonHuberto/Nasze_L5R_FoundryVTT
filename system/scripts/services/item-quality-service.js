@@ -52,6 +52,7 @@ export class ItemQualityService {
     }
 
     armorResistance(item) {
+        if (this.has(item, "destroyed")) return { physical: 0, supernatural: 0 };
         const damagedPenalty = this.has(item, "damaged") ? 2 : 0;
         return {
             physical: Math.max(0, Number(item?.system?.armor?.physical ?? 0) - damagedPenalty),

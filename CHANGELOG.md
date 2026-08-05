@@ -6,6 +6,12 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.115 - 05/08/2026 - Live-audited armor and weapon-profile repairs
+
+- Make Destroyed armor provide zero physical and supernatural resistance instead of reverting to its undamaged base values.
+- Preserve legacy weapon ranges such as `1-2` when Foundry V14 supplies zero-valued grip-profile defaults, restoring the correct active attack profile and HUD display.
+- Add direct regression coverage for the real `ItemL5r5e.attackProfile` getter and the Destroyed armor resistance path.
+
 ## 1.14.114 - 05/08/2026 - Native V14 reservation cleanup
 
 - Replace Foundry's deprecated `-=key` deletion syntax with the native V14 `ForcedDeletion` operator when consuming or cancelling action reservations.

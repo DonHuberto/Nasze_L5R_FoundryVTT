@@ -1,3 +1,5 @@
+import { weaponRangeBounds } from "./services/weapon-profile-service.js";
+
 export class ItemL5r5e extends Item {
     /**
      * A reference to the Collection of embedded Item instances in the document, indexed by _id.
@@ -149,7 +151,7 @@ export class ItemL5r5e extends Item {
             damage: Math.max(0, Number(this.system.damage) + Number(grip.damage_modifier ?? 0)),
             deadliness: Math.max(0, Number(this.system.deadliness) + Number(grip.deadliness_modifier ?? 0)),
             damageType: this.system.damage_type === "supernatural" ? "supernatural" : "physical",
-            range: { minimum: Number(grip.range_min ?? 0), maximum: Number(grip.range_max ?? this.system.range ?? 0) },
+            range: weaponRangeBounds(grip, this.system.range),
             usable: game.l5r5e.qualities.usage(this).usable,
         };
     }

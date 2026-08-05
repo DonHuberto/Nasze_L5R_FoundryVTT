@@ -4,6 +4,7 @@ import { ConditionService } from "../system/scripts/services/condition-service.j
 import { DamageService } from "../system/scripts/services/damage-service.js";
 import { ItemQualityService } from "../system/scripts/services/item-quality-service.js";
 import { CriticalService, criticalOutcome } from "../system/scripts/services/critical-service.js";
+import { legacyWeaponRangeBounds, weaponRangeBounds } from "../system/scripts/services/weapon-profile-service.js";
 
 const item = (keys, extra = {}) => ({ uuid: "Item.X", system: { properties: keys.map((rulesKey) => ({ rulesKey })), ...extra } });
 
@@ -44,6 +45,15 @@ test("item quality damage sequence and armor/weapon penalties", () => {
     assert.deepEqual(service.applyDamage(item(["durable", "damaged"])).after, ["damaged"]);
     assert.deepEqual(service.usage(item(["damaged"])), { usable: true, tnModifier: 1 });
     assert.deepEqual(service.armorResistance(item(["damaged"], { armor: { physical: 3, supernatural: 1 } })), { physical: 1, supernatural: 0 });
+    assert.deepEqual(service.armorResistance(item(["destroyed"], { armor: { physical: 5, supernatural: 4 } })), { physical: 0, supernatural: 0 });
+});
+
+test("legacy weapon ranges survive zero-valued DataModel grip defaults", () => {
+    assert.deepEqual(legacyWeaponRangeBounds("1-2"), { minimum: 1, maximum: 2 });
+    assert.deepEqual(legacyWeaponRangeBounds("2–4"), { minimum: 2, maximum: 4 });
+    assert.deepEqual(legacyWeaponRangeBounds(3), { minimum: 0, maximum: 3 });
+    assert.deepEqual(weaponRangeBounds({ range_min: 0, range_max: 0 }, "1-2"), { minimum: 1, maximum: 2 });
+    assert.deepEqual(weaponRangeBounds({ range_min: 1, range_max: 3 }, "1-2"), { minimum: 1, maximum: 3 });
 });
 
 test("Razor-Edged is damaged when successful damage is reduced to zero", () => {
