@@ -333,14 +333,23 @@ test("item previews, GM-only technique permissions, and compact properties prese
     const characterTechniques = fs.readFileSync(new URL("../system/templates/actors/character/techniques.html", import.meta.url), "utf8");
     const npcTechniques = fs.readFileSync(new URL("../system/templates/actors/npc/techniques.html", import.meta.url), "utf8");
     const weaponTemplate = fs.readFileSync(new URL("../system/templates/items/weapon/weapon-sheet.html", import.meta.url), "utf8");
+    const weaponEntry = fs.readFileSync(new URL("../system/templates/items/weapon/weapon-entry.html", import.meta.url), "utf8");
+    const armorEntry = fs.readFileSync(new URL("../system/templates/items/armor/armor-entry.html", import.meta.url), "utf8");
+    const preview = fs.readFileSync(new URL("../system/scripts/applications/item-preview-application.js", import.meta.url), "utf8");
+    const popup = fs.readFileSync(new URL("../system/scripts/misc/l5r5e-popup-manager.js", import.meta.url), "utf8");
+    const main = fs.readFileSync(new URL("../system/scripts/main-l5r5e.js", import.meta.url), "utf8");
     const items = fs.readFileSync(new URL("../system/styles/scss/items.scss", import.meta.url), "utf8");
     const sheets = fs.readFileSync(new URL("../system/styles/scss/sheets.scss", import.meta.url), "utf8");
     const ui = fs.readFileSync(new URL("../system/styles/scss/ui.scss", import.meta.url), "utf8");
 
     assert.match(helpers, /click\.l5r5e-document-view/);
     assert.match(helpers, /contextmenu\.l5r5e-document-edit/);
-    assert.match(helpers, /editable:\s*false/);
+    assert.match(helpers, /openDocumentPreview/);
+    assert.match(helpers, /bindItemDirectoryPreview/);
+    assert.match(main, /Hooks\.on\("renderItemDirectory"[\s\S]*bindItemDirectoryPreview/);
+    assert.match(main, /Hooks\.on\("renderCompendium"[\s\S]*bindItemDirectoryPreview/);
     assert.match(helpers, /editable:\s*true/);
+    assert.match(preview, /renderTextTemplate/);
     assert.match(bridge, /else if \(this\._l5r5eEditableOverride === undefined && !this\.rendered\) this\._l5r5eEditableOverride = false/);
     assert.match(bridge, /querySelectorAll\("input, select, textarea, button"\)/);
     for (const template of [characterTechniques, npcTechniques]) {
@@ -348,12 +357,17 @@ test("item previews, GM-only technique permissions, and compact properties prese
     }
     assert.match(weaponTemplate, /class="stats weapon-core-stats"/);
     assert.match(weaponTemplate, /class="stats weapon-grip-stats"/);
+    assert.equal((weaponTemplate.match(/class="weapon-stat-row"/g) ?? []).length, 4);
+    for (const entry of [weaponEntry, armorEntry]) {
+        assert.match(entry, /<\/ul>\s*<ul class="item-stats icon-stat-container"/);
+        assert.match(entry, /<\/ul>\s*<ul class="item-properties">/);
+    }
     assert.match(items, /&\.weapon[\s\S]*?&\.attributes\s*\{[\s\S]*?height:\s*auto/);
     assert.match(items, /\.item-properties[\s\S]*?> li\s*\{[\s\S]*?width:\s*fit-content !important/);
     assert.match(sheets, /\.checklist[\s\S]*?label\s*\{[\s\S]*?display:\s*inline-flex/);
-    assert.match(ui, /\.l5r5e-tooltip-ct[\s\S]*?max-height:\s*min\(333px, 33vh\)/);
-    assert.match(ui, /overflow-x:\s*hidden/);
-    assert.match(ui, /overflow-y:\s*auto/);
+    assert.match(ui, /\.l5r5e-tooltip-ct[\s\S]*?max-height:\s*none/);
+    assert.match(ui, /\.l5r5e-tooltip-ct[\s\S]*?overflow:\s*visible/);
+    assert.match(popup, /},\s*1500\);/);
 });
 
 test("ApplicationV2 actor sheets preserve the V1 header, skill, technique and equipment rows", () => {
@@ -366,7 +380,7 @@ test("ApplicationV2 actor sheets preserve the V1 header, skill, technique and eq
     assert.match(bridge, /\.sheet-body fieldset\s*\{[\s\S]*min-inline-size:\s*0[\s\S]*max-width:\s*100%/);
     assert.match(bridge, /\.item-list \.item-header\s*\{[\s\S]*flex-wrap:\s*nowrap/);
     assert.match(bridge, /> \.item-name\s*\{[\s\S]*width:\s*auto[\s\S]*min-width:\s*0/);
-    assert.match(bridge, /> \.icon-stat-container\s*\{[\s\S]*display:\s*inline-flex[\s\S]*flex:\s*0 0 auto/);
+    assert.match(bridge, /\.item-list \.item-stats\s*\{[\s\S]*display:\s*flex[\s\S]*flex:\s*0 0 auto/);
     assert.match(bridge, /\.npc-skill > li\.skill-wrapper\s*\{[\s\S]*display:\s*flex[\s\S]*flex-wrap:\s*nowrap/);
     assert.match(bridge, /\.techniques-wrapper > \.checklist\s*\{[\s\S]*display:\s*grid[\s\S]*repeat\(auto-fit, minmax\(7rem, 1fr\)\)/);
     assert.match(bridge, /> input\[type="checkbox"\]\s*\{[\s\S]*flex:\s*0 0 1rem/);

@@ -25,6 +25,9 @@ export class L5r5ePopupManager {
      */
     #displayId = 0;
 
+    /** @type {ReturnType<typeof setTimeout>|null} */
+    #timer = null;
+
     /**
      * @param {string|jQuery} selector - Selector or jQuery object for tooltip-bound elements.
      * @param {(event: MouseEvent) => Promise<string>} callback - Async function returning tooltip HTML content.
@@ -48,8 +51,9 @@ export class L5r5ePopupManager {
         this.#elements = $(this.#selector);
 
         this.#elements
-            .on("mouseenter.popup", async (event) => {
+            .on("mouseenter.popup", (event) => {
                 $(this.#container).find("#l5r5e-tooltip-ct").remove();
+                clearTimeout(this.#timer);
 
                 // Memory save
                 if (this.#displayId >= 200) {
@@ -57,22 +61,26 @@ export class L5r5ePopupManager {
                 }
                 const currentDisplayId = ++this.#displayId;
 
-                // Load the template, can take a while
-                const tpl = await this.#callback(event);
+                const target = event.currentTarget;
+                const pointer = { currentTarget: target, clientX: event.clientX, clientY: event.clientY };
+                this.#timer = setTimeout(async () => {
+                    this.#timer = null;
 
-                // Abort if no content or the target element is no longer in the DOM
-                if (!tpl || !document.body.contains(event.currentTarget)) {
-                    return;
-                }
+                    // Load the template, can take a while
+                    const tpl = await this.#callback(pointer);
 
-                // If mismatched, that tpl is too old, the user already display another tooltip
-                if (this.#displayId !== currentDisplayId) {
-                    return;
-                }
+                    // Abort if no content or the target is no longer hovered.
+                    if (!tpl || !document.body.contains(target) || !target.matches(":hover")) return;
 
-                $(this.#container).append(
-                    `<div id="l5r5e-tooltip-ct" class="l5r5e-tooltip l5r5e-tooltip-ct">${tpl}</div>`
-                );
+                    // If mismatched, that tpl is too old, the user already displayed another tooltip.
+                    if (this.#displayId !== currentDisplayId) return;
+
+                    $(this.#container).append(
+                        `<div id="l5r5e-tooltip-ct" class="l5r5e-tooltip l5r5e-tooltip-ct">${tpl}</div>`
+                    );
+                    const popup = $(this.#container).find("#l5r5e-tooltip-ct");
+                    popup.css(this.popupPosition(pointer, popup));
+                }, 1500);
             })
             .on("mousemove.popup", (event) => {
                 const popup = $(this.#container).find("#l5r5e-tooltip-ct");
@@ -81,6 +89,9 @@ export class L5r5ePopupManager {
                 }
             })
             .on("mouseleave.popup", () => {
+                clearTimeout(this.#timer);
+                this.#timer = null;
+                this.#displayId += 1;
                 $(this.#container).find("#l5r5e-tooltip-ct").remove();
             });
     }
@@ -115,15 +126,11 @@ export class L5r5ePopupManager {
         let left = event.clientX + 60;
         let top = event.clientY;
 
-        const maxY = window.innerHeight - popup.outerHeight();
-        if (top > maxY) {
-            top = maxY - 10;
-        }
+        const maxY = window.innerHeight - popup.outerHeight() - 10;
+        top = Math.max(10, Math.min(top, maxY));
 
         const maxX = window.innerWidth - popup.outerWidth();
-        if (left > maxX) {
-            left -= popup.outerWidth() + 100;
-        }
+        if (left > maxX) left = Math.max(10, event.clientX - popup.outerWidth() - 40);
 
         return {
             left: `${left}px`,
@@ -137,6 +144,8 @@ export class L5r5ePopupManager {
      * Cleans up all references for proper garbage collection.
      */
     destroy() {
+        clearTimeout(this.#timer);
+        this.#timer = null;
         if (this.#elements) {
             this.#elements.off(".popup");
         }

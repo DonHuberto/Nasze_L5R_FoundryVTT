@@ -28,20 +28,20 @@
             </label>
             <fieldset class="stats weapon-core-stats">
                 <legend class="text-block-header">{{localize  'l5r5e.weapons.stats'}}</legend>
-                <label>
-                    {{localize 'l5r5e.weapons.range'}}
+                <label class="weapon-stat-row">
+                    <span>{{localize 'l5r5e.weapons.range'}}</span>
                     <input class="select-on-focus" type="text" name="system.range" value="{{data.system.range}}" data-dtype="String" placeholder="0"/>
                 </label>
-                <label>
-                    {{localize 'l5r5e.weapons.damage'}}
+                <label class="weapon-stat-row">
+                    <span>{{localize 'l5r5e.weapons.damage'}}</span>
                     <input class="select-on-focus" type="number" name="system.damage" value="{{data.system.damage}}" data-dtype="Number" min="0" placeholder="0"/>
                 </label>
-                <label>
-                    {{localize 'l5r5e.weapons.deadliness'}}
+                <label class="weapon-stat-row">
+                    <span>{{localize 'l5r5e.weapons.deadliness'}}</span>
                     <input class="select-on-focus" type="number" name="system.deadliness" value="{{data.system.deadliness}}" data-dtype="Number" min="0" placeholder="0"/>
                 </label>
-                <label>
-                    {{localize 'l5r5e.automation.item.damageType'}}
+                <label class="weapon-stat-row">
+                    <span>{{localize 'l5r5e.automation.item.damageType'}}</span>
                     <select name="system.damage_type">
                         <option value="physical" {{#ifCond data.system.damage_type '==' 'physical'}}selected{{/ifCond}}>{{localize 'l5r5e.automation.item.physical'}}</option>
                         <option value="supernatural" {{#ifCond data.system.damage_type '==' 'supernatural'}}selected{{/ifCond}}>{{localize 'l5r5e.automation.item.supernatural'}}</option>

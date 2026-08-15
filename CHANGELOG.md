@@ -6,6 +6,15 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.118 - 15/08/2026 - Chat-style previews and stable equipment rows
+
+- Open LMB item and technique previews with the exact formatted HTML used by “To chat”, while retaining editable sheets exclusively behind RMB.
+- Apply the preview/edit gesture contract to actor sheets, the world Item directory and Item compendiums.
+- Delay system technique and property popups by 1500 ms, keep them visible for the complete hover and display their full wrapped content without scrollbars.
+- Keep Range, Damage, Deadliness and Damage Type aligned as stable label/value rows in the weapon editor.
+- Separate weapon and armor sheet entries into a name/control row, a base-stat row and subsequent property rows.
+- Add regression coverage for chat-style previews, directory gestures, popup timing and the revised item-row hierarchy.
+
 ## 1.14.117 - 15/08/2026 - Item previews, sheet layout and property overflow fixes
 
 - Restore the weapon editor's natural layout so Range, Damage and Deadliness remain together instead of spilling into the Properties section.

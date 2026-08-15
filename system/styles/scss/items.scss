@@ -93,6 +93,29 @@
                 }
             }
         }
+        .item-stats {
+            align-items: center;
+            display: flex;
+            flex: 0 0 auto;
+            flex-wrap: wrap;
+            gap: 0.35rem 0.75rem;
+            justify-content: flex-start;
+            margin: 0.15rem 0 0.1rem 2.25rem;
+            min-width: 0;
+            padding: 0;
+            width: calc(100% - 2.25rem);
+
+            > li {
+                color: $black-light;
+                flex: 0 0 auto;
+                font-size: 0.75rem;
+                line-height: 1rem;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                width: auto;
+            }
+        }
         p {
             font-size: 0.85rem;
             margin: 0;
@@ -412,6 +435,23 @@
             }
             .weapon-grip-stats label {
                 flex-wrap: wrap;
+            }
+            .weapon-core-stats .weapon-stat-row {
+                align-items: center;
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(5rem, 7rem);
+                width: calc(100% - 0.5rem);
+
+                > span {
+                    min-width: 0;
+                }
+
+                > input,
+                > select {
+                    float: none;
+                    margin: 0;
+                    width: 100%;
+                }
             }
             .value {
                 flex: 0 0 calc(25% - 0.5rem);

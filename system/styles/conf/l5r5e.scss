@@ -137,6 +137,20 @@ $font-logoType: "LogotypeL5r", sans-serif;
             white-space: nowrap;
         }
     }
+
+    .item-list .item-stats {
+        display: flex;
+        flex: 0 0 auto;
+        flex-wrap: wrap;
+        gap: 0.35rem 0.75rem;
+        justify-content: flex-start;
+        width: calc(100% - 2.25rem);
+
+        > li {
+            flex: 0 0 auto;
+            width: auto;
+        }
+    }
 }
 
 .application.l5r5e.sheet.npc > .window-content > .l5r5e.sheet {

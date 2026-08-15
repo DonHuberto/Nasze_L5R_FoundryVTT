@@ -364,6 +364,8 @@ Hooks.once("diceSoNiceReady", (dice3d) => HooksL5r5e.diceSoNiceReady(dice3d));
 /* Hooks On                             */
 /* ------------------------------------ */
 Hooks.on("renderSidebarTab", (app, html, data) => HooksL5r5e.renderSidebarTab(app, html, data));
+Hooks.on("renderItemDirectory", (app, html) => HelpersL5r5e.bindItemDirectoryPreview(app, html));
+Hooks.on("renderCompendium", (app, html) => HelpersL5r5e.bindItemDirectoryPreview(app, html));
 Hooks.on("activateSettings", async (app)=> HooksL5r5e.activateSettings(app));
 Hooks.on("renderChatMessageHTML", (message, html, data) => HooksL5r5e.renderChatMessage(message, html, data));
 Hooks.on("renderCombatTracker", (app, html, data) => HooksL5r5e.renderCombatTracker(app, html, data));

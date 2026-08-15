@@ -1,4 +1,5 @@
 import { L5r5ePopupManager } from './misc/l5r5e-popup-manager.js';
+import { ItemPreviewApplication } from "./applications/item-preview-application.js";
 
 /**
  * Extends the actor to process special things from L5R.
@@ -534,7 +535,7 @@ export class HelpersL5r5e {
             previewTimers.set(target, setTimeout(async () => {
                 previewTimers.delete(target);
                 const item = await HelpersL5r5e.getEmbedItemByEvent({ currentTarget: target }, actor);
-                item?.sheet?.render({ force: true, editable: false });
+                HelpersL5r5e.openDocumentPreview(item);
             }, 240));
         });
         documentLinks.on("dblclick.l5r5e-document-view", (event) => {
@@ -643,6 +644,57 @@ export class HelpersL5r5e {
         return ChatMessage.create({
             content: `<div class="l5r5e-chat-item">${tpl}${link ? `<hr>` + link : ""}</div>`,
         });
+    }
+
+    /**
+     * Open the same formatted document body used by "To chat" without
+     * creating a ChatMessage or exposing editable form controls.
+     * @param {ItemL5r5e|JournalL5r5e} document
+     * @return {ItemPreviewApplication|null}
+     */
+    static openDocumentPreview(document) {
+        if (!document?.renderTextTemplate) return null;
+        return new ItemPreviewApplication(document, {
+            id: `l5r5e-item-preview-${document.uuid ?? document.id}`.replace(/[^A-Za-z0-9_-]/g, "-"),
+            window: { title: document.name, resizable: true },
+        }).render(true);
+    }
+
+    /**
+     * Apply the same LMB-preview/RMB-edit contract to world and compendium
+     * Item directory names before Foundry's default sheet opener runs.
+     */
+    static bindItemDirectoryPreview(app, html) {
+        const root = html instanceof HTMLElement ? html : html?.[0] ?? app?.element;
+        if (!root || root.dataset.l5r5eItemPreviewBound === "true") return;
+        root.dataset.l5r5eItemPreviewBound = "true";
+
+        const itemRequestFromEvent = (event) => {
+            const name = event.target.closest?.(".entry-name, .document-name");
+            const entry = name?.closest?.("[data-entry-id], [data-document-id]");
+            const id = entry?.dataset.entryId ?? entry?.dataset.documentId;
+            if (!id) return null;
+            const collection = app?.collection;
+            const documentName = collection?.documentName ?? collection?.metadata?.type;
+            return documentName === "Item" ? { collection, id } : null;
+        };
+
+        root.addEventListener("click", async (event) => {
+            const request = itemRequestFromEvent(event);
+            if (!request) return;
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            const item = request.collection.get?.(request.id) ?? await request.collection.getDocument?.(request.id);
+            HelpersL5r5e.openDocumentPreview(item);
+        }, true);
+        root.addEventListener("contextmenu", async (event) => {
+            const request = itemRequestFromEvent(event);
+            if (!request) return;
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            const item = request.collection.get?.(request.id) ?? await request.collection.getDocument?.(request.id);
+            item.sheet?.render({ force: true, editable: true });
+        }, true);
     }
 
     /**
