@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { ResolutionTransactionService } from "../system/scripts/services/resolution-transaction-service.js";
 import { GmAuthorityService } from "../system/scripts/services/gm-authority-service.js";
 import { MigrationL5r5e } from "../system/scripts/migration.js";
+import { canReplayActionCommit, isActionCommitMutation, withoutActionCommitMutation } from "../system/scripts/gm/resolution-tools.js";
 import { readFileSync } from "node:fs";
 
 test("transaction apply is idempotent and replay keeps revisions", async () => {
@@ -27,6 +28,20 @@ test("transaction refuses rollback after unrelated document change", async () =>
     assert.equal(result.ok, false);
     assert.equal(result.code, "revertConflict");
     assert.equal(document.system.fatigue.value, 5);
+});
+
+test("retrospective replay can omit a stale action commitment from an earlier turn", () => {
+    const actionCommit = { documentUuid: "Combat.C.Combatant.A", path: "flags.l5r5e.turnState", before: { primaryAction: { used: false } }, after: { primaryAction: { used: true } }, reason: "actionCommit" };
+    const damage = { documentUuid: "Actor.B", path: "system.fatigue.value", before: 1, after: 4, reason: "damage" };
+    const transaction = { transactionId: "roll-1", revision: 1, mutations: [actionCommit, damage] };
+    assert.equal(isActionCommitMutation(actionCommit), true);
+    assert.equal(isActionCommitMutation(damage), false);
+    assert.equal(canReplayActionCommit(actionCommit, { primaryAction: { used: true } }), true);
+    assert.equal(canReplayActionCommit(actionCommit, { primaryAction: { used: false } }), false);
+    assert.equal(canReplayActionCommit({ ...actionCommit, after: { b: 2, a: 1 } }, { a: 1, b: 2 }), true);
+    const replayable = withoutActionCommitMutation(transaction);
+    assert.deepEqual(replayable.mutations, [damage]);
+    assert.notEqual(replayable, transaction);
 });
 
 test("transaction coalesces independent changes to the same resource and pending-effect list", () => {

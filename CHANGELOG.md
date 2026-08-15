@@ -6,6 +6,13 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.116 - 15/08/2026 - Read-only previews and safe retrospective replay
+
+- Preserve the ApplicationV2 `editable` option and honor per-render read-only overrides so HUD equipment and techniques, as well as compendium documents, open as previews instead of editable sheets.
+- Let retrospective TN and target changes replay an older roll after the combat turn has advanced by omitting only the stale action-commit mutation while retaining the roll's mechanical mutations.
+- Replay the action commitment and its after-action effects only when the Combatant still has the exact state written by the original resolution.
+- Add regression coverage for cached-sheet preview rendering, compendium read-only behavior, stale action commitments and property-order-independent state comparison.
+
 ## 1.14.115 - 05/08/2026 - Live-audited armor and weapon-profile repairs
 
 - Make Destroyed armor provide zero physical and supernatural resistance instead of reverting to its undamaged base values.

@@ -1,3 +1,35 @@
+function equalSnapshot(left, right) {
+    if (Object.is(left, right)) return true;
+    if (!left || !right || typeof left !== "object" || typeof right !== "object") return false;
+    if (Array.isArray(left) || Array.isArray(right)) {
+        return Array.isArray(left)
+            && Array.isArray(right)
+            && left.length === right.length
+            && left.every((entry, index) => equalSnapshot(entry, right[index]));
+    }
+    const leftKeys = Object.keys(left).sort();
+    const rightKeys = Object.keys(right).sort();
+    return leftKeys.length === rightKeys.length
+        && leftKeys.every((key, index) => key === rightKeys[index] && equalSnapshot(left[key], right[key]));
+}
+
+export function isActionCommitMutation(mutation) {
+    return mutation?.path === "flags.l5r5e.turnState" && String(mutation.reason).includes("actionCommit");
+}
+
+export function canReplayActionCommit(mutation, currentState) {
+    return isActionCommitMutation(mutation) && equalSnapshot(currentState, mutation.after);
+}
+
+export function withoutActionCommitMutation(transaction) {
+    if (!transaction) return transaction;
+    const clone = globalThis.foundry?.utils?.deepClone ?? structuredClone;
+    return {
+        ...clone(transaction),
+        mutations: (transaction.mutations ?? []).filter((mutation) => !isActionCommitMutation(mutation)),
+    };
+}
+
 export class ResolutionToolsL5r5e {
     static resolution(message) {
         return message?.flags?.l5r5e?.resolution ?? message?.rolls?.[0]?.l5r5e?.resolution ?? null;
@@ -66,8 +98,19 @@ export class ResolutionToolsL5r5e {
             revision: previous.revision + 1,
             transactionId: previous.transactionId,
         };
+        const actionMutation = previous.transaction?.mutations?.find(isActionCommitMutation);
+        const actionCombatant = actionMutation ? await fromUuid(actionMutation.documentUuid) : null;
+        const currentActionState = actionCombatant
+            ? foundry.utils.getProperty(actionCombatant, actionMutation.path)
+            : undefined;
+        const replayActionMutation = actionMutation && canReplayActionCommit(actionMutation, currentActionState)
+            ? actionMutation
+            : null;
+        const sourceTransaction = actionMutation && !replayActionMutation
+            ? withoutActionCommitMutation(previous.transaction)
+            : previous.transaction;
         const related = [...(message.flags?.l5r5e?.relatedTransactions ?? [])];
-        for (const transaction of [previous.transaction, ...related].filter(Boolean)) {
+        for (const transaction of [sourceTransaction, ...related].filter(Boolean)) {
             const inspection = await game.l5r5e.transactions.inspectRevert(transaction);
             if (!inspection.ok) {
                 ui.notifications.error(game.i18n.localize("l5r5e.automation.transaction.conflict"));
@@ -75,18 +118,17 @@ export class ResolutionToolsL5r5e {
                 return inspection;
             }
         }
-        const actionMutation = previous.transaction?.mutations?.find((mutation) => mutation.path === "flags.l5r5e.turnState" && String(mutation.reason).includes("actionCommit"));
-        const afterActionEffects = actionMutation ? [...(previous.conditionEffects ?? [])] : [];
+        const afterActionEffects = replayActionMutation ? [...(previous.conditionEffects ?? [])] : [];
         const sourceRoll = message.rolls?.[0];
         const criticalContext = sourceRoll?.l5r5e?.rollContext?.type === "critical-mitigation" ? sourceRoll.l5r5e.rollContext.critical : null;
         let previousReverted = false;
         const restorePrevious = async () => {
-            if (previousReverted && previous.transaction) await game.l5r5e.transactions.apply(previous.transaction);
+            if (previousReverted && sourceTransaction) await game.l5r5e.transactions.apply(sourceTransaction);
             for (const transaction of related) await game.l5r5e.transactions.apply(transaction);
         };
         for (const transaction of [...related].reverse()) await game.l5r5e.transactions.revert(transaction);
-        if (previous.transaction) {
-            const reverted = await game.l5r5e.transactions.revert(previous.transaction);
+        if (sourceTransaction) {
+            const reverted = await game.l5r5e.transactions.revert(sourceTransaction);
             if (!reverted.ok) return reverted;
             previousReverted = true;
         }
@@ -163,15 +205,15 @@ export class ResolutionToolsL5r5e {
                     mutations.push({ documentUuid: actor.uuid, path: "system.void_points.value", before, after: Math.max(0, before - bleedingResolution.voidSpent), reason: "declineDefense" });
                 }
             }
-            if (actionMutation) mutations.push(foundry.utils.deepClone(actionMutation));
+            if (replayActionMutation) mutations.push(foundry.utils.deepClone(replayActionMutation));
             for (const effect of afterActionEffects) {
                 if (effect.type !== "resource" || !actor?.uuid) continue;
                 const before = Number(actor.system?.[effect.resource]?.value) || 0;
                 mutations.push({ documentUuid: actor.uuid, path: `system.${effect.resource}.value`, before, after: Math.max(0, before + Number(effect.amount || 0)), reason: effect.reason ?? "afterAction" });
             }
             resolution.conditionEffects = afterActionEffects;
-            if (previous.transaction) {
-                const transactionReplay = await game.l5r5e.transactions.replay(previous.transaction, { inputs: { context: resolution.context, raw: previous.raw }, decisions, mutations, createdDocuments });
+            if (sourceTransaction) {
+                const transactionReplay = await game.l5r5e.transactions.replay(sourceTransaction, { inputs: { context: resolution.context, raw: previous.raw }, decisions, mutations, createdDocuments });
                 if (!transactionReplay.ok) throw transactionReplay;
                 replayedTransaction = transactionReplay.transaction;
             } else {
@@ -198,9 +240,9 @@ export class ResolutionToolsL5r5e {
             "flags.l5r5e.relatedTransactionHistory": [...(message.flags?.l5r5e?.relatedTransactionHistory ?? []), ...related],
             ...(roll ? { rolls: [roll.toJSON()], content: await roll.render({}) } : {}),
         });
-        if (actionMutation) {
-            const combatant = await fromUuid(actionMutation.documentUuid);
-            if (combatant) Hooks.callAll("l5r5e.turnStateChanged", combatant, actionMutation.after, { replayed: true, transactionId: resolution.transactionId });
+        if (replayActionMutation) {
+            const combatant = await fromUuid(replayActionMutation.documentUuid);
+            if (combatant) Hooks.callAll("l5r5e.turnStateChanged", combatant, replayActionMutation.after, { replayed: true, transactionId: resolution.transactionId });
             Hooks.callAll("l5r5e.actionResolved", resolution);
         }
         if (criticalContext?.parentRollMessageUuid) {

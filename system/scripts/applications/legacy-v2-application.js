@@ -33,6 +33,7 @@ function v2Options(applicationClass, options = {}) {
         form,
         parts,
         document,
+        editable,
     } = options;
     return {
         ...(id ? { id } : {}),
@@ -55,6 +56,7 @@ function v2Options(applicationClass, options = {}) {
             ...(form ?? {}),
         },
         ...(document ? { document } : {}),
+        ...(editable === undefined ? {} : { editable: Boolean(editable) }),
         ...(parts ? { parts } : {}),
     };
 }
@@ -367,6 +369,11 @@ export class LegacyItemSheetV2 extends HandlebarsApplicationMixin(ItemSheetV2) {
         return this.document;
     }
 
+    get isEditable() {
+        if (this.document?.pack || this._l5r5eEditableOverride === false || this.options?.editable === false) return false;
+        return super.isEditable;
+    }
+
     async getData(options = {}) {
         const context = await super._prepareContext(options);
         const data = legacyDocumentSnapshot(this.item);
@@ -421,7 +428,11 @@ export class LegacyItemSheetV2 extends HandlebarsApplicationMixin(ItemSheetV2) {
     }
 
     render(force = true, options = {}) {
-        if (typeof force === "object") return super.render(force);
-        return super.render({ ...options, force: Boolean(force) });
+        const renderOptions = typeof force === "object"
+            ? { ...force }
+            : { ...options, force: Boolean(force) };
+        this._l5r5eEditableOverride = renderOptions.editable;
+        delete renderOptions.editable;
+        return super.render(renderOptions);
     }
 }

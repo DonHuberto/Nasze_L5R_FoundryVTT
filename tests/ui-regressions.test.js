@@ -171,6 +171,36 @@ test("Opportunity rows and disabled finalize controls expose the requested UI st
     assert.match(rollController, /button\.prop\("disabled", true\)/);
 });
 
+test("ApplicationV2 item sheets honor read-only previews and compendium documents", async (t) => {
+    const previousFoundry = globalThis.foundry;
+    t.after(() => { globalThis.foundry = previousFoundry; });
+    class ItemSheetV2 {
+        constructor(options) { this.options = options; this.document = options.document; }
+        get isEditable() { return true; }
+        render(options) { this.lastRenderOptions = options; return this; }
+    }
+    globalThis.foundry = {
+        applications: {
+            api: {
+                ApplicationV2: class {},
+                HandlebarsApplicationMixin: (Base) => class extends Base {},
+            },
+            sheets: { ActorSheetV2: class {}, ItemSheetV2 },
+        },
+        utils: { deepClone: structuredClone, mergeObject: (a, b) => ({ ...a, ...b }) },
+    };
+    const { LegacyItemSheetV2 } = await import(`../system/scripts/applications/legacy-v2-application.js?readonly=${Date.now()}`);
+    assert.equal(new LegacyItemSheetV2({ document: { pack: "l5r5e.items" } }).isEditable, false);
+    assert.equal(new LegacyItemSheetV2({ document: {}, editable: false }).isEditable, false);
+    const cachedSheet = new LegacyItemSheetV2({ document: {} });
+    assert.equal(cachedSheet.isEditable, true);
+    cachedSheet.render({ force: true, editable: false });
+    assert.equal(cachedSheet.isEditable, false);
+    assert.deepEqual(cachedSheet.lastRenderOptions, { force: true });
+    cachedSheet.render(true);
+    assert.equal(cachedSheet.isEditable, true);
+});
+
 test("cancelled and restarted throw checks preserve no orphaned equipment reservations", () => {
     const picker = fs.readFileSync(new URL("../system/scripts/dice/dice-picker-dialog.js", import.meta.url), "utf8");
     const roll = fs.readFileSync(new URL("../system/scripts/dice/roll-n-keep-dialog.js", import.meta.url), "utf8");
