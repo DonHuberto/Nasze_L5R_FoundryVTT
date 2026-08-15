@@ -521,6 +521,35 @@ export class HelpersL5r5e {
             }
         );
 
+        // Names open a read-only preview with LMB; RMB is the explicit edit
+        // gesture. The short delay preserves the existing double-click roll
+        // action on techniques and weapons.
+        const previewTimers = new WeakMap();
+        const documentLinks = html.find(".l5r5e-tooltip[data-item-id], .l5r5e-tooltip[data-property-id]");
+        documentLinks.on("click.l5r5e-document-view", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            const target = event.currentTarget;
+            clearTimeout(previewTimers.get(target));
+            previewTimers.set(target, setTimeout(async () => {
+                previewTimers.delete(target);
+                const item = await HelpersL5r5e.getEmbedItemByEvent({ currentTarget: target }, actor);
+                item?.sheet?.render({ force: true, editable: false });
+            }, 240));
+        });
+        documentLinks.on("dblclick.l5r5e-document-view", (event) => {
+            clearTimeout(previewTimers.get(event.currentTarget));
+            previewTimers.delete(event.currentTarget);
+        });
+        documentLinks.on("contextmenu.l5r5e-document-edit", async (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            clearTimeout(previewTimers.get(event.currentTarget));
+            previewTimers.delete(event.currentTarget);
+            const item = await HelpersL5r5e.getEmbedItemByEvent(event, actor);
+            item?.sheet?.render({ force: true, editable: true });
+        });
+
         // Open actor sheet
         html.find(".open-sheet-from-uuid").on("click", async (event) => {
             event.preventDefault();

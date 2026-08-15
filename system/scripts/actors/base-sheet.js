@@ -179,7 +179,7 @@ export class BaseSheetL5r5e extends LegacyActorSheetV2 {
         }
         const item = this.actor.items.get(created[0].id);
 
-        item.sheet.render(true);
+        item.sheet.render({ force: true, editable: true });
     }
 
     /**
@@ -210,7 +210,7 @@ export class BaseSheetL5r5e extends LegacyActorSheetV2 {
 
         game.l5r5e.HelpersL5r5e.getEmbedItemByEvent(event, this.actor).then((item) => {
             if (item) {
-                item.sheet.render(true);
+                item.sheet.render({ force: true, editable: true });
             }
         });
     }

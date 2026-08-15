@@ -360,8 +360,13 @@ button {
         visibility: hidden;
         min-height: fit-content;
         width: 600px;
+        max-width: calc(100vw - 2rem);
         height: auto;
-        max-height: 100%;
+        max-height: min(333px, 33vh);
+        box-sizing: border-box;
+        overflow-x: hidden;
+        overflow-y: auto;
+        overflow-wrap: anywhere;
         background: #3e3a30 url("../assets/imgs/bg-l5r.webp") no-repeat;
         text-align: left;
         border: 0 none;

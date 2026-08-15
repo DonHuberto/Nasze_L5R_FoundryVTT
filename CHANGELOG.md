@@ -6,6 +6,15 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.117 - 15/08/2026 - Item previews, sheet layout and property overflow fixes
+
+- Restore the weapon editor's natural layout so Range, Damage and Deadliness remain together instead of spilling into the Properties section.
+- Keep weapon, armor and inventory property chips constrained to their contents and wrapped inside the sheet width.
+- Open item, armor, weapon and technique names with a read-only preview on LMB and an editable sheet on RMB; preview controls are disabled, not merely styled as read-only.
+- Restrict Allowed Techniques configuration to GMs and align its checkboxes with their labels.
+- Limit L5R property tooltips to one third of the viewport height, with vertical-only scrolling for long content.
+- Add regression coverage for preview/edit routing, GM-only technique configuration, property wrapping and tooltip overflow.
+
 ## 1.14.116 - 15/08/2026 - Read-only previews and safe retrospective replay
 
 - Preserve the ApplicationV2 `editable` option and honor per-render read-only overrides so HUD equipment and techniques, as well as compendium documents, open as previews instead of editable sheets.

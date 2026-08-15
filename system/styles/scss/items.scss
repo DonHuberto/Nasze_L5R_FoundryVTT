@@ -65,15 +65,18 @@
             flex-direction: row;
             flex-wrap: wrap;
             align-items: center;
+            min-width: 0;
+            width: 100%;
             > li {
-                flex: 0 0 auto;
+                flex: 0 0 auto !important;
                 max-width: 100%;
                 margin: 0.25rem 0.1rem;
                 padding: 0.1rem 0.5rem;
                 background-color: $l5r5e-white;
                 border: 1px solid $white-light;
                 border-radius: 1rem;
-                width: auto;
+                overflow-wrap: anywhere;
+                width: fit-content !important;
                 font-size: 0.75rem;
                 color: $black-light;
                 &:first-child {
@@ -375,7 +378,9 @@
 &.weapon {
     article {
         &.attributes {
-            height: 18.5rem;
+            align-content: flex-start;
+            height: auto;
+            min-height: 18.5rem;
             .stats,
             .attribute-value {
                 flex: 0 0 calc(50% - 0.5rem);
@@ -386,9 +391,27 @@
                 }
             }
             .stats {
+                box-sizing: border-box;
+                min-width: 0;
                 input[type="text"] {
                     text-align: center;
                 }
+                label {
+                    align-items: center;
+                    box-sizing: border-box;
+                    display: flex;
+                    gap: 0.25rem;
+                    justify-content: space-between;
+                    min-width: 0;
+                    input,
+                    select {
+                        flex: 0 1 7rem;
+                        min-width: 0;
+                    }
+                }
+            }
+            .weapon-grip-stats label {
+                flex-wrap: wrap;
             }
             .value {
                 flex: 0 0 calc(25% - 0.5rem);
@@ -405,11 +428,13 @@
         }
         &.infos {
             flex: 0 0 60%;
-            height: calc(100% - 19.5rem);
+            height: auto;
+            min-height: 12rem;
         }
         &.properties {
             flex: 0 0 40%;
-            height: calc(100% - 19.5rem);
+            height: auto;
+            min-height: 12rem;
         }
     }
 }

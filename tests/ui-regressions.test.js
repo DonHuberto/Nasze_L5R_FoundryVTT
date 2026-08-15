@@ -198,6 +198,8 @@ test("ApplicationV2 item sheets honor read-only previews and compendium document
     assert.equal(cachedSheet.isEditable, false);
     assert.deepEqual(cachedSheet.lastRenderOptions, { force: true });
     cachedSheet.render(true);
+    assert.equal(cachedSheet.isEditable, false);
+    cachedSheet.render({ force: true, editable: true });
     assert.equal(cachedSheet.isEditable, true);
 });
 
@@ -323,6 +325,35 @@ test("ApplicationV2 windows reapply the legacy L5R layout above core form styles
     assert.match(sheets, /\.narrative-content\s*\{[\s\S]*flex-direction:\s*column/);
     assert.match(sheets, /&-wrapper\s*\{[\s\S]*display:\s*flex[\s\S]*justify-content:\s*center/);
     assert.match(items, /\.item-properties\s*\{[\s\S]*flex-wrap:\s*wrap/);
+});
+
+test("item previews, GM-only technique permissions, and compact properties preserve the V1 contracts", () => {
+    const helpers = fs.readFileSync(new URL("../system/scripts/helpers.js", import.meta.url), "utf8");
+    const bridge = fs.readFileSync(new URL("../system/scripts/applications/legacy-v2-application.js", import.meta.url), "utf8");
+    const characterTechniques = fs.readFileSync(new URL("../system/templates/actors/character/techniques.html", import.meta.url), "utf8");
+    const npcTechniques = fs.readFileSync(new URL("../system/templates/actors/npc/techniques.html", import.meta.url), "utf8");
+    const weaponTemplate = fs.readFileSync(new URL("../system/templates/items/weapon/weapon-sheet.html", import.meta.url), "utf8");
+    const items = fs.readFileSync(new URL("../system/styles/scss/items.scss", import.meta.url), "utf8");
+    const sheets = fs.readFileSync(new URL("../system/styles/scss/sheets.scss", import.meta.url), "utf8");
+    const ui = fs.readFileSync(new URL("../system/styles/scss/ui.scss", import.meta.url), "utf8");
+
+    assert.match(helpers, /click\.l5r5e-document-view/);
+    assert.match(helpers, /contextmenu\.l5r5e-document-edit/);
+    assert.match(helpers, /editable:\s*false/);
+    assert.match(helpers, /editable:\s*true/);
+    assert.match(bridge, /else if \(this\._l5r5eEditableOverride === undefined && !this\.rendered\) this\._l5r5eEditableOverride = false/);
+    assert.match(bridge, /querySelectorAll\("input, select, textarea, button"\)/);
+    for (const template of [characterTechniques, npcTechniques]) {
+        assert.match(template, /{{#if data\.isGM}}[\s\S]*class="checklist allowed-techniques"[\s\S]*{{\/if}}/);
+    }
+    assert.match(weaponTemplate, /class="stats weapon-core-stats"/);
+    assert.match(weaponTemplate, /class="stats weapon-grip-stats"/);
+    assert.match(items, /&\.weapon[\s\S]*?&\.attributes\s*\{[\s\S]*?height:\s*auto/);
+    assert.match(items, /\.item-properties[\s\S]*?> li\s*\{[\s\S]*?width:\s*fit-content !important/);
+    assert.match(sheets, /\.checklist[\s\S]*?label\s*\{[\s\S]*?display:\s*inline-flex/);
+    assert.match(ui, /\.l5r5e-tooltip-ct[\s\S]*?max-height:\s*min\(333px, 33vh\)/);
+    assert.match(ui, /overflow-x:\s*hidden/);
+    assert.match(ui, /overflow-y:\s*auto/);
 });
 
 test("ApplicationV2 actor sheets preserve the V1 header, skill, technique and equipment rows", () => {

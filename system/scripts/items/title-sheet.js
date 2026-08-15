@@ -122,7 +122,7 @@ export class TitleSheetL5r5e extends ItemSheetL5r5e {
         // Get the store object and display it
         const item = this.document.items.get(itemId);
         if (item) {
-            item.sheet.render(true);
+            item.sheet.render({ force: true, editable: true });
         }
     }
 

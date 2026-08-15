@@ -324,6 +324,11 @@ export class LegacyActorSheetV2 extends HandlebarsApplicationMixin(ActorSheetV2)
         return this.document.update(update);
     }
 
+    async _onClose(options) {
+        await super._onClose(options);
+        this._l5r5eEditableOverride = undefined;
+    }
+
     render(force = true, options = {}) {
         if (typeof force === "object") return super.render(force);
         return super.render({ ...options, force: Boolean(force) });
@@ -407,6 +412,12 @@ export class LegacyItemSheetV2 extends HandlebarsApplicationMixin(ItemSheetV2) {
         await super._onRender(context, options);
         activateLegacyTabs(this);
         bindLegacyDragDrop(this);
+        if (!this.isEditable) {
+            const content = this.element.querySelector(".window-content") ?? this.element;
+            for (const control of content.querySelectorAll("input, select, textarea, button")) control.disabled = true;
+            for (const editable of content.querySelectorAll("[contenteditable]")) editable.setAttribute("contenteditable", "false");
+            for (const image of content.querySelectorAll("[data-edit]")) image.removeAttribute("data-edit");
+        }
         const jquery = globalThis.jQuery ?? globalThis.$;
         if (jquery) this.activateListeners(jquery(this.element));
     }
@@ -431,7 +442,8 @@ export class LegacyItemSheetV2 extends HandlebarsApplicationMixin(ItemSheetV2) {
         const renderOptions = typeof force === "object"
             ? { ...force }
             : { ...options, force: Boolean(force) };
-        this._l5r5eEditableOverride = renderOptions.editable;
+        if (Object.hasOwn(renderOptions, "editable")) this._l5r5eEditableOverride = Boolean(renderOptions.editable);
+        else if (this._l5r5eEditableOverride === undefined && !this.rendered) this._l5r5eEditableOverride = false;
         delete renderOptions.editable;
         return super.render(renderOptions);
     }

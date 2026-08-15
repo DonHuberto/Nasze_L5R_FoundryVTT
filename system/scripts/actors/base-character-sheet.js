@@ -22,6 +22,10 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
     async getData(options = {}) {
         const sheetData = await super.getData(options);
 
+        // Technique-family permissions are campaign configuration. Players
+        // may use granted techniques, but only a GM may see or change them.
+        sheetData.data.isGM = Boolean(game.user?.isGM);
+
         sheetData.data.stances = CONFIG.l5r5e.stances;
         sheetData.data.techniquesList = game.l5r5e.HelpersL5r5e.getTechniquesList({ displayInTypes: true });
 
@@ -464,7 +468,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
             }
         }
 
-        item.sheet.render(true);
+        item.sheet.render({ force: true, editable: true });
     }
 
     /**

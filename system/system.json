@@ -7,8 +7,8 @@
     "changelog": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/blob/master/CHANGELOG.md",
     "license": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/blob/master/LICENSE.md",
     "manifest": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/releases/latest/download/system.json",
-    "download": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/releases/download/v1.14.116/system.zip",
-    "version": "1.14.116",
+    "download": "https://github.com/DonHuberto/Nasze_L5R_FoundryVTT/releases/download/v1.14.117/system.zip",
+    "version": "1.14.117",
     "compatibility": {
         "minimum": "14",
         "verified": "14",

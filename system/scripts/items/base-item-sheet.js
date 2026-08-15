@@ -134,7 +134,7 @@ export class BaseItemSheetL5r5e extends LegacyItemSheetV2 {
         const itemId = $(event.currentTarget).data("item-id");
         const item = this.document.items.get(itemId);
         if (item) {
-            item.sheet.render(true);
+            item.sheet.render({ force: true, editable: true });
         }
     }
 

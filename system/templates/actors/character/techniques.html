@@ -1,6 +1,7 @@
 <div class="techniques-wrapper">
     {{!-- technique types --}}
-    <div class="checklist">
+    {{#if data.isGM}}
+    <div class="checklist allowed-techniques">
         <i>{{localize 'l5r5e.techniques.type'}}</i>
         {{#each data.techniquesList as |technique|}}
         {{#ifCond ../data.editable_not_soft_locked '||' (lookup ../data.system.techniques technique.id)}}
@@ -11,6 +12,7 @@
         {{/ifCond}}
         {{/each}}
     </div>
+    {{/if}}
     {{!-- technique list --}}
     {{#each data.splitTechniquesList as |list technique|}}
         <fieldset class="section-header flexrow">
