@@ -1,4 +1,5 @@
 import { deepClone, documentUuid, makeId, normalizeActionTypes, toFiniteNumber } from "./rule-utils.js";
+import { RangeBandService } from "./movement-service.js";
 
 export const RESOLUTION_PHASES = Object.freeze([
     "normalize", "dice", "symbols", "opportunities", "spending", "preValidation", "validation", "strife",
@@ -81,20 +82,29 @@ export class RollResolutionService {
         audit.push({ phase: "spending", spent: plan.spent, remaining: plan.remaining, errors: plan.errors });
         if (!plan.valid) return this.#blocked(preview, plan, audit, "opportunityPlan");
 
+        const initialRulesKey = String(context.item?.system?.rulesKey ?? context.item?.rulesKey ?? "").trim().toLowerCase();
+        const sceneId = context.lifecycle?.sceneId ?? globalThis.canvas?.scene?.id ?? null;
+        const pathUsage = preview.context.targetActor?.flags?.l5r5e?.pathToInnerPeaceUsage;
+        if (preview.provisionalSuccess && initialRulesKey === "path-to-inner-peace" && sceneId && pathUsage?.sceneId === sceneId) {
+            return this.#blocked(preview, plan, audit, "techniqueAlreadyUsed", [{ code: "techniqueAlreadyUsed", rulesKey: initialRulesKey, targetUuid: preview.context.targetUuid }]);
+        }
+
         const preValidation = this.opportunities.executeTiming("preValidation", plan, { ...preview.context, conditionSuspensionExpiry: context.conditionSuspensionExpiry });
         const ignoredConditions = [...preview.context.ignoredConditions, ...preValidation.filter((effect) => effect.type === "ignoreCondition").map((effect) => effect.condition).filter(Boolean)];
-        preview.context.ignoredConditions = [...new Set(ignoredConditions)];
+        preview = this.preview({ ...preview.context, ignoredConditions: [...new Set(ignoredConditions)] }, raw);
         audit.push({ phase: "preValidation", effects: deepClone(preValidation) });
 
         const actionLegality = this.conditions.validateAction(preview.context);
         const diceLegality = this.conditions.validateKeptDice(preview.context, raw);
-        const legal = actionLegality.legal && diceLegality.legal;
-        audit.push({ phase: "validation", legal, errors: [...actionLegality.errors, ...diceLegality.errors] });
-        if (!legal) return this.#blocked(preview, plan, audit, "provisionalIllegality", [...actionLegality.errors, ...diceLegality.errors]);
+        const rangeLegality = RangeBandService.validateAttack(preview.context);
+        const rangeErrors = rangeLegality.legal ? [] : [{ code: "attackOutOfRange", ...rangeLegality }];
+        const legal = actionLegality.legal && diceLegality.legal && rangeLegality.legal;
+        audit.push({ phase: "validation", legal, attackRange: rangeLegality, errors: [...actionLegality.errors, ...diceLegality.errors, ...rangeErrors] });
+        if (!legal) return this.#blocked(preview, plan, audit, "provisionalIllegality", [...actionLegality.errors, ...diceLegality.errors, ...rangeErrors]);
 
         const timingEffects = {};
         for (const timing of ["strife", "beforeSuccess", "afterSuccess", "beforeDamage", "afterDamage", "deferred", "manual"]) {
-            timingEffects[timing] = this.opportunities.executeTiming(timing, plan, preview.context);
+            timingEffects[timing] = this.opportunities.executeTiming(timing, plan, { ...preview.context, bonusSuccesses: preview.bonusSuccesses });
         }
         const allEffects = [preValidation, ...Object.values(timingEffects)].flat();
         const checkReduction = allEffects.filter((effect) => effect.type === "checkStrifeReduction").reduce((sum, effect) => sum + effect.amount, 0);
@@ -112,6 +122,22 @@ export class RollResolutionService {
         audit.push({ phase: "success", success, rawBonusSuccesses, fireBonusSuccesses, bonusSuccesses });
 
         const actionEffects = {};
+        const rulesKey = String(context.item?.system?.rulesKey ?? context.item?.rulesKey ?? "").trim().toLowerCase();
+        if (success && rulesKey === "path-to-inner-peace") {
+            const target = preview.context.targetActor ?? preview.context.actor;
+            const water = toFiniteNumber(preview.context.actor?.system?.rings?.water, 0);
+            const sceneId = context.lifecycle?.sceneId ?? globalThis.canvas?.scene?.id ?? null;
+            if (target && water + bonusSuccesses > 0) {
+                actionEffects.techniqueEffects = [{
+                    type: "resource",
+                    resource: "fatigue",
+                    amount: -(water + bonusSuccesses),
+                    targetUuid: documentUuid(target),
+                    rulesKey,
+                }];
+            }
+            if (target && sceneId) actionEffects.pathToInnerPeaceUsage = { targetUuid: documentUuid(target), sceneId };
+        }
         const resistanceEffects = timingEffects.beforeDamage.filter((effect) => effect.type === "resistanceModifier");
         const adjustedResistance = (resistance) => {
             if (typeof resistance === "number") {
@@ -125,7 +151,15 @@ export class RollResolutionService {
             }
             return result;
         };
-        if (success && context.damage) actionEffects.damage = this.damage.resolve({ ...context.damage, resistance: adjustedResistance(context.damage.resistance), source: context.actor, target: preview.context.targetActor, bonusSuccesses, success, defenseChoice: decisions.defense?.choice ?? context.damage.defenseChoice });
+        if (success && rulesKey === "heartpiercing-strike" && preview.context.targetActor && preview.context.attackProfileSnapshot) {
+            actionEffects.directCriticals = [{
+                type: "critical",
+                severity: Math.max(0, toFiniteNumber(preview.context.attackProfileSnapshot.deadliness, 0)) + bonusSuccesses,
+                targetUuid: preview.context.targetUuid,
+                mitigationTn: 3,
+                rulesKey,
+            }];
+        } else if (success && context.damage) actionEffects.damage = this.damage.resolve({ ...context.damage, resistance: adjustedResistance(context.damage.resistance), source: context.actor, target: preview.context.targetActor, bonusSuccesses, success, defenseChoice: decisions.defense?.choice ?? context.damage.defenseChoice });
         else if (success && preview.context.actionTypes.includes("attack")) {
             const profile = preview.context.attackProfileSnapshot;
             if (profile && preview.context.targetActor) {
@@ -147,9 +181,12 @@ export class RollResolutionService {
                 actionEffects.attack = { status: "manual", warning: profile ? "targetRequired" : "weaponProfileRequired" };
             }
         }
+        if (!success && rulesKey === "heartpiercing-strike") {
+            actionEffects.techniqueEffects = [{ type: "condition", operation: "add", condition: "disoriented", targetUuid: preview.context.actorUuid, rulesKey }];
+        }
         if (context.critical) actionEffects.critical = this.critical.resolve({ ...context.critical, sourceActor: context.actor, target: preview.context.targetActor }, decisions.critical ?? {});
         const directCriticals = allEffects.filter((effect) => effect.type === "critical");
-        if (directCriticals.length) actionEffects.directCriticals = directCriticals.map((effect) => deepClone(effect));
+        if (directCriticals.length) actionEffects.directCriticals = [...(actionEffects.directCriticals ?? []), ...directCriticals.map((effect) => deepClone(effect))];
         if (actionEffects.damage) actionEffects.itemDamage = this.damage.razorEdgedDamage({ item: context.item, success }, actionEffects.damage);
         audit.push({ phase: "actionEffects", effects: deepClone(actionEffects) });
 
@@ -196,12 +233,12 @@ export class RollResolutionService {
                 previous.options = { ...(previous.options ?? {}), ...(mutation.options ?? {}) };
                 return;
             }
-            if (previous && Array.isArray(previous.before) && Array.isArray(previous.after) && Array.isArray(mutation.after)) {
-                previous.after.push(...mutation.after.slice(mutation.before.length));
+            if (previous && Array.isArray(previous.after) && Array.isArray(mutation.after)) {
+                previous.after.push(...mutation.after.slice(mutation.before?.length ?? 0));
                 previous.reason = `${previous.reason},${mutation.reason}`;
                 return;
             }
-            if (previous && previous.before && previous.after && mutation.after && [previous.before, previous.after, mutation.after].every((value) => Object.getPrototypeOf(value) === Object.prototype)) {
+            if (previous && previous.after && mutation.after && [previous.after, mutation.after].every((value) => Object.getPrototypeOf(value) === Object.prototype)) {
                 previous.after = { ...previous.after, ...mutation.after };
                 previous.reason = `${previous.reason},${mutation.reason}`;
                 return;
@@ -215,22 +252,31 @@ export class RollResolutionService {
             if (!target?.uuid || !path || path === "initiative") return false;
             const before = toFiniteNumber(resource === "void" || resource === "void_points" ? target.system?.void_points?.value : target.system?.[resource]?.value, 0);
             const multiplier = resource === "strife" && intoxicated ? 2 : 1;
-            addMutation({ documentUuid: target.uuid, path, before, after: Math.max(0, before + toFiniteNumber(amount, 0) * multiplier), reason });
+            // Keep the full delta while mutations for the same resource are merged.
+            // Clamping here loses information when multiple reductions in one
+            // resolution are combined (for example a technique plus an Opportunity).
+            addMutation({ documentUuid: target.uuid, path, before, after: before + toFiniteNumber(amount, 0) * multiplier, reason });
             return true;
         };
 
+        if (actorDocument && resolution.context.deferredVoidPointDelta) {
+            const before = toFiniteNumber(actorDocument.system?.void_points?.value, 0);
+            const maximum = toFiniteNumber(actorDocument.system?.void_points?.max, before);
+            addMutation({ documentUuid: actorDocument.uuid, path: "system.void_points.value", before,
+                after: Math.min(maximum, Math.max(0, before + resolution.context.deferredVoidPointDelta)), reason: "provisionalVoidCheck" });
+        }
         if (actorDocument && resolution.strife?.net) addResource(actorDocument, "strife", resolution.strife.net, "rollStrife");
 
         const effectGroups = resolution.effects ?? {};
-        const effects = [effectGroups.preValidation, effectGroups.strife, effectGroups.beforeSuccess, effectGroups.afterSuccess, effectGroups.beforeDamage, effectGroups.afterDamage, effectGroups.deferred, effectGroups.manual].flat().filter(Boolean);
+        const effects = [effectGroups.preValidation, effectGroups.strife, effectGroups.beforeSuccess, effectGroups.afterSuccess, effectGroups.beforeDamage, effectGroups.afterDamage, effectGroups.deferred, effectGroups.manual, effectGroups.action?.techniqueEffects].flat().filter(Boolean);
         for (const effect of effects) {
             let document = effect.targetUuid ? await resolveUuid(effect.targetUuid) : actorDocument;
             document = asActor(document);
             if (effect.type === "resource") {
                 const intoxicated = this.conditions?.isActive?.(document, "intoxicated") ?? false;
                 if (!addResource(document, effect.resource, effect.amount, `opportunity:${effect.rulesKey}`, { intoxicated }) && document?.uuid) {
-                    const before = deepClone(document.flags?.l5r5e?.pendingRuleEffects ?? []);
-                    addMutation({ documentUuid: document.uuid, path: "flags.l5r5e.pendingRuleEffects", before, after: [...before, deepClone(effect)], reason: `opportunity:${effect.rulesKey}` });
+                    const before = deepClone(document.flags?.l5r5e?.pendingRuleEffects);
+                    addMutation({ documentUuid: document.uuid, path: "flags.l5r5e.pendingRuleEffects", before, after: [...(before ?? []), deepClone(effect)], reason: `opportunity:${effect.rulesKey}` });
                 }
             } else if (effect.type === "priorStrifeReduction" && effect.targetUuid && effect.targetUuid !== resolution.context.actorUuid) {
                 const intoxicated = this.conditions?.isActive?.(document, "intoxicated") ?? false;
@@ -240,11 +286,11 @@ export class RollResolutionService {
                 const after = effect.operation === "remove" ? false : true;
                 if (active !== after) addMutation({ documentUuid: document.uuid, path: `statuses.${effect.condition}`, before: active, after, reason: `opportunity:${effect.rulesKey}` });
             } else if (effect.type === "ignoreCondition" && document?.uuid && effect.condition) {
-                const before = deepClone(document.flags?.l5r5e?.conditionSuspensions ?? {});
+                const before = deepClone(document.flags?.l5r5e?.conditionSuspensions);
                 addMutation({ documentUuid: document.uuid, path: "flags.l5r5e.conditionSuspensions", before, after: { ...before, [effect.condition]: { expiresAt: effect.expiresAt, transactionId: resolution.transactionId } }, reason: `opportunity:${effect.rulesKey}` });
             } else if (["tnModifier", "criticalModifier", "reserveDie", "ignoreTerrain", "range", "target"].includes(effect.type) && document?.uuid) {
-                const before = deepClone(document.flags?.l5r5e?.pendingRuleEffects ?? []);
-                addMutation({ documentUuid: document.uuid, path: "flags.l5r5e.pendingRuleEffects", before, after: [...before, { ...deepClone(effect), transactionId: resolution.transactionId }], reason: `opportunity:${effect.rulesKey}` });
+                const before = deepClone(document.flags?.l5r5e?.pendingRuleEffects);
+                addMutation({ documentUuid: document.uuid, path: "flags.l5r5e.pendingRuleEffects", before, after: [...(before ?? []), { ...deepClone(effect), transactionId: resolution.transactionId }], reason: `opportunity:${effect.rulesKey}` });
             } else if (effect.type === "movement") {
                 const combatant = globalThis.game?.combat?.combatants?.find?.((entry) => entry.actor?.uuid === actorDocument?.uuid);
                 if (combatant) {
@@ -282,6 +328,19 @@ export class RollResolutionService {
         }
         const itemDamage = resolution.effects?.action?.itemDamage;
         if (itemDamage?.changed && usedItem) addMutation(this.qualities?.mutation?.(usedItem, itemDamage));
+        const pathUsage = resolution.effects?.action?.pathToInnerPeaceUsage;
+        if (pathUsage?.targetUuid && pathUsage.sceneId) {
+            const target = asActor(pathUsage.targetUuid === actorDocument?.uuid ? actorDocument : targetDocument);
+            if (target?.uuid) {
+                const before = deepClone(target.flags?.l5r5e?.pathToInnerPeaceUsage ?? {});
+                addMutation({ documentUuid: target.uuid, path: "flags.l5r5e.pathToInnerPeaceUsage", before, after: { sceneId: pathUsage.sceneId }, reason: "pathToInnerPeaceUsage" });
+            }
+        }
+        for (const mutation of mutations) {
+            if (["system.strife.value", "system.fatigue.value", "system.void_points.value"].includes(mutation.path)) {
+                mutation.after = Math.max(0, mutation.after);
+            }
+        }
         return mutations;
     }
 

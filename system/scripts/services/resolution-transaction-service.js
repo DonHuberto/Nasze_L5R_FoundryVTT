@@ -76,7 +76,13 @@ export class ResolutionTransactionService {
         if (path.startsWith("statuses.") && typeof document?.toggleStatusEffect === "function") {
             return document.toggleStatusEffect(path.slice("statuses.".length), { active: Boolean(value), ...options });
         }
-        if (typeof document?.update === "function") return document.update({ [path]: deepClone(value) }, options);
+        if (typeof document?.update === "function") {
+            if (value === undefined && path.includes(".")) {
+                const ForcedDeletion = globalThis.foundry.data.operators.ForcedDeletion;
+                return document.update({ [path]: new ForcedDeletion() }, options);
+            }
+            return document.update({ [path]: deepClone(value) }, options);
+        }
         return setProperty(document, path, deepClone(value));
     }
 

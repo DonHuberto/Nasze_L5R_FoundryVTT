@@ -611,31 +611,33 @@ export class HelpersL5r5e {
      * @return {Promise<*>}
      */
     static async sendToChat(document) {
+        const isJournal = document.documentName === "JournalEntry";
+        const page = isJournal ? document.getCurrentPage() : null;
+        if (isJournal && !page) return;
+
         // Get the html
-        const tpl = await document.renderTextTemplate();
+        const tpl = await document.renderTextTemplate(page ?? undefined);
         if (!tpl) {
             return;
         }
 
         // Get the JournalEntryPage instead of JournalEntry
-        if (document.documentName === "JournalEntry") {
-            document = document.getCurrentPage();
-        }
+        if (isJournal) document = page;
 
         // Create the link
         let link = null;
-        if (!document.actor && HelpersL5r5e.isLinkValid(document.link)) {
+        if (!document.actor && document.link && await HelpersL5r5e.isLinkValid(document.link)) {
             link = document.link;
         }
         if (!link && document._stats?.compendiumSource) {
             link = document._stats.compendiumSource.replace(/(\w+)\.(.+)/, "@$1[$2]");
-            if (!HelpersL5r5e.isLinkValid(link)) {
+            if (!await HelpersL5r5e.isLinkValid(link)) {
                 link = null;
             }
         }
         if (!link && document.pack) {
             link = `@Compendium[${document.pack}.${document.id}]{${document.name}}`;
-            if (!HelpersL5r5e.isLinkValid(link)) {
+            if (!await HelpersL5r5e.isLinkValid(link)) {
                 link = null;
             }
         }

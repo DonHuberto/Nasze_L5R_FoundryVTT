@@ -111,3 +111,21 @@ test("critical mutations use real Dying status, flags, scar creation and repeate
     const scar = service.buildMutations({ outcome: criticalOutcome(8, "air"), minion: false }, { target, scarDecision: { scarData: { _id: "scar1", type: "peculiarity" } } });
     assert.equal(scar.createdDocuments[0].parentUuid, target.uuid);
 });
+
+test("first Dying countdown and Shattering Parry flags apply without fabricated pre-existing values", async () => {
+    const { ResolutionTransactionService } = await import("../system/scripts/services/resolution-transaction-service.js");
+    const service = new CriticalService({ conditionService: new ConditionService(), itemQualityService: new ItemQualityService() });
+    const target = { uuid: "Actor.New", statuses: new Set(), flags: {}, async toggleStatusEffect(key, { active }) {
+        if (active) this.statuses.add(key); else this.statuses.delete(key);
+    } };
+    const built = service.buildMutations({ outcome: criticalOutcome(12, "fire"), shatteringParry: {} }, { target, workflow: { sessionId: "session" } });
+    assert.equal(built.mutations.find(({ path }) => path === "flags.l5r5e.dyingRounds").before, undefined);
+    assert.equal(built.mutations.find(({ path }) => path === "flags.l5r5e.shatteringParrySessionId").before, undefined);
+    const transactions = new ResolutionTransactionService({ resolver: async () => target });
+    const transaction = transactions.create({ mutations: built.mutations });
+    assert.equal((await transactions.apply(transaction)).ok, true);
+    assert.equal(target.flags.l5r5e.dyingRounds, 3);
+    assert.equal(target.flags.l5r5e.shatteringParrySessionId, "session");
+    assert.ok(target.statuses.has("dying"));
+    assert.ok(target.statuses.has("bleeding"));
+});

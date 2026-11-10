@@ -114,6 +114,8 @@
                 "blocked": "Rzut jest prowizorycznie nielegalny. Wybierz właściwy efekt przed walidacją albo wróć do kości.",
                 "backToDice": "Wróć do zachowanych kości",
                 "restart": "Wróć do wyboru Kręgu",
+                "cancelProvisional": "Anuluj niemożliwy test",
+                "provisionalCancelled": "Test anulowany: stan nie został ominięty. Nie zużyto akcji ani zasobów rzutu.",
                 "restartHint": "Anuluj ten wynik i ponownie otwórz ustawienia rzutu. Postać Niezdolna do działania może wybrać wyłącznie Pustkę.",
                 "incapacitatedVoidOnly": "Postać Niezdolna do działania może wykonać test wyłącznie w Kręgu Pustki.",
                 "invalidKeptDie": "Ta zachowana kość jest niedozwolona i nie jest uwzględniana w wyniku.",
@@ -124,6 +126,9 @@
                     "dead": "Martwa postać nie może działać.",
                     "unconscious": "Nieprzytomna postać nie może działać.",
                     "incapacitatedCheck": "Postać Niezdolna do działania musi użyć Pustki i wydać 2 Okazje Pustki, aby zawiesić ten stan. Jeśli użyto innego Kręgu, wróć do wyboru Kręgu.",
+                    "attackOutOfRange": "Cel znajduje się poza zasięgiem tego profilu ataku.",
+                    "attackProfileRequired": "Wybierz prawidłowy profil ataku przed rzutem przeciwko celowi.",
+                    "attackRangeUnavailable": "Nie można wykonać ataku, ponieważ nie da się zmierzyć odległości między atakującym a celem.",
                     "immobilizedMovement": "Unieruchomiona postać nie może wykonać tej akcji Ruchu.",
                     "destroyed": "Zniszczonego przedmiotu nie można użyć do tej akcji.",
                     "compromisedStrife": "Postać Roztrzęsiona nie może zachować kości z Konfliktem. Takie kości są pomijane w rozstrzygnięciu.",
@@ -136,6 +141,7 @@
             "undoConflict": "Historia ruchu uległa zmianie i nie można jej cofnąć automatycznie. Poproś MG o rozstrzygnięcie.",
             "immobilized": "Unieruchomienie uniemożliwia ten ruch.",
             "hostileOccupied": "Wrogi token zajmuje pole na tej trasie. MG może użyć jawnego obejścia reguły.",
+            "pathUnavailable": "Nie można zweryfikować ścieżki ruchu.",
             "gridless": "Automatyzacja ruchu taktycznego jest wyłączona na scenach bez siatki."
             },
             "lateArrival": {

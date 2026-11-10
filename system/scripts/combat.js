@@ -1,4 +1,5 @@
 import { resolveInitiativeMessageMode } from "./dice/message-mode.js";
+import { INITIATIVE_TN } from "./services/initiative-service.js";
 
 export function canOpenLocalInitiativePicker({ user, combatant }) {
     if (!user || !combatant?.actor) return false;
@@ -35,10 +36,6 @@ export class CombatL5r5e extends Combat {
 
         // Get global modifiers
         const cfg = {
-            difficulty:
-                messageOptions.difficulty !== undefined
-                    ? messageOptions.difficulty
-                    : game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-value"),
             difficultyHidden:
                 messageOptions.difficultyHidden !== undefined
                     ? messageOptions.difficultyHidden
@@ -84,7 +81,7 @@ export class CombatL5r5e extends Combat {
                 const automated = await game.l5r5e.initiative.rollAdversary(combatant.actor, {
                     skillId,
                     skillGroup: skillCat,
-                    tn: cfg.difficulty,
+                    tn: INITIATIVE_TN,
                     prepared: isPrepared,
                     messageMode: resolvedMessageMode ?? "blind",
                 });
@@ -104,7 +101,7 @@ export class CombatL5r5e extends Combat {
                         new game.l5r5e.DicePickerDialog({
                             actor: combatant.actor,
                             skillId: skillId,
-                            difficulty: cfg.difficulty,
+                            difficulty: INITIATIVE_TN,
                             difficultyHidden: cfg.difficultyHidden,
                             isInitiativeRoll: true,
                             messageMode: resolvedMessageMode,
@@ -145,8 +142,7 @@ export class CombatL5r5e extends Combat {
                     roll.l5r5e.stance = actorSystem.stance;
                     roll.l5r5e.skillId = skillId;
                     roll.l5r5e.skillCatId = skillCat;
-                    roll.l5r5e.difficulty =
-                        messageOptions.difficulty !== undefined ? messageOptions.difficulty : cfg.difficulty;
+                    roll.l5r5e.difficulty = INITIATIVE_TN;
                     roll.l5r5e.difficultyHidden =
                         messageOptions.difficultyHidden !== undefined
                             ? messageOptions.difficultyHidden

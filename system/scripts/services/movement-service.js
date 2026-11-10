@@ -31,6 +31,7 @@ export class MovementService {
         this.conditions = conditionService;
         this.actions = actionService;
         this.pendingCosts = new Map();
+        this.resettingTokens = new Set();
     }
 
     maneuverBudget({ success = false, bonusSuccesses = 0, checked = false } = {}) {
@@ -58,7 +59,7 @@ export class MovementService {
         return { ok: true, budget, ...(await this.plan(token, { ...options, maxCost: budget })) };
     }
 
-    async startManeuver(combatant, token, { checked = false, success = false, bonusSuccesses = 0, preferWater = false, lifecycle = {}, ...options } = {}) {
+    async startManeuver(combatant, token, { checked = false, success = false, bonusSuccesses = 0, preferWater = true, lifecycle = {}, ...options } = {}) {
         const budget = this.maneuverBudget({ checked, success, bonusSuccesses });
         const reservation = this.actions
             ? await this.actions.reserveAndPersist(combatant, { actionTypes: ["move"], requiresCheck: checked, preferWater, lifecycle })
@@ -126,14 +127,39 @@ export class MovementService {
 
     async undoMovement(combatant, tokenDocument, lifecycle = {}) {
         const state = this.turns.getState(combatant, lifecycle);
-        if (!state.movementUndoAvailable) return { ok: false, code: "movementUndoUnavailable" };
+        if (!this.canUndoMovement(combatant, lifecycle)) return { ok: false, code: "movementUndoUnavailable" };
         const ids = [...state.freeMovement.movementIds];
-        for (const id of ids.reverse()) {
-            const reverted = await tokenDocument.revertRecordedMovement(id);
+        const firstMovementId = ids[0];
+        let reverted = false;
+        this.resettingTokens.add(tokenDocument.id);
+        try {
+            reverted = await tokenDocument.revertRecordedMovement(firstMovementId);
             if (!reverted) {
-                globalThis.ui?.notifications?.warn?.(globalThis.game?.i18n?.localize?.("l5r5e.automation.movement.undoConflict") ?? "Movement history changed and cannot be undone automatically.");
-                return { ok: false, code: "movementUndoConflict", movementId: id };
+                const anchor = state.movementAnchor;
+                if (!anchor || !Number.isFinite(Number(anchor.x)) || !Number.isFinite(Number(anchor.y))) {
+                    globalThis.ui?.notifications?.warn?.(globalThis.game?.i18n?.localize?.("l5r5e.automation.movement.undoConflict") ?? "Movement history changed and cannot be undone automatically.");
+                    return { ok: false, code: "movementUndoConflict", movementId: firstMovementId };
+                }
+                const alreadyAtAnchor = tokenDocument.x === anchor.x && tokenDocument.y === anchor.y;
+                const returned = alreadyAtAnchor || await tokenDocument.move(
+                    { x: anchor.x, y: anchor.y },
+                    {
+                        id: makeId("movement-reset"),
+                        method: "api",
+                        animate: false,
+                        showRuler: false,
+                        constrainOptions: { ignoreCost: true },
+                        l5r5e: { movementReset: true, gmOverride: true },
+                    },
+                );
+                if (!returned) {
+                    globalThis.ui?.notifications?.warn?.(globalThis.game?.i18n?.localize?.("l5r5e.automation.movement.undoConflict") ?? "Movement history changed and cannot be undone automatically.");
+                    return { ok: false, code: "movementUndoConflict", movementId: firstMovementId };
+                }
+                await tokenDocument.clearMovementHistory?.();
             }
+        } finally {
+            this.resettingTokens.delete(tokenDocument.id);
         }
         let refund = ids.reduce((sum, id) => sum + toFiniteNumber(state.freeMovement.movementCosts?.[id], 0), 0);
         if (!refund && ids.length) refund = toFiniteNumber(state.freeMovement.spent, 0);
@@ -146,6 +172,19 @@ export class MovementService {
         await this.turns.persist(combatant, state, { movementUndone: ids });
         globalThis.Hooks?.callAll?.("l5r5e.movementBudgetChanged", combatant, state.freeMovement);
         return { ok: true, state, refunded: refund };
+    }
+
+    canUndoMovement(combatant, lifecycle = {}) {
+        const state = this.turns.getState(combatant, lifecycle);
+        return Boolean(
+            state.movementUndoAvailable &&
+            state.freeMovement.movementIds.length > 0 &&
+            Object.keys(state.reservations).length === 0
+        );
+    }
+
+    isResettingToken(tokenDocument) {
+        return this.resettingTokens.has(tokenDocument?.id);
     }
 
     reachableFields({ origin, candidates, budget, difficultSquares, blockedSquares, gmOverride = false } = {}) {
@@ -203,12 +242,27 @@ export class MovementService {
         const scene = tokenDocument?.parent;
         if (!scene?.grid?.type) return { ok: true, gridless: true, cost: 0 };
         if (this.conditions.isActive(combatant?.actor, "immobilized")) return { ok: false, code: "immobilized" };
-        const waypoints = movement?.pending?.waypoints ?? movement?.waypoints ?? movement?.path ?? [];
+        const rawWaypoints = movement?.pending?.waypoints ?? movement?.waypoints ?? movement?.path ?? [];
+        const origin = movement?.origin;
+        const destination = movement?.destination;
+        let waypoints = rawWaypoints;
+        if (origin && waypoints.length && (waypoints[0].x !== origin.x || waypoints[0].y !== origin.y)) {
+            waypoints = [origin, ...waypoints];
+        }
+        // V14 movement operations always expose origin/destination. Some token
+        // drags provide an incomplete pending section, so retain a measurable
+        // straight path instead of rejecting a valid drag as an unknown error.
+        if (waypoints.length < 2 && origin && destination) waypoints = [origin, destination];
+        if (waypoints.length < 2) return { ok: false, code: "movementPathUnavailable" };
         const tokensBlockSpaces = Boolean(globalThis.game?.settings?.get?.("l5r5e", "tokensBlockSpaces"));
         const blocker = this.validateTokenSpaces(tokenDocument, waypoints, { gmOverride, tokensBlockSpaces });
         if (!blocker.ok) return blocker;
-        const measured = tokenDocument.measureMovementPath(waypoints);
-        const cost = toFiniteNumber(measured.cost ?? measured.distance, 0) + this.enemyExitSurcharge(tokenDocument, waypoints);
+        const measured = Number.isFinite(Number(movement?.pending?.spaces))
+            ? movement.pending
+            : tokenDocument.measureMovementPath(waypoints);
+        const spaces = toFiniteNumber(measured.spaces ?? measured.distance ?? measured.cost, 0);
+        const diagonals = Math.max(0, toFiniteNumber(measured.diagonals, 0));
+        const cost = spaces + diagonals + this.enemyExitSurcharge(tokenDocument, waypoints);
         const remaining = this.remaining(combatant);
         if (cost > remaining && !gmOverride) return { ok: false, code: "movementBudgetExceeded", cost, remaining };
         const id = movement?.id ?? movement?.movementId;
@@ -217,11 +271,19 @@ export class MovementService {
     }
 
     async recordHookMovement(tokenDocument, movement, combatant) {
-        const id = movement?.id ?? movement?.movementId;
+        if (this.isResettingToken(tokenDocument)) return { ok: true, skipped: true };
+        // Manual drags can reach the recorded-history hook with only a
+        // TokenDocument. In that case resolve the movement ID from Foundry's
+        // public movement history instead of silently dropping the movement.
+        const history = tokenDocument?.movementHistory ?? [];
+        const id = movement?.id ?? movement?.movementId ?? history.at(-1)?.movementId;
         if (!id) return { ok: false, code: "movementIdMissing" };
         const state = this.turns.getState(combatant);
         if (state.freeMovement.movementIds.includes(id)) return { ok: true, idempotent: true, state };
-        const cost = this.pendingCosts.get(id) ?? 0;
+        const recordedCost = history
+            .filter((waypoint) => waypoint.movementId === id)
+            .reduce((sum, waypoint) => sum + toFiniteNumber(waypoint.cost, 0), 0);
+        const cost = this.pendingCosts.get(id) ?? recordedCost;
         this.pendingCosts.delete(id);
         const begun = this.turns.beginMovement(state, { budget: state.freeMovement.budget, kind: "free", anchor: movement?.origin ?? tokenDocument.getMovementOrigin?.(), transactionId: id });
         if (!begun.ok) return begun;
@@ -244,14 +306,99 @@ export const RangeBandService = Object.freeze({
         const targetOffsets = target.getOccupiedGridSpaceOffsets?.() ?? [{ i: target.x ?? 0, j: target.y ?? 0 }];
         let cost = Infinity;
         for (const left of sourceOffsets) for (const right of targetOffsets) {
-            cost = Math.min(cost, Math.max(Math.abs(toFiniteNumber(left.i) - toFiniteNumber(right.i)), Math.abs(toFiniteNumber(left.j) - toFiniteNumber(right.j))));
+            // The grid movement rules charge a diagonal as one horizontal
+            // plus one vertical step. Use the same distance here so attack
+            // range validation agrees with movement and the HUD on square grids.
+            cost = Math.min(cost, Math.abs(toFiniteNumber(left.i) - toFiniteNumber(right.i)) + Math.abs(toFiniteNumber(left.j) - toFiniteNumber(right.j)));
         }
         if (!Number.isFinite(cost)) cost = 0;
         return { gridless: !source.parent?.grid?.type, cost, range: Math.ceil(cost / 3) };
     },
     profileBounds: (profile = {}) => {
-        const minimum = Math.max(0, toFiniteNumber(profile.range_min ?? profile.rangeMin, 0));
-        const maximum = Math.max(minimum, toFiniteNumber(profile.range_max ?? profile.rangeMax, minimum));
+        const minimum = Math.max(0, toFiniteNumber(profile.minimum ?? profile.range_min ?? profile.rangeMin, 0));
+        const maximum = Math.max(minimum, toFiniteNumber(profile.maximum ?? profile.range_max ?? profile.rangeMax, minimum));
         return { minimum, maximum, innerCost: minimum * 3, outerCost: maximum * 3 };
+    },
+    validateAttack: (context = {}) => {
+        const isAttack = context.actionTypes?.includes("attack") || ["strike", "assault"].includes(context.actionId);
+        if (!isAttack) return { legal: true, measurable: false };
+        // Rolls can carry either a TokenDocument or its canvas Token placeable.
+        // Prefer the underlying document: a placeable's `parent` is its layer,
+        // not the scene, so using it here silently skipped range checks in HUD rolls.
+        const selectedTarget = context.target ?? Array.from(globalThis.game?.user?.targets ?? [])[0]?.document;
+        const targetDocument = selectedTarget?.document?.documentName === "Token"
+            ? selectedTarget.document
+            : selectedTarget?.documentName === "Token"
+                ? selectedTarget
+                : null;
+        if (!targetDocument) return { legal: true, measurable: false };
+        const sceneId = targetDocument?.parent?.id ?? globalThis.canvas?.scene?.id;
+        const actorTokens = [
+            ...(context.actor?.getActiveTokens?.() ?? []),
+            ...(context.actor?.getActiveTokens?.(true, true) ?? []),
+            ...(globalThis.canvas?.tokens?.placeables ?? []).filter((token) => token.actor?.id === context.actor?.id),
+            ...(globalThis.canvas?.tokens?.controlled ?? []).filter((token) => token.actor?.id === context.actor?.id),
+        ];
+        const combatant = globalThis.game?.combat?.combatants?.find((entry) => entry.actorId === context.actor?.id);
+        const combatantToken = combatant?.token?.object ?? globalThis.canvas?.tokens?.get?.(combatant?.tokenId) ?? combatant?.token;
+        if (combatantToken) actorTokens.push(combatantToken);
+        if (context.actor?.token) actorTokens.push(context.actor.token);
+        const sourceIdentity = (token) => {
+            const document = token?.document ?? token;
+            return { document, actorId: document?.actorId ?? token?.actor?.id, sceneId: document?.parent?.id ?? token?.scene?.id };
+        };
+        const explicitActorTokens = actorTokens.some((token) => sourceIdentity(token).actorId === context.actor?.id);
+        const source = actorTokens.find((token) => {
+            const { actorId, sceneId: tokenSceneId } = sourceIdentity(token);
+            const sameScene = !tokenSceneId || tokenSceneId === sceneId;
+            const sameActor = explicitActorTokens ? actorId === context.actor?.id : actorId == null;
+            return sameScene && sameActor;
+        });
+        const sourceDocument = source?.document ?? source ?? (actorTokens.length === 0 ? null : undefined);
+        const targetPlaceable = targetDocument?.object ?? globalThis.canvas?.tokens?.get?.(targetDocument?.id);
+        if (!sourceDocument || !targetDocument || typeof sourceDocument.getOccupiedGridSpaceOffsets !== "function" || typeof targetDocument.getOccupiedGridSpaceOffsets !== "function") {
+            return { legal: false, measurable: false, code: "attackRangeUnavailable" };
+        }
+        const worldSettings = globalThis.game?.settings?.get?.("l5r5e", "tactical-grid-settings-world");
+        const measured = RangeBandService.measureTokens(sourceDocument, targetDocument);
+        if (!Number.isFinite(measured.range)) return { legal: false, measurable: false, code: "attackRangeUnavailable" };
+        // `measureDistance` already returns scene distance units, not pixels.
+        // The L5R band thresholds are expressed in grid spaces, so use the
+        // shared occupied-cell measurement here just as the HUD does. Scaling
+        // Foundry's result by distance / pixel-size mixed units and collapsed
+        // ordinary 100px grids to near-zero distances.
+        const effectiveDistance = measured.cost;
+        const inferredProfiles = globalThis.game?.l5r5e?.equipment?.getAttackProfiles?.(context.actor) ?? [];
+        const readyWeapons = inferredProfiles.filter((candidate) => candidate.source === "weapon" && candidate.available !== false);
+        const inferredProfile = readyWeapons.length === 1 ? readyWeapons[0] : null;
+        const profile = context.attackProfileSnapshot ?? inferredProfile;
+        if (!profile) return { legal: false, measurable: true, code: "attackProfileRequired" };
+        const bands = Object.entries(worldSettings?.ranges ?? {}).sort(([left], [right]) => Number(left) - Number(right));
+        let rangeBand = measured.range;
+        if (bands.length && Number.isFinite(effectiveDistance)) {
+            rangeBand = 0;
+            for (const [index, range] of bands) if (effectiveDistance >= Number(range.start)) rangeBand = Number(index);
+        }
+        // Technique attacks can declare their own target range independently
+        // from the weapon profile used for damage. Soaring Slice is the main
+        // example: its one-handed weapon keeps its normal damage/deadliness,
+        // while the kata permits a thrown attack at Range 2–3.
+        const activation = context.item?.type === "technique"
+            ? context.item.system?.activation ?? context.item.activation
+            : null;
+        const configuredRange = activation?.target?.filters?.range ?? activation?.range;
+        // Core technique records use {minimum: 0, maximum: 0} as a placeholder
+        // when their range is inherited from the weapon. Only a non-zero
+        // activation range (or an explicit target filter) overrides the
+        // attack profile; otherwise ordinary attack kata use their weapon's
+        // actual reach.
+        const hasExplicitTechniqueRange = activation?.target?.filters?.range
+            || configuredRange && (toFiniteNumber(configuredRange.minimum, 0) > 0 || toFiniteNumber(configuredRange.maximum, 0) > 0);
+        const techniqueRange = hasExplicitTechniqueRange ? configuredRange : null;
+        const bounds = RangeBandService.profileBounds(techniqueRange ?? profile.range ?? {
+            range_min: profile.range_min ?? 0,
+            range_max: profile.range_max ?? profile.rangeMin ?? 0,
+        });
+        return { legal: rangeBand >= bounds.minimum && rangeBand <= bounds.maximum, measurable: true, distance: effectiveDistance, rangeBand, ...bounds };
     },
 });

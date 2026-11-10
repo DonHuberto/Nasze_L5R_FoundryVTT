@@ -246,17 +246,9 @@ export class ActorL5r5e extends Actor {
                 // Skill
                 const skillCatId = CONFIG.l5r5e.skills.get(itemData.skill);
                 if (skillCatId) {
-                    if (isAdd) {
-                        actor.skills[skillCatId][itemData.skill] = Math.min(
-                            9,
-                            actor.skills[skillCatId][itemData.skill] + 1
-                        );
-                    } else {
-                        actor.skills[skillCatId][itemData.skill] = Math.max(
-                            0,
-                            actor.skills[skillCatId][itemData.skill] - 1
-                        );
-                    }
+                    const skills = this.type === "npc" ? actor.skills : actor.skills[skillCatId];
+                    const key = this.type === "npc" ? skillCatId : itemData.skill;
+                    skills[key] = Math.max(0, Math.min(9, skills[key] + (isAdd ? 1 : -1)));
                 }
             }
 

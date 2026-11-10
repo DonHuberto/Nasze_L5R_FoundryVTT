@@ -39,7 +39,7 @@ export function normalizeTurnState(stored, turnKey) {
 export class TurnStateService {
     getState(combatant, lifecycle = {}) {
         const combat = lifecycle.combat ?? combatant?.combat ?? globalThis.game?.combat;
-        const key = createTurnKey(combat?.id ?? lifecycle.combatId, combat?.round ?? lifecycle.round, combat?.turn ?? lifecycle.turn);
+        const key = createTurnKey(lifecycle.combatId ?? combat?.id, lifecycle.round ?? combat?.round, lifecycle.turn ?? combat?.turn);
         const stored = combatant?.flags?.l5r5e?.turnState;
         const state = normalizeTurnState(stored, key);
         const stance = String(combatant?.actor?.system?.stance ?? lifecycle.stance ?? "").toLowerCase();
@@ -57,7 +57,7 @@ export class TurnStateService {
         };
     }
 
-    reserveAction(state, { actionId = null, actionTypes = [], requiresCheck = true, preferWater = false, gmOverride = false, intentId = null, ownerId = null } = {}) {
+    reserveAction(state, { actionId = null, actionTypes = [], requiresCheck = true, preferWater = true, gmOverride = false, intentId = null, ownerId = null } = {}) {
         const next = deepClone(state);
         const stableActionId = typeof actionId === "string" && actionId.trim() ? actionId.trim() : makeId("action");
         const stableIntentId = typeof intentId === "string" && intentId.trim() ? intentId.trim() : stableActionId;
@@ -65,7 +65,8 @@ export class TurnStateService {
         if (existing) return { ok: true, idempotent: true, reservationId: existing.reservationId, slot: existing.slot, state: next };
         const types = normalizeActionTypes(actionTypes);
         const usedTypes = new Set(next.actionTypesUsed);
-        const canWater = next.waterExtraAction.available && !next.waterExtraAction.used && !requiresCheck && !types.some((type) => usedTypes.has(type));
+        const hasActionTypeConflict = types.some((type) => usedTypes.has(type));
+        const canWater = next.waterExtraAction.available && !next.waterExtraAction.used && (!requiresCheck || !hasActionTypeConflict);
         let slot = null;
         if (preferWater && canWater) slot = "waterExtraAction";
         else if (!next.primaryAction.used && !Object.values(next.reservations).some((reservation) => reservation.slot === "primaryAction")) slot = "primaryAction";
@@ -107,7 +108,9 @@ export class TurnStateService {
         const slot = next[reservation.slot];
         if (slot.used && !reservation.gmOverride) return { ok: false, code: "slotAlreadyUsed", state };
         if (reservation.slot === "waterExtraAction") {
-            const conflicts = reservation.actionTypes.filter((type) => next.actionTypesUsed.includes(type));
+            const conflicts = reservation.requiresCheck
+                ? reservation.actionTypes.filter((type) => next.actionTypesUsed.includes(type))
+                : [];
             if (conflicts.length && !reservation.gmOverride) return { ok: false, code: "waterActionTypeConflict", conflicts, state };
         }
         slot.used = true;
@@ -126,7 +129,6 @@ export class TurnStateService {
 
     beginMovement(state, { budget = 3, kind = "free", anchor = null, transactionId = makeId("movement") } = {}) {
         const next = deepClone(state);
-        if (kind === "free" && next.freeMovement.used) return { ok: false, code: "freeMovementUsed", state };
         if (!next.movementUndoAvailable) {
             next.movementAnchor = anchor;
             next.freeMovement.movementIds = [];

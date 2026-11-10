@@ -94,7 +94,7 @@ export class CriticalService {
             sourceItemUuid: input.sourceItem?.uuid ?? input.sourceItemUuid ?? null,
             severity: Math.max(0, toFiniteNumber(input.severity ?? input.deadliness, 0)),
             modifiers: [...deepClone(input.modifiers ?? []), ...severityEffects.map((effect) => ({ amount: effect.amount, reason: effect.rulesKey }))],
-            mitigationTn: Math.max(1, 1 + mitigationEffects.reduce((sum, effect) => sum + toFiniteNumber(effect.amount, 0), 0)),
+            mitigationTn: Math.max(1, toFiniteNumber(input.mitigationTn, 1) + mitigationEffects.reduce((sum, effect) => sum + toFiniteNumber(effect.amount, 0), 0)),
             conflict: Boolean(input.conflict),
             stance: String(input.stance ?? target?.system?.stance ?? "void").toLowerCase(),
             razorEdged: Boolean(input.razorEdged),
@@ -244,14 +244,15 @@ export class CriticalService {
         }
         const dyingRounds = scarDecision?.useDying5 ? 5 : result.outcome?.dyingRounds;
         if (dyingRounds) {
-            const before = toFiniteNumber(target.flags?.l5r5e?.dyingRounds, 0);
-            const after = before > 0 ? Math.min(before, dyingRounds) : dyingRounds;
+            const before = target.flags?.l5r5e?.dyingRounds;
+            const remaining = toFiniteNumber(before, 0);
+            const after = remaining > 0 ? Math.min(remaining, dyingRounds) : dyingRounds;
             if (before !== after) mutations.push({ documentUuid: target.uuid, path: "flags.l5r5e.dyingRounds", before, after, reason: "criticalDying" });
         }
         if (result.armorDamage?.changed && wornArmor) mutations.push(this.qualities.mutation(wornArmor, result.armorDamage));
         if (result.shatteringParry?.itemDamage?.changed && weapon) mutations.push(this.qualities.mutation(weapon, result.shatteringParry.itemDamage));
         if (result.shatteringParry) {
-            mutations.push({ documentUuid: target.uuid, path: "flags.l5r5e.shatteringParrySessionId", before: target.flags?.l5r5e?.shatteringParrySessionId ?? null, after: workflow.sessionId ?? this.sessionId(), reason: "shatteringParry" });
+            mutations.push({ documentUuid: target.uuid, path: "flags.l5r5e.shatteringParrySessionId", before: target.flags?.l5r5e?.shatteringParrySessionId, after: workflow.sessionId ?? this.sessionId(), reason: "shatteringParry" });
         }
         if (workflow.consumedPendingEffectIds?.length) {
             const before = deepClone(target.flags?.l5r5e?.pendingRuleEffects ?? []);

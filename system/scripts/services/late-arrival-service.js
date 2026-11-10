@@ -1,11 +1,13 @@
+import { INITIATIVE_TN } from "./initiative-service.js";
+
 const FLAG_SCOPE = "l5r5e";
 const FLAG_KEY = "lateArrival";
 
 const RULES = Object.freeze({
-    intrigue: Object.freeze({ delay: 0, skillId: "sentiment", fixedTn: null }),
-    duel: Object.freeze({ delay: 0, skillId: "meditation", fixedTn: null }),
-    skirmish: Object.freeze({ delay: 1, skillId: "tactics", fixedTn: 2 }),
-    mass_battle: Object.freeze({ delay: 1, skillId: "command", fixedTn: 2 }),
+    intrigue: Object.freeze({ delay: 0, skillId: "sentiment" }),
+    duel: Object.freeze({ delay: 0, skillId: "meditation" }),
+    skirmish: Object.freeze({ delay: 1, skillId: "tactics" }),
+    mass_battle: Object.freeze({ delay: 1, skillId: "command" }),
 });
 
 /**
@@ -38,14 +40,13 @@ export class LateArrivalService {
     ruleFor(combat, conflictType = this.conflictType()) {
         const rule = RULES[conflictType] ?? RULES.skirmish;
         const joinedRound = Math.max(Number(combat?.round) || 1, 1);
-        const configuredTn = Number(this.game?.settings?.get(FLAG_SCOPE, "initiative-difficulty-value"));
         return {
             schemaVersion: 1,
             joinedRound,
             eligibleRound: joinedRound + rule.delay,
             conflictType,
             skillId: rule.skillId,
-            tn: rule.fixedTn ?? (Number.isFinite(configuredTn) ? configuredTn : 1),
+            tn: INITIATIVE_TN,
             state: "pending",
         };
     }

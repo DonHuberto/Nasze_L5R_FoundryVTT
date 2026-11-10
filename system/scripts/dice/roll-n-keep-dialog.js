@@ -288,7 +288,7 @@ export class RollnKeepDialog extends LegacyApplicationV2 {
         } else if (!this.object.dicesList[this.object.currentStep]) {
             delete this.roll.l5r5e._bleedingFatigueDefault;
 
-            const canEditResults = true;
+            const canEditResults = !rollData.resolution?.transaction || game.user.isGM;
             this._editable = this.isOwner && canEditResults;
             this._finalized = true;
         }
@@ -313,6 +313,7 @@ export class RollnKeepDialog extends LegacyApplicationV2 {
             l5r5e: rollData,
             resolutionPreview: rollData.resolutionPreview,
             canRestartRoll: this.isOwner && !rollData.resolution?.transaction,
+            canCancelProvisionalCheck: this._canCancelProvisionalCheck(),
         };
     }
 
@@ -331,6 +332,25 @@ export class RollnKeepDialog extends LegacyApplicationV2 {
             await game.l5r5e?.equipment?.cancel?.({ intentId: equipmentIntentId });
         }
         return super.close(options);
+    }
+
+    _canCancelProvisionalCheck() {
+        const data = this.roll?.l5r5e;
+        return Boolean(this.isOwner && data?.stance === "void" && data.rnkEnded &&
+            data.rollContext?.type !== "critical-mitigation" &&
+            !data.resolution?.transaction && data.provisionalLegality?.legal === false);
+    }
+
+    async _cancelProvisionalCheck() {
+        if (!this._canCancelProvisionalCheck() || this._cancellingProvisionalCheck) return false;
+        this._cancellingProvisionalCheck = true;
+        const message = this.message;
+        // close() releases the action reservation and any uncommitted equipment intent.
+        await this.close();
+        if (message?.isOwner) await message.delete();
+        else if (message?.id) game.l5r5e.sockets.deleteChatMessage(message.id);
+        ui.notifications.info(game.i18n.localize("l5r5e.automation.roll.provisionalCancelled"));
+        return true;
     }
 
     async openOpportunityWindow(mode) {
@@ -456,13 +476,15 @@ export class RollnKeepDialog extends LegacyApplicationV2 {
             attackProfileSnapshot: rollData.rollContext?.attackProfileSnapshot ?? null,
             actionTypes,
             initiative: Boolean(rollData.isInitiativeRoll),
-            checkKind: rollData.isInitiativeRoll ? "initiative" : "skill",
+            checkKind: rollData.rollContext?.type === "critical-mitigation" ? "critical-mitigation" : rollData.isInitiativeRoll ? "initiative" : "skill",
             baseTn: rollData.baseDifficulty ?? rollData.difficulty,
             tn: rollData.difficulty,
+            finalTnOverride: rollData.finalTnOverride,
             requiresCheck: true,
+            deferredVoidPointDelta: rollData.deferredVoidPointDelta ?? 0,
             isCheck: true,
-            lifecycle: combat ? { combatId: combat.id, round: combat.round, turn: combat.turn } : {},
-            conditionSuspensionExpiry: combat ? { round: Number(combat.round ?? 0) + 1, turn: Number(combat.turn ?? 0) } : { sceneEnd: true },
+            lifecycle: { ...(combat ? { combatId: combat.id, round: combat.round, turn: combat.turn } : {}), ...(globalThis.canvas?.scene?.id ? { sceneId: globalThis.canvas.scene.id } : {}) },
+            conditionSuspensionExpiry: combat ? { combatId: combat.id, round: Number(combat.round ?? 0) + 1, turn: Number(combat.turn ?? 0) } : { sceneEnd: true },
             turnState: combatant ? game.l5r5e.turns.getState(combatant) : null,
         };
     }
@@ -484,6 +506,7 @@ export class RollnKeepDialog extends LegacyApplicationV2 {
         });
         const legalTargetUuids = new Set(targetChoices.map(({ value }) => value));
         const rollTargetActor = rollData.target?.actor ?? rollData.target?.document?.actor ?? rollData.target;
+        const conditionActor = rollTargetActor ?? rollData.actor;
         const defaultTargetUuid = legalTargetUuids.has(rollTargetActor?.uuid) ? rollTargetActor.uuid : "";
         this.object.availableOpportunities = available.map((definition) => {
             const selectedSpend = Number(this.object.opportunitySpend[definition.rulesKey]) || 0;
@@ -504,7 +527,9 @@ export class RollnKeepDialog extends LegacyApplicationV2 {
                 targetChoices,
                 reachable: definition.cost.base <= raw.opportunity,
                 conditionChoice: Boolean(definition.requirements?.conditionChoice),
-                conditions: [...(rollData.actor?.statuses ?? [])].map((condition) => ({ value: condition, label: condition })),
+                conditions: [...(conditionActor?.statuses ?? [])]
+                    .filter((condition) => !definition.requirements?.allowedConditions?.length || definition.requirements.allowedConditions.includes(condition))
+                    .map((condition) => ({ value: condition, label: condition })),
             };
         });
         const currentPlan = Object.entries(this.object.opportunitySpend).filter(([, value]) => Number(value) > 0).map(([rulesKey, value]) => ({ rulesKey, spend: Number(value) }));
@@ -560,19 +585,70 @@ export class RollnKeepDialog extends LegacyApplicationV2 {
     }
 
     async _prepareThrowOutcome(resolution, actor, targetActor) {
-        const equipmentIntentId = this.roll?.l5r5e?.rollContext?.equipmentIntentId;
+        const rollData = this.roll?.l5r5e;
+        const equipmentIntentId = rollData?.rollContext?.equipmentIntentId;
         if (!equipmentIntentId) return null;
-        const sourceToken = actor?.getActiveTokens?.(true, true)?.[0]?.document ?? actor?.token ?? null;
-        const target = this.roll?.l5r5e?.target;
-        const targetToken = target?.document ?? target ?? null;
+        const scene = globalThis.canvas?.scene;
+        const toTokenDocument = (candidate) => {
+            const document = candidate?.document?.documentName === "Token" ? candidate.document
+                : candidate?.documentName === "Token" ? candidate
+                    : candidate?.object?.document?.documentName === "Token" ? candidate.object.document
+                        : null;
+            return document && Number.isFinite(Number(document.x)) && Number.isFinite(Number(document.y)) ? document : null;
+        };
+        const inScene = (candidate) => {
+            const document = toTokenDocument(candidate);
+            return document && (!scene?.id || !document.parent?.id || document.parent.id === scene.id);
+        };
+        const sourceCandidates = [
+            ...(actor?.getActiveTokens?.() ?? []),
+            ...(actor?.getActiveTokens?.(true, true) ?? []),
+            ...(globalThis.canvas?.tokens?.controlled ?? []),
+            ...(globalThis.canvas?.tokens?.placeables ?? []),
+            ...(globalThis.game?.combat?.combatants ?? []).filter((entry) => entry.actorId === actor?.id || entry.actor?.id === actor?.id).flatMap((entry) => [entry.token?.object, entry.token]),
+            actor?.token,
+        ].filter(Boolean);
+        const sourceCandidate = sourceCandidates.find((candidate) => {
+            const document = toTokenDocument(candidate);
+            return inScene(candidate) && (document.actorId === actor?.id || candidate.actor?.id === actor?.id || candidate.actorId === actor?.id);
+        }) ?? sourceCandidates.find(inScene);
+        const sourceToken = toTokenDocument(sourceCandidate);
+
+        const targetTokenUuid = rollData?.rollContext?.targetTokenUuid;
+        const explicitTarget = targetTokenUuid ? await globalThis.fromUuid?.(targetTokenUuid) : null;
+        const target = rollData?.target;
+        const targetCandidates = [
+            explicitTarget,
+            target,
+            target?.document,
+            ...(targetActor?.getActiveTokens?.() ?? []),
+            ...(targetActor?.getActiveTokens?.(true, true) ?? []),
+            ...(globalThis.canvas?.tokens?.placeables ?? []).filter((entry) => entry.actor?.id === targetActor?.id),
+        ].filter(Boolean);
+        const targetCandidate = targetCandidates.find(inScene);
+        const targetToken = toTokenDocument(targetCandidate);
         if (!sourceToken || !targetToken) return { ok: false, code: "throwTokenMissing" };
 
-        const scene = globalThis.canvas?.scene;
         const gridSize = Number(scene?.grid?.size ?? globalThis.canvas?.grid?.size ?? 100) || 100;
         const originField = { x: sourceToken.x, y: sourceToken.y, elevation: sourceToken.elevation ?? 0 };
         const targetField = { x: targetToken.x, y: targetToken.y, elevation: targetToken.elevation ?? 0 };
         const center = (field) => ({ x: field.x + gridSize / 2, y: field.y + gridSize / 2 });
         const originCenter = center(originField);
+        const worldRanges = globalThis.game?.settings?.get?.("l5r5e", "tactical-grid-settings-world")?.ranges ?? {};
+        const rangeBandAt = (field) => {
+            const point = center(field);
+            const measured = globalThis.canvas?.grid?.measureDistance?.(originCenter, point);
+            const distance = Number.isFinite(Number(measured))
+                ? Number(measured)
+                : Math.hypot(point.x - originCenter.x, point.y - originCenter.y) * Number(scene?.grid?.distance ?? 1) / gridSize;
+            const bands = Object.entries(worldRanges).sort(([left], [right]) => Number(left) - Number(right));
+            if (!bands.length) return Math.ceil(distance / 3);
+            let band = 0;
+            for (const [index, range] of bands) {
+                if (distance >= Number(range.start)) band = Number(index);
+            }
+            return band;
+        };
         const isLegal = async (field) => {
             const point = center(field);
             const bounds = scene?.dimensions?.rect;
@@ -585,11 +661,7 @@ export class RollnKeepDialog extends LegacyApplicationV2 {
                 return false;
             }
         };
-        const steps = Math.max(
-            1,
-            Math.round(Math.abs(targetField.x - originField.x) / gridSize),
-            Math.round(Math.abs(targetField.y - originField.y) / gridSize),
-        );
+        const steps = Math.max(1, Math.round(Math.abs(targetField.x - originField.x) / gridSize), Math.round(Math.abs(targetField.y - originField.y) / gridSize));
         const pathFields = [];
         for (let step = 0; step <= steps; step += 1) {
             const field = {
@@ -598,6 +670,40 @@ export class RollnKeepDialog extends LegacyApplicationV2 {
                 elevation: targetField.elevation,
             };
             if (await isLegal(field)) pathFields.push(field);
+        }
+        const missLandingFields = [];
+        if (this.roll.l5r5e.rollContext?.throwMode === "soaring-slice") {
+            // The local rule sends a miss to the end of the kata's flight: two
+            // grid steps beyond a Range 2 target, or one beyond a Range 3 target.
+            const targetBand = rangeBandAt(targetField);
+            const stepsBeyondTarget = Math.max(0, 4 - targetBand);
+            const directions = [];
+            for (let dx = -stepsBeyondTarget; dx <= stepsBeyondTarget; dx += 1) {
+                for (let dy = -stepsBeyondTarget; dy <= stepsBeyondTarget; dy += 1) {
+                    if (!dx && !dy) continue;
+                    // Diagonal movement costs two fields under the campaign rule.
+                    if (Math.abs(dx) + Math.abs(dy) !== stepsBeyondTarget) continue;
+                    directions.push({ dx, dy });
+                }
+            }
+            const occupied = new Set();
+            for (const token of scene?.tokens ?? []) {
+                for (const offset of token.getOccupiedGridSpaceOffsets?.() ?? []) occupied.add(`${offset.i}:${offset.j}`);
+            }
+            const grid = scene?.grid;
+            const occupiedAt = (field) => {
+                const offsets = grid?.getDirectPath?.([{ x: field.x, y: field.y }]) ?? [];
+                const offset = offsets[0] ?? grid?.getOffset?.({ x: field.x, y: field.y });
+                return offset && occupied.has(`${offset.i}:${offset.j}`);
+            };
+            for (const { dx, dy } of directions) {
+                const field = {
+                    x: targetField.x + dx * gridSize,
+                    y: targetField.y + dy * gridSize,
+                    elevation: targetField.elevation,
+                };
+                if (await isLegal(field) && !occupiedAt(field)) missLandingFields.push(field);
+            }
         }
         const adjacentFields = [];
         for (const [dx, dy, label] of [
@@ -649,6 +755,7 @@ export class RollnKeepDialog extends LegacyApplicationV2 {
                 targetUuid: targetActor?.uuid ?? null,
                 chosenField,
                 chosenFieldRangeFromTarget: chosenField ? 1 : null,
+                missLandingFields,
                 pathFields,
                 legalFields,
             },
@@ -771,6 +878,10 @@ export class RollnKeepDialog extends LegacyApplicationV2 {
         html.find(".restart-roll").on("click", (event) => {
             event.preventDefault();
             this._restartFromPicker();
+        });
+        html.find(".cancel-provisional-check").on("click", (event) => {
+            event.preventDefault();
+            this._cancelProvisionalCheck();
         });
 
         // *** Everything below here is only needed if the sheet is editable ***
@@ -1375,6 +1486,15 @@ export class RollnKeepDialog extends LegacyApplicationV2 {
                 defaultTargetUuid
             );
             const resolutionDecisions = { ...opportunityDecisions };
+            const committed = this.message?.flags?.l5r5e?.resolution ?? rollData.resolution;
+            if (committed?.transaction) {
+                if (!game.user.isGM) return false;
+                const replayed = await game.l5r5e.ResolutionToolsL5r5e.replay(this.message, {
+                    opportunityPlan,
+                    decisions: resolutionDecisions,
+                });
+                return replayed?.status === "applied" ? this.close() : this.render(false);
+            }
             let resolution = await game.l5r5e.rollResolution.resolve({
                 context: this._resolutionContext(),
                 rawSymbols: {
@@ -1478,7 +1598,8 @@ export class RollnKeepDialog extends LegacyApplicationV2 {
                     : await game.l5r5e.sockets.requestAuthority("applyTransaction", { transaction });
             if (applied.ok === false) {
                 resolution.status = "conflict";
-                ui.notifications.error(game.i18n.localize("l5r5e.automation.transaction.conflict"));
+                const conflictPath = applied.mutation?.path ?? applied.creation?.embeddedName ?? "unknown";
+                ui.notifications.error(`${game.i18n.localize("l5r5e.automation.transaction.conflict")} (${applied.code ?? "unknown"}: ${conflictPath})`);
                 return this.render(false);
             }
             resolution.transaction = transaction;
@@ -1531,6 +1652,7 @@ export class RollnKeepDialog extends LegacyApplicationV2 {
                     sourceActor: actor,
                     target: directTarget,
                     severity: directCritical.severity,
+                    mitigationTn: directCritical.mitigationTn,
                     stance: directTarget.system?.stance,
                     conflict: Boolean(game.combat?.started),
                     razorEdged: game.l5r5e.qualities.has(rollData.item, "razor-edged"),
@@ -1640,6 +1762,10 @@ export class RollnKeepDialog extends LegacyApplicationV2 {
 
         // Rebuild the roll
         await this._rebuildRoll(false);
+
+        if (this._canCancelProvisionalCheck() && Number(this.roll.l5r5e.summary.opportunity) < 2) {
+            return this._cancelProvisionalCheck();
+        }
 
         // Send the new roll in chat and delete the old message
         await this._toChatMessage();

@@ -20,7 +20,18 @@ export function schemaFromDefaults(defaults, htmlFields = []) {
     const build = (value, path) => {
         if (html.has(path)) return new fields.HTMLField({ required: true, nullable: false, initial: value ?? "" });
         if (Array.isArray(value)) {
-            return new fields.ArrayField(new fields.AnyField({ serializable: true }), {
+            // Item preparation exposes nested documents as a Map, while the
+            // persisted schema remains an array. Serialize the prepared form
+            // explicitly instead of passing a Map to ArrayField.toObject.
+            const ArrayField = path === "items" ? class extends fields.ArrayField {
+                toObject(prepared) {
+                    const items = prepared instanceof Map
+                        ? Array.from(prepared.values(), (item) => item.toObject(false))
+                        : prepared;
+                    return super.toObject(items);
+                }
+            } : fields.ArrayField;
+            return new ArrayField(new fields.AnyField({ serializable: true }), {
                 required: true,
                 nullable: false,
                 initial: () => clone(value),

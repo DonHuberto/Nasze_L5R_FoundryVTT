@@ -102,7 +102,9 @@ export class ActionService {
     }
 
     async cancel(combatant, reservationId, lifecycle = {}) {
-        const state = this.turns.cancelReservation(this.turns.getState(combatant, lifecycle), reservationId);
+        const original = this.turns.getState(combatant, lifecycle);
+        if (combatant?.flags?.l5r5e?.turnState?.turnKey && combatant.flags.l5r5e.turnState.turnKey !== original.turnKey) return this.turns.getState(combatant);
+        const state = this.turns.cancelReservation(original, reservationId);
         await this.turns.persist(combatant, state, { reservationId, cancelled: true });
         return state;
     }

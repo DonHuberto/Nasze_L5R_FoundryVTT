@@ -361,21 +361,56 @@ export default class HooksL5r5e {
 
     static preMoveToken(tokenDocument, movement, operation, userId) {
         if (userId && userId !== game.user.id) return;
-        if (!game.settings.get(CONFIG.l5r5e.namespace, "tactical-grid-settings-world")?.enabled) return;
+        if (game.l5r5e.movement.isResettingToken(tokenDocument)) return;
         const combatant = tokenDocument.combatant;
-        if (!combatant || combatant !== game.combat?.combatant) return;
+        if (!combatant || combatant.id !== game.combat?.combatant?.id) return;
+        const result = game.l5r5e.movement.validateHookMovement(tokenDocument, movement, combatant, { gmOverride: Boolean(operation?.l5r5e?.gmOverride && game.user.isGM) });
+        // Some V14 planned movement updates omit waypoints from preMoveToken.
+        // Let the cancellable preUpdateToken hook validate their final x/y.
+        if (result.code === "movementPathUnavailable") return;
+        if (result.ok) return;
+        const key = result.code === "movementBudgetExceeded" ? "budgetExceeded"
+            : result.code === "tokenOccupied" ? "hostileOccupied"
+                : result.code === "immobilized" ? "immobilized"
+                    : "pathUnavailable";
+        ui.notifications.warn(game.i18n.localize(`l5r5e.automation.movement.${key}`));
+        return false;
+    }
+
+    static preUpdateToken(tokenDocument, changes, operation, userId) {
+        if (userId && userId !== game.user.id) return;
+        if (game.l5r5e.movement.isResettingToken(tokenDocument)) return;
+        if (!Object.hasOwn(changes ?? {}, "x") && !Object.hasOwn(changes ?? {}, "y")) return;
+        const combatant = tokenDocument.combatant;
+        if (!combatant || combatant.id !== game.combat?.combatant?.id) return;
+        const operationMovement = operation?.movement;
+        const hasOperationPath = operationMovement && (
+            (operationMovement.origin && operationMovement.destination) ||
+            operationMovement.pending?.waypoints?.length >= 1 ||
+            operationMovement.waypoints?.length >= 2 ||
+            operationMovement.path?.length >= 2
+        );
+        const movement = hasOperationPath ? operationMovement : {
+            origin: { x: tokenDocument.x, y: tokenDocument.y },
+            destination: {
+                x: Object.hasOwn(changes, "x") ? changes.x : tokenDocument.x,
+                y: Object.hasOwn(changes, "y") ? changes.y : tokenDocument.y,
+            },
+        };
         const result = game.l5r5e.movement.validateHookMovement(tokenDocument, movement, combatant, { gmOverride: Boolean(operation?.l5r5e?.gmOverride && game.user.isGM) });
         if (result.ok) return;
-        const key = result.code === "movementBudgetExceeded" ? "budgetExceeded" : result.code === "tokenOccupied" ? "hostileOccupied" : "immobilized";
+        const key = result.code === "movementBudgetExceeded" ? "budgetExceeded"
+            : result.code === "tokenOccupied" ? "hostileOccupied"
+                : result.code === "immobilized" ? "immobilized"
+                    : "pathUnavailable";
         ui.notifications.warn(game.i18n.localize(`l5r5e.automation.movement.${key}`));
         return false;
     }
 
     static async recordToken(tokenDocument, movement, operation, userId) {
         if (userId && userId !== game.user.id) return;
-        if (!game.settings.get(CONFIG.l5r5e.namespace, "tactical-grid-settings-world")?.enabled) return;
         const combatant = tokenDocument.combatant;
-        if (!combatant || combatant !== game.combat?.combatant) return;
+        if (!combatant || combatant.id !== game.combat?.combatant?.id) return;
         await game.l5r5e.movement.recordHookMovement(tokenDocument, movement, combatant);
     }
 
@@ -396,8 +431,7 @@ export default class HooksL5r5e {
         }
         for (const combatant of combat.combatants) {
             if (!combatant.actor) continue;
-            const active = game.l5r5e.conditions.activeSuspensions(combatant.actor, { combatId: combat.id, round: combat.round, turn: combat.turn });
-            if (JSON.stringify(active) !== JSON.stringify(combatant.actor.flags?.l5r5e?.conditionSuspensions ?? {})) await combatant.actor.setFlag("l5r5e", "conditionSuspensions", active);
+            await game.l5r5e.conditions.pruneSuspensions(combatant.actor, { combatId: combat.id, round: combat.round, turn: combat.turn });
         }
     }
 }

@@ -198,6 +198,9 @@
                 <i class="fas fa-rotate-left" aria-hidden="true"></i> {{localize "l5r5e.automation.roll.restart"}}
             </button>
             {{/if}}
+            {{#if canCancelProvisionalCheck}}
+            <button type="button" class="cancel-provisional-check">{{localize "l5r5e.automation.roll.cancelProvisional"}}</button>
+            {{/if}}
             <button type="button" class="toggle-opportunities compact" data-mode="spend"><i class="i_opportunity"></i> {{localize "l5r5e.automation.opportunity.choose"}}</button>
             {{/if}}
             {{!-- Apply results selection --}}

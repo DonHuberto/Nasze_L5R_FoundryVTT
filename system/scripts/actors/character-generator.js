@@ -145,7 +145,7 @@ export class CharacterGenerator {
         const randomNames = await game.l5r5e.HelpersL5r5e.drawManyFromPack("l5r5e.core-name-tables", table, 1, {
             displayChat: false,
         });
-        return randomNames?.results[0]?.text || "";
+        return randomNames?.results[0]?.name || "";
     }
 
     /**
@@ -291,7 +291,7 @@ export class CharacterGenerator {
             narrative: true,
         }
     ) {
-        const actorDatas = actor.system;
+        const actorDatas = actor.system.toObject?.() ?? foundry.utils.duplicate(actor.system);
         const isNpc = actor.type === "npc";
 
         // Need to set some required values
@@ -306,16 +306,14 @@ export class CharacterGenerator {
         // Name
         let newName = actor.name;
         if (generate.name) {
-            newName =
-                this.data.family +
-                " " +
-                (await CharacterGenerator.getRandomizedFirstname(this.isFemale, this.data.clan));
+            newName = [this.data.family, await CharacterGenerator.getRandomizedFirstname(this.isFemale, this.data.clan)]
+                .filter(Boolean).join(" ");
         }
 
         // Identity
         if (generate.identity) {
-            actorDatas.identity.age = CharacterGenerator.genAge(this.data.avgRingsValue);
-            actorDatas.identity.marital_status = CharacterGenerator.genMaritalStatus(this.data.age);
+            actorDatas.identity.age = this.data.age;
+            actorDatas.identity.marital_status = this.data.maritalStatus;
             await this._generateNotes(actorDatas);
         }
 
@@ -630,7 +628,7 @@ export class CharacterGenerator {
      */
     async _generateNotes(actorDatas) {
         actorDatas.notes =
-            `${game.i18n.localize("l5r5e.social.age")}: ${this.data.age}</p>` +
+            `<p>${game.i18n.localize("l5r5e.social.age")}: ${this.data.age}</p>` +
             `<p>${game.i18n.localize("l5r5e.social.gender.title")}: ${game.i18n.localize(
                 "l5r5e.social.gender." + this.data.gender
             )}</p>` +

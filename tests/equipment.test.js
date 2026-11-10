@@ -206,6 +206,62 @@ test("RAW and house-rule throw modes keep distinct action IDs and profile values
     assert.notEqual(houseRule.assessment.profile.damage, weapon.system.damage);
 });
 
+test("Soaring Slice throws accept readied one-handed or equipped Concealable one-handed weapons", () => {
+    const { actor, equipment, makeItem, weapon } = fixture();
+    const readied = equipment.throw(actor, weapon, { mode: "soaring-slice", trackIndividual: true });
+    assert.equal(readied.ok, true);
+    assert.equal(readied.assessment.roll.actionId, "soaring-slice");
+    assert.equal(readied.assessment.roll.skillId, "melee");
+    assert.deepEqual(readied.assessment.profile.range, { minimum: 2, maximum: 3 });
+
+    const concealed = makeItem({
+        _id: "C",
+        name: "Concealable Knife",
+        type: "weapon",
+        system: { quantity: 1, equipped: true, readied: false, active_grip: "one-handed", skill: "melee", damage: 2, deadliness: 4, properties: [{ id: "L5RCorePro000005", name: "Concealable" }], grip_profiles: { "one-handed": { hands: 1, range_min: 0, range_max: 0 } } },
+    });
+    assert.equal(equipment.isSoaringSliceWeapon(concealed), true);
+    assert.ok(equipment.throwableItems(actor).includes(concealed));
+    assert.equal(equipment.throw(actor, concealed, { mode: "soaring-slice" }).ok, true);
+
+    const hiddenOrdinary = makeItem({
+        _id: "N",
+        name: "Unready Knife",
+        type: "weapon",
+        system: { quantity: 1, equipped: true, readied: false, active_grip: "one-handed", skill: "melee", damage: 2, deadliness: 4, grip_profiles: { "one-handed": { hands: 1 } } },
+    });
+    assert.equal(equipment.throw(actor, hiddenOrdinary, { mode: "soaring-slice" }).ok, false);
+});
+
+test("an equipped unready Concealable weapon can be committed as a tracked Soaring Slice throw", async () => {
+    const previousGame = globalThis.game;
+    globalThis.game = {};
+    try {
+        const { actor, equipment, makeItem, scene } = fixture();
+        const concealed = makeItem({
+            _id: "C",
+            name: "Concealable Knife",
+            type: "weapon",
+            system: { quantity: 1, equipped: true, readied: false, active_grip: "one-handed", skill: "melee", damage: 2, deadliness: 4, properties: [{ rulesKey: "concealable" }], grip_profiles: { "one-handed": { hands: 1 } } },
+        });
+        const intent = equipment.throw(actor, concealed, { mode: "soaring-slice", trackIndividual: true });
+        const reserved = await equipment.reserve(equipment.confirm(intent));
+        const result = await equipment.completeThrow(reserved.intentId, {
+            success: true,
+            defended: true,
+            chosenField: { x: 300, y: 300 },
+            chosenFieldRangeFromTarget: 1,
+            legalFields: [{ x: 300, y: 300 }],
+        });
+        assert.equal(result.ok, true);
+        assert.equal(scene.tiles.length, 1);
+        assert.equal(scene.tiles[0].flags.l5r5e.groundItem.state, "ground");
+        assert.equal(actor.items.includes(concealed), false);
+    } finally {
+        globalThis.game = previousGame;
+    }
+});
+
 test("landing field selection is deterministic, legal and excludes the origin", () => {
     const input = { hit: false, originField: { x: 0, y: 0 }, targetField: { x: 3, y: 0 }, pathFields: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }], legalFields: [{ x: 1, y: 0 }, { x: 2, y: 0 }], transactionId: "fixed" };
     const first = deterministicLandingField(input);
@@ -241,6 +297,29 @@ test("Soaring Slice uses a chosen Range 1 field, embeds on critical and never ra
     assert.equal(embedded.targetUuid, "Actor.Target");
     const failed = equipment.resolveThrowPlacement(intent, { success: false, originField: { x: 0, y: 0 }, pathFields: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }], legalFields: [{ x: 1, y: 0 }, { x: 2, y: 0 }] });
     assert.deepEqual(failed.placement, { x: 2, y: 0 });
+});
+
+test("Soaring Slice miss scatters randomly among only free legal fields", () => {
+    const { equipment, weapon } = fixture();
+    const intent = equipment.throw(weapon.parent, weapon, { mode: "soaring-slice" });
+    const fields = [{ x: 6, y: 0 }, { x: 3, y: 3 }, { x: 9, y: 0 }];
+    const previousRandom = Math.random;
+    try {
+        Math.random = () => 0.99;
+        const result = equipment.resolveThrowPlacement(intent, {
+            success: false,
+            missLandingFields: fields,
+            legalFields: fields.slice(0, 2),
+        });
+        assert.equal(result.ok, true);
+        assert.deepEqual(result.placement, fields[1]);
+        assert.equal(result.audit.rule, "soaring-slice-failure");
+    } finally {
+        Math.random = previousRandom;
+    }
+
+    const blocked = equipment.resolveThrowPlacement(intent, { success: false, missLandingFields: [], legalFields: [] });
+    assert.equal(blocked.code, "landingFieldMissing");
 });
 
 test("drop and pickup preserve stack quantity and are idempotent", async () => {

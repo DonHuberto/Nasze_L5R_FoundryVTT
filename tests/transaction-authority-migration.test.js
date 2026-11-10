@@ -18,6 +18,21 @@ test("transaction apply is idempotent and replay keeps revisions", async () => {
     assert.deepEqual(service.history("tx").map(({ revision, status }) => [revision, status]), [[1, "superseded"], [2, "applied"]]);
 });
 
+test("transaction can create an absent module flag when before is undefined", async () => {
+    const document = { uuid: "Actor.AssistTarget", flags: {} };
+    const service = new ResolutionTransactionService({ resolver: async () => document });
+    const transaction = service.create({ mutations: [{
+        documentUuid: document.uuid,
+        path: "flags.enhancedcombathud-l5r5e.pendingAssist",
+        before: undefined,
+        after: { bonusKeptDice: 1 },
+        reason: "assist",
+    }] });
+
+    assert.equal((await service.apply(transaction)).ok, true);
+    assert.deepEqual(document.flags["enhancedcombathud-l5r5e"].pendingAssist, { bonusKeptDice: 1 });
+});
+
 test("transaction refuses rollback after unrelated document change", async () => {
     const document = { uuid: "Actor.A", system: { fatigue: { value: 1 } } };
     const service = new ResolutionTransactionService({ resolver: async () => document });
@@ -140,4 +155,46 @@ test("bundled automation packs are valid JSON lines and scars use stable tags", 
     assert.ok(adversities.some((entry) => (entry.data ?? entry.system).automationTags?.includes("scar")));
     const journal = readFileSync("system/packs/core-journal-opportunities.db", "utf8");
     assert.doesNotMatch(journal, /per {2}spent|equal to {2}spent|for every {3}spent|end of the beginning/);
+});
+
+test("GM replay synchronizes chat target, TN and bonus successes with the applied resolution", async () => {
+    const { synchronizeResolutionRoll } = await import("../system/scripts/gm/resolution-tools.js");
+    const target = { uuid: "Scene.S.Token.New", actor: { name: "New target" } };
+    const roll = { l5r5e: { target: { uuid: "Old" }, difficulty: 1, summary: { totalBonus: 3 } } };
+    const resolution = { status: "applied", tn: { value: 4 }, context: { baseTn: 2, finalTnOverride: 4 }, effective: { bonusSuccesses: 0 } };
+    synchronizeResolutionRoll(roll, resolution, target);
+    assert.equal(roll.l5r5e.target, target);
+    assert.equal(roll.l5r5e.difficulty, 4);
+    assert.equal(roll.l5r5e.finalTnOverride, 4);
+    assert.equal(roll.l5r5e.summary.totalBonus, 0);
+    assert.equal(roll.l5r5e.resolution, resolution);
+    assert.equal(roll.l5r5e.hasAppliedResults, true);
+});
+
+test("retrospective action filtering recognizes granular turn-state mutations", () => {
+    const action = { documentUuid: "Combat.C.Combatant.A", path: "flags.l5r5e.turnState.primaryAction", before: { used: false }, after: { used: true }, reason: "actionCommit" };
+    const tags = { ...action, path: "flags.l5r5e.turnState.actionTypesUsed", before: [], after: ["attack"] };
+    const damage = { documentUuid: "Actor.T", path: "system.fatigue.value", before: 0, after: 5, reason: "damage" };
+    assert.equal(isActionCommitMutation(action), true);
+    assert.equal(canReplayActionCommit(tags, ["attack"]), true);
+    assert.deepEqual(withoutActionCommitMutation({ mutations: [action, tags, damage] }).mutations, [damage]);
+});
+
+test("reverting a newly created flag uses native Foundry ForcedDeletion instead of an ignored undefined value", async (t) => {
+    const priorFoundry = globalThis.foundry;
+    t.after(() => { globalThis.foundry = priorFoundry; });
+    class ForcedDeletion {}
+    globalThis.foundry = { data: { operators: { ForcedDeletion } } };
+    const writes = [];
+    const document = { uuid: "Actor.A", flags: {}, update: async (data) => {
+        writes.push(data);
+        if (data["flags.l5r5e.conditionSuspensions"] instanceof ForcedDeletion) delete document.flags.l5r5e.conditionSuspensions;
+        else document.flags.l5r5e = { conditionSuspensions: data["flags.l5r5e.conditionSuspensions"] };
+    } };
+    const service = new ResolutionTransactionService({ resolver: async () => document });
+    const transaction = service.create({ mutations: [{ documentUuid: document.uuid, path: "flags.l5r5e.conditionSuspensions", before: undefined, after: { incapacitated: { expiresAt: { round: 2 } } } }] });
+    assert.equal((await service.apply(transaction)).ok, true);
+    assert.equal((await service.revert(transaction)).ok, true);
+    assert.ok(writes.at(-1)["flags.l5r5e.conditionSuspensions"] instanceof ForcedDeletion);
+    assert.equal(document.flags.l5r5e.conditionSuspensions, undefined);
 });

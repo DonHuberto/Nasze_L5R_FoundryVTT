@@ -5,10 +5,27 @@ import fs from "node:fs";
 globalThis.foundry ??= { abstract: { TypeDataModel: class {} } };
 const { ACTOR_DEFAULTS } = await import("../system/scripts/data-models/actors/models.js");
 const { ITEM_DEFAULTS } = await import("../system/scripts/data-models/items/models.js");
-const { migrateLegacySource } = await import("../system/scripts/data-models/schema.js");
+const { migrateLegacySource, schemaFromDefaults } = await import("../system/scripts/data-models/schema.js");
 
 const manifest = JSON.parse(fs.readFileSync(new URL("../system/system.json", import.meta.url), "utf8"));
 const fixtures = JSON.parse(fs.readFileSync(new URL("./fixtures/legacy-documents.json", import.meta.url), "utf8"));
+
+test("prepared embedded Item Maps serialize recursively through the array schema", (t) => {
+    const previous = foundry.data;
+    t.after(() => { foundry.data = previous; });
+    foundry.data = { fields: {
+        AnyField: class {},
+        ArrayField: class { toObject(value) { return value.map((entry) => structuredClone(entry)); } },
+    } };
+    const field = schemaFromDefaults({ items: [] }).items;
+    const nested = new Map([["advancement", { toObject: (source) => {
+        assert.equal(source, false);
+        return { _id: "advancement", system: { xp_used: 4, in_curriculum: true, items: field.toObject(new Map()) } };
+    } }]]);
+    assert.deepEqual(field.toObject(nested), [{ _id: "advancement", system: { xp_used: 4, in_curriculum: true, items: [] } }]);
+    assert.deepEqual(field.toObject([]), []);
+    assert.equal(nested.size, 1, "serialization must preserve the prepared collection");
+});
 
 test("all legacy Actor and Item types have V14 documentTypes and DataModel defaults", () => {
     assert.deepEqual(Object.keys(ACTOR_DEFAULTS).sort(), ["army", "character", "npc"]);

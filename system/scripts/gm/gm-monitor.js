@@ -29,8 +29,8 @@ export class GmMonitor extends HandlebarsApplicationMixin(ApplicationV2) {
                 editable: true,
             },
             position: {
-                width: "600",
-                height: "150"
+                width: "auto",
+                height: "auto"
             },
             actions: {
                 add_selected_tokens: GmMonitor.#addSelectedTokens,
@@ -604,7 +604,8 @@ export class GmMonitor extends HandlebarsApplicationMixin(ApplicationV2) {
      * @private
      */
     async #getTooltipGlobal(actor) {
-        const actorData = (await actor.sheet?.getData()?.data) || actor;
+        const sheetData = await actor.sheet?.getData();
+        const actorData = sheetData?.data || actor;
 
         // Peculiarities
         const Peculiarities = actor.items.filter((e) => e.type === "peculiarity");

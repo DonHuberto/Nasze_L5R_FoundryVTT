@@ -21,7 +21,100 @@ test("ordinary rolls have no default action tags and metadata is structural", ()
     assert.deepEqual(inferActionTypes(null), []);
     assert.deepEqual(inferActions(null), { attack: false, scheme: false, support: false, move: false });
     assert.deepEqual(inferActionTypes({ system: { activation: { actionTypes: ["Attack", "Movement"] } } }), ["attack", "move"]);
+    assert.deepEqual(inferActionTypes({ system: { rulesKey: "path-to-inner-peace", activation: { action_types: [] } } }), ["support"]);
     assert.equal(clampCheckTn(0), 1);
+});
+
+test("opportunity compendium data retains newer built-in definitions when the pack is stale", async () => {
+    const originalGame = globalThis.game;
+    globalThis.game = {
+        packs: {
+            get: () => ({ getDocuments: async () => [{ id: "old-pack-entry", system: definition({ rulesKey: "old-pack-entry" }) }] }),
+        },
+    };
+    try {
+        const repository = new OpportunityRepository({ definitions: CORE_OPPORTUNITIES });
+        const loaded = await repository.all();
+        assert.ok(loaded.some(({ rulesKey }) => rulesKey === "path-to-inner-peace-remove-condition"));
+        assert.ok(loaded.some(({ rulesKey }) => rulesKey === "path-to-inner-peace-remove-strife"));
+        assert.ok(loaded.some(({ rulesKey }) => rulesKey === "old-pack-entry"));
+    } finally {
+        if (originalGame === undefined) delete globalThis.game;
+        else globalThis.game = originalGame;
+    }
+});
+
+test("Path to Inner Peace restores Water Ring plus bonus successes to the target", async () => {
+    const conditions = new ConditionService();
+    const opportunities = new OpportunityService({ repository: new OpportunityRepository({ definitions: [] }), conditionService: conditions });
+    const rolls = new RollResolutionService({ opportunityService: opportunities, conditionService: conditions });
+    const actor = { uuid: "Actor.A", system: { rings: { water: 3 } } };
+    const target = { uuid: "Actor.T", system: { fatigue: { value: 5 } } };
+    const item = { uuid: "Actor.A.Item.P", system: { rulesKey: "path-to-inner-peace" } };
+    const resolution = await rolls.resolve({
+        context: { actor, targetActor: target, item, ring: "water", stance: "water", actionTypes: ["support"], tn: 2, lifecycle: { sceneId: "Scene.test" } },
+        rawSymbols: { success: 3, explosive: 0, opportunity: 0, strife: 0 },
+    });
+    assert.deepEqual(resolution.effects.action.techniqueEffects, [{
+        type: "resource", resource: "fatigue", amount: -4, targetUuid: "Actor.T", rulesKey: "path-to-inner-peace",
+    }]);
+    const mutations = await rolls.buildMutations(resolution, { actor, targetActor: target, item, resolver: async (uuid) => uuid === target.uuid ? target : actor });
+    assert.ok(mutations.some((mutation) => mutation.documentUuid === target.uuid && mutation.path === "system.fatigue.value" && mutation.after === 1));
+    assert.ok(mutations.some((mutation) => mutation.documentUuid === target.uuid && mutation.path === "flags.l5r5e.pathToInnerPeaceUsage" && mutation.after.sceneId === "Scene.test"));
+});
+
+test("Path to Inner Peace cannot affect the same target twice in one scene", async () => {
+    const conditions = new ConditionService();
+    const opportunities = new OpportunityService({ repository: new OpportunityRepository({ definitions: CORE_OPPORTUNITIES }), conditionService: conditions });
+    const rolls = new RollResolutionService({ opportunityService: opportunities, conditionService: conditions });
+    const actor = { uuid: "Actor.A", system: { rings: { water: 3 } } };
+    const target = { uuid: "Actor.T", flags: { l5r5e: { pathToInnerPeaceUsage: { sceneId: "Scene.test" } } }, system: { fatigue: { value: 5 } } };
+    const result = await rolls.resolve({
+        context: { actor, targetActor: target, item: { system: { rulesKey: "path-to-inner-peace" } }, actionId: "path-to-inner-peace", actionTypes: ["support"], ring: "water", tn: 2, lifecycle: { sceneId: "Scene.test" } },
+        rawSymbols: { success: 2, opportunity: 0 },
+    });
+    assert.equal(result.status, "blocked");
+    assert.equal(result.reason, "techniqueAlreadyUsed");
+});
+
+test("resource reductions from one resolution are combined before clamping at zero", async () => {
+    const rolls = new RollResolutionService();
+    const actor = { uuid: "Actor.A", system: { fatigue: { value: 2 } } };
+    const resolution = {
+        context: { actorUuid: actor.uuid },
+        effects: {
+            afterSuccess: [{ type: "resource", resource: "fatigue", amount: -1, rulesKey: "second-wind" }],
+            action: { techniqueEffects: [{ type: "resource", resource: "fatigue", amount: -5, targetUuid: actor.uuid, rulesKey: "path-to-inner-peace" }] },
+        },
+    };
+    const mutations = await rolls.buildMutations(resolution, { actor, resolver: async () => actor });
+    assert.deepEqual(mutations.filter(({ path }) => path === "system.fatigue.value").map(({ before, after }) => [before, after]), [[2, 0]]);
+});
+
+test("Path to Inner Peace exposes and applies its condition and bonus-success Strife Opportunities", async () => {
+    const conditions = new ConditionService();
+    const opportunities = new OpportunityService({ repository: new OpportunityRepository({ definitions: CORE_OPPORTUNITIES }), conditionService: conditions });
+    const rolls = new RollResolutionService({ opportunityService: opportunities, conditionService: conditions });
+    const actor = { uuid: "Actor.A", system: { rings: { water: 3 } } };
+    const target = { uuid: "Actor.T", statuses: new Set(["dazed"]), system: { fatigue: { value: 5 }, strife: { value: 4 } } };
+    const result = await rolls.resolve({
+        context: { actor, targetActor: target, item: { system: { rulesKey: "path-to-inner-peace" } }, actionId: "path-to-inner-peace", actionTypes: ["support"], conflictType: "skirmish", ring: "water", tn: 2 },
+        rawSymbols: { success: 3, opportunity: 2 },
+        opportunityPlan: [
+            { rulesKey: "path-to-inner-peace-remove-condition" },
+            { rulesKey: "path-to-inner-peace-remove-strife" },
+        ],
+        decisions: {
+            "path-to-inner-peace-remove-condition": { condition: "dazed", targetUuid: target.uuid },
+            "path-to-inner-peace-remove-strife": { targetUuid: target.uuid },
+        },
+    });
+    assert.notEqual(result.status, "blocked");
+    assert.ok(result.effects.afterSuccess.some((effect) => effect.type === "condition" && effect.condition === "dazed"));
+    assert.ok(result.effects.afterSuccess.some((effect) => effect.type === "priorStrifeReduction" && effect.amount === 1));
+    const mutations = await rolls.buildMutations(result, { actor, targetActor: target, resolver: async (uuid) => uuid === target.uuid ? target : actor });
+    assert.ok(mutations.some((mutation) => mutation.documentUuid === target.uuid && mutation.path === "statuses.dazed" && mutation.after === false));
+    assert.ok(mutations.some((mutation) => mutation.documentUuid === target.uuid && mutation.path === "system.strife.value" && mutation.after === 3));
 });
 
 test("NPC document type and subtype are kept separate", () => {
@@ -175,4 +268,70 @@ test("Strike critical severity is frozen from the attack-profile snapshot", asyn
     });
     assert.deepEqual(resolution.effects.action.directCriticals, [{ type: "critical", severity: 7, targetUuid: target.uuid, rulesKey: "strike-critical" }]);
     assert.equal(resolution.context.attackProfileSnapshot.deadliness, 7);
+});
+
+test("Heartpiercing Strike creates an immediate critical at deadliness plus bonus successes, without ordinary damage", async () => {
+    const conditions = new ConditionService();
+    const opportunities = new OpportunityService({ repository: new OpportunityRepository({ definitions: [] }), conditionService: conditions });
+    const damage = { resolve: () => { throw new Error("Heartpiercing Strike must not resolve ordinary attack damage"); }, razorEdgedDamage: () => null };
+    const rolls = new RollResolutionService({ opportunityService: opportunities, conditionService: conditions, damageService: damage });
+    const actor = { uuid: "Actor.A", statuses: new Set() };
+    const target = { uuid: "Actor.T", statuses: new Set(), system: { stance: "water" } };
+    const item = { uuid: "Actor.A.Item.H", system: { rulesKey: "heartpiercing-strike" } };
+    const resolution = await rolls.resolve({
+        context: { actor, targetActor: target, item, ring: "fire", stance: "fire", conflictType: "skirmish", actionTypes: ["attack", "move"], actionId: "heartpiercing-strike", tn: 4, attackProfileSnapshot: { damage: 4, deadliness: 5 } },
+        rawSymbols: { success: 5, explosive: 0, opportunity: 0, strife: 0 },
+    });
+    assert.deepEqual(resolution.effects.action.directCriticals, [{ type: "critical", severity: 6, targetUuid: target.uuid, mitigationTn: 3, rulesKey: "heartpiercing-strike" }]);
+    assert.equal(resolution.effects.action.damage, undefined);
+});
+
+test("Heartpiercing Strike failure applies Disoriented to the attacker", async () => {
+    const conditions = new ConditionService();
+    const opportunities = new OpportunityService({ repository: new OpportunityRepository({ definitions: [] }), conditionService: conditions });
+    const rolls = new RollResolutionService({ opportunityService: opportunities, conditionService: conditions });
+    const actor = { uuid: "Actor.A", statuses: new Set() };
+    const target = { uuid: "Actor.T", statuses: new Set() };
+    const item = { uuid: "Actor.A.Item.H", system: { rulesKey: "heartpiercing-strike" } };
+    const resolution = await rolls.resolve({
+        context: { actor, targetActor: target, item, ring: "fire", stance: "fire", conflictType: "skirmish", actionTypes: ["attack", "move"], actionId: "heartpiercing-strike", tn: 4, attackProfileSnapshot: { damage: 4, deadliness: 5 } },
+        rawSymbols: { success: 0, explosive: 0, opportunity: 0, strife: 0 },
+    });
+    assert.deepEqual(resolution.effects.action.techniqueEffects, [{ type: "condition", operation: "add", condition: "disoriented", targetUuid: actor.uuid, rulesKey: "heartpiercing-strike" }]);
+});
+
+// A deferred resource debit belongs to the same transaction as the legal check.
+test("provisional Void defers resources until a legal preValidation bypass and recalculates TN", async () => {
+    const conditions = new ConditionService();
+    const opportunities = new OpportunityService({ repository: new OpportunityRepository({ definitions: CORE_OPPORTUNITIES }), conditionService: conditions });
+    const rolls = new RollResolutionService({ opportunityService: opportunities, conditionService: conditions });
+    const actor = { uuid: "Actor.Void", statuses: new Set(["dazed"]), system: { void_points: { value: 2, max: 3 } } };
+    const result = await rolls.resolve({
+        context: { actor, ring: "void", conflictType: "skirmish", actionTypes: ["attack"], baseTn: 2, deferredVoidPointDelta: -1 },
+        rawSymbols: { success: 2, opportunity: 2 },
+        opportunityPlan: [{ rulesKey: "conflict-void-ignore-condition", spend: 2 }],
+        decisions: { "conflict-void-ignore-condition": { condition: "dazed" } },
+    });
+    assert.notEqual(result.status, "blocked");
+    assert.equal(result.effective.success, true);
+    assert.equal(result.tn.value, 2);
+    assert.equal(actor.system.void_points.value, 2);
+    const mutations = await rolls.buildMutations(result, { actor, resolver: async () => actor });
+    const debit = mutations.find(({ path }) => path === "system.void_points.value");
+    assert.deepEqual([debit.before, debit.after], [2, 1]);
+    assert.ok(mutations.some(({ path }) => path === "flags.l5r5e.conditionSuspensions"));
+});
+
+test("critical mitigation remains a reactive check for incapacitated or unconscious targets and uses their stance", async () => {
+    const conditions = new ConditionService();
+    const opportunities = new OpportunityService({ repository: new OpportunityRepository({ definitions: [] }), conditionService: conditions });
+    const rolls = new RollResolutionService({ opportunityService: opportunities, conditionService: conditions });
+    for (const condition of ["incapacitated", "unconscious"]) {
+        const actor = { uuid: "Actor.Target", statuses: new Set([condition]) };
+        assert.deepEqual(conditions.allowedRingsForCheck(actor, { allowedRings: ["earth"], checkKind: "critical-mitigation" }), ["earth"]);
+        const result = await rolls.resolve({ context: { actor, checkKind: "critical-mitigation", ring: "earth", baseTn: 1 }, rawSymbols: { success: 0, opportunity: 0, strife: 0 } });
+        assert.notEqual(result.status, "blocked");
+        assert.equal(result.effective.success, false);
+        assert.equal(conditions.validateAction({ actor, checkKind: "skill" }).legal, false);
+    }
 });

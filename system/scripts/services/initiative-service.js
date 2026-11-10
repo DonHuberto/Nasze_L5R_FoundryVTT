@@ -1,5 +1,7 @@
 import { getActorKind, RINGS, stableHash, toFiniteNumber } from "./rule-utils.js";
 
+export const INITIATIVE_TN = 1;
+
 export class InitiativeService {
     constructor({ opportunityService } = {}) {
         this.opportunities = opportunityService;
@@ -77,6 +79,8 @@ export class InitiativeService {
     }
 
     async rollAdversary(actor, { skillId, skillGroup, tn = 1, prepared = this.isPrepared(actor), ringOrder, messageMode = "blind" } = {}) {
+        // Initiative checks always use TN 1; callers may still pass legacy settings.
+        tn = INITIATIVE_TN;
         const ring = this.chooseRing(actor, { order: ringOrder });
         const ringDice = Math.max(0, toFiniteNumber(actor.system.rings?.[ring], 0));
         const skillDice = Math.max(0, toFiniteNumber(actor.system.skills?.[skillGroup], 0));

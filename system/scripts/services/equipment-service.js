@@ -99,6 +99,23 @@ export class EquipmentService {
         return Boolean(item.flags?.l5r5e?.held ?? item.system?.readied ?? item.system?.equipped);
     }
 
+    isConcealableWeapon(item) {
+        if (item?.type !== "weapon" || !item.system?.equipped || item.system?.readied || item.attackProfile?.grip !== "one-handed") return false;
+        const hasProperty = this.qualities?.has?.(item, "concealable") ?? (item.system?.properties ?? []).some((property) => {
+            const key = String(property?.rulesKey ?? property?.system?.rulesKey ?? property?.name ?? "").toLowerCase();
+            return key === "concealable" || property?.id === "L5RCorePro000005";
+        });
+        return Boolean(hasProperty);
+    }
+
+    isSoaringSliceWeapon(item) {
+        return Boolean(item?.type === "weapon" && item.attackProfile?.grip === "one-handed" && (this.isHeld(item) || this.isConcealableWeapon(item)));
+    }
+
+    throwableItems(actor) {
+        return [...(actor?.items ?? [])].filter((item) => this.isHeld(item) || this.isConcealableWeapon(item));
+    }
+
     heldItems(actor, { excludeUuid = null } = {}) {
         return [...(actor?.items ?? [])].filter((item) => item.uuid !== excludeUuid && this.isHeld(item));
     }
@@ -200,6 +217,7 @@ export class EquipmentService {
         const requestedMode = options.mode;
         const mode = requestedMode ?? (activeProfile?.grip === "thrown" ? "thrown-profile" : options.actionId === "soaring-slice" ? "soaring-slice" : "improvised");
         const improvisedEnabled = Boolean(this.settings("enableImprovisedThrowAction", true));
+        const itemAvailable = mode === "soaring-slice" ? this.isSoaringSliceWeapon(item) : this.isHeld(item);
         const profile = mode === "improvised" ? this.improvisedThrowProfile() : mode === "soaring-slice"
             ? { ...deepClone(activeProfile), skillId: activeProfile?.skillId ?? item?.system?.skill, range: { minimum: 2, maximum: 3 } }
             : deepClone(activeProfile);
@@ -209,8 +227,8 @@ export class EquipmentService {
         const intent = this.#intent("throw", actor, item, {
             options: { mode, actionId, tracked, placement: deepClone(options.placement), state: options.state ?? "ground" },
             assessment: {
-                ok: this.isHeld(item) && Boolean(validMode && profile),
-                code: !this.isHeld(item) ? "itemNotHeld" : !validMode ? mode === "improvised" ? "houseRuleDisabled" : "invalidThrowMode" : !profile ? "profileMissing" : null,
+                ok: itemAvailable && Boolean(validMode && profile),
+                code: !itemAvailable ? "itemNotHeld" : !validMode ? mode === "improvised" ? "houseRuleDisabled" : "invalidThrowMode" : !profile ? "profileMissing" : null,
                 profile,
                 roll: { actionId, actionTypes: ["attack"], skillId: profile?.skillId, difficulty: mode === "improvised" ? this.settings("improvisedThrowTn", 2) : 2, range: profile?.range, houseRule: mode === "improvised", tracked },
             },
@@ -264,6 +282,12 @@ export class EquipmentService {
                 return { ok: true, placement: deepClone(outcome.chosenField), state: "ground", targetUuid: null, audit: { rule: "soaring-slice-defended", fallback: false } };
             }
             if (!outcome.success) {
+                if (Array.isArray(outcome.missLandingFields)) {
+                    const candidates = outcome.missLandingFields.filter(isLegal);
+                    if (!candidates.length) return { ok: false, code: "landingFieldMissing" };
+                    const index = Math.min(candidates.length - 1, Math.floor(Math.random() * candidates.length));
+                    return { ok: true, placement: deepClone(candidates[index]), state: "ground", targetUuid: null, audit: { rule: "soaring-slice-failure", fallback: false, candidates: candidates.length } };
+                }
                 const originKey = fieldKey(outcome.originField);
                 const path = (outcome.pathFields ?? []).filter((field) => fieldKey(field) !== originKey && isLegal(field));
                 const fallback = (outcome.legalFields ?? []).filter((field) => fieldKey(field) !== originKey);
@@ -375,7 +399,8 @@ export class EquipmentService {
         if (!actor) return { ok: false, status: "blocked", code: "actorMissing", intentId: intent.intentId };
         const item = intent.itemUuid ? await this.resolver(intent.itemUuid) : null;
         if (item && item.parent?.uuid && item.parent.uuid !== actor.uuid) return { ok: false, status: "blocked", code: "itemOwnershipMismatch", intentId: intent.intentId };
-        if (["drop", "throw"].includes(intent.operation) && item && !this.isHeld(item)) return { ok: false, status: "blocked", code: "itemNotHeld", intentId: intent.intentId };
+        const itemAvailable = intent.operation === "throw" && intent.options.mode === "soaring-slice" ? this.isSoaringSliceWeapon(item) : this.isHeld(item);
+        if (["drop", "throw"].includes(intent.operation) && item && !itemAvailable) return { ok: false, status: "blocked", code: "itemNotHeld", intentId: intent.intentId };
         let result;
         if (intent.operation === "drop" || (intent.operation === "throw" && intent.options.tracked)) result = await this.#placeGroundItem(actor, item, intent);
         else if (intent.operation === "throw") result = { ok: true, status: "committed", intentId: intent.intentId, tracked: false };

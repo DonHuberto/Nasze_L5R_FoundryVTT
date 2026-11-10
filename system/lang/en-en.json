@@ -954,6 +954,8 @@
                 "blocked": "The roll is provisionally illegal. Choose an applicable pre-validation effect or return to the dice.",
                 "backToDice": "Return to kept dice",
                 "restart": "Return to Ring selection",
+                "cancelProvisional": "Cancel impossible check",
+                "provisionalCancelled": "Check cancelled: the condition was not bypassed. No action or roll resources were spent.",
                 "restartHint": "Cancel this result and reopen the roll setup. An Incapacitated character may select only Void.",
                 "incapacitatedVoidOnly": "An Incapacitated character may perform a check only with the Void Ring.",
                 "invalidKeptDie": "This kept die is illegal and is excluded from the result.",
@@ -964,6 +966,9 @@
                     "dead": "A Dead character cannot act.",
                     "unconscious": "An Unconscious character cannot act.",
                     "incapacitatedCheck": "An Incapacitated character must use Void and spend 2 Void Opportunity to suspend Incapacitated. Return to Ring selection if this check used another Ring.",
+                    "attackOutOfRange": "The target is outside this attack profile's range.",
+                    "attackProfileRequired": "Select a valid attack profile before rolling against a target.",
+                    "attackRangeUnavailable": "This attack cannot be rolled because the source and target range cannot be measured.",
                     "immobilizedMovement": "An Immobilized character cannot perform this Movement action.",
                     "destroyed": "A Destroyed item cannot be used for this action.",
                     "compromisedStrife": "A Compromised character cannot keep dice showing Strife. Those dice are excluded from the resolution.",
@@ -976,6 +981,7 @@
             "undoConflict": "Movement history changed and cannot be undone automatically. Ask the GM to resolve it.",
             "immobilized": "Immobilized prevents this movement.",
             "hostileOccupied": "A hostile token occupies a grid space on this path. A GM may use an explicit override.",
+                "pathUnavailable": "The movement path could not be validated.",
             "gridless": "Tactical movement automation is disabled on gridless scenes."
             },
             "lateArrival": {

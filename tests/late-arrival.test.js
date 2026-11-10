@@ -64,39 +64,47 @@ function harness({ conflictType = "skirmish", authority = true, count = 1, autom
     return { service, combat, combatant, calls, updates, settings, game };
 }
 
-test("skirmish arrival waits until the next round then requests TN 2 Tactics once", async () => {
+test("skirmish arrival waits until the next round then requests TN 1 Tactics once", async () => {
     const { service, combat, combatant, calls, updates } = harness({ conflictType: "skirmish", automatedInitiative: 6 });
     await service.onCreate(combatant);
     assert.equal(calls.length, 0);
     assert.equal(combatant.flags.l5r5e.lateArrival.eligibleRound, 3);
     assert.equal(combatant.flags.l5r5e.lateArrival.skillId, "tactics");
-    assert.equal(combatant.flags.l5r5e.lateArrival.tn, 2);
+    assert.equal(combatant.flags.l5r5e.lateArrival.tn, 1);
     assert.equal(combatant.roundJoined, 2);
     assert.equal(updates.some((change) => "roundJoined" in change), false);
     await service.onCombatUpdate(combat, { round: 3 });
     await service.onCombatUpdate(combat, { round: 3 });
     assert.equal(calls.length, 1);
-    assert.equal(calls[0].options.messageOptions.difficulty, 2);
+    assert.equal(calls[0].options.messageOptions.difficulty, 1);
     assert.equal(calls[0].options.messageOptions.difficultyHidden, true);
     assert.equal(combatant.flags.l5r5e.lateArrival.state, "resolved");
 });
 
-test("mass battle uses Command TN 2 and delegates the actual initiative to core", async () => {
+test("mass battle uses Command TN 1 and delegates the actual initiative to core", async () => {
     const { service, combat, combatant, calls } = harness({ conflictType: "mass_battle" });
     await service.onCreate(combatant);
     await service.resolveEligible(combat, 3);
     assert.equal(calls[0].options.messageOptions.skillId, "command");
-    assert.equal(calls[0].options.messageOptions.difficulty, 2);
+    assert.equal(calls[0].options.messageOptions.difficulty, 1);
     assert.equal(combatant.flags.l5r5e.lateArrival.state, "awaitingRoll");
 });
 
-test("intrigue requests the configured normal test immediately", async () => {
+test("intrigue initiative remains TN 1 even when the legacy setting differs", async () => {
     const { service, combatant, calls, settings } = harness({ conflictType: "intrigue" });
     settings.set("initiative-difficulty-value", 3);
     await service.onCreate(combatant);
     assert.equal(calls.length, 1);
     assert.equal(calls[0].options.messageOptions.skillId, "sentiment");
-    assert.equal(calls[0].options.messageOptions.difficulty, 3);
+    assert.equal(calls[0].options.messageOptions.difficulty, 1);
+});
+
+test("all late-arrival conflict types keep TN 1 despite a legacy configured TN", () => {
+    const { service, combat, settings } = harness();
+    settings.set("initiative-difficulty-value", 9);
+    for (const conflictType of ["intrigue", "duel", "skirmish", "mass_battle"]) {
+        assert.equal(service.ruleFor(combat, conflictType).tn, 1, conflictType);
+    }
 });
 
 test("an active duel rejects a third participant before creation and removes a batch race", async () => {

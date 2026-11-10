@@ -19,13 +19,18 @@ export class OpportunityRepository {
             return deepClone(this.cache);
         }
         const documents = await gamePack.getDocuments({ type: "opportunity" });
-        this.cache = documents.map((document) => ({
-            id: document.id,
-            uuid: document.uuid,
-            name: document.name,
-            img: document.img,
-            ...deepClone(document.system),
-        }));
+        const definitions = new Map((this.definitions ?? []).map((definition) => [definition.rulesKey, deepClone(definition)]));
+        for (const document of documents) {
+            const definition = {
+                id: document.id,
+                uuid: document.uuid,
+                name: document.name,
+                img: document.img,
+                ...deepClone(document.system),
+            };
+            if (definition.rulesKey) definitions.set(definition.rulesKey, definition);
+        }
+        this.cache = [...definitions.values()];
         return deepClone(this.cache);
     }
 

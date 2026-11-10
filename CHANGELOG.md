@@ -6,6 +6,33 @@ Date format : day/month/year
 > - `foundry-version`: Stick to the major version of FoundryVTT.
 > - `system-version`: System functionalities and Fixes.
 
+## 1.14.120 - 06/11/2026 - Combat resolution and range checks
+
+- Prevent attacks against scene tokens outside the selected weapon or unarmed profile's configured range; show the failure in the roll resolution without spending the action.
+- Keep chat cards accurate after a GM reopens and reapplies an Opportunity plan, including whether the results have been applied.
+- Add regression coverage for profile range checks and replayed chat-card state.
+
+## 1.14.119 - 05/11/2026 - Upstream audit repairs
+
+- Apply NPC skill advancements to the category rating while preserving PC skill ratings and their limits.
+- Send the currently viewed journal page to chat by ID, with permission checks, a sorted fallback and matching content/link throughout asynchronous rendering.
+- Await chat-link validation and safely skip journals with no accessible page.
+- Persist title XP totals together with embedded-item changes, including removal and curriculum changes.
+- Serialize prepared embedded-Item Maps through their array schema, fixing live V14 title advancement creation and editing without changing the stored data format.
+- Allow a PC without an existing curriculum to receive a school journal; reject school journals for NPCs.
+- Reuse generated age and marital status in identity and notes, fix the notes paragraph and omit empty family-name prefixes.
+- Generate changes from a detached actor-system snapshot so V14 persists identity, notes and attributes; read random names through the V14 TableResult name field.
+- Cancel impossible provisional Void checks without spending the action or roll resources; defer their Void-point cost until legal resolution.
+- Recalculate TN after a pre-validation condition bypass and apply first-time condition suspensions without a false transaction conflict.
+- Keep critical mitigation reactive for Incapacitated and Unconscious targets, using their conflict stance.
+- Synchronize retrospective GM target/TN changes with the chat card and preserve the current turn when replaying an earlier action.
+- Revert newly created flags with Foundry deletion syntax.
+- Expire Void condition suspensions using the current combat lifecycle and remove expired nested flags instead of merging an empty object.
+- Preserve the ending turn's action tags and prevent an old cancelled roll from overwriting a later turn.
+- Open weapon Strikes from actor sheets at TN 2, matching the combat HUD.
+- Size GM Monitor to its contents and translate its 20 Questions labels for both character templates.
+- Add regression tests and document a local development setup for testing before a GitHub release.
+
 ## 1.14.118 - 15/08/2026 - Chat-style previews and stable equipment rows
 
 - Open LMB item and technique previews with the exact formatted HTML used by “To chat”, while retaining editable sheets exclusively behind RMB.

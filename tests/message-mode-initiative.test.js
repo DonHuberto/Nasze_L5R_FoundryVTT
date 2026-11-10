@@ -35,6 +35,7 @@ test("rollAdversary performs an integrated blind initiative resolution", async (
 
     class RingDie {}
     const seenModes = [];
+    const createdRolls = [];
     class MockRoll {
         constructor(formula) {
             this.formula = formula;
@@ -42,6 +43,7 @@ test("rollAdversary performs an integrated blind initiative resolution", async (
             term.results = [{ result: 0 }];
             this.terms = [term];
             this.l5r5e = { summary: {}, dicesTypes: { l5r: true } };
+            createdRolls.push(this);
         }
         async evaluate() { return this; }
         async toMessage(_data, { messageMode }) {
@@ -84,8 +86,10 @@ test("rollAdversary performs an integrated blind initiative resolution", async (
             strife: { value: 0 },
         },
     };
-    const result = await new InitiativeService().rollAdversary(actor, { skillId: "tactics", skillGroup: "martial" });
+    const result = await new InitiativeService().rollAdversary(actor, { skillId: "tactics", skillGroup: "martial", tn: 3 });
     assert.equal(seenModes[0], "blind");
+    assert.equal(createdRolls[0].l5r5e.difficulty, 1);
+    assert.equal(result.resolution.context.tn, 1);
     assert.equal(result.initiative, 4);
     assert.equal(result.resolution.status, "applied");
 });

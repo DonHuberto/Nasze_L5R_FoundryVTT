@@ -1,3 +1,5 @@
+import { INITIATIVE_TN } from "../services/initiative-service.js";
+
 const HandlebarsApplicationMixin = foundry.applications.api.HandlebarsApplicationMixin;
 const ApplicationV2 = foundry.applications.api.ApplicationV2;
 
@@ -64,7 +66,7 @@ export class GmToolbox extends HandlebarsApplicationMixin(ApplicationV2) {
     /** @override ApplicationV2*/
     async _prepareContext() {
         return {
-            difficulty: game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-value"),
+            difficulty: INITIATIVE_TN,
             difficultyHidden: game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-hidden"),
         };
     }
@@ -133,20 +135,8 @@ export class GmToolbox extends HandlebarsApplicationMixin(ApplicationV2) {
     /**
      * @param {PointerEvent} event  The originating click event
      */
-    static #onChangeDifficulty(event) {
-        let difficulty = game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-value");
-        switch (event.button) {
-            case 0: // left click
-                difficulty = Math.min(9, difficulty + 1);
-                break;
-            case 1: // middle click
-                difficulty = 2;
-                break;
-            case 2: // right click
-                difficulty = Math.max(0, difficulty - 1);
-                break;
-        }
-        game.settings.set(CONFIG.l5r5e.namespace, "initiative-difficulty-value", difficulty);
+    static #onChangeDifficulty(_event) {
+        game.settings.set(CONFIG.l5r5e.namespace, "initiative-difficulty-value", INITIATIVE_TN);
     }
 
     static #onToggleHideDifficulty() {

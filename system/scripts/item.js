@@ -330,8 +330,11 @@ export class ItemL5r5e extends Item {
      * @return {Promise<void>}
      */
     async saveEmbedItems() {
+        const items = Array.from(this.system.items).map(([id, item]) => item.toObject(false));
+        const xp = this.type === "title" ? game.l5r5e.HelpersL5r5e.getItemsXpCost(items) : {};
         await this.update({
-            "system.items": Array.from(this.system.items).map(([id, item]) => item.toObject(false)),
+            "system.items": items,
+            ...Object.fromEntries(Object.entries(xp).map(([key, value]) => [`system.${key}`, value])),
         });
         this.sheet.render(false);
     }

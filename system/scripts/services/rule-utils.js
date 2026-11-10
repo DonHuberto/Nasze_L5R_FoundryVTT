@@ -44,6 +44,10 @@ export function inferActionTypes(source = {}) {
         const normalized = normalizeActionTypes(candidate);
         if (normalized.length) return normalized;
     }
+    // Core Rulebook invocation whose legacy compendium record predates activation metadata.
+    // Keep this narrow: other techniques need their own explicit action contract.
+    const rulesKey = String(system.rulesKey ?? source?.rulesKey ?? "").trim().toLowerCase();
+    if (rulesKey === "path-to-inner-peace") return ["support"];
     return [];
 }
 

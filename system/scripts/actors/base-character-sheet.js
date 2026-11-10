@@ -153,7 +153,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
         // Specific curriculum journal drop
         if (item.documentName === "JournalEntry") {
             // npc does not have this
-            if (!this.actor.system.identity?.school_curriculum_journal) {
+            if (this.actor.type !== "character") {
                 console.log("L5R5E | BCS | NPC won't go to school :'(");
                 return;
             }
@@ -767,6 +767,7 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
             isInitiativeRoll: isInitiative,
             actor: this.actor,
             itemUuid: weapon?.uuid,
+            difficulty: weapon ? 2 : undefined,
             actions: weapon ? { attack: true } : undefined,
             actionId: weapon ? "strike" : null,
             rollContext: weapon ? { actionId: "strike", attackProfileSnapshot: weapon.attackProfile } : null,
@@ -789,16 +790,26 @@ export class BaseCharacterSheetL5r5e extends BaseSheetL5r5e {
 
         // Required for tech in titles, search in sub items
         const item = await game.l5r5e.HelpersL5r5e.getEmbedItemByEvent(event, this.actor);
-        if (!item || item.type !== "technique" || !item.system.skill) {
+        if (!item || item.type !== "technique") {
             return;
         }
 
         const itemData = item.system;
+        let skillsList = itemData.skill || null;
+        if (!skillsList && itemData.activation?.weapon?.skill_mode === "active-profile") {
+            const profiles = game.l5r5e?.equipment?.getAttackProfiles?.(this.actor) ?? [];
+            skillsList = [...new Set(profiles
+                .filter((profile) => profile.source === "weapon" && profile.available !== false && profile.grip === itemData.activation.weapon.grip)
+                .map((profile) => profile.skillId)
+                .filter(Boolean))].join(",") || null;
+        }
+        if (!skillsList) return;
+
         new game.l5r5e.DicePickerDialog({
             actor: this.actor,
             ringId: itemData.ring || null,
             difficulty: itemData.difficulty || null,
-            skillsList: itemData.skill || null,
+            skillsList,
             itemUuid: item.uuid,
         }).render(true);
     }

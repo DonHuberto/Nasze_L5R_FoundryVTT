@@ -1,5 +1,6 @@
 import { defaultActionsState, getRollActionTypes, inferActions, normalizeActions } from "./action-types.js";
 import { LegacyApplicationV2 } from "../applications/legacy-v2-application.js";
+import { INITIATIVE_TN } from "../services/initiative-service.js";
 
 /**
  * L5R Dice picker dialog
@@ -155,6 +156,7 @@ export class DicePickerDialog extends LegacyApplicationV2 {
         this._skillsListSource = options.skillsList ?? null;
         this._rollContext = options.rollContext ? foundry.utils.deepClone(options.rollContext) : null;
         this._messageMode = options.messageMode ?? null;
+        this.object.isInitiativeRoll = !!options.isInitiativeRoll;
 
         // Try to get Actor from: options, first selected token or player's selected character
         [
@@ -215,7 +217,6 @@ export class DicePickerDialog extends LegacyApplicationV2 {
         this.difficultyHidden = !!options.difficultyHidden;
 
         // InitiativeRoll
-        this.object.isInitiativeRoll = !!options.isInitiativeRoll;
         this.object.conflictType = options.conflictType ?? (game.combat?.started
             ? game.settings.get(CONFIG.l5r5e.namespace, "initiative-encounter") ?? "conflict"
             : this.object.isInitiativeRoll ? "conflict" : null);
@@ -245,6 +246,7 @@ export class DicePickerDialog extends LegacyApplicationV2 {
             this.difficulty = game.settings.get(CONFIG.l5r5e.namespace, "initiative-difficulty-value");
             this.difficultyHidden = false;
         }
+        if (this.object.isInitiativeRoll) this.difficulty = INITIATIVE_TN;
         this.render(false);
     }
 
@@ -358,6 +360,11 @@ export class DicePickerDialog extends LegacyApplicationV2 {
             thrownItemUuid: weapon.uuid,
             attackProfileSnapshot: foundry.utils.deepClone(reserved.assessment.profile),
         };
+        // Soaring Slice uses the thrown weapon's attack skill. Technique data
+        // may not specify a skill, so initialize it from the selected profile.
+        if (!this.object.skill.id && reserved.assessment.profile?.skillId) {
+            this.skillId = reserved.assessment.profile.skillId;
+        }
         return true;
     }
 
@@ -373,6 +380,7 @@ export class DicePickerDialog extends LegacyApplicationV2 {
         if (!this._actor || !game.l5r5e?.conditions) return;
         this._allowedRings = game.l5r5e.conditions.allowedRingsForCheck(this._actor, {
             allowedRings: this._requestedAllowedRings,
+            checkKind: this._rollContext?.type,
         });
         if (!this._allowedRings.includes(this.object.ring.id)) this.ringId = this._allowedRings[0] ?? "void";
     }
@@ -462,6 +470,7 @@ export class DicePickerDialog extends LegacyApplicationV2 {
         if (this._difficultyHiddenIsLock.option) {
             return;
         }
+        if (this.object.isInitiativeRoll) difficulty = INITIATIVE_TN;
         difficulty = parseInt(difficulty);
         if (isNaN(difficulty) || difficulty < 1) {
             difficulty = 2;
@@ -671,6 +680,32 @@ export class DicePickerDialog extends LegacyApplicationV2 {
         }
         if (!(await this._prepareSoaringSliceIntent())) return false;
 
+        // Range is a hard prerequisite for a physical attack when both tokens
+        // can be measured. Reject it before reserving an action or rolling dice.
+        const attackTypes = Object.entries(this.object.actions ?? {})
+            .filter(([, active]) => active)
+            .map(([type]) => type);
+        if (this._actionId === "strike" && !attackTypes.includes("attack")) attackTypes.push("attack");
+        const attackProfileSnapshot = this._rollContext?.attackProfileSnapshot ?? this._item?.attackProfile ?? this._rollContext?.unarmedProfile ?? this._inferAttackProfileForRange();
+        const rangeLegality = game.l5r5e.rangeBands.validateAttack({
+            actor: this._actor,
+            target: this._target,
+            item: this._item,
+            actionTypes: attackTypes,
+            actionId: this._actionId,
+            attackProfileSnapshot,
+            rollContext: this._rollContext,
+        });
+        if (!rangeLegality.legal) {
+            const errorKey = rangeLegality.code === "attackProfileRequired"
+                ? "l5r5e.automation.roll.error.attackProfileRequired"
+                : rangeLegality.code === "attackRangeUnavailable"
+                    ? "l5r5e.automation.roll.error.attackRangeUnavailable"
+                    : "l5r5e.automation.roll.error.attackOutOfRange";
+            ui.notifications.error(game.i18n.localize(errorKey));
+            return false;
+        }
+
         // If initiative roll, check if player already have
         if (this.object.isInitiativeRoll) {
             if (!game.combat) {
@@ -685,6 +720,14 @@ export class DicePickerDialog extends LegacyApplicationV2 {
                 return this.close();
             }
         }
+
+        // A provisional Void check must not spend resources before it becomes legal.
+        const provisionalVoid = !this.object.isInitiativeRoll && this.object.ring.id === "void" &&
+            !game.l5r5e.conditions.validateAction({ actor: this._actor, item: this._item,
+                checkKind: this._rollContext?.type,
+                actionTypes: Object.entries(this.object.actions).filter(([, active]) => active).map(([type]) => type),
+                requiresCheck: true, lifecycle: game.combat ? { combatId: game.combat.id, round: game.combat.round, turn: game.combat.turn } : {} }).legal;
+        let deferredVoidPointDelta = 0;
 
         // Update Actor
         if (this._actor) {
@@ -703,6 +746,11 @@ export class DicePickerDialog extends LegacyApplicationV2 {
             // If Void point is used, minus the actor
             if (this.object.useVoidPoint) {
                 actorData.void_points.value = Math.max(actorData.void_points.value - 1, 0);
+            }
+
+            if (provisionalVoid) {
+                deferredVoidPointDelta = actorData.void_points.value - this._actor.system.void_points.value;
+                actorData.void_points.value = this._actor.system.void_points.value;
             }
 
             // Update actor if needed
@@ -762,13 +810,15 @@ export class DicePickerDialog extends LegacyApplicationV2 {
             roll.l5r5e.difficulty = this.object.difficulty.value;
             roll.l5r5e.baseDifficulty = this._baseDifficulty;
             roll.l5r5e.voidPointUsed = this.object.useVoidPoint;
+            roll.l5r5e.deferredVoidPointDelta = deferredVoidPointDelta;
             roll.l5r5e.skillAssistance = this.object.skill.assistance;
             roll.l5r5e.difficultyHidden = this.object.difficulty.hidden;
             roll.l5r5e.actions = foundry.utils.deepClone(this.object.actions);
             roll.l5r5e.actionTypes = Object.entries(this.object.actions).filter(([, active]) => active).map(([type]) => type);
             roll.l5r5e.actionId = this._actionId;
             const combatant = game.combat?.combatants?.find((entry) => entry.actor?.uuid === this._actor?.uuid);
-            if (combatant === game.combat?.combatant && roll.l5r5e.actionTypes.length) {
+            const activeCombatant = game.combat?.combatant;
+            if (combatant?.actor?.uuid && combatant.actor.uuid === activeCombatant?.actor?.uuid && roll.l5r5e.actionTypes.length) {
                 const lifecycle = { combatId: game.combat.id, round: game.combat.round, turn: game.combat.turn };
                 const reservation = await game.l5r5e.actions.reserveAndPersist(combatant, { actionId: this._actionId, actionTypes: roll.l5r5e.actionTypes, requiresCheck: true, lifecycle });
                 if (!reservation.ok) {
@@ -779,6 +829,7 @@ export class DicePickerDialog extends LegacyApplicationV2 {
             }
             roll.l5r5e.conflictType = this.object.conflictType;
             roll.l5r5e.provisionalLegality = game.l5r5e.actions.assess({
+                checkKind: this._rollContext?.type,
                 actor: this._actor,
                 target: this._target,
                 item: this._item,
@@ -829,6 +880,23 @@ export class DicePickerDialog extends LegacyApplicationV2 {
         return this.close();
     }
 
+    /** Infer the only unambiguous readied attack profile when a HUD omits it. */
+    _inferAttackProfileForRange() {
+        if (this._actionId !== "strike" && !this.object.actions?.attack) return null;
+        const profiles = game.l5r5e?.equipment?.getAttackProfiles?.(this._actor) ?? [];
+        const skillId = this.object.skill.id;
+        const readyWeapons = profiles.filter((profile) => profile.source === "weapon" && profile.available !== false);
+        if (readyWeapons.length === 1) return readyWeapons[0];
+        const matching = profiles.filter((profile) => profile.source !== "weapon" && profile.available !== false && (!skillId || profile.skillId === skillId));
+        if (!matching.length) return null;
+        const signatures = new Set(matching.map((profile) => JSON.stringify({
+            minimum: profile.range?.minimum ?? profile.range?.range_min ?? 0,
+            maximum: profile.range?.maximum ?? profile.range?.range_max ?? 0,
+        })));
+        // Multiple unarmed choices share a range; multiple weapons may not.
+        return signatures.size === 1 ? matching[0] : null;
+    }
+
     /**
      * Change quantity between 0-9 on the element, and return the new value
      * @private
@@ -850,6 +918,13 @@ export class DicePickerDialog extends LegacyApplicationV2 {
      * @private
      */
     _recalculateDifficulty() {
+        if (this.object.isInitiativeRoll) {
+            this.object.difficulty.base = INITIATIVE_TN;
+            this._baseDifficulty = INITIATIVE_TN;
+            this.object.difficulty.modifier = 0;
+            this.object.difficulty.value = INITIATIVE_TN;
+            return;
+        }
         const parsedBase = Number(this.object.difficulty.base);
         const base = Math.max(Math.min(Number.isFinite(parsedBase) ? parsedBase : this._baseDifficulty, 9), 1);
         this.object.difficulty.base = base;

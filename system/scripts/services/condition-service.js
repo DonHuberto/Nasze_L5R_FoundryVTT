@@ -44,9 +44,14 @@ export class ConditionService {
         if (!suspension) return false;
         if (!suspension.expiresAt) return true;
         const expires = suspension.expiresAt;
-        if (lifecycle.sceneEnd && expires.sceneEnd) return false;
-        const currentRound = toFiniteNumber(lifecycle.round, 0);
-        const currentTurn = toFiniteNumber(lifecycle.turn, 0);
+        if (lifecycle.sceneEnd) return false;
+        const combat = globalThis.game?.combat;
+        if (expires.combatId && expires.combatId !== (lifecycle.combatId ?? combat?.id)) return false;
+        const round = lifecycle.round ?? combat?.round;
+        const turn = lifecycle.turn ?? combat?.turn;
+        if (Number.isFinite(expires.round) && round === undefined) return false;
+        const currentRound = toFiniteNumber(round, 0);
+        const currentTurn = toFiniteNumber(turn, 0);
         const expiresRound = toFiniteNumber(expires.round, Number.POSITIVE_INFINITY);
         const expiresTurn = toFiniteNumber(expires.turn, Number.POSITIVE_INFINITY);
         return currentRound < expiresRound || (currentRound === expiresRound && currentTurn <= expiresTurn);
@@ -60,11 +65,11 @@ export class ConditionService {
         return [...statusSet(actor)].filter((condition) => this.isActive(actor, condition, lifecycle, ignored));
     }
 
-    allowedRingsForCheck(actor, { allowedRings = null, lifecycle = {}, ignoredConditions = [] } = {}) {
+    allowedRingsForCheck(actor, { allowedRings = null, lifecycle = {}, ignoredConditions = [], checkKind = "skill" } = {}) {
         const configured = Array.isArray(allowedRings)
             ? [...new Set(allowedRings.map((ring) => String(ring).toLowerCase()))]
             : ["air", "earth", "fire", "water", "void"];
-        if (this.isActive(actor, "incapacitated", lifecycle, ignoredConditions)) return ["void"];
+        if (checkKind !== "critical-mitigation" && this.isActive(actor, "incapacitated", lifecycle, ignoredConditions)) return ["void"];
         return configured;
     }
 
@@ -106,6 +111,8 @@ export class ConditionService {
     }
 
     validateAction(context = {}) {
+        // Resisting a critical strike is a reactive check, not an action taken by the target.
+        if (context.checkKind === "critical-mitigation") return { legal: true, errors: [], provisional: false };
         const ignored = context.ignoredConditions ?? [];
         const errors = [];
         if (this.isActive(context.actor, "dead", context.lifecycle, ignored)) errors.push({ key: "dead", code: "condition.dead" });
@@ -188,6 +195,19 @@ export class ConditionService {
         return Object.fromEntries(Object.entries(suspensionMap(actor)).filter(([condition]) => this.isSuspended(actor, condition, lifecycle)));
     }
 
+    async pruneSuspensions(actor, lifecycle = {}) {
+        const stored = suspensionMap(actor);
+        const active = this.activeSuspensions(actor, lifecycle);
+        const removed = Object.keys(stored).filter((key) => !(key in active));
+        if (removed.length) {
+            // Foundry merges flag objects: an empty object does not delete expired entries.
+            const ForcedDeletion = globalThis.foundry.data.operators.ForcedDeletion;
+            const changes = Object.fromEntries(removed.map((key) => [key, new ForcedDeletion()]));
+            await actor.setFlag?.("l5r5e", "conditionSuspensions", changes);
+        }
+        return active;
+    }
+
     async applyEffects(actor, effects = []) {
         for (const effect of effects) {
             switch (effect.type) {
@@ -222,8 +242,7 @@ export class ConditionService {
     async endTurn(actor, turnState = {}, lifecycle = {}) {
         const effects = this.endTurnEffects(actor, turnState, lifecycle);
         await this.applyEffects(actor, effects);
-        const active = this.activeSuspensions(actor, lifecycle);
-        if (JSON.stringify(active) !== JSON.stringify(suspensionMap(actor))) await actor.setFlag("l5r5e", "conditionSuspensions", active);
+        await this.pruneSuspensions(actor, lifecycle);
         return effects;
     }
 
@@ -233,8 +252,7 @@ export class ConditionService {
             if (!actor?.isCharacterType && !["character", "npc"].includes(actor?.type)) continue;
             const recovery = this.sceneEndRecovery(actor);
             await actor.update({ "system.fatigue.value": recovery.fatigue, "system.strife.value": recovery.strife });
-            const active = this.activeSuspensions(actor, { sceneEnd: true });
-            if (JSON.stringify(active) !== JSON.stringify(suspensionMap(actor))) await actor.setFlag?.("l5r5e", "conditionSuspensions", active);
+            await this.pruneSuspensions(actor, { sceneEnd: true });
             results.push({ actorUuid: actor.uuid, ...recovery });
         }
         return results;

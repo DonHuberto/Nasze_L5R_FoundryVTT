@@ -136,6 +136,12 @@ export class OpportunityService {
         }));
         this.registerExecutor("remove-check-strife", (selection) => ({ type: "checkStrifeReduction", amount: selection.cost, rulesKey: selection.rulesKey }));
         this.registerExecutor("remove-strife", (selection) => ({ type: "priorStrifeReduction", amount: amount(selection, 2), targetUuid: selection.decision.targetUuid, rulesKey: selection.rulesKey }));
+        this.registerExecutor("bonus-success-strife", (selection, context) => ({
+            type: "priorStrifeReduction",
+            amount: Math.max(0, toFiniteNumber(context.bonusSuccesses, 0)) * selection.cost,
+            targetUuid: selection.decision.targetUuid,
+            rulesKey: selection.rulesKey,
+        }));
         this.registerExecutor("condition", (selection) => ({ type: "condition", operation: selection.definition.effect.params.operation ?? "add", condition: selection.decision.condition ?? selection.definition.effect.params.condition, targetUuid: selection.decision.targetUuid, rulesKey: selection.rulesKey }));
         this.registerExecutor("ignore-condition", (selection, context) => ({
             type: "ignoreCondition", condition: selection.decision.condition, targetUuid: context.actor?.uuid, expiresAt: context.conditionSuspensionExpiry, rulesKey: selection.rulesKey,
